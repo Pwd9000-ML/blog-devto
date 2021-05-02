@@ -2,7 +2,7 @@ name: publish to Dev.to
 on:   
   push:
     branches:
-      - main
+      - master
 
 jobs:
   publish:
@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@main
+      uses: actions/checkout@master
 
     - name: Setup Node
       uses: actions/setup-node@master
