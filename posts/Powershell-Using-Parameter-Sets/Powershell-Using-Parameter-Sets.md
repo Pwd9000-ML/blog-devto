@@ -14,7 +14,9 @@ This article and demo function can also be found on [Github](https://github.com/
 
 Add some text here and there! \o/
 
-![test](./assets/PowerShellHowTo.png)
+![testFunction](./assets/TestFunction.gif)
+
+You can also find some very helpful documentation on parameter sets on [Microsoft Docs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameter_sets?view=powershell-7.1).
 
 Test function.
 
