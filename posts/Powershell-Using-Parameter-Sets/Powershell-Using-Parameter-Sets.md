@@ -8,7 +8,7 @@ canonical_url: null
 id: 685386
 ---
 
-This article and demo function can also be found on [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Powershell-Using-Parameter-Sets/code).
+This article and demo function can also be found on [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Powershell-Using-Parameter-Sets/code).
 
 ## What are parameter sets in PowerShell and how to use them :bulb:
 
