@@ -13,11 +13,11 @@ date: '2021-05-02T12:29:00Z'
 
 Have you ever wondered when you are writing a PowerShell function or commandlet how you can make only certain parameters be presented to the consumer of the function in certain scenarios? That's where parameter sets come in :smile:
 
-We will look at the following test function on exactly how this functionality can be used.  
+We will look at the following test function: `[Test-ParameterSets]` on exactly how this functionality can be used.  
 
 {% gist https://gist.github.com/Pwd9000-ML/2e8e4c69299eca1f06547106b4686b17.js %}
 
-The first step is to add a `DefaultParameterSetName`. We can set that in our `[CmdletBinding]()` as follow:
+The first step is to add a `DefaultParameterSetName="Default"`. We can set that in our `[CmdletBinding()]` as follow:
 
 ```txt
 // code/demo-function.ps1#L2-L2
@@ -25,7 +25,7 @@ The first step is to add a `DefaultParameterSetName`. We can set that in our `[C
 [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName="Default")]
 ```
 
-By declaring a default parameter set name on our `CmdletBinding` will set all of our parameters defined under the `default` set. What we will do next is define which parameters needs to be presented if the parameter switch `$A` is used. We do not want to present parameters from switch `$B` in this case. We will do this by defining a new parameter set name and grouping the parameters we want to be part of that particular set.
+By declaring a default parameter set name on our `[CmdletBinding()]` will set all of our parameters defined under the `Default` set. What we will do next is define which parameters needs to be presented if the parameter switch `$A` is used. We do not want to present parameters from switch `$B` in this case. We will do this by defining a new parameter set name and grouping the parameters we want to be part of that particular set.
 
 ```txt
 // code/demo-function.ps1#L8-L13
