@@ -23,7 +23,7 @@ We will look at the following test function on exactly how this can be used.
 The first step is to add a `DefaultParameterSetName`. We can set that in our `[CmdletBinding]()` as follow:  
 
 ```txt
-// code/demo-function.ps1#L2
+// code/demo-function.ps1#L2-L2
 ```
 
 ![testFunction](./assets/TestFunction.gif)
