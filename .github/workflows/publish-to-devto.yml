@@ -1,0 +1,35 @@
+name: publish to Dev.to
+on:   
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@master
+
+    - name: Setup Node
+      uses: actions/setup-node@master
+      with:
+        node-version: 12
+
+    - name: Install Dependencies
+      uses: bahmutov/npm-install@v1.7.0
+
+    - name: Run Prettier (Write)
+      run: yarn run prettier:write
+
+    - name: Run Embedme (Write)
+      run: yarn run embedme:write
+
+    - name: Publish articles on dev.to
+      uses: sinedied/publish-devto@master
+      with:
+        files: 'posts/**/*.md'
+        devto_key: ${{ secrets.DEVTO_TOKEN }}
+        github_token: ${{ secrets.GH_TOKEN }}
+        conventional_commits: true
