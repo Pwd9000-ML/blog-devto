@@ -16,7 +16,7 @@ Add some text here and there! \o/
 
 ![and some pictures](./assets/PowerShell.jpg)
 
-Test function..
+Test function.
 
 ```txt
 // code/demo-function.ps1
