@@ -2,7 +2,7 @@ name: publish to Dev.to
 on:   
   push:
     branches:
-      - master
+      - main
 
 jobs:
   publish:
