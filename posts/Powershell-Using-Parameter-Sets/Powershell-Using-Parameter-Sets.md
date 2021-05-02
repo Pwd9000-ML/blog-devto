@@ -17,7 +17,7 @@ Have you ever wondered when you are writing a PowerShell function or commandlet 
 
 We will look at the following test function on exactly how this functionality can be used.
 
-{% github https://github.com/Pwd9000-ML/blog-devto/blob/ba889762f8b69df432e51f245aefded200482924/posts/Powershell-Using-Parameter-Sets/code/demo-function.ps1 %}
+<script src="https://gist.github.com/Pwd9000-ML/d87656f1f92ebbdf81d7be498efa620a.js"></script>
 
 ```powershell
 Function Test-ParameterSets {
