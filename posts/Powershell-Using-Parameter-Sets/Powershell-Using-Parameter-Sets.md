@@ -1,6 +1,6 @@
 ---
 title: PowerShell - Using Parameter Sets
-published: false
+published: true
 description: Powershell - How to use parameter sets in PowerShell functions
 tags: 'powershell, howtoposh'
 cover_image: assets/PowerShellHowTo.png
