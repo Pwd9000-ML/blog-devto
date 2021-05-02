@@ -26,6 +26,20 @@ The first step is to add a `DefaultParameterSetName`. We can set that in our `[C
 // code/demo-function.ps1#L2-L2
 ```
 
+By declaring a default parameter set name on our `CmdletBinding` will set all of our parameters defined under the `default` set. What we will do next is define which parameters needs to be presented if the parameter switch `$A` is used. We do not want to present parameters from switch `$B` in this case. We will do this by defining a new parameter set name and grouping the parameters we want to be part of that particular set.  
+
+```txt
+// code/demo-function.ps1#L8-L13
+```
+
+We will also give parameter switch `$B` and it's corresponding parameters, it's own parameter set name.  
+
+```txt
+// code/demo-function.ps1#L14-L19
+```
+
+Now that we have defined our parameter sets and grouped the relevant parameters according to their sets our function/Cmdlet will now only present corresponding parameters based on which switch is used when calling the function/Cmdlet.  
+
 ![testFunction](./assets/TestFunction.gif)
 
 You can also find some very helpful documentation on parameter sets on [Microsoft Docs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameter_sets?view=powershell-7.1).
