@@ -9,8 +9,6 @@ id: 685386
 date: '2021-05-02T12:29:00Z'
 ---
 
-This article and demo function can also be found on [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Powershell-Using-Parameter-Sets/code).
-
 ## What are parameter sets in PowerShell and how to use them :bulb:
 
 Have you ever wondered when you are writing a PowerShell function or commandlet how you can make only certain parameters be presented to the consumer of the function in certain scenarios? That's where parameter sets come in :smile:
@@ -18,49 +16,6 @@ Have you ever wondered when you are writing a PowerShell function or commandlet 
 We will look at the following test function on exactly how this functionality can be used.  
 
 {% gist https://gist.github.com/Pwd9000-ML/2e8e4c69299eca1f06547106b4686b17.js %}
-
-Function Test-ParameterSets {
-    [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName="Default")]
-    Param (
-        [Parameter(Mandatory=$false)]
-        [string]$DefaultParameter1,
-        [Parameter(Mandatory=$false)]
-        [string]$DefaultParameter2,
-        [Parameter(Mandatory=$false, ParameterSetName="A")]
-        [Switch]$A,
-        [Parameter(Mandatory=$false, ParameterSetName="A")]
-        [string]$AParameter1,
-        [Parameter(Mandatory=$false, ParameterSetName="A")]
-        [string]$AParameter2,
-        [Parameter(Mandatory=$false, ParameterSetName="B")]
-        [Switch]$B,
-        [Parameter(Mandatory=$false, ParameterSetName="B")]
-        [string]$BParameter1,
-        [Parameter(Mandatory=$false, ParameterSetName="B")]
-        [string]$BParameter2
-    )
-  
-    If ($A) {
-        Write-Output "Using Parameter Set A"
-        Write-Output $DefaultParameter1
-        Write-Output $DefaultParameter2
-        Write-Output $AParameter1
-        Write-Output $AParameter2
-    }
-
-    If ($B) {
-        Write-Output "Using Parameter Set B"
-        Write-Output $DefaultParameter1
-        Write-Output $DefaultParameter2
-        Write-Output $BParameter1
-        Write-Output $BParameter2
-    }
-  }
-
-# Function Tests #
-Test-ParameterSets -DefaultParameter1 'defaultValue1' -DefaultParameter2 'defaultValue2' -A -AParameter1 'valueA1' -AParameter2 'valueA2'
-Test-ParameterSets -DefaultParameter1 'defaultValue1' -DefaultParameter2 'defaultValue2' -B -BParameter1 'valueB1' -BParameter2 'valueB2'
-```
 
 The first step is to add a `DefaultParameterSetName`. We can set that in our `[CmdletBinding]()` as follow:
 
@@ -101,3 +56,5 @@ Now that we have defined our parameter sets and grouped the relevant parameters 
 ![testFunctionAnimation](./assets/TestFunctionAnimation.gif)
 
 You can also find some very helpful documentation on parameter sets on [Microsoft Docs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameter_sets?view=powershell-7.1).
+
+This article and demo function can also be found on [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Powershell-Using-Parameter-Sets/code).
