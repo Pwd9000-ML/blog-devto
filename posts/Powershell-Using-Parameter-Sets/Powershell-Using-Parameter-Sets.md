@@ -17,11 +17,9 @@ Have you ever wondered when you are writing a PowerShell function or commandlet 
 
 We will look at the following test function on exactly how this functionality can be used.
 
-![link](https://github.com/Pwd9000-ML/blog-devto/blob/ba889762f8b69df432e51f245aefded200482924/posts/Powershell-Using-Parameter-Sets/code/demo-function.ps1)
+https://github.com/Pwd9000-ML/blog-devto/blob/ba889762f8b69df432e51f245aefded200482924/posts/Powershell-Using-Parameter-Sets/code/demo-function.ps1
 
-```txt
-// code/demo-function.ps1
-
+```powershell
 Function Test-ParameterSets {
     [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName="Default")]
     Param (
