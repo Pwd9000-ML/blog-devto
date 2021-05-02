@@ -5,7 +5,7 @@ description: Powershell - How to use parameter sets in PowerShell functions
 tags: 'powershell, howtoposh, powershelltips'
 cover_image: assets/PowerShellHowTo.png
 canonical_url: null
-id: 685263
+id: 685386
 ---
 
 This article and demo function can also be found on [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Powershell-Using-Parameter-Sets/code).
