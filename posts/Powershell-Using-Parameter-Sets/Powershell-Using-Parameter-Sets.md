@@ -10,7 +10,7 @@ id: 685263
 
 This article and demo function can also be found on [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Powershell-Using-Parameter-Sets/code).
 
-## What are parameter sets in PowerShell and how to use them `:bulb:`
+## What are parameter sets in PowerShell and how to use them :bulb:
 
 Add some text here and there! \o/
 
