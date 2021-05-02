@@ -73,6 +73,8 @@ The first step is to add a `DefaultParameterSetName`. We can set that in our `[C
 
 By declaring a default parameter set name on our `CmdletBinding` will set all of our parameters defined under the `default` set. What we will do next is define which parameters needs to be presented if the parameter switch `$A` is used. We do not want to present parameters from switch `$B` in this case. We will do this by defining a new parameter set name and grouping the parameters we want to be part of that particular set.
 
+[Function]:https://github.com/Pwd9000-ML/blog-devto/blob/master/posts/Powershell-Using-Parameter-Sets/code/demo-function.ps1
+
 ```txt
 // code/demo-function.ps1#L8-L13
 
