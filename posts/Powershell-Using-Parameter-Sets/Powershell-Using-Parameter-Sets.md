@@ -8,13 +8,13 @@ canonical_url: null
 id: 685263
 ---
 
-Some random text with a [link](https://code.visualstudio.com).
+This article and demo function can also be found on [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Powershell-Using-Parameter-Sets/code).
 
-## Serious title1
+## What are parameter sets in PowerShell and how to use them
 
 Add some text here and there! \o/
 
-![and some pictures](./assets/PowerShell.jpg)
+![test](./assets/PowerShellHowTo.png)
 
 Test function.
 
