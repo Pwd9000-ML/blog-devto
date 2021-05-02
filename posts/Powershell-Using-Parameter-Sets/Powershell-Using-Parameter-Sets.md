@@ -19,6 +19,8 @@ We will look at the following test function on exactly how this functionality ca
 
 <script src="https://gist.github.com/Pwd9000-ML/d87656f1f92ebbdf81d7be498efa620a.js"></script>
 
+{% gist d87656f1f92ebbdf81d7be498efa620a %}
+
 ```powershell
 Function Test-ParameterSets {
     [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName="Default")]
