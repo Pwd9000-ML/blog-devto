@@ -9,7 +9,7 @@ id: 685386
 date: '2021-05-02T12:29:00Z'
 ---
 
-## What are parameter sets in PowerShell and how to use them :bulb:
+## :bulb: What are parameter sets in PowerShell and how to use them :bulb:
 
 Have you ever wondered when you are writing a PowerShell function or commandlet how you can make only certain parameters be presented to the consumer of the function in certain scenarios? That's where parameter sets come in :smile:
 
