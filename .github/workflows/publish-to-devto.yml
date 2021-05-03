@@ -1,8 +1,8 @@
 name: publish to Dev.to
 on:   
   push:
-    branches:
-      - master
+    paths:
+      - 'posts/**/**.md'
 
 jobs:
   publish:
