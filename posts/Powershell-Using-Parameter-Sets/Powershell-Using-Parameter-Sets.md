@@ -9,9 +9,9 @@ id: 685386
 date: '2021-05-02T12:29:00Z'
 ---
 
-## :bulb: What are parameter sets in PowerShell and how to use them :bulb:
+## :bulb: What are parameter sets in PowerShell and how to use them
 
-Have you ever wondered when you are writing a PowerShell function or commandlet how you can make only certain parameters be presented to the consumer of the function in certain scenarios? That's where parameter sets come in :smile:
+Have you ever wondered when you are writing a PowerShell function or commandlet how you can make only certain parameters be presented to the consumer of the function in certain scenarios? That's where parameter sets come in. :smile:
 
 We will look at the following test function: `[Test-ParameterSets]` on exactly how this functionality can be used.  
 
