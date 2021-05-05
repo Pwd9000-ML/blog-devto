@@ -72,7 +72,10 @@ Our complete definition will look something like this:
 
 The next thing we will do is create our pipeline and script. In my repository I like to create a sub folder under `[pipelines]` called `[task_groups]`. This way I can easily break up my pipeline steps up into different task groups defined in `yaml templates`. Lets create the following `yaml` files in our repository.  
 
-1. Under `[pipelines]` create the following YAML pipeline `[Rbac_Apply.yml]`:
+1. Under `[pipelines]` create the following YAML pipeline `[Rbac_Apply.yml]`:  
+
+    This is going to be our main yaml pipeline: `[Rbac_Apply]`.  
+    **Note:** The pipeline will only trigger on changes made to the repository path `[roleDefinitions/*]` and our `steps` will call our yaml templates created under `[task_groups]`.  
 
     ```YAML
     name: RBAC-Apply-$(Rev:rr)
