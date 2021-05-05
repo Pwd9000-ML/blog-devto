@@ -69,7 +69,6 @@ Other valuable links for reference when creating custom role definitions:
 * [Operations format:](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#operations-format)
 * [Assignable Scopes:](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#assignablescopes)
 
-## Authors
+## _Author_
 
----
 Marcel.L - pwd9000@hotmail.co.uk
