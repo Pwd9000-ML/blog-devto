@@ -252,7 +252,9 @@ And that is it, now we can authorize our pipeline and each time a new JSON polic
 
 ![Run-pipeline](./assets/Run-pipeline.gif)
 
-![]()
+We can also confirm that our role is now published and usable in Azure. :smile:
+
+![Azure-Role-Published](./assets/Azure-Role-Published.gif)
 
 I hope you have enjoyed this post and have learned something new.
 
