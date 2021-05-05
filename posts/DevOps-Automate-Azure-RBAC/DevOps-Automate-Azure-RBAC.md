@@ -25,16 +25,13 @@ In my repository I have created 3 main folder paths:
 ![rbac-repo-structure](./assets/ADO-RBAC-Repo-Structure.png)
 
 1. **pipelines**
-
-Here we will define and create our Azure pipeline in yaml.
+    Here we will define and create our Azure pipeline in yaml.
 
 2. **roleDefinitions**
-
-Here we will keep all our custom role definitions. We will also maintain this path when we need to make changes to any role definitions or create new ones.
+    Here we will keep all our custom role definitions. We will also maintain this path when we need to make changes to any role definitions or create new ones.
 
 3. **scripts**
-
-Here we will keep a simple PowerShell script that will be used in our yaml pipeline.
+    Here we will keep a simple PowerShell script that will be used in our yaml pipeline.
 
 Clone the newly set up repository and let's create our first role definition JSON file now. We will create a simple role definition JSON that will only allow resource health read permissions, because we want to give someone the ability to look at resource health within a subscription in our tenant.  
 We will use this JSON template structure to build our definition:
