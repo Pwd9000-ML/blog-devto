@@ -14,12 +14,11 @@ When you start working more and more with Azure permission you will undoubtedly 
 
 Luckily Azure offers a great deal of flexibility when it comes to defining your own custom roles vs built-in roles. This is where [Custom Role Definitions](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions) comes into play.  
 
-Today we will look at how we can utilize Azure DevOps in creating and also updating our Azure (RBAC) custom role definitions through source control and automatically reflecting those changes in Azure through pipelines without much effort. If you are still a bit unclear on what Azure RBAC is, or wanted more information have a look at [Microsoft Docs](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview).
+Today we will look at how we can utilize Azure DevOps in creating and also maintaining our Azure (RBAC) custom role definitions from an Azure DevOps repository through source control and automatically publishing those changes in Azure through a DevOps pipeline without much effort. If you are still a bit unclear on what Azure RBAC is, or wanted more information have a look at [Microsoft Docs](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview).
 
 ### How to automate Custom Role Definitions in Azure using DevOps
 
-Firstly we will need to have an Azure DevOps repository where we can store our custom role definition JSON files.  
-If you need more information on how to set up a new repository, have a look [here](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops).  
+Firstly we will need to have an Azure DevOps repository where we can store our custom role definition JSON files. If you need more information on how to set up a new repository, have a look [here](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops).  
 
 In my repository I have created 3 main folder paths:
 ![rbac-repo-structure](./assets/ADO-RBAC-Repo-Structure.png)
@@ -104,7 +103,7 @@ The next thing we will do is create our pipeline and script. In my repository I 
 2. Under `[pipelines]` create another folder called `[task groups]` and the following two YAML templates `[get_changedfiles.yml]` and `[set_rbac.yml]`:
 
     This is going to be our first task in our yaml pipeline: `[get_changedfiles.yml]`.  
-    **Note:** This is a very basic inline powershell script task that will get the JSON files (in our case our custom role definitions) that have changed under the repository folder `[roleDefinitions/*]` it will create an array of all the changed files into an array and then dynamically create a pipeline variable called `roledefinitions`. Note that the array is converted into a string because our script we will be using in a later step will be written in PowerShell and will take the pipeline variable string as input. Since we are working with PowerShell we cannot define the DevOps pipeline variable of type `Array` that PowerShell will understand, so we convert the array into a string and then set that as a pipeline variable which will be consumed by our script.  
+    **Note:** This is a very basic inline powershell script task that will get the JSON files (in our case our custom role definitions) that have changed under the repository folder `[roleDefinitions/*]` it will create an array of all the changed files into an array and then dynamically create a pipeline variable called `roledefinitions`. Note that the array is converted into a string because our script we will be using in a later step will be written in PowerShell and will take the pipeline variable string as input. Since we are working with PowerShell we cannot define the DevOps pipeline variable of type `Array` that PowerShell will understand, so we convert the `array` into a `string` and then set that as a pipeline variable which will be consumed by our script.  
 
     ```YAML
     # 'get_changedfiles.yml' Determine which role definition files have changed
@@ -140,7 +139,7 @@ The next thing we will do is create our pipeline and script. In my repository I 
         Write-Output $psStringResult
     ```
 
-    This is going to be our second task in our yaml pipeline: `[set_rbac.yml]`.  
+    Now for the second task in our yaml pipeline: `[set_rbac.yml]`.  
     **Note:** Remember in our first yaml task above we got all the JSON definitions that have changed or have been added and from that we created an array and converted that array into a string and set that as a pipeline variable called `$(roledefinitions)`. This task will now call our PowerShell script that we will create in the next step and pass the pipeline variable into our script as a parameter using `scriptArguments`. Also note that this task is an `AzurePowerShell` task and so we will also create a service connection (called `RbacServicePrincipal`) on our project so that our script can authenticate to Azure. We will also give that service connection the relevant `IAM` access to be able to execute the commands we will define in our script.
 
     ```YAML
@@ -152,12 +151,92 @@ The next thing we will do is create our pipeline and script. In my repository I 
     inputs:
         azureSubscription: RbacServicePrincipal
         scriptType: filePath
-        scriptPath: '.\scripts\Set-cisRbac.ps1'
+        scriptPath: '.\scripts\Set-Rbac.ps1'
         scriptArguments: '-RoleDefinitions $(roledefinitions)'
         azurePowerShellVersion: latestVersion
         errorActionPreference: silentlyContinue
     continueOnError: true
     ```
+
+Now under our repository folder path `[scripts]` we will create a PowerShell script called `[Set-Rbac.ps1]`
+**Note:** This powershell script calls cmdlets from the AZ module, so if a self-hosted DevOps agent is used instead of a Microsoft hosted agent, please ensure that the AZ module is installed and configured on your DevOps agent or pool of agents. The below script may be amended to suit your environment better if you use management groups. What the script below will does is read in each JSON role definition and then sets the context to one of the subscriptions defined in the JSON file `AssignableScopes`. once in the context of a subscription, the script will evaluate whether a Custom Role Definition already exists in the context of the subscription, if it does the script will update the role definition with any changes or if the role does not exist it will be created.
+
+```powershell
+#Parameters from pipeline
+Param (
+ [Parameter(Mandatory)]
+ [array]$RoleDefinitions
+)
+
+#Directory in use.
+Write-host "Current Scripting directory: [$PSScriptRoot]"
+
+#Source control PSM modules
+$BuildSourcesDirectory = "$(Resolve-Path -Path $PSScriptRoot\..)"
+Write-host "Current checked out build sources directory: [$BuildSourcesDirectory]"
+
+Foreach ($file in $RoleDefinitions) {
+    $Obj = Get-Content -Path $file| ConvertFrom-Json
+    $scope = $Obj.AssignableScopes[0]
+
+    If ($scope -like "*managementGroups*") {
+        $managementGroupSubs = ((Get-AzManagementGroup -GroupId ($scope | Split-Path -leaf) -Expand -Recurse).Children)
+        If ($managementGroupSubs.Type -like "*managementGroups") {
+            Set-AzContext -SubscriptionId $managementGroupSubs.children[0].Name
+        }
+        If ($managementGroupSubs.Type -like "*subscriptions") {
+            Set-AzContext -SubscriptionId $managementGroupSubs.Name[0]
+        }
+
+        #Test if roledef exists
+        $roleDef = Get-AzRoleDefinition $Obj.Name
+        If ($roleDef) {
+            Write-Output "Role Definition [$($Obj.name)] already exists:"
+            Write-Output "----------------------------------------------"
+            $roleDef
+            Write-Output "----------------------------------------------"
+            Write-Output "Updating Azure Role definition"
+
+            Set-AzRoleDefinition -InputFile $file
+        }
+        Else {
+            Write-Output "Role Definition does not exist:"
+            Write-Output "Creating new Azure Role definition"
+
+            New-AzRoleDefinition -InputFile $file
+        }
+    }
+
+    If ($scope -like "*subscriptions*") {
+        Set-AzContext -SubscriptionId ($scope | Split-Path -leaf)
+
+        #Test if roledef exists
+        $roleDef = Get-AzRoleDefinition $Obj.Name
+        If ($roleDef) {
+            Write-Output "Role Definition [$($Obj.name)] already exists:"
+            Write-Output "----------------------------------------------"
+            $roleDef
+            Write-Output "----------------------------------------------"
+            Write-Output "Updating Azure Role definition"
+
+            Set-AzRoleDefinition -InputFile $file
+        }
+        Else {
+            Write-Output "Role Definition does not exist:"
+            Write-Output "Creating new Azure Role definition"
+
+            New-AzRoleDefinition -InputFile $file
+        }
+    }
+}
+```
+
+Our repository should now look something like this:
+![rbac-repo-structure2](./assets/ADO-RBAC-Repo-Structure2.png)
+
+Now on to the last step. Since our script needs to run and perform tasks in Azure we will create a service connection called `[RbacServicePrincial]` and we will also gibe the principal we will create access in IAM to be able to perform it's tasks.
+
+
 
 ### _Author_
 
