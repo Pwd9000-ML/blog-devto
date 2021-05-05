@@ -70,7 +70,7 @@ Our complete definition will look something like this:
 * [Operations format](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#operations-format)
 * [Assignable Scopes](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#assignablescopes)
 
-The next thing we will do is create our pipeline and script. In my repository I like to create a sub folder under `[pipelines]` called `[task_groups]`. This way I can easily break up my pipeline steps up into different task groups defined in `yaml templates`. Lets create the following `yaml` files in our repository.  
+The next thing we will do is create our pipeline and script. In my repository I like to create a sub folder under `[pipelines]` called `[task_groups]`. This way I can easily break up my pipeline steps up into different task groups defined as `yaml templates`. Lets create the following `yaml` files in our repository.  
 
 1. Under `[pipelines]` create the following YAML pipeline `[Rbac_Apply.yml]`:  
 
@@ -102,6 +102,9 @@ The next thing we will do is create our pipeline and script. In my repository I 
     ```
 
 2. Under `[pipelines]` create another folder called `[task groups]` and the following two YAML templates `[get_changedfiles.yml]` and `[set_rbac.yml]`:
+
+    This is going to be our first task in our yaml pipeline: `[get_changedfiles.yml]`.  
+    **Note:** This is a very basic inline powershell script task that will get the JSON files (in our case our custom role definitions) that have changed under the repository folder `[roleDefinitions/*]` it will create an array of all the changed files into an array and then dynamically create a pipeline variable called `roledefinitions`. Note that the array is converted into a string because our script we will be using in a later step will be written in PowerShell and will take the pipeline variable string as input. Since we are working with PowerShell we cannot define the DevOps pipeline variable of type `Array` that PowerShell will understand, so we convert the array into a string and then set that as a pipeline variable which will be consumed by our script.  
 
     ```YAML
     # 'get_changedfiles.yml' Determine which role definition files have changed
@@ -137,7 +140,8 @@ The next thing we will do is create our pipeline and script. In my repository I 
         Write-Output $psStringResult
     ```
 
-    and
+    This is going to be our second task in our yaml pipeline: `[set_rbac.yml]`.  
+    **Note:** Remember in our first yaml task above we got all the JSON definitions that have changed or have been added and from that we created an array and converted that array into a string and set that as a pipeline variable called `$(roledefinitions)`. This task will now call our PowerShell script that we will create in the next step and pass the pipeline variable into our script as a parameter using `scriptArguments`. Also note that this task is an `AzurePowerShell` task and so we will also create a service connection (called `RbacServicePrincipal`) on our project so that our script can authenticate to Azure. We will also give that service connection the relevant `IAM` access to be able to execute the commands we will define in our script.
 
     ```YAML
     # 'set_rbac.yml' run our script that will amend/create the role definition in Azure
@@ -146,7 +150,7 @@ The next thing we will do is create our pipeline and script. In my repository I 
     - task: AzurePowerShell@5
     displayName: 'Update role definitions'
     inputs:
-        azureSubscription: RbacSP
+        azureSubscription: RbacServicePrincipal
         scriptType: filePath
         scriptPath: '.\scripts\Set-cisRbac.ps1'
         scriptArguments: '-RoleDefinitions $(roledefinitions)'
