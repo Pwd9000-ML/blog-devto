@@ -171,7 +171,7 @@ Param (
 #Directory in use.
 Write-host "Current Scripting directory: [$PSScriptRoot]"
 
-#Source control PSM modules
+#checked out build sources path
 $BuildSourcesDirectory = "$(Resolve-Path -Path $PSScriptRoot\..)"
 Write-host "Current checked out build sources directory: [$BuildSourcesDirectory]"
 
