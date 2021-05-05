@@ -13,7 +13,7 @@ date: '2021-05-02T12:29:00Z'
 
 Have you ever wondered when you are writing a PowerShell function or commandlet how you can make only certain parameters be presented to the consumer of the function in certain scenarios? That's where parameter sets come in. :smile:
 
-We will look at the following test function: `[Test-ParameterSets]` on exactly how this functionality can be used.  
+We will look at the following test function: `[Test-ParameterSets]` on exactly how this functionality can be used.
 
 {% gist https://gist.github.com/Pwd9000-ML/2e8e4c69299eca1f06547106b4686b17.js %}
 
