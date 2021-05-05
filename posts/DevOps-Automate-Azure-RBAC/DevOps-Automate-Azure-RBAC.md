@@ -234,11 +234,15 @@ Foreach ($file in $RoleDefinitions) {
 Our repository should now look something like this:
 ![rbac-repo-structure2](./assets/ADO-RBAC-Repo-Structure2.png)
 
-Now on to the last step. Since our script needs to run and perform tasks in Azure we will create a service connection called `[RbacServicePrincipal]` and we will also give the principal we create access in IAM to be able to perform it's tasks.
+Now on to the last step. Since our script needs to run and perform tasks in Azure we will create a service connection called `'RbacServicePrincipal'` and we will also give the principal we create access in IAM to be able to perform it's tasks.
 Follow these steps to [create an Azure DevOps Service Connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml).  
-Ensure you call the service connection the same as what we defined in our Yaml task `[RbacServicePrincipal]`. After the service connection is created we will slightly change the IAM permissions given to the principal to give it only the permissions it requires. So under the DevOps project settings, go to `Service Connections` and then select `Manage Service Connection Roles`
+Ensure you call the service connection the same as what we defined in our Yaml task `[RbacServicePrincipal]`. After the service connection is created we will slightly change the IAM permissions given to the principal to give it only the permissions it requires. So under the DevOps project settings, go to `Service Connections` and then select `Manage Service Connection Roles`.
 
 ![service-connection](./assets/ADO-RBAC-Service-Connections.png)
+
+By default the service connection will be assigned the built-in role of `'Contributor'`. This permission is excessive and can be removed. Since our script needs to be able to look at management groups and be able to change context as well as be able to create or amend role definitions we will give our service connection principal the following built-in roles at the scope we want to maintain: `'Management Group Reader'` and `'User Access Administrator'`
+
+![service-connection-permissions](./assets/ADO-RBAC-Service-Connection-Permissions.png)
 
 ### _Author_
 
