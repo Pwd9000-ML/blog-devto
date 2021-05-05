@@ -90,7 +90,7 @@ The next thing we will do is create our pipeline and script. In my repository I 
         - job: GET_Changed_Files
         displayName: GET Changed Files
         pool:
-        name: AzurePipelines
+        name: Azure Pipelines
         vmImage: windows-latest
         timeoutInMinutes: 30
         cancelTimeoutInMinutes: 5
@@ -243,6 +243,18 @@ Ensure you call the service connection the same as what we defined in our Yaml t
 By default the service connection will be assigned the built-in role of `'Contributor'`. This permission is excessive and can be removed. Since our script needs to be able to look at management groups and be able to change context as well as be able to create or amend role definitions we will give our service connection principal the following built-in roles at the scope we want to maintain: `'Management Group Reader'` and `'User Access Administrator'`
 
 ![service-connection-permissions](./assets/ADO-RBAC-Service-Connection-Permissions.png)
+
+Now we can create our pipeline in DevOps from the yaml file we defined earlier in this post:
+
+![Setup-pipeline](./assets/ADO-RBAC-Service-Connection-Permissions.gif)
+
+And that is it, now we can authorize our pipeline and each time a new JSON policy is added or amended on our repo this change will automatically be reflected in Azure and we can now use proper version control and automation around our Azure RBAC custom role definitions.  
+
+![Run-pipeline](./assets/Run-pipeline.gif)
+
+![]()
+
+I hope you have enjoyed this post and have learned something new.
 
 ### _Author_
 
