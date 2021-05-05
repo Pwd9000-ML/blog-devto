@@ -16,13 +16,13 @@ Luckily Azure offers a great deal of flexibility when it comes to defining your 
 
 Today we will look at how we can utilize Azure DevOps in creating and also updating our Azure (RBAC) custom role definitions through source control and automatically reflecting those changes in Azure through pipelines without much effort. If you are still a bit unclear on what Azure RBAC is, or wanted more information have a look at [Microsoft Docs](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview).
 
-## How to automate Custom Role Definitions in Azure using DevOps
+### How to automate Custom Role Definitions in Azure using DevOps
 
 Firstly we will need to have an Azure DevOps repository where we can store our custom role definition JSON files.  
 If you need more information on how to set up a new repository, have a look [here](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops).  
 
 In my repository I have created 3 main folder paths:
-![rbac-repo-structure](./assets/RBAC-Repo-Structure)
+![rbac-repo-structure](./assets/RBAC-Repo-Structure.png)
 
 1. pipelines (Here we will define and create our Azure pipeline)
 2. roleDefinitions (Here we will keep all our custom role definitions / or create new ones)
