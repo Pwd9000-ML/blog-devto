@@ -47,7 +47,7 @@ We will use the following JSON template structure to build our definition:
 ```
 
 Our complete definition will look something like below.  
-**Note:** Change the `'AssignableScopes'` `/<subscriptionId1>` with the Id of your subscription Id you wish to publish this role on to.
+**Note:** Change the `'AssignableScopes'` `/<subscriptionId1>` with the Id of your subscription you wish to publish this role on to.
 
 ```JSON
 {
@@ -64,17 +64,17 @@ Our complete definition will look something like below.
 }
 ```
 
-**Note:** We can add more subscriptions to our assignable scopes or even use management groups if required. But for the purpose of this tutorial we only want to make the role available to a single Azure subscription. Other valuable links for reference when creating custom role definitions:  
+**Note:** We can add more subscriptions to our assignable scopes or even use management groups if required. But for the purpose of this tutorial we only want to make the role available to a single Azure subscription. Here are a few more valuable links for reference when creating custom role definitions:  
 
 * [Operations](https://docs.microsoft.com/en-us/azure/role-based-access-control/resource-provider-operations)
 * [Operations format](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#operations-format)
 * [Assignable Scopes](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#assignablescopes)
 
-The next thing we will do is create our pipeline and script. In my repository I like to create a sub folder under `[pipelines]` called `[task_groups]`. This way I can easily break up my pipeline steps up into different task groups defined as `yaml templates`. Lets create the following `yaml` files in our repository.  
+The next thing we will do is create our pipeline and script. In my repository I like to create a sub folder under `[pipelines]` called `[task_groups]`. This way I can easily break my pipeline steps up into different task groups defined as `yaml templates`. Lets create the following `yaml` files in our repository.  
 
 1. Under `[pipelines]` create the following YAML pipeline `[Rbac_Apply.yml]`:  
 
-    This is going to be our main yaml pipeline: `[Rbac_Apply]`.  
+    This is going to be our main yaml pipeline called: `[Rbac_Apply]`.  
     **Note:** The pipeline will only trigger on changes made to the repository path `[roleDefinitions/*]` and our `steps` will call our yaml templates created under `[task_groups]`.  
 
     ```YAML
@@ -104,7 +104,7 @@ The next thing we will do is create our pipeline and script. In my repository I 
 2. Under `[pipelines]` create another folder called `[task groups]` and the following two YAML templates `[get_changedfiles.yml]` and `[set_rbac.yml]`:
 
     This is going to be our first task in our yaml pipeline: `[get_changedfiles.yml]`.  
-    **Note:** This is a very basic inline powershell script task that will get the JSON files (in our case our custom role definitions) that have changed under the repository folder `[roleDefinitions/*]` it will create an array of all the changed files into an array and then dynamically create a pipeline variable called `roledefinitions`. Note that the array is converted into a string because our script we will be using in a later step will be written in PowerShell and will take the pipeline variable string as input. Since we are working with PowerShell we cannot define the DevOps pipeline variable of type `Array` that PowerShell will understand, so we convert the `array` into a `string` and then set that as a pipeline variable which will be consumed by our script.  
+    **Note:** This is a very basic inline powershell script task that will get the JSON files (in our case our custom role definitions) that have changed under the repository folder `[roleDefinitions/*]` it will create an array of all the files that have changed or have been added to the repository path and then dynamically create a pipeline variable called `roledefinitions`. Note that the array is converted into a string because our script we will be using in a later step will be written in PowerShell and will take the pipeline variable string as input. Since we are working with PowerShell we cannot define the DevOps pipeline variable of type `Array` that PowerShell will understand, so we convert the `array` into a `string` and then set that as a pipeline variable which will be consumed by our script.  
 
     ```YAML
     # 'get_changedfiles.yml' Determine which role definition files have changed
