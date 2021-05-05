@@ -1,0 +1,13 @@
+# 'pipelines/task_groups/set_rbac.yml' run our script that will amend/create the role definition in Azure
+   steps:
+   ### Run powershell to set or create new Az Role definitions
+   - task: AzurePowerShell@5
+   displayName: 'Update role definitions'
+   inputs:
+       azureSubscription: RbacServicePrincipal
+       scriptType: filePath
+       scriptPath: '.\scripts\Set-Rbac.ps1'
+       scriptArguments: '-RoleDefinitions $(roledefinitions)'
+       azurePowerShellVersion: latestVersion
+       errorActionPreference: silentlyContinue
+   continueOnError: true

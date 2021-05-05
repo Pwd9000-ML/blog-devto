@@ -1,0 +1,22 @@
+# 'pipelines/Rbac_Apply.yml'
+   name: RBAC-Apply-$(Rev:rr)
+   trigger:
+   paths:
+       include:
+       - roleDefinitions/*
+
+   stages:
+   - stage: RBAC_Build
+   displayName: RBAC Build
+   jobs:
+       - job: GET_Changed_Files
+       displayName: GET Changed Files
+       pool:
+       name: Azure Pipelines
+       vmImage: windows-latest
+       timeoutInMinutes: 30
+       cancelTimeoutInMinutes: 5
+       steps:
+           - checkout: self
+           - template: task_groups/get_changedfiles.yml
+           - template: task_groups/set_rbac.yml
