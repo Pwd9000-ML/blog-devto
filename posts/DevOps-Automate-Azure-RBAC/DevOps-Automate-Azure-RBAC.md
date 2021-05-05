@@ -78,6 +78,7 @@ The next thing we will do is create our pipeline and script. In my repository I 
     **Note:** The pipeline will only trigger on changes made to the repository path `[roleDefinitions/*]` and our `steps` will call our yaml templates created under `[task_groups]`.  
 
     ```YAML
+    # 'pipelines/Rbac_Apply.yml'
     name: RBAC-Apply-$(Rev:rr)
     trigger:
     paths:
@@ -104,10 +105,10 @@ The next thing we will do is create our pipeline and script. In my repository I 
 2. Under `[pipelines]` create another folder called `[task groups]` and the following two YAML templates `[get_changedfiles.yml]` and `[set_rbac.yml]`:
 
     This is going to be our first task in our yaml pipeline: `[get_changedfiles.yml]`.  
-    **Note:** This is a very basic inline powershell script task that will get the JSON files (in our case our custom role definitions) that have changed under the repository folder `[roleDefinitions/*]` it will create an array of all the files that have changed or have been added to the repository path and then dynamically create a pipeline variable called `roledefinitions`. Note that the array is converted into a string because our script we will be using in a later step will be written in PowerShell and will take the pipeline variable string as input. Since we are working with PowerShell we cannot define the DevOps pipeline variable of type `Array` that PowerShell will understand, so we convert the `array` into a `string` and then set that as a pipeline variable which will be consumed by our script.  
+    **Note:** This is a basic inline powershell script task that will get the JSON files (in our case our custom role definitions) that have changed under the repository folder `[roleDefinitions/*]`. It will create an array of all the files that have changed or have been added to the repository path and then dynamically create a pipeline variable called `'roledefinitions'`. Note that the array is converted into a string because our script we will be using in a later step will be written in PowerShell and will take the pipeline variable string as input. Since we are working with PowerShell we cannot define the DevOps pipeline variable of type `'Array'` that PowerShell will understand, so we convert the `'array'` into a `string` and then set that as a pipeline variable which will be consumed by our script.  
 
     ```YAML
-    # 'get_changedfiles.yml' Determine which role definition files have changed
+    # 'pipelines/task_groups/get_changedfiles.yml' Determine which role definition files have changed
     steps:
     - task: PowerShell@2
     displayName: 'Get changed role definitions'
@@ -141,10 +142,10 @@ The next thing we will do is create our pipeline and script. In my repository I 
     ```
 
     Now for the second task in our yaml pipeline: `[set_rbac.yml]`.  
-    **Note:** Remember in our first yaml task above we got all the JSON definitions that have changed or have been added and from that we created an array and converted that array into a string and set that as a pipeline variable called `$(roledefinitions)`. This task will now call our PowerShell script that we will create in the next step and pass the pipeline variable into our script as a parameter using `scriptArguments`. Also note that this task is an `AzurePowerShell` task and so we will also create a service connection (called `RbacServicePrincipal`) on our project so that our script can authenticate to Azure. We will also give that service connection the relevant `IAM` access to be able to execute the commands we will define in our script.
+    **Note:** Remember in our first yaml task above we got all the JSON definitions that have changed or have been added and from that we created an array and converted that array into a string and set that as a pipeline variable called `$(roledefinitions)`. This next task will call our PowerShell script that we will create in the next step and pass the pipeline variable into our script as a parameter using `'scriptArguments'`. Also note that this task is an `'AzurePowerShell'` task and so we will also create a service connection (called `RbacServicePrincipal`) on our DevOps project so that our script can authenticate to Azure. We will also give that service connection service principal the relevant `'IAM'` access to be able to execute the commands we will define in our script.
 
     ```YAML
-    # 'set_rbac.yml' run our script that will amend/create the role definition in Azure
+    # 'pipelines/task_groups/set_rbac.yml' run our script that will amend/create the role definition in Azure
     steps:
     ### Run powershell to set or create new Az Role definitions
     - task: AzurePowerShell@5
@@ -159,10 +160,11 @@ The next thing we will do is create our pipeline and script. In my repository I 
     continueOnError: true
     ```
 
-Now under our repository folder path `[scripts]` we will create a PowerShell script called `[Set-Rbac.ps1]`
-**Note:** This powershell script calls cmdlets from the AZ module, so if a self-hosted DevOps agent is used instead of a Microsoft hosted agent, please ensure that the AZ module is installed and configured on your DevOps agent or pool of agents. The below script may be amended to suit your environment better if you use management groups. What the script below will does is read in each JSON role definition and then sets the context to one of the subscriptions defined in the JSON file `AssignableScopes`. once in the context of a subscription, the script will evaluate whether a Custom Role Definition already exists in the context of the subscription, if it does the script will update the role definition with any changes or if the role does not exist it will be created.
+Now under our repository folder path `[scripts]` we will create a PowerShell script called `[Set-Rbac.ps1]`.  
+**Note:** This powershell script calls cmdlets from the AZ module, so if a self-hosted DevOps agent is used instead of a Microsoft hosted agent, please ensure that the AZ module is installed and configured on your DevOps agent or pool of agents. The below script may be amended to suit your environment better if you use deeply nested management groups. What the script below does is read in each JSON role definition and then sets the context to one of the subscriptions defined in the JSON file `'AssignableScopes'`. Once in the context of a subscription, the script will evaluate whether a Custom Role Definition already exists in the context of the subscription, if it does the script will update the role definition with any changes or if the role does not exist it will be created.
 
 ```powershell
+# 'scrips/set_rbac.ps1'
 #Parameters from pipeline
 Param (
  [Parameter(Mandatory)]
