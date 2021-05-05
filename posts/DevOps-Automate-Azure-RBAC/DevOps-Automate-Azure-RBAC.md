@@ -24,13 +24,13 @@ If you need more information on how to set up a new repository, have a look [her
 In my repository I have created 3 main folder paths:
 ![rbac-repo-structure](./assets/ADO-RBAC-Repo-Structure.png)
 
-1. **pipelines**
+1. **pipelines:**
     Here we will define and create our Azure pipeline in yaml.
 
-2. **roleDefinitions**
+2. **roleDefinitions:**
     Here we will keep all our custom role definitions. We will also maintain this path when we need to make changes to any role definitions or create new ones.
 
-3. **scripts**
+3. **scripts:**
     Here we will keep a simple PowerShell script that will be used in our yaml pipeline.
 
 Clone the newly set up repository and let's create our first role definition JSON file now. We will create a simple role definition JSON that will only allow resource health read permissions, because we want to give someone the ability to look at resource health within a subscription in our tenant.  
@@ -69,6 +69,88 @@ Our complete definition will look something like this:
 * [Operations](https://docs.microsoft.com/en-us/azure/role-based-access-control/resource-provider-operations)
 * [Operations format](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#operations-format)
 * [Assignable Scopes](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#assignablescopes)
+
+The next thing we will do is create our pipeline and script. In my repository I like to create a sub folder under `[pipelines]` called `[task_groups]`. This way I can easily break up my pipeline steps up into different task groups defined in `yaml templates`. Lets create the following `yaml` files in our repository.  
+
+1. Under `[pipelines]` create the following YAML pipeline `[Rbac_Apply.yml]`:
+
+    ```YAML
+    name: RBAC-Apply-$(Rev:rr)
+    trigger:
+    paths:
+        include:
+        - roleDefinitions/*
+
+    stages:
+    - stage: RBAC_Build
+    displayName: RBAC Build
+    jobs:
+        - job: GET_Changed_Files
+        displayName: GET Changed Files
+        pool:
+        name: AzurePipelines
+        vmImage: windows-latest
+        timeoutInMinutes: 30
+        cancelTimeoutInMinutes: 5
+        steps:
+            - checkout: self
+            - template: task_groups/get_changedfiles.yml
+            - template: task_groups/set_rbac.yml 
+    ```
+
+2. Under `[pipelines]` create another folder called `[task groups]` and the following two YAML templates `[get_changedfiles.yml]` and `[set_rbac.yml]`:
+
+    ```YAML
+    # 'get_changedfiles.yml' Determine which role definition files have changed
+    steps:
+    - task: PowerShell@2
+    displayName: 'Get changed role definitions'
+    inputs:
+        targetType: inline
+        script: |
+        $editedFiles = git diff HEAD HEAD~ --name-only
+        
+        $resultArray = @()
+        Foreach ($file in $editedFiles) {
+            if ($file -like "roleDefinitions/*") {
+            $filePath = "$(Build.SourcesDirectory)\$file"
+            $resultArray += $filePath
+            }
+        }
+        Write-Output "The following role definitions have been created / changed:"
+        Write-Output "$resultArray"
+
+        #Create a useable pipeline variable array to string that will be used in powershell script
+        $psStringResult = @()
+        $resultArray | ForEach-Object {
+            $psStringResult += ('"' + $_.Split(',') + '"')
+        }
+        $psStringResult = "@(" + ($psStringResult -join ',') + ")"
+
+        #Set VSO variable to use in powershell script as input
+        Write-Output "##vso[task.setvariable variable=roledefinitions;]$psStringResult"
+
+        Write-Output "Convert array to psString:"
+        Write-Output $psStringResult
+    ```
+
+    and
+
+    ```YAML
+    # 'set_rbac.yml' run our script that will amend/create the role definition in Azure
+    steps:
+    ### Run powershell to set or create new Az Role definitions
+    - task: AzurePowerShell@5
+    displayName: 'Update role definitions'
+    inputs:
+        azureSubscription: RbacSP
+        scriptType: filePath
+        scriptPath: '.\scripts\Set-cisRbac.ps1'
+        scriptArguments: '-RoleDefinitions $(roledefinitions)'
+        azurePowerShellVersion: latestVersion
+        errorActionPreference: silentlyContinue
+    continueOnError: true
+    ```
 
 ### _Author_
 
