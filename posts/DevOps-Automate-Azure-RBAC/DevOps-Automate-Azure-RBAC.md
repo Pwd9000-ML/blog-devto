@@ -10,30 +10,30 @@ id: 688322
 
 ## What are Azure Roles and Custom Definitions?
 
-When you start working more and more with Azure permission you will undoubtedly have used Azure RBAC (also known as IAM) and have most likely used some of the great [built-in roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) that have been created and provided by Microsoft, but sometimes you may come across a requirement or need to have a very specific role tailored with a set of permissions that are more granular than what comes out of the box in a standard Azure (RBAC) built-in role.  
+When you start working more and more with Azure permission you will undoubtedly have used Azure RBAC (also known as IAM) and have most likely used some of the great [built-in roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) that have been created and provided by Microsoft, but sometimes you may come across a requirement or a need to have a very specific role tailored with a set of permissions that are more granular than what comes out of the box in a standard Azure (RBAC) built-in role.  
 
 Luckily Azure offers a great deal of flexibility when it comes to defining your own custom roles vs built-in roles. This is where [Custom Role Definitions](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions) comes into play.  
 
-Today we will look at how we can utilize Azure DevOps in creating and also maintaining our Azure (RBAC) custom role definitions from an Azure DevOps repository through source control and automatically publishing those changes in Azure through a DevOps pipeline without much effort. If you are still a bit unclear on what Azure RBAC is, or wanted more information have a look at [Microsoft Docs](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview).
+Today we will look at how we can utilize Azure DevOps in creating and also maintaining our Azure (RBAC) custom role definitions from an Azure DevOps repository through source control and automatically publishing those changes in Azure through a DevOps pipeline without much effort. If you are still a bit unclear on what Azure RBAC is, or wanted more information have a look at the [Microsoft Docs](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview).
 
 ### How to automate Custom Role Definitions in Azure using DevOps
 
 Firstly we will need to have an Azure DevOps repository where we can store our custom role definition JSON files. If you need more information on how to set up a new repository, have a look [here](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops).  
 
-In my repository I have created 3 main folder paths:
+I called my repository `[Azure_Role_Definitions]`. In my repository I have created 3 main folder paths:
 ![rbac-repo-structure](./assets/ADO-RBAC-Repo-Structure.png)
 
 1. **pipelines:**
-    Here we will define and create our Azure pipeline in yaml.
+    Here we will define and create our Azure yaml pipeline.
 
 2. **roleDefinitions:**
-    Here we will keep all our custom role definitions. We will also maintain this path when we need to make changes to any role definitions or create new ones.
+    Here we will keep all our Azure custom role definition JSON files. This is also where we will maintain our custom role definitions when we need to make changes or even create new definitions we want to publish to Azure.
 
 3. **scripts:**
     Here we will keep a simple PowerShell script that will be used in our yaml pipeline.
 
-Clone the newly set up repository and let's create our first role definition JSON file now. We will create a simple role definition JSON that will only allow resource health read permissions, because we want to give someone the ability to look at resource health within a subscription in our tenant.  
-We will use this JSON template structure to build our definition:
+Clone this newly created or existing repository and let's get started to create our first role definition JSON file now. We will create a simple role definition JSON that will only allow resource health read permissions, because we want to give someone the ability to look at resource health within a subscription in our tenant.  
+We will use the following JSON template structure to build our definition:
 
 ```JSON
 {
@@ -46,7 +46,8 @@ We will use this JSON template structure to build our definition:
 }
 ```
 
-Our complete definition will look something like this:
+Our complete definition will look something like below.  
+**Note:** Change the `'AssignableScopes'` `/<subscriptionId1>` with the Id of your subscription Id you wish to publish this role on to.
 
 ```JSON
 {
