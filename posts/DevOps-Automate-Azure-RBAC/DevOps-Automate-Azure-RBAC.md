@@ -46,6 +46,7 @@ We will use this JSON template structure to build our definition:
 
 Our complete definition will look something like this:
 
+```JSON
 {
     "Name": "CUSTOM-RESOURCEHEALTH-Reader",
     "IsCustom": true,
@@ -53,12 +54,12 @@ Our complete definition will look something like this:
     "Actions": [
         "Microsoft.ResourceHealth/*/read"
     ],
-    "NotActions": [
-    ],
+    "NotActions": [],
     "AssignableScopes": [
         "/subscriptions/<subscriptioId1>"
     ]
 }
+```
 
 **Note:** We can add more subscriptions to our assignable scopes or even use management groups if required. But for the purpose of this tutorial we only want to make the role available to a single Azure subscription.  
 
