@@ -22,7 +22,7 @@ Firstly we will need to have an Azure DevOps repository where we can store our c
 If you need more information on how to set up a new repository, have a look [here](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops).  
 
 In my repository I have created 3 main folder paths:
-![rbac-repo-structure](./assets/RBAC-Repo-Structure.png)
+![rbac-repo-structure](./assets/ADO-RBAC-Repo-Structure.png)
 
 1. **pipelines**
 
