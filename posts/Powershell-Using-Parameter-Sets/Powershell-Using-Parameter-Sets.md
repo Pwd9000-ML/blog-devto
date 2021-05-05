@@ -59,7 +59,6 @@ You can also find some very helpful documentation on parameter sets on [Microsof
 
 This article and demo function can also be found on [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Powershell-Using-Parameter-Sets/code).
 
-## Authors
+### _Author_
 
----
 Marcel.L - pwd9000@hotmail.co.uk
