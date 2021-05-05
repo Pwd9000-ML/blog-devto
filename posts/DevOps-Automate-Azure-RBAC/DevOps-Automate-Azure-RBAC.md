@@ -5,7 +5,7 @@ description: DevOps - Automate Azure RBAC
 tags: 'tutorial, azure, devops, productivity'
 cover_image: assets/Azure-RBAC.png
 canonical_url: null
-id: 685386
+id: 688322
 ---
 
 ## How to automate Custom Role Definitions in Azure using DevOps
