@@ -255,7 +255,7 @@ We can also confirm that our role is now published and usable in Azure. :smile:
 ![Azure-Role-Published](./assets/Azure-Role-Published.gif)
 
 I hope you have enjoyed this post and have learned something new.  
-You can also find the code samples used in this blog post on this [Github]() page. :heart:
+You can also find the code samples used in this blog post on this [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Automate-Azure-RBAC/code) page. :heart:  
 
 ### _Author_
 
