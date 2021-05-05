@@ -1,6 +1,6 @@
 ---
 title: Automate Azure Role Based Access Control (RBAC) with DevOps
-published: false
+published: true
 description: DevOps - Automate Azure RBAC
 tags: 'tutorial, azure, devops, productivity'
 cover_image: assets/Azure-RBAC.png
@@ -251,7 +251,7 @@ Now we can create our pipeline in DevOps from the yaml file we defined earlier i
 
 ![Setup-pipeline](./assets/Setup-pipeline.gif)
 
-Next we authorize our pipeline and hat's it, now each time a new JSON policy is added or an existing policy is amended on our repository this change will auto-magically be reflected in Azure and we can now use proper version control and automation around governing our Azure RBAC custom role definitions.  
+Next we authorize our pipeline and that's it, now each time a new JSON definition is added or an existing definition is amended on our repository the change will auto-magically be reflected in Azure and we can now use proper version control and automation around governing our Azure RBAC custom role definitions using Azure DevOps.  
 
 ![Run-pipeline](./assets/Run-pipeline.gif)
 
