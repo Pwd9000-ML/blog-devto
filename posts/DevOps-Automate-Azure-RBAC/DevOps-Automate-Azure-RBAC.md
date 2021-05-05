@@ -24,9 +24,17 @@ If you need more information on how to set up a new repository, have a look [her
 In my repository I have created 3 main folder paths:
 ![rbac-repo-structure](./assets/RBAC-Repo-Structure.png)
 
-1. pipelines (Here we will define and create our Azure pipeline)
-2. roleDefinitions (Here we will keep all our custom role definitions / or create new ones)
-3. scripts (Here we will keep scripts that are used in the pipeline)
+1. **pipelines**
+
+Here we will define and create our Azure pipeline in yaml.
+
+2. **roleDefinitions**
+
+Here we will keep all our custom role definitions. We will also maintain this path when we need to make changes to any role definitions or create new ones.
+
+3. **scripts**
+
+Here we will keep a simple PowerShell script that will be used in our yaml pipeline.
 
 Clone the newly set up repository and let's create our first role definition JSON file now. We will create a simple role definition JSON that will only allow resource health read permissions, because we want to give someone the ability to look at resource health within a subscription in our tenant.  
 We will use this JSON template structure to build our definition:
@@ -59,13 +67,11 @@ Our complete definition will look something like this:
 }
 ```
 
-**Note:** We can add more subscriptions to our assignable scopes or even use management groups if required. But for the purpose of this tutorial we only want to make the role available to a single Azure subscription.  
+**Note:** We can add more subscriptions to our assignable scopes or even use management groups if required. But for the purpose of this tutorial we only want to make the role available to a single Azure subscription. Other valuable links for reference when creating custom role definitions:  
 
-Other valuable links for reference when creating custom role definitions:  
-
-* [Operations:](https://docs.microsoft.com/en-us/azure/role-based-access-control/resource-provider-operations)
-* [Operations format:](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#operations-format)
-* [Assignable Scopes:](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#assignablescopes)
+* [Operations](https://docs.microsoft.com/en-us/azure/role-based-access-control/resource-provider-operations)
+* [Operations format](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#operations-format)
+* [Assignable Scopes](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#assignablescopes)
 
 ### _Author_
 
