@@ -46,9 +46,8 @@ We will use the following JSON template structure to build our definition:
 ```
 
 You can find more information on what each property in the JSON structure means [HERE](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#role-definition).  
-
 Our completed definition we will use in this tutorial will look something like below.  
-**Note:** Change the `"AssignableScopes":` `/<subscriptionId1>` with the subscription ID you want to publish and make this role available on for use.
+**Note:** Change the `"AssignableScopes"` value with the subscription ID you want to publish and make this role available for use on.
 
 ```JSON
 {
