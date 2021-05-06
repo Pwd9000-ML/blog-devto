@@ -9,8 +9,8 @@
    - stage: RBAC_Build
    displayName: RBAC Build
    jobs:
-       - job: GET_Changed_Files
-       displayName: GET Changed Files
+       - job: Configure_RBAC_Definitions
+       displayName: Configure RBAC Definitions
        pool:
        name: Azure Pipelines
        vmImage: windows-latest

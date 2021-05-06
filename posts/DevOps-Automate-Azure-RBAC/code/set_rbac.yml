@@ -2,7 +2,7 @@
    steps:
    ### Run powershell to set or create new Az Role definitions
    - task: AzurePowerShell@5
-   displayName: 'Update role definitions'
+   displayName: 'Create - Update role definitions'
    inputs:
        azureSubscription: RbacServicePrincipal
        scriptType: filePath

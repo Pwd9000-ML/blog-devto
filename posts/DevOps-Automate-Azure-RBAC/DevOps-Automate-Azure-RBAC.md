@@ -91,8 +91,8 @@ The next thing we will do is create our pipeline and script. In my repository I 
    - stage: RBAC_Build
    displayName: RBAC Build
    jobs:
-       - job: GET_Changed_Files
-       displayName: GET Changed Files
+       - job: Configure_RBAC_Definitions
+       displayName: Configure RBAC Definitions
        pool:
        name: Azure Pipelines
        vmImage: windows-latest
@@ -151,7 +151,7 @@ The next thing we will do is create our pipeline and script. In my repository I 
    steps:
    ### Run powershell to set or create new Az Role definitions
    - task: AzurePowerShell@5
-   displayName: 'Update role definitions'
+   displayName: 'Create - Update role definitions'
    inputs:
        azureSubscription: RbacServicePrincipal
        scriptType: filePath
