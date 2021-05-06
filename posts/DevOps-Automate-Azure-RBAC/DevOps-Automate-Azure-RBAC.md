@@ -1,5 +1,5 @@
 ---
-title: Automate Azure Role Based Access Control (RBAC) with DevOps
+title: Automate Azure Role Based Access Control (RBAC) using DevOps
 published: true
 description: DevOps - Automate Azure RBAC
 tags: 'tutorial, azure, devops, productivity'
@@ -39,12 +39,16 @@ We will use the following JSON template structure to build our definition:
     "Description": "",
     "Actions": [],
     "NotActions": [],
+    "DataActions": [],
+    "NotDataActions": [],
     "AssignableScopes": []
 }
 ```
 
-Our complete definition will look something like below.  
-**Note:** Change the `'AssignableScopes'` `/<subscriptionId1>` with the Id of your subscription you wish to publish this role on to.
+You can find more information on what each property in the JSON structure means [HERE](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#role-definition).  
+
+Our completed definition we will use in this tutorial will look something like below.  
+**Note:** Change the `"AssignableScopes":` `/<subscriptionId1>` with the subscription ID you want to publish and make this role available on for use.
 
 ```JSON
 {
@@ -55,6 +59,8 @@ Our complete definition will look something like below.
         "Microsoft.ResourceHealth/*/read"
     ],
     "NotActions": [],
+    "DataActions": [],
+    "NotDataActions": [],
     "AssignableScopes": [
         "/subscriptions/<subscriptioId1>"
     ]

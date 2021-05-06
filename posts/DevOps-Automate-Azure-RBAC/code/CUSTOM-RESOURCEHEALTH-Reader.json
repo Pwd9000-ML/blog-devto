@@ -6,6 +6,8 @@
         "Microsoft.ResourceHealth/*/read"
     ],
     "NotActions": [],
+    "DataActions": [],
+    "NotDataActions": [],
     "AssignableScopes": [
         "/subscriptions/<subscriptioId1>"
     ]
