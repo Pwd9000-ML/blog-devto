@@ -92,6 +92,11 @@ The above command will output a JSON object with the role assignment credentials
 
 ### Configure our GitHub repository
 
+Next we will configure our Github repository and Github workflow. In my case I want to be able to change the local administrator password of a virtual machine hosted in Azure using a Github workflow, but managing the local admin passwords for my virtual machines from the key vault. Manually triggering my github workflow will connect to my key vault to retrieve the virtual machine names and passwords and set all the virtual machines I have defined in my key vault with a password I have defined in the key vault. This will give me the ability to centrally manage and maintain all my Azure virtual machine local admin passwords from a key vault hosted in Azure and automatically set those passwords when I trigger my github workflow.  
+**Note:** This is particularly useful for security or ops teams who maintain secrets management and ned to ensure that local admin passwords must rotate on a regular basis.
+
+
+
 ### _Author_
 
 Marcel.L - pwd9000@hotmail.co.uk
