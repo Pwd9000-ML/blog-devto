@@ -32,15 +32,63 @@ This is where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault
 
 ### Create an Azure Key Vault
 
-For this step I will be using Azure CLI. First we will log into Azure by running:  
+For this step I will be using Azure CLI using a powershell console. First we will log into Azure by running:  
 
 ```powershell
 az login
 ```
 
-You can also create an Azure key vault by using the Azure portal by following this [link](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).  
+Next we will create a `resource group` and `key vault` by running:
+
+```powershell
+az group create --name "Github-Assets" -l "UKSouth"
+az keyvault create --name "github-secrets-vault" --resource-group "Github-Assets" --location "UKSouth"
+```
+
+You can also create an Azure key vault by using the Azure portal. Check this [link](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).  
 
 ### Create an Azure AD App & Service Principal
+
+Next we will create our `Azure AD App` by running:
+
+```powershell
+# a name for our azure ad app
+$appName="GitHubSecretsUser"
+
+# create Azure AD app
+az ad app create --display-name $appName --homepage "http://localhost/$appName" --identifier-uris "http://localhost/$appName"
+```
+
+Next we will retrieve the App ID and set it to a powershell variable `$appId`
+
+```powershell
+# get the app id
+$appId=$(az ad app list --display-name $appName --query [].appId -o tsv)
+```
+
+Now that we have our App Id we can create our service principal and also give our principal the correct `Role Based Access Control (RBAC)` permissions on our key vault we created earlier. We will give our principal the RBAC/IAM role: `Key Vault Secrets User`
+
+```powershell
+$subscriptionId=$(az account show --query id -o tsv) # You can change this value t the subscription ID where the key vault resides
+$resourceGroup="Github-Assets"
+$keyVaultName="github-secrets-vault"
+
+az ad sp create-for-rbac --name $appId `
+    --role "Key Vault Secrets User" `
+    --scopes /subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.KeyVault/vaults/$keyVaultName `
+    --sdk-auth
+```
+
+The above command will output a JSON object with the role assignment credentials that provide access to your key vault. Copy this JSON object for later. You will only need the sections with the `clientId`, `clientSecret`, `subscriptionId`, and `tenantId` values:
+
+```JSON
+{
+  "clientId": "<GUID>",
+  "clientSecret": "<PrincipalSecret>",
+  "subscriptionId": "<GUID>",
+  "tenantId": "<GUID>",
+}
+```
 
 ### Configure our GitHub repository
 
