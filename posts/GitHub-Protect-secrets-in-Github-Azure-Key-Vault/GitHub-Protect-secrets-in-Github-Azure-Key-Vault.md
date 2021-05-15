@@ -86,8 +86,18 @@ The above command will output a JSON object with the role assignment credentials
   "clientId": "<GUID>",
   "clientSecret": "<PrincipalSecret>",
   "subscriptionId": "<GUID>",
-  "tenantId": "<GUID>",
+  "tenantId": "<GUID>"
 }
+```
+
+**Note:** At this moment in time, the Github action [Azure/get-keyvault-secrets@v1](https://github.com/Azure/get-keyvault-secrets) we will use in our workflow in the next step to retrieve secrets from the key vault does not support the RBAC based model, hopefully this will be updated soon and this post will be updated as soon as the RBAC model is supported. For this reason we will use the `clientId` GUID that was generated on our JSON object to create a key vault access policy with `get` and `list` permissions.
+
+```powershell
+az keyvault set-policy --subscription $subscriptionId `
+    --resource-group $resourceGroup `
+    --name $keyVaultName `
+    --secret-permissions get list `
+    --spn "<clientIdGUID>"
 ```
 
 ### Configure our GitHub repository
@@ -104,7 +114,7 @@ Remember at the beginning of this post I mentioned that we will create a github 
 
 3. Paste the JSON output from the Azure CLI command into the secret's value field. Give the secret the name `AZURE_CREDENTIALS`.
 
-![githubAzureCredentials](./assets/githubAzureCredentials.png)
+![githubAzureCredentials](./assets/githubAzureCredentials1.png)
 
 ### _Author_
 
