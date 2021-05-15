@@ -33,7 +33,8 @@ This is where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault
 ### Create an Azure Key Vault
 
 For this step I will be using Azure CLI. First we will log into Azure by running:  
-```azcli
+
+```powershell
 az login
 ```
 
