@@ -42,10 +42,10 @@ Next we will create a `resource group` and `key vault` by running:
 
 ```powershell
 az group create --name "Github-Assets" -l "UKSouth"
-az keyvault create --name "github-secrets-vault" --resource-group "Github-Assets" --location "UKSouth"
+az keyvault create --name "github-secrets-vault" --resource-group "Github-Assets" --location "UKSouth" --enable-rbac-authorization
 ```
 
-You can also create an Azure key vault by using the Azure portal. Check this [link](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).  
+As you see above we use the option `enable-rbac-authorization`. The reason for this is because our service principal we will create next will access this key vault using the RBAC permission model. You can also create an Azure key vault by using the Azure portal. Check this [link](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).  
 
 ### Create an Azure AD App & Service Principal
 
@@ -88,16 +88,6 @@ The above command will output a JSON object with the role assignment credentials
   "subscriptionId": "<GUID>",
   "tenantId": "<GUID>"
 }
-```
-
-**Note:** At this moment in time, the Github action [Azure/get-keyvault-secrets@v1](https://github.com/Azure/get-keyvault-secrets) we will use in our workflow in the next step to retrieve secrets from the key vault does not support the RBAC based model, hopefully this will be updated soon and this post will be updated as soon as the RBAC model is supported. For this reason we will use the `clientId` GUID that was generated on our JSON object to create a key vault access policy with `get` and `list` permissions.
-
-```powershell
-az keyvault set-policy --subscription $subscriptionId `
-    --resource-group $resourceGroup `
-    --name $keyVaultName `
-    --secret-permissions get list `
-    --spn "<clientIdGUID>"
 ```
 
 ### Configure our GitHub repository
