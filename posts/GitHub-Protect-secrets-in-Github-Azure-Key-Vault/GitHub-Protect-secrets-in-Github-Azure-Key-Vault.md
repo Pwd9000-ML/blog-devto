@@ -104,7 +104,7 @@ Remember at the beginning of this post I mentioned that we will create a github 
 
 3. Paste the JSON output from the Azure CLI command into the secret's value field. Give the secret the name `AZURE_CREDENTIALS`.
 
-![githubAzureCredentials]((./assets/githubAzureCredentials.png))
+![githubAzureCredentials](./assets/githubAzureCredentials.png)
 
 ### _Author_
 
