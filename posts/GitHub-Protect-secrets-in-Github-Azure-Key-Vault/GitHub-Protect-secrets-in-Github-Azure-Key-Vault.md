@@ -32,6 +32,13 @@ This is where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault
 
 ### Create an Azure Key Vault
 
+For this step I will be using Azure CLI. First we will log into Azure by running:  
+```azcli
+az login
+```
+
+You can also create an Azure key vault by using the Azure portal by following this [link](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).  
+
 ### Create an Azure AD App & Service Principal
 
 ### Configure our GitHub repository
