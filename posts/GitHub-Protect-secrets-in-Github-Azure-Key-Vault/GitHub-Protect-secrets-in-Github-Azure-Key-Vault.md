@@ -23,12 +23,18 @@ This is where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault
 
 ### What do we need?
 
-1. **Azure key vault**
+1. **Azure key vault:**
     This will be where we manage all our secrets we are going to use in our Github source control.  
-2. **Azure AD App & Service Principal**
+2. **Azure AD App & Service Principal:**
     This is what we will use to authenticate to Azure from our github workflows
-3. **Github repository**
+3. **Github repository:**
     This is where we are keeping our source control and Github workflows
+
+### Create an Azure Key Vault
+
+### Create an Azure AD App & Service Principal
+
+### Configure our GitHub repository
 
 ### _Author_
 
