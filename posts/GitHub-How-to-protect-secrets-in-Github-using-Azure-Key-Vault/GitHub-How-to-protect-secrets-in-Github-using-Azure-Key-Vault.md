@@ -7,3 +7,5 @@ cover_image: assets/main_cover.jpg
 canonical_url: null
 id: 698968
 ---
+
+## :bulb: How to protect secrets in Github using Azure Key Vault
