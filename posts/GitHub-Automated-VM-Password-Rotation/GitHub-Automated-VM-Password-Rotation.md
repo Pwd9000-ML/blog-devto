@@ -127,7 +127,7 @@ Remember at the beginning of this post I mentioned that we will create a github 
 
 Now create a folder in the repository called `.github` and underneath another folder called `workflows`. In the workflows folder we will create a YAML file called `rotate-vm-passwords`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-VM-Password-Management/blob/master/.github/workflows/rotate-vm-passwords.yml).
 
-```YML
+```yaml
 // code/rotate-vm-passwords.yml
 ```
 
