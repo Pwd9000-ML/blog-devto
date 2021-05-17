@@ -111,8 +111,8 @@ az role assignment create --assignee "<clientId>" `
 
 ### Configure our GitHub repository
 
-Next we will configure our Github repository and Github workflow.  
-My Github repository is called `Azure-VM-Password-Management`  
+Next we will configure our Github repository and Github workflow. My Github repository is called `Azure-VM-Password-Management`. You can also take a look or even use my github repository as a template [HERE](https://github.com/Pwd9000-ML/Azure-VM-Password-Management).  
+
 Remember at the beginning of this post I mentioned that we will create a github secret, we will now create this secret on our repository which will be used to authenticate our Github workflow we will set up to Azure.
 
 1. In [GitHub](https://github.com), browse your repository.
@@ -122,6 +122,14 @@ Remember at the beginning of this post I mentioned that we will create a github 
 3. Paste the JSON output from the Azure CLI command into the secret's value field. Give the secret the name `AZURE_CREDENTIALS`.
 
 ![githubAzureCredentials](./assets/githubAzureCredentials1.png)
+
+### Configure our GitHub workflow
+
+Now create a folder in the repository called `.github` and underneath another folder called `workflows`. In the workflows folder we will create a YAML file called `rotate-vm-passwords`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-VM-Password-Management/blob/master/.github/workflows/rotate-vm-passwords.yml).
+
+```YML
+// code/rotate-vm-passwords.yml
+```
 
 ### _Author_
 
