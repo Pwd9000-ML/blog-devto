@@ -1,5 +1,5 @@
 ---
-title: Zero-touch password rotation using Github workflows and Azure key vault
+title: Automate password rotation with Github and Azure
 published: false
 description: A tutorial on how to fully automate VM password rotation using Github and Azure key vault
 tags: 'tutorial, security, github, azure'
