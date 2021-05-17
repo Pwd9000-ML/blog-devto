@@ -33,7 +33,7 @@ This is where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault
 
 **Note:** Azure key vaults are also particularly useful for security or ops teams who maintain secrets management, instead of giving other teams access to our deployment repositories in Github, teams who look after deployments no longer have to worry about giving access to other teams in order to manage secrets as secrets management will be done from an Azure key vault which nicely separates roles of responsibility when spread across different teams.
 
-### Let's get started. What do we need to start rotating our VM password?
+### Let's get started. What do we need to start rotating our virtual machine local admin passwords?
 
 1. **Azure key vault:** This will be where we centrally store and manage all our VM passwords.
 2. **Azure AD App & Service Principal:** This is what we will use to authenticate to Azure from our github workflow
