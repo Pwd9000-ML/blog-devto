@@ -150,28 +150,22 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         enable-AzPSSession: true
 
-    - name: Connect to KeyVault and retrieve all secrets
-      uses: Azure/get-keyvault-secrets@v1
-      id: myGetSecretAction
-      with: 
-        keyvault: ${{ env.KEY_VAULT_NAME }}
-        secrets: '*'
-
-    - name: Run Azure PowerShell script
+    - name: Rotate VM administrator passwords
       uses: azure/powershell@v1
       with:
-        inlineScript: |
+        inlineScript: | 
           $keyVaultName = "${{ env.KEY_VAULT_NAME }}"
-          Write-Output "Creating PowerShell hashtable of all outputs from previous Github step: [steps.myGetSecretAction.outputs]"
-          $Secrets = (ConvertFrom-Json -InputObject '${{ toJson(steps.myGetSecretAction.outputs) }}' -AsHashtable)
-          Write-Output "Looping through each key and changing the local admin password"
-          Foreach ($hash in $Secrets.GetEnumerator()) {
-            $vmName = $hash.Name
+          Write-Output "Creating array of all VM names in key vault: [$keyVaultName]."
+          $keys = (Get-AzKeyVaultSecret -VaultName $keyVaultName).Name
+          Write-Output "Looping through each VM key and changing the local admin password"
+          Foreach ($key in $keys) {
+            $vmName = $key
             If (Get-AzVm -Name $vmName -ErrorAction SilentlyContinue) {
               $resourceGroup = (Get-AzVm -Name $vmName).ResourceGroupName
               $location = (Get-AzVm -Name $vmName).Location
               Write-Output "Server found: [$vmName]... Checking if VM is in a running state"
               $vmObj = Get-AzVm -ResourceGroupName $resourceGroup -Name $vmName -Status
+              [String]$vmStatusDetail = "deallocated"
               Foreach ($vmStatus in $vmObj.Statuses) {
                 If ($vmStatus.Code -eq "PowerState/running") {
                   [String]$vmStatusDetail = $vmStatus.Code.Split("/")[1]
@@ -179,23 +173,26 @@ jobs:
               }
               If ($vmStatusDetail -ne "running") {
                 Write-Warning "VM is NOT in a [running] state... Skipping"
+                Write-Output "--------------------------"
               }
               Else {
                 Write-output "VM is in a [running] state... Generating new secure Password for: [$vmName]"
                 $passwordGen = ([char[]]([char]33..[char]95) + ([char[]]([char]97..[char]126)) + 0..9 | sort {Get-Random})[0..15] -join ''
                 $secretPassword = ConvertTo-SecureString -String $passwordGen -AsPlainText -Force
                 Write-Output "Updating key vault: [$keyVaultName] with new random secure password for virtual machine: [$vmName]"
-                $Tags = @{ 'Automation' = "Github-Workflow";  'PasswordRotated' = 'true'}
+                $Tags = @{ "Automation" = "Github-Workflow";  "PasswordRotated" = "true"}
                 $null = Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "$vmName" -SecretValue $secretPassword -Tags $Tags
                 Write-Output "Updating VM with new password..."
                 $adminUser = (Get-AzVm -Name $vmName | Select-Object -ExpandProperty OSProfile).AdminUsername
                 $Cred = New-Object System.Management.Automation.PSCredential ($adminUser, $secretPassword)
                 $null = Set-AzVMAccessExtension -ResourceGroupName $resourceGroup -Location $location -VMName $vmName -Credential $Cred -typeHandlerVersion "2.0" -Name VMAccessAgent
                 Write-Output "Vm password changed successfully."
+                Write-Output "--------------------------"
               }
             }
             Else {
-              Write-Warning "[$vmName] NOT found"
+             Write-Warning "VM NOT found: [$vmName]."
+             Write-Output "--------------------------"
             }
           }
         azPSVersion: 'latest'
@@ -236,6 +233,18 @@ We can trigger our workflow manually by going to our github repository (The trig
 Let's take a look at the results of the workflow:
 
 ![workflowresults](./assets/workflowresults.png)
+
+As you can see I have 3 VMs defined in my key vault `pwd9000vm01` was powered on and so it's password was rotated.  
+`pwd9000vm02` was deallocated and skipped.  
+`pwd9000vm03` is a VM which no longer exists so I can safely remove the server key from my key vault.  
+
+Now lets see if I can log into my server which have had its password rotated:
+
+![serverlogin](./assets/serverlogin.gif)
+
+I hope you have enjoyed this post and have learned something new.  
+Using the same techniques as I have shown in this post, you can pretty much use this process to rotate secrets for almost anything you can think of, whether that be SQL connection strings or even API keys for your applications.  
+You can also find and use my [github repository](https://github.com/Pwd9000-ML/Azure-VM-Password-Management) as a template to start rotating your VM passwords on a schedule today. :heart:  
 
 ### _Author_
 
