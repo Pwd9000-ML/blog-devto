@@ -36,8 +36,8 @@ This is where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault
 ### Let's get started. What do we need to start rotating our virtual machine local admin passwords?
 
 1. **Azure key vault:** This will be where we centrally store, access and manage all our virtual machine local admin passwords.
-2. **Azure AD App & Service Principal:** This is what we will use to authenticate to Azure from our github workflow
-3. **Github repository:** This is where we will keep our source control and Github workflow
+2. **Azure AD App & Service Principal:** This is what we will use to authenticate to Azure from our github workflow.
+3. **Github repository:** This is where we will keep our source control and Github workflow / automation.
 
 ### Create an Azure Key Vault
 
