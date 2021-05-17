@@ -117,7 +117,7 @@ Remember at the beginning of this post I mentioned that we will create a github 
 
 2. Select Settings > Secrets > New repository secret.
 
-3. Paste the JSON output from the Azure CLI command into the secret's value field. Give the secret the name `AZURE_CREDENTIALS`.
+3. Paste the JSON object output from the Azure CLI command we ran earlier into the secret's value field. Give the secret the name `AZURE_CREDENTIALS`.
 
 ![githubAzureCredentials](./assets/githubAzureCredentials1.png)
 
