@@ -164,7 +164,6 @@ jobs:
           $keyVaultName = "${{ env.KEY_VAULT_NAME }}"
           Write-Output "Creating PowerShell hashtable of all outputs from previous Github step: [steps.myGetSecretAction.outputs]"
           $Secrets = (ConvertFrom-Json -InputObject '${{ toJson(steps.myGetSecretAction.outputs) }}' -AsHashtable)
-
           Write-Output "Looping through each key and changing the local admin password"
           Foreach ($hash in $Secrets.GetEnumerator()) {
             $vmName = $hash.Name
@@ -188,7 +187,6 @@ jobs:
                 Write-Output "Updating key vault: [$keyVaultName] with new random secure password for virtual machine: [$vmName]"
                 $Tags = @{ 'Automation' = "Github-Workflow";  'PasswordRotated' = 'true'}
                 $null = Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "$vmName" -SecretValue $secretPassword -Tags $Tags
-
                 Write-Output "Updating VM with new password..."
                 $adminUser = (Get-AzVm -Name $vmName | Select-Object -ExpandProperty OSProfile).AdminUsername
                 $Cred = New-Object System.Management.Automation.PSCredential ($adminUser, $secretPassword)
@@ -197,7 +195,7 @@ jobs:
               }
             }
             Else {
-             Write-Warning "VM NOT found: [$vmName]."
+             Write-Warning "VM NOT found: [$vmName]"
             }            
           }
         azPSVersion: 'latest'
@@ -231,9 +229,13 @@ You can just create dummy secrets in the `value` field as these will be overwrit
 
 As you can see I have 3 vms defined. When our workflow is triggered it will automatically populate our VM keys with randomly generated passwords and rotate them on a weekly basis at 9am on a monday, if a VM key exists in the key vault but does not exist in the Azure subscription or our principal does not have access to the VM, it will be skipped. Similarly if a VM is deallocated and the power state is OFF it will also be skipped. The rotation will only happen on VMs that exist and are powered on. Let's give it a go and see what happens when we trigger our workflow manually.  
 
-We can trigger our workflow manually by going to our github repository:
+We can trigger our workflow manually by going to our github repository (The trigger will also happen automatically based on our cron schedule):
 
 ![triggerworkflow](./assets/triggerworkflow.png)
+
+Let's take a look at the results of the workflow:
+
+![workflowresults](./assets/workflowresults.png)
 
 ### _Author_
 
