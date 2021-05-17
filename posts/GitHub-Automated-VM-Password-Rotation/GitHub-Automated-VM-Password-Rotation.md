@@ -111,7 +111,7 @@ az role assignment create --assignee "<clientId>" `
 
 Next we will configure our Github repository and Github workflow. My Github repository is called `Azure-VM-Password-Management`. You can also take a look or even use my github repository as a template [HERE](https://github.com/Pwd9000-ML/Azure-VM-Password-Management).
 
-Remember at the beginning of this post I mentioned that we will create a github secret, we will now create this secret on our repository which will be used to authenticate our Github workflow we will set up to Azure.
+Remember at the beginning of this post I mentioned that we will create a github secret, we will now create this secret on our repository which will be used to authenticate our Github workflow to Azure when it's triggered.
 
 1. In [GitHub](https://github.com), browse your repository.
 
