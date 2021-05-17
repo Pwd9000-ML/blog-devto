@@ -21,7 +21,7 @@ When our github workflow is triggered the workflow will connect to our key vault
 
 This means that whenever we need to connect to a VM in our subscription using the VMs `local admin account` we would go to our centrally managed key vault and look up the VM name `key` and get it's password `value` to be able to connect to our server, as this password will change automatically on a regular basis by our automation. The virtual machine in this case will be defined in our key vault and have its corresponding password in the key value. This gives us the ability to centrally store, access and maintain all our Azure virtual machines local admin passwords from a central key vault in Azure and our passwords will also be automatically rotated on a regular basis without any manual work. We only need to ensure that the VMs that we want to rotate passwords on have corresponding keys in the key vault, we do also not have to add all our VM names as keys if we do not want to rotate every single VM password and only add the servers in our key vault we do want the passwords to rotate. In fact I would recommend not having domain controller names in the key vault as we would not want to rotate the local admin passwords for servers of this kind.
 
-**Note:** Maintaining all VM password rotation using an Azure key vault is particularly useful for security or ops teams who maintain secrets management and ned to ensure that local admin passwords must rotate on a regular basis.
+**Note:** Maintaining all VM password rotation using an Azure key vault is particularly useful for security or ops teams who maintain secrets management and need to ensure that local admin passwords must rotate on a regular basis.
 
 ### Protecting secrets in github
 
