@@ -196,7 +196,7 @@ jobs:
           azPSVersion: 'latest'
 ```
 
-The above YAML workflow is set to trigger automatically every monday at 9am. Which means our workflow will connect to our Azure key vault and get all the VM names, populate the secret values with newly generated passwords and rotate the VMs local admin password with the newly generated password.
+The above YAML workflow is set to trigger automatically every monday at 9am. Which means our workflow will connect to our Azure key vault and get all the VM names we defined, populate the secret values with newly generated passwords and rotate the VMs local admin password with the newly generated password.
 
 **Note:** If you need to change or use a different key vault you can change this line on the yaml file with the name of the key vault you are using:
 
@@ -226,7 +226,7 @@ You can just create dummy secrets in the `value` field as these will be overwrit
 
 **Note:** Only add servers that you want to rotate passwords on, I would recommend not adding any servers or VMs such as domain controllers to the key vault.
 
-As you can see I have 3 vms defined. When our workflow is triggered it will automatically populate our VM keys with randomly generated passwords and rotate them on a weekly basis at 9am on a monday, if a VM key exists in the key vault but does not exist in the Azure subscription or our principal does not have access to the VM, it will be skipped. Similarly if a VM is deallocated and the power state is OFF it will also be skipped. The rotation will only happen on VMs that exist and are powered on. Let's give it a go and see what happens when we trigger our workflow manually.
+As you can see I have 3 vms defined. When our workflow is triggered it will automatically populate our VM keys with randomly generated passwords and rotate them on a weekly basis at 9am on a monday, if a VM key exists in the key vault but does not exist in the Azure subscription or our principal does not have access to the VM, it will be skipped. Similarly if a VM is deallocated and the power state is OFF it will also be skipped. The rotation will only happen on VMs that exist and are powered ON. Let's give it a go and see what happens when we trigger our workflow manually.
 
 We can trigger our workflow manually by going to our github repository (The trigger will also happen automatically based on our cron schedule):
 
@@ -236,9 +236,7 @@ Let's take a look at the results of the workflow:
 
 ![results](./assets/results.png)
 
-As you can see I have 3 VMs defined in my key vault `pwd9000vm01` was powered on and so it's password was rotated.  
-`pwd9000vm02` was deallocated and skipped.  
-`pwd9000vm03` is a VM which no longer exists so I can safely remove the server key from my key vault.
+As you can see I have 3 VMs defined in my key vault `pwd9000vm01` was powered on and so it's password was rotated. `pwd9000vm02` was found, but was deallocated so was skipped. `pwd9000vm03` is a VM which no longer exists in my subscription so I can safely remove the server key from my key vault.
 
 Now lets see if I can log into my server which have had its password rotated:
 
