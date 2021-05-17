@@ -218,11 +218,11 @@ The current schedule is set to run on every monday at 9am. If you need to change
 
 The last step we now need to do is populate our key vault with some servers. Navigate to the key vault and create a new secret giving the VM name as the secret key:
 
-![addvms](./assests/addvms.png)
+![addvm](./assests/addvm.png)
 
 You can just create dummy secrets in the `value` field as these will be overwritten when our workflow is triggered:
 
-![populatevalues](./assests/populatevalues.png)
+![populate](./assests/populate.png)
 
 **Note:** Only add servers that you want to rotate passwords on, I would recommend not adding any servers or VMs such as domain controllers to the key vault.
 
