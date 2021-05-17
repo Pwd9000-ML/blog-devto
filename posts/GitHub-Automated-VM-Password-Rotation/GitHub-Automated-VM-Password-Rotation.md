@@ -1,7 +1,7 @@
 ---
 title: Automate password rotation with Github and Azure
 published: false
-description: A tutorial on how to fully automate VM password rotation using Github and Azure key vault
+description: Automate VM password rotation using Github and Azure key vault
 tags: 'tutorial, security, github, azure'
 cover_image: assets/maincover1.png
 canonical_url: null
