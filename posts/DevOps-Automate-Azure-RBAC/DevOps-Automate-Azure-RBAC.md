@@ -2,7 +2,7 @@
 title: Automate Azure Role Based Access Control (RBAC) using DevOps
 published: true
 description: DevOps - Automate Azure RBAC
-tags: 'tutorial, azure, devops, productivity'
+tags: 'tutorial, azure, devops, security'
 cover_image: assets/Azure-RBAC.png
 canonical_url: null
 id: 688322

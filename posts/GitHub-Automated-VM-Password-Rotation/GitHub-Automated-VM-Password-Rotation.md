@@ -1,8 +1,8 @@
 ---
-title: Protect secrets in Github with Azure Key Vault
+title: Zero-touch password rotation using Github workflows and Azure key vault
 published: false
-description: A tutorial on how to protect secrets used in Github using Azure key vault
-tags: 'tutorial, devops, github, azure'
+description: A tutorial on how to fully automate VM password rotation using Github and Azure key vault
+tags: 'tutorial, security, github, azure'
 cover_image: assets/maincover1.png
 canonical_url: null
 id: 698968
@@ -45,11 +45,11 @@ az group create --name "Github-Assets" -l "UKSouth"
 az keyvault create --name "github-secrets-vault" --resource-group "Github-Assets" --location "UKSouth" --enable-rbac-authorization
 ```
 
-As you see above we use the option `enable-rbac-authorization`. The reason for this is because our service principal we will create next will access this key vault using the RBAC permission model. You can also create an Azure key vault by using the Azure portal. Check this [link](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).  
+As you see above we use the option `--enable-rbac-authorization`. The reason for this is because our service principal we will create in the next step will access this key vault using the RBAC permission model. You can also create an Azure key vault by using the Azure portal. For information on using the portal see this [link](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).  
 
 ### Create an Azure AD App & Service Principal
 
-Next we will create our `Azure AD App` by running:
+Next we will create our `Azure AD App` by running the following in a powershell console window:
 
 ```powershell
 # a name for our azure ad app
@@ -66,7 +66,7 @@ Next we will retrieve the App ID and set it to a powershell variable `$appId`
 $appId=$(az ad app list --display-name $appName --query [].appId -o tsv)
 ```
 
-Now that we have our App Id we can create our service principal and also give our principal the correct `Role Based Access Control (RBAC)` permissions on our key vault we created earlier. We will give our principal the RBAC/IAM role: `Key Vault Secrets User`
+Now that we have our `appId` we can create our service principal and also give our principal the correct `Role Based Access Control (RBAC)` permissions on our key vault we created earlier. We will give our principal the RBAC/IAM role: `Key Vault Secrets User`
 
 ```powershell
 $subscriptionId=$(az account show --query id -o tsv) # You can change this value t the subscription ID where the key vault resides
