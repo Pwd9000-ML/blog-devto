@@ -127,8 +127,80 @@ Remember at the beginning of this post I mentioned that we will create a github 
 
 Now create a folder in the repository called `.github` and underneath another folder called `workflows`. In the workflows folder we will create a YAML file called `rotate-vm-passwords`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-VM-Password-Management/blob/master/.github/workflows/rotate-vm-passwords.yaml).
 
-```txt
-// code/rotate-vm-passwords.yaml
+```yaml
+name: Update Azure VM passwords
+on: 
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 * * * *'
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    env:
+      KEY_VAULT_NAME: github-secrets-vault3
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Log into Azure using github secret AZURE_CREDENTIALS
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        enable-AzPSSession: true
+
+    - name: Connect to KeyVault and retrieve all secrets
+      uses: Azure/get-keyvault-secrets@v1
+      id: myGetSecretAction
+      with: 
+        keyvault: ${{ env.KEY_VAULT_NAME }}
+        secrets: '*'
+
+    - name: Run Azure PowerShell script
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+          $keyVaultName = "${{ env.KEY_VAULT_NAME }}"
+          Write-Output "Creating PowerShell hashtable of all outputs from previous Github step: [steps.myGetSecretAction.outputs]"
+          $Secrets = (ConvertFrom-Json -InputObject '${{ toJson(steps.myGetSecretAction.outputs) }}' -AsHashtable)
+
+          Write-Output "Looping through each key and changing the local admin password"
+          Foreach ($hash in $Secrets.GetEnumerator()) {
+            $vmName = $hash.Name
+            If (Get-AzVm -Name $vmName -ErrorAction SilentlyContinue) {
+              $resourceGroup = (Get-AzVm -Name $vmName).ResourceGroupName
+              $location = (Get-AzVm -Name $vmName).Location
+              Write-Output "Server found: [$vmName]... Checking if VM is in a running state"
+              $vmObj = Get-AzVm -ResourceGroupName $resourceGroup -Name $vmName -Status
+              Foreach ($vmStatus in $vmObj.Statuses) {
+                If ($vmStatus.Code -eq "PowerState/running") {
+                  [String]$vmStatusDetail = $vmStatus.Code.Split("/")[1]
+                }
+              }
+              If ($vmStatusDetail -ne "running") {
+                Write-Warning "VM is NOT in a [running] state... Skipping"
+              }
+              Else {
+                Write-output "VM is in a [running] state... Generating new secure Password for: [$vmName]"
+                $passwordGen = ([char[]]([char]33..[char]95) + ([char[]]([char]97..[char]126)) + 0..9 | sort {Get-Random})[0..15] -join ''
+                $secretPassword = ConvertTo-SecureString -String $passwordGen -AsPlainText -Force
+                Write-Output "Updating key vault: [$keyVaultName] with new random secure password for virtual machine: [$vmName]"
+                $Tags = @{ 'Automation' = "Github-Workflow";  'PasswordRotated' = 'true'}
+                $null = Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "$vmName" -SecretValue $secretPassword -Tags $Tags
+
+                Write-Output "Updating VM with new password..."
+                $adminUser = (Get-AzVm -Name $vmName | Select-Object -ExpandProperty OSProfile).AdminUsername
+                $Cred = New-Object System.Management.Automation.PSCredential ($adminUser, $secretPassword)
+                $null = Set-AzVMAccessExtension -ResourceGroupName $resourceGroup -Location $location -VMName $vmName -Credential $Cred -typeHandlerVersion "2.0" -Name VMAccessAgent
+                Write-Output "Vm password changed successfully."
+              }
+            }
+            Else {
+             Write-Warning "VM NOT found: [$vmName]."
+            }            
+          }
+        azPSVersion: 'latest'
 ```
 
 to
