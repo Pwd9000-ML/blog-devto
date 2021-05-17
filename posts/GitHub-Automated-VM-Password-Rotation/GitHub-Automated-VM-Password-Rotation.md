@@ -228,11 +228,11 @@ As you can see I have 3 vms defined. When our workflow is triggered it will auto
 
 We can trigger our workflow manually by going to our github repository (The trigger will also happen automatically based on our cron schedule):
 
-![triggerworkflow](./assets/triggerworkflow.png)
+![trigger](./assets/trigger.png)
 
 Let's take a look at the results of the workflow:
 
-![workflowresults](./assets/workflowresults.png)
+![results](./assets/results.png)
 
 As you can see I have 3 VMs defined in my key vault `pwd9000vm01` was powered on and so it's password was rotated.  
 `pwd9000vm02` was deallocated and skipped.  
@@ -240,7 +240,7 @@ As you can see I have 3 VMs defined in my key vault `pwd9000vm01` was powered on
 
 Now lets see if I can log into my server which have had its password rotated:
 
-![serverlogin](./assets/serverlogin.gif)
+![login](./assets/login.gif)
 
 I hope you have enjoyed this post and have learned something new.  
 Using the same techniques I have shown in this post, you can pretty much use this process to rotate secrets for almost anything you can think of, whether that be SQL connection strings or even API keys for your applications.  
