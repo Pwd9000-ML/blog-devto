@@ -125,7 +125,7 @@ Remember at the beginning of this post I mentioned that we will create a github 
 
 ### Configure our GitHub workflow
 
-Now create a folder in the repository called `.github` and underneath another folder called `workflows`. In the workflows folder we will create a YAML file called `rotate-vm-passwords`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-VM-Password-Management/blob/master/.github/workflows/rotate-vm-passwords.yaml).
+Now create a folder in the repository called `.github` and underneath another folder called `workflows`. In the workflows folder we will create a YAML file called `rotate-vm-passwords.yaml`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-VM-Password-Management/blob/master/.github/workflows/rotate-vm-passwords.yaml).
 
 ```yaml
 name: Update Azure VM passwords
@@ -211,7 +211,7 @@ The above YAML workflow is set to trigger automatically every monday at 9am. Whi
 // code/rotate-vm-passwords.yaml#L11-L11
 ```
 
-If you need to change the schedule you can amend this line:
+The current schedule is set to run on every monday at 9am. If you need to change the cron schedule you can amend this line:
 
 ```txt
 // code/rotate-vm-passwords.yaml#L5-L5
@@ -219,7 +219,21 @@ If you need to change the schedule you can amend this line:
 
 ### Populate our key vault with VM names
 
+The last step we now need to do is populate our key vault with some servers. Navigate to the key vault and create a new secret giving the VM name as the secret key:
 
+![addvms](./assests/addvms.png)
+
+You can just create dummy secrets in the `value` field as these will be overwritten when our workflow is triggered:
+
+![populatevalues](./assests/populatevalues.png)
+
+**Note:** Only add servers that you want to rotate passwords on, I would recommend not adding any servers or VMs such as domain controllers to the key vault.  
+
+As you can see I have 3 vms defined. When our workflow is triggered it will automatically populate our VM keys with randomly generated passwords and rotate them on a weekly basis at 9am on a monday, if a VM key exists in the key vault but does not exist in the Azure subscription or our principal does not have access to the VM, it will be skipped. Similarly if a VM is deallocated and the power state is OFF it will also be skipped. The rotation will only happen on VMs that exist and are powered on. Let's give it a go and see what happens when we trigger our workflow manually.  
+
+We can trigger our workflow manually by going to our github repository:
+
+![triggerworkflow](./assets/triggerworkflow.png)
 
 ### _Author_
 
