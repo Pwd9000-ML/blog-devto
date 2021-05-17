@@ -226,7 +226,7 @@ You can just create dummy secrets in the `value` field as these will be overwrit
 
 **Note:** Only add servers that you want to rotate passwords on, I would recommend not adding any servers or VMs such as domain controllers to the key vault.
 
-As you can see I have 3 vms defined. When our workflow is triggered it will automatically populate our VM keys with randomly generated passwords and rotate them on a weekly basis at 9am on a monday, if a VM key exists in the key vault but does not exist in the Azure subscription or our principal does not have access to the VM, it will be skipped. Similarly if a VM is deallocated and the power state is OFF it will also be skipped. The rotation will only happen on VMs that exist and are powered ON. Let's give it a go and see what happens when we trigger our workflow manually.
+As you can see I have 3 vms defined. When our workflow is triggered it will automatically populate our VM keys with randomly generated passwords and rotate them on a weekly basis at 9am on a monday, if a VM key exists in the key vault but the VM does not exist in the Azure subscription or our principal does not have access to the VM, it will be skipped. Similarly if a VM is deallocated and the power state is OFF it will also be skipped. The rotation will only happen on VMs that exist and are powered ON. Let's give it a go and see what happens when we trigger our workflow manually.
 
 We can trigger our workflow manually by going to our github repository (The trigger will also happen automatically based on our cron schedule):
 
