@@ -51,7 +51,7 @@ Next we will create a `resource group` and `key vault` by running:
 
 ```powershell
 az group create --name "Github-Assets" -l "UKSouth"
-az keyvault create --name "github-secrets-vault33" --resource-group "Github-Assets" --location "UKSouth" --enable-rbac-authorization
+az keyvault create --name "github-secrets-vault3" --resource-group "Github-Assets" --location "UKSouth" --enable-rbac-authorization
 ```
 
 As you see above we use the option `--enable-rbac-authorization`. The reason for this is because our service principal we will create in the next step will access this key vault using the RBAC permission model. You can also create an Azure key vault by using the Azure portal. For information on using the portal see this [link](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).
