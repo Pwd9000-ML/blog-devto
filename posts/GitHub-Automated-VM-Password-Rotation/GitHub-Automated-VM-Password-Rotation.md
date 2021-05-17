@@ -195,8 +195,8 @@ jobs:
               }
             }
             Else {
-             Write-Warning "VM NOT found: [$vmName]"
-            }            
+              Write-Warning "[$vmName] NOT found"
+            }
           }
         azPSVersion: 'latest'
 ```
