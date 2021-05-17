@@ -1,6 +1,6 @@
 ---
 title: Automate password rotation with Github and Azure
-published: false
+published: true
 description: Automate VM password rotation using Github and Azure key vault
 tags: 'tutorial, security, github, azure'
 cover_image: assets/maincover1.png
@@ -243,8 +243,8 @@ Now lets see if I can log into my server which have had its password rotated:
 ![serverlogin](./assets/serverlogin.gif)
 
 I hope you have enjoyed this post and have learned something new.  
-Using the same techniques as I have shown in this post, you can pretty much use this process to rotate secrets for almost anything you can think of, whether that be SQL connection strings or even API keys for your applications.  
-You can also find and use my [github repository](https://github.com/Pwd9000-ML/Azure-VM-Password-Management) as a template to start rotating your VM passwords on a schedule today. :heart:  
+Using the same techniques I have shown in this post, you can pretty much use this process to rotate secrets for almost anything you can think of, whether that be SQL connection strings or even API keys for your applications.  
+You can also find and use this [github repository](https://github.com/Pwd9000-ML/Azure-VM-Password-Management) I used in this post as a template in your own github account to start rotating your VM passwords on a schedule today. :heart:  
 
 ### _Author_
 
