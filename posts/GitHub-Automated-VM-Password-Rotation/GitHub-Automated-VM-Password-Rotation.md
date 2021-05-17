@@ -131,6 +131,8 @@ Now create a folder in the repository called `.github` and underneath another fo
 // code/rotate-vm-passwords.yaml
 ```
 
+to
+
 ### _Author_
 
 Marcel.L - pwd9000@hotmail.co.uk
