@@ -178,7 +178,8 @@ jobs:
                   $passwordGen = ([char[]]([char]33..[char]95) + ([char[]]([char]97..[char]126)) + 0..9 | sort {Get-Random})[0..15] -join ''
                   $secretPassword = ConvertTo-SecureString -String $passwordGen -AsPlainText -Force
                   Write-Output "Updating key vault: [$keyVaultName] with new random secure password for virtual machine: [$vmName]"
-                  $Tags = @{ "Automation" = "Github-Workflow";  "PasswordRotated" = "true"}
+                  $Date = (Get-Date).tostring("dd-MM-yyyy")
+                  $Tags = @{ "Automation" = "Github-Workflow";  "Password-Rotated" = "true"; "Password-Rotated-On" = "$Date"}
                   $null = Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "$vmName" -SecretValue $secretPassword -Tags $Tags
                   Write-Output "Updating VM with new password..."
                   $adminUser = (Get-AzVm -Name $vmName | Select-Object -ExpandProperty OSProfile).AdminUsername
