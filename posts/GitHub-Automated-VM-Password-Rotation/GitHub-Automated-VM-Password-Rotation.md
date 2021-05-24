@@ -78,7 +78,7 @@ $appId=$(az ad app list --display-name $appName --query [].appId -o tsv)
 Now that we have our `appId` we can create our service principal and also give our principal the correct `Role Based Access Control (RBAC)` permissions on our key vault we created earlier. We will give our principal the RBAC/IAM role: [Key Vault Secrets Officer](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-officer) because we want our workflow to be able to retrieve `secret keys` and also set each `key value`.
 
 ```powershell
-$subscriptionId=$(az account show --query id -o tsv) # You can change this value t the subscription ID where the key vault resides
+$subscriptionId=$(az account show --query id -o tsv) # You can change this value to the subscription ID where the key vault resides
 $resourceGroup="Github-Assets"
 $keyVaultName="github-secrets-vault3"
 

@@ -1,0 +1,59 @@
+# '.github/workflows/Rbac_Apply.yml'
+name: RBAC-Apply
+on:   
+  push:
+    paths:
+      - 'roleDefinitions/*'
+
+jobs:
+  publish:
+    runs-on: windows-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+      with:
+          fetch-depth: 0
+    
+    - name: Get changed files in .\roleDefinitions
+      shell: powershell
+      run: echo "CHANGED_FILES=$(git diff --name-only ${{ github.event.before }}..${{ github.event.after }})" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+
+    - name: Log into Azure using github secret AZURE_CREDENTIALS
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        enable-AzPSSession: true
+
+    - name: 'Get changed role definitions'
+      shell: powershell
+      run: |
+       $changedFiles = "${{ env.CHANGED_FILES }}"
+       $changedFiles = $changedFiles.Split(' ')
+       $buildSourcesDirectory = $env:GITHUB_WORKSPACE
+       $resultArray = @()
+       Foreach ($file in $changedFiles) {
+         if ($file -like "roleDefinitions/*") {
+           $filePath = "$buildSourcesDirectory\$file"
+           $resultArray += $filePath
+         }
+       }
+       Write-Output "The following role definitions have been created / changed:"
+       Write-Output "$resultArray"
+       #Create a useable github environment variable array to string that will be used in powershell script
+       $psStringResult = @()
+       $resultArray | ForEach-Object {
+           $psStringResult += ('"' + $_.Split(',') + '"')
+       }
+       $psStringResult = "@(" + ($psStringResult -join ',') + ")"
+       #Set github env variable to use in powershell script as input
+       echo "ROLE_DEFINITIONS=$psStringResult" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+       Write-Output "Convert array to psString:"
+       Write-Output $psStringResult
+
+    - name: Create - Update role definitions
+      uses: azure/powershell@v1
+      with:
+        inlineScript: | 
+          .\scripts\set-rbac.ps1 -RoleDefinitions ${{ env.ROLE_DEFINITIONS }}
+        azPSVersion: 'latest'
