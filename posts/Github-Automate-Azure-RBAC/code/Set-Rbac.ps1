@@ -1,4 +1,4 @@
-# 'scrips/set_rbac.ps1'
+# 'scripts/Set-Rbac.ps1'
 #Parameters from github actions
 Param (
  [Parameter(Mandatory)]

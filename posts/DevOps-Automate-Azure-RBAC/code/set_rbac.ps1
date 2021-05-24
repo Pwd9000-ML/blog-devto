@@ -1,4 +1,4 @@
-# 'scrips/set_rbac.ps1'
+# 'scripts/set_rbac.ps1'
 #Parameters from pipeline
 Param (
  [Parameter(Mandatory)]

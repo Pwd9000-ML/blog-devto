@@ -168,7 +168,7 @@ Now under our repository folder path `[scripts]` we will create a PowerShell scr
 **Note:** This powershell script calls cmdlets from the AZ module, so if a self-hosted DevOps agent is used instead of a Microsoft hosted agent, please ensure that the AZ module is installed and configured on your DevOps agent or pool of agents. The below script may be amended to suit your environment better if you use deeply nested management groups. What the script below does is read in each JSON role definition and then sets the context to one of the subscriptions defined in the JSON file `'AssignableScopes'`. Once in the context of a subscription, the script will evaluate whether a Custom Role Definition already exists in the context of the subscription, if it does the script will update the role definition with any changes or if the role does not exist it will be created.
 
 ```powershell
-# 'scrips/set_rbac.ps1'
+# 'scripts/set_rbac.ps1'
 #Parameters from pipeline
 Param (
  [Parameter(Mandatory)]

@@ -152,11 +152,11 @@ The next thing we will do is create our Github actions workflow and script. Lets
 
 1. Under `[.github/workflows]` create the following YAML file `[Rbac-Apply.yml]`:
 
-   This is going to be our main actions workflow called: `[Rbac_Apply]`.  
+   This is going to be our main actions workflow called: `[Rbac-Apply]`.  
    **Note:** The workflow will only trigger on changes made to the repository path `[roleDefinitions/*]`.
 
    ```YAML
-    # '.github/workflows/Rbac_Apply.yml'
+    # '.github/workflows/Rbac-Apply.yml'
     name: RBAC-Apply
     on:
     push:
@@ -221,7 +221,7 @@ Now under our repository folder path `[scripts]` we will create a PowerShell scr
 **Note:** This powershell script calls cmdlets from the AZ module, so if a [self-hosted Github actions runner](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners) is used instead of a `Github-hosted runner`, please ensure that the AZ module is installed and configured on your runner. The below script may be amended to suit your environment better if you use deeply nested management groups. What the script below does is read in each JSON role definition from our repo under the path `./roleDefinitions/*.json` and then sets the context to one of the subscriptions defined in the JSON file `'AssignableScopes'`. Once in the context of a subscription, the script will evaluate whether a Custom Role Definition already exists in the context of the subscription, if it does the script will update the role definition with any changes or if the role does not exist it will be created.
 
 ```powershell
-# 'scrips/set_rbac.ps1'
+# 'scripts/set-rbac.ps1'
 #Parameters from github actions
 Param (
  [Parameter(Mandatory)]
