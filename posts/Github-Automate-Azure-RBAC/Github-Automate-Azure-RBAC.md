@@ -6,7 +6,6 @@ tags: 'tutorial, azure, github, devops'
 cover_image: assets/github-azure.png
 canonical_url: null
 id: 707024
-date: '2021-05-24T17:02:20Z'
 ---
 
 ## What are Azure Roles and Custom Definitions?
