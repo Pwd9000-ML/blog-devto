@@ -2,7 +2,7 @@
 
 ## Build Status
 
-[![publish to Dev.to](https://github.com/Pwd9000-ML/blog-devto/actions/workflows/publish-to-devto.yml/badge.svg)](https://github.com/Pwd9000-ML/blog-devto/actions/workflows/publish-to-devto.yml)
+[![publish to Dev.to](https://github.com/Pwd9000-ML/blog-devto/actions/workflows/publish-to-devto.yml/badge.svg?branch=master)](https://github.com/Pwd9000-ML/blog-devto/actions/workflows/publish-to-devto.yml)
 
 ## How to
 
