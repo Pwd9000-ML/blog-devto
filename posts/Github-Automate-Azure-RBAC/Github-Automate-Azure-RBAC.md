@@ -3,8 +3,10 @@ title: Automate Azure Role Based Access Control (RBAC) using Github
 published: false
 description: Github - Automate Azure RBAC
 tags: 'tutorial, azure, github, devops'
+cover_image: assets/github-azure.png
 canonical_url: null
 id: 707024
+date: '2021-05-24T16:37:27Z'
 ---
 
 ## What are Azure Roles and Custom Definitions?
