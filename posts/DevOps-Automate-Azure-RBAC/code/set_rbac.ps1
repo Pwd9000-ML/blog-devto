@@ -34,7 +34,8 @@ Foreach ($file in $RoleDefinitions) {
             Write-Output "----------------------------------------------"
             Write-Output "Updating Azure Role definition"
 
-            Set-AzRoleDefinition -InputFile $file
+            $Obj.Id = $roleDef.Id
+            Set-AzRoleDefinition -Role $Obj
         }
         Else {
             Write-Output "Role Definition does not exist:"
@@ -55,8 +56,9 @@ Foreach ($file in $RoleDefinitions) {
             $roleDef
             Write-Output "----------------------------------------------"
             Write-Output "Updating Azure Role definition"
-
-            Set-AzRoleDefinition -InputFile $file
+            
+            $Obj.Id = $roleDef.Id
+            Set-AzRoleDefinition -Role $Obj
         }
         Else {
             Write-Output "Role Definition does not exist:"

@@ -1,5 +1,6 @@
 {
     "Name": "GH-CUSTOM-RESOURCEHEALTH-Reader",
+    "Id": "",
     "IsCustom": true,
     "Description": "Users with rights to only view Azure resource/service/subscription health.",
     "Actions": [

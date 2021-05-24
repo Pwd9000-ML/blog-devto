@@ -89,7 +89,7 @@ I called my repository `[Azure-Role-Definitions]`. In my repository I have creat
 
 Clone this newly created or existing repository and let's get started to create our first role definition JSON file now. You can also use my repo as a template by going [HERE](https://github.com/Pwd9000-ML/Azure-Role-Definitions).
 
-Remember in an earlier step we created an azure AD app & service principal and got a JSON object as output. We will now create a secret on our repository using the JSON object output, which our actions workflow will use to authenticate Azure when it's triggered.
+Remember in an earlier step we created an azure AD app & service principal and got a JSON object as output. We will now create a secret on our repository using the JSON object output, which our actions workflow will use to authenticate to Azure when it's triggered.
 
 1. In [GitHub](https://github.com), browse your repository.
 

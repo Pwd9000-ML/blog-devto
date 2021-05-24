@@ -35,6 +35,7 @@ We will use the following JSON template structure to build our definition:
 ```JSON
 {
     "Name": "",
+    "Id": "",
     "IsCustom": true,
     "Description": "",
     "Actions": [],
@@ -52,6 +53,7 @@ Our completed definition we will use in this tutorial will look something like b
 ```JSON
 {
     "Name": "CUSTOM-RESOURCEHEALTH-Reader",
+    "Id": "",
     "IsCustom": true,
     "Description": "Users with rights to only view Azure resource/service/subscription health.",
     "Actions": [
@@ -66,7 +68,7 @@ Our completed definition we will use in this tutorial will look something like b
 }
 ```
 
-**Note:** We can add more subscriptions to our assignable scopes or even use management groups if required. But for the purpose of this tutorial we only want to make the role available to a single Azure subscription. Here are a few more valuable links for reference when creating custom role definitions:
+**Note:** We can add more subscriptions to our assignable scopes or even use management groups if required. But for the purpose of this tutorial we only want to make the role available to a single Azure subscription. You will also notice that `"Id": ""` is blank as our actions workflow script will take care of this value later on. Here are a few more valuable links for reference when creating custom role definitions:
 
 - [Operations](https://docs.microsoft.com/en-us/azure/role-based-access-control/resource-provider-operations)
 - [Operations format](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#operations-format)
@@ -202,7 +204,8 @@ Foreach ($file in $RoleDefinitions) {
             Write-Output "----------------------------------------------"
             Write-Output "Updating Azure Role definition"
 
-            Set-AzRoleDefinition -InputFile $file
+            $Obj.Id = $roleDef.Id
+            Set-AzRoleDefinition -Role $Obj
         }
         Else {
             Write-Output "Role Definition does not exist:"
@@ -223,8 +226,9 @@ Foreach ($file in $RoleDefinitions) {
             $roleDef
             Write-Output "----------------------------------------------"
             Write-Output "Updating Azure Role definition"
-
-            Set-AzRoleDefinition -InputFile $file
+            
+            $Obj.Id = $roleDef.Id
+            Set-AzRoleDefinition -Role $Obj
         }
         Else {
             Write-Output "Role Definition does not exist:"
@@ -261,7 +265,9 @@ We can also confirm that our role is now published and usable in Azure. :smile:
 ![Azure-Role-Published](./assets/Azure-Role-Published.gif)
 
 I hope you have enjoyed this post and have learned something new.  
-You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Automate-Azure-RBAC/code) page. :heart:
+You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Automate-Azure-RBAC/code) page. :heart:  
+
+If you wanted to see how to this using Github Actions instead have a look at [THIS POST](https://dev.to/pwd9000/automate-azure-role-based-access-control-rbac-using-github-2349) where I demonstrate the same automation using Github.
 
 ### _Author_
 
