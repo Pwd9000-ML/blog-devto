@@ -67,7 +67,7 @@ The above command will output a JSON object with the role assignment credentials
 }
 ```
 
-We also want to give our `clientId` `User Access Administrator` permissions on our subscription in order to manage RBAC. We will grant our service principal identity the following RBAC role: [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator). Run the following command:
+We also want to give our `clientId` `'User Access Administrator'` permissions on our subscription in order to manage RBAC. We will grant our service principal identity the following RBAC role: [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator). Run the following command:
 
 ```powershell
 az role assignment create --assignee "<clientID>" `
@@ -107,6 +107,7 @@ We will use the following JSON template structure to build our definition:
 ```JSON
 {
     "Name": "",
+    "Id": "",
     "IsCustom": true,
     "Description": "",
     "Actions": [],
