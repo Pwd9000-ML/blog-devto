@@ -29,7 +29,7 @@ For this step I will be using Azure CLI using a powershell console. First we wil
 az login
 ```
 
-Next we will create our `Azure AD App` by running the following in a powershell console window:
+Next we will create our `'Azure AD App'` by running the following in a powershell console window:
 
 ```powershell
 # a name for our azure ad app
