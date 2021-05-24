@@ -6,6 +6,7 @@ tags: 'tutorial, azure, github, devops'
 cover_image: assets/github-azure.png
 canonical_url: null
 id: 707024
+date: '2021-05-24T16:04:03Z'
 ---
 
 ## What are Azure Roles and Custom Definitions?
@@ -86,7 +87,7 @@ I called my repository `[Azure-Role-Definitions]`. In my repository I have creat
 
 3. **scripts:** Here we will keep a simple PowerShell script that will be used in our actions yaml file.
 
-Clone this newly created or existing repository and let's get started to create our first role definition JSON file now. You can also use my repo as a template by going [HERE](https://github.com/Pwd9000-ML/Azure-Role-Definitions).  
+Clone this newly created or existing repository and let's get started to create our first role definition JSON file now. You can also use my repo as a template by going [HERE](https://github.com/Pwd9000-ML/Azure-Role-Definitions).
 
 Remember in an earlier step we created an azure AD app & service principal and got a JSON object as output. We will now create a secret on our repository using the JSON object output, which our actions workflow will use to authenticate Azure when it's triggered.
 
@@ -147,7 +148,7 @@ Our completed definition we will use in this tutorial will look something like b
 
 ### Configure our Github actions workflow
 
-The next thing we will do is create our Github actions workflow and script. Lets create the following `yaml` file in our repository.  
+The next thing we will do is create our Github actions workflow and script. Lets create the following `yaml` file in our repository.
 
 1. Under `[.github/workflows]` create the following YAML file `[Rbac-Apply.yml]`:
 
@@ -157,7 +158,7 @@ The next thing we will do is create our Github actions workflow and script. Lets
    ```YAML
     # '.github/workflows/Rbac_Apply.yml'
     name: RBAC-Apply
-    on:   
+    on:
     push:
         paths:
         - 'roleDefinitions/*'
@@ -171,7 +172,7 @@ The next thing we will do is create our Github actions workflow and script. Lets
         uses: actions/checkout@v2
         with:
             fetch-depth: 0
-        
+
         - name: Get changed files in .\roleDefinitions
         shell: powershell
         run: echo "CHANGED_FILES=$(git diff --name-only ${{ github.event.before }}..${{ github.event.after }})" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
@@ -211,7 +212,7 @@ The next thing we will do is create our Github actions workflow and script. Lets
         - name: Create - Update role definitions
         uses: azure/powershell@v1
         with:
-            inlineScript: | 
+            inlineScript: |
             .\scripts\set-rbac.ps1 -RoleDefinitions ${{ env.ROLE_DEFINITIONS }}
             azPSVersion: 'latest'
    ```
@@ -278,7 +279,7 @@ Foreach ($file in $RoleDefinitions) {
             $roleDef
             Write-Output "----------------------------------------------"
             Write-Output "Updating Azure Role definition"
-            
+
             $Obj.Id = $roleDef.Id
             Set-AzRoleDefinition -Role $Obj
         }
@@ -302,7 +303,7 @@ We can also confirm that our role is now published and usable in Azure. :smile:
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Github-Automate-Azure-RBAC/code) page or you can even use my repo as a template [HERE](https://github.com/Pwd9000-ML/Azure-Role-Definitions) :heart:
 
-If you wanted to see how to this using Azure DevOps instead have a look at [THIS POST](https://dev.to/pwd9000/automate-azure-role-based-access-control-rbac-with-devops-2ehf) where I demonstrate the same automation using Azure DevOps.  
+If you wanted to see how to this using Azure DevOps instead have a look at [THIS POST](https://dev.to/pwd9000/automate-azure-role-based-access-control-rbac-with-devops-2ehf) where I demonstrate the same automation using Azure DevOps.
 
 ### _Author_
 
