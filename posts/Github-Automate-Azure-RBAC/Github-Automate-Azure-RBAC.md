@@ -125,6 +125,7 @@ Our completed definition we will use in this tutorial will look something like b
 ```JSON
 {
     "Name": "GH-CUSTOM-RESOURCEHEALTH-Reader",
+    "Id": "",
     "IsCustom": true,
     "Description": "Users with rights to only view Azure resource/service/subscription health.",
     "Actions": [
@@ -139,7 +140,7 @@ Our completed definition we will use in this tutorial will look something like b
 }
 ```
 
-**Note:** We can add more subscriptions to our assignable scopes or even use management groups if required. But for the purpose of this tutorial we only want to make the role available to a single Azure subscription. Here are a few more valuable links for reference when creating custom role definitions:
+**Note:** We can add more subscriptions to our assignable scopes or even use management groups if required. But for the purpose of this tutorial we only want to make the role available to a single Azure subscription. You will also notice that `'"Id": ""'` is blank as our actions workflow script will take care of this value later on. Here are a few more valuable links for reference when creating custom role definitions:
 
 - [Operations](https://docs.microsoft.com/en-us/azure/role-based-access-control/resource-provider-operations)
 - [Operations format](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#operations-format)
