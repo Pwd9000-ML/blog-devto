@@ -1,6 +1,6 @@
 ---
 title: Automate Azure Role Based Access Control (RBAC) using Github
-published: false
+published: true
 description: Github - Automate Azure RBAC
 tags: 'tutorial, azure, github, devops'
 cover_image: assets/github-azure.png
@@ -293,7 +293,7 @@ Foreach ($file in $RoleDefinitions) {
 }
 ```
 
-That's it, now each time a new JSON definition is added or an existing definition is amended on our repository under the path `./roleDefinitions/` the change will auto-magically be reflected in Azure and we can now use proper version control and automation around governing our Azure RBAC custom role definitions using Github Actions.
+That's it, now each time a new JSON definition is added or an existing definition is amended on our repository under the path `./roleDefinitions/` the changes when pushed to our repo will trigger our github actions workflow and will auto-magically create or update any existing RBAC roles in Azure and we can now use proper version control and automation around governing our Azure RBAC custom role definitions using Github Actions.
 
 ![run-output](./assets/run-output.png)
 
@@ -301,8 +301,7 @@ We can also confirm that our role is now published and usable in Azure. :smile:
 
 ![Azure-Role-Published](./assets/Azure-Role-Published.gif)
 
-I hope you have enjoyed this post and have learned something new.  
-You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Github-Automate-Azure-RBAC/code) page or you can even use my repo as a template [HERE](https://github.com/Pwd9000-ML/Azure-Role-Definitions) :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Github-Automate-Azure-RBAC/code) page or you can even use my repo as a template [HERE](https://github.com/Pwd9000-ML/Azure-Role-Definitions) :heart:
 
 If you wanted to see how to this using Azure DevOps instead have a look at [THIS POST](https://dev.to/pwd9000/automate-azure-role-based-access-control-rbac-with-devops-2ehf) where I demonstrate the same automation using Azure DevOps.  
 
