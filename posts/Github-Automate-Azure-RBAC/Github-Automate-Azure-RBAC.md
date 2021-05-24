@@ -19,7 +19,7 @@ Today we will look at how we can utilize Github actions in creating and also mai
 
 ### Protecting secrets in github
 
-Before we start using this Github actions workflow in this tutorial we will need the ability to authenticate to Azure. We will first create an `Azure AD App & Service Principal` giving the identity we create the relevant permissions to maintain custom RBAC roles and then store this identity credential as an encrypted [Github Secret](https://docs.github.com/en/actions/reference/encrypted-secrets) called `AZURE_CREDENTIALS` to use in our workflow to authenticate to Azure.
+Before we start using Github actions in this tutorial we will need the ability to authenticate to Azure. We will first create an `'Azure AD App & Service Principal'` giving the identity we create the relevant permissions to maintain custom RBAC roles and then store this identity credential as an encrypted [Github Secret](https://docs.github.com/en/actions/reference/encrypted-secrets) called `'AZURE_CREDENTIALS'` to use in our actions workflow to authenticate to Azure.
 
 ### Create an Azure AD App & Service Principal
 
@@ -46,7 +46,7 @@ Next we will retrieve the App ID and set it to a powershell variable `$appId`
 $appId=$(az ad app list --display-name $appName --query [].appId -o tsv)
 ```
 
-Now that we have our `appId` we can create our service principal and also give our principal the correct `Role Based Access Control (RBAC)` permissions on our subscription or management group where we want to maintain RBAC. We will give our principal the RBAC/IAM roles: `Management Group Reader` and `User Access Administrator`, because we want our actions workflow script to be able to look at management groups and be able to change context as well as be able to create or amend role definitions at the scope we want to maintain. In my case I only want to maintain RBAC for a single subscription. You can change the below `--scopes` to also set the relevant permissions of the identity to a `management group` scope instead if you want to use the workflow to maintain RBAC over multiple subscriptions.
+Now that we have our `'appId'` we can create our service principal and also give our principal the correct `Role Based Access Control (RBAC)` permissions on our subscription or management group where we want to maintain RBAC. We will give our principal the RBAC/IAM roles: `Management Group Reader` and `User Access Administrator`, because we want our actions workflow script to be able to look at management groups and be able to change context as well as be able to create or amend role definitions at the scope we want to maintain. In my case I only want to maintain RBAC for a single subscription. You can change the below `--scopes` to also set the relevant permissions of the identity to a `management group` scope instead if you want to use the workflow to maintain RBAC over multiple subscriptions.
 
 ```powershell
 $subscriptionId="<MySubscriptionId>" # You can change this value to the subscription ID in your environment
