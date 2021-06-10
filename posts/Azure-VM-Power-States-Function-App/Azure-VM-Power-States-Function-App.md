@@ -229,7 +229,7 @@ You can navigate to the function app `settings` pane and select `Networking`:
 
 Next select `Access Restrictions` and add a rule to allow your IP:
 
-![funcSec2](./assets/funcSec2.png)  
+![funcSec02](./assets/funcSec02.png)  
 
 By default this will block all inbound connections to our Proxy URL with the exception to our excluded IP. Now if anyone else tries to access the function they will be unable to.
 
