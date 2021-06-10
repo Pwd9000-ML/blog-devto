@@ -216,3 +216,26 @@ To stop and deallocate the VM `MyWevServer01` you could change the `{Action}` pa
 Similarly you could also start a VM by changing the `{Action}` to `Start`
 
 ![testFunc](./assets/testFunc.gif)
+
+## Securing function apps
+
+For the purposes of this tutorial be aware that the proxy URL we created to check the status, stop and start our VMs will be able to be run by anyone who knows the function app URL, subscription ID, Resource Group Name and VM Names. I would recommend securing the function app by following some of these [Function App Security recommendations](https://docs.microsoft.com/en-us/azure/architecture/serverless-quest/functions-app-security) as well as [Securing Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/security-concepts)
+
+A very quick and effective way as well to limit access to our URL is to only allow a specific IP or range of IPs to access our URL.  
+You can navigate to the function app `settings` pane and select `Networking`:  
+
+![funcSec1](./assets/funcSec1.png)  
+
+Next select `Access Restrictions` and add a rule to allow your IP:
+
+![funcSec2](./assets/funcSec2.png)  
+
+By default this will block all inbound connections to our Proxy URL with the exception to our excluded IP. Now if anyone else tries to access the function they will be unable to.
+
+![funcSec3](./assets/funcSec3.png)  
+
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-VM-Power-States-Function-App/code) :heart:
+
+### _Author_
+
+Marcel.L - pwd9000@hotmail.co.uk
