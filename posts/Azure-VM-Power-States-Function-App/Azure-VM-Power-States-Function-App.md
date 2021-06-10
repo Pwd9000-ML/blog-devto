@@ -166,6 +166,16 @@ Push-OutputBinding -Name Response -Value (
 )
 ```
 
+By default our function app will not have the AZ module enabled, so next we will enable this by navigating to the function apps `diagnostic console` and enabling the AZ module. Go to the `Development Tools` pane and select `Advanced Tools`.  
+
+![kudu](./assets/kudu.png)  
+
+Then we will navigate to `site -> wwwroot` and edit the `requirements.psd1` file to enable the AZ module:
+
+![azModuleEnable](./assets/azModuleEnable.gif)  
+
+**Note:** After this change we have to restart our function app.
+
 Next we will create a proxy URL, copy the `Get function URL`:  
 
 ![funcUrl](./assets/funcUrl.png)  
@@ -187,3 +197,13 @@ Add the following **Query** parameters:
 `Context: {Context}`  
 `ResourceGroupName: {ResourceGroupName}`  
 `VMName: {VMName}`  
+
+Now we can use a normal browser to test our function app.  Copy the proxy URL we just created [https://functionappname.azurewebsites.net/{Action}/{Context}/{ResourceGroupName}/{VMName}] into a web browser and replace the query parameters with any of the following:  
+
+Action = `stop`, `start` or `status`  
+Context = `SubscriptionId`  
+ResourceGroupName = `ResourceGroupName`  
+VMName = `VMName`  
+
+Example: `https://functionappname.azurewebsites.net/status/259b6576-0000-0000-0000-000000000000/ResourceGroup223/MyWebServer01`
+
