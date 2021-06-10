@@ -194,10 +194,13 @@ Navigate back to the `Functions` pane and select `Proxies`, then select `Add` wi
 **HTTP method:** `POST`  
 
 Add the following **Query** parameters:  
-`Action: {Action}`  
-`Context: {Context}`  
-`ResourceGroupName: {ResourceGroupName}`  
-`VMName: {VMName}`  
+
+| Name              | Value               |
+| ----------------- | ------------------- |
+| Action            | {Action}            |
+| Context           | {Context}           |
+| ResourceGroupName | {ResourceGroupName} |
+| VMName            | {VMName}            |
 
 Now we can use a normal web browser to test our function app. Copy the proxy URL we just created:  
 `https://functionappname.azurewebsites.net/{Action}/{Context}/{ResourceGroupName}/{VMName}`  
