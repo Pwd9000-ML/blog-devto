@@ -78,15 +78,18 @@ If you check the `IAM` permissions now under the scope we added the role assignm
 ![managedIdentity4](./assets/managedIdentity4.png)
 
 Now we will configure our function app with the powershell code and triggers to finalize the solution.  
-Under the `Functions` pane click `Add`:  
+Under the `Functions` pane click `Add` with the following settings:  
 
 ![functionadd](./assets/functionadd.png)  
 
-Configure the following settings:
+**Development Enviornment:** `Develop in portal`  
+**Select a template:** `HTTP trigger`  
+**New Function:** = `VmPowerState`  
+**Authorization level:** = `Function`  
 
-**Development Enviornment:** `Develop in portal`
-**Select a template:** `HTTP trigger`
-**New Function:** = `VmPowerState`
-**Authorization level:** = `Function`
+Next under `Code + Test` copy the following powershell code:  
 
-Next we will use this code
+```txt
+// code/vmPowerFunction.ps1
+
+```
