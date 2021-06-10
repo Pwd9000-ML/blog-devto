@@ -199,19 +199,19 @@ Add the following **Query** parameters:
 `ResourceGroupName: {ResourceGroupName}`  
 `VMName: {VMName}`  
 
-Now we can use a normal browser to test our function app. Copy the proxy URL we just created:  
+Now we can use a normal web browser to test our function app. Copy the proxy URL we just created:  
 `https://functionappname.azurewebsites.net/{Action}/{Context}/{ResourceGroupName}/{VMName}`  
 into a web browser and replace the query parameters with any of the following:  
 
-Action = `stop`, `start` or `status`  
-Context = `SubscriptionId`  
-ResourceGroupName = `ResourceGroupName`  
-VMName = `VMName`  
+`Action` = This value can be `stop`, `start` or `status`.  
+`Context` = This value should be the subscription ID where our VMs reside and our function apps identity has permission.  
+`ResourceGroupName` = This value should be the name of the resource group where the VMs reside.  
+`VMName` = The name of our VM we want to perform action against.  
 
 For example to check the `status` of a VM `MyWebServer01` you could put this in your browser:  
 `https://functionappname.azurewebsites.net/status/259b6576-0000-0000-0000-000000000000/ResourceGroup223/MyWebServer01`  
 
-To stop and deallocate the VM `MyWevServer01` you could change the `{Action}` parameter to `stop`:  
+To stop and de-allocate the VM `MyWevServer01` you could change the `{Action}` parameter to `stop`:  
 `https://functionappname.azurewebsites.net/stop/259b6576-0000-0000-0000-000000000000/ResourceGroup223/MyWebServer01`  
 
 Similarly you could also start a VM by changing the `{Action}` to `Start`
