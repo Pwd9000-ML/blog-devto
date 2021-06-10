@@ -100,7 +100,7 @@ Next we will create a proxy URL, copy the `Get function URL`:
 
 Navigate back to the `Functions` pane and select `Proxies`, then select `Add` with the following settings:
 
-![funcProxy1](./assets/funcProxy1.png)
+![funcProxy2](./assets/funcProxy2.png)
 
 **Name:** `PowerAction`  
 **Route template:** `/{Action}/{Context}/{ResourceGroupName}/{VMName}`  
