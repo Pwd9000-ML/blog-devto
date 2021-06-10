@@ -1,10 +1,9 @@
 ---
-title: Control Azure virtual machines using an Azure function app
+title: dummy
 published: false
 description: dummy
-tags: 'tutorial, azure'
+tags: 'tutorial'
 cover_image: assets/main_cover.png
-canonical_url: null
 id: 724055
 ---
 
