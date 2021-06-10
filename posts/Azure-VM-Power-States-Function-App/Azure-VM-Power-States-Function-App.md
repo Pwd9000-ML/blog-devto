@@ -93,3 +93,25 @@ Next under `Code + Test` copy the following powershell code:
 // code/vmPowerFunction.ps1
 
 ```
+
+Next we will create a proxy URL, copy the `Get function URL`:  
+
+![funcUrl](./assets/funcUrl.png)  
+
+Navigate back to the `Functions` pane and select `Proxies`, then select `Add` with the following settings:
+
+![funcProxy](./assets/funcProxy.png)
+
+**Name:** `PowerAction`  
+**Route template:** `/{Action}/{Context}/{ResourceGroupName}/{VMName}`  
+**Allowed HTTP methods:** `GET`  
+**Backend URL:** `<function URL>`  
+
+**Request override**
+**HTTP method:** `POST`  
+
+Add the following parameters:  
+"Action": "{Action}"  
+"Context": "{Context}"  
+"ResourceGroupName": "{ResourceGroupName}"  
+"VMName": "{VMName}"  
