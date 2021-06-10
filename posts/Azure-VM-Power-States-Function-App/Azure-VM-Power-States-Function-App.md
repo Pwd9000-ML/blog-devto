@@ -6,7 +6,7 @@ tags: 'tutorial, azure'
 cover_image: null
 canonical_url: null
 id: 724055
-date: '2021-06-10T09:41:50Z'
+date:
 ---
 
 ## Control Azure virtual machines power states using an Azure function app
