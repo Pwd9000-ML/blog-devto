@@ -1,5 +1,5 @@
 ---
-title: Power virtual machines ON or OFF using an Azure function app
+title: Power virtual machines ON or OFF using Azure functions
 published: false
 description: Azure - Function App to control VM power states
 tags: 'tutorial, powershell, productivity, azure'
@@ -33,25 +33,36 @@ Next we will create a `resource group`, `storage account`, `app service plan` an
 # Function app and storage account names must be unique.
 $randomInt = Get-Random -Maximum 9999
 $resourceGroupName = "VmPowerFunction"
-$storageName = "vmpowerstorage$randomInt"
+$storageName = "vmpowersa$randomInt"
 $functionAppName = "vmpowerfunc$randomInt"
-$region = uksouth
+$region = "uksouth"
 
 # Create a resource resourceGroupName
-az group create --name $resourceGroupName --location $region
+az group create --name "$resourceGroupName" --location "$region"
 
 # Create an azure storage account
-az storage account create --name $storageName --location $region --resource-group $resourceGroupName --sku Standard_LRS
+az storage account create `
+    --name "$storageName" `
+    --location "$region" `
+    --resource-group "$resourceGroupName" `
+    --sku "Standard_LRS" `
+    --kind "StorageV2"
 
 # Create a Function App
 az functionapp create `
-  --name $functionAppName `
-  --storage-account $storageName `
-  --consumption-plan-location $region `
-  --resource-group myResourceGroup `
-  --os-type Windows `
-  --runtime powershell `
-  --functions-version 2
+    --name "$functionAppName" `
+    --storage-account "$storageName" `
+    --consumption-plan-location "$region" `
+    --resource-group "$resourceGroupName" `
+    --os-type "Windows" `
+    --runtime "powershell" `
+    --runtime-version "7.0" `
+    --functions-version "3"
 ```
 
 **Note:** In this tutorial we are using a [`Consumption`](https://docs.microsoft.com/en-us/azure/azure-functions/consumption-plan) app service plan and not a [dedicated](https://docs.microsoft.com/en-us/azure/azure-functions/dedicated-plan) or [premium](https://docs.microsoft.com/en-us/azure/azure-functions/functions-premium-plan?tabs=portal) plan as this will be sufficient enough for our function app. You can however change the plan if needed.
+
+Next we will enable the function app with a `system assigned` [managed identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) so that we can permission our function app against the virtual machines we will be maintaining. Under the function app `settings` pane select `Identity` and enable the `system assigned` setting to be `ON` and save the setting:
+
+![managedIdentity](./assets/managedIdentity.png)
+
