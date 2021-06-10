@@ -84,7 +84,6 @@ Under the `Functions` pane click `Add`:
 
 Configure the following settings:
 
-**Development Enviornment:** Develop in portal
-**Select a template:** HTTP trigger
-**Template details:** New Function = VmPowerState, Authorization level = Function
-
+**Development Enviornment:** `Develop in portal`  
+**Select a template:** `HTTP trigger`  
+**Template details:** New Function = `VmPowerState`, Authorization level = `Function`  
