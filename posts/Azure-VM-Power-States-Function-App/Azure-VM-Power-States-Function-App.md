@@ -60,9 +60,15 @@ az functionapp create `
     --functions-version "3"
 ```
 
-**Note:** In this tutorial we are using a [`Consumption`](https://docs.microsoft.com/en-us/azure/azure-functions/consumption-plan) app service plan and not a [dedicated](https://docs.microsoft.com/en-us/azure/azure-functions/dedicated-plan) or [premium](https://docs.microsoft.com/en-us/azure/azure-functions/functions-premium-plan?tabs=portal) plan as this will be sufficient enough for our function app. You can however change the plan if needed.
+**Note:** In this tutorial we are using a [`Consumption`](https://docs.microsoft.com/en-us/azure/azure-functions/consumption-plan) app service plan and not a [`dedicated`](https://docs.microsoft.com/en-us/azure/azure-functions/dedicated-plan) or [`premium`](https://docs.microsoft.com/en-us/azure/azure-functions/functions-premium-plan?tabs=portal) plan as this will be sufficient enough for our function app. You can however change the plan if needed.
 
-Next we will enable the function app with a `system assigned` [managed identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) so that we can permission our function app against the virtual machines we will be maintaining. Under the function app `settings` pane select `Identity` and enable the `system assigned` setting to be `ON` and save the setting:
+Next we will enable the function app with a `system assigned` [`managed identity`](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) so that we can permission our function app against the virtual machines we will be maintaining. Under the function app `settings` pane select `Identity` and enable the `system assigned` setting to be `ON` and save the setting:
 
 ![managedIdentity](./assets/managedIdentity.png)
 
+With the Managed Identity now created, we can add a Role assignment and permissions (IAM) to the Subscription or Resource Group where our Vms reside. We will also give the function app the role `Virtual Machine Contributor` because we only want the app to be able to check the status of a VM and the ability to either stop or start a VM. On the same `settings` pane where we set the `identity` you will now see a new setting called `Permissions`. Click on `Azure Role Assignments` and add the relevant permissions at the resource group scope where the Vms resides.  
+**Note:** You can also add the role assignment permissions via `IAM` at a desired scope such as at a management group or subscription scope.  
+
+![managedIdentity2](./assets/managedIdentity2.png)
+
+![managedIdentity3](./assets/managedIdentity3.png)
