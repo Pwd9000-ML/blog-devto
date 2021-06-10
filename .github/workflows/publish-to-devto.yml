@@ -10,10 +10,10 @@ jobs:
 
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@master
+      uses: actions/checkout@v1
 
     - name: Setup Node
-      uses: actions/setup-node@master
+      uses: actions/setup-node@v1
       with:
         node-version: 12
 
@@ -29,7 +29,7 @@ jobs:
     - name: Publish articles on dev.to
       uses: sinedied/publish-devto@master
       with:
-        files: 'posts/**/*.md'
+        files_glob: 'posts/**/*.md'
         devto_key: ${{ secrets.DEVTO_TOKEN }}
         github_token: ${{ secrets.GH_TOKEN }}
         conventional_commits: true

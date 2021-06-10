@@ -6,7 +6,6 @@ tags: 'tutorial, powershell, productivity, azure'
 cover_image: assets/main-cover.png
 canonical_url: null
 id: 724055
-date: '2021-06-10T10:19:00Z'
 ---
 
 ## What is an Azure function?
