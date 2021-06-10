@@ -166,6 +166,7 @@ Push-OutputBinding -Name Response -Value (
 )
 ```
 
+Here is also a [Link](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-VM-Power-States-Function-App/code) to the function code.  
 By default our function app will not have the AZ module enabled, so next we will enable this by navigating to the function apps `diagnostic console` and enabling the AZ module. Go to the `Development Tools` pane and select `Advanced Tools`.  
 
 ![kudu](./assets/kudu.png)  
