@@ -25,9 +25,9 @@ Try{
     Write-output $vmStatus
     If(-not ($vmStatus)){
         $status = 404
-        Throw 'ERROR! VM not found'
+        Throw "ERROR! VM [$VMName] not found. Please check if the 'Subscription ID', 'Resource Group Name' or 'VM name' is correct and exists."
     }
-    [string]$Message = "Virtual machine status: " + $vmStatus.statuses[-1].displayStatus
+    [string]$Message = "Virtual machine [$VMName] status: " + $vmStatus.statuses[-1].displayStatus
     Switch($Action){
         'start'{
             If($vmStatus.statuses[-1].displayStatus -ne 'VM running'){

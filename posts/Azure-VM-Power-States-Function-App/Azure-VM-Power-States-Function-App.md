@@ -15,7 +15,7 @@ Azure Functions is a cloud service available on-demand that provides all the con
 
 {% youtube 8-jz5f_JyEQ %}
 
-For more details on Azure Functions have a look at the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview)  
+For more details on Azure Functions have a look at the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview).
 
 ## How to control Azure virtual machines power states using an Azure function
 
@@ -119,9 +119,9 @@ Try{
     Write-output $vmStatus
     If(-not ($vmStatus)){
         $status = 404
-        Throw 'ERROR! VM not found'
+        Throw "ERROR! VM [$VMName] not found. Please check if the 'Subscription ID', 'Resource Group Name' or 'VM name' is correct and exists."
     }
-    [string]$Message = "Virtual machine status: " + $vmStatus.statuses[-1].displayStatus
+    [string]$Message = "Virtual machine [$VMName] status: " + $vmStatus.statuses[-1].displayStatus
     Switch($Action){
         'start'{
             If($vmStatus.statuses[-1].displayStatus -ne 'VM running'){
@@ -209,19 +209,19 @@ Now we can use a normal web browser to test our function app. Copy the proxy URL
 `ResourceGroupName` = This value should be the name of the resource group where the VMs reside.  
 `VMName` = The name of our VM we want to perform action against.  
 
-For example to check the `status` of a VM `MyWebServer01` you could put this in your browser:  
+For example to check the `Status` of a VM `MyWebServer01` you could put this in your browser:  
 `https://functionappname.azurewebsites.net/status/259b6576-0000-0000-0000-000000000000/ResourceGroup223/MyWebServer01`  
 
-To stop and de-allocate the VM `MyWevServer01` you could change the `{Action}` parameter to `stop`:  
+To stop and de-allocate the VM `MyWevServer01` you could change the `{Action}` parameter to `Stop`:  
 `https://functionappname.azurewebsites.net/stop/259b6576-0000-0000-0000-000000000000/ResourceGroup223/MyWebServer01`  
 
-Similarly you could also start a VM by changing the `{Action}` to `Start`
+Similarly you could also start a VM by changing the `{Action}` to `Start`.
 
 ![testFunc](./assets/testFunc.gif)
 
 ## Securing function apps
 
-For the purposes of this tutorial be aware that the proxy URL we created to check the status, stop and start our VMs will be able to be run by anyone who knows the function app URL, subscription ID, Resource Group Name and VM Names. I would recommend securing the function app by following some of these [Function App Security recommendations](https://docs.microsoft.com/en-us/azure/architecture/serverless-quest/functions-app-security) as well as [Securing Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/security-concepts)
+For the purposes of this tutorial be aware that the proxy URL we created to check the status, stop and start our VMs will be able to be run by anyone who knows the function app URL, subscription ID, Resource Group Name and VM Names. I would recommend securing the function app by following some of these [Function App Security recommendations](https://docs.microsoft.com/en-us/azure/architecture/serverless-quest/functions-app-security) as well as [Securing Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/security-concepts).
 
 A very quick and effective way as well to limit access to our URL is to only allow a specific IP or range of IPs to access our URL.  
 You can navigate to the function app `settings` pane and select `Networking`:  
@@ -236,7 +236,7 @@ By default this will block all inbound connections to our Proxy URL with the exc
 
 ![funcSec3](./assets/funcSec3.png)  
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-VM-Power-States-Function-App/code) :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-VM-Power-States-Function-App/code). :heart:
 
 ### _Author_
 
