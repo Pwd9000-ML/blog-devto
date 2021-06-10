@@ -198,7 +198,7 @@ Add the following **Query** parameters:
 `ResourceGroupName: {ResourceGroupName}`  
 `VMName: {VMName}`  
 
-Now we can use a normal browser to test our function app.  Copy the proxy URL we just created [https://functionappname.azurewebsites.net/{Action}/{Context}/{ResourceGroupName}/{VMName}] into a web browser and replace the query parameters with any of the following:  
+Now we can use a normal browser to test our function app. Copy the proxy URL we just created `https://functionappname.azurewebsites.net/{Action}/{Context}/{ResourceGroupName}/{VMName}` into a web browser and replace the query parameters with any of the following:  
 
 Action = `stop`, `start` or `status`  
 Context = `SubscriptionId`  
