@@ -72,3 +72,7 @@ With the Managed Identity now created, we can add a Role assignment and permissi
 ![managedIdentity2](./assets/managedIdentity2.png)
 
 ![managedIdentity3](./assets/managedIdentity3.png)
+
+If you check the `IAM` permissions now under the scope we added the role assignment, you should see the `IAM` permission for our function app:  
+
+![managedIdentity4](./assets/managedIdentity4.png)
