@@ -17,14 +17,41 @@ Azure Functions is a cloud service available on-demand that provides all the con
 
 For more details on Azure Functions have a look at the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview)  
 
-Today we will look at how we can create a function app using PowerShell as the code base, that will allow us to check the power state of a virtual machine or stop / start a virtual machine by passing a URL request via a web browser or a JSON body to the function app.
-
 ## How to control Azure virtual machines power states using an Azure function
 
-In this tutorial we will:  
-- create an Azure function app
-- use PowerShell to control Virtual machines power states.
+Today we will look at how we can create a function app using PowerShell as the code base, that will allow us to check the power state of a virtual machine or stop/start a virtual machine by passing a URL request or a JSON body via a HTTP trigger to the function app.  
 
-### _Author_
+To get everything ready I will be using Azure CLI using a powershell console. First we will log into Azure by running:
 
-Marcel.L - pwd9000@hotmail.co.uk
+```powershell
+az login
+```
+
+Next we will create a `resource group`, `storage account`, `app service plan` and `function app` by running:
+
+```powershell
+# Function app and storage account names must be unique.
+$randomInt = Get-Random -Maximum 9999
+$resourceGroupName = "VmPowerFunction"
+$storageName = "vmpowerstorage$randomInt"
+$functionAppName = "vmpowerfunc$randomInt"
+$region = uksouth
+
+# Create a resource resourceGroupName
+az group create --name $resourceGroupName --location $region
+
+# Create an azure storage account
+az storage account create --name $storageName --location $region --resource-group $resourceGroupName --sku Standard_LRS
+
+# Create a Function App
+az functionapp create `
+  --name $functionAppName `
+  --storage-account $storageName `
+  --consumption-plan-location $region `
+  --resource-group myResourceGroup `
+  --os-type Windows `
+  --runtime powershell `
+  --functions-version 2
+```
+
+**Note:** In this tutorial we are using a [`Consumption`](https://docs.microsoft.com/en-us/azure/azure-functions/consumption-plan) app service plan and not a [dedicated](https://docs.microsoft.com/en-us/azure/azure-functions/dedicated-plan) or [premium](https://docs.microsoft.com/en-us/azure/azure-functions/functions-premium-plan?tabs=portal) plan as this will be sufficient enough for our function app. You can however change the plan if needed.
