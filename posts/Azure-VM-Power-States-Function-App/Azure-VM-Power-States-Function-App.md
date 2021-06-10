@@ -100,18 +100,18 @@ Next we will create a proxy URL, copy the `Get function URL`:
 
 Navigate back to the `Functions` pane and select `Proxies`, then select `Add` with the following settings:
 
-![funcProxy](./assets/funcProxy.png)
+![funcProxy1](./assets/funcProxy1.png)
 
 **Name:** `PowerAction`  
 **Route template:** `/{Action}/{Context}/{ResourceGroupName}/{VMName}`  
 **Allowed HTTP methods:** `GET`  
 **Backend URL:** `<function URL>`  
 
-**Request override**
+**Request override**  
 **HTTP method:** `POST`  
 
-Add the following parameters:  
-"Action": "{Action}"  
-"Context": "{Context}"  
-"ResourceGroupName": "{ResourceGroupName}"  
-"VMName": "{VMName}"  
+Add the following **Query** parameters:  
+`Action: {Action}`  
+`Context: {Context}`  
+`ResourceGroupName: {ResourceGroupName}`  
+`VMName: {VMName}`  
