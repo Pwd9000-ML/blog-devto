@@ -1,9 +1,9 @@
 ---
-title: Control Azure virtual machines power states using an Azure function app
+title: Azure virtual machine power states using an Azure function app
 published: false
 description: Azure - Function App to control VM power states
 tags: 'tutorial, azure'
-cover_image: null
+cover_image:
 canonical_url: null
 id: 724055
 date:
