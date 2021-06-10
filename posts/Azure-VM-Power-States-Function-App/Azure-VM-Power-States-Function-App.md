@@ -84,8 +84,8 @@ Under the `Functions` pane click `Add` with the following settings:
 
 **Development Enviornment:** `Develop in portal`  
 **Select a template:** `HTTP trigger`  
-**New Function:** = `VmPowerState`  
-**Authorization level:** = `Function`  
+**New Function:** `VmPowerState`  
+**Authorization level:** `Function`  
 
 Next under `Code + Test` copy the following powershell code:  
 
