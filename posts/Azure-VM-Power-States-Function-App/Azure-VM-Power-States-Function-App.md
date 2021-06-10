@@ -19,9 +19,9 @@ For more details on Azure Functions have a look at the [Microsoft Documentation]
 
 ## How to control Azure virtual machines power states using an Azure function
 
-Today we will look at how we can create a function app using PowerShell as the code base, that will allow us to check the power state of a virtual machine or stop/start a virtual machine by passing a URL request or a JSON body via a HTTP trigger to the function app.  
+Today we will look at how we can create a function app using PowerShell Core as the code base, that will allow us to check the power state of a virtual machine or stop/start a virtual machine by passing a URL request via a HTTP trigger to the function app.  
 
-To get everything ready I will be using Azure CLI using a powershell console. First we will log into Azure by running:
+To get everything ready I will be using Azure CLI in a powershell console. First we will log into Azure by running:
 
 ```powershell
 az login
@@ -60,7 +60,7 @@ az functionapp create `
     --functions-version "3"
 ```
 
-**Note:** In this tutorial we are using a [`Consumption`](https://docs.microsoft.com/en-us/azure/azure-functions/consumption-plan) app service plan and not a [`dedicated`](https://docs.microsoft.com/en-us/azure/azure-functions/dedicated-plan) or [`premium`](https://docs.microsoft.com/en-us/azure/azure-functions/functions-premium-plan?tabs=portal) plan as this will be sufficient enough for our function app. You can however change the plan if needed.
+**Note:** In this tutorial we are using a [`Consumption`](https://docs.microsoft.com/en-us/azure/azure-functions/consumption-plan) app service plan and not a [`dedicated`](https://docs.microsoft.com/en-us/azure/azure-functions/dedicated-plan) or [`premium`](https://docs.microsoft.com/en-us/azure/azure-functions/functions-premium-plan?tabs=portal) plan. You can however change the plan if needed as the consumption plan may take a bit of time to start up once we start using it. But for the purposes of this tutorial and use case this plan will be sufficient enough for our function.  
 
 Next we will enable the function app with a `system assigned` [`managed identity`](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) so that we can permission our function app against the virtual machines we will be maintaining. Under the function app `settings` pane select `Identity` and enable the `system assigned` setting to be `ON` and save the setting:
 
@@ -198,12 +198,21 @@ Add the following **Query** parameters:
 `ResourceGroupName: {ResourceGroupName}`  
 `VMName: {VMName}`  
 
-Now we can use a normal browser to test our function app. Copy the proxy URL we just created `https://functionappname.azurewebsites.net/{Action}/{Context}/{ResourceGroupName}/{VMName}` into a web browser and replace the query parameters with any of the following:  
+Now we can use a normal browser to test our function app. Copy the proxy URL we just created:  
+`https://functionappname.azurewebsites.net/{Action}/{Context}/{ResourceGroupName}/{VMName}`  
+into a web browser and replace the query parameters with any of the following:  
 
 Action = `stop`, `start` or `status`  
 Context = `SubscriptionId`  
 ResourceGroupName = `ResourceGroupName`  
 VMName = `VMName`  
 
-Example: `https://functionappname.azurewebsites.net/status/259b6576-0000-0000-0000-000000000000/ResourceGroup223/MyWebServer01`
+For example to check the `status` of a VM `MyWebServer01` you could put this in your browser:  
+`https://functionappname.azurewebsites.net/status/259b6576-0000-0000-0000-000000000000/ResourceGroup223/MyWebServer01`  
 
+To stop and deallocate the VM `MyWevServer01` you could change the `{Action}` parameter to `stop`:  
+`https://functionappname.azurewebsites.net/stop/259b6576-0000-0000-0000-000000000000/ResourceGroup223/MyWebServer01`  
+
+Similarly you could also start a VM by changing the `{Action}` to `Start`
+
+![testFunc](./assets/testFunc.gif)
