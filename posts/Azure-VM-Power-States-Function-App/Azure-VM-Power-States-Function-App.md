@@ -9,9 +9,13 @@ id: 724055
 date: '2021-06-10T10:19:00Z'
 ---
 
+## What is an Azure function app
+
+A function app is
+
 ## How to control Azure virtual machines power states using an Azure function
 
-What2
+In this tutorial we will create an Azure function app and use PowerShell to control Virtual machines power states.
 
 ### _Author_
 
