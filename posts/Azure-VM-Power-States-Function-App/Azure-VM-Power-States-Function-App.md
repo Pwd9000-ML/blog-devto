@@ -1,5 +1,5 @@
 ---
-title: Control Azure virtual machines using an Azure function app
+title: dummy
 published: false
 description: Azure - Function App to control VM power states
 tags: 'tutorial, azure'
