@@ -27,7 +27,7 @@ jobs:
       run: yarn run embedme:write
 
     - name: Publish articles on dev.to
-      uses: sinedied/publish-devto@30728bf
+      uses: sinedied/publish-devto@master
       with:
         files: 'posts/**/*.md'
         devto_key: ${{ secrets.DEVTO_TOKEN }}
