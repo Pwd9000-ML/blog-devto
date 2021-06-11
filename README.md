@@ -1,5 +1,9 @@
 # Devto - Blog - Status
 
+## Build Status
+
+[![publish to Dev.to](https://github.com/Pwd9000-ML/blog-devto/actions/workflows/publish-to-devto.yml/badge.svg?branch=master)](https://github.com/Pwd9000-ML/blog-devto/actions/workflows/publish-to-devto.yml)
+
 ## How to
 
 ### How to find the ID of a blog post on dev.to?
