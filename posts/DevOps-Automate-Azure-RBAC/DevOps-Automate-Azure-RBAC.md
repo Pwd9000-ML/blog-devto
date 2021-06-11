@@ -260,7 +260,7 @@ Next we authorize our pipeline and that's it, now each time a new JSON definitio
 
 ![Run-pipeline](./assets/Run-pipeline.gif)
 
-We can also confirm that our role is now published and usable in Azure :smile:
+We can also confirm that our role is now published and usable in Azure. :smile:
 
 ![Azure-Role-Published](./assets/Azure-Role-Published.gif)
 
