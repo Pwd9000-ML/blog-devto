@@ -27,6 +27,7 @@ jobs:
       run: yarn run embedme:write
 
     - name: Publish articles on dev.to
+      continue-on-error: true
       uses: sinedied/publish-devto@master
       with:
         files: 'posts/**/*.md'
