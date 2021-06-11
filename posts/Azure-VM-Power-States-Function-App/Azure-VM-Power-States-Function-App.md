@@ -223,7 +223,7 @@ Similarly you could also start a VM by changing the `{Action}` to `Start`.
 For the purposes of this tutorial be aware that the proxy URL we created to check the status, stop and start our VMs will be able to be run by anyone who knows the function app URL, subscription ID, Resource Group Name and VM Names. I would recommend securing the function app by following some of these [Function App Security recommendations](https://docs.microsoft.com/en-us/azure/architecture/serverless-quest/functions-app-security) as well as [Securing Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/security-concepts).
 
 A very quick and effective way as well to limit access to our URL is to only allow a specific IP or range of IPs to access our URL.  
-You can navigate to the function app `settings` pane and select `Networking`:
+Navigate to the function app `settings` pane and select `Networking`:
 
 ![funcSec1](./assets/funcSec1.png)
 
