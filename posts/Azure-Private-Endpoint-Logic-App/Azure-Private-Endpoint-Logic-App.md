@@ -169,6 +169,8 @@ HTTP POST Url from an internal Virtual Machine running inside of our VNET:
 
 ![internal](./assets/internal.png)
 
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-Private-Endpoint-Logic-App/code). :heart:
+
 ### _Author_
 
 Marcel.L - pwd9000@hotmail.co.uk
