@@ -81,7 +81,7 @@ az network private-dns link vnet create `
     --registration-enabled "true"
 ```
 
-![privateDNS](./assets/privateDNS.png)
+![private-dns](./assets/private-dns.png)
 
 ## Creating an Azure Logic app (Single-tenant)?
 
