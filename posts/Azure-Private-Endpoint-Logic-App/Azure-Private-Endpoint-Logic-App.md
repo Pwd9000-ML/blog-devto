@@ -3,6 +3,6 @@ title: Private Endpoint Azure Logic apps
 published: false
 description: Azure - Private Endpoint Azure Logic apps
 tags: 'tutorial, azure, productivity, learning'
-cover_image: assets/main-cover.png
+cover_image: assets/main-cover-logicapp.png
 canonical_url: null
 ---
