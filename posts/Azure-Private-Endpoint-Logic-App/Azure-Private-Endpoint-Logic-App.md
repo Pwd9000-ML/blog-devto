@@ -18,7 +18,7 @@ id: 732865
 
 ![private-link](./assets/private-link.png)
 
-## What is new in Azure Logic apps?
+## What's new in Azure Logic apps?
 
 There has some been some major architectural changes and improvements made in recent days to Azure Logic apps (multi-tenant implementation), especially the new logic apps runtime which is a re-hostable containerized, single-tenant runtime, which is built on top of the `Azure Functions runtime`, adding some excellent new features that we can now utilise in our logic apps. Such as enabling `managed service identity (MSI)` on our logic apps, cross-platform support, local development and testing using VSCode, enabling new advanced networking features such as `private endpoints` which we will focus on in todays tutorial or even running our logic apps in a dedicated compute resource in Azure, Docker or Kubernetes environments.
 
