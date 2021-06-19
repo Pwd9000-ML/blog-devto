@@ -16,7 +16,7 @@ id: 732865
 
 [Azure Private Link](https://docs.microsoft.com/en-us/azure/private-link/private-link-overview) (Private Endpoint) allows you to access Azure PaaS services over a Private IP address within the VNet. The PaaS resource gets a new private IP via a virtual network interface (NIC) on your VNet attached to the PaaS resource, making the PaaS resource truly an internal resource to your network. When you send traffic to the PaaS resource, it will always ensure traffic stays within your VNet boundary.
 
-![privateLink1](./assets/privateLink1.png)
+![private-link](./assets/private-link.png)
 
 ## What is new in Azure Logic apps?
 
@@ -62,7 +62,7 @@ az network vnet create `
 
 We will need to register our private endpoint in DNS so for this step we will create a Private DNS Zone and link the `Azure services DNS Zone configuration` for `azurewebsites.net` because our new logic app runtime is within an `App Service Plan (ASP)` we will configure the zone as `privatelink.azurewebsites.net`.
 
-To see more detailed information on DNS configurations for private endpoints please see [`DNS Integration Scenarios`](https://github.com/dmauser/PrivateLink/tree/master/DNS-Integration-Scenarios) for additional information, as well as [Private link DNS Zone configuration](https://docs.microsoft.com/en-us/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration)
+To see more detailed information on DNS configurations for private endpoints please see [`DNS Integration Scenarios`](https://github.com/dmauser/PrivateLink/tree/master/DNS-Integration-Scenarios) for additional information, as well as [`Private link DNS Zone configuration`](https://docs.microsoft.com/en-us/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration)
 
 Next we will run:
 
@@ -80,6 +80,8 @@ az network private-dns link vnet create `
     --virtual-network "$vnetName" `
     --registration-enabled "true"
 ```
+
+![privateDNS](./assets/privateDNS.png)
 
 ## Creating an Azure Logic app (Single-tenant)?
 
