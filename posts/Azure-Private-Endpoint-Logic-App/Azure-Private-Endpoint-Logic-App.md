@@ -85,6 +85,21 @@ az network private-dns link vnet create `
 
 ## Creating an Azure Logic app (Single-tenant)?
 
+Now that we have everything in place we will crate our logic app. Navigate to the Azure portal and go to the resource group we created and create a new `Logic app (Standard)` resource.  
+
+![CreateLogicApp](./assets/CreateLogicApp.png)
+
+Add the following **Instance Details:**
+
+| Name            | Value               |
+| --------------- | ------------------- |
+| Type            | Standard (Preview)  |
+| Logic App name  | {Name}              |
+| Publish         | Workflow            |
+| Region          | {Region}            |
+
+![CreateLogicAppBasics](./assets/CreateLogicAppBasics.png)
+
 ## Creating the Private Endpoint ?
 
 ### _Author_
