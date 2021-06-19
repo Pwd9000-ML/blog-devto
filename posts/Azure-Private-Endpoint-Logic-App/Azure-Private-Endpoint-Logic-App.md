@@ -114,6 +114,34 @@ Move to the next blade `Monitoring` and enable/disable `Application Insights` an
 
 ## Creating the Private Endpoint ?
 
+Before we continue to our last step, also note that our newly created Logic App has already been enabled with a `system assigned managed identity`. Pretty neat!
+
+![MSI](./assets/msi.png)
+
+Next we will create our private endpoint. Select the `Networking` blade and click on `Private endpoints`.
+
+![bladeprivateendpoint](./assets/bladeprivateendpoint.png)
+
+**Note:** You will see that our inbound address to access our logic app is currently configured using a `public endpoint` (Public IP address).
+
+![pubip](./assets/pubip.png)
+
+Under the `Private Endpoint connections` blade, click `+ Add` and add the following:
+
+| Name                            | Value                    |
+| ------------------------------- | ------------------------ |
+| Name                            | {Name private endpoint}  |
+| Subscription                    | {Subscription}           |
+| Virtual Network                 | {Virtual Network Name}   |
+| Subnet                          | {Subnet Name}            |
+| Integrate with private DNS Zone | Yes                      |
+
+![peconfig](./assets/peconfig.png)
+
+**Note:** You will now see that our inbound address to access our logic app has changed and is configured to use our `private endpoint` (Private IP address from our VNET).
+
+![privip](./assets/privip.png)
+
 ### _Author_
 
 Marcel.L - pwd9000@hotmail.co.uk
