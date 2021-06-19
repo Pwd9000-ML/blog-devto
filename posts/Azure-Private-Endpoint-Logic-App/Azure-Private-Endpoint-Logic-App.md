@@ -20,13 +20,13 @@ id: 732865
 
 ## What's new in Azure Logic apps?
 
-There has some been some major architectural changes and improvements made in recent days to Azure Logic apps (multi-tenant implementation), especially the new logic apps runtime which is a re-hostable containerized, single-tenant runtime, which is built on top of the `Azure Functions runtime`, adding some excellent new features that we can now utilise in our logic apps. Such as enabling [`managed service identity (MSI)`](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview), cross-platform support, local development and testing using VSCode, enabling new advanced networking features such as `private endpoints` which we will focus on in todays tutorial or even running our logic apps in a dedicated compute resource in Azure, Docker or Kubernetes environments.
+There has some been some major architectural changes and improvements made in recent days to Azure Logic apps (multi-tenant implementation), especially the new logic apps runtime which is a re-hostable containerized, single-tenant runtime, which is built on top of the **Azure Functions runtime**, adding some excellent new features that we can now utilise in our logic apps. Such as enabling [managed service identity (MSI)](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview), cross-platform support, local development and testing using VSCode, enabling new advanced networking features such as **private endpoints** which we will focus on in todays tutorial or even running our logic apps in a dedicated compute resource in Azure, Docker or Kubernetes environments.
 
 ## What do we need?
 
 1. **Azure Virtual Network:** We will need either a new or an existing VNET in which we can attach our logic app private endpoint interface.
 2. **Azure Private DNS Zone:** For this tutorial we will also create a Private DNS zone to host our [private endpoint DNS Configuration](https://docs.microsoft.com/en-us/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration).
-3. **Azure Logic App:** We will need to create the new `single-tenant` logic app as described above.
+3. **Azure Logic App:** We will need to create the new **single-tenant** logic app as described above.
 4. **Private Endpoint:** We will use a private endpoint to connect our logic app to our VNET.
 
 ## Creating an Azure Virtual Network (VNET)?
@@ -37,7 +37,7 @@ For this section I will be using Azure CLI in a powershell console. First we wil
 az login
 ```
 
-Next we will create a `resource group`, and a `VNET` by running:
+Next we will create a **resource group**, and a **VNET** by running:
 
 ```powershell
 # variables.
@@ -60,9 +60,9 @@ az network vnet create `
 
 ## Creating an Azure Private DNS Zone?
 
-We will need to register our private endpoint in DNS so for this step we will create a Private DNS Zone and link the `Azure services DNS Zone configuration` for `azurewebsites.net` because our new logic app runtime is within an `App Service Plan (ASP)` we will configure the zone as `privatelink.azurewebsites.net`.
+We will need to register our private endpoint in DNS so for this step we will create a Private DNS Zone and link the **Azure services DNS Zone configuration** for **azurewebsites.net** because our new logic app runtime is within an **App Service Plan (ASP)** we will configure the zone as `privatelink.azurewebsites.net`.
 
-To see more detailed information on DNS configurations for private endpoints please see [`DNS Integration Scenarios`](https://github.com/dmauser/PrivateLink/tree/master/DNS-Integration-Scenarios) for additional information, as well as [`Private link DNS Zone configuration`](https://docs.microsoft.com/en-us/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration)
+To see more detailed information on DNS configurations for private endpoints please see [DNS Integration Scenarios](https://github.com/dmauser/PrivateLink/tree/master/DNS-Integration-Scenarios) for additional information, as well as [Private link DNS Zone configuration](https://docs.microsoft.com/en-us/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration)
 
 Next we will run:
 
@@ -85,11 +85,11 @@ az network private-dns link vnet create `
 
 ## Creating an Azure Logic app (Single-tenant)?
 
-Now that we have everything in place we will crate our logic app. Navigate to the Azure portal and go to the resource group we created and create a new `Logic app (Standard)` resource.  
+Now that we have everything in place we will create our logic app. Navigate to the Azure portal and go to the resource group we created and create a new **Logic app (Standard)** resource.  
 
 ![CreateLogicApp](./assets/CreateLogicApp.png)
 
-Under the `Basics` blade, add the following **Instance Details:**
+Under the **Basics** blade, add the following **Instance Details:**
 
 | Name            | Value               |
 | --------------- | ------------------- |
@@ -100,7 +100,7 @@ Under the `Basics` blade, add the following **Instance Details:**
 
 ![CreateLogicAppBasics](./assets/CreateLogicAppBasics.png)
 
-Under the `Hosting` blade, add the following **Plan:**
+Under the **Hosting** blade, add the following **Plan:**
 
 | Name            | Value                   |
 | --------------- | ----------------------- |
@@ -110,7 +110,7 @@ Under the `Hosting` blade, add the following **Plan:**
 
 ![CreateLogicAppHosting](./assets/CreateLogicAppHosting.png)
 
-Move to the next blade `Monitoring` and enable/disable `Application Insights` and then add any `Tags`. Click on `Review + create` and create the new logic app.
+Move to the next blade **Monitoring** and enable/disable **Application Insights** and then add any **Tags**. Click on **Review + create** and create the new logic app.
 
 ## Creating the Private Endpoint?
 
@@ -118,7 +118,7 @@ Before we continue to our last step, also note that our newly created Logic App 
 
 ![MSI](./assets/msi.png)
 
-Next we will create our private endpoint. Select the `Networking` blade and click on `Private endpoints`.
+Next we will create our private endpoint. Select the **Networking** blade and click on **Private endpoints**.
 
 ![bladeprivateendpoint](./assets/bladeprivateendpoint.png)
 
@@ -126,7 +126,7 @@ Next we will create our private endpoint. Select the `Networking` blade and clic
 
 ![pubip](./assets/pubip.png)
 
-Under the `Private Endpoint connections` blade, click `+ Add` and add the following:
+Under the **Private Endpoint connections** blade, click **+ Add** and add the following:
 
 | Name                            | Value                    |
 | ------------------------------- | ------------------------ |
@@ -142,7 +142,7 @@ Under the `Private Endpoint connections` blade, click `+ Add` and add the follow
 
 ![privip](./assets/privip.png)
 
-Make a note of the `private IP` and navigate to the Azure Private DNS zone we created earlier. Click on `+ Record set` and add the following:
+Make a note of the **private IP** and navigate to the Azure Private DNS zone we created earlier. Click on **+ Record set** and add the following:
 
 | Name        | Value                             |
 | ----------- | --------------------------------- |
