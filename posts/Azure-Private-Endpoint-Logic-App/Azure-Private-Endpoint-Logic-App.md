@@ -1,6 +1,6 @@
 ---
 title: Securing Azure Logic apps with Private Endpoints
-published: false
+published: true
 description: Azure - Private Endpoint Azure Logic apps
 tags: 'tutorial, azure, productivity, security'
 cover_image: assets/main-cover-logicapp.png
@@ -20,7 +20,7 @@ id: 732865
 
 ## What's new in Azure Logic apps?
 
-There has some been some major architectural changes and improvements made in recent days to Azure Logic apps (multi-tenant implementation), especially the new logic apps runtime which is a re-hostable containerized, single-tenant runtime, which is built on top of the **Azure Functions runtime**, adding some excellent new features that we can now utilise in our logic apps. Such as enabling [managed service identity (MSI)](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview), cross-platform support, local development and testing using VSCode, enabling new advanced networking features such as **private endpoints** which we will focus on in todays tutorial or even running our logic apps in a dedicated compute resource in Azure, Docker or Kubernetes environments.
+There has been some major architectural changes and improvements made in recent days to Azure Logic apps (multi-tenant implementation), especially the new logic apps runtime which is a re-hostable containerised, single-tenant runtime, which is built on top of the **Azure Functions runtime**, adding some excellent new features that we can now utilise in our logic apps. Such as enabling [managed service identity (MSI)](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview), cross-platform support, local development and testing using VSCode, enabling new advanced networking features such as **private endpoints** which we will focus on in todays tutorial or even running our logic apps in a dedicated compute resource in Azure, Docker or Kubernetes environments.
 
 ## What do we need?
 
@@ -159,7 +159,7 @@ That is it! We have now secured our logic app to be a completely internal resour
 
 ## Testing our Logic App?
 
-Let's test out our Logic App and see what happens if we try to access from an external source vs. a source from our VNET such as a Virtual machine running inside of our VNET.
+Let's test out our Logic App and see what happens if we try to access it from an external source vs. a source from our VNET such as a Virtual machine running inside of our VNET.
 
 HTTP POST Url from an external source:
 
