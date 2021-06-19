@@ -1,5 +1,5 @@
 ---
-title: Private Endpoint Azure Logic apps
+title: Securing Azure Logic apps with Private Endpoints
 published: false
 description: Azure - Private Endpoint Azure Logic apps
 tags: 'tutorial, azure, productivity, security'
@@ -112,7 +112,7 @@ Under the `Hosting` blade, add the following **Plan:**
 
 Move to the next blade `Monitoring` and enable/disable `Application Insights` and then add any `Tags`. Click on `Review + create` and create the new logic app.
 
-## Creating the Private Endpoint ?
+## Creating the Private Endpoint?
 
 Before we continue to our last step, also note that our newly created Logic App has already been enabled with a `system assigned managed identity`. Pretty neat!
 
@@ -141,6 +141,33 @@ Under the `Private Endpoint connections` blade, click `+ Add` and add the follow
 **Note:** You will now see that our inbound address to access our logic app has changed and is configured to use our `private endpoint` (Private IP address from our VNET).
 
 ![privip](./assets/privip.png)
+
+Make a note of the `private IP` and navigate to the Azure Private DNS zone we created earlier. Click on `+ Record set` and add the following:
+
+| Name        | Value                             |
+| ----------- | --------------------------------- |
+| Name        | {Name of Logic App}               |
+| Type        | A                                 |
+| TTL         | 1 Hour                            |
+| IP address  | {Private Inbound IP of Logic App} |
+
+![privipconfig](./assets/privipconfig.png)
+
+That is it! We have now secured our logic app to be a completely internal resource keeping it within our network boundaries as if it was an internally hosted resource inside of our Virtual Network.
+
+![secdiag](./assets/secdiag.png)
+
+## Testing our Logic App?
+
+Let's test out our Logic App and see what happens if we try to access from an external source vs. a source from our VNET such as a Virtual machine running inside of our VNET.
+
+HTTP POST Url from an external source:
+
+![external](./assets/external.png)
+
+HTTP POST Url from an internal Virtual Machine running inside of our VNET:
+
+![internal](./assets/internal.png)
 
 ### _Author_
 
