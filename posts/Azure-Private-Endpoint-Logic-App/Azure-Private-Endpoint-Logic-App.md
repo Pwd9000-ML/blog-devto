@@ -5,6 +5,7 @@ description: Azure - Private Endpoint Azure Logic apps
 tags: 'tutorial, azure, productivity, learning'
 cover_image: assets/main-cover-logicapp.png
 canonical_url: null
+id: 732865
 ---
 
 ## What is an Azure Logic app?
