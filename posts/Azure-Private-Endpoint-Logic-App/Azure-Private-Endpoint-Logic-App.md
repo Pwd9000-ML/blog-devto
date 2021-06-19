@@ -89,7 +89,7 @@ Now that we have everything in place we will crate our logic app. Navigate to th
 
 ![CreateLogicApp](./assets/CreateLogicApp.png)
 
-Add the following **Instance Details:**
+Under the `Basics` blade, add the following **Instance Details:**
 
 | Name            | Value               |
 | --------------- | ------------------- |
@@ -99,6 +99,18 @@ Add the following **Instance Details:**
 | Region          | {Region}            |
 
 ![CreateLogicAppBasics](./assets/CreateLogicAppBasics.png)
+
+Under the `Hosting` blade, add the following **Plan:**
+
+| Name            | Value                   |
+| --------------- | ----------------------- |
+| Plan type       | Workflow Standard       |
+| Windows Plan    | {ASP - App Service Plan}|
+| Sku and size    | {SKU}                   |
+
+![CreateLogicAppHosting](./assets/CreateLogicAppHosting.png)
+
+Move to the next blade `Monitoring` and enable/disable `Application Insights` and then add any `Tags`. Click on `Review + create` and create the new logic app.
 
 ## Creating the Private Endpoint ?
 
