@@ -14,7 +14,7 @@ id: 732865
 
 ## What is Azure Private Link (Private Endpoint)?
 
-[Azure Private Link](https://docs.microsoft.com/en-us/azure/private-link/private-link-overview) (Private Endpoint) allows you to access Azure PaaS services over a Private IP address within the VNet. The PaaS resource gets a new private IP via a virtual network interface (NIC) on your Virtual Network (VNET) attached to the PaaS resource or service, making the PaaS/resource truly an internal resource to your virtual network. When you send traffic to the PaaS/resource, it will always ensure traffic stays within your VNet boundary.
+[Azure Private Link](https://docs.microsoft.com/en-us/azure/private-link/private-link-overview) (Private Endpoint) allows you to access Azure PaaS services over a Private IP address within the VNet. The PaaS resource gets a new private IP via a virtual network interface (NIC) on your Virtual Network (VNET) attached to the PaaS resource or service, making the resource truly an `internally private` resource to your virtual network. When you send traffic to the resource that has been private endpointed, it will always ensure traffic stays within your VNet boundary.
 
 ![private-link](./assets/private-link.png)
 
