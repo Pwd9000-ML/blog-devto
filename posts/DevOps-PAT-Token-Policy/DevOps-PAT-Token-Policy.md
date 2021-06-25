@@ -10,10 +10,7 @@ id: 739025
 
 ## What is an Azure DevOps Personal Access Token (PAT)?
 
-So you might be wondering what exactly is an Azure DevOps PAT token and why is this important?
-A personal access token (PAT) is used as an alternative to using a password to authenticate into Azure DevOps.
-
-When you're working with third-party tools, APIs or the command line that don't support Microsoft or Azure AD accounts or you don't want to provide your primary credentials to the tool, you can make use of PATs.
+So you might be wondering what exactly is an Azure DevOps PAT token and why is this important? A personal access token (PAT) is used as an alternative to using a password to authenticate into Azure DevOps. When you're working with third-party tools, APIs or the command line that don't support Microsoft or Azure AD accounts or you don't want to provide your primary credentials to the tool, you can make use of PATs.  
 
 PATs are easy to create when you need them and easy to revoke when you don’t.
 
