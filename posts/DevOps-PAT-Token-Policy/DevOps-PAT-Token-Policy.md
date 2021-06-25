@@ -10,13 +10,41 @@ id: 739025
 
 ## What is an Azure DevOps Personal Access Token (PAT)?
 
-So you might be wondering what exactly is an Azure DevOps PAT token and why is this important? A personal access token (PAT) is used as an alternative to using a password to authenticate into Azure DevOps. When you're working with third-party tools, APIs or the command line that don't support Microsoft or Azure AD accounts or you don't want to provide your primary credentials to the tool, you can make use of PATs.  
+A personal access token (PAT) is used as an alternative to using a password to authenticate into Azure DevOps. When you're working with third-party tools, APIs or the command line that don't support Microsoft or Azure AD accounts or you don't want to provide your primary credentials to the tool, you can make use of PATs.  
 
 PATs are easy to create when you need them and easy to revoke when you don’t.
 
 ![newPat](./assets/new-pat.png)
 
-When creating a new PAT you can select the organization where you want to use the token, and then choose a lifespan for your token. Say for example making it only active for a period of 30days. A PATs lifetime can also be extended when needed, but cannot be for any period longer than the maximum of 2 years. You can also specify granular permissions / [scopes](https://docs.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/oauth?view=azure-devops#scopes) to specify what access the token will authorise.
+When creating a new PAT you can select the organization where you want to use the token, and then choose a lifespan for your token. Say for example making it only active and usable for a period of 30 days. A PATs lifetime can be extended if needed, but cannot be longer than the maximum period of 1 year. You can also specify granular [permissions scopes](https://docs.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/oauth?view=azure-devops#scopes) to specify what access grant the token will authorise.
+
+## Restricting personal access token (PAT) scope and lifespan via Azure AD tenant policy
+
+So this is really nice and PATs make it easy to authenticate against Azure DevOps to integrate with your tools and services. However, leaked tokens could compromise your Azure DevOps account and data, putting your applications and services at risk. Microsoft has now added some controls to limit the threat surface area posed by leaked PATs. A new set of policies which can be used to restrict the scope and lifespan of your organization’s Azure DevOps personal access tokens (PATs)!  
+
+## What do we need?
+
+* You would need to be assigned to the Azure DevOps Administrator role in Azure Active Directory.
+
+* You would also need to connect your Azure DevOps Organisation to Azure AD. [Here are the steps](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/connect-organization-to-azure-ad?view=azure-devops#connect-your-organization-to-azure-ad).
+
+After your Org has been connected to Azure AD you can navigate to the **Azure Active Directory** tab in the **organization settings**.
+
+![Azuread](./assets/azure-ad.png)
+
+Here you can:
+
+1. Restrict the creation of global personal access tokens (tokens that work for all Azure DevOps organizations accessible by the user).
+2. Restrict the creation of full-scoped personal access tokens.
+3. Define a maximum lifespan for new personal access tokens.
+
+These policies will apply to all new PATs created by users for Azure DevOps organizations linked to the Azure AD tenant. Each of the policies have an allow list for users and groups who should be exempt from the policy. The list of users and groups in the Allow list will not have access to manage policy configuration.
+
+These policies only apply to new PATs, and will not affect existing PATs that have already been created and are in use. After the policies have been enabled however, any existing, now non-compliant PATs must be updated to be within the restrictions before they can be renewed.
+
+![patpolicy](./assets/pat-policy.png)
+
+For more detailed information have a look at [manage PATs with policies](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/manage-pats-with-policies-for-administrators?view=azure-devops)
 
 ### _Author_
 
