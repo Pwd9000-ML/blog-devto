@@ -44,7 +44,7 @@ These policies only apply to new PATs, and will not affect existing PATs that ha
 
 ![patpolicy](./assets/pat-policy.png)
 
-For more detailed information have a look at [manage PATs with policies](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/manage-pats-with-policies-for-administrators?view=azure-devops).
+For more detailed information have a look at: [Managing Personal Access Tokens with policies](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/manage-pats-with-policies-for-administrators?view=azure-devops).
 
 ### _Author_
 
