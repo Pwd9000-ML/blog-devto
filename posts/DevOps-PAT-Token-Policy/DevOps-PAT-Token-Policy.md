@@ -42,7 +42,7 @@ These policies will apply to all new PATs created by users for Azure DevOps orga
 
 These policies only apply to new PATs, and will not affect existing PATs that have already been created and are in use. After the policies have been enabled however, any existing, now non-compliant PATs must be updated to be within the restrictions before they can be renewed.
 
-![patpolicy](./assets/pat-policy.png)
+![patpolicy](./assets/pat-policy2.png)
 
 For more detailed information have a look at: [Managing Personal Access Tokens with policies](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/manage-pats-with-policies-for-administrators?view=azure-devops).
 
