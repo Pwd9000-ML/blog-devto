@@ -38,13 +38,13 @@ Here you can:
 2. Restrict the creation of full-scoped personal access tokens.
 3. Define a maximum lifespan for new personal access tokens.
 
-These policies will apply to all new PATs created by users for Azure DevOps organizations linked to the Azure AD tenant. Each of the policies have an allow list for users and groups who should be exempt from the policy. The list of users and groups in the Allow list will not have access to manage policy configuration.
+These policies will apply to all new PATs created by users for Azure DevOps organizations linked to the Azure AD tenant. Each of the policies have an allow list for users and groups who should be exempt from the policy. The list of users and groups in the Allow list will not have access to manage policy configuration.  
 
 These policies only apply to new PATs, and will not affect existing PATs that have already been created and are in use. After the policies have been enabled however, any existing, now non-compliant PATs must be updated to be within the restrictions before they can be renewed.
 
 ![patpolicy](./assets/pat-policy.png)
 
-For more detailed information have a look at [manage PATs with policies](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/manage-pats-with-policies-for-administrators?view=azure-devops)
+For more detailed information have a look at [manage PATs with policies](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/manage-pats-with-policies-for-administrators?view=azure-devops).
 
 ### _Author_
 
