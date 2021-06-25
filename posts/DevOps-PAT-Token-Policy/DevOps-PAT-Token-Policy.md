@@ -16,7 +16,7 @@ PATs are easy to create when you need them and easy to revoke when you don’t.
 
 ![newPat](./assets/new-pat2.png)
 
-When creating a new PAT you can select the organization where you want to use the token, and then choose a lifespan for your token. Say for example making it only active and usable for a period of 30 days. A PATs lifetime can be extended if needed, but cannot be longer than the maximum period of 1 year. You can also specify granular [permissions scopes](https://docs.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/oauth?view=azure-devops#scopes) to specify what access grant the token will authorise.
+When creating a new PAT you can select the organization where you want to use the token, and then choose a lifespan for your token. Say for example making it only active and usable for a period of 30 days. A PATs lifetime can be extended if needed, but cannot be longer than the maximum period of 1 year. You can also specify granular [permissions scopes](https://docs.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/oauth?view=azure-devops#scopes) to specify what access is authorised.
 
 ## Restricting personal access token (PAT) scope and lifespan via Azure AD tenant policy
 
