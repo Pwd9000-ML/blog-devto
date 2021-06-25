@@ -20,13 +20,13 @@ When creating a new PAT you can select the organization where you want to use th
 
 ## Restricting personal access token (PAT) scope and lifespan via Azure AD tenant policy
 
-So this is really nice and PATs make it easy to authenticate against Azure DevOps to integrate with your tools and services. However, leaked tokens could compromise your Azure DevOps account and data, putting your applications and services at risk. Microsoft has now added some controls to limit the threat surface area posed by leaked PATs. A new set of policies which can be used to restrict the scope and lifespan of your organization’s Azure DevOps personal access tokens (PATs)!  
+So PATs are really handy and make it easy to authenticate against Azure DevOps to integrate with your tools and services. However it also poses a big security risk as leaked tokens could compromise your Azure DevOps account and data, putting your applications and services at risk. Microsoft has now added some controls to limit the threat surface area posed by leaked PATs. A new set of policies which can be used to restrict the scope and lifespan of your organization’s Azure DevOps personal access tokens (PATs).  
 
 ## What do we need?
 
-* You would need to be assigned to the Azure DevOps Administrator role in Azure Active Directory.
+* You would need to connect your Azure DevOps Organisation to Azure AD. [Here are the steps](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/connect-organization-to-azure-ad?view=azure-devops#connect-your-organization-to-azure-ad).
 
-* You would also need to connect your Azure DevOps Organisation to Azure AD. [Here are the steps](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/connect-organization-to-azure-ad?view=azure-devops#connect-your-organization-to-azure-ad).
+* You would need to be assigned to the **Azure DevOps Administrator** RBAC role in Azure Active Directory.
 
 After your Org has been connected to Azure AD you can navigate to the **Azure Active Directory** tab in the **organization settings**.
 
