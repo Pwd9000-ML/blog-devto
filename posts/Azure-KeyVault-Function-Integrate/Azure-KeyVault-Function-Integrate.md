@@ -103,7 +103,11 @@ I have created two secrets in my key vault for testing:
 
 ![kvsecrets](./assets/kvsecrets.png)
 
-Now we will configure our function app to reference our key vault and finalize the solution.  
+Now we will configure our function app to reference our key vault and test the solution.  
+
+Under the **Functions** pane click **Add** with the following settings:
+
+
 Under the **Functions** pane click **Add** with the following settings:
 
 | Name                    | Value               |
