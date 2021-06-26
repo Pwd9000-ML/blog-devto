@@ -82,7 +82,7 @@ Under the `Functions` pane click `Add` with the following settings:
 
 ![functionadd](./assets/functionadd.png)
 
-**Development Enviornment:** `Develop in portal`  
+**Development Environment:** `Develop in portal`  
 **Select a template:** `HTTP trigger`  
 **New Function:** `VmPowerState`  
 **Authorization level:** `Function`

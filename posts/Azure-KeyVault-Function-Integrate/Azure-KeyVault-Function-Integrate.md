@@ -5,6 +5,7 @@ description: Azure - Integrate Key Vault with Functions
 tags: 'tutorial, azure, productivity, security'
 cover_image: assets/key-func-main.png
 canonical_url: null
+id: 740019
 ---
 
 ## What is an Azure function?
@@ -96,12 +97,14 @@ Then we will navigate to `site -> wwwroot` and edit the `requirements.psd1` file
 Now we will configure our function app to reference our key vault and finalize the solution.  
 Under the **Functions** pane click **Add** with the following settings:
 
-![functionadd](./assets/functionadd.png)
+| Name                    | Value               |
+| ----------------------- | ------------------- |
+| Development Environment | Develop in portal   |
+| Select a template       | HTTP trigger        |
+| New Function            | keyvaultdemo        |
+| Authorization level     | Function            |
 
-**Development Enviornment:** `Develop in portal`  
-**Select a template:** `HTTP trigger`  
-**New Function:** `keyvaultdemo`  
-**Authorization level:** `Function`
+![functionadd](./assets/functionadd.png)
 
 Next under `Code + Test` copy the following powershell code:
 
@@ -110,6 +113,12 @@ Next under `Code + Test` copy the following powershell code:
 ```
 
 Here is also a [Link](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-VM-Power-States-Function-App/code) to the function code.  
+
+## Test our function app
+
+Let's test our function app by triggering the code manually to see if our function can retrieve our secrets we specified.
+
+![gif]()
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-VM-Power-States-Function-App/code). :heart:
 
