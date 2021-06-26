@@ -82,7 +82,7 @@ With the managed identity now created, we can add a role assignment and permissi
 
 We can also check the **IAM** permissions under our key vault for our function app:
 
-![managedIdentity04](./assets/managedIdentity-04.png)
+![managedIdentity04](./assets/managedIdentity04.png)
 
 By default our function app will not have the AZ module enabled, so next we will enable this by navigating to the function apps **diagnostic console** and enabling the AZ module. Go to the **Development Tools** pane and select **Advanced Tools**.
 
