@@ -94,6 +94,15 @@ Then we will navigate to `site -> wwwroot` and edit the `requirements.psd1` file
 
 **Note:** After this change we have to restart our function app.
 
+I have created two secrets in my key vault for testing:
+
+| Name       | Value               |
+| ---------- | ------------------- |
+| SecUser01  | pwd9000admin        |
+| SecPass01  | S8p3r$3cR3t2021!*!  |
+
+![kvsecrets](./assets/kvsecrets.png)
+
 Now we will configure our function app to reference our key vault and finalize the solution.  
 Under the **Functions** pane click **Add** with the following settings:
 
