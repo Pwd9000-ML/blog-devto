@@ -84,17 +84,7 @@ We can also check the **IAM** permissions under our key vault for our function a
 
 ![iam](./assets/iam.png)
 
-By default our function app will not have the AZ module enabled, so next we will enable this by navigating to the function apps **diagnostic console** and enabling the AZ module. Go to the **Development Tools** pane and select **Advanced Tools**.
-
-![kudu](./assets/kudu-01.png)
-
-Then we will navigate to `site -> wwwroot` and edit the `requirements.psd1` file to enable the AZ module:
-
-![azModuleEnable](./assets/azModuleEnable.gif)
-
-**Note:** After this change we have to restart our function app.
-
-I have created two secrets in my key vault for testing:
+Create some secrets in the key vault for testing:
 
 | Name       | Value               |
 | ---------- | ------------------- |
