@@ -166,11 +166,21 @@ Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
 
 Here is also a [Link](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-KeyVault-Function-Integrate/code/function.ps1) to the function code.  
 
-## Test our function app
+**Note:** Our secret references that we configured on the functions application settings are loaded into environment variables as you can see from the function code above:
+
+```powershell
+$User = $ENV:kv_SecUser01
+$Pass = $ENV:kv_SecPass01
+
+Write-Host "Username retrieved from key vault: $User"
+Write-Host "Password retrieved from key vault: $Pass"
+```
+
+## Testing our function app
 
 Let's test our function app by triggering the code manually using **Test/Run** to see if our function can retrieve our secrets we specified.
 
-![log](./assets/log-01.png)
+![log-01](./assets/log-01.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-KeyVault-Function-Integrate/code). :heart:
 
