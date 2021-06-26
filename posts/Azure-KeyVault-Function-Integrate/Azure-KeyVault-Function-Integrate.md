@@ -112,13 +112,14 @@ We will use the following [Reference syntax](https://docs.microsoft.com/en-us/az
 
 Under our function **Settings** pane select **Configuration** and add two new **Application settings:**
 
-![app-settings-01](./assets/app-settings-01.png)
+![app-settings-1](./assets/app-settings-1.png)
 
-![app-settings-02](./assets/app-settings-02.png)
+![app-settings-2](./assets/app-settings-2.png)
 
-![app-settings-03](./assets/app-settings-03.png)
+![app-settings-3](./assets/app-settings-3.png)
 
 Under the **Functions** pane click **Add** with the following settings:
+![function-add](./assets/function-add.png)
 
 | Name                    | Value               |
 | ----------------------- | ------------------- |
@@ -127,21 +128,49 @@ Under the **Functions** pane click **Add** with the following settings:
 | New Function            | keyvaultdemo        |
 | Authorization level     | Function            |
 
-![functionadd](./assets/functionadd.png)
-
 Next under `Code + Test` copy the following powershell code:
 
 ```powershell
+using namespace System.Net
 
+# Input bindings are passed in via param block.
+param($Request, $TriggerMetadata)
+
+# Write to the Azure Functions log stream.
+Write-Host "PowerShell HTTP trigger function processed a request."
+
+# Interact with query parameters or the body of the request.
+$name = $Request.Query.Name
+if (-not $name) {
+    $name = $Request.Body.Name
+}
+
+$body = "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
+
+$User = $ENV:kv_SecUser01
+$Pass = $ENV:kv_SecPass01
+
+Write-Host "Username retrieved from key vault: $User"
+Write-Host "Password retrieved from key vault: $Pass"
+
+if ($name) {
+    $body = "Hello, $name. This HTTP triggered function executed successfully."
+}
+
+# Associate values to output bindings by calling 'Push-OutputBinding'.
+Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
+    StatusCode = [HttpStatusCode]::OK
+    Body = $body
+})
 ```
 
-Here is also a [Link](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-VM-Power-States-Function-App/code) to the function code.  
+Here is also a [Link](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-KeyVault-Function-Integrate/code/function.ps1) to the function code.  
 
 ## Test our function app
 
-Let's test our function app by triggering the code manually to see if our function can retrieve our secrets we specified.
+Let's test our function app by triggering the code manually using **Test/Run** to see if our function can retrieve our secrets we specified.
 
-![gif]()
+![log](./assets/log-01.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-KeyVault-Function-Integrate/code). :heart:
 
