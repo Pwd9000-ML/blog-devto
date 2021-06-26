@@ -20,7 +20,7 @@ id: 740019
 
 ## How to integrate Key Vault with Azure Functions
 
-Because Azure functions are serverless pieces of code, there will be cases where we do not want to put any of our secrets (such as passwords or connection strings) into our function code in plain-text. For security reasons we need to protect the secrets we use in our function code to not expose secrets. So today we will look at how we can create a function app using PowerShell Core as the code base, and protect any secrets that we use in our function code with Azure Key Vault.  
+Because Azure functions are serverless pieces of code, we do not want to put any of our secrets (such as passwords or connection strings) into our function code in plain-text. For security reasons we need to protect the secrets we use in our function code to not expose secrets. So today we will look at how we can create a function app using PowerShell Core as the code base, and protect any secrets that we use in our function code with Azure Key Vault.  
 
 To get everything ready I will be using Azure CLI in a powershell console. First we will log into Azure by running:
 
@@ -71,18 +71,18 @@ az functionapp create `
 
 Next we will enable the function app with a **system assigned** [managed identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) so that we can permission our function app to access our key vault. Under the function app **settings** pane select **Identity** and enable the **system assigned** setting to be `ON` and save the setting:
 
-![managedIdentity](./assets/managedIdentity.png)
+![managedIdentity01](./assets/managedIdentity01.png)
 
 With the managed identity now created, we can add a role assignment and permissions (IAM) to our key vault. We will give the function identity the role [Key Vault Secrets User](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-user) because we only want the function to be able to retrieve secrets. On the same **settings** pane where we set the **identity** you will now see a new setting called **Permissions**. Click on **Azure Role Assignments** and add the relevant permissions on the key vault.  
 **Note:** You can also add the role assignment permissions on the key vault by going to the key vault and select **IAM** on the key vault directly.
 
 ![managedIdentity2](./assets/managedIdentity2.png)
 
-![managedIdentity3](./assets/managedIdentity3.png)
+![managedIdentity03](./assets/managedIdentity03.png)
 
-If you now check the `IAM` permissions under our key vault, you should see the **IAM** permission for our function app:
+We can also check the **IAM** permissions under our key vault for our function app:
 
-![managedIdentity4](./assets/managedIdentity4.png)
+![managedIdentity04](./assets/managedIdentity04.png)
 
 By default our function app will not have the AZ module enabled, so next we will enable this by navigating to the function apps **diagnostic console** and enabling the AZ module. Go to the **Development Tools** pane and select **Advanced Tools**.
 
@@ -120,7 +120,7 @@ Let's test our function app by triggering the code manually to see if our functi
 
 ![gif]()
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-VM-Power-States-Function-App/code). :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-KeyVault-Function-Integrate/code). :heart:
 
 ### _Author_
 
