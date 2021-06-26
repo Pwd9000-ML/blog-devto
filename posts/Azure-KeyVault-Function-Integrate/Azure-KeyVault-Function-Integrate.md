@@ -70,6 +70,49 @@ az functionapp create `
 
 Next we will enable the function app with a **system assigned** [managed identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) so that we can permission our function app to access our key vault. Under the function app **settings** pane select **Identity** and enable the **system assigned** setting to be `ON` and save the setting:
 
+![managedIdentity](./assets/managedIdentity.png)
+
+With the managed identity now created, we can add a role assignment and permissions (IAM) to our key vault. We will give the function identity the role [Key Vault Secrets User](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-user) because we only want the function to be able to retrieve secrets. On the same **settings** pane where we set the **identity** you will now see a new setting called **Permissions**. Click on **Azure Role Assignments** and add the relevant permissions on the key vault.  
+**Note:** You can also add the role assignment permissions on the key vault by going to the key vault and select **IAM** on the key vault directly.
+
+![managedIdentity2](./assets/managedIdentity2.png)
+
+![managedIdentity3](./assets/managedIdentity3.png)
+
+If you now check the `IAM` permissions under our key vault, you should see the **IAM** permission for our function app:
+
+![managedIdentity4](./assets/managedIdentity4.png)
+
+By default our function app will not have the AZ module enabled, so next we will enable this by navigating to the function apps **diagnostic console** and enabling the AZ module. Go to the **Development Tools** pane and select **Advanced Tools**.
+
+![kudu](./assets/kudu.png)
+
+Then we will navigate to `site -> wwwroot` and edit the `requirements.psd1` file to enable the AZ module:
+
+![azModuleEnable](./assets/azModuleEnable.gif)
+
+**Note:** After this change we have to restart our function app.
+
+Now we will configure our function app to reference our key vault and finalize the solution.  
+Under the **Functions** pane click **Add** with the following settings:
+
+![functionadd](./assets/functionadd.png)
+
+**Development Enviornment:** `Develop in portal`  
+**Select a template:** `HTTP trigger`  
+**New Function:** `VmPowerState`  
+**Authorization level:** `Function`
+
+Next under `Code + Test` copy the following powershell code:
+
+```powershell
+
+```
+
+Here is also a [Link](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-VM-Power-States-Function-App/code) to the function code.  
+
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-VM-Power-States-Function-App/code). :heart:
+
 ### _Author_
 
 Marcel.L - pwd9000@hotmail.co.uk
