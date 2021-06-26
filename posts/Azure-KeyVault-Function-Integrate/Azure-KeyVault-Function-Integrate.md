@@ -19,7 +19,7 @@ canonical_url: null
 
 ## How to integrate Key Vault with Azure Functions
 
-Because Azure functions are serverless pieces of code, there will be cases where we do not want to put any of our secrets (such as passwords or connection strings) into our function code in plain-text. For security reasons we need to protect the secrets we use in our function code to not expose secrets. So today we will look at how we can create a function app using PowerShell Core as the code base, and protect any secrets that we use in our function code with Azure Key Vault by integration.  
+Because Azure functions are serverless pieces of code, there will be cases where we do not want to put any of our secrets (such as passwords or connection strings) into our function code in plain-text. For security reasons we need to protect the secrets we use in our function code to not expose secrets. So today we will look at how we can create a function app using PowerShell Core as the code base, and protect any secrets that we use in our function code with Azure Key Vault.  
 
 To get everything ready I will be using Azure CLI in a powershell console. First we will log into Azure by running:
 
