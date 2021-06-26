@@ -71,18 +71,18 @@ az functionapp create `
 
 Next we will enable the function app with a **system assigned** [managed identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) so that we can permission our function app to access our key vault. Under the function app **settings** pane select **Identity** and enable the **system assigned** setting to be `ON` and save the setting:
 
-![managedIdentity01](./assets/managedIdentity-01.png)
+![managedIdentity-01](./assets/managedIdentity-01.png)
 
 With the managed identity now created, we can add a role assignment and permissions (IAM) to our key vault. We will give the function identity the role [Key Vault Secrets User](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-user) because we only want the function to be able to retrieve secrets. On the same **settings** pane where we set the **identity** you will now see a new setting called **Permissions**. Click on **Azure Role Assignments** and add the relevant permissions on the key vault.  
 **Note:** You can also add the role assignment permissions on the key vault by going to the key vault and select **IAM** on the key vault directly.
 
-![managedIdentity2](./assets/managedIdentity-02.png)
+![managedIdentity-02](./assets/managedIdentity-02.png)
 
-![managedIdentity03](./assets/managedIdentity-03.png)
+![managedIdentity-03](./assets/managedIdentity-03.png)
 
 We can also check the **IAM** permissions under our key vault for our function app:
 
-![managedIdentity04](./assets/managedIdentity-04.png)
+![iam](./assets/iam.png)
 
 By default our function app will not have the AZ module enabled, so next we will enable this by navigating to the function apps **diagnostic console** and enabling the AZ module. Go to the **Development Tools** pane and select **Advanced Tools**.
 
@@ -103,10 +103,20 @@ I have created two secrets in my key vault for testing:
 
 ![kvsecrets](./assets/kvsecrets.png)
 
-Now we will configure our function app to reference our key vault and test the solution.  
+Now we will configure our function app to reference our key vault secrets and test the solution.  
+We will use the following [Reference syntax](https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references#reference-syntax).  
 
-Under the **Functions** pane click **Add** with the following settings:
+```txt
+@Microsoft.KeyVault(VaultName=myvault;SecretName=mysecret)
+```
 
+Under our function **Settings** pane select **Configuration** and add two new **Application settings:**
+
+![app-settings-01](./assets/app-settings-01.png)
+
+![app-settings-02](./assets/app-settings-02.png)
+
+![app-settings-03](./assets/app-settings-03.png)
 
 Under the **Functions** pane click **Add** with the following settings:
 
