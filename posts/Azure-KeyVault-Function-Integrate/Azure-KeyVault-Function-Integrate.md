@@ -1,6 +1,6 @@
 ---
 title: Protect secrets in Azure Functions using Key Vault
-published: false
+published: true
 description: Azure - Integrate Key Vault with Functions
 tags: 'tutorial, azure, productivity, security'
 cover_image: assets/key-func-main.png
