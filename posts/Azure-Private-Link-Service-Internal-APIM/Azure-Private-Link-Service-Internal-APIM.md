@@ -1,7 +1,7 @@
 ---
 title: dummy
 published: false
-description: Azure - Connecting an external non-peered VNET to an internal API Management service using Private Link Service
+description: dummy
 tags: 'tutorial, azure, productivity, security'
 cover_image: assets/privateLinkService.png
 canonical_url: null
@@ -16,3 +16,5 @@ canonical_url: null
 ### Azure - Connecting an external non-peered VNET to an internal API Management service using Private Link Service
 
 Access internal APIM securely using Private Link Service from a non-peered network
+
+Azure - Connecting an external non-peered VNET to an internal API Management service using Private Link Service
