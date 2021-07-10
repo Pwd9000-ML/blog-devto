@@ -5,6 +5,7 @@ description: dummy
 tags: 'tutorial, azure, productivity, security'
 cover_image: assets/privateLinkService.png
 canonical_url: null
+id: 755878
 ---
 
 ## What is Azure Private Link Service?
