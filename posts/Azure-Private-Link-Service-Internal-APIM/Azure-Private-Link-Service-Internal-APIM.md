@@ -1,7 +1,7 @@
 ---
 title: Access internal APIM securely with Private Link Service
 published: false
-description: Azure - Access internal API Management Service securely with Private Link Service from an external non-peered VNET
+description: Azure - internal APIM + Private Link Service
 tags: 'tutorial, azure, productivity, security'
 cover_image: assets/privateLinkService.png
 canonical_url: null
