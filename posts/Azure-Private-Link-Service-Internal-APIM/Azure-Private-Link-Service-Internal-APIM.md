@@ -14,7 +14,7 @@ id: 755878
 
 ### Access internal API Management Service securely with Private Link Service from an external non-peered VNET
 
-In todays tutorial we will look into a use case for this service
+In todays tutorial we will look into a use case for this service.
 
 ![networkdiag](./assets/networkdiag01.png)
 
