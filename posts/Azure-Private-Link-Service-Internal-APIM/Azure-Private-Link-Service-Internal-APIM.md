@@ -259,7 +259,7 @@ Now on to our final step. We will create our **Private Link Service** using the 
 
 In the Azure portal go to `Private Link` and select `+ Add` under `Private Link Services`
 
-![addpls](./assets/addpls.png)
+![addpls01](./assets/addpls01.png)
 
 Under the **Basics** blade, add the following:
 
@@ -269,7 +269,7 @@ Under the **Basics** blade, add the following:
 | Name            | APIM-PLS            |
 | Region          | UK South            |
 
-![basics](./assets/basics.png)
+![basicspls](./assets/basicspls.png)
 
 Under the **Outbound settings** blade, add the following:
 
@@ -282,21 +282,21 @@ Under the **Outbound settings** blade, add the following:
 | Enable TCP proxy V2 | No                      |
 | Private IP address  | Dynamic                 |
 
-![outbound](./assets/outbound.png)
+![outboundpls](./assets/outboundpls.png)
 
 Under the **Access Security** blade, we will use **Restricted by subscription** with a list of our two subscriptions. For more details on the different types of access: `Role-based access control only`, `Restricted by subscription`, `Anyone with your alias`, see this [LINK](https://docs.microsoft.com/en-gb/azure/private-link/private-link-service-overview#control-service-exposure)
 
-![access](./assets/access.png)
+![accesspls](./assets/accesspls.png)
 
 Add any tags if required and then create the private link service.  
 
-Now that our Private Link Service is created we will navigate to our other subscription and create a **Private Endpoint** on our external non-peered VNET which resides in the **EAST US** region.
+Now that our Private Link Service is created I will navigate to my other subscription I created separately. There I will create and link a **Private Endpoint** on an external non-peered VNET which resides in the **EAST US** region. You can do the same by creating a new VNET in a different region and leaving it un-peered.
 
 In the Azure portal go to `Private Link` and select `+ Add` under `Private endpoints`
 
 ![addpe](./assets/addpe.png)
 
-Under the **Basics** blade, select the subscription, and region where the external VNET resides (in our case this is in EAST US):
+Under the **Basics** blade, select the subscription, and region where the external VNET resides (in my case this is in EAST US):
 
 | Name            | Value               |
 | --------------- | ------------------- |
@@ -306,24 +306,24 @@ Under the **Basics** blade, select the subscription, and region where the extern
 
 ![basicspe](./assets/basicspe.png)
 
-Under the **Resource** blade, you can connect to the PLS service we created by it's `resource ID` or by selecting the following :
+Under the **Resource** blade, you can connect to the PLS service we created by it's `resource ID` or by selecting the following:
 
 | Name            | Value                                 |
 | --------------- | ------------------------------------- |
-| Subscription    | <Subscription hosting PLS>            |
+| Subscription    | [Subscription hosting PLS]            |
 | Resource Type   | Microsoft.Network/privateLinkservices |
 | Resource        | APIM-PLS                              |
 
 ![resourcepe](./assets/resourcepe.png)
 
-Under the **Configuration** blade, select the external virtual network (in our case this is hosted in EAST US and is called `External`):
+Under the **Configuration** blade, select the external virtual network (in my case this is hosted in EAST US and my VNET is called `External`):
 
 | Name            | Value                  |
 | --------------- | ---------------------- |
-| Virtual Network | <external VNET name>   |
-| Subnet          | <External VNET subnet> |
+| Virtual Network | [external VNET name]   |
+| Subnet          | [External VNET subnet] |
 
-![configurationpe](./assets/configurationpe.png)
+![configpe](./assets/configpe.png)
 
 Add any tags if required and then create the private endpoint.  
 
