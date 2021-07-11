@@ -166,13 +166,13 @@ $VirtualMachine = Set-AzVMOSDisk -VM $VirtualMachine -StorageAccountType "Standa
 New-AzVM -ResourceGroupName $resourceGroupName -Location $region -VM $VirtualMachine -Verbose
 ```
 
-**Note:** IP Forwarding has been enabled on the network interface of the VM we will use as a forwarder.
+**Note:** IP Forwarding has been enabled on the network interface of the VM.
 
 ```txt
 // code/VM-forwarder.ps1#L13-L13
 ```
 
-Now that our VM is created we need to run a few commands on the VM to allow certain traffic to be forwarded and passed through to APIM. First we will enable IP Forwarding in the VM registry, create a firewall rule to allow https(TCP port 443) traffic inbound and lastly enable forwarding to our APIM private IP address using `netsh`.  
+After our VM is created we need to run a few commands on the VM to allow certain traffic to be forwarded and passed through to APIM. First we will enable IP Router in the VM registry, create a firewall rule to allow https(TCP port 443) traffic inbound and lastly enable forwarding to our APIM private IP address using `netsh`.  
 
 Run the following powershell commands on the newly created VM:
 
