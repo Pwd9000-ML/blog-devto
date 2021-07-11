@@ -32,10 +32,10 @@ Luckily there is a solution to this problem statement, and that is Azure private
 
 1. **Azure Virtual Network:** We will need either a new or an existing VNET with two subnets for our Private Link Service and APIM.
 2. **APIM (Internal VNET mode):** For this tutorial we will create an [internal APIM](https://docs.microsoft.com/en-us/azure/api-management/api-management-using-with-internal-vnet).
-3. **VM or VMMS:** For this tutorial we will create a single windows VM and configure it to be a forwarder to our internal APIM. (You can also use a VMSS instead)
-4. **Standard Load Balancer:** We will use a standard load balancer to front our connect VM/VMSS which will be used by the private link service.
-5. **Private Link Service:** We will create a Private link service and connect it up with our load balancer.
-6. **Private Endpoint:** We will then create a private endpoint in the external VNET and test our connectivity to our internal APIM from the external network.
+3. **VM or VMMS:** For this tutorial we will create a single windows VM and configure it to be a forwarder to our internal APIM. (You can also use a Virtual Machine Scale Set (VMSS) instead).
+4. **Standard Load Balancer:** We will use a standard load balancer to front our VM/VMSS which will be used by the private link service.
+5. **Private Link Service:** We will create a Private link service and link it up with our load balancer.
+6. **Private Endpoint:** We will then create a private endpoint in the external VNET and test our connectivity to our internal APIM from the non-peered network.
 
 To get everything ready I will be using AZ powershell. First we will log into Azure by running:
 
@@ -133,9 +133,9 @@ $apimService = New-AzApiManagement `
     -VpnType "Internal" -Sku "Developer"
 ```
 
-**Note:** Because we are creating a new APIM service for this tutorial, the above powershell code can take anything between 10-20 minutes to complete.
+**Note:** Because we are creating a new APIM service for this tutorial, the above powershell code can take anything between 10-20 minutes to complete.  
 
-After our APIM is created make a note of the APIM **Private IP** as we will se this in a later step to configure our forwarder.
+After our APIM is created make a note of the APIM **Private IP** as we will use this in a later step to configure our VM forwarder.  
 
 ![apimPrivateIP1](./assets/apimPrivateIP1.png)
 
@@ -172,7 +172,7 @@ New-AzVM -ResourceGroupName $resourceGroupName -Location $region -VM $VirtualMac
 // code/VM-forwarder.ps1#L13-L13
 ```
 
-Now that our VM is created we need to run a few commands on the VM to allow certain traffic to be forwarded. First we will enable IP Forwarding on the registry, create a firewall rule to allow https(443) traffic inbound and lastly we will enable forwarding to our APIMs private IP address using `netsh`.  
+Now that our VM is created we need to run a few commands on the VM to allow certain traffic to be forwarded and passed through to APIM. First we will enable IP Forwarding in the VM registry, create a firewall rule to allow https(TCP port 443) traffic inbound and lastly enable forwarding to our APIM private IP address using `netsh`.  
 
 Run the following powershell commands on the newly created VM:
 
@@ -194,7 +194,7 @@ New-NetFirewallRule -DisplayName "HTTPS-443-Inbound" -Direction Inbound -Action 
 netsh interface portproxy add v4tov4 listenport=$port listenaddress=$localaddress connectport=$port connectaddress=$apimPrivateIP
 ```
 
-- Confirm that `IP Enable Router` has been changed:
+- Confirm `IP Enable Router` has been activated:
 
 ![reg01](./assets/reg01.png)
 
@@ -202,11 +202,11 @@ netsh interface portproxy add v4tov4 listenport=$port listenaddress=$localaddres
 
 ![port443](./assets/port443.png)
 
-- Confirm there is a new listener on port 443 and forwarder set up (Netstat -AN):
+- Confirm there is a new listener on port 443 and forwarding set up (Netstat -AN):
 
 ![netstat](./assets/netstat.png)
 
-After confirming that all the config is there you we can restart our VM and proceed to the next step in setting up our **Standard Load Balancer**. Run the following:
+After confirming that all the config is there and correct, we can restart our VM and proceed to the next step in setting up our **Standard Load Balancer**:
 
 ```powershell
 ##./code/Standard-Load-Balancer.ps1
