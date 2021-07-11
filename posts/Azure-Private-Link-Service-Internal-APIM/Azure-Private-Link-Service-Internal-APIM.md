@@ -16,7 +16,7 @@ id: 755878
 
 In todays tutorial we will look into an interesting use case for this service, in how we can connect an external source to consume an API management service (internal VNET mode) from an external non-peered VNET. As depicted in the following diagram:
 
-![networkDiag](./assets/networkDiag.png)
+![networkDiag01](./assets/networkDiag01.png)
 
 **Note:** The source or entry point where we will place out private endpoint can be in a network that is in a completely different region, tenant or subscription.
 
