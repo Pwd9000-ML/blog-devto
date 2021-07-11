@@ -18,7 +18,7 @@ In todays tutorial we will look into an interesting use case for this service, i
 
 ![networkDiag01](./assets/networkDiag01.png)
 
-**Note:** The source or entry point where we will place out private endpoint can be in a network that is in a completely different region, tenant or subscription.
+**Note:** The source or entry point where we will place our private endpoint can be in a network that is in a completely different region, tenant or subscription.
 
 Before we get started, let's just think about why we would want to do this?  
 
