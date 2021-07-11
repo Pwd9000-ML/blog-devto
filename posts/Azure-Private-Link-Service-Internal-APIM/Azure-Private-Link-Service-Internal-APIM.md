@@ -3,7 +3,7 @@ title: Access internal APIM securely with Private Link Service
 published: false
 description: Azure - internal APIM + Private Link Service
 tags: 'tutorial, azure, productivity, security'
-cover_image: assets/privateLinkService.png
+cover_image: assets/main.png
 canonical_url: null
 id: 755878
 ---
