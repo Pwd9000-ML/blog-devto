@@ -26,7 +26,7 @@ Before we get started, let's just think about why we would want to do this?
 
 This is good security practice, but what if we have a requirement where we have a consumer that needs to use our API, but is located in another VNET that perhaps overlaps IP address space and cannot be peered or connected to our VNET hosting our APIM service? Or what if we have a business partner or sister company that has a VNET in a completely separate region, tenant and subscription? How can we make our API management service available to consumers such as this and keep everything internal and secure at the same time?  
 
-Luckily there is a solution to this problem statement, and that is Azure private link service. With Azure Private Link Service we can create a **Standard Load Balancer** that will be connected to a **Virtual Machine** or **Virtual Machine Scale Set** which will act as a relay using **IP/Port forwarding** to our internal APIM, we will front the load balancer with **Private Link Service** and create a **Private endpoint** on our external network that will allow entry point connectivity to our internal APIM.  
+Luckily there is a solution to this problem statement, and that is Azure private link service. With Azure Private Link Service we can create a **Standard Load Balancer** that will be connected to a **Virtual Machine** or **Virtual Machine Scale Set** which will act as a relay using **IP/Port forwarding** to our internal APIM, we will front the load balancer with **Private Link Service** and create a **Private endpoint** on our external network that will allow entry point connectivity to our internal APIM.
 
 ## What do we need?
 
