@@ -3,7 +3,7 @@ title: Access internal APIM securely with Private Link Service
 published: false
 description: Azure - internal APIM + Private Link Service
 tags: 'tutorial, azure, productivity, security'
-cover_image: assets/privateLinkService.png
+cover_image: assets/privateLinkServiceMain.png
 canonical_url: null
 id: 755878
 ---
@@ -16,7 +16,7 @@ id: 755878
 
 In todays tutorial we will look into a use case for this service
 
-![networkdiag](./assets/networkdiag.png)
+![networkdiag](./assets/networkdiag01.png)
 
 ### _Author_
 
