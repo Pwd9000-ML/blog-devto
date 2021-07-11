@@ -1,6 +1,6 @@
 ---
 title: Access internal APIM securely with Private Link Service
-published: false
+published: true
 description: Azure - internal APIM + Private Link Service
 tags: 'tutorial, azure, productivity, security'
 cover_image: assets/PLSMain.png
@@ -202,7 +202,7 @@ netsh interface portproxy add v4tov4 listenport=$port listenaddress=$localaddres
 
 ![port443](./assets/port443.png)
 
-* there is a new listener on port 443 and forwder set up: (Netstat -AN)
+* There is a new listener on port 443 and forwarder set up: (Netstat -AN)
 
 ![netstat](./assets/netstat.png)
 
