@@ -251,3 +251,10 @@ After our load balancer is created we can add our VM into the backend pool which
 
 ![addvm2](./assets/addvm2.png)
 
+After a few minutes we will see that our probe is working as well which is periodically checking port 443 on our forwarder VM.
+
+![probe](./assets/probe.png)
+
+Now on to our final step. We will create our **Private Link Service** using the load balancer we just created and then create a **Private Endpoint** on our remote non-peered VNET. We will also test that we can reach our APIM on using the Private endpoint from a VM running in our external non-peered VNET.  
+
+In the Azure portal go to `Private Link` and select `+ Add` under `Private Link Services`.
