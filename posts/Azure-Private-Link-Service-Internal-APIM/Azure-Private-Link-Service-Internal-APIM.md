@@ -253,7 +253,7 @@ After our load balancer is created we can add our VM into the backend pool which
 
 After a few minutes we will see that our health probe is working as well which periodically checks port 443 on our forwarder VM.
 
-![probe](./assets/probe.png)
+![probe1](./assets/probe1.png)
 
 Next we will create our **Private Link Service** using the load balancer we created, then create a **Private Endpoint** on our remote non-peered VNET. We will also test that we can reach APIM using the Private endpoint from a test VM running in our external non-peered VNET.  
 
@@ -341,7 +341,7 @@ To test connectivity to my APIM I will require my APIM endpoints and for this te
 
 Let's see if our connectivity is working:
 
-![tst1](./assets/tst1.png)
+![tst2](./assets/tst2.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-Private-Link-Service-Internal-APIM/code). :heart:
 
