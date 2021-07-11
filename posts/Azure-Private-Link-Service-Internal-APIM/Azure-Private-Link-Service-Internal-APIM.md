@@ -245,7 +245,7 @@ $loadbalancer = @{
 New-AzLoadBalancer @loadbalancer
 ```
 
-After our load balancer is created we can add our VM into the backend pool which is called **plsVMforwarderPool**
+After our load balancer is created we can add our VM into the backend pool which is called **plsVMforwarderPool**.
 
 ![addvm1](./assets/addvm1.png)
 
@@ -257,7 +257,7 @@ After a few minutes we will see that our probe is working as well which is perio
 
 Now on to our final step. We will create our **Private Link Service** using the load balancer we just created and then create a **Private Endpoint** on our remote non-peered VNET. We will also test that we can reach our APIM on using the Private endpoint from a VM running in our external non-peered VNET.  
 
-In the Azure portal go to `Private Link` and select `+ Add` under `Private Link Services`
+In the Azure portal go to `Private Link` and select `+ Add` under `Private Link Services`.
 
 ![addpls01](./assets/addpls01.png)
 
@@ -284,7 +284,7 @@ Under the **Outbound settings** blade, add the following:
 
 ![outboundpls](./assets/outboundpls.png)
 
-Under the **Access Security** blade, we will use **Restricted by subscription** with a list of our two subscriptions. For more details on the different types of access: `Role-based access control only`, `Restricted by subscription`, `Anyone with your alias`, see this [LINK](https://docs.microsoft.com/en-gb/azure/private-link/private-link-service-overview#control-service-exposure)
+Under the **Access Security** blade, we will use **Restricted by subscription** with a list of our two subscriptions. For more details on the different types of access: `Role-based access control only`, `Restricted by subscription`, `Anyone with your alias`, see this [LINK](https://docs.microsoft.com/en-gb/azure/private-link/private-link-service-overview#control-service-exposure).
 
 ![accesspls](./assets/accesspls.png)
 
@@ -292,7 +292,7 @@ Add any tags if required and then create the private link service.
 
 Now that our Private Link Service is created I will navigate to my other subscription I created separately. There I will create and link a **Private Endpoint** on an external non-peered VNET which resides in the **EAST US** region. You can do the same by creating a new VNET in a different region and leaving it un-peered.
 
-In the Azure portal go to `Private Link` and select `+ Add` under `Private endpoints`
+In the Azure portal go to `Private Link` and select `+ Add` under `Private endpoints`.
 
 ![addpe01](./assets/addpe01.png)
 
@@ -327,11 +327,11 @@ Under the **Configuration** blade, select the external virtual network (in my ca
 
 Add any tags if required and then create the private endpoint.  
 
-And that is it, we have now successfully created a secure entry point to access our private APIM service from a non-peered external VNET hosted in EAST US. I have a VM running in my EAST US external VNET in which we can test our connectivity via the private endpoint we just created. In my case the private endpoint IP allocated to APIM-PE is: `192.168.0.6`
+And that is it, we have now successfully created a secure entry point to access our private APIM service from a non-peered external VNET hosted in EAST US. I have a VM running in my EAST US external VNET in which we can test our connectivity via the private endpoint we just created. In my case the private endpoint IP allocated to APIM-PE is: `192.168.0.6`.
 
 ![peip](./assets/peip.png)
 
-My test VM running in my external VNET has an IP of: `192.168.0.4`
+My test VM running in my external VNET has an IP of: `192.168.0.4`.
 
 ![testvmip1](./assets/testvmip1.png)
 
