@@ -37,10 +37,10 @@ Luckily there is a solution to this problem statement, and the answer is Azure p
 5. **Private Link Service:** We will create a Private link service and connect it up with our load balancer.
 6. **Private Endpoint:** We will then create a private endpoint in the external VNET and test our connectivity to our internal APIM from the external network.
 
-To get everything ready I will be using Azure CLI in a powershell console. First we will log into Azure by running:
+To get everything ready I will be using AZ powershell. First we will log into Azure by running:
 
 ```powershell
-az login
+Login-AzAccount
 ```
 
 Next we will create a `resource group`, `virtual network` and `APIM (internal VNET mode)` by running:
@@ -49,15 +49,131 @@ Next we will create a `resource group`, `virtual network` and `APIM (internal VN
 # Variables.
 $randomInt = Get-Random -Maximum 9999
 $resourceGroupName = "PrivateAPIM"
+$vnetName = "MainNet"
+$apimSubnetName = "apimSubnet"
+$plsSubnetName = "plsSubnet"
 $apimName = "apim$randomInt"
 $region = "uksouth"
+
+# Create a resource resourceGroupName
+New-AzResourceGroup -Name "$resourceGroupName" -Location "$region"
+
+# Create NSG and pls (private link service) subnet.
+$plsRule1 = New-AzNetworkSecurityRuleConfig `
+    -Name "pls-in" `
+    -Description "PLS inbound" `
+    -Access "Allow" `
+    -Protocol "Tcp" `
+    -Direction "Inbound" `
+    -Priority 100 `
+    -SourceAddressPrefix "VirtualNetwork" `
+    -SourcePortRange "*" `
+    -DestinationAddressPrefix "VirtualNetwork" `
+    -DestinationPortRange 443
+
+$plsNsg = New-AzNetworkSecurityGroup `
+    -ResourceGroupName "$resourceGroupName" `
+    -Location "$region" `
+    -Name "NSG-PLS" `
+    -SecurityRules $plsRule1
+
+$plsSubnet = New-AzVirtualNetworkSubnetConfig `
+    -Name "$plsSubnetName" `
+    -NetworkSecurityGroup $plsNsg `
+    -AddressPrefix 10.0.1.0/24
+
+# Create NSG and APIM subnet subnet.
+$apimRule1 = New-AzNetworkSecurityRuleConfig `
+    -Name "apim-in" `
+    -Description "APIM inbound" `
+    -Access "Allow" `
+    -Protocol "Tcp" `
+    -Direction "Inbound" `
+    -Priority 100 `
+    -SourceAddressPrefix "ApiManagement" `
+    -SourcePortRange "*" `
+    -DestinationAddressPrefix "VirtualNetwork" `
+    -DestinationPortRange 3443
+
+$apimNsg = New-AzNetworkSecurityGroup `
+    -ResourceGroupName "$resourceGroupName" `
+    -Location "$region" `
+    -Name "NSG-APIM" `
+    -SecurityRules $apimRule1
+
+$apimSubnet = New-AzVirtualNetworkSubnetConfig `
+    -Name "$apimSubnetName" `
+    -NetworkSecurityGroup $apimNsg `
+    -AddressPrefix 10.0.2.0/24
+
+# Create VNET
+Write-Output "Creating Virtual Network... Please Wait..."
+$vnet = New-AzVirtualNetwork `
+    -Name "$vnetName" `
+    -ResourceGroupName "$resourceGroupName" `
+    -Location "$region" `
+    -AddressPrefix "10.0.0.0/16" `
+    -Subnet $plsSubnet,$apimSubnet
+
+#Get APIM subnet ID
+$plsSubnetData = $vnet.Subnets[0]
+$apimSubnetData = $vnet.Subnets[1]
+
+# Create an API Management service instance. (Developer SKU for this demo... SKUs: Basic, Consumption, Developer, Premium, Standard)
+Write-Output "Creating APIM service... Please Wait..."
+$apimVirtualNetwork = New-AzApiManagementVirtualNetwork -SubnetResourceId $apimSubnetData.Id
+$apimService = New-AzApiManagement `
+    -ResourceGroupName "$resourceGroupName" `
+    -Location "$region" `
+    -Name "$apimName" `
+    -Organization "pwd9000" `
+    -AdminEmail "pwd9000@hotmail.co.uk" `
+    -VirtualNetwork $apimVirtualNetwork `
+    -VpnType "Internal" -Sku "Developer"
 ```
+
+**Note:** Because we are creating a new APIM service for this tutorial, the above powershell code can take anything between 10-20 minutes to complete.
+
+After our APIM is created make a note of the APIM **Private IP** as we will se this in a later step to configure our forwarder.
+
+![apimPrivateIP]()
 
 Next we will create our `Virtual machine` that will be used as a forwarder by running:
 
 ```powershell
 # Variables.
+$vmLocalAdmin = "pwd9000admin"
+$vmLocalAdminPassword = Read-Host -assecurestring "Please enter your password"
+$region = "uksouth"
+$resourceGroupName = "PrivateAPIM"
+$computerName = "VmPls01"
+$vmName = "VmPls01"
+$vmSize = "Standard_DS2_V2"
+$networkName = "MainNet"
+$nicName = "VmPls01-nic"
+$vNet = Get-AzVirtualNetwork -Name $NetworkName
+$plsSubnetId = ($vnet.Subnets | Where-Object {$_.name -eq "plsSubnet"}).id
+
+$NIC = New-AzNetworkInterface -Name $nicName -ResourceGroupName $resourceGroupName -Location $region -SubnetId $plsSubnetId -EnableIPForwarding
+$Credential = New-Object System.Management.Automation.PSCredential ($vmLocalAdmin, $vmLocalAdminPassword);
+$VirtualMachine = New-AzVMConfig -VMName $vmName -VMSize $vmSize
+$VirtualMachine = Set-AzVMOperatingSystem -VM $VirtualMachine -Windows -ComputerName $computerName -Credential $Credential -ProvisionVMAgent -EnableAutoUpdate
+$VirtualMachine = Add-AzVMNetworkInterface -VM $VirtualMachine -Id $NIC.Id
+$VirtualMachine = Set-AzVMSourceImage -VM $VirtualMachine -PublisherName 'MicrosoftWindowsServer' -Offer 'WindowsServer' -Skus '2019-Datacenter' -Version latest
+$VirtualMachine = Set-AzVMOSDisk -VM $VirtualMachine -StorageAccountType "Standard_LRS" -CreateOption FromImage -Windows | Set-AzVMBootDiagnostic -Disable
+
+New-AzVM -ResourceGroupName $resourceGroupName -Location $region -VM $VirtualMachine -Verbose
 ```
+
+**Note:** IP Forwarding has been enabled on the network interface of the VM we will use as a forwarder.
+
+```txt
+// code/VM-forwarder.ps1#L13-L13
+```
+
+Now that our VM is created we need to run a few commands on the VM to allow certain traffic to be forwarded. First we will enable IP Forwarding on the registry, and also create a firewall rule to allow https(443) traffic incoming and lastly we will enable forwarding to our APIMs private IP address using `netsh`.
+
+`netsh interface portproxy add v4tov4 listenport=443 listenaddress=10.2.1.4 connectport=443 connectaddress=10.2.2.5`
 
 ### _Author_
 
