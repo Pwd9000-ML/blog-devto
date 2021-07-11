@@ -194,15 +194,15 @@ New-NetFirewallRule -DisplayName "HTTPS-443-Inbound" -Direction Inbound -Action 
 netsh interface portproxy add v4tov4 listenport=$port listenaddress=$localaddress connectport=$port connectaddress=$apimPrivateIP
 ```
 
-* You can confirm that `IP Enable Router` has been changed
+- Confirm that `IP Enable Router` has been changed:
 
 ![reg01](./assets/reg01.png)
 
-* An inbound firewall rule has been created for TCP port 443:
+- Confirm inbound firewall rule has been created for TCP port 443:
 
 ![port443](./assets/port443.png)
 
-* There is a new listener on port 443 and forwarder set up: (Netstat -AN)
+- Confirm there is a new listener on port 443 and forwarder set up (Netstat -AN):
 
 ![netstat](./assets/netstat.png)
 
