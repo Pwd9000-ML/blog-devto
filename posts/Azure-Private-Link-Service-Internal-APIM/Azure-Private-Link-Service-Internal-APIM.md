@@ -137,7 +137,7 @@ $apimService = New-AzApiManagement `
 
 After our APIM is created make a note of the APIM **Private IP** as we will se this in a later step to configure our forwarder.
 
-![apimPrivateIP](./assets/apimPrivateIP.png)
+![apimPrivateIP1](./assets/apimPrivateIP1.png)
 
 Next we will create our `Virtual machine` that will be used as a forwarder by running:
 
@@ -196,11 +196,11 @@ netsh interface portproxy add v4tov4 listenport=$port listenaddress=$localaddres
 
 * You can confirm that `IP Enable Router` has been changed
 
-![reg](./assets/reg.png)
+![reg01](./assets/reg01.png)
 
 * An inbound firewall rule has been created for TCP port 443:
 
-![443](./assets/443.png)
+![port443](./assets/port443.png)
 
 * there is a new listener on port 443 and forwder set up: (Netstat -AN)
 
@@ -247,7 +247,7 @@ New-AzLoadBalancer @loadbalancer
 
 After our load balancer is created we can add our VM into the backend pool which is called **plsVMforwarderPool**
 
-![addvm](./assets/addvm.png)
+![addvm1](./assets/addvm1.png)
 
 ![addvm2](./assets/addvm2.png)
 
@@ -294,7 +294,7 @@ Now that our Private Link Service is created I will navigate to my other subscri
 
 In the Azure portal go to `Private Link` and select `+ Add` under `Private endpoints`
 
-![addpe](./assets/addpe.png)
+![addpe01](./assets/addpe01.png)
 
 Under the **Basics** blade, select the subscription, and region where the external VNET resides (in my case this is in EAST US):
 
@@ -304,7 +304,7 @@ Under the **Basics** blade, select the subscription, and region where the extern
 | Name            | APIM-PE             |
 | Region          | East US             |
 
-![basicspe](./assets/basicspe.png)
+![basicspe1](./assets/basicspe1.png)
 
 Under the **Resource** blade, you can connect to the PLS service we created by it's `resource ID` or by selecting the following:
 
@@ -333,15 +333,15 @@ And that is it, we have now successfully created a secure entry point to access 
 
 My test VM running in my external VNET has an IP of: `192.168.0.4`
 
-![testvmip](./assets/testvmip.png)
+![testvmip1](./assets/testvmip1.png)
 
 To test connectivity to my APIM I will require my APIM endpoints and for this test I will just configure my endpoints on my test machine using the local HOSTS file, but point my APIM endpoints to the APIM-PE (private endpoint we created).
 
-![apimend](./assets/apimend.png)
+![apimend1](./assets/apimend1.png)
 
 Let's see if our connectivity is working:
 
-![tst](./assets/tst.png)
+![tst1](./assets/tst1.png)
 
 SUCCESS!
 
