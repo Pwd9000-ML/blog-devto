@@ -139,7 +139,7 @@ After our APIM is created make a note of the APIM **Private IP** as we will use 
 
 ![apimPrivateIP1](./assets/apimPrivateIP1.png)
 
-Next we will create our `Virtual machine` that will be used as a forwarder by running:
+Next we will create our `Virtual machine` in the pls subnet, that will be used as a forwarder:
 
 ```powershell
 ##./code/VM-forwarder.ps1
