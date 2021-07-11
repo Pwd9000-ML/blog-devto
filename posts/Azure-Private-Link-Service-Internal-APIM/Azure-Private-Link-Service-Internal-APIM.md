@@ -136,12 +136,11 @@ $apimService = New-AzApiManagement `
 
 After our APIM is created make a note of the APIM **Private IP** as we will se this in a later step to configure our forwarder.
 
-![apimPrivateIP]()
+![apimPrivateIP](./assets/apimPrivateIP.png)
 
 Next we will create our `Virtual machine` that will be used as a forwarder by running:
 
 ```powershell
-# Variables.
 $vmLocalAdmin = "pwd9000admin"
 $vmLocalAdminPassword = Read-Host -assecurestring "Please enter your password"
 $region = "uksouth"
@@ -171,9 +170,40 @@ New-AzVM -ResourceGroupName $resourceGroupName -Location $region -VM $VirtualMac
 // code/VM-forwarder.ps1#L13-L13
 ```
 
-Now that our VM is created we need to run a few commands on the VM to allow certain traffic to be forwarded. First we will enable IP Forwarding on the registry, and also create a firewall rule to allow https(443) traffic incoming and lastly we will enable forwarding to our APIMs private IP address using `netsh`.
+Now that our VM is created we need to run a few commands on the VM to allow certain traffic to be forwarded. First we will enable IP Forwarding on the registry, create a firewall rule to allow https(443) traffic inbound and lastly we will enable forwarding to our APIMs private IP address using `netsh`.  
 
-`netsh interface portproxy add v4tov4 listenport=443 listenaddress=10.2.1.4 connectport=443 connectaddress=10.2.2.5`
+Run the following powershell commands on the newly created VM:
+
+```powershell
+#vars (APIM private IP after APIM created under $apimPrivateIP)
+$port = '443'
+$localaddress = (Get-NetIPConfiguration | Where-Object {$_.ipv4defaultgateway -ne $null}).IPv4Address.ipaddress
+$apimPrivateIP = '10.0.2.5'
+
+#Enable Port Forwarding on VM. 
+#Enable IP forwarding on Azure for the VM's #network interface as well.
+Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters -Name IpEnableRouter -Value 1
+ 
+#Allow HTTPS(443) traffic inbound
+New-NetFirewallRule -DisplayName "HTTPS-443-Inbound" -Direction Inbound -Action Allow -Protocol TCP -LocalPort $port
+
+#Enable port 443 listener and forward
+netsh interface portproxy add v4tov4 listenport=$port listenaddress=$localaddress connectport=$port connectaddress=$apimPrivateIP
+```
+
+* You can confirm that `IP Enable Router` has been changed
+
+![reg](./assets/reg.png)
+
+* An inbound firewall rule has been created for TCP port 443:
+
+![443](./assets/443.png)
+
+* there is a new listener on port 443 and forwder set up: (Netstat -AN)
+
+![netstat](./assets/netstat.png)
+
+After confirming that all the config is there you we can restart our VM and proceed to the next step in setting up our **Standard Load Balancer**
 
 ### _Author_
 
