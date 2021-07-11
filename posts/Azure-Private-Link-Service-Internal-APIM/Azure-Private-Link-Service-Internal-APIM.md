@@ -46,6 +46,7 @@ Login-AzAccount
 Next we will create a `resource group`, `virtual network` and `APIM (internal VNET mode)` by running:
 
 ```powershell
+##./code/APIM-pre-reqs.ps1
 # Variables.
 $randomInt = Get-Random -Maximum 9999
 $resourceGroupName = "PrivateAPIM"
@@ -141,6 +142,7 @@ After our APIM is created make a note of the APIM **Private IP** as we will se t
 Next we will create our `Virtual machine` that will be used as a forwarder by running:
 
 ```powershell
+##./code/VM-forwarder.ps1
 $vmLocalAdmin = "pwd9000admin"
 $vmLocalAdminPassword = Read-Host -assecurestring "Please enter your password"
 $region = "uksouth"
@@ -175,6 +177,7 @@ Now that our VM is created we need to run a few commands on the VM to allow cert
 Run the following powershell commands on the newly created VM:
 
 ```powershell
+##./code/VM-forwarder-config.ps1
 #vars (APIM private IP after APIM created under $apimPrivateIP)
 $port = '443'
 $localaddress = (Get-NetIPConfiguration | Where-Object {$_.ipv4defaultgateway -ne $null}).IPv4Address.ipaddress
@@ -203,7 +206,58 @@ netsh interface portproxy add v4tov4 listenport=$port listenaddress=$localaddres
 
 ![netstat](./assets/netstat.png)
 
-After confirming that all the config is there you we can restart our VM and proceed to the next step in setting up our **Standard Load Balancer**
+After confirming that all the config is there you we can restart our VM and proceed to the next step in setting up our **Standard Load Balancer**. Run the following:
+
+```powershell
+##./code/Standard-Load-Balancer.ps1
+# Variables.
+$resourceGroupName = "PrivateAPIM"
+$vnetName = "MainNet"
+$plsSubnet = ($vnet.Subnets | Where-Object {$_.name -eq "plsSubnet"}).id
+$region = "uksouth"
+
+#Vnet object
+$vnet = Get-AzVirtualNetwork -Name $vnetName -ResourceGroupName $resourceGroupName
+
+#load balancer frontend configuration
+$feip = New-AzLoadBalancerFrontendIpConfig -Name 'plsFrontEnd' -PrivateIpAddress '10.0.1.5' -SubnetId $plsSubnet
+
+#backend address pool configuration
+$bepool = New-AzLoadBalancerBackendAddressPoolConfig -Name 'plsVMforwarderPool'
+
+#health probe
+$healthprobe = New-AzLoadBalancerProbeConfig -Name 'Check443' -Protocol 'Tcp' -Port '443' -IntervalInSeconds '360' -ProbeCount '5'
+
+# load balancer rule
+$rule = New-AzLoadBalancerRuleConfig -Name 'plsHTTPS' -Protocol 'Tcp' -FrontendPort '443' -BackendPort '443' -IdleTimeoutInMinutes '15' -FrontendIpConfiguration $feip -BackendAddressPool $bepool -EnableTcpReset
+
+## Create the load balancer resource
+$loadbalancer = @{
+    ResourceGroupName = $resourceGroupName
+    Name = 'PrivateLinkServiceLB'
+    Location = $region
+    Sku = 'Standard'
+    FrontendIpConfiguration = $feip
+    BackendAddressPool = $bePool
+    LoadBalancingRule = $rule
+    Probe = $healthprobe
+}
+New-AzLoadBalancer @loadbalancer
+```
+
+After our load balancer is created we can add our VM into the backend pool which is called **plsVMforwarderPool**
+
+![addvm](./assets/addvm.png)
+
+![addvm2](./assets/addvm2.png)
+
+After a few minutes we will see that our probe is working as well which is periodically checking port 443 on our forwarder VM.
+
+![probe](./assets/probe.png)
+
+Now on to our final step. We will create our **Private Link Service** using the load balancer we just created and then create a **Private Endpoint** on our remote non-peered VNET. We will also test that we can reach our APIM on using the Private endpoint from a VM running in our external non-peered VNET.
+
+
 
 ### _Author_
 
