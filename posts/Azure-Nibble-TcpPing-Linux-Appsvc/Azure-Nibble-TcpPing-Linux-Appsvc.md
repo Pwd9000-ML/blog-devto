@@ -22,6 +22,9 @@ Windows based app services in Azure automatically have **tcpping** enabled, howe
 
 1. Go to your app service Kudu site: **https://[sitename].scm.azurewebsites.net/webssh/host** to establish a SSH web session. Or use the azure portal to navigate to the kudu site as follow:  
     ![aznav](./assets/aznav.png)
+
+    ![kudu2](./assets/kudu2.png)
+
 2. ```apt-get install tcptraceroute``` (**Required:** if not already present)
 3. ```apt-get install bc``` (**Required:** if minimal Linux Runtime used, e.g. docker)
 4. ```cd /usr/bin```
