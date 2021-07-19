@@ -1,6 +1,6 @@
 ---
 title: Azure Nibble - How to get TcpPing on Linux Azure App Service
-published: false
+published: true
 description: Azure - Nibble - How to get TcpPing on Linux Azure App Service
 tags: 'tutorial, azure, productivity, learning'
 cover_image: assets/main-azure-nibble.png
