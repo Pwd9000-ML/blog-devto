@@ -20,20 +20,21 @@ Windows based app services in Azure automatically have **tcpping** enabled, howe
 
 ## Installation
 
-1. Go to your Kudu site (i.e https://<sitename>.scm.azurewebsites.net/webssh/host) to SSH into your app.
-2. apt-get install tcptraceroute
-3. cd /usr/bin
-4. wget http://www.vdberg.org/~richard/tcpping
-5. chmod 755 tcpping
-6. apt install bc
+1. Go to your app service Kudu site (i.e https://[sitename].scm.azurewebsites.net/webssh/host) to establish a SSH web session.
+2. apt-get install tcptraceroute (**Required:** if not already present)
+3. apt-get install bc (**required:** if minimal Linux Runtime used, e.g. docker)
+4. cd /usr/bin
+5. wget http://www.vdberg.org/~richard/tcpping
+6. chmod 755 tcpping
 
 ## How to use
 
 tcpping [-d] [-c] [-r sec] [-x count] ipaddress [port]  
 
-- -d: print timestamp before each result.
-- -c: use columned output for easy parsing.
-- -r: interval in seconds between consecutive probes (1 second by default).
-- -x: repeat n times (unlimited by default).
+- [-d]: print timestamp before each result.
+- [-c]: use columned output for easy parsing.
+- [-r]: interval in seconds between consecutive probes (1 second by default).
+- [-x]: repeat n times (unlimited by default).
 - [port]: target port (80 by default).
 
+![giftest1]()
