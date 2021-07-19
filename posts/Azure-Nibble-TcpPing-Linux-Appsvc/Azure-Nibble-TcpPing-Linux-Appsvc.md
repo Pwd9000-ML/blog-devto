@@ -39,7 +39,7 @@ Windows based app services in Azure automatically have **tcpping** enabled, howe
 - [-x]: repeat n times (unlimited by default).
 - [port]: target port (80 by default).
 
-![giftest1]()
+![tcpping](./assets/tcpping.png)
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
