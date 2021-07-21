@@ -48,6 +48,8 @@ Thats it, the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-do
 
 ### Devops Yaml pipeline example
 
+Here is a yaml pipeline example of the tasks/steps to read in secrets/variables from key vault and also the for the **install SSH keys** task.
+
 ```yaml
 todo
 ```
@@ -58,7 +60,7 @@ todo
 module "terraform_aws_eks" {
 
   source = "git::git@ssh.dev.azure.com:v3/Org/Project/repo"
-
+  
 }
 ```
 
