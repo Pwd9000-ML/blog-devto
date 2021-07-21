@@ -38,8 +38,8 @@ First we have to create the SSH key pair:
 
 ------
 
-1. Copy the private key file (id_rsa) into azure pipelines -> Library -> Secure files 
-(this file may be renamed to make it more friendly to use later on in the task)
+1. Copy the private key file (id_rsa) into azure pipelines -> Library -> Secure files
+    (this file may be renamed to make it more friendly to use later on in the task)
 2. Under the user settings in AzureDevops go to SSH public keys and select "Add"
 3. Give a description and add the contents of the file created (id_rsa.pub)
 
