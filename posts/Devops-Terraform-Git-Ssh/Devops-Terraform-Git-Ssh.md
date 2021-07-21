@@ -32,27 +32,29 @@ First we have to create the SSH key pair:
     ssh-keyscan -H -t rsa ssh.dev.azure.com > $env:userprofile/.ssh/known_hosts
     ```
 
-    Needed if The Content of this file can be used later on in the setup of the "Install SSH Key" devops task
+    The Content of this file can be used later on in the setup of the "Install SSH Key" devops task
 
 ## Step 2 (Prepare Azure Devops)
 
 ------
 
 1. Copy the private key file (id_rsa) into azure pipelines -> Library -> Secure files
-    (this file may be renamed to make it more friendly to use later on in the task)
-2. Under the user settings in AzureDevops go to SSH public keys and select "Add"
+    (this file can be renamed to make it more friendly to use later on in the SSH task)
+2. Under the user settings in Azure Devops go to SSH public keys and select "Add"
 3. Give a description and add the contents of the file created (id_rsa.pub)
 
-## Step 3 (Using Install SSH Key devops task)
+## Step 3 (Using Install SSH Key devops task in pipeline)
 
 ------
 
+If you are using an Azure DevOps pipeline to execute terraform and that terraform code is referencing a Azure Devops git Repo, you can make use of the **Install SSH key** devops task to install teh SSH key onto the devOps agent that will be running the terraform code referencing the Azure Devops repo source.
+
 1. Create a variable in azure devops pipeline "git_ssh_pub" and add the content of file (id_rsa.pub)
-(This can also be stored in keyvault and accessed via the **_azure key vault_** task)
-Issue: https://github.com/microsoft/azure-pipelines-tasks/issues/11854
-2. Create a variable in azure devops pipeline "git_ssh_known_hosts" and add the content of file (known_hosts) created above with ssh-keyscan.
-(This can also be stored in keyvault and accessed via the **_azure key vault_** task)
-Issue: https://github.com/microsoft/azure-pipelines-tasks/issues/11854
+    (This can also be stored in keyvault and accessed via the **_azure key vault_** task)
+    Issue: https://github.com/microsoft/azure-pipelines-tasks/issues/11854
+2. Create a variable in azure devops pipeline "git_ssh_known_hosts" and add the content of file (known_hosts) created above with `ssh-keyscan`.
+    (This can also be stored in keyvault and accessed via the **_azure key vault_** task)
+    Issue: https://github.com/microsoft/azure-pipelines-tasks/issues/11854
 3. Create Devops Task Install SSH Key and use the following parameters:
 
 - Display Name: Install an SSH key
