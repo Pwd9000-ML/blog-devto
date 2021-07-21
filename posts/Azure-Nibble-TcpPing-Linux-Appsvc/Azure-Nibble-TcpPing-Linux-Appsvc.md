@@ -20,9 +20,11 @@ Windows based app services in Azure automatically have **tcpping** enabled, howe
 
 ## Installation
 
-Go to your app service Kudu site: **<https://[sitename].scm.azurewebsites.net/webssh/host>** to establish a SSH web session. Or use the azure portal to navigate to the kudu site as follow:  
-    ![aznav](./assets/aznav.png)
-    ![kudu2](./assets/kudu2.png)
+Go to your app service Kudu site: **<https://[sitename].scm.azurewebsites.net/webssh/host>** to establish a SSH web session. Or use the azure portal to navigate to the kudu site as follow:
+
+![aznav](./assets/aznav.png)
+
+![kudu2](./assets/kudu2.png)
 
 Run the following:
 
