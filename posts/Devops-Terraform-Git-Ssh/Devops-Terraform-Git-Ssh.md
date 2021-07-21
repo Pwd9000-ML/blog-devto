@@ -12,7 +12,29 @@ id: 767794
 
 Terraform supports many different [Module Sources](https://www.terraform.io/docs/language/modules/sources.html). In todays tutorial we look at how we can configure our Azure DevOps repo with SSH and use this repo as a module source in terraform.
 
-#
+## Step 1 (Prepare SSH Key)
+
+------
+
+First we have to create the SSH key pair:  
+
+1. Install Git for windows.
+2. In a powershell console run:
+
+    ```powershell
+    ssh-keygen
+    ```
+
+    (This will create a private key (id_rsa) and a public key (id_rsa.pub)) under %UserProfile%/.ssh
+3. Next run:
+
+    ```powershell
+    ssh-keyscan -H -t rsa ssh.dev.azure.com > $env:userprofile/.ssh/known_hosts
+    ```
+
+    The Content of this file can be used later on in the setup of the "Install SSH Key" devops task
+
+## Step 2 (Prepare Azure Devops)
 
 ------
 
