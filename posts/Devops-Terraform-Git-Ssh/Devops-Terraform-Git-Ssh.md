@@ -14,37 +14,43 @@ Terraform supports many different [Module Sources](https://www.terraform.io/docs
 
 ## Step 1 - Prepare SSH Key
 
-First we have to create the SSH key pair:  
+First we have to create a SSH key pair:  
 
 1. Install Git for windows.
-2. In a powershell console run: `ssh-keygen`. This will create a private key (id_rsa) and a public key (id_rsa.pub) under `%UserProfile%/.ssh`
-3. Next run: `ssh-keyscan -H -t rsa ssh.dev.azure.com > $env:userprofile/.ssh/known_hosts`. The Content of this file can be used later on in the setup of the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task
+2. In a powershell console run: `ssh-keygen`. This will create a private key (id_rsa) and a public key (id_rsa.pub) under `%UserProfile%/.ssh`.
+3. If a passphrase was also given, make a note of the passphrase as we will use that later on.
+4. Next run: `ssh-keyscan -H -t rsa ssh.dev.azure.com > $env:userprofile/.ssh/known_hosts`. The Content of this file will be used later on in the setup of the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task in a DevOps pipeline.
 
 ## Step 2 - Prepare Azure Devops
 
-1. Copy the private key file created in the previous step (id_rsa) into azure pipelines -> Library -> Secure files. The file can be renamed to make it more friendly to use later on in the SSH devops task.
-2. Under the **user settings** in Azure Devops go to SSH public keys and select **Add"**
-3. Give a description and add the contents of the file created (id_rsa.pub)
+1. Copy the private key file created in the previous step (id_rsa) into azure **pipelines -> Library -> Secure files**. The file can be renamed to make it more friendly to use later on in the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task.
+2. Under the **user settings** in Azure Devops go to SSH public keys and select **Add**.
+3. Give a description and add the contents of the file created (id_rsa.pub).
 
 ## Step 3 - Using Install SSH Key devops task in a pipeline
 
-If you are using an Azure DevOps pipeline to execute terraform from a Devops agent and that terraform code is referencing a Azure Devops git Repo, you can make use of the **Install SSH key** devops task to install teh SSH key onto the devOps agent that will be running the terraform code referencing the Azure Devops repo source.
+If you are using an Azure DevOps pipeline to execute terraform from a Devops agent and that terraform code is referencing an Azure Devops git Repo, we can now make use of the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task to install the SSH key onto the DevOps agent that will be running executing the terraform code that is referencing the Azure Devops repo as a source.  
 
-1. Create a variable in azure devops pipeline "git_ssh_pub" and add the content of file (id_rsa.pub)
-    (This can also be stored in keyvault and accessed via the **_azure key vault_** task)
-    Issue: https://github.com/microsoft/azure-pipelines-tasks/issues/11854
-2. Create a variable in azure devops pipeline "git_ssh_known_hosts" and add the content of file (known_hosts) created above with `ssh-keyscan`.
-    (This can also be stored in keyvault and accessed via the **_azure key vault_** task)
-    Issue: https://github.com/microsoft/azure-pipelines-tasks/issues/11854
-3. Create Devops Task Install SSH Key and use the following parameters:
+We will create a few variables next. These variables can either be created inside of a [variable group](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml#use-a-variable-group) or a [keyvault](https://docs.microsoft.com/en-us/azure/key-vault/general/overview) and accessed using the [Azure key vault task](https://docs.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops) in our devops pipeline.
+
+1. Create a variable in azure devops pipeline `git_ssh_pub` and add the content of file (id_rsa.pub). This can also be stored as a secret instead in Azure key vault and accessed via the **_azure key vault_** [devops task](https://docs.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops).
+2. Create a variable in azure devops pipeline `git_ssh_known_hosts` and add the content of file (known_hosts) created above with `ssh-keyscan`. This can also be stored as a secret instead in Azure key vault and accessed via the **_azure key vault_** [devops task](https://docs.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops).
+3. (Optional) If a passphrase was used in the generation of the ssh key pair in step one, you can create a variable in the azure devops pipeline `git_ssh_pass` and add the secret value. This can also be stored as a secret instead in Azure key vault and accessed via the **_azure key vault_** [devops task](https://docs.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops).
+4. Create the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task and use the following parameters:
 
 - Display Name: Install an SSH key
 - Known Hosts Entry: $(git_ssh_known_hosts)
 - SSH Public Key: $(git_ssh_pub)
-- Passphrase: [none] (if no passphrase was generated in ssh key pair generation)
+- Passphrase: [none] (if no passphrase was generated in ssh key pair generation or [$(git_ssh_pass)] if a password was used)
 - SSH Key: id_rsa (This was the private key we uploaded into secure files library)
 
-Thats it, Azure Devops task will now install and set the SSH up on the ADO agent to connect securely to AzureDevOps git repos:
+Thats it, the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) Devops task will now install and set the SSH up on the ADO agent to connect securely to AzureDevOps git repo where our terraform module code is kept.
+
+### Devops Yaml pipeline example
+
+```yaml
+todo
+```
 
 ### Terraform source module example
 
@@ -55,8 +61,6 @@ module "terraform_aws_eks" {
 
 }
 ```
-
-NOTE: To use git source, the module must be on the repo root, so in cases where git is used to publish modules, each module would require its own repo.
 
 ### _Author_
 
