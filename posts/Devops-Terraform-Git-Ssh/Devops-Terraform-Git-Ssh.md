@@ -12,7 +12,7 @@ id: 767794
 
 Terraform supports many different [Module Sources](https://www.terraform.io/docs/language/modules/sources.html). In todays tutorial we look at how we can configure an Azure DevOps repo with SSH and use this repo as a module source in terraform. We will also create a DevOps pipeline that will trigger a basic terraform deployment using a Azure DevOps repo as source and connect to it over SSH.
 
-## Step 1 - Prepare SSH Key
+## Step 1: Prepare SSH Key
 
 First we have to create a SSH key pair:  
 
@@ -23,7 +23,7 @@ First we have to create a SSH key pair:
 
 ![Sshkey](./assets/Sshkey.png)
 
-## Step 2 - Prepare Azure Devops
+## Step 2: Prepare Azure Devops
 
 1. Copy the private key file created in the previous step `id_rsa` into azure **pipelines -> Library -> Secure files**. The file can be renamed to make it more friendly to use later on in the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task. In my case I have renamed my private key to `terraform_rsa`.
 
@@ -33,7 +33,7 @@ First we have to create a SSH key pair:
 
     ![sshpub](./assets/sshpub.gif)
 
-## Step 3 - Using Install SSH Key devops task in a pipeline
+## Step 3: How to use _Install SSH Key_ devops task in a pipeline
 
 If you are using an Azure DevOps pipeline to execute terraform from a Devops agent and that terraform code is referencing an Azure Devops git Repo, we can now make use of the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task to install the SSH key onto the DevOps agent that will be running executing the terraform code that is referencing the Azure Devops repo as a source.  
 
@@ -54,7 +54,7 @@ Thats it, the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-do
 
 ### Devops Yaml pipeline example
 
-Here is a yaml pipeline example of the tasks/steps to read in secrets/variables from key vault and also the for the **install SSH keys** task.
+Here is a basic yaml pipeline example of the tasks/steps to read in secrets as variables from key vault and also including **install SSH keys** task.
 
 ```yaml
 todo
