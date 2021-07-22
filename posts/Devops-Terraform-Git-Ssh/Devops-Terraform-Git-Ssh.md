@@ -27,11 +27,11 @@ First we have to create a SSH key pair:
 
 1. Copy the private key file created in the previous step `id_rsa` into azure **pipelines -> Library -> Secure files**. The file can be renamed to make it more friendly to use later on in the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task. In my case I have renamed my private key to `terraform_rsa`.
 
-    ![securefile1](./assets/securefile1.png)
+    ![securefile01](./assets/securefile01.png)
 
 2. Under the **user settings** in Azure Devops go to SSH public keys and select **Add**. Give a description and add the contents of the file created `id_rsa.pub`. In my case I have renamed my public key to `terraform_rsa.pub`.
 
-    ![sshpub](./assets/sshpub.gif)
+    ![sshpub01](./assets/sshpub01.gif)
 
 ## Step 3: How to use _Install SSH Key_ devops task
 
