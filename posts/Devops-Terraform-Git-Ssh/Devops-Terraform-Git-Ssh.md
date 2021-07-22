@@ -10,7 +10,6 @@ id: 767794
 
 ## Terraform module sources?
 
-Terraform supports many different [Module Sources](https://www.terraform.io/docs/language/modules/sources.html). In todays tutorial we look at how we can configure an Azure DevOps repo with SSH and use this repo as a module source in terraform. We will also take a look at how we can use the **install SSH key** DevOps task in a pipeline that runs terraform so that the DevOps agent running the terraform deployment can connect to the DevOps repo as a source over SSH.
 
 ## Step 1: Prepare SSH Key
 
