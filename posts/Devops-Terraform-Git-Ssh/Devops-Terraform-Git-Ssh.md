@@ -79,6 +79,8 @@ steps:
 
 ### Terraform source module example
 
+Here is an example of how we can reference our Azure DevOps repo containing our module code in our terraform deployment.
+
 ```hcl
 module "mymodule" {
 
