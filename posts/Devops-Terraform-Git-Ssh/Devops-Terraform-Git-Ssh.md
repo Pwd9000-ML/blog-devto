@@ -35,7 +35,7 @@ First we have to create a SSH key pair:
 
 ## Step 3: How to use _Install SSH Key_ devops task
 
-When using an Azure DevOps pipeline to execute terraform code from a DevOps agent referencing an Azure Devops git Repo as a module source, we can make use of the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task to install the SSH key onto the DevOps agent that will be executing the terraform code that is referencing the Azure Devops repo as a module source over ssh.  
+When using an Azure DevOps pipeline to execute terraform code from a DevOps agent referencing an Azure Devops git Repo as a module source, we can make use of the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task to install the SSH key pair we just created onto the DevOps agent that will be executing the terraform code that is referencing the Azure Devops repo as a module source over ssh.  
 
 We will create a few variables next. These variables can either be created inside of a [variable group](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml#use-a-variable-group) or a [key vault](https://docs.microsoft.com/en-us/azure/key-vault/general/overview) and accessed using the [Azure key vault task](https://docs.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops) in our devops pipeline.
 
