@@ -91,6 +91,3 @@ module "mymodule" {
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Devops-Terraform-Git-Ssh/code). :heart:
 
-### _Author_
-
-Marcel.L - pwd9000@hotmail.co.uk
