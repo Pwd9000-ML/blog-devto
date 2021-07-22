@@ -29,7 +29,7 @@ First we have to create a SSH key pair:
 
     ![securefile01](./assets/securefile01.png)
 
-- Under the **user settings** in Azure Devops go to SSH public keys and select **Add**. Give a description and add the contents of the file created `id_rsa.pub`. In my case I have renamed my public key to `terraform_rsa.pub`.
+- Under the **user settings** in Azure Devops go to SSH public keys and select **Add**. Give a name and add the contents of the file created `id_rsa.pub`. In my case I have renamed my public key to `terraform_rsa.pub`.
 
     ![sshpub01](./assets/sshpub01.gif)
 
