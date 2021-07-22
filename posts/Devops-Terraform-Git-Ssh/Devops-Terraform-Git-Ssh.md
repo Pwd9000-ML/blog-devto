@@ -46,7 +46,7 @@ We will create a few variables next. These variables can either be created insid
 
 1. Display Name: Install an SSH key
 2. Known Hosts Entry: $(git_ssh_known_hosts)
-3. SSH Public Key: $(git_ssh_pub)
+3. SSH Public Key: $(terraform-git-ssh-pub)
 4. Passphrase: $(git_ssh_pass) (Note: if no passphrase was used when the ssh key pair was generated, this can be left as [none])
 5. SSH Key: terraform_rsa (This was the private key we uploaded into secure files library in step2, which we renamed from `id_rsa`)
 
