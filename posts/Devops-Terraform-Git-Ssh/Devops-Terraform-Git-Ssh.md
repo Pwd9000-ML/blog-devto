@@ -14,6 +14,14 @@ Terraform supports many different [Module Sources](https://www.terraform.io/docs
 
 ## Step 1: Prepare SSH Key
 
+First we have to create a SSH key pair:  
+
+- Install Git for windows.
+- In a powershell console run: `ssh-keygen`. This will create a private key: `id_rsa` and a public key: `id_rsa.pub` under the following path: `%UserProfile%/.ssh`.
+- If a passphrase was used in the creation of the key pair, make a note of the passphrase as we will need it later on.
+- Next run: `ssh-keyscan -H -t rsa ssh.dev.azure.com > $env:userprofile/.ssh/known_hosts`. The content of the file will be used later on in the setup of the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task in our DevOps pipeline.
+
+![Sshkey01](./assets/Sshkey01.png)
 
 ## Step 2: Prepare Azure Devops
 
