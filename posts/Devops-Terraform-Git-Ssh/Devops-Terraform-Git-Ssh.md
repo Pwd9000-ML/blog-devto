@@ -50,11 +50,11 @@ We will create a few variables next. These variables can either be created insid
 4. Passphrase: $(git_ssh_pass) (Note: if no passphrase was used when the ssh key pair was generated, this can be left as [none])
 5. SSH Key: terraform_rsa (This was the private key we uploaded into secure files library in step2, which we renamed from `id_rsa`)
 
-Thats it, the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) Devops task will now install and set the SSH up on the Azure DevOps agent to connect securely to our git repo hosting our terraform modules securely over ssh.
+Thats it, the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) Devops task will now install the SSH key on the Azure DevOps agent, allowing our terraform deployment to connect securely to our Azure DevOps git repo hosting our modules over ssh.
 
 ### Devops Yaml pipeline example
 
-Here is a basic yaml pipeline example of the tasks/steps to read in secrets as variables from the **key vault** task and including the **install SSH keys** task.
+Here is a yaml pipeline example of the tasks/steps to read in secrets as variables from the **key vault** task and including the **install SSH keys** task.
 
 ```yaml
 steps:
@@ -86,6 +86,8 @@ module "mymodule" {
   
 }
 ```
+
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Devops-Terraform-Git-Ssh/code). :heart:
 
 ### _Author_
 

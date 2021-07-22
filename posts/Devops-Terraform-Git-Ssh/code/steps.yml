@@ -1,0 +1,18 @@
+steps:
+### Link to key vault.
+- task: AzureKeyVault@1
+  displayName: Keyvault
+  inputs:
+    azureSubscription: TerraformSP #ADO service connection (Service principal)
+    KeyVaultName: 'mykeyvault'
+    secretsFilter: '*'
+    runAsPreJob: true 
+
+### Install SSH key on ADO agent to access terraform modules git repo.
+- task: InstallSSHKey@0
+  displayName: 'Install an SSH key'
+  inputs:
+    knownHostsEntry: '$(git_ssh_known_hosts)' #Variable pulled in from key vault via key vault task above.
+    sshPublicKey: '$(terraform-git-ssh-pub)' #Variable pulled in from key vault via key vault task above.
+    sshPassphrase: '$(git_ssh_pass)' #Variable pulled in from key vault via key vault task above.
+    sshKeySecureFile: 'terraform_rsa' #This was originally renamed from id_rsa
