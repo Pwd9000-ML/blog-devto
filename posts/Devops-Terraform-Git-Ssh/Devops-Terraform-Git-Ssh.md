@@ -1,6 +1,6 @@
 ---
 title: Connect Terraform to Azure Devops Git Repos over SSH
-published: false
+published: true
 description: DevOps - Terraform - Connecting Git over SSH
 tags: 'tutorial, azure, productivity, devops'
 cover_image: assets/main-tf-ado.png
