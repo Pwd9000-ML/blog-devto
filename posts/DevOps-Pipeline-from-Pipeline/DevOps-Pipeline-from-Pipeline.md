@@ -3,7 +3,7 @@ title: How to consume artifacts from a remote DevOps project pipeline
 published: false
 description: DevOps - Pipelines - Consume remote artifact
 tags: 'tutorial, azure, productivity, devops'
-cover_image: assets/main.png
+cover_image: assets/main-ado.png
 canonical_url: null
 ---
 
