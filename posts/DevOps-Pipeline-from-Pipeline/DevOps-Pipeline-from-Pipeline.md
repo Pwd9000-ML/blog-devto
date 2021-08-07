@@ -25,7 +25,7 @@ Today we will take a look at the [Pipelines Resource](https://docs.microsoft.com
 
 In my DevOps organisation I have created two projects namely **ProjectA** and **ProjectB**. I also created two YAML pipelines for each corresponding project named **PipelineA** and **PipelineB**. **PipelineA** will be my triggering/source pipeline which will create an artifact called **ArtifactA**. **PipelineB** will be my pipeline which will contain the pipeline resource for **PipelineA** and will consume **ArtifactA**.
 
-![main](./assets/main.png)
+![main](./assets/main-ado.png)
 
 In **ProjectA** I also created **RepoA** which contains a file called **MyConfig.txt**.
 
@@ -67,3 +67,40 @@ stages:
 ```
 
 The above YAML pipeline will take the file **MyConfig.txt** and create a pipeline artifact containing the file called **ArtifactA**
+
+![pipelineA](./assets/pipelineA.png)
+
+![artifactA](./assets/artifactA.png)
+
+In **ProjectB** I have **PipelineB.yml** that contains the pipeline resource for **PipelineA** and will be triggered once **PipelineA** completes and we will use the download task to also consume the artifact that was produced by **PipelineA**
+
+```yaml
+## code/PipelineB.yml
+
+trigger: none
+
+stages:
+- stage: Build_Artifact
+  displayName: Build Artifact A
+
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      name: Azure Pipelines
+      vmImage: windows-2019
+      
+    steps:
+    - task: CopyFiles@2
+      displayName: 'Copy myConfig to Staging'
+      inputs:
+        SourceFolder: '$(Build.SourcesDirectory)'
+        Contents: 'MyConfig.txt'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)/drop'
+
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish Artifact to Pipeline'
+      inputs:
+        targetPath: '$(Build.ArtifactStagingDirectory)/drop'
+        artifactName: ArtifactA
+```
