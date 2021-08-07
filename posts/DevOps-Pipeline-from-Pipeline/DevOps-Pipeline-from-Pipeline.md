@@ -66,6 +66,10 @@ stages:
         artifactName: ArtifactA
 ```
 
+**NOTE:** It is very important to note that when we create the above pipeline we must rename it to the same as what we will refer to it in our pipeline resource when we create **PipelineB**. In my case I will refer to this as **PipelineA**
+
+![rename](./assets/rename.png)
+
 The above YAML pipeline will take the file **MyConfig.txt** and create a pipeline artifact containing the file called **ArtifactA**
 
 ![pipelineA](./assets/pipelineA.png)
