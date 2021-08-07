@@ -12,7 +12,7 @@ id: 783932
 
 Azure DevOps pipelines provides very useful [resources](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=schema) we can define in our pipeline in one place and be consumed anywhere in our pipeline.  
 
-A resource is anything used by a pipeline that lives outside the pipeline. Pipeline resources include:
+Pipeline resources include:
 
 - CI/CD pipelines that produce artifacts (Azure Pipelines, Jenkins, etc.)
 - code repositories (Azure Repos Git repos, GitHub, GitHub Enterprise, Bitbucket Cloud)
