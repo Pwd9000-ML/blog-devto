@@ -29,4 +29,15 @@ In my DevOps organisation I have created two projects namely **ProjectA** and **
 
 In **ProjectA** I also created **RepoA** which contains a file called **MyConfig.txt**.
 
-![artifactFile]()
+![projects](./assets/projects.png)
+
+![myConfig](./assets/myconfig.png)
+
+I also created the following code in **PipelineA.yml**
+
+```yaml
+
+
+```
+
+The above YAML pipeline will take the file **MyConfig.txt** and create a pipeline artifact containing the file called **ArtifactA**
