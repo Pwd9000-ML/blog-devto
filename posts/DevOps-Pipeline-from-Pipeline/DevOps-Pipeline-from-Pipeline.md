@@ -159,7 +159,3 @@ Also note that triggers for resources are created based on the default branch co
 
 I hope you have enjoyed this post and have learned something new.  
 You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Pipeline-from-Pipeline/code) page. :heart:
-
-### _Author_
-
-Marcel.L - pwd9000@hotmail.co.uk
