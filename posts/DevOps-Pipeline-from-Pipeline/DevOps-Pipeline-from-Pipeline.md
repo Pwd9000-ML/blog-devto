@@ -127,7 +127,11 @@ stages:
 
 ![pipesettings](./assets/pipesettings.png)
 
-Now when we run PipelineA in projectA, it will automatically create our artifact and also automatically after completion trigger pipelineB in project B, thatw ill ocnsue the artifact:
+Now when we trigger and run **PipelineA** in **ProjectA**, it will automatically create our **ArtifactA** and also after completion **PipelineB** in **ProjectB** will be automatically triggered and also download and consume **ArtifactA**.
+
+Please note branches
+
+Also note aliases
 
 ![results](./assets/results.png)
 
