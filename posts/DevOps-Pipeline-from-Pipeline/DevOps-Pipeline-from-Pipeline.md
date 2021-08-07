@@ -21,4 +21,12 @@ A resource is anything used by a pipeline that lives outside the pipeline. Pipel
 
 Today we will take a look at the [Pipelines Resource](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=schema#resources-pipelines), in particular we will look at how we can use this resource in a pipeline to consume an artifact that was produced in another pipeline in a completely different project.
 
+## Consume remote pipeline artifacts
+
+In my DevOps organisation I have created two projects namely **ProjectA** and **ProjectB**. I also created two YAML pipelines for each corresponding project named **PipelineA** and **PipelineB**. **PipelineA** will be my triggering/source pipeline which will create an artifact called **ArtifactA**. **PipelineB** will be my pipeline which will contain the pipeline resource for **PipelineA** and will consume **ArtifactA**.
+
 ![main](./assets/main.png)
+
+In **ProjectA** I also created **RepoA** which contains a file called **MyConfig.txt**.
+
+![artifactFile]()
