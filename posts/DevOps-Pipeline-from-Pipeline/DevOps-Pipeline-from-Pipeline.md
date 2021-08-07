@@ -36,8 +36,34 @@ In **ProjectA** I also created **RepoA** which contains a file called **MyConfig
 I also created the following code in **PipelineA.yml**
 
 ```yaml
+## code/PipelineA.yml
 
+trigger: none
 
+stages:
+- stage: Build_Artifact
+  displayName: Build Artifact A
+
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      name: Azure Pipelines
+      vmImage: windows-2019
+      
+    steps:
+    - task: CopyFiles@2
+      displayName: 'Copy myConfig to Staging'
+      inputs:
+        SourceFolder: '$(Build.SourcesDirectory)'
+        Contents: 'MyConfig.txt'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)/drop'
+
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish Artifact to Pipeline'
+      inputs:
+        targetPath: '$(Build.ArtifactStagingDirectory)/drop'
+        artifactName: ArtifactA
 ```
 
 The above YAML pipeline will take the file **MyConfig.txt** and create a pipeline artifact containing the file called **ArtifactA**
