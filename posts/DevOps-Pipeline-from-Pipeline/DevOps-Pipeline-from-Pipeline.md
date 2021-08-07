@@ -108,3 +108,7 @@ stages:
         targetPath: '$(Build.ArtifactStagingDirectory)/drop'
         artifactName: ArtifactA
 ```
+
+**NOTE:** It is very important to note that we configure **ProjectB** pipeline settings to allow it to connect to **ProjectA** in order to download the artifact that was produced.
+
+![pipesettings](./assets/pipesettings.png)
