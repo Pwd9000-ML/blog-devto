@@ -156,3 +156,10 @@ Now when we trigger and run **PipelineA** in **ProjectA**, it will automatically
 ![results](./assets/results.png)
 
 Also note that triggers for resources are created based on the default branch configuration of our YAML, which is master. However, if we want to configure resource triggers from a different branch, we will need to change the default branch for the pipeline. For more information have a look at [Default branch for triggers](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=example#default-branch-for-triggers).  
+
+I hope you have enjoyed this post and have learned something new.  
+You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Pipeline-from-Pipeline/code) page. :heart:
+
+### _Author_
+
+Marcel.L - pwd9000@hotmail.co.uk
