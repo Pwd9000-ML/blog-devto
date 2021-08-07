@@ -66,7 +66,7 @@ stages:
         artifactName: ArtifactA
 ```
 
-**NOTE:** It is very important to note that when we create the above pipeline we must rename it to the same as what we will refer to it in our pipeline resource when we create **PipelineB**. In my case I will refer to this as **PipelineA**
+**NOTE:** It is very important to note that when we create the above pipeline in our source project we must rename the pipeline to the same name as what we will refer to it in our pipeline resource on **PipelineB**. In my case I will refer to this as **PipelineA**
 
 ![rename](./assets/rename.png)
 
