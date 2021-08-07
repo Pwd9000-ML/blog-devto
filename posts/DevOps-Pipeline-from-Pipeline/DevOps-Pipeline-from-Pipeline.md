@@ -82,33 +82,51 @@ In **ProjectB** I have **PipelineB.yml** that contains the pipeline resource for
 ## code/PipelineB.yml
 
 trigger: none
+pr: none
+resources:
+  pipelines:
+  - pipeline: PipelineA
+    project: ProjectA
+    source: PipelineA
+    trigger:
+      branches:
+        include:
+        - main
 
 stages:
-- stage: Build_Artifact
-  displayName: Build Artifact A
+- stage: Consume_Artifact
+  displayName: Consume Artifact A
 
   jobs:
-  - job: Build
-    displayName: Build
+  - job: Consume
+    displayName: Consume
     pool:
       name: Azure Pipelines
       vmImage: windows-2019
       
     steps:
-    - task: CopyFiles@2
-      displayName: 'Copy myConfig to Staging'
+    - task: PowerShell@2
+      displayName: 'Information'
       inputs:
-        SourceFolder: '$(Build.SourcesDirectory)'
-        Contents: 'MyConfig.txt'
-        TargetFolder: '$(Build.ArtifactStagingDirectory)/drop'
+        targetType: inline
+        script: |
+          Write-output "This pipeline has been triggered by: $(resources.pipeline.PipelineA.pipelineName)"
+    
+    - download: PipelineA
+      artifact: 'ArtifactA'
 
-    - task: PublishPipelineArtifact@1
-      displayName: 'Publish Artifact to Pipeline'
+    - task: PowerShell@2
+      displayName: 'Get-Content MyConfig.txt'
       inputs:
-        targetPath: '$(Build.ArtifactStagingDirectory)/drop'
-        artifactName: ArtifactA
+        targetType: inline
+        script: |
+          Get-Content -path $(Pipeline.Workspace)/PipelineA/ArtifactA/MyConfig.txt
 ```
 
 **NOTE:** It is very important to note that we configure **ProjectB** pipeline settings to allow it to connect to **ProjectA** in order to download the artifact that was produced.
 
 ![pipesettings](./assets/pipesettings.png)
+
+Now when we run PipelineA in projectA, it will automatically create our artifact and also automatically after completion trigger pipelineB in project B, thatw ill ocnsue the artifact:
+
+![results](./assets/results.png)

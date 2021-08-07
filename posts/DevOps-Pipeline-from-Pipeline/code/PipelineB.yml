@@ -1,0 +1,40 @@
+trigger: none
+pr: none
+resources:
+  pipelines:
+  - pipeline: PipelineA
+    project: ProjectA
+    source: PipelineA
+    trigger:
+      branches:
+        include:
+        - main
+
+stages:
+- stage: Consume_Artifact
+  displayName: Consume Artifact A
+
+  jobs:
+  - job: Consume
+    displayName: Consume
+    pool:
+      name: Azure Pipelines
+      vmImage: windows-2019
+      
+    steps:
+    - task: PowerShell@2
+      displayName: 'Information'
+      inputs:
+        targetType: inline
+        script: |
+          Write-output "This pipeline has been triggered by: $(resources.pipeline.PipelineA.pipelineName)"
+    
+    - download: PipelineA
+      artifact: 'ArtifactA'
+
+    - task: PowerShell@2
+      displayName: 'Get-Content MyConfig.txt'
+      inputs:
+        targetType: inline
+        script: |
+          Get-Content -path $(Pipeline.Workspace)/PipelineA/ArtifactA/MyConfig.txt
