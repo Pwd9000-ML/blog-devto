@@ -77,51 +77,7 @@ The above YAML pipeline will take the file **MyConfig.txt** and create a pipelin
 
 In **ProjectB** I have **PipelineB.yml** that contains the pipeline resource for **PipelineA** and will be triggered once **PipelineA** completes and we will use the download task to also consume the artifact that was produced by **PipelineA**.
 
-```yaml
-## code/PipelineB.yml
-trigger: none
-pr: none
 
-# This is our Pipeline Resource
-resources:
-  pipelines:
-  - pipeline: PipelineA   # identifier for the resource used in pipeline resource variables.
-    project: ProjectA     # project for the source; optional for current project.
-    source: PipelineA     # name of the pipeline that produces an artifact.
-    trigger:              # triggers are not enabled by default unless you add trigger section to the resource.
-      branches:           # branch conditions to filter the events, optional; Defaults to all branches.
-        include:          # branches to consider the trigger events, optional; Defaults to all branches.
-        - main
-
-stages:
-- stage: Consume_Artifact
-  displayName: Consume Artifact A
-
-  jobs:
-  - job: Consume
-    displayName: Consume
-    pool:
-      name: Azure Pipelines
-      vmImage: windows-2019
-      
-    steps:
-    - task: PowerShell@2
-      displayName: 'Information'
-      inputs:
-        targetType: inline
-        script: |
-          Write-output "This pipeline has been triggered by: $(resources.pipeline.PipelineA.pipelineName)"
-    
-    - download: PipelineA
-      artifact: 'ArtifactA'
-
-    - task: PowerShell@2
-      displayName: 'Get-Content MyConfig.txt'
-      inputs:
-        targetType: inline
-        script: |
-          Get-Content -path $(Pipeline.Workspace)/PipelineA/ArtifactA/MyConfig.txt
-```
 
 **NOTE:** It is important to note that we have to configure **ProjectB** pipeline settings to allow it to connect to **ProjectA** in order to download the artifact that was produced.
 
