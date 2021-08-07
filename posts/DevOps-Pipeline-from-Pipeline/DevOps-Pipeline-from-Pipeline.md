@@ -37,7 +37,6 @@ I also created the following code in **PipelineA.yml**.
 
 ```yaml
 ## code/PipelineA.yml
-
 trigger: none
 
 stages:
@@ -80,7 +79,6 @@ In **ProjectB** I have **PipelineB.yml** that contains the pipeline resource for
 
 ```yaml
 ## code/PipelineB.yml
-
 trigger: none
 pr: none
 
@@ -133,7 +131,6 @@ Metadata for a pipeline resource, are available as predefined variables that we 
 
 ```yml
 ## code/PipelineB.yml#L29-L30
-
 script: |
     Write-output "This pipeline has been triggered by: $(resources.pipeline.PipelineA.pipelineName)"
 ```
