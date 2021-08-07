@@ -130,3 +130,5 @@ stages:
 Now when we run PipelineA in projectA, it will automatically create our artifact and also automatically after completion trigger pipelineB in project B, thatw ill ocnsue the artifact:
 
 ![results](./assets/results.png)
+
+I hope
