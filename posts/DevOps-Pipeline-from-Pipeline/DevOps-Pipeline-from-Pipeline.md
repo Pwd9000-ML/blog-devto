@@ -1,6 +1,6 @@
 ---
 title: Consume artifacts from a remote DevOps project pipeline
-published: false
+published: true
 description: DevOps - Pipelines - Consume remote artifact
 tags: 'tutorial, azure, productivity, devops'
 cover_image: assets/main-ado.png
@@ -66,7 +66,7 @@ stages:
         artifactName: ArtifactA
 ```
 
-**NOTE:** It is very important to note that when we create the above pipeline in our source project we must rename the pipeline to the same name as what we will refer to it in our pipeline resource on **PipelineB**. In my case I will refer to this as **PipelineA**
+**NOTE:** It is important to note that when we create the above pipeline in our source project we must rename the pipeline to the same name as what we will refer to it in our pipeline resource on **PipelineB**. In my case I will refer to this as **PipelineA**
 
 ![rename](./assets/rename.png)
 
@@ -83,14 +83,16 @@ In **ProjectB** I have **PipelineB.yml** that contains the pipeline resource for
 
 trigger: none
 pr: none
+
+# This is our Pipeline Resource
 resources:
   pipelines:
-  - pipeline: PipelineA
-    project: ProjectA
-    source: PipelineA
-    trigger:
-      branches:
-        include:
+  - pipeline: PipelineA   # identifier for the resource used in pipeline resource variables
+    project: ProjectA     # project for the source; optional for current project
+    source: PipelineA     # name of the pipeline that produces an artifact
+    trigger:              # triggers are not enabled by default unless you add trigger section to the resource
+      branches:           # branch conditions to filter the events, optional; Defaults to all branches.
+        include:          # branches to consider the trigger events, optional; Defaults to all branches.
         - main
 
 stages:
@@ -127,7 +129,7 @@ stages:
 
 ![pipesettings](./assets/pipesettings.png)
 
-Metadata for a pipeline resource are available as predefined variables as you can see from our **PipelineB.yml**
+Metadata for a pipeline resource, are available as predefined variables that we can reference, as you can see from our **PipelineB.yml** in the following code snippet:
 
 ```yml
 ## code/PipelineB.yml#L29-L30
@@ -138,18 +140,18 @@ script: |
 
 **Predefined pipeline resource variables:**
 
-```yml
-resources.pipeline.<Alias>.projectID
-resources.pipeline.<Alias>.pipelineName
-resources.pipeline.<Alias>.pipelineID
-resources.pipeline.<Alias>.runName
-resources.pipeline.<Alias>.runID
-resources.pipeline.<Alias>.runURI
-resources.pipeline.<Alias>.sourceBranch
-resources.pipeline.<Alias>.sourceCommit
-resources.pipeline.<Alias>.sourceProvider
-resources.pipeline.<Alias>.requestedFor
-resources.pipeline.<Alias>.requestedForID
+```txt
+resources.pipeline.<Alias>.projectID  
+resources.pipeline.<Alias>.pipelineName  
+resources.pipeline.<Alias>.pipelineID  
+resources.pipeline.<Alias>.runName  
+resources.pipeline.<Alias>.runID  
+resources.pipeline.<Alias>.runURI  
+resources.pipeline.<Alias>.sourceBranch  
+resources.pipeline.<Alias>.sourceCommit  
+resources.pipeline.<Alias>.sourceProvider  
+resources.pipeline.<Alias>.requestedFor  
+resources.pipeline.<Alias>.requestedForID  
 ```
 
 Now when we trigger and run **PipelineA** in **ProjectA**, it will automatically create our **ArtifactA** and also after completion **PipelineB** in **ProjectB** will be automatically triggered and also download and consume **ArtifactA** that was created in **ProjectA**.
