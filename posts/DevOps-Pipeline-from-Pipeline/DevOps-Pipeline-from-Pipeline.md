@@ -85,10 +85,10 @@ pr: none
 # This is our Pipeline Resource
 resources:
   pipelines:
-  - pipeline: PipelineA   # identifier for the resource used in pipeline resource variables
-    project: ProjectA     # project for the source; optional for current project
-    source: PipelineA     # name of the pipeline that produces an artifact
-    trigger:              # triggers are not enabled by default unless you add trigger section to the resource
+  - pipeline: PipelineA   # identifier for the resource used in pipeline resource variables.
+    project: ProjectA     # project for the source; optional for current project.
+    source: PipelineA     # name of the pipeline that produces an artifact.
+    trigger:              # triggers are not enabled by default unless you add trigger section to the resource.
       branches:           # branch conditions to filter the events, optional; Defaults to all branches.
         include:          # branches to consider the trigger events, optional; Defaults to all branches.
         - main
