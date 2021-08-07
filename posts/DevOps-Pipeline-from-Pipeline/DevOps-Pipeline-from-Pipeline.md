@@ -17,7 +17,6 @@ A resource is anything used by a pipeline that lives outside the pipeline. Pipel
 - CI/CD pipelines that produce artifacts (Azure Pipelines, Jenkins, etc.)
 - code repositories (Azure Repos Git repos, GitHub, GitHub Enterprise, Bitbucket Cloud)
 - container image registries (Azure Container Registry, Docker Hub, etc.)
-- package feeds (GitHub packages)
 
 Today we will take a look at the [Pipelines Resource](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=schema#resources-pipelines), in particular we will look at how we can use this resource in a pipeline to consume an artifact that was produced in another pipeline in a completely different project. Our pipeline will also even be triggered automatically by the source pipeline after the artifact has been created and published.
 
