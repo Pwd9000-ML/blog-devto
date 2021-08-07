@@ -82,16 +82,17 @@ In **ProjectB** I have **PipelineB.yml** that contains the pipeline resource for
 trigger: none
 pr: none
 
-# This is our Pipeline Resource
+# ------ This is our Pipeline Resource ------
 resources:
   pipelines:
   - pipeline: PipelineA  # identifier for the resource used in pipeline resource variables.
-    project: ProjectA  # project for the source; optional for current project.
-    source: PipelineA  # name of the pipeline that produces an artifact.
-    trigger:  # triggers are not enabled by default unless you add trigger section to the resource.
-      branches:  # branch conditions to filter the events, optional; Defaults to all branches.
-        include:  # branches to consider the trigger events, optional; Defaults to all branches.
+    project: ProjectA    # project for the source; optional for current project.
+    source: PipelineA    # name of the pipeline that produces an artifact.
+    trigger:             # triggers are not enabled by default unless you add trigger section to the resource.
+      branches:          # branch conditions to filter the events, optional; Defaults to all branches.
+        include:         # branches to consider the trigger events, optional; Defaults to all branches.
         - main
+# ------------------------------------------
 
 stages:
 - stage: Consume_Artifact
