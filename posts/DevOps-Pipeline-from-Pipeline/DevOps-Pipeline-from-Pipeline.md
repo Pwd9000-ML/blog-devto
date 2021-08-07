@@ -27,7 +27,7 @@ In my DevOps organisation I have created two projects namely **ProjectA** and **
 
 ![main](./assets/main-ado.png)
 
-In **ProjectA** I also created **RepoA** which contains a file called **MyConfig.txt**.
+In **ProjectA** I also created a repository called **RepoA** which contains a file called **MyConfig.txt**.
 
 ![projects](./assets/projects.png)
 
