@@ -8,6 +8,17 @@ canonical_url: null
 id: 783932
 ---
 
-## Azure DevOps pipeline resources
+## Azure DevOps pipeline/YAML resources
 
-Today we will take a look at a great feature of Azure Devops YAML pipelines called [Pipeline Resources](). In particular we will look at the pipeline resource and how this can be used and why this resource is so useful.
+Azure DevOps pipelines provides very useful [resources](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=schema) we can define in our pipeline in one place and be consumed anywhere in our pipeline.  
+
+A resource is anything used by a pipeline that lives outside the pipeline. Pipeline resources include:
+
+- CI/CD pipelines that produce artifacts (Azure Pipelines, Jenkins, etc.)
+- code repositories (Azure Repos Git repos, GitHub, GitHub Enterprise, Bitbucket Cloud)
+- container image registries (Azure Container Registry, Docker Hub, etc.)
+- package feeds (GitHub packages)
+
+Today we will take a look at the [Pipelines Resource](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=schema#resources-pipelines), in particular we will look at how we can use this resource in a pipeline to consume an artifact that was produced in another pipeline in a completely different project.
+
+![main](./assets/main.png)
