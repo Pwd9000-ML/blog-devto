@@ -303,11 +303,9 @@ We can also confirm that our role is now published and usable in Azure. :smile:
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Github-Automate-Azure-RBAC/code) page or you can even use my repo as a template [HERE](https://github.com/Pwd9000-ML/Azure-Role-Definitions) :heart:
 
-If you wanted to see how to do this using Github Actions instead have a look at the following post:
+If you wanted to see how to do this using Github Actions instead have a look at one of my other posts below:
 
 {% link https://dev.to/pwd9000/automate-azure-role-based-access-control-rbac-with-devops-2ehf %}
-
-[THIS POST](https://dev.to/pwd9000/automate-azure-role-based-access-control-rbac-with-devops-2ehf) where I demonstrate the same automation using Azure DevOps.
 
 ### _Author_
 

@@ -57,13 +57,7 @@ Now that we have defined our parameter sets and grouped the relevant parameters 
 
 You can also find some very helpful documentation on parameter sets on [Microsoft Docs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameter_sets?view=powershell-7.1).
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my Github page below:
-
-{% github  Pwd9000-ML/blog-devto/posts %}
-
-{% github  Pwd9000-ML/blog-devto/tree/master/posts/Powershell-Using-Parameter-Sets/code %}
-
-[Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Powershell-Using-Parameter-Sets/code).
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Powershell-Using-Parameter-Sets/code) page. :heart:
 
 ### _Author_
 
