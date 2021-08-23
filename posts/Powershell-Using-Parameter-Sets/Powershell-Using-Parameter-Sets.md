@@ -15,7 +15,7 @@ Have you ever wondered when you are writing a PowerShell function or commandlet 
 
 We will look at the following test function: `[Test-ParameterSets]` on exactly how this functionality can be used.
 
-{% gist https://gist.github.com/Pwd9000-ML/2e8e4c69299eca1f06547106b4686b17.js %}
+{% gist <https://gist.github.com/Pwd9000-ML/2e8e4c69299eca1f06547106b4686b17.js> %}
 
 The first step is to add a `DefaultParameterSetName="Default"`. We can set that in our `[CmdletBinding()]` as follow:
 
