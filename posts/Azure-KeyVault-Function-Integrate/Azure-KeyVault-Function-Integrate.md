@@ -176,7 +176,7 @@ Let's test our function app by triggering the code manually using **Test/Run** t
 
 ![log-01](./assets/log-01.png)
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my Github page below:  
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my Github page below:
 
 {% github  Pwd9000-ML/blog-devto/posts %}
 
