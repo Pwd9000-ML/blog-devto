@@ -307,4 +307,4 @@ If you wanted to see how to do this using Azure DevOps instead have a look at [T
 
 ### _Author_
 
-Marcel.L - pwd9000@hotmail.co.uk
+{% user pwd9000 %}

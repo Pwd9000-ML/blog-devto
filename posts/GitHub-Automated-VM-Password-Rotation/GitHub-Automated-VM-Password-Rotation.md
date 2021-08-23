@@ -256,4 +256,4 @@ You can also find and use this [github repository](https://github.com/Pwd9000-ML
 
 ### _Author_
 
-Marcel.L - pwd9000@hotmail.co.uk
+{% user pwd9000 %}

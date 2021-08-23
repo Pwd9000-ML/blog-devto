@@ -61,4 +61,4 @@ This article and demo function can also be found on [Github](https://github.com/
 
 ### _Author_
 
-Marcel.L - pwd9000@hotmail.co.uk
+{% user pwd9000 %}

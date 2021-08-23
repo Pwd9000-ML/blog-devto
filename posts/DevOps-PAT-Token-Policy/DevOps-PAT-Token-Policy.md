@@ -48,4 +48,4 @@ For more detailed information have a look at: [Managing Personal Access Tokens w
 
 ### _Author_
 
-Marcel.L - pwd9000@hotmail.co.uk
+{% user pwd9000 %}
