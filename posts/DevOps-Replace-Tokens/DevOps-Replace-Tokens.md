@@ -3,7 +3,7 @@ title: Dynamic terraform deployments using DevOps replace tokens
 published: false
 description: DevOps - Terraform - Replace Tokens
 tags: 'tutorial, azure, productivity, devops'
-cover_image: assets/main.png
+cover_image: assets/main.jpg
 canonical_url: null
 id: 802801
 ---
@@ -18,7 +18,7 @@ Before we can use replace tokens we have to install it into our Devops Organisat
 
 Go to your DevOps Organisation Settings and select the **Extensions** tab followed by **Browse marketplace** and search for **Replace tokens**. In addition we will also install the terraform extension called **Terraform** by Microsoft DevLabs.
 
-![ado_task](./assets/ado_task.png)
+![ado_task](./assets/ado_task.jpg)
 
 ## Project layout
 
