@@ -1,0 +1,7 @@
+variables:
+#Production Variables
+  - name: environment
+    value: "prod"
+
+  - name: location
+    value: "ukwest"

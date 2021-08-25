@@ -22,13 +22,13 @@ Go to your DevOps Organisation Settings and select the **Extensions** tab follow
 
 ## Project layout and objective
 
-For this tutorial we will write a simple terraform configuration that will deploy a resource group, but we will use the **replace tokens task** to manipulate our configuration file to deploy 3 different resource groups based on environment. For example `Infra-Dev-Rg`, `Infra-Uat-Rg` and `Infra-Prod-Rg`. I have set up a new project in my organisation called **DynamicTerraform**, I also created a repository called **Infrastructure**. Inside of my repository I have created the following paths:
+For this tutorial we will write a simple terraform configuration that will deploy a resource group, but we will use the **replace tokens task** to manipulate our configuration file to deploy 3 different resource groups based on environment. For example `Infra-dev-Rg`, `Infra-uat-Rg` and `Infra-prod-Rg`. I have set up a new project in my organisation called **DynamicTerraform**, I also created a repository called **Infrastructure**. Inside of my repository I have created the following paths:
 
-- `\pipelines` Here we will configure our yaml deployment pipeline.
-- `\pipelines\variables` Here we will create a yaml based variable file for our pipeline
-- `\terraform-azurerm-resourcegroup` Here we will have our main HCL coe base which will be used to deploy a simple resource group
+- `\pipelines` This location will be used to store and configure yaml deployment pipelines.
+- `\pipelines\variables` This location will be used to store and configure yaml variable template files.
+- `\terraform-azurerm-resourcegroup` This location will be used to store the main terraform configuration files which will be used to deploy a simple resource group.
 
-Any additional future resources can be created in new paths e.g.: `\terraform-azurerm-resourceX\`, `\terraform-azurerm-resourceY\`, `\terraform-azurerm-resourceZ\` etc... For this tutorial we will just be using `\terraform-azurerm-resourcegroup\` to deploy resource groups.
+Any additional future resources can be created in new paths e.g.: `\terraform-azurerm-resourceX`, `\terraform-azurerm-resourceY`, `\terraform-azurerm-resourceZ` etc... For this tutorial we will just be using `\terraform-azurerm-resourcegroup` to deploy resource groups.
 
 ![repo_layout](./assets/repo_layout.jpg)
 
@@ -42,10 +42,10 @@ Under my repo path: `\terraform-azurerm-resourcegroup\`, I have created the foll
 
     ```hcl
     ##################################################
-    # Terraform Config + PROVIDERS                   #
+    # Terraform Config                               #
     ##################################################
     terraform {
-      required_version = ">= 1.0.5"
+      required_version = ">= ~{terraformVersion}~"
 
       backend "azurerm" {
         resource_group_name  = "~{terraformBackendRG}~"
@@ -77,7 +77,7 @@ Under my repo path: `\terraform-azurerm-resourcegroup\`, I have created the foll
     }
     ```
 
-    **NOTE:** If you look at the our terraform backend configuration you will notice the following: `~{terraformBackendRG}~`, `~{terraformBackendSA}~` and `~{environment}~`, we will be dynamically changing the values inside of `~{ }~` with values from our pipeline variable file later on in this tutorial using **replace tokens**.
+    **NOTE:** If you look at the our terraform configuration you will notice the following: `~{terraformVersion}~`, `~{terraformBackendRG}~`, `~{terraformBackendSA}~` and `~{environment}~`, we will be dynamically changing the values inside of `~{ }~` with values from our pipeline variable file later on in this tutorial using **replace tokens**.
 
 2. variables.tf
 
@@ -113,24 +113,70 @@ Under my repo path: `\terraform-azurerm-resourcegroup\`, I have created the foll
 
 ## DevOps Pipeline Variable file
 
-Under my repo path: `\pipelines\variables`, I have created the following three yaml variable template files:
+Under my repo path: `\pipelines\variables`, I have created the following four yaml variable template files:
 
-1. dev_vars.yml
-
-    ```yml
-    ```
-
-2. uat_vars.yml
+1. common_vars.yml - Will be used in all pipelines.
 
     ```yml
+    variables:
+    #Terraform Config + backend
+      - name: terraformVersion
+        value: "1.0.5"
+
+      - name: terraformBackendRG
+        value: "TF-Core-Rg"
+
+      - name: terraformBackendSA
+        value: "tfcorebackendsa"
+
+    #Variables used for SSH connectivity to DevOps
+      - name: sshKeySecureFile
+        value: "sshKeySecureFile"
+
+      - name: sshKvName
+        value: "tf-devops-kv"
+
+      - name: sshKv_service_connection_name
+        value: "TF-Terraform-SP"
     ```
 
-3. prod_vars.yml
+2. dev_vars.yml - Will be used in DEV specific pipeline.
 
     ```yml
+    variables:
+    #Development Variables
+      - name: environment
+        value: "dev"
+
+      - name: location
+        value: "uksouth"
     ```
 
-**NOTE:** You will notice that my variable **names** in each yaml template are aligned with the values I used on my terraform configuration files: `~{environment}~`, `~{location}~`, `~{terraformBackendRG}~`, `~{terraformBackendSA}~`.
+3. uat_vars.yml - Will be used in UAT specific pipeline.
+
+    ```yml
+    variables:
+    #UAT Variables
+      - name: environment
+        value: "uat"
+
+      - name: location
+        value: "uksouth"
+    ```
+
+4. prod_vars.yml - Will be used in PROD specific pipeline.
+
+    ```yml
+    variables:
+    #Production Variables
+      - name: environment
+        value: "prod"
+
+      - name: location
+        value: "ukwest"
+    ```
+
+**NOTE:** You will notice that my variable **names** in each yaml template are aligned with the values I used on my terraform configuration files: `~{environment}~`, `~{location}~`, `~{terraformBackendRG}~`, `~{terraformBackendSA}~`. Also note that our production variable file has a different location specified `ukwest`.
 
 ## DevOps Pipeline
 

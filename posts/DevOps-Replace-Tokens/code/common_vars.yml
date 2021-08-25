@@ -1,0 +1,20 @@
+variables:
+#Terraform Config + backend
+  - name: terraformVersion
+    value: "1.0.5"
+
+  - name: terraformBackendRG
+    value: "TF-Core-Rg"
+
+  - name: terraformBackendSA
+    value: "tfcorebackendsa"
+
+#Variables used for SSH connectivity to DevOps
+  - name: sshKeySecureFile
+    value: "sshKeySecureFile"
+
+  - name: sshKvName
+    value: "tf-devops-kv"
+
+  - name: sshKv_service_connection_name
+    value: "TF-Terraform-SP"

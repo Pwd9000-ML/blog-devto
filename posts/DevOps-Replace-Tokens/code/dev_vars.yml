@@ -1,0 +1,7 @@
+variables:
+#Development Variables
+  - name: environment
+    value: "dev"
+
+  - name: location
+    value: "uksouth"

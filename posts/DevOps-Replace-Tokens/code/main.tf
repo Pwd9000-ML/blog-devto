@@ -1,8 +1,8 @@
 ##################################################
-# Terraform Config + PROVIDERS                   #
+# Terraform Config                               #
 ##################################################
 terraform {
-  required_version = ">= 1.0.5"
+  required_version = ">= ~{terraformVersion}~"
 
   backend "azurerm" {
     resource_group_name  = "~{terraformBackendRG}~"

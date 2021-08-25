@@ -1,0 +1,7 @@
+variables:
+#UAT Variables
+  - name: environment
+    value: "uat"
+
+  - name: location
+    value: "uksouth"
