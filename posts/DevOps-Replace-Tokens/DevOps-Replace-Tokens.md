@@ -223,7 +223,7 @@ Also note that each of my deployments have a unique state file based on the envi
 ```yaml
 ```
 
-![states](./assets/states.jpg)
+![state](./assets/state.jpg)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Replace-Tokens/code) page. :heart:
 
