@@ -30,7 +30,7 @@ For this tutorial we will write a simple terraform configuration that will deplo
 
 Any additional future resources can be created in new paths e.g.: `\terraform-azurerm-resourceX`, `\terraform-azurerm-resourceY`, `\terraform-azurerm-resourceZ` etc... For this tutorial we will just be using `\terraform-azurerm-resourcegroup` to deploy resource groups.
 
-![repo_layout](./assets/repo_layout.jpg)
+![rep_layout](./assets/rep_layout.jpg)
 
 ## Terraform Configuration
 
