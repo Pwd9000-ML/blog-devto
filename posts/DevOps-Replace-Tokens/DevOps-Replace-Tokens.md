@@ -199,6 +199,25 @@ Under my repo path: `\pipelines`, I have created the following three yaml pipeli
 
 Now we can set up each pipeline, which will consume its corresponding variable template file and use the same terraform code to dynamically deploy the same resource group but each having its own state file, name and tags.
 
+![pipelines](./assets/pipelines.jpg)
+
+Also remember to set the environments as shown on each of our yaml pipelines:
+
+```yml code
+```
+
+![environments](./assets/environments.jpg)
+
+After each pipeline has run, you will otice that our terraform confiuratn was dynamically changed each time with replace okens replacing the values on our TF and TFVARS files.
+
+![replace_tokens](./assets/replace_tokens.jpg)
+
+You can also see th ersourcehrpups have been created
+
+![rg_depl](./assets/rg_depl.jpg)
+
+**NOTE:** Remember we changed prod to be in the UK West region on our variable template file for prod earlier.
+
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Replace-Tokens/code) page. :heart:
 
 ### _Author_
