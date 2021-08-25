@@ -22,7 +22,15 @@ Go to your DevOps Organisation Settings and select the **Extensions** tab follow
 
 ## Project layout
 
-For this tutorial I have set up a new project in my organisation called **DynamicTerraform**, I also created a repository called **Infrastructure**. inside of my repository I have created  
+For this tutorial I have set up a new project in my organisation called **DynamicTerraform**, I also created a repository called **Infrastructure**. Inside of my repository I have created the following paths:
+
+- `\pipelines` Here we will configure our yaml deployment pipeline.
+- `variables` Here we will create a yaml based variable file for our pipeline
+- `\terraform-azurerm-resourcegroup\` Here we will have our main HCL coe base which will be used to deploy a simple resource group
+
+Any additional resources can be created in new paths e.g.: `\terraform-azurerm-resourceX\`, `\terraform-azurerm-resourceY\`, `\terraform-azurerm-resourceZ\` etc...
+
+
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Replace-Tokens/code) page. :heart:
 
