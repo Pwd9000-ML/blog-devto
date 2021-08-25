@@ -1,0 +1,17 @@
+variables:
+#Terraform Config + backend
+  - name: terraformVersion
+    value: "1.0.5"
+
+  - name: terraformBackendRG
+    value: "TF-Core-Rg"
+
+  - name: terraformBackendSA
+    value: "tfcorebackendsa"
+
+#Variables used for service connection
+  - name: AzureServiceConnection
+    value: "TF-Terraform-SP"
+  
+  - name: rootDirName
+    value: "terraform-azurerm-resourcegroup"
