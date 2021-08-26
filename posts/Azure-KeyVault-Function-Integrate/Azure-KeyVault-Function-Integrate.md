@@ -93,7 +93,7 @@ Create some secrets in the key vault for testing:
 | Name      | Value               |
 | --------- | ------------------- |
 | SecUser01 | pwd9000admin        |
-| SecPass01 | S8p3r$3cR3t2021!*!  |
+| SecPass01 | S8p3r$3cR3t2021!*! |
 
 ![kvsecrets](./assets/kvsecrets.png)
 
