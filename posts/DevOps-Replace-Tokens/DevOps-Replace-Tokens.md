@@ -28,7 +28,7 @@ For this tutorial we will write a simple terraform configuration that will deplo
 - `\terraform-azurerm-resourcegroup\pipelines` This location will be used to store and configure yaml deployment pipelines for the resources in my root path.
 - `\terraform-azurerm-resourcegroup\pipelines\variables` This location will be used to store and configure yaml variable template files used for my pipelines.
 
-Any additional future resources can be created in new root paths e.g.: `\terraform-azurerm-resourceX`, `\terraform-azurerm-resourceY`, `\terraform-azurerm-resourceZ` etc... For this tutorial we will just be using `\terraform-azurerm-resourcegroup` to deploy a simple resource groups dynamically based on environments for `dev`, `uat` and `prod`.
+Any additional future resources can be created in new root paths e.g.: `\terraform-azurerm-resourceX`, `\terraform-azurerm-resourceY`, `\terraform-azurerm-resourceZ` etc... For this tutorial we will just be using `\terraform-azurerm-resourcegroup` to deploy multiple resource groups dynamically based on an environment e.g. `dev`, `uat` and `prod`.
 
 ![rep_layout](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Replace-Tokens/assets/rep_layout.png)
 
