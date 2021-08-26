@@ -126,11 +126,11 @@ Also remember to set the environments in Azure DevOps as shown on each of our ya
 
 After each pipeline has been run, you will notice that our terraform configuration was dynamically changed each time with the **replace tokens task**, replacing the values on our **TF** and **TFVARS** files.
 
-![replace_tokens](./assets/replace_tokens.jpg)
+![replace_token](./assets/replace_token.jpg)
 
 You'll also see the each resource group have been dynamically created.
 
-![rg_depl](./assets/rg_depl.jpg)
+![rg_dep](./assets/rg_dep.jpg)
 
 **NOTE:** Remember we changed prod to be in the UK West region on our variable template file for prod.
 
