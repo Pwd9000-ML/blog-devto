@@ -8,60 +8,85 @@ canonical_url: null
 id: 802801
 ---
 
-## DevOps Pipeline
+## Replace tokens
 
-Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\`, I have created the following three yaml pipelines (one for each environment):
+Replace tokens is a DevOps extension that can be installed into your DevOps Organisation from the Azure DevOps [marketplace](https://marketplace.visualstudio.com/items?itemName=qetza.replacetokens), simply put it is an Azure Pipelines extension that replace tokens in files with variable values. Today we will look at how we can use this Devops extension working with a terraform HCL code base, to dynamically deploy infrastructure hosted on Azure based on environments defined as variables in DevOps using terraform.
 
-1. **dev_deployment.yml** (Deploy dev RG)
+## Installing Replace Tokens
+
+Before we can use replace tokens we have to install it into our Devops Organisation from the [marketplace](https://marketplace.visualstudio.com/items?itemName=qetza.replacetokens).  
+
+Go to DevOps Organisation Settings and select the **Extensions** tab followed by **Browse marketplace** and search for **Replace tokens**. In addition also install the terraform extension called **Terraform** by Microsoft DevLabs as we will use this later on to use terraform tasks in our DevOps pipeline.
+
+![ado_task](./assets/ado_task.jpg)
+
+## Project layout and objective
+
+For this tutorial we will write a simple terraform configuration that will deploy a resource group, but we will use the **replace tokens task** to manipulate our configuration file to deploy 3 different resource groups based on environment. For example `Infra-dev-Rg`, `Infra-uat-Rg` and `Infra-prod-Rg`. I have set up a new project in my organisation called **DynamicTerraform**, I also created a repository called **Infrastructure**. Inside of my repository I have created the following paths:
+
+- `\terraform-azurerm-resourcegroup` This location will be my root path used to store the main terraform configuration files which will be used to deploy a simple resource group.
+- `\terraform-azurerm-resourcegroup\pipelines` This location will be used to store and configure yaml deployment pipelines for the resources in my root path.
+- `\terraform-azurerm-resourcegroup\pipelines\variables` This location will be used to store and configure yaml variable template files used for my pipelines.
+
+Any additional future resources can be created in new root paths e.g.: `\terraform-azurerm-resourceX`, `\terraform-azurerm-resourceY`, `\terraform-azurerm-resourceZ` etc... For this tutorial we will just be using `\terraform-azurerm-resourcegroup` to deploy a simple resource groups dynamically based on environments for `dev`, `uat` and `prod`.
+
+![rep_layout](./assets/rep_layout.jpg)
+
+## Terraform Configuration
+
+As a pre-req I have also pre-created an Azure DevOps [service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#create-a-service-connection) that will be used to allow my pipelines to access Azure via the terraform task we installed earlier, and I also pre-created an Azure storage account which will act as my terraform [backend](https://www.terraform.io/docs/language/settings/backends/azurerm.html) to safely store my terraform state files in.  
+
+Under my repo path: `\terraform-azurerm-resourcegroup\`, I have created the following three terraform files:
+
+1. **main.tf** (Main terraform configuration file)
 
     ```txt
-    // code/terraform-azurerm-resourcegroup/pipelines/dev_deployment.yml
+    // code/terraform-azurerm-resourcegroup/main.tf
     ```
 
-2. **uat_deployment.yml** (Deploy uat RG)
+    **NOTE:** If you look at the our terraform configuration you will notice the following values: `~{terraformVersion}~`, `~{terraformBackendRG}~`, `~{terraformBackendSA}~` and `~{environment}~`, we will be dynamically changing the values inside of `~{ }~` with values from our pipeline variable file later on in this tutorial using **replace tokens**.
+
+2. **variables.tf** (Terraform variable definition file)
 
     ```txt
-    // code/terraform-azurerm-resourcegroup/pipelines/uat_deployment.yml
+    // code/terraform-azurerm-resourcegroup/variables.tf
     ```
 
-3. **prod_deployment.yml** (Deploy prod RG)
+3. **resourcegroup.auto.tfvars** (Terraform variables which will be dynamically changed by replace tokens task)
 
     ```txt
-    // code/terraform-azurerm-resourcegroup/pipelines/prod_deployment.yml
+    // code/terraform-azurerm-resourcegroup/resourcegroup.auto.tfvars
     ```
 
-Now we can configure each pipeline, which will consume its own corresponding variable template file as well as a common variable template file, but use the same terraform configuration code to dynamically deploy the same resource group but each having its own state file, name and tags dynamically.
+    **NOTE:** Again, if you look at the our **TFVARS** configuration file you will notice the following values: `~{environment}~` and `~{location}~`, we will be dynamically changing the values inside of `~{ }~` with values from our pipeline variable file later on in this tutorial using **replace tokens**.
 
-![pipelines](./assets/pipelines.jpg)
+## DevOps Pipeline Variable file
 
-Also remember to set the environments in Azure DevOps as shown on each of our yaml pipelines e.g.:
+Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\variables`, I have created the following four yaml variable template files:
 
-```txt
-// code/terraform-azurerm-resourcegroup/pipelines/dev_deployment.yml#L21-L21
-```
+1. **common_vars.yml** (Declares variables that will be used in all pipelines).
 
-![environments](./assets/environments.jpg)
+    ```txt
+    // code/terraform-azurerm-resourcegroup/pipelines/variables/common_vars.yml
+    ```
 
-After each pipeline has been run, you will notice that our terraform configuration was dynamically changed each time with the **replace tokens task**, replacing the values on our **TF** and **TFVARS** files.
+2. **dev_vars.yml** (Declares variables that will be used in DEV specific pipeline).
 
-![replace_tokens](./assets/replace_tokens.jpg)
+    ```txt
+    // code/terraform-azurerm-resourcegroup/pipelines/variables/dev_vars.yml
+    ```
 
-You'll also see the each resource group have been dynamically created.
+3. **uat_vars.yml** (Declares variables that will be used in UAT specific pipeline).
 
-![rg_depl](./assets/rg_depl.jpg)
+    ```txt
+    // code/terraform-azurerm-resourcegroup/pipelines/variables/uat_vars.yml
+    ```
 
-**NOTE:** Remember we changed prod to be in the UK West region on our variable template file for prod.
+4. **prod_vars.yml** (Declares variables that will be used in PROD specific pipeline).
 
-Also note that each of the deployments have their own unique state file based on the environment as depicted on each of the yaml pipelines and declared in the variable files e.g.:
+    ```txt
+    // code/terraform-azurerm-resourcegroup/pipelines/variables/prod_vars.yml
+    ```
 
-```txt
-// code/terraform-azurerm-resourcegroup/pipelines/dev_deployment.yml#L58-L58
-```
+**NOTE:** You will notice that the variable **names** in each yaml template are aligned with the values used on the terraform configuration files earlier: `~{environment}~`, `~{location}~`, `~{terraformBackendRG}~`, `~{terraformBackendSA}~`. Also note that our production variable file has a different location specified: `ukwest`.
 
-![state](./assets/state.jpg)
-
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Replace-Tokens/code) page. :heart:
-
-### _Author_
-
-{% user pwd9000 %}
