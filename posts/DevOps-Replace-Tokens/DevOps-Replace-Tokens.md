@@ -478,7 +478,7 @@ Also note that each of the deployments have their own unique state file based on
 backendAzureRmKey: 'Infra_${{ variables.environment }}_rg.tfstate'
 ```
 
-![state](https://github.com/Pwd9000-ML/blog-devto/blob/master/posts/DevOps-Replace-Tokens/assets/state.png)
+![state](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Replace-Tokens/assets/state.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Replace-Tokens/code) page. :heart:
 
