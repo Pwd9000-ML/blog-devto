@@ -3,7 +3,7 @@ title: Dynamic terraform deployments using DevOps replace tokens
 published: false
 description: DevOps - Terraform - Replace Tokens
 tags: 'tutorial, azure, productivity, devops'
-cover_image: 
+cover_image: assets/main-rep.png
 canonical_url: null
 id: 802801
 ---
@@ -18,6 +18,7 @@ Before we can use replace tokens we have to install it into our Devops Organisat
 
 Go to DevOps Organisation Settings and select the **Extensions** tab followed by **Browse marketplace** and search for **Replace tokens**. In addition also install the terraform extension called **Terraform** by Microsoft DevLabs as we will use this later on to use terraform tasks in our DevOps pipeline.
 
+![ado_task](./assets/ado_task.png)
 
 ## Project layout and objective
 
@@ -29,6 +30,7 @@ For this tutorial we will write a simple terraform configuration that will deplo
 
 Any additional future resources can be created in new root paths e.g.: `\terraform-azurerm-resourceX`, `\terraform-azurerm-resourceY`, `\terraform-azurerm-resourceZ` etc... For this tutorial we will just be using `\terraform-azurerm-resourcegroup` to deploy a simple resource groups dynamically based on environments for `dev`, `uat` and `prod`.
 
+![rep_layout](./assets/rep_layout.png)
 
 ## Terraform Configuration
 
