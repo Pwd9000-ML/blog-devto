@@ -1,6 +1,6 @@
 ---
 title: Dynamic terraform deployments using DevOps replace tokens
-published: false
+published: true
 description: DevOps - Terraform - Replace Tokens
 tags: 'tutorial, azure, productivity, devops'
 cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Replace-Tokens/assets/main-rep.png
