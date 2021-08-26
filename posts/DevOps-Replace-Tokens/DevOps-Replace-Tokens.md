@@ -3,7 +3,7 @@ title: Dynamic terraform deployments using DevOps replace tokens
 published: false
 description: DevOps - Terraform - Replace Tokens
 tags: 'tutorial, azure, productivity, devops'
-cover_image: assets/main.jpg
+cover_image: assets/main.png
 canonical_url: null
 id: 802801
 ---
@@ -18,7 +18,7 @@ Before we can use replace tokens we have to install it into our Devops Organisat
 
 Go to DevOps Organisation Settings and select the **Extensions** tab followed by **Browse marketplace** and search for **Replace tokens**. In addition also install the terraform extension called **Terraform** by Microsoft DevLabs as we will use this later on to use terraform tasks in our DevOps pipeline.
 
-![ado_task](./assets/ado_task.jpg)
+![ado_task](./assets/ado_task.png)
 
 ## Project layout and objective
 
@@ -30,7 +30,7 @@ For this tutorial we will write a simple terraform configuration that will deplo
 
 Any additional future resources can be created in new root paths e.g.: `\terraform-azurerm-resourceX`, `\terraform-azurerm-resourceY`, `\terraform-azurerm-resourceZ` etc... For this tutorial we will just be using `\terraform-azurerm-resourcegroup` to deploy a simple resource groups dynamically based on environments for `dev`, `uat` and `prod`.
 
-![rep_layout](./assets/rep_layout.jpg)
+![rep_layout](./assets/rep_layout.png)
 
 ## Terraform Configuration
 
@@ -448,7 +448,7 @@ Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\`, I have create
 
 Now we can configure each pipeline, which will consume its own corresponding variable template file as well as a common variable template file, but use the same terraform configuration code to dynamically deploy the same resource group but each having its own state file, name and tags dynamically.
 
-![pipelines](./assets/pipelines.jpg)
+![pipelines](./assets/pipelines.png)
 
 Also remember to set the environments in Azure DevOps as shown on each of our yaml pipelines e.g.:
 
@@ -458,15 +458,15 @@ Also remember to set the environments in Azure DevOps as shown on each of our ya
 environment: Infra-Dev
 ```
 
-![environments](./assets/environments.jpg)
+![environments](./assets/environments.png)
 
 After each pipeline has been run, you will notice that our terraform configuration was dynamically changed each time with the **replace tokens task**, replacing the values on our **TF** and **TFVARS** files.
 
-![replace_token](./assets/replace_token.jpg)
+![replace_token](./assets/replace_token.png)
 
 You'll also see the each resource group have been dynamically created.
 
-![rg_dep](./assets/rg_dep.jpg)
+![rg_dep](./assets/rg_dep.png)
 
 **NOTE:** Remember we changed prod to be in the UK West region on our variable template file for prod.
 
@@ -478,7 +478,7 @@ Also note that each of the deployments have their own unique state file based on
 backendAzureRmKey: 'Infra_${{ variables.environment }}_rg.tfstate'
 ```
 
-![state](./assets/state.jpg)
+![state](./assets/state.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Replace-Tokens/code) page. :heart:
 
