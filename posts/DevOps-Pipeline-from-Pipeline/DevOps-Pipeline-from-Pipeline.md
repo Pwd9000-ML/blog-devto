@@ -10,7 +10,7 @@ id: 783932
 
 ## Azure DevOps pipeline/YAML resources
 
-Azure DevOps pipelines provides very useful [resources](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=schema) we can define in our pipeline in one place and be consumed anywhere in our pipeline.  
+Azure DevOps pipelines provides very useful [resources](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=schema) we can define in our pipeline in one place and be consumed anywhere in our pipeline.
 
 A resource is anything used by a pipeline that lives outside the pipeline. Pipeline resources include:
 
@@ -37,6 +37,7 @@ I also created the following code in **PipelineA.yml**.
 
 ```yaml
 ## code/PipelineA.yml
+
 trigger: none
 
 stages:
@@ -79,6 +80,7 @@ In **ProjectB** I have **PipelineB.yml** that contains the pipeline resource for
 
 ```yaml
 ## code/PipelineB.yml
+
 trigger: none
 pr: none
 
@@ -133,30 +135,30 @@ Metadata for a pipeline resource, are available as predefined variables that we 
 ```yml
 ## code/PipelineB.yml#L29-L30
 script: |
-    Write-output "This pipeline has been triggered by: $(resources.pipeline.PipelineA.pipelineName)"
+  Write-output "This pipeline has been triggered by: $(resources.pipeline.PipelineA.pipelineName)"
 ```
 
 **Predefined pipeline resource variables:**
 
 ```txt
-resources.pipeline.<Alias>.projectID  
-resources.pipeline.<Alias>.pipelineName  
-resources.pipeline.<Alias>.pipelineID  
-resources.pipeline.<Alias>.runName  
-resources.pipeline.<Alias>.runID  
-resources.pipeline.<Alias>.runURI  
-resources.pipeline.<Alias>.sourceBranch  
-resources.pipeline.<Alias>.sourceCommit  
-resources.pipeline.<Alias>.sourceProvider  
-resources.pipeline.<Alias>.requestedFor  
-resources.pipeline.<Alias>.requestedForID  
+resources.pipeline.<Alias>.projectID
+resources.pipeline.<Alias>.pipelineName
+resources.pipeline.<Alias>.pipelineID
+resources.pipeline.<Alias>.runName
+resources.pipeline.<Alias>.runID
+resources.pipeline.<Alias>.runURI
+resources.pipeline.<Alias>.sourceBranch
+resources.pipeline.<Alias>.sourceCommit
+resources.pipeline.<Alias>.sourceProvider
+resources.pipeline.<Alias>.requestedFor
+resources.pipeline.<Alias>.requestedForID
 ```
 
 Now when we trigger and run **PipelineA** in **ProjectA**, it will automatically create our **ArtifactA** and also after completion **PipelineB** in **ProjectB** will be automatically triggered and also download and consume **ArtifactA** that was created in **ProjectA**.
 
 ![results](./assets/results.png)
 
-Also note that triggers for resources are created based on the default branch configuration of our YAML, which is master. However, if we want to configure resource triggers from a different branch, we will need to change the default branch for the pipeline. For more information have a look at [Default branch for triggers](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=example#default-branch-for-triggers).  
+Also note that triggers for resources are created based on the default branch configuration of our YAML, which is master. However, if we want to configure resource triggers from a different branch, we will need to change the default branch for the pipeline. For more information have a look at [Default branch for triggers](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=example#default-branch-for-triggers).
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Pipeline-from-Pipeline/code) page. :heart:
 

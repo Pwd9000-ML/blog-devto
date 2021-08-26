@@ -85,28 +85,28 @@ az network private-dns link vnet create `
 
 ## Creating an Azure Logic app (Single-tenant)?
 
-Now that we have everything in place we will create our logic app. Navigate to the Azure portal and go to the resource group we created and create a new **Logic app (Standard)** resource.  
+Now that we have everything in place we will create our logic app. Navigate to the Azure portal and go to the resource group we created and create a new **Logic app (Standard)** resource.
 
 ![CreateLogicApp](./assets/CreateLogicApp.png)
 
 Under the **Basics** blade, add the following **Instance Details:**
 
-| Name            | Value               |
-| --------------- | ------------------- |
-| Type            | Standard (Preview)  |
-| Logic App name  | {Name}              |
-| Publish         | Workflow            |
-| Region          | {Region}            |
+| Name           | Value              |
+| -------------- | ------------------ |
+| Type           | Standard (Preview) |
+| Logic App name | {Name}             |
+| Publish        | Workflow           |
+| Region         | {Region}           |
 
 ![CreateLogicAppBasics](./assets/CreateLogicAppBasics.png)
 
 Under the **Hosting** blade, add the following **Plan:**
 
-| Name            | Value                   |
-| --------------- | ----------------------- |
-| Plan type       | Workflow Standard       |
-| Windows Plan    | {ASP - App Service Plan}|
-| Sku and size    | {SKU}                   |
+| Name         | Value                    |
+| ------------ | ------------------------ |
+| Plan type    | Workflow Standard        |
+| Windows Plan | {ASP - App Service Plan} |
+| Sku and size | {SKU}                    |
 
 ![CreateLogicAppHosting](./assets/CreateLogicAppHosting.png)
 
@@ -128,13 +128,13 @@ Next we will create our private endpoint. Select the **Networking** blade and cl
 
 Under the **Private Endpoint connections** blade, click **+ Add** and add the following:
 
-| Name                            | Value                    |
-| ------------------------------- | ------------------------ |
-| Name                            | {Name private endpoint}  |
-| Subscription                    | {Subscription}           |
-| Virtual Network                 | {Virtual Network Name}   |
-| Subnet                          | {Subnet Name}            |
-| Integrate with private DNS Zone | Yes                      |
+| Name                            | Value                   |
+| ------------------------------- | ----------------------- |
+| Name                            | {Name private endpoint} |
+| Subscription                    | {Subscription}          |
+| Virtual Network                 | {Virtual Network Name}  |
+| Subnet                          | {Subnet Name}           |
+| Integrate with private DNS Zone | Yes                     |
 
 ![peconfig](./assets/peconfig.png)
 
@@ -144,12 +144,12 @@ Under the **Private Endpoint connections** blade, click **+ Add** and add the fo
 
 Make a note of the **private IP** and navigate to the Azure Private DNS zone we created earlier. Click on **+ Record set** and add the following:
 
-| Name        | Value                             |
-| ----------- | --------------------------------- |
-| Name        | {Name of Logic App}               |
-| Type        | A                                 |
-| TTL         | 1 Hour                            |
-| IP address  | {Private Inbound IP of Logic App} |
+| Name       | Value                             |
+| ---------- | --------------------------------- |
+| Name       | {Name of Logic App}               |
+| Type       | A                                 |
+| TTL        | 1 Hour                            |
+| IP address | {Private Inbound IP of Logic App} |
 
 ![privipconfig](./assets/privipconfig.png)
 

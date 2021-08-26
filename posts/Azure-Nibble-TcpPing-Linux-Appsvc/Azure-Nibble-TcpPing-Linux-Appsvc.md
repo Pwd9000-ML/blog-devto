@@ -10,9 +10,9 @@ id: 763498
 
 ## Ping vs. TcpPing?
 
-**Ping** is a computer network administration software utility used to test the reachability of a host on an Internet Protocol (IP) network using Internet Control Message Protocol (ICMP).  
+**Ping** is a computer network administration software utility used to test the reachability of a host on an Internet Protocol (IP) network using Internet Control Message Protocol (ICMP).
 
-There can be instances where a remote host, has blocked ICMP traffic, which in turn means we cannot test/check to connectivity to the remote host. In this kind of a situation, what you can do to check the host's presence is to telnet to a known port or to try making a TCP connection to the host.  
+There can be instances where a remote host, has blocked ICMP traffic, which in turn means we cannot test/check to connectivity to the remote host. In this kind of a situation, what you can do to check the host's presence is to telnet to a known port or to try making a TCP connection to the host.
 
 This is where **tcpping** comes in and is a TCP oriented **ping** alternative. It is used to test the reachability of a service on a host using TCP/IP and measure the time it takes to connect to the specified port. It is a very useful tool to help with diagnosing network related issues on Azure App Service.
 
@@ -28,15 +28,15 @@ Go to your app service Kudu site: **<https://[sitename].scm.azurewebsites.net/we
 
 Run the following:
 
-1. ```apt-get install tcptraceroute``` (**Required:** if not already present)
-2. ```apt-get install bc``` (**Required:** if minimal Linux Runtime used, e.g. docker)
-3. ```cd /usr/bin```
-4. ```wget http://www.vdberg.org/~richard/tcpping```
-5. ```chmod 755 tcpping```
+1. `apt-get install tcptraceroute` (**Required:** if not already present)
+2. `apt-get install bc` (**Required:** if minimal Linux Runtime used, e.g. docker)
+3. `cd /usr/bin`
+4. `wget http://www.vdberg.org/~richard/tcpping`
+5. `chmod 755 tcpping`
 
 ## How to use
 
-```tcpping [-d] [-c] [-r sec] [-x count] ipaddress [port]```
+`tcpping [-d] [-c] [-r sec] [-x count] ipaddress [port]`
 
 - [-d]: print timestamp before each result.
 - [-c]: use columned output for easy parsing.

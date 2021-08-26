@@ -20,11 +20,11 @@ In todays tutorial we will look into an interesting use case for this service, i
 
 **Note:** The source or entry point where we will place our private endpoint can be in a network that is in a completely different region, tenant or subscription.
 
-Before we get started, let's just think about why we would want to do this?  
+Before we get started, let's just think about why we would want to do this?
 
-**APIM (Internal VNET mode):** When API management deploys in internal VNET mode, you can only view the service endpoints within a VNET whose access you control. In order to reduce the attack surface area, configuring APIM with all it's endpoints (e.g. gateway, APIM portals and management endpoints) will be protected within an internal VNET, and cannot be directly accessed from any potential threats from the public internet. The service can only be accessed from peered VNETs that have connectivity to our VNET hosting our APIM service.  
+**APIM (Internal VNET mode):** When API management deploys in internal VNET mode, you can only view the service endpoints within a VNET whose access you control. In order to reduce the attack surface area, configuring APIM with all it's endpoints (e.g. gateway, APIM portals and management endpoints) will be protected within an internal VNET, and cannot be directly accessed from any potential threats from the public internet. The service can only be accessed from peered VNETs that have connectivity to our VNET hosting our APIM service.
 
-This is good security practice, but what if we have a requirement where we have a consumer that needs to use our API, but is located in another VNET that perhaps overlaps in IP address space and cannot be peered or connected to our VNET hosting our APIM service? Or what if we have a consumer that has a VNET in a completely separate region, tenant and subscription? How can we make our API management service available to be consumed and keep everything internal and secure at the same time?  
+This is good security practice, but what if we have a requirement where we have a consumer that needs to use our API, but is located in another VNET that perhaps overlaps in IP address space and cannot be peered or connected to our VNET hosting our APIM service? Or what if we have a consumer that has a VNET in a completely separate region, tenant and subscription? How can we make our API management service available to be consumed and keep everything internal and secure at the same time?
 
 Luckily there is a solution to this problem statement, and that is Azure private link service. With Azure Private Link Service we can create a **Standard Load Balancer** that will be connected to a **Virtual Machine** or **Virtual Machine Scale Set** which will act as a relay using **IP/Port forwarding** to our internal APIM, we will front the load balancer with **Private Link Service** and create a **Private endpoint** on our external network that will allow entry point connectivity to our internal APIM.
 
@@ -133,9 +133,9 @@ $apimService = New-AzApiManagement `
     -VpnType "Internal" -Sku "Developer"
 ```
 
-**Note:** Because we are creating a new APIM service for this tutorial, the above powershell code can take anything between 10-20 minutes to complete.  
+**Note:** Because we are creating a new APIM service for this tutorial, the above powershell code can take anything between 10-20 minutes to complete.
 
-After our APIM is created make a note of the APIM **Private IP** as we will use this in a later step to configure our VM forwarder.  
+After our APIM is created make a note of the APIM **Private IP** as we will use this in a later step to configure our VM forwarder.
 
 ![apimPrivateIP1](./assets/apimPrivateIP1.png)
 
@@ -170,9 +170,11 @@ New-AzVM -ResourceGroupName $resourceGroupName -Location $region -VM $VirtualMac
 
 ```txt
 // code/VM-forwarder.ps1#L13-L13
+
+$NIC = New-AzNetworkInterface -Name $nicName -ResourceGroupName $resourceGroupName -Location $region -SubnetId $plsSubnetId -EnableIPForwarding
 ```
 
-After our VM is created we need to run a few commands on the VM to allow certain traffic to be forwarded and passed through to APIM. First we will enable IP Router in the VM registry, create a firewall rule to allow https(TCP port 443) traffic inbound and lastly enable forwarding to our APIM private IP address using `netsh`.  
+After our VM is created we need to run a few commands on the VM to allow certain traffic to be forwarded and passed through to APIM. First we will enable IP Router in the VM registry, create a firewall rule to allow https(TCP port 443) traffic inbound and lastly enable forwarding to our APIM private IP address using `netsh`.
 
 Run the following powershell commands on the newly created VM:
 
@@ -183,10 +185,10 @@ $port = '443'
 $localaddress = (Get-NetIPConfiguration | Where-Object {$_.ipv4defaultgateway -ne $null}).IPv4Address.ipaddress
 $apimPrivateIP = '10.0.2.5'
 
-#Enable Port Forwarding on VM. 
+#Enable Port Forwarding on VM.
 #Enable IP forwarding on Azure for the VM's #network interface as well.
 Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters -Name IpEnableRouter -Value 1
- 
+
 #Allow HTTPS(443) traffic inbound
 New-NetFirewallRule -DisplayName "HTTPS-443-Inbound" -Direction Inbound -Action Allow -Protocol TCP -LocalPort $port
 
@@ -255,7 +257,7 @@ After a few minutes we will see that our health probe is working as well which p
 
 ![probe1](./assets/probe1.png)
 
-Next we will create our **Private Link Service** using the load balancer we created, then create a **Private Endpoint** on our remote non-peered VNET. We will also test that we can reach APIM using the Private endpoint from a test VM running in our external non-peered VNET.  
+Next we will create our **Private Link Service** using the load balancer we created, then create a **Private Endpoint** on our remote non-peered VNET. We will also test that we can reach APIM using the Private endpoint from a test VM running in our external non-peered VNET.
 
 In the Azure portal go to `Private Link` and select `+ Add` under `Private Link Services`.
 
@@ -263,11 +265,11 @@ In the Azure portal go to `Private Link` and select `+ Add` under `Private Link 
 
 Under the **Basics** blade, add the following:
 
-| Name            | Value               |
-| --------------- | ------------------- |
-| Resource Group  | PrivateAPIM         |
-| Name            | APIM-PLS            |
-| Region          | UK South            |
+| Name           | Value       |
+| -------------- | ----------- |
+| Resource Group | PrivateAPIM |
+| Name           | APIM-PLS    |
+| Region         | UK South    |
 
 ![basicspls](./assets/basicspls.png)
 
@@ -288,7 +290,7 @@ Under the **Access Security** blade, we will use **Restricted by subscription** 
 
 ![accesspls](./assets/accesspls.png)
 
-Add any tags if required and then create the private link service.  
+Add any tags if required and then create the private link service.
 
 Now that our Private Link Service is created I will navigate to my other subscription I created separately. There I will create and link a **Private Endpoint** on an external non-peered VNET which resides in the **EAST US** region. You can do the same by creating a new VNET in a different region and leaving it un-peered.
 
@@ -298,21 +300,21 @@ In the Azure portal go to `Private Link` and select `+ Add` under `Private endpo
 
 Under the **Basics** blade, select the subscription, and region where the external VNET resides (in my case this is in EAST US):
 
-| Name            | Value               |
-| --------------- | ------------------- |
-| Resource Group  | APIM                |
-| Name            | APIM-PE             |
-| Region          | East US             |
+| Name           | Value   |
+| -------------- | ------- |
+| Resource Group | APIM    |
+| Name           | APIM-PE |
+| Region         | East US |
 
 ![basicspe1](./assets/basicspe1.png)
 
 Under the **Resource** blade, you can connect to the PLS service we created by it's `resource ID` or by selecting the following:
 
-| Name            | Value                                 |
-| --------------- | ------------------------------------- |
-| Subscription    | [Subscription hosting PLS]            |
-| Resource Type   | Microsoft.Network/privateLinkservices |
-| Resource        | APIM-PLS                              |
+| Name          | Value                                 |
+| ------------- | ------------------------------------- |
+| Subscription  | [Subscription hosting PLS]            |
+| Resource Type | Microsoft.Network/privateLinkservices |
+| Resource      | APIM-PLS                              |
 
 ![resourcepe](./assets/resourcepe.png)
 
@@ -325,7 +327,7 @@ Under the **Configuration** blade, select the external virtual network (in my ca
 
 ![configpe](./assets/configpe.png)
 
-Add any tags if required and then create the private endpoint.  
+Add any tags if required and then create the private endpoint.
 
 And that is it, we have now successfully created a secure entry point to access our private APIM service from a non-peered external VNET hosted in EAST US. I have a VM running in my EAST US external VNET in which we can test our connectivity via the private endpoint we just created. In my case the private endpoint IP allocated to APIM-PE is: `192.168.0.6`.
 

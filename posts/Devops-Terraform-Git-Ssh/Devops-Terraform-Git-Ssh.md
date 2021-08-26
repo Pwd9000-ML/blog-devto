@@ -14,7 +14,7 @@ Terraform supports many different [Module Sources](https://www.terraform.io/docs
 
 ## Step 1: Prepare SSH Key
 
-First we have to create a SSH key pair:  
+First we have to create a SSH key pair:
 
 - Install Git for windows.
 - In a powershell console run: `ssh-keygen`. This will create a private key: `id_rsa` and a public key: `id_rsa.pub` under the following path: `%UserProfile%/.ssh`.
@@ -27,15 +27,15 @@ First we have to create a SSH key pair:
 
 - Copy the private key file created in the previous step `id_rsa` into azure **pipelines -> Library -> Secure files**. The file can be renamed to make it more friendly to use later on in the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task. In my case I have renamed my private key to `terraform_rsa`.
 
-    ![securefile01](./assets/securefile01.png)
+  ![securefile01](./assets/securefile01.png)
 
 - Under the **user settings** in Azure Devops go to SSH public keys and select **Add**. Give a name and add the contents of the file created `id_rsa.pub`. In my case I have renamed my public key to `terraform_rsa.pub`.
 
-    ![sshpub01](./assets/sshpub01.gif)
+  ![sshpub01](./assets/sshpub01.gif)
 
 ## Step 3: How to use _Install SSH Key_ devops task
 
-When using an Azure DevOps pipeline to execute terraform code from a DevOps agent referencing an Azure Devops git Repo as a module source, we can make use of the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task to install the SSH key pair we just created onto the DevOps agent that will be executing the terraform code.  
+When using an Azure DevOps pipeline to execute terraform code from a DevOps agent referencing an Azure Devops git Repo as a module source, we can make use of the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task to install the SSH key pair we just created onto the DevOps agent that will be executing the terraform code.
 
 We will create a few variables next. These variables can either be created inside of a [variable group](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml#use-a-variable-group) or a [key vault](https://docs.microsoft.com/en-us/azure/key-vault/general/overview) and accessed using the [Azure key vault task](https://docs.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops) in our devops pipeline.
 
@@ -58,23 +58,23 @@ Here is a yaml pipeline example of the tasks/steps to read in secrets as variabl
 
 ```yaml
 steps:
-### Link to key vault.
-- task: AzureKeyVault@1
-  displayName: Keyvault
-  inputs:
-    azureSubscription: TerraformSP #ADO service connection (Service principal)
-    KeyVaultName: 'mykeyvault'
-    secretsFilter: '*'
-    runAsPreJob: true 
+  ### Link to key vault.
+  - task: AzureKeyVault@1
+    displayName: Keyvault
+    inputs:
+      azureSubscription: TerraformSP #ADO service connection (Service principal)
+      KeyVaultName: 'mykeyvault'
+      secretsFilter: '*'
+      runAsPreJob: true
 
-### Install SSH key on ADO agent to access terraform modules git repo.
-- task: InstallSSHKey@0
-  displayName: 'Install an SSH key'
-  inputs:
-    knownHostsEntry: '$(git_ssh_known_hosts)' #Variable pulled in from key vault via key vault task above.
-    sshPublicKey: '$(terraform-git-ssh-pub)' #Variable pulled in from key vault via key vault task above.
-    sshPassphrase: '$(git_ssh_pass)' #Variable pulled in from key vault via key vault task above.
-    sshKeySecureFile: 'terraform_rsa' #This was originally renamed from id_rsa and uploaded into secure files library on the project hosting our TF modules repo
+  ### Install SSH key on ADO agent to access terraform modules git repo.
+  - task: InstallSSHKey@0
+    displayName: 'Install an SSH key'
+    inputs:
+      knownHostsEntry: '$(git_ssh_known_hosts)' #Variable pulled in from key vault via key vault task above.
+      sshPublicKey: '$(terraform-git-ssh-pub)' #Variable pulled in from key vault via key vault task above.
+      sshPassphrase: '$(git_ssh_pass)' #Variable pulled in from key vault via key vault task above.
+      sshKeySecureFile: 'terraform_rsa' #This was originally renamed from id_rsa and uploaded into secure files library on the project hosting our TF modules repo
 ```
 
 ### Terraform source module example
@@ -85,7 +85,7 @@ Here is an example of how we can reference our Azure DevOps repo containing our 
 module "mymodule" {
 
   source = "git::git@ssh.dev.azure.com:v3/Org/Project/repo"
-  
+
 }
 ```
 
