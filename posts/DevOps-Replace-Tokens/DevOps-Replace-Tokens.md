@@ -31,7 +31,7 @@ For this tutorial we will write a simple terraform configuration that will deplo
 
 Any additional future resources can be created in new root paths e.g.: `/terraform-azurerm-resourceX`, `/terraform-azurerm-resourceY`, `/terraform-azurerm-resourceZ` etc... For this tutorial we will just be using `/terraform-azurerm-resourcegroup` to deploy multiple resource groups dynamically based on an environment e.g. `dev`, `uat` and `prod`. This is what the DevOps project layout looks like:
 
-![rep_layout](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Replace-Tokens/assets/rep_layout.png)
+![repo_layout](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Replace-Tokens/assets/repo_layout.png)
 
 ## Terraform Configuration
 
