@@ -118,7 +118,7 @@ Under my repo path: `\terraform-azurerm-resourcegroup\`, I have created the foll
 
    **NOTE:** Again, if you look at the our **TFVARS** configuration file you will notice the following values: `~{environment}~` and `~{location}~`, we will be dynamically changing the values inside of `~{ }~` with values from our pipeline variable file later on in this tutorial using **replace tokens**.
 
-## DevOps Pipeline Variable file
+## DevOps Pipeline Variable files
 
 Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\variables`, I have created the following four yaml variable template files:
 
@@ -190,7 +190,7 @@ Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\variables`, I ha
 
 **NOTE:** You will notice that the variable **names** in each yaml template are aligned with the values used on the terraform configuration files earlier: `~{environment}~`, `~{location}~`, `~{terraformBackendRG}~`, `~{terraformBackendSA}~`. Also note that our production variable file has a different location specified: `ukwest`.
 
-## DevOps Pipeline
+## DevOps Pipelines
 
 Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\`, I have created the following three yaml pipelines (one for each environment):
 
@@ -446,6 +446,24 @@ Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\`, I have create
                        environmentServiceNameAzureRM: '${{ variables.AzureServiceConnection }}'
    ```
 
+Note that each one of our pipelines have the replace tokens task defined and configured to replace the variables we defined within the **tokenPrefix: `~{`** and **tokenSuffix: `}~`** as you can see below:
+
+```yml
+### replace tokens in tf and tfvars.
+- task: qetza.replacetokens.replacetokens-task.replacetokens@3
+  displayName: 'Replace tokens in tfvars and tf'
+  inputs:
+    rootDirectory: '$(System.DefaultWorkingDirectory)'
+    targetFiles: |
+      ${{ variables.rootDirName }}\*.tf
+      ${{ variables.rootDirName }}\*.tfvars
+          encoding: 'utf-8'
+    actionOnMissing: 'warn'
+    keepToken: false
+    tokenPrefix: '~{'
+    tokenSuffix: '}~'
+```
+
 Now we can configure each pipeline, which will consume its own corresponding variable template file as well as a common variable template file, but use the same terraform configuration code to dynamically deploy the same resource group but each having its own state file, name and tags dynamically.
 
 ![pipelines](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Replace-Tokens/assets/pipelines.png)
@@ -469,7 +487,7 @@ You'll also see the each resource group have been dynamically created.
 
 ![rg_dep](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Replace-Tokens/assets/rg_dep.png)
 
-**NOTE:** Remember we changed prod to be in the UK West region on our variable template file for prod.
+**NOTE:** Remember we changed location to be in the UK West region on our variable template file for prod.
 
 Also note that each of the deployments have their own unique state file based on the environment as depicted on each of the yaml pipelines and declared in the variable files e.g.:
 
