@@ -1,7 +1,6 @@
 name: Deployment-Dev-RG-$(Rev:rr)
 trigger: none
 
-### ADO variable group linked to SSH secure vars ###
 variables:
 - template: variables/common_vars.yml
 - template: variables/dev_vars.yml
@@ -24,54 +23,12 @@ stages:
           deploy:
             steps:
               - checkout: self
-              
-              ### Install Terraform Version from commom_vars
-              - task: TerraformInstaller@0
-                inputs:
+              ### Run common terraform deploy steps
+              - template: task_groups/tf_deploy_tasks.yml
+                parameters:
                   terraformVersion: ${{ variables.terraformVersion }}
-
-              ### replace tokens in tf and tfvars.
-              - task: qetza.replacetokens.replacetokens-task.replacetokens@3
-                displayName: 'Replace tokens in tfvars and tf'
-                inputs:
-                  rootDirectory: '$(System.DefaultWorkingDirectory)'
-                  targetFiles: |
-                    ${{ variables.rootDirName }}\*.tf
-                    ${{ variables.rootDirName }}\*.tfvars
-                        encoding: 'utf-8'
-                  actionOnMissing: 'warn'
-                  keepToken: false 
-                  tokenPrefix: '~{'
-                  tokenSuffix: '}~'
-              
-              ### Terraform Init
-              - task: TerraformTaskV2@2
-                displayName: Terraform Init
-                inputs:
-                  provider: 'azurerm'
-                  command: 'init'
-                  workingDirectory: '$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}'
-                  backendServiceArm: '${{ variables.AzureServiceConnection }}'
-                  backendAzureRmResourceGroupName: '${{ variables.terraformBackendRG }}'
-                  backendAzureRmStorageAccountName: '${{ variables.terraformBackendSA }}'
-                  backendAzureRmContainerName: 'tfstate'
-                  backendAzureRmKey: 'Infra_${{ variables.environment }}_rg.tfstate'
-
-              ### Terraform Plan
-              - task: TerraformTaskV2@2
-                displayName: Terraform Plan
-                inputs:
-                  provider: 'azurerm'
-                  command: 'plan'
-                  workingDirectory: '$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}'
-                  commandOptions: "--out=$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}/plan.tfplan"
-                  environmentServiceNameAzureRM: '${{ variables.AzureServiceConnection }}'
-
-              ### Terraform Apply
-              - task: TerraformTaskV2@2
-                displayName: Terraform Apply
-                inputs:
-                  provider: 'azurerm'
-                  command: 'apply'
-                  workingDirectory: '$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}'
-                  environmentServiceNameAzureRM: '${{ variables.AzureServiceConnection }}'
+                  rootDirName: ${{ variables.rootDirName }}
+                  AzureServiceConnection: ${{ variables.AzureServiceConnection }}
+                  terraformBackendRG: ${{ variables.terraformBackendRG }}
+                  terraformBackendSA: ${{ variables.terraformBackendSA }}
+                  environment: ${{ variables.environment }}

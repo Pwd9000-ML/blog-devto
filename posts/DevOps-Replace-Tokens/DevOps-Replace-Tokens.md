@@ -24,11 +24,12 @@ Go to DevOps Organisation Settings and select the **Extensions** tab followed by
 
 For this tutorial we will write a simple terraform configuration that will deploy a resource group, but we will use the **replace tokens task** to manipulate our configuration file to deploy 3 different resource groups based on environment. For example `Infra-dev-Rg`, `Infra-uat-Rg` and `Infra-prod-Rg`. I have set up a new project in my organisation called **DynamicTerraform**, I also created a repository called **Infrastructure**. Inside of my repository I have created the following paths:
 
-- `\terraform-azurerm-resourcegroup` This location will be my root path used to store the main terraform configuration files which will be used to deploy a simple resource group.
-- `\terraform-azurerm-resourcegroup\pipelines` This location will be used to store and configure yaml deployment pipelines for the resources in my root path.
-- `\terraform-azurerm-resourcegroup\pipelines\variables` This location will be used to store and configure yaml variable template files used for my pipelines.
+- `/terraform-azurerm-resourcegroup` This location will be my root path used to store the main terraform configuration files which will be used to deploy a simple resource group.
+- `/terraform-azurerm-resourcegroup/pipelines` This location will be used to store and configure yaml deployment pipelines for the resources in my root path.
+- `/terraform-azurerm-resourcegroup/pipelines/variables` This location will be used to store and configure yaml variable template files used for my pipelines.
+- `/terraform-azurerm-resourcegroup/pipelines/task_groups` This location will be used to store and configure yaml tasks/steps used in my pipelines.
 
-Any additional future resources can be created in new root paths e.g.: `\terraform-azurerm-resourceX`, `\terraform-azurerm-resourceY`, `\terraform-azurerm-resourceZ` etc... For this tutorial we will just be using `\terraform-azurerm-resourcegroup` to deploy multiple resource groups dynamically based on an environment e.g. `dev`, `uat` and `prod`. This is what the DevOps project layout looks like:
+Any additional future resources can be created in new root paths e.g.: `/terraform-azurerm-resourceX`, `/terraform-azurerm-resourceY`, `/terraform-azurerm-resourceZ` etc... For this tutorial we will just be using `/terraform-azurerm-resourcegroup` to deploy multiple resource groups dynamically based on an environment e.g. `dev`, `uat` and `prod`. This is what the DevOps project layout looks like:
 
 ![rep_layout](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Replace-Tokens/assets/rep_layout.png)
 
@@ -36,7 +37,7 @@ Any additional future resources can be created in new root paths e.g.: `\terrafo
 
 As a pre-requisite I have also pre-created an Azure DevOps [service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#create-a-service-connection) that will be used to allow my pipelines to access Azure via the terraform task we installed earlier, and I also pre-created an Azure storage account which will act as my terraform [backend](https://www.terraform.io/docs/language/settings/backends/azurerm.html) to safely store my terraform state files in.
 
-Under my repo path: `\terraform-azurerm-resourcegroup\`, I have created the following three terraform files:
+Under my repo path: `/terraform-azurerm-resourcegroup/`, I have created the following three terraform files:
 
 1. **main.tf** (Main terraform configuration file)
 
@@ -120,7 +121,7 @@ Under my repo path: `\terraform-azurerm-resourcegroup\`, I have created the foll
 
 ## DevOps Pipeline Variable files
 
-Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\variables`, I have created the following four yaml variable template files:
+Under my repo path: `/terraform-azurerm-resourcegroup/pipelines/variables/`, I have created the following four yaml variable template files:
 
 1. **common_vars.yml** (Declares variables that will be used in all pipelines).
 
@@ -192,9 +193,9 @@ Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\variables`, I ha
 
 ## DevOps Pipelines
 
-Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\`, I have created the following three yaml pipelines (one for each environment):
+Under my repo path: `/terraform-azurerm-resourcegroup/pipelines/`, I have created the following three yaml pipelines (one for each environment):
 
-1. **dev_deployment.yml** (Deploy dev RG)
+1. **dev_deployment.yml** (Deploy dev RG - Pipeline)
 
    ```yml
    # code/terraform-azurerm-resourcegroup/pipelines/dev_deployment.yml
@@ -202,7 +203,6 @@ Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\`, I have create
    name: Deployment-Dev-RG-$(Rev:rr)
    trigger: none
 
-   ### ADO variable group linked to SSH secure vars ###
    variables:
      - template: variables/common_vars.yml
      - template: variables/dev_vars.yml
@@ -225,60 +225,18 @@ Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\`, I have create
                deploy:
                  steps:
                    - checkout: self
-
-                   ### Install Terraform Version from commom_vars
-                   - task: TerraformInstaller@0
-                     inputs:
+                   ### Run common terraform deploy steps
+                   - template: task_groups/tf_deploy_tasks.yml
+                     parameters:
                        terraformVersion: ${{ variables.terraformVersion }}
-
-                   ### replace tokens in tf and tfvars.
-                   - task: qetza.replacetokens.replacetokens-task.replacetokens@3
-                     displayName: 'Replace tokens in tfvars and tf'
-                     inputs:
-                       rootDirectory: '$(System.DefaultWorkingDirectory)'
-                       targetFiles: |
-                         ${{ variables.rootDirName }}\*.tf
-                         ${{ variables.rootDirName }}\*.tfvars
-                             encoding: 'utf-8'
-                       actionOnMissing: 'warn'
-                       keepToken: false
-                       tokenPrefix: '~{'
-                       tokenSuffix: '}~'
-
-                   ### Terraform Init
-                   - task: TerraformTaskV2@2
-                     displayName: Terraform Init
-                     inputs:
-                       provider: 'azurerm'
-                       command: 'init'
-                       workingDirectory: '$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}'
-                       backendServiceArm: '${{ variables.AzureServiceConnection }}'
-                       backendAzureRmResourceGroupName: '${{ variables.terraformBackendRG }}'
-                       backendAzureRmStorageAccountName: '${{ variables.terraformBackendSA }}'
-                       backendAzureRmContainerName: 'tfstate'
-                       backendAzureRmKey: 'Infra_${{ variables.environment }}_rg.tfstate'
-
-                   ### Terraform Plan
-                   - task: TerraformTaskV2@2
-                     displayName: Terraform Plan
-                     inputs:
-                       provider: 'azurerm'
-                       command: 'plan'
-                       workingDirectory: '$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}'
-                       commandOptions: '--out=$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}/plan.tfplan'
-                       environmentServiceNameAzureRM: '${{ variables.AzureServiceConnection }}'
-
-                   ### Terraform Apply
-                   - task: TerraformTaskV2@2
-                     displayName: Terraform Apply
-                     inputs:
-                       provider: 'azurerm'
-                       command: 'apply'
-                       workingDirectory: '$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}'
-                       environmentServiceNameAzureRM: '${{ variables.AzureServiceConnection }}'
+                       rootDirName: ${{ variables.rootDirName }}
+                       AzureServiceConnection: ${{ variables.AzureServiceConnection }}
+                       terraformBackendRG: ${{ variables.terraformBackendRG }}
+                       terraformBackendSA: ${{ variables.terraformBackendSA }}
+                       environment: ${{ variables.environment }}
    ```
 
-2. **uat_deployment.yml** (Deploy uat RG)
+2. **uat_deployment.yml** (Deploy uat RG - Pipeline)
 
    ```yml
    # code/terraform-azurerm-resourcegroup/pipelines/uat_deployment.yml
@@ -286,7 +244,6 @@ Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\`, I have create
    name: Deployment-UAT-RG-$(Rev:rr)
    trigger: none
 
-   ### ADO variable group linked to SSH secure vars ###
    variables:
      - template: variables/common_vars.yml
      - template: variables/uat_vars.yml
@@ -309,60 +266,17 @@ Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\`, I have create
                deploy:
                  steps:
                    - checkout: self
-
-                   ### Install Terraform Version from commom_vars
-                   - task: TerraformInstaller@0
-                     inputs:
+                   ### Run common terraform deploy steps
+                   - template: task_groups/tf_deploy_tasks.yml
+                     parameters:
                        terraformVersion: ${{ variables.terraformVersion }}
-
-                   ### replace tokens in tf and tfvars.
-                   - task: qetza.replacetokens.replacetokens-task.replacetokens@3
-                     displayName: 'Replace tokens in tfvars and tf'
-                     inputs:
-                       rootDirectory: '$(System.DefaultWorkingDirectory)'
-                       targetFiles: |
-                         ${{ variables.rootDirName }}\*.tf
-                         ${{ variables.rootDirName }}\*.tfvars
-                             encoding: 'utf-8'
-                       actionOnMissing: 'warn'
-                       keepToken: false
-                       tokenPrefix: '~{'
-                       tokenSuffix: '}~'
-
-                   ### Terraform Init
-                   - task: TerraformTaskV2@2
-                     displayName: Terraform Init
-                     inputs:
-                       provider: 'azurerm'
-                       command: 'init'
-                       workingDirectory: '$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}'
-                       backendServiceArm: '${{ variables.AzureServiceConnection }}'
-                       backendAzureRmResourceGroupName: '${{ variables.terraformBackendRG }}'
-                       backendAzureRmStorageAccountName: '${{ variables.terraformBackendSA }}'
-                       backendAzureRmContainerName: 'tfstate'
-                       backendAzureRmKey: 'Infra_${{ variables.environment }}_rg.tfstate'
-
-                   ### Terraform Plan
-                   - task: TerraformTaskV2@2
-                     displayName: Terraform Plan
-                     inputs:
-                       provider: 'azurerm'
-                       command: 'plan'
-                       workingDirectory: '$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}'
-                       commandOptions: '--out=$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}/plan.tfplan'
-                       environmentServiceNameAzureRM: '${{ variables.AzureServiceConnection }}'
-
-                   ### Terraform Apply
-                   - task: TerraformTaskV2@2
-                     displayName: Terraform Apply
-                     inputs:
-                       provider: 'azurerm'
-                       command: 'apply'
-                       workingDirectory: '$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}'
-                       environmentServiceNameAzureRM: '${{ variables.AzureServiceConnection }}'
+                       rootDirName: ${{ variables.rootDirName }}
+                       AzureServiceConnection: ${{ variables.AzureServiceConnection }}
+                       terraformBackendRG: ${{ variables.terraformBackendRG }}
+                       terraformBackendSA: ${{ variables.terraformBackendSA }}
    ```
 
-3. **prod_deployment.yml** (Deploy prod RG)
+3. **prod_deployment.yml** (Deploy prod RG - Pipeline)
 
    ```yml
    # code/terraform-azurerm-resourcegroup/pipelines/prod_deployment.yml
@@ -370,7 +284,6 @@ Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\`, I have create
    name: Deployment-Prod-RG-$(Rev:rr)
    trigger: none
 
-   ### ADO variable group linked to SSH secure vars ###
    variables:
      - template: variables/common_vars.yml
      - template: variables/prod_vars.yml
@@ -393,60 +306,85 @@ Under my repo path: `\terraform-azurerm-resourcegroup\pipelines\`, I have create
                deploy:
                  steps:
                    - checkout: self
-
-                   ### Install Terraform Version from commom_vars
-                   - task: TerraformInstaller@0
-                     inputs:
+                   ### Run common terraform deploy steps
+                   - template: task_groups/tf_deploy_tasks.yml
+                     parameters:
                        terraformVersion: ${{ variables.terraformVersion }}
-
-                   ### replace tokens in tf and tfvars.
-                   - task: qetza.replacetokens.replacetokens-task.replacetokens@3
-                     displayName: 'Replace tokens in tfvars and tf'
-                     inputs:
-                       rootDirectory: '$(System.DefaultWorkingDirectory)'
-                       targetFiles: |
-                         ${{ variables.rootDirName }}\*.tf
-                         ${{ variables.rootDirName }}\*.tfvars
-                             encoding: 'utf-8'
-                       actionOnMissing: 'warn'
-                       keepToken: false
-                       tokenPrefix: '~{'
-                       tokenSuffix: '}~'
-
-                   ### Terraform Init
-                   - task: TerraformTaskV2@2
-                     displayName: Terraform Init
-                     inputs:
-                       provider: 'azurerm'
-                       command: 'init'
-                       workingDirectory: '$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}'
-                       backendServiceArm: '${{ variables.AzureServiceConnection }}'
-                       backendAzureRmResourceGroupName: '${{ variables.terraformBackendRG }}'
-                       backendAzureRmStorageAccountName: '${{ variables.terraformBackendSA }}'
-                       backendAzureRmContainerName: 'tfstate'
-                       backendAzureRmKey: 'Infra_${{ variables.environment }}_rg.tfstate'
-
-                   ### Terraform Plan
-                   - task: TerraformTaskV2@2
-                     displayName: Terraform Plan
-                     inputs:
-                       provider: 'azurerm'
-                       command: 'plan'
-                       workingDirectory: '$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}'
-                       commandOptions: '--out=$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}/plan.tfplan'
-                       environmentServiceNameAzureRM: '${{ variables.AzureServiceConnection }}'
-
-                   ### Terraform Apply
-                   - task: TerraformTaskV2@2
-                     displayName: Terraform Apply
-                     inputs:
-                       provider: 'azurerm'
-                       command: 'apply'
-                       workingDirectory: '$(System.DefaultWorkingDirectory)/${{ variables.rootDirName }}'
-                       environmentServiceNameAzureRM: '${{ variables.AzureServiceConnection }}'
+                       rootDirName: ${{ variables.rootDirName }}
+                       AzureServiceConnection: ${{ variables.AzureServiceConnection }}
+                       terraformBackendRG: ${{ variables.terraformBackendRG }}
+                       terraformBackendSA: ${{ variables.terraformBackendSA }}
    ```
 
-Note that each one of our pipelines have the replace tokens task defined and configured to replace the variables we defined within the **tokenPrefix: `~{`** and **tokenSuffix: `}~`** as you can see below:
+## DevOps Pipelines - Task group
+
+Under my repo path: `/terraform-azurerm-resourcegroup/pipelines/task_groups/`, I have created the following common yaml tasks/steps template which defines common steps that will be used in each pipeline:
+
+```yml
+# code/terraform-azurerm-resourcegroup/pipelines/task_groups/tf_deploy_tasks.yml
+
+parameters:
+  terraformVersion:
+  rootDirName:
+  AzureServiceConnection:
+  terraformBackendRG:
+  terraformBackendSA:
+  environment:
+
+steps:
+  ### Install Terraform Version from commom_vars
+  - task: TerraformInstaller@0
+    inputs:
+      terraformVersion: ${{ parameters.terraformVersion }}
+
+  ### replace tokens in tf and tfvars.
+  - task: qetza.replacetokens.replacetokens-task.replacetokens@3
+    displayName: 'Replace tokens in tfvars and tf'
+    inputs:
+      rootDirectory: '$(System.DefaultWorkingDirectory)'
+      targetFiles: |
+        ${{ parameters.rootDirName }}\*.tf
+        ${{ parameters.rootDirName }}\*.tfvars
+            encoding: 'utf-8'
+      actionOnMissing: 'warn'
+      keepToken: false
+      tokenPrefix: '~{'
+      tokenSuffix: '}~'
+
+  ### Terraform Init
+  - task: TerraformTaskV2@2
+    displayName: Terraform Init
+    inputs:
+      provider: 'azurerm'
+      command: 'init'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/${{ parameters.rootDirName }}'
+      backendServiceArm: '${{ parameters.AzureServiceConnection }}'
+      backendAzureRmResourceGroupName: '${{ parameters.terraformBackendRG }}'
+      backendAzureRmStorageAccountName: '${{ parameters.terraformBackendSA }}'
+      backendAzureRmContainerName: 'tfstate'
+      backendAzureRmKey: 'Infra_${{ parameters.environment }}_rg.tfstate'
+
+  ### Terraform Plan
+  - task: TerraformTaskV2@2
+    displayName: Terraform Plan
+    inputs:
+      provider: 'azurerm'
+      command: 'plan'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/${{ parameters.rootDirName }}'
+      commandOptions: '--out=$(System.DefaultWorkingDirectory)/${{ parameters.rootDirName }}/plan.tfplan'
+      environmentServiceNameAzureRM: '${{ parameters.AzureServiceConnection }}'
+
+  ### Terraform Apply
+  - task: TerraformTaskV2@2
+    displayName: Terraform Apply
+    inputs:
+      provider: 'azurerm'
+      command: 'apply'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/${{ parameters.rootDirName }}'
+      environmentServiceNameAzureRM: '${{ parameters.AzureServiceConnection }}'
+```
+
+Note that the replace tokens task is defined and configured to replace the variables we defined within the **tokenPrefix: `~{`** and **tokenSuffix: `}~`** as you can see below:
 
 ```yml
 ### replace tokens in tf and tfvars.
@@ -455,8 +393,8 @@ Note that each one of our pipelines have the replace tokens task defined and con
   inputs:
     rootDirectory: '$(System.DefaultWorkingDirectory)'
     targetFiles: |
-      ${{ variables.rootDirName }}\*.tf
-      ${{ variables.rootDirName }}\*.tfvars
+      ${{ parameters.rootDirName }}\*.tf
+      ${{ parameters.rootDirName }}\*.tfvars
           encoding: 'utf-8'
     actionOnMissing: 'warn'
     keepToken: false
@@ -474,7 +412,6 @@ Also remember to set the environments in Azure DevOps as shown on each of our ya
 # code/terraform-azurerm-resourcegroup/pipelines/dev_deployment.yml#L21-L21
 
 environment: Infra-Dev
-
 ```
 
 ![environments](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Replace-Tokens/assets/environments.png)
@@ -495,7 +432,6 @@ Also note that each of the deployments have their own unique state file based on
 # code/terraform-azurerm-resourcegroup/pipelines/dev_deployment.yml#L58-L58
 
 backendAzureRmKey: 'Infra_${{ variables.environment }}_rg.tfstate'
-
 ```
 
 ![state](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Replace-Tokens/assets/state.png)

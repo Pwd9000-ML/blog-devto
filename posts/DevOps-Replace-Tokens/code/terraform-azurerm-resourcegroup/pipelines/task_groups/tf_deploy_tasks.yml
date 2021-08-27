@@ -1,0 +1,59 @@
+parameters:
+  terraformVersion:
+  rootDirName:
+  AzureServiceConnection:
+  terraformBackendRG:
+  terraformBackendSA:
+  environment:
+
+steps: 
+### Install Terraform Version from commom_vars
+- task: TerraformInstaller@0
+  inputs:
+    terraformVersion: ${{ parameters.terraformVersion }}
+
+### replace tokens in tf and tfvars.
+- task: qetza.replacetokens.replacetokens-task.replacetokens@3
+  displayName: 'Replace tokens in tfvars and tf'
+  inputs:
+    rootDirectory: '$(System.DefaultWorkingDirectory)'
+    targetFiles: |
+      ${{ parameters.rootDirName }}\*.tf
+      ${{ parameters.rootDirName }}\*.tfvars
+          encoding: 'utf-8'
+    actionOnMissing: 'warn'
+    keepToken: false 
+    tokenPrefix: '~{'
+    tokenSuffix: '}~'
+
+### Terraform Init
+- task: TerraformTaskV2@2
+  displayName: Terraform Init
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/${{ parameters.rootDirName }}'
+    backendServiceArm: '${{ parameters.AzureServiceConnection }}'
+    backendAzureRmResourceGroupName: '${{ parameters.terraformBackendRG }}'
+    backendAzureRmStorageAccountName: '${{ parameters.terraformBackendSA }}'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'Infra_${{ parameters.environment }}_rg.tfstate'
+
+### Terraform Plan
+- task: TerraformTaskV2@2
+  displayName: Terraform Plan
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/${{ parameters.rootDirName }}'
+    commandOptions: "--out=$(System.DefaultWorkingDirectory)/${{ parameters.rootDirName }}/plan.tfplan"
+    environmentServiceNameAzureRM: '${{ parameters.AzureServiceConnection }}'
+
+### Terraform Apply
+- task: TerraformTaskV2@2
+  displayName: Terraform Apply
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/${{ parameters.rootDirName }}'
+    environmentServiceNameAzureRM: '${{ parameters.AzureServiceConnection }}'
