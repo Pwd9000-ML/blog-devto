@@ -1,6 +1,6 @@
 ---
 title: Github/DevOps status
-published: false
+published: true
 description: Useful links for checking GitHub and DevOps status
 tags: 'tutorial, devops, github, productivity'
 cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Github-Status-Check/assets/main.png
