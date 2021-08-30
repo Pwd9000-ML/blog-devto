@@ -39,13 +39,15 @@ Under the **Basics** blade, add the following **Instance Details:**
 
 ![create](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/create.png)
 
+Add any tags optionally and then select **Review + Create**, and create the Logic App.
+
 ## Configure Logic App
 
-After the logic app has been created navigate to the logic app resource, once you click on the resource, the Azure portal will navigate you into the **Logic Apps Designer**, here you will select **Blank Logic App**:
+After the Logic App has been created navigate to the resource, once you click on the resource, the Azure portal will navigate into the **Logic Apps Designer**, here we will select a new **Blank Logic App**:
 
 ![blank01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/blank01.png)
 
-Next we will create a schedule trigger. On the connectors and triggers search bar type: `schedule` and select the trigger called `recurrence`:
+Next we will create a schedule **trigger**. On the connectors and triggers search bar type: `schedule` and select the trigger called `recurrence`:
 
 ![schedule](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/schedule.png)
 
@@ -74,7 +76,7 @@ We will configure each action under our recurrence schedule with the following v
 
 Also note that we can rename our action so that it is easier to identify:
 
-![rename02](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/rename02.png)
+![rename03](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/rename03.png)
 
 After setting up our first RSS action, underneath our `schedule` trigger we will click on the `+` sign and select the option `add a parallel branch`:
 
@@ -104,19 +106,19 @@ Once authenticated we can configure our e-mail template:
 
 ![template01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/template01.png)
 
-Note that we can use **dynamic content** to add details about the RSS published feed we configured from each trigger, to our email template:
+Note that we can populate our email template with **dynamic content** to add details about the RSS feed we configured earlier:
 
 ![dynamic](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/dynamic.png)
 
-As you can see from the next screen, we have created 3x email actions, each with their own unique email template for each given services RSS status feed.
+As you can see from the next screen, we have created 3x email actions, each with their own unique email template for each given RSS status feed:
 
 ![final03](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/final03.png)
 
-Now **save** the logic app and that is it. Optionally you can also select **Run Trigger** to manually trigger a run.
+Remember to **save** the logic app when finished. That is it! Optionally we can also select **Run Trigger** to manually trigger a test run of the Logic App we created.
 
 ![save](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/save.png)
 
-Every time a health status is posted to any of our configured RSS feeds, we will be notified of the health status of the particular service that is affected.
+Now every time a new health status is posted to any of our configured RSS feeds, we will be notified via an email notification containing the details of the affected service.
 
 ![mail01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/mail01.png)
 
