@@ -94,7 +94,7 @@ Search for `control` and then select the action `for each`:
 
 We can again rename our control action so that it is easier to identify. Within the **for each** action we will configure `Body` as the output from previous steps and then **add an action**. In the search box, enter `send an email` so that you can find connectors that offer this action. If you have a Microsoft work or school account and want to use **Office 365 Outlook**. Or, if you have a personal Microsoft account, select **Outlook.com**. This example continues with Outlook.com. Select **Send and email (V2)**:
 
-![email](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/email.png)
+![email02](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/email02.png)
 
 Many connectors require that you first create a connection and authenticate your identity before you can continue. Our selected email service prompts us to sign in and authenticate our identity before we can continue:
 
