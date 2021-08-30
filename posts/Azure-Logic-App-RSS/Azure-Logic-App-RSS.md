@@ -14,7 +14,7 @@ As described in my previous post, you can easily check the status of Github and 
 
 As mentioned, status pages for both Github and DevOps have RSS feeds we can subscribe to. In fact the Azure platform itself also has its own health status page you can take a look at here: [https://status.azure.com/en-us/status/](https://status.azure.com/en-us/status/).  
 
-In todays tutorial we will build an **Azure Logic App** that will subscribe to each services RSS feed and send us email notifications on feed updates, such as when services become degraded, when health issues occur or when health issues get remediated.
+In todays tutorial we will build a basic **Azure Logic App** that will subscribe to each services RSS feed and send us email notifications on feed updates, such as when services become degraded, when health issues occur or when health issues get remediated.
 
 ## What is an Azure Logic app?
 
@@ -39,7 +39,7 @@ Under the **Basics** blade, add the following **Instance Details:**
 
 ![create](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/create.png)
 
-## Configure Logic App
+## Configure Logic App (Triggers)
 
 After the logic app has been created navigate to the logic app resource, once you click on the resource, teh Azure portal will navigate you into the **Logic Apps Designer**, here you will select **Blank Logic App**:
 
@@ -59,15 +59,37 @@ Also note that we can rename each trigger to identify them easier:
 
 Also note the setting **"Chosen property will be used to determine"** is set to **PublishDate** which is the property that determines which items are new, and we will check each feed every 3 minutes for any updates.  
 
-Now that all 3 triggers have been set up the last thing we need to configure is our action. Select **New Step** and in the search box, enter `send an email` so that you can find connectors that offer this action. If you have a Microsoft work or school account and want to use **Office 365 Outlook**. Or, if you have a personal Microsoft account, select **Outlook.com**. This example continues with Outlook.com. Select **Send and email (V2)**.
+## Configure Logic App (Actions)
 
-![email](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/email.png)
+Now that all 3 triggers have been set up the last thing we need to configure are our email actions. We will create 3x email actions, one for each trigger. After each trigger you will see a `+` sign. Click on the `+` and select **Add an action** and in the search box, enter `send an email` so that you can find connectors that offer this action. If you have a Microsoft work or school account and want to use **Office 365 Outlook**. Or, if you have a personal Microsoft account, select **Outlook.com**. This example continues with Outlook.com. Select **Send and email (V2)**.
+
+![email01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/email01.png)
 
 Many connectors require that you first create a connection and authenticate your identity before you can continue. Our selected email service prompts us to sign in and authenticate our identity before we can continue.
 
 ![auth](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/auth.png)
 
+Once authenticated we can configure our e-mail template.
 
+![template](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/template.png)
+
+Note that we can use **dynamic content** to add details about the RSS published feed we configured from each trigger, to our email template.
+
+![dynamic](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/dynamic.png)
+
+As you can see from the next screen, we have created 3x email actions, each with their own unique email template for each given services RSS status feed.
+
+![final](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/final.png)
+
+Now **save** the logic app and that is it. Optionally you can also select **Run Trigger** to manually trigger a run.
+
+![save](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/save.png)
+
+Every time a health status is posted to any of our configured RSS feeds, we will be notified of the health status of the particular service that is affected.
+
+![mail](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/mail.png)
+
+I hope you have enjoyed this post and have learned something new. :heart:
 
 ### _Author_
 
