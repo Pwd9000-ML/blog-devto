@@ -1,5 +1,5 @@
 ---
-title: DevOps/Github service notifications using Azure Logic App
+title: DevOps/Github service notifications using Azure Logic Apps
 published: false
 description: Using Azure Logic App to send notifications from RSS feeds
 tags: 'tutorial, Azure, github, devops'
@@ -41,7 +41,7 @@ Under the **Basics** blade, add the following **Instance Details:**
 
 ## Configure Logic App
 
-After the logic app has been created navigate to the logic app resource, once you click on the resource, teh Azure portal will navigate you into the **Logic Apps Designer**, here you will select **Blank Logic App**:
+After the logic app has been created navigate to the logic app resource, once you click on the resource, the Azure portal will navigate you into the **Logic Apps Designer**, here you will select **Blank Logic App**:
 
 ![blank01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/blank01.png)
 
