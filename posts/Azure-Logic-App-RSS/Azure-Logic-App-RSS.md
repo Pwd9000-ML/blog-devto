@@ -57,7 +57,17 @@ Also note that we can rename each trigger to identify them easier:
 
 ![rename](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/rename.png)
 
-Also note the setting **"Chosen property will be used to determine"** is set to **PublishDate** which is the property that determines which items are new, and we will check each feed every 3 minutes for any updates.
+Also note the setting **"Chosen property will be used to determine"** is set to **PublishDate** which is the property that determines which items are new, and we will check each feed every 3 minutes for any updates.  
+
+Now that all 3 triggers have been set up the last thing we need to configure is our action. Select **New Step** and in the search box, enter `send an email` so that you can find connectors that offer this action. If you have a Microsoft work or school account and want to use **Office 365 Outlook**. Or, if you have a personal Microsoft account, select **Outlook.com**. This example continues with Outlook.com. Select **Send and email (V2)**.
+
+![email](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/email.png)
+
+Many connectors require that you first create a connection and authenticate your identity before you can continue. Our selected email service prompts us to sign in and authenticate our identity before we can continue.
+
+![auth](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/auth.png)
+
+
 
 ### _Author_
 
