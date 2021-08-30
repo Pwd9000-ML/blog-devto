@@ -120,7 +120,7 @@ Every time a health status is posted to any of our configured RSS feeds, we will
 
 ![mail](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/mail.png)
 
-I hope you have enjoyed this post and have learned something new. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the JSON code sample and template of the Logic App we built in this tutorial on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-Logic-App-RSS/code) page. :heart:
 
 ### _Author_
 
