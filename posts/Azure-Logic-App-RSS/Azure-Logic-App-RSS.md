@@ -43,25 +43,45 @@ Under the **Basics** blade, add the following **Instance Details:**
 
 After the logic app has been created navigate to the logic app resource, once you click on the resource, teh Azure portal will navigate you into the **Logic Apps Designer**, here you will select **Blank Logic App**:
 
-![blank](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/blank.png)
+![blank01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/blank01.png)
 
-Next we will add each of our RSS feeds as triggers. We will add the same trigger **"when a feed item is published"** 3x times as we want to check three RSS feeds, one for each service:
+Next we will create a schedule trigger. On the connectors and triggers search bar type: `schedule` and select the trigger called `recurrence`:
+
+![schedule](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/schedule.png)
+
+We will set this trigger to run every 3 minutes.
+
+![time](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/time.png)
+
+Next we will add each of our RSS feeds as parallel triggers underneath our schedule. Click on `+ New step` underneath the `recurrence` trigger and search for `rss`. We will add the trigger **"when a feed item is published"** 3x times as we want to check three RSS feeds, one for each service:
 
 - [https://www.githubstatus.com/history.rss](https://www.githubstatus.com/history.rss) - Github RSS status feed.
 - [https://status.dev.azure.com/_rss](https://status.dev.azure.com/_rss) - Azure Devops RSS status feed.
 - [https://azurestatuscdn.azureedge.net/en-gb/status/feed/](https://azurestatuscdn.azureedge.net/en-gb/status/feed/) - Azure platform RSS status feed.
 
-![triggers](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/triggers.png)
+![triggers01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/triggers01.png)
 
 Also note that we can rename each trigger to identify them easier:
 
-![rename](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/rename.png)
+![rename02](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/rename02.png)
 
-Also note the setting **"Chosen property will be used to determine"** is set to **PublishDate** which is the property that determines which items are new, and we will check each feed every 3 minutes for any updates.  
+After setting up our first RSS trigger, underneath our `schedule` trigger called `recurrence` we will click on the `+` sign and select the option `add a parallel branch`:
+
+![parallel](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/parallel.png)
+
+We will then add our devops status RSS feed and repeat the process to also add our azure status RSS feed. After adding all our feeds as parallel triggers underneath our schedule, our Logic App design should look like this:
+
+![triggersfinal](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/triggersfinal.png)
+
+Also note the setting called **"Chosen property will be used to determine"** is set to **PublishDate** which is the property that determines which items are new.  
 
 ## Configure Logic App (Actions)
 
-Now that all 3 triggers have been set up the last thing we need to configure are our email actions. We will create 3x email actions, one for each trigger. After each trigger you will see a `+` sign. Click on the `+` and select **Add an action** and in the search box, enter `send an email` so that you can find connectors that offer this action. If you have a Microsoft work or school account and want to use **Office 365 Outlook**. Or, if you have a personal Microsoft account, select **Outlook.com**. This example continues with Outlook.com. Select **Send and email (V2)**.
+Now that all 3 triggers have been set up the last thing we need to configure are our email actions. We will create 3x email actions, one for each RSS feed trigger. After each trigger you will see a `+` sign. Click on the `+` and select **Add an action**.
+
+![action01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/action01.png)
+
+In the search box, enter `send an email` so that you can find connectors that offer this action. If you have a Microsoft work or school account and want to use **Office 365 Outlook**. Or, if you have a personal Microsoft account, select **Outlook.com**. This example continues with Outlook.com. Select **Send and email (V2)**.
 
 ![email01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/email01.png)
 
@@ -76,6 +96,10 @@ Once authenticated we can configure our e-mail template.
 Note that we can use **dynamic content** to add details about the RSS published feed we configured from each trigger, to our email template.
 
 ![dynamic](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/dynamic.png)
+
+You will notice that the logic app designer automatically puts our email notification into a foreach based on the output of our RSS object feed.
+
+![foreach](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/foreach.png)
 
 As you can see from the next screen, we have created 3x email actions, each with their own unique email template for each given services RSS status feed.
 
