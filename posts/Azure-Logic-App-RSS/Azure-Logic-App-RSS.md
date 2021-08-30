@@ -12,7 +12,7 @@ id: 807719
 
 As described in my previous post, you can easily check the status of Github and DevOps services: {% link <https://dev.to/pwd9000/github-devops-status-2eji> %}
 
-As mentioned, status pages for both Github and DevOps have RSS feeds we can subscribe to. In fact the Azure platform itself also has its own health status page you can take a look at here: [https://status.azure.com/en-us/status/](https://status.azure.com/en-us/status/).  
+Additionally, status pages for both Github and DevOps have RSS feeds we can subscribe to. In fact the Azure platform itself also has its own health status page you can take a look at here: [https://status.azure.com/en-us/status/](https://status.azure.com/en-us/status/).  
 
 In todays tutorial we will build a basic **Azure Logic App** that will subscribe to each services RSS feed and send us email notifications on feed updates, such as when services become degraded, when health issues occur or when health issues get remediated.
 
