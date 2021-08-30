@@ -18,6 +18,8 @@ Similarly to check the status of Azure DevOps you can use: [https://status.dev.a
 
 Both status pages also has an RSS feed. In my next article/tutorial I will show how to create an Azure Logic App that will notify you when any of the services become degraded.
 
+{% link <https://dev.to/pwd9000/devops-github-service-notifications-using-azure-logic-apps-124e> %}
+
 ### _Author_
 
 {% user pwd9000 %}
