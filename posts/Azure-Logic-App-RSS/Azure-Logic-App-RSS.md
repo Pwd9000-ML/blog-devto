@@ -12,7 +12,9 @@ id: 807719
 
 As described in my previous post, you can easily check the status of Github and DevOps services: {% link <https://dev.to/pwd9000/github-devops-status-2eji> %}
 
-As mentioned, status pages for both Github and DevOps have RSS feeds we can subscribe to. In fact the Azure platform itself also has its own health status page you can take a look at here: [https://status.azure.com/en-us/status/](https://status.azure.com/en-us/status/). In todays tutorial we will build an **Azure Logic App** that will subscribe to each services RSS feed and send us email notifications on feed updates, such as when services become degraded, when health issues occur or when health issues get remediated.
+As mentioned, status pages for both Github and DevOps have RSS feeds we can subscribe to. In fact the Azure platform itself also has its own health status page you can take a look at here: [https://status.azure.com/en-us/status/](https://status.azure.com/en-us/status/).  
+
+In todays tutorial we will build an **Azure Logic App** that will subscribe to each services RSS feed and send us email notifications on feed updates, such as when services become degraded, when health issues occur or when health issues get remediated.
 
 ## What is an Azure Logic app?
 
@@ -25,7 +27,7 @@ As mentioned, status pages for both Github and DevOps have RSS feeds we can subs
 
 ## Create Logic App
 
-First wee need to create the logic app. In the Azure portal search for `logic app` and then add and create the logic app with the following configuration:
+In the Azure portal search for `logic app` and then add and create the logic app with the following configuration.
 Under the **Basics** blade, add the following **Instance Details:**
 
 | Name           | Value              |
@@ -38,6 +40,24 @@ Under the **Basics** blade, add the following **Instance Details:**
 ![create](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/create.png)
 
 ## Configure Logic App
+
+After the logic app has been created navigate to the logic app resource, once you click on the resource, teh Azure portal will navigate you into the **Logic Apps Designer**, here you will select **Blank Logic App**:
+
+![blank](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/blank.png)
+
+Next we will add each of our RSS feeds as triggers. We will add the same trigger **"when a feed item is published"** 3x times as we want to check three RSS feeds, one for each service:
+
+- [https://www.githubstatus.com/history.rss](https://www.githubstatus.com/history.rss) - Github RSS status feed.
+- [https://status.dev.azure.com/_rss](https://status.dev.azure.com/_rss) - Azure Devops RSS status feed.
+- [https://azurestatuscdn.azureedge.net/en-gb/status/feed/](https://azurestatuscdn.azureedge.net/en-gb/status/feed/) - Azure platform RSS status feed.
+
+![triggers](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/triggers.png)
+
+Also note that we can rename each trigger to identify them easier:
+
+![rename](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/rename.png)
+
+Also note the setting **"Chosen property will be used to determine"** is set to **PublishDate** which is the property that determines which items are new, and we will check each feed every 3 minutes for any updates.
 
 ### _Author_
 
