@@ -110,7 +110,7 @@ Note that we can use **dynamic content** to add details about the RSS published 
 
 As you can see from the next screen, we have created 3x email actions, each with their own unique email template for each given services RSS status feed.
 
-![final](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/final.png)
+![final02](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/final02.png)
 
 Now **save** the logic app and that is it. Optionally you can also select **Run Trigger** to manually trigger a run.
 
