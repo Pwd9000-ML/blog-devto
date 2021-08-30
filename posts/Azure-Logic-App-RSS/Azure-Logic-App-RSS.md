@@ -82,7 +82,7 @@ After setting up our first RSS action, underneath our `schedule` trigger we will
 
 Similarly we will add an **action** for our devops status RSS feed and repeat the process a third time to also add our azure status RSS feed. After adding all our feeds as parallel **actions**, our Logic App design should look like this:
 
-![triggers_final](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/triggers_final.png)
+![actions_final](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/actions_final.png)
 
 Now that all 3 actions have been set up the last thing we need to configure are our email actions. We will create 3x email actions, one for each RSS feed. After each action you will see a `+` sign. Click on the `+` and select **Add an action**:
 
@@ -110,7 +110,7 @@ Note that we can use **dynamic content** to add details about the RSS published 
 
 As you can see from the next screen, we have created 3x email actions, each with their own unique email template for each given services RSS status feed.
 
-![final02](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/final02.png)
+![final03](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/final03.png)
 
 Now **save** the logic app and that is it. Optionally you can also select **Run Trigger** to manually trigger a run.
 
