@@ -74,7 +74,7 @@ We will configure each action under our recurrence schedule with the following v
 
 Also note that we can rename our action so that it is easier to identify:
 
-![rename](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/rename.png)
+![rename02](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/rename02.png)
 
 After setting up our first RSS action, underneath our `schedule` trigger we will click on the `+` sign and select the option `add a parallel branch`:
 
