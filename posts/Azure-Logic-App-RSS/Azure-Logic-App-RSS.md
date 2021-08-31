@@ -34,7 +34,6 @@ Under the **Basics** blade, add the following **Instance Details:**
 | -------------- | ------------------ |
 | Type           | Consumption        |
 | Logic App name | {Name}             |
-| Publish        | Workflow           |
 | Region         | {Region}           |
 
 ![create](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/create.png)
