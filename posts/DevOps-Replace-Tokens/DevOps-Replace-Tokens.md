@@ -80,7 +80,7 @@ Under my repo path: `/terraform-azurerm-resourcegroup/`, I have created the foll
    }
    ```
 
-   **NOTE:** If you look at the our terraform configuration you will notice the following values: `~{terraformVersion}~`, `~{terraformBackendRG}~`, `~{terraformBackendSA}~` and `~{environment}~`, we will be dynamically changing the values inside of `~{ }~` with values from our pipeline variable file later on in this tutorial using **replace tokens**.
+   **NOTE:** In the terraform configuration you will notice the following values: `~{terraformVersion}~`, `~{terraformBackendRG}~`, `~{terraformBackendSA}~` and `~{environment}~`, we will be dynamically changing the values inside of `~{ }~` with values from our pipeline variable file later on in this tutorial using **replace tokens**.
 
 2. **variables.tf** (Terraform variable definition file)
 
@@ -117,7 +117,7 @@ Under my repo path: `/terraform-azurerm-resourcegroup/`, I have created the foll
    }
    ```
 
-   **NOTE:** Again, if you look at the our **TFVARS** configuration file you will notice the following values: `~{environment}~` and `~{location}~`, we will be dynamically changing the values inside of `~{ }~` with values from our pipeline variable file later on in this tutorial using **replace tokens**.
+   **NOTE:** In the **TFVARS** configuration file you will notice the following values: `~{environment}~` and `~{location}~`, we will be dynamically changing the values inside of `~{ }~` with values from our pipeline variable file later on in this tutorial using **replace tokens**.
 
 ## DevOps Pipeline Variable files
 
