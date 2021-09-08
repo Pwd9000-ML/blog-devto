@@ -1,6 +1,6 @@
 ---
 title: Azure Nibble - Hosts File Generator using KQL for App Services
-published: false
+published: true
 description: Azure - Nibble - Hosts File Generator using KQL for App Services in Resource Graph
 tags: 'tutorial, azure, productivity, learning'
 cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Nibble-Resource-Graph-Hosts-File/assets/main.png
@@ -14,7 +14,7 @@ id: 817556
 
 ## Hosts File Generator
 
-Very recently I was looking into a mechanism to generate a hosts file to add a very large number of Azure App services that have been private endpoint enabled for both the default as well as the scm hosts of each app, so that these apps could be tested without DNS and by using a hosts file instead. This has led me to write a short KQL query that will do just this and will share with you today.  
+Recently I was looking into a mechanism to generate a hosts file to add a very large number of Azure App services that have been private endpoint enabled for both the default as well as the scm hosts of each app, so that these apps could be tested without/outside of DNS, by using a hosts file instead. This has led me to write a short KQL query that will do just this. I will share this query with you today.  
 
 In the Azure portal search for **Resource Graph Explorer**:
 
@@ -40,7 +40,9 @@ Then select **Run query**:
 
 ![run](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Nibble-Resource-Graph-Hosts-File/assets/run.png)
 
-That is it, you can now export the results to a CSV and copy the results over into a hosts txt file. In addition you can also save the query for future re-use to run it again if for any reason the IP addresses for our App services private endpoints ever change to get an updated hosts file formatted result. You can also select whether you want to save the query as a **private query** or a **shared query**. The later allows you to save the query as an object in a resource group that others can also access and run.
+That is it, you can now export the results to a CSV and copy the results over into a hosts txt file. In addition you can also save the query for future re-use to run it again if any private IP addresses of your App services private endpoints change to get an updated hosts file formatted result.  
+
+You can also select whether you want to save the query as a **private query** or a **shared query**. The later allows you to save the query as an object in a resource group that others can also access and run.
 
 ![save](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Nibble-Resource-Graph-Hosts-File/assets/save.png)
 
