@@ -1,0 +1,7 @@
+Resources
+| where type =~ "microsoft.web/sites"
+| mvexpand pe = properties.privateEndpointConnections
+| extend peip = tostring(pe.properties.ipAddresses[0])
+| mvexpand hosts = properties.hostNameSslStates
+| project peip, hosts=tostring(hosts.name)
+| order by peip asc
