@@ -46,6 +46,8 @@ You can also select whether you want to save the query as a **private query** or
 
 ![save](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Nibble-Resource-Graph-Hosts-File/assets/save.png)
 
+The **Kusto Query Language** is truly a powerful query tool that can be utilized in many different scenarios and is the main query language used in Azure Data Explorer and Azure Monitor. To learn more about KQL have a look at the following [sample queries](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/tutorial?pivots=azuremonitor) that can be used in Azure Monitor.  
+
 I hope you have enjoyed this post and have learned something new. You can also find the query code sample for this tutorial on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-Nibble-Resource-Graph-Hosts-File/code) page. :heart:
 
 ### _Author_
