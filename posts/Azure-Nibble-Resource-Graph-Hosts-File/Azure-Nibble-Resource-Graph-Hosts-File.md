@@ -38,9 +38,11 @@ You can also select the scope at which you want to run the query:
 
 Then select **Run query**:
 
-![run]()
+![run]((https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Nibble-Resource-Graph-Hosts-File/assets/run.png))
 
-That is it, you can now export the results to a CSV and copy the results over into a hosts txt file. In addition you can also save the query to run it again if for any reason the IP addresses for our App services private endpoints ever change to get an updated hosts file formatted result.
+That is it, you can now export the results to a CSV and copy the results over into a hosts txt file. In addition you can also save the query for future re-use to run it again if for any reason the IP addresses for our App services private endpoints ever change to get an updated hosts file formatted result. You can also select whether you want to save the query as a **private query** or a **shared query**. The later allows you to save the query as an object in a resource group that others can also access and run.
+
+![save](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Nibble-Resource-Graph-Hosts-File/assets/save.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the query code sample for this tutorial on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-Nibble-Resource-Graph-Hosts-File/code) page. :heart:
 
