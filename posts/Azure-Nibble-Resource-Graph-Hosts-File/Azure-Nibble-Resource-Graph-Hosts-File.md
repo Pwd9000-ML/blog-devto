@@ -10,13 +10,13 @@ id: 817556
 
 ## Azure Resource Graph
 
-[Azure Resource Graph](https://docs.microsoft.com/en-gb/azure/governance/resource-graph/overview) allows us to quickly and efficiently query across Azure subscriptions. Analyse cloud inventory using complex queries launched programmatically or from the Azure portal. The query language used is known as **[Kusto Query Lanuage (KQL)](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query)**
+[Azure Resource Graph](https://docs.microsoft.com/en-gb/azure/governance/resource-graph/overview) allows us to quickly and efficiently query across Azure subscriptions. Analyse cloud inventory using complex queries launched programmatically or from the Azure portal. The query language used is known as **[Kusto Query Lanuage (KQL)](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query)**.
 
 ## Hosts File Generator
 
 Very recently I was looking into a mechanism to generate a hosts file to add a very large number of Azure App services that have been private endpoint enabled for both the default as well as the scm hosts of each app, so that these apps could be tested without DNS and by using a hosts file instead. This has led me to write a short KQL query that will do just this and will share with you today.  
 
-In the Azure portal search for **Resource Graph Explorer**
+In the Azure portal search for **Resource Graph Explorer**:
 
 ![rge](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Nibble-Resource-Graph-Hosts-File/assets/rge.png)
 
