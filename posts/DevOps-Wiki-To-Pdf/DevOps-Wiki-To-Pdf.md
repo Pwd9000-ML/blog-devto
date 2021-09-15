@@ -77,7 +77,7 @@ We can then set up this pipeline and trigger it manually, once the pipeline has 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Wiki-To-Pdf/assets/artifact.png)
 
-[Here](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Wiki-To-Pdf/assets/DevOpsWiki.pdf) is an example PDF export.
+[Here](https://github.com/Pwd9000-ML/blog-devto/blob/master/posts/DevOps-Wiki-To-Pdf/code/DevOpsWiki.pdf) is an example PDF export.
 
 ## Other Examples
 
