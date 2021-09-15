@@ -16,7 +16,7 @@ But this might not be suitable or possible at all times in all use cases, for ex
 
 ## DevOps Wiki PDF Export Task
 
-WIKI PDF Export Tasks is a DevOps extension that can be installed into your DevOps Organisation from the Azure DevOps [marketplace](https://marketplace.visualstudio.com/items?itemName=richardfennellBM.BM-VSTS-WikiPDFExport-Tasks), simply put it is an Azure Pipelines extension that can give teams another way to present their Wiki as a PDF document, whether it be an export of a whole WIKI or just a single page.  #
+WIKI PDF Export Tasks is a DevOps extension that can be installed into your DevOps Organisation from the Azure DevOps [marketplace](https://marketplace.visualstudio.com/items?itemName=richardfennellBM.BM-VSTS-WikiPDFExport-Tasks), simply put it is an Azure Pipelines extension that can give teams another way to present their Wiki as a PDF document, whether it be an export of a whole WIKI or just a single page.  
 
 The extension is based on a tool called [**AzureDevOps.WikiPDFExport**](https://github.com/MaxMelcher/AzureDevOps.WikiPDFExport) by Max Melcher that allows you to export a whole WIKI (or a single file) as a PDF. The tool performs the following tasks:
 
