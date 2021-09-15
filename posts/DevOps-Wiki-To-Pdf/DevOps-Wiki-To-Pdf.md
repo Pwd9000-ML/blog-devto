@@ -27,7 +27,7 @@ The extension is based on a tool called [**AzureDevOps.WikiPDFExport**](https://
 
 ## Wiki to PDF Pipeline
 
-After installing [WIKI PDF Export Tasks](https://marketplace.visualstudio.com/items?itemName=richardfennellBM.BM-VSTS-WikiPDFExport-Tasks) in your Devops Organisation. Navigate to your Wiki repository. In this tutorial I am using a repo on my project called: **Devops.Wiki** which is published as my project wiki. 
+After installing [WIKI PDF Export Tasks](https://marketplace.visualstudio.com/items?itemName=richardfennellBM.BM-VSTS-WikiPDFExport-Tasks) in your Devops Organisation. Navigate to your Wiki repository. In this tutorial I am using a repo on my project called: **Devops.Wiki** which is published as my project wiki.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Wiki-To-Pdf/assets/wiki.png)
 
