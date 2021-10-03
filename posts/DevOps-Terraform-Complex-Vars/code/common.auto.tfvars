@@ -14,7 +14,7 @@ storage_config = [
     min_tls_version           = "TLS1_2"
     enable_https_traffic_only = true
     access_tier               = "Cool"
-    is_hns_enabled            = true
+    is_hns_enabled            = false
   },
   #ADLS2 Storage
   {
