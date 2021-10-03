@@ -18,3 +18,5 @@ variable "storage_config" {
     is_hns_enabled            = bool
   }))
 }
+
+#variable "storage_config" {}
