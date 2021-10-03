@@ -59,7 +59,37 @@ As you can see from the above example each resource argument is declared using a
 
 ## Using Complex Variable Types
 
-In the following example we create an Azure Resource Group and two storage accounts, but instead of declaring each variable individually using _primitive_ types we will use **Collections** using _complex_ types. We will create our Resource Group by using a single complex variable called `rg_config` and we will create our storage account/s using a single complex variable list of objects called `storage_config`:
+In the following example we create an Azure Resource Group and two storage accounts, but instead of declaring each variable individually using _primitive_ types we will use **Collections** using _complex_ types. We will create our Resource Group by using a single complex variable called `rg_config` and we will create our storage account/s using a single complex variable list of objects called `storage_config`.  
+
+As you can see from the following variable declaration, we are only declaring each resources values using a _complex_ variable type of **Object** (Resource Group config) and **List Object** (List of Storage Account configs):
+
+```hcl
+#// code/variables.tf#L1-L20
+#Resource Group Config - Object
+variable "rg_config" {
+  type = object({
+    create_rg = bool
+    name      = string
+    location  = string
+  })
+}
+
+#Storage Account Config - List of Objects (Each object represents a storage config)
+variable "storage_config" {
+  type = list(object({
+    name                      = string
+    account_kind              = string
+    account_tier              = string
+    account_replication_type  = string
+    access_tier               = string
+    enable_https_traffic_only = bool
+    min_tls_version           = string
+    is_hns_enabled            = bool
+  }))
+}
+```
+
+**NOTE:** Because we are using variables as collections we can now also make use of the terraform [lookup](https://www.terraform.io/docs/language/functions/lookup.html) function, in which we will lookup each key of the relevant object passed in to obtain the corresponding configuration value.
 
 ```hcl
 #// code/resources.tf#L6-L32
@@ -92,46 +122,18 @@ resource "azurerm_storage_account" "sas" {
 }
 ```
 
-**NOTE:** Because we are using variables as collections we can now also make use of the terraform [lookup](https://www.terraform.io/docs/language/functions/lookup.html) function, in which we will lookup each key of the storage account object passed in to obtain the corresponding configuration value.  
-
-As you can see from the following variable declaration, we are only declaring each resources values using a _complex_ variable type of **Object** (Resource Group config) and **List Object** (List of Storage Account configs):
-
-```hcl
-#// code/variables.tf#L1-L20
-#Resource Group Config - Object
-variable "rg_config" {
-  type = object({
-    create_rg = bool
-    name      = string
-    location  = string
-  })
-}
-
-#Storage Account Config - List of Objects (Each object represents a storage config)
-variable "storage_config" {
-  type = list(object({
-    name                      = string
-    account_kind              = string
-    account_tier              = string
-    account_replication_type  = string
-    access_tier               = string
-    enable_https_traffic_only = bool
-    min_tls_version           = string
-    is_hns_enabled            = bool
-  }))
-}
-```
-
 Because we are now using a **list of objects** as the variable for storage accounts, each storage account we want to create can be configured on our **TFVARS** file as an object inside its own block, and so we can simply add additional object blocks into our **TFVARS** to build `one` or `many` storage accounts, each with different configs:
 
 ```hcl
 #// code/common.auto.tfvars.tf#L1-L30
+#Resource Group Config - Object Values
 rg_config = {
   create_rg = true
   name      = "Demo-Terraform-RG"
   location  = "uksouth"
 }
 
+#Storage Account Configs - List of Objects Values
 storage_config = [
   #Storage Account 1 (Object1): StorageV2
   {
