@@ -7,3 +7,157 @@ cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/post
 canonical_url: null
 id: 849831
 ---
+
+## Terraform Variables
+
+When creating a terraform configuration, you have to configure and declare [Input Variables](https://www.terraform.io/docs/language/values/variables.html). Input variables serve as parameters for a Terraform module and resources, allowing aspects of the module to be customized without altering the module's own source code, and allowing modules to be shared between different configurations.  
+
+The Terraform language uses the following types for its values:  
+
+- `string`: a sequence of Unicode characters representing some text, like "hello".
+- `number`: a numeric value. The number type can represent both whole numbers like 15 and fractional values like 6.283185.
+- `bool`: a boolean value, either true or false. bool values can be used in conditional logic.
+- `list` (or `tuple`): a sequence of values, like `["one", "two"]`. Elements in a list or tuple are identified by consecutive whole numbers, starting with zero.
+- `map` (or `object`): a group of values identified by named labels, like `{name = "Mabel", age = 52}`.
+
+Strings, numbers, and bools are sometimes called _primitive_ types. Lists/tuples and maps/objects are sometimes called _complex_ types, _structural_ types, or _collection_ types.
+
+## Using Primitive Variable Types
+
+In the following example we create a basic Azure Resource Group and we declare each resource argument with it's own separate variable using _Primitive_ types:
+
+```hcl
+#main.tf
+resource "azurerm_resource_group" "demo_rg" {
+  count    = var.create_rg ? 1 : 0
+  name     = var.name
+  location = var.location
+}
+```
+
+Each variable is declared separately:
+
+```hcl
+#variables.tf
+variable "create_rg" {
+    type = bool
+    default = false
+}
+
+variable "name" {
+    type = string
+    default = "Default-RG-Name"
+}
+
+variable "location" {
+    type = string
+    default = "uksouth"
+}
+```
+
+As you can see from the above example each resource argument is declared using a _primitive_ variable type.
+
+## Using Complex Variable Types
+
+In the following example we create an Azure Resource Group and two storage accounts, but instead of declaring each variable individually using _primitive_ types we will use **Collections** using _complex_ types. We will create our Resource Group by using a single complex variable called `rg_config` and we will create our storage account/s using a single complex variable list of objects called `storage_config`:
+
+```hcl
+#// code/resources.tf#L6-L32
+resource "azurerm_resource_group" "demo_rg" {
+  count    = lookup(var.rg_config, "create_rg", false) ? 1 : 0
+  name     = lookup(var.rg_config, "name", "Default-RG-Name")
+  location = lookup(var.rg_config, "location", "uksouth")
+  tags     = { Purpose = "Demo-RG", Automation = "true" }
+}
+
+resource "azurerm_storage_account" "sas" {
+  count = length(var.storage_config)
+
+  #Implicit dependency from previous resource
+  resource_group_name = azurerm_resource_group.demo_rg[0].name
+  location            = azurerm_resource_group.demo_rg[0].location
+
+  #lookup values e.g. lookup(map, key, default)
+  name                      = lookup(var.storage_config[count.index], "name", "defaultsaname")
+  account_kind              = lookup(var.storage_config[count.index], "account_kind", "StorageV2")
+  account_tier              = lookup(var.storage_config[count.index], "account_tier", "Standard")
+  account_replication_type  = lookup(var.storage_config[count.index], "account_replication_type", "LRS")
+  access_tier               = lookup(var.storage_config[count.index], "access_tier", "Hot")
+  enable_https_traffic_only = lookup(var.storage_config[count.index], "enable_https_traffic_only", true)
+  min_tls_version           = lookup(var.storage_config[count.index], "min_tls_version", "TLS1_2")
+  is_hns_enabled            = lookup(var.storage_config[count.index], "is_hns_enabled", false)
+
+  #Apply tags
+  tags = { Purpose = "Demo-sa-${count.index + 1}", Automation = "true" }
+}
+```
+
+**NOTE:** Because we are using variables as collections we can now also make use of the terraform [lookup](https://www.terraform.io/docs/language/functions/lookup.html) function.  
+
+As you can see from the following variable declaration, we are only declaring each resource using a _complex_ variable type of **Object** and **List Object**:
+
+```hcl
+#// code/variables.tf#L1-L20
+variable "rg_config" {
+  type = object({
+    create_rg = bool
+    name      = string
+    location  = string
+  })
+}
+
+variable "storage_config" {
+  type = list(object({
+    name                      = string
+    account_kind              = string
+    account_tier              = string
+    account_replication_type  = string
+    access_tier               = string
+    enable_https_traffic_only = bool
+    min_tls_version           = string
+    is_hns_enabled            = bool
+  }))
+}
+```
+
+Because we are now using a **list of objects** as the variable for storage accounts, each storage account we want to create can be configured on our **TFVARS** file as an object and so we can simply add additional objects into our **TFVARS** to build `one` or `many` storage accounts, each with different configs:
+
+```hcl
+#// code/common.auto.tfvars.tf#L1-L30
+rg_config = {
+  create_rg = true
+  name      = "Demo-Terraform-RG"
+  location  = "uksouth"
+}
+
+storage_config = [
+  #Storage Account 1 (Object1): StorageV2
+  {
+    name                      = "pwd9000v2sa001"
+    account_kind              = "StorageV2"
+    account_tier              = "Standard"
+    account_replication_type  = "LRS"
+    min_tls_version           = "TLS1_2"
+    enable_https_traffic_only = true
+    access_tier               = "Cool"
+    is_hns_enabled            = true
+  },
+  #Storage Account 2 (object2): Azure Data Lake Storage V2 (ADLS2)
+  {
+    name                      = "pwd9000adls2sa001"
+    account_kind              = "BlockBlobStorage"
+    account_tier              = "Premium"
+    account_replication_type  = "ZRS"
+    min_tls_version           = "TLS1_2"
+    enable_https_traffic_only = false
+    access_tier               = "Hot"
+    is_hns_enabled            = true
+  }
+]
+```
+
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Terraform-Complex-Vars/code) page. :heart:
+
+### _Author_
+
+{% user pwd9000 %}
