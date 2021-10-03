@@ -92,12 +92,13 @@ resource "azurerm_storage_account" "sas" {
 }
 ```
 
-**NOTE:** Because we are using variables as collections we can now also make use of the terraform [lookup](https://www.terraform.io/docs/language/functions/lookup.html) function.  
+**NOTE:** Because we are using variables as collections we can now also make use of the terraform [lookup](https://www.terraform.io/docs/language/functions/lookup.html) function, in which we will lookup each key of the storage account object passed in to obtain the corresponding configuration value.  
 
-As you can see from the following variable declaration, we are only declaring each resource using a _complex_ variable type of **Object** and **List Object**:
+As you can see from the following variable declaration, we are only declaring each resources values using a _complex_ variable type of **Object** (Resource Group config) and **List Object** (List of Storage Account configs):
 
 ```hcl
 #// code/variables.tf#L1-L20
+#Resource Group Config - Object
 variable "rg_config" {
   type = object({
     create_rg = bool
@@ -106,6 +107,7 @@ variable "rg_config" {
   })
 }
 
+#Storage Account Config - List of Objects (Each object represents a storage config)
 variable "storage_config" {
   type = list(object({
     name                      = string
@@ -120,7 +122,7 @@ variable "storage_config" {
 }
 ```
 
-Because we are now using a **list of objects** as the variable for storage accounts, each storage account we want to create can be configured on our **TFVARS** file as an object and so we can simply add additional objects into our **TFVARS** to build `one` or `many` storage accounts, each with different configs:
+Because we are now using a **list of objects** as the variable for storage accounts, each storage account we want to create can be configured on our **TFVARS** file as an object inside its own block, and so we can simply add additional object blocks into our **TFVARS** to build `one` or `many` storage accounts, each with different configs:
 
 ```hcl
 #// code/common.auto.tfvars.tf#L1-L30
@@ -155,6 +157,8 @@ storage_config = [
   }
 ]
 ```
+
+As you can see from the last example, using complex variable types and making our configurations more object oriented can offer much greater flexibility and granularity in terraform deployments.  
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Terraform-Complex-Vars/code) page. :heart:
 
