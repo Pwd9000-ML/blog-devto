@@ -28,7 +28,7 @@ jobs:
 
     - name: Publish articles on dev.to
       continue-on-error: true
-      uses: sinedied/publish-devto@master
+      uses: sinedied/publish-devto@v2
       with:
         files: 'posts/**/*.md'
         devto_key: ${{ secrets.DEVTO_TOKEN }}
