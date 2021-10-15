@@ -3,7 +3,7 @@ title: Connect Terraform to Azure Devops Git Repos over SSH
 published: true
 description: DevOps - Terraform - Connecting Git over SSH
 tags: 'tutorial, azure, productivity, devops'
-cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Terraform-Git-Ssh/assets/main-tf-ado.png
+cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Terraform-Git-Ssh/assets/main-tf-ado1.png
 canonical_url: null
 id: 767794
 ---
@@ -21,13 +21,13 @@ First we have to create a SSH key pair:
 - If a passphrase was used in the creation of the key pair, make a note of the passphrase as we will need it later on.
 - Next run: `ssh-keyscan -H -t rsa ssh.dev.azure.com > $env:userprofile/.ssh/known_hosts`. The content of the file will be used later on in the setup of the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task in our DevOps pipeline.
 
-![Sshkey01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Terraform-Git-Ssh/assets/Sshkey01.png)
+![Sshkey01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Terraform-Git-Ssh/assets/Sshkey1.png)
 
 ## Step 2: Prepare Azure Devops
 
 - Copy the private key file created in the previous step `id_rsa` into azure **pipelines -> Library -> Secure files**. The file can be renamed to make it more friendly to use later on in the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task. In my case I have renamed my private key to `terraform_rsa`.
 
-  ![securefile01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Terraform-Git-Ssh/assets/securefile01.png)
+  ![securefile01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Terraform-Git-Ssh/assets/securefile1.png)
 
 - Under the **user settings** in Azure Devops go to SSH public keys and select **Add**. Give a name and add the contents of the file created `id_rsa.pub`. In my case I have renamed my public key to `terraform_rsa.pub`.
 
@@ -95,8 +95,4 @@ I hope you have enjoyed this post and have learned something new. You can also f
 
 {% user pwd9000 %}
 
-Like, share, follow and connect with me on:
-
-:octopus: [GitHub](https://github.com/Pwd9000-ML) \
-:penguin: [Twitter](https://twitter.com/pwd9000) \
-:space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+Like, share, follow and connect with me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) \ :penguin: [Twitter](https://twitter.com/pwd9000) \ :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
