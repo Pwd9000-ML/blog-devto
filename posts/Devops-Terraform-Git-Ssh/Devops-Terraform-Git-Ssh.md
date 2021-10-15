@@ -27,7 +27,7 @@ First we have to create a SSH key pair:
 
 - Copy the private key file created in the previous step `id_rsa` into azure **pipelines -> Library -> Secure files**. The file can be renamed to make it more friendly to use later on in the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task. In my case I have renamed my private key to `terraform_rsa`.
 
-  ![securefile01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Terraform-Git-Ssh/assets/securefile1.png)
+  ![securefile01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Terraform-Git-Ssh/assets/secfile.png)
 
 - Under the **user settings** in Azure Devops go to SSH public keys and select **Add**. Give a name and add the contents of the file created `id_rsa.pub`. In my case I have renamed my public key to `terraform_rsa.pub`.
 
@@ -95,4 +95,4 @@ I hope you have enjoyed this post and have learned something new. You can also f
 
 {% user pwd9000 %}
 
-Like, share, follow and connect with me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) \ :penguin: [Twitter](https://twitter.com/pwd9000) \ :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) \ :penguin: [Twitter](https://twitter.com/pwd9000) \ :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)

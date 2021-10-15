@@ -25,6 +25,4 @@ Both status pages also has an RSS feed. In my next article/tutorial I will show 
 
 {% user pwd9000 %}
 
-Like, share, follow and connect with me on:
-
-:octopus: [GitHub](https://github.com/Pwd9000-ML) :penguin: [Twitter](https://twitter.com/pwd9000) :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) \ :penguin: [Twitter](https://twitter.com/pwd9000) \ :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
