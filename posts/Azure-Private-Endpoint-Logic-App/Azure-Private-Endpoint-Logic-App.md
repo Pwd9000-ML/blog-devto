@@ -3,7 +3,7 @@ title: Securing Azure Logic apps with Private Endpoints
 published: true
 description: Azure - Private Endpoint Azure Logic apps
 tags: 'tutorial, azure, productivity, security'
-cover_image: assets/main-cover-logicapp.png
+cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Endpoint-Logic-App/assets/main-cover-logicapp.png
 canonical_url: null
 id: 732865
 ---
@@ -16,7 +16,7 @@ id: 732865
 
 [Azure Private Link](https://docs.microsoft.com/en-us/azure/private-link/private-link-overview) (Private Endpoint) allows you to access Azure PaaS services over a Private IP address within the VNet. The PaaS resource gets a new private IP via a virtual network interface (NIC) on your Virtual Network (VNET) attached to the PaaS resource or service, making the resource truly an internal **private** resource to your virtual network. When you send traffic to the resource that has been private endpointed, it will always ensure traffic stays within your VNet boundary.
 
-![private-link](./assets/private-link.png)
+![private-link](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Endpoint-Logic-App/assets/private-link.png)
 
 ## What's new in Azure Logic apps?
 
@@ -81,13 +81,13 @@ az network private-dns link vnet create `
     --registration-enabled "true"
 ```
 
-![private-dns](./assets/private-dns.png)
+![private-dns](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Endpoint-Logic-App/assets/private-dns.png)
 
 ## Creating an Azure Logic app (Single-tenant)?
 
 Now that we have everything in place we will create our logic app. Navigate to the Azure portal and go to the resource group we created and create a new **Logic app (Standard)** resource.
 
-![CreateLogicApp](./assets/CreateLogicApp.png)
+![CreateLogicApp](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Endpoint-Logic-App/assets/CreateLogicApp.png)
 
 Under the **Basics** blade, add the following **Instance Details:**
 
@@ -98,7 +98,7 @@ Under the **Basics** blade, add the following **Instance Details:**
 | Publish        | Workflow           |
 | Region         | {Region}           |
 
-![CreateLogicAppBasics](./assets/CreateLogicAppBasics.png)
+![CreateLogicAppBasics](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Endpoint-Logic-App/assets/CreateLogicAppBasics.png)
 
 Under the **Hosting** blade, add the following **Plan:**
 
@@ -108,7 +108,7 @@ Under the **Hosting** blade, add the following **Plan:**
 | Windows Plan | {ASP - App Service Plan} |
 | Sku and size | {SKU}                    |
 
-![CreateLogicAppHosting](./assets/CreateLogicAppHosting.png)
+![CreateLogicAppHosting](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Endpoint-Logic-App/assets/CreateLogicAppHosting.png)
 
 Move to the next blade **Monitoring** and enable/disable **Application Insights** and then add any **Tags**. Click on **Review + create** and create the new logic app.
 
@@ -116,15 +116,15 @@ Move to the next blade **Monitoring** and enable/disable **Application Insights*
 
 Before we continue to our last step, also note that our newly created Logic App has already been enabled with a `system assigned managed identity`. Pretty neat!
 
-![MSI](./assets/msi.png)
+![MSI](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Endpoint-Logic-App/assets/msi.png)
 
 Next we will create our private endpoint. Select the **Networking** blade and click on **Private endpoints**.
 
-![bladeprivateendpoint](./assets/bladeprivateendpoint.png)
+![bladeprivateendpoint](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Endpoint-Logic-App/assets/bladeprivateendpoint.png)
 
 **Note:** You will see that our inbound address to access our logic app is currently configured using a `public endpoint` (Public IP address).
 
-![pubip](./assets/pubip.png)
+![pubip](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Endpoint-Logic-App/assets/pubip.png)
 
 Under the **Private Endpoint connections** blade, click **+ Add** and add the following:
 
@@ -136,11 +136,11 @@ Under the **Private Endpoint connections** blade, click **+ Add** and add the fo
 | Subnet                          | {Subnet Name}           |
 | Integrate with private DNS Zone | Yes                     |
 
-![peconfig](./assets/peconfig.png)
+![peconfig](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Endpoint-Logic-App/assets/peconfig.png)
 
 **Note:** You will now see that our inbound address to access our logic app has changed and is configured to use our `private endpoint` (Private IP address from our VNET).
 
-![privip](./assets/privip.png)
+![privip](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Endpoint-Logic-App/assets/privip.png)
 
 Make a note of the **private IP** and navigate to the Azure Private DNS zone we created earlier. Click on **+ Record set** and add the following:
 
@@ -151,11 +151,11 @@ Make a note of the **private IP** and navigate to the Azure Private DNS zone we 
 | TTL        | 1 Hour                            |
 | IP address | {Private Inbound IP of Logic App} |
 
-![privipconfig](./assets/privipconfig.png)
+![privipconfig](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Endpoint-Logic-App/assets/privipconfig.png)
 
 That is it! We have now secured our logic app to be a completely internal resource keeping it within our network boundaries as if it was an internally hosted resource inside of our Virtual Network.
 
-![secdiag](./assets/secdiag.png)
+![secdiag](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Endpoint-Logic-App/assets/secdiag.png)
 
 ## Testing our Logic App?
 
@@ -163,14 +163,20 @@ Let's test out our Logic App and see what happens if we try to access it from an
 
 HTTP POST Url from an external source:
 
-![external](./assets/external.png)
+![external](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Endpoint-Logic-App/assets/external.png)
 
 HTTP POST Url from an internal Virtual Machine running inside of our VNET:
 
-![internal](./assets/internal.png)
+![internal](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Endpoint-Logic-App/assets/internal.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-Private-Endpoint-Logic-App/code) page. :heart:
 
 ### _Author_
 
 {% user pwd9000 %}
+
+Like, share, follow and connect with me on:
+
+:octopus: [GitHub](https://github.com/Pwd9000-ML)  
+:penguin: [Twitter](https://twitter.com/pwd9000)  
+:space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)  

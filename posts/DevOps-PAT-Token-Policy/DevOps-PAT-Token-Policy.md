@@ -3,7 +3,7 @@ title: Restrict Azure DevOps PAT tokens with Azure AD policy
 published: true
 description: DevOps - Personal Access Token (PAT) policy
 tags: 'tutorial, azure, devops, security'
-cover_image: assets/azure-pat2.png
+cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-PAT-Token-Policy/assets/azure-pat2.png
 canonical_url: null
 id: 739025
 date: '2021-06-25T13:31:42Z'
@@ -15,7 +15,7 @@ A personal access token (PAT) is used as an alternative to using a password to a
 
 PATs are easy to create when you need them and easy to revoke when you don’t.
 
-![newPat](./assets/new-pat2.png)
+![newPat](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-PAT-Token-Policy/assets/new-pat2.png)
 
 When creating a new PAT you can select the organization where you want to use the token, and then choose a lifespan for your token. Say for example making it only active and usable for a period of 30 days. A PATs lifetime can be extended if needed, but cannot be longer than the maximum period of 1 year. You can also specify granular [permissions scopes](https://docs.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/oauth?view=azure-devops#scopes) to specify what access is authorised.
 
@@ -31,7 +31,7 @@ So PATs are really handy and make it easy to authenticate against Azure DevOps t
 
 After your Org has been connected to Azure AD you can navigate to the **Azure Active Directory** tab in the **organization settings**.
 
-![Azuread](./assets/azure-ad2.png)
+![Azuread](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-PAT-Token-Policy/assets/azure-ad2.png)
 
 Here you can:
 
@@ -43,10 +43,16 @@ These policies will apply to all new PATs created by users for Azure DevOps orga
 
 These policies only apply to new PATs, and will not affect existing PATs that have already been created and are in use. After the policies have been enabled however, any existing, now non-compliant PATs must be updated to be within the restrictions before they can be renewed.
 
-![patpolicy](./assets/pat-policy2.png)
+![patpolicy](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-PAT-Token-Policy/assets/pat-policy2.png)
 
 For more detailed information have a look at: [Managing Personal Access Tokens with policies](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/manage-pats-with-policies-for-administrators?view=azure-devops).
 
 ### _Author_
 
 {% user pwd9000 %}
+
+Like, share, follow and connect with me on:
+
+:octopus: [GitHub](https://github.com/Pwd9000-ML)  
+:penguin: [Twitter](https://twitter.com/pwd9000)  
+:space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)  

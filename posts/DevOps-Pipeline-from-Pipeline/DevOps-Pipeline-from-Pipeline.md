@@ -3,7 +3,7 @@ title: Consume artifacts from a remote DevOps project pipeline
 published: true
 description: DevOps - Pipelines - Consume remote artifact
 tags: 'tutorial, azure, productivity, devops'
-cover_image: assets/main-ado.png
+cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Pipeline-from-Pipeline/assets/main-ado.png
 canonical_url: null
 id: 783932
 date: '2021-08-07T14:06:14Z'
@@ -26,13 +26,13 @@ Today we will take a look at the [Pipelines Resource](https://docs.microsoft.com
 
 In my DevOps organisation I have created two projects namely **ProjectA** and **ProjectB**. I also created two YAML pipelines for each corresponding project named **PipelineA** and **PipelineB**. **PipelineA** will be my triggering/source pipeline which will create an artifact called **ArtifactA**. **PipelineB** will be my pipeline which will contain the pipeline resource for **PipelineA** and will consume **ArtifactA**.
 
-![main](./assets/main-ado.png)
+![main](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Pipeline-from-Pipeline/assets/main-ado.png)
 
 In **ProjectA** I also created a repository called **RepoA** which contains a file called **MyConfig.txt**.
 
-![projects](./assets/projects.png)
+![projects](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Pipeline-from-Pipeline/assets/projects.png)
 
-![myConfig](./assets/myconfig.png)
+![myConfig](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Pipeline-from-Pipeline/assets/myconfig.png)
 
 I also created the following code in **PipelineA.yml**.
 
@@ -69,13 +69,13 @@ stages:
 
 **NOTE:** It is important to note that when we create the above pipeline in our source project we must rename the pipeline to the same name as what we will refer to it in our pipeline resource on **PipelineB**. In my case I will refer to this as **PipelineA**.
 
-![rename](./assets/rename.png)
+![rename](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Pipeline-from-Pipeline/assets/rename.png)
 
 The above YAML pipeline will take the file **MyConfig.txt** and create a pipeline artifact containing the file called **ArtifactA**.
 
-![pipelineA](./assets/pipelineA.png)
+![pipelineA](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Pipeline-from-Pipeline/assets/pipelineA.png)
 
-![artifactA](./assets/artifactA.png)
+![artifactA](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Pipeline-from-Pipeline/assets/artifactA.png)
 
 In **ProjectB** I have **PipelineB.yml** that contains the pipeline resource for **PipelineA** and will be triggered once **PipelineA** completes and we will use the download task to also consume the artifact that was produced by **PipelineA**.
 
@@ -129,7 +129,7 @@ stages:
 
 **NOTE:** It is important to note that we have to configure **ProjectB** pipeline settings to allow it to connect to **ProjectA** in order to download the artifact that was produced.
 
-![pipesettings](./assets/pipesettings.png)
+![pipesettings](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Pipeline-from-Pipeline/assets/pipesettings.png)
 
 Metadata for a pipeline resource, are available as predefined variables that we can reference, as you can see from our **PipelineB.yml** in the following code snippet:
 
@@ -157,7 +157,7 @@ resources.pipeline.<Alias>.requestedForID
 
 Now when we trigger and run **PipelineA** in **ProjectA**, it will automatically create our **ArtifactA** and also after completion **PipelineB** in **ProjectB** will be automatically triggered and also download and consume **ArtifactA** that was created in **ProjectA**.
 
-![results](./assets/results.png)
+![results](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Pipeline-from-Pipeline/assets/results.png)
 
 Also note that triggers for resources are created based on the default branch configuration of our YAML, which is master. However, if we want to configure resource triggers from a different branch, we will need to change the default branch for the pipeline. For more information have a look at [Default branch for triggers](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=example#default-branch-for-triggers).
 
@@ -166,3 +166,9 @@ I hope you have enjoyed this post and have learned something new. You can also f
 ### _Author_
 
 {% user pwd9000 %}
+
+Like, share, follow and connect with me on:
+
+:octopus: [GitHub](https://github.com/Pwd9000-ML)  
+:penguin: [Twitter](https://twitter.com/pwd9000)  
+:space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)  
