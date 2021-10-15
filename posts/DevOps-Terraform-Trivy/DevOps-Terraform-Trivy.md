@@ -16,7 +16,7 @@ You can now scan your Terraform configuration artifacts easily giving you the co
 
 In todays tutorial we will look at how you can utilise `Trivy` as part of your DevOps CI/CD process for deploying Terraform (IaC) by scanning your terraform deployment source code for security risks, before actually deploying the configuration to ensure that there are no vulnerabilities or misconfigurations that could potentially open up security risks.
 
-## Consume remote pipeline artifacts
+## How to
 
 ### _Author_
 
