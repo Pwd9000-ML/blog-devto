@@ -6,6 +6,7 @@ tags: 'tutorial, azure, productivity, security'
 cover_image: assets/PLSMain.png
 canonical_url: null
 id: 756521
+date: '2021-07-11T22:56:40Z'
 ---
 
 ## What is Azure Private Link Service?

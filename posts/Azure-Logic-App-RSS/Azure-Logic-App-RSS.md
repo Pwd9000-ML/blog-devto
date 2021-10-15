@@ -12,7 +12,7 @@ id: 807719
 
 As described in one of my previous post, you can easily check the health status of services like Github and DevOps by going to each services status page. Below is a link to my previous post: {% link <https://dev.to/pwd9000/github-devops-status-2eji> %}
 
-Additionally, both Github and DevOps status pages have RSS feeds we can subscribe to. The Azure platform itself also has its own health status page at the following URL: [https://status.azure.com/en-us/status/](https://status.azure.com/en-us/status/).  
+Additionally, both Github and DevOps status pages have RSS feeds we can subscribe to. The Azure platform itself also has its own health status page at the following URL: [https://status.azure.com/en-us/status/](https://status.azure.com/en-us/status/).
 
 In todays tutorial we will create and configure an **Azure Logic App** that will connect to each of these services RSS feeds and send us email notifications when services become degraded, health issues occur or get remediated.
 
@@ -27,14 +27,13 @@ In todays tutorial we will create and configure an **Azure Logic App** that will
 
 ## Creating the Logic App
 
-In the Azure portal search for `logic app` and then add and create the logic app with the following configuration.
-Under the **Basics** blade, add the following **Instance Details:**
+In the Azure portal search for `logic app` and then add and create the logic app with the following configuration. Under the **Basics** blade, add the following **Instance Details:**
 
-| Name           | Value              |
-| -------------- | ------------------ |
-| Type           | Consumption        |
-| Logic App name | {Name}             |
-| Region         | {Region}           |
+| Name           | Value       |
+| -------------- | ----------- |
+| Type           | Consumption |
+| Logic App name | {Name}      |
+| Region         | {Region}    |
 
 ![create](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/create.png)
 
@@ -57,7 +56,7 @@ We will set this trigger to run every 3 minutes:
 Next we will add each of our RSS feeds as parallel **branches** after our schedule. Click on `+ New step` underneath the `recurrence` schedule trigger and search for `rss`. We will add the action **"List all RSS feed items"** 3x times as we want to check three RSS feeds, one for each of the following service:
 
 1. [https://www.githubstatus.com/history.rss](https://www.githubstatus.com/history.rss) - Github RSS status feed.
-2. [https://status.dev.azure.com/_rss](https://status.dev.azure.com/_rss) - Azure Devops RSS status feed.
+2. [https://status.dev.azure.com/\_rss](https://status.dev.azure.com/_rss) - Azure Devops RSS status feed.
 3. [https://azurestatuscdn.azureedge.net/en-gb/status/feed/](https://azurestatuscdn.azureedge.net/en-gb/status/feed/) - Azure platform RSS status feed.
 
 ![rss_actions](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/rss_actions.png)
@@ -93,7 +92,7 @@ Search for `control` and then select the action `for each`:
 
 ![fore_each](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/for_each.png)
 
-We can again rename our control action so that it is easier to identify. In my case I have named these control actions `githubFeedItem`, `devopsFeedItem` and `azureFeedItem`.  
+We can again rename our control action so that it is easier to identify. In my case I have named these control actions `githubFeedItem`, `devopsFeedItem` and `azureFeedItem`.
 
 For each control action we will configure the RSS `Body` as the output from the previous step and then **add an action**. In the search box, enter `send an email` so that you can find connectors that offer this action. If you have a Microsoft work or school account and want to use **Office 365 Outlook**. Or, if you have a personal Microsoft account, select **Outlook.com**. This example continues with Outlook.com. Select **Send and email (V2)**:
 

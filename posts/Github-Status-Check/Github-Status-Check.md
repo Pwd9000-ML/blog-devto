@@ -8,11 +8,11 @@ canonical_url: null
 id: 805154
 ---
 
-You can check the status of github in real-time, incl. historical data on system performance, follow incidents or scheduled maintenance by going to: [https://www.githubstatus.com/](https://www.githubstatus.com/).  
+You can check the status of github in real-time, incl. historical data on system performance, follow incidents or scheduled maintenance by going to: [https://www.githubstatus.com/](https://www.githubstatus.com/).
 
 ![gh_status](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Github-Status-Check/assets/gh_status.png)
 
-Similarly to check the status of Azure DevOps you can use: [https://status.dev.azure.com/](https://status.dev.azure.com/).  
+Similarly to check the status of Azure DevOps you can use: [https://status.dev.azure.com/](https://status.dev.azure.com/).
 
 ![ado_status](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Github-Status-Check/assets/ado_status.png)
 

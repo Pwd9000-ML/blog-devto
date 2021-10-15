@@ -10,13 +10,13 @@ id: 824638
 
 ## Azure DevOps Wiki
 
-When working on Azure DevOps or Github, we have special needs when it comes to wiki's and documentation. Specifically, we often have our documentation sit next to our source code in our repos, allowing us to version our documentation along with our source code. This developer-specific workflow is totally supported by Azure DevOps Wiki. What is great about using the Azure DevOps wiki is that similarly how teams can share and collaborate on a projects source code the same team, using the same workflow can also share and collaborate on a projects documentation through its Wiki. Documentation such as release notes, manuals and any sort of documentation that needs to accompany a project can be created in a Wiki. The documentation is then also kept in source control and in a central place that a team can access and collaborate on.  
+When working on Azure DevOps or Github, we have special needs when it comes to wiki's and documentation. Specifically, we often have our documentation sit next to our source code in our repos, allowing us to version our documentation along with our source code. This developer-specific workflow is totally supported by Azure DevOps Wiki. What is great about using the Azure DevOps wiki is that similarly how teams can share and collaborate on a projects source code the same team, using the same workflow can also share and collaborate on a projects documentation through its Wiki. Documentation such as release notes, manuals and any sort of documentation that needs to accompany a project can be created in a Wiki. The documentation is then also kept in source control and in a central place that a team can access and collaborate on.
 
 But this might not be suitable or possible at all times in all use cases, for example to see the DevOps wiki a person must have access to the DevOps Project and Wiki. Say for example someone who is in a different project or in a management role that does not have access to the DevOps project or wiki would like to see a products release notes or maybe some sort of documentation on the project in a document, this makes things a bit more tricky. So today I will share with you how you can convert your DevOps or Github wiki into a PDF document. We will also look at how we can create a pipeline that will automatically generate a new "Wiki PDF" document when required.
 
 ## DevOps Wiki PDF Export Task
 
-WIKI PDF Export Tasks is a DevOps extension that can be installed into your DevOps Organisation from the Azure DevOps [marketplace](https://marketplace.visualstudio.com/items?itemName=richardfennellBM.BM-VSTS-WikiPDFExport-Tasks), simply put it is an Azure Pipelines extension that can give teams another way to present their Wiki as a PDF document, whether it be an export of a whole WIKI or just a single page.  
+WIKI PDF Export Tasks is a DevOps extension that can be installed into your DevOps Organisation from the Azure DevOps [marketplace](https://marketplace.visualstudio.com/items?itemName=richardfennellBM.BM-VSTS-WikiPDFExport-Tasks), simply put it is an Azure Pipelines extension that can give teams another way to present their Wiki as a PDF document, whether it be an export of a whole WIKI or just a single page.
 
 The extension is based on a tool called [**AzureDevOps.WikiPDFExport**](https://github.com/MaxMelcher/AzureDevOps.WikiPDFExport) by Max Melcher that allows you to export a whole WIKI (or a single file) as a PDF. The tool performs the following tasks:
 
@@ -69,6 +69,8 @@ stages:
       inputs:
         targetPath: '$(Build.ArtifactStagingDirectory)/PDF'
         artifactName: DevOpsWiki
+
+
 ```
 
 We can then set up this pipeline and trigger it manually, once the pipeline has completed it will generate an artifact that contains the PDF document.
@@ -90,14 +92,14 @@ Note on our pipeline the task used is specifically to export a private Azure Dev
     cloneRepo: true
     repo: 'https://dev.azure.com/magiconionM/Devto_Blog_Demos/_git/DevOps.Wiki'
     useAgentToken: true
-    localpath: '$(System.DefaultWorkingDirectory)/DevOpsWiki' 
+    localpath: '$(System.DefaultWorkingDirectory)/DevOpsWiki'
     outputFile: '$(Build.ArtifactStagingDirectory)/PDF/DevOpsWiki.pdf'
 ```
 
 Here are two more examples. Export a Single File:
 
 ```yml
-- task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@1 
+- task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@1
   displayName: 'Export Single File'
   inputs:
     cloneRepo: false
@@ -113,9 +115,9 @@ Export a public GitHub WIKI:
    displayName: 'Export a public GitHub WIKI'
    inputs:
      cloneRepo: true
-     repo: 'https://github.com/rfennell/AzurePipelines.wiki.git' 
+     repo: 'https://github.com/rfennell/AzurePipelines.wiki.git'
      useAgentToken: false
-     localpath: '$(System.DefaultWorkingDirectory)\GitHubRepo' 
+     localpath: '$(System.DefaultWorkingDirectory)\GitHubRepo'
      outputFile: '$(Build.ArtifactStagingDirectory)\PDF\GitHubWiki.pdf'
 ```
 

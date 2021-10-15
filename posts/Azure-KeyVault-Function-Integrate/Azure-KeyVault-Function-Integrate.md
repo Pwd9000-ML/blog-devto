@@ -6,6 +6,7 @@ tags: 'tutorial, azure, productivity, security'
 cover_image: assets/key-func-main.png
 canonical_url: null
 id: 740019
+date: '2021-07-03T07:54:05Z'
 ---
 
 ## What is an Azure function?
@@ -93,7 +94,7 @@ Create some secrets in the key vault for testing:
 | Name      | Value               |
 | --------- | ------------------- |
 | SecUser01 | pwd9000admin        |
-| SecPass01 | S8p3r$3cR3t2021!*! |
+| SecPass01 | S8p3r$3cR3t2021!\*! |
 
 ![kvsecrets](./assets/kvsecrets.png)
 

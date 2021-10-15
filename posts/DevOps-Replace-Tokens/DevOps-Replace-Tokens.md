@@ -412,7 +412,6 @@ Also remember to set the environments in Azure DevOps as shown on each of our ya
 # code/terraform-azurerm-resourcegroup/pipelines/dev_deployment.yml#L21-L21
 
 environment: Infra-Dev
-
 ```
 
 ![environments](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Replace-Tokens/assets/environments.png)
@@ -433,7 +432,6 @@ Also note that each of the deployments have their own unique state file based on
 # code/terraform-azurerm-resourcegroup/pipelines/dev_deployment.yml#L58-L58
 
 backendAzureRmKey: 'Infra_${{ variables.environment }}_rg.tfstate'
-
 ```
 
 ![state](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Replace-Tokens/assets/state.png)

@@ -6,6 +6,7 @@ tags: 'tutorial, azure, devops, security'
 cover_image: assets/azure-pat2.png
 canonical_url: null
 id: 739025
+date: '2021-06-25T13:31:42Z'
 ---
 
 ## What is an Azure DevOps Personal Access Token (PAT)?

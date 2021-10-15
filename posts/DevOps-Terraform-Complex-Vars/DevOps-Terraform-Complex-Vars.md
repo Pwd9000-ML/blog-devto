@@ -3,16 +3,17 @@ title: Terraform - Complex Variable Types
 published: true
 description: DevOps - Terraform - Complex Variable Types
 tags: 'tutorial, azure, productivity, devops'
-cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Terraform-Complex-Vars/assets/main-tf.png
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Terraform-Complex-Vars/assets/main-tf.png'
 canonical_url: null
 id: 849831
+date: '2021-10-03T14:55:03Z'
 ---
 
 ## Terraform Variables
 
-When creating a terraform configuration, you have to configure and declare [Input Variables](https://www.terraform.io/docs/language/values/variables.html). Input variables serve as parameters for a Terraform module and resources, allowing aspects of the module to be customized without altering the module's own source code, and allowing modules to be shared between different configurations.  
+When creating a terraform configuration, you have to configure and declare [Input Variables](https://www.terraform.io/docs/language/values/variables.html). Input variables serve as parameters for a Terraform module and resources, allowing aspects of the module to be customized without altering the module's own source code, and allowing modules to be shared between different configurations.
 
-The Terraform language uses the following types for its values:  
+The Terraform language uses the following types for its values:
 
 - `string`: a sequence of Unicode characters representing some text, like "hello".
 - `number`: a numeric value. The number type can represent both whole numbers like 15 and fractional values like 6.283185.
@@ -59,7 +60,7 @@ As you can see from the above example each resource argument is declared using a
 
 ## Using Complex Variable Types
 
-In the following example we create an Azure Resource Group and two storage accounts, but instead of declaring each variable individually using _primitive_ types we will use **Collections** using _complex_ types. We will create our Resource Group by using a single complex variable called `rg_config` and we will create our storage account/s using a single complex variable list of objects called `storage_config`.  
+In the following example we create an Azure Resource Group and two storage accounts, but instead of declaring each variable individually using _primitive_ types we will use **Collections** using _complex_ types. We will create our Resource Group by using a single complex variable called `rg_config` and we will create our storage account/s using a single complex variable list of objects called `storage_config`.
 
 As you can see from the following variable declaration, we are only declaring each resources values using a _complex_ variable type of **Object** (Resource Group config) and **List Object** (List of Storage Account configs):
 
@@ -160,7 +161,7 @@ storage_config = [
 ]
 ```
 
-As you can see from the last example, using complex variable types and making our configurations more object oriented can offer much greater flexibility and granularity in terraform deployments.  
+As you can see from the last example, using complex variable types and making our configurations more object oriented can offer much greater flexibility and granularity in terraform deployments.
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Terraform-Complex-Vars/code) page. :heart:
 
