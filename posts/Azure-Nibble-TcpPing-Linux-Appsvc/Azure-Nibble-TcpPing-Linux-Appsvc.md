@@ -6,6 +6,7 @@ tags: 'tutorial, azure, productivity, learning'
 cover_image: assets/main-azure-nibble.png
 canonical_url: null
 id: 763498
+date: '2021-07-19T16:34:17Z'
 ---
 
 ## Ping vs. TcpPing?

@@ -6,6 +6,7 @@ tags: 'tutorial, azure, productivity, security'
 cover_image: assets/main-cover-logicapp.png
 canonical_url: null
 id: 732865
+date: '2021-06-19T15:11:43Z'
 ---
 
 ## What is an Azure Logic app?
