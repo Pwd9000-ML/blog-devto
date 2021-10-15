@@ -10,9 +10,9 @@ id: 864896
 
 ## Trivy Vulnerability Scanner
 
-`Trivy` is a simple and comprehensive scanner for vulnerabilities in container images, file systems, and Git repositories, as well as for configuration issues in IaC. `Trivy` detects vulnerabilities of OS packages (Alpine, RHEL, CentOS, etc.) and language-specific packages (Bundler, Composer, npm, yarn, etc.). In addition, `Trivy` scans Infrastructure as Code (IaC) files such as Terraform, Dockerfile and Kubernetes, to detect potential configuration issues that expose your deployments to the risk of attack.  
+`Trivy` is a simple and comprehensive scanner for vulnerabilities in container images, file systems, and Git repositories, as well as for configuration issues in IaC. `Trivy` detects vulnerabilities of OS packages (Alpine, RHEL, CentOS, etc.) and language-specific packages (Bundler, Composer, npm, yarn, etc.). In addition, `Trivy` scans Infrastructure as Code (IaC) files such as Terraform, Dockerfile and Kubernetes, to detect potential configuration issues that expose your deployments to the risk of attack.
 
-You can now scan your Terraform configuration artifacts easily giving you the confidence that all is well with your configuration before deploying your Terraform (IaC) configurations. It is a free/open source tool and provided by AquaSecurity. For more information go check out the [Trivy github page](https://github.com/aquasecurity/trivy)  
+You can now scan your Terraform configuration artifacts easily giving you the confidence that all is well with your configuration before deploying your Terraform (IaC) configurations. It is a free/open source tool and provided by AquaSecurity. For more information go check out the [Trivy github page](https://github.com/aquasecurity/trivy)
 
 In todays tutorial we will look at how you can utilise `Trivy` as part of your DevOps CI/CD process for deploying Terraform (IaC) by scanning your terraform deployment source code for security risks, before actually deploying the configuration to ensure that there are no vulnerabilities or misconfigurations that could potentially open up security risks.
 
