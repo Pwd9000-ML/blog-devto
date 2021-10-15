@@ -256,6 +256,6 @@ You can also find and use this [github repository](https://github.com/Pwd9000-ML
 
 ### _Author_
 
-{% user pwd9000 %}
+Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [Twitter](https://twitter.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
 
-Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) \ :penguin: [Twitter](https://twitter.com/pwd9000) \ :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+{% user pwd9000 %}
