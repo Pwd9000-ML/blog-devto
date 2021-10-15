@@ -14,7 +14,7 @@ id: 864896
 
 You can now scan your Terraform configuration artifacts easily giving you the confidence that all is well with your configuration before deploying your Terraform (IaC) configurations. It is a free/open source tool and provided by AquaSecurity. For more information go check out the [Trivy github page](https://github.com/aquasecurity/trivy)
 
-In todays tutorial we will look at how you can utilise `Trivy` as part of your DevOps CI/CD process for deploying Terraform (IaC) by scanning your terraform deployment source code for security risks, before actually deploying the configuration to ensure that there are no vulnerabilities or misconfigurations that could potentially open up security risks.
+Today we will look at how you can utilise `Trivy` as part of your DevOps CI/CD process for deploying Terraform (IaC) by scanning your terraform deployment source code for security risks, before actually deploying the configuration to ensure that there are no vulnerabilities or misconfigurations that could potentially open up security risks.
 
 ## How to
 
