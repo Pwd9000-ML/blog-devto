@@ -31,7 +31,7 @@ First we have to create a SSH key pair:
 
 - Under the **user settings** in Azure Devops go to SSH public keys and select **Add**. Give a name and add the contents of the file created `id_rsa.pub`. In my case I have renamed my public key to `terraform_rsa.pub`.
 
-  ![sshpub01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Terraform-Git-Ssh/assets/sshpub01.gif)
+  ![sshpub01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Terraform-Git-Ssh/assets/sshpub1.gif)
 
 ## Step 3: How to use _Install SSH Key_ devops task
 
@@ -97,6 +97,6 @@ I hope you have enjoyed this post and have learned something new. You can also f
 
 Like, share, follow and connect with me on:
 
-:octopus: [GitHub](https://github.com/Pwd9000-ML)\
-:penguin: [Twitter](https://twitter.com/pwd9000)\
+:octopus: [GitHub](https://github.com/Pwd9000-ML) \
+:penguin: [Twitter](https://twitter.com/pwd9000) \
 :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
