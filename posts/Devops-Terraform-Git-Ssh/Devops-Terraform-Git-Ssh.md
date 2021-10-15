@@ -3,9 +3,10 @@ title: Connect Terraform to Azure Devops Git Repos over SSH
 published: true
 description: DevOps - Terraform - Connecting Git over SSH
 tags: 'tutorial, azure, productivity, devops'
-cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Devops-Terraform-Git-Ssh/assets/main-tf-ado1.png
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Devops-Terraform-Git-Ssh/assets/main-tf-ado1.png'
 canonical_url: null
 id: 767794
+date: '2021-07-22T10:52:57Z'
 ---
 
 ## Terraform module sources?
