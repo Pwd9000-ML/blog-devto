@@ -8,18 +8,13 @@ canonical_url: null
 id: 864896
 ---
 
-## Azure DevOps pipeline/YAML resources
+## Trivy Vulnerability Scanner
 
-Azure DevOps pipelines provides very useful [resources](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=schema) we can define in our pipeline in one place and be consumed anywhere in our pipeline.
+`Trivy` is a simple and comprehensive scanner for vulnerabilities in container images, file systems, and Git repositories, as well as for configuration issues in IaC. `Trivy` detects vulnerabilities of OS packages (Alpine, RHEL, CentOS, etc.) and language-specific packages (Bundler, Composer, npm, yarn, etc.). In addition, `Trivy` scans Infrastructure as Code (IaC) files such as Terraform, Dockerfile and Kubernetes, to detect potential configuration issues that expose your deployments to the risk of attack.  
 
-A resource is anything used by a pipeline that lives outside the pipeline. Pipeline resources include:
+You can now scan your Terraform configuration artifacts easily giving you the confidence that all is well with your configuration before deploying your Terraform (IaC) configurations. It is a free/open source tool and provided by AquaSecurity. For more information go check out the [Trivy github page](https://github.com/aquasecurity/trivy)  
 
-- CI/CD pipelines that produce artifacts (Azure Pipelines, Jenkins, etc.)
-- code repositories (Azure Repos Git repos, GitHub, GitHub Enterprise, Bitbucket Cloud)
-- container image registries (Azure Container Registry, Docker Hub, etc.)
-- package feeds (GitHub packages)
-
-Today we will take a look at the [Pipelines Resource](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=schema#resources-pipelines), in particular we will look at how we can use this resource in a pipeline to consume an artifact that was produced in another pipeline in a completely different project. Our pipeline will also even be triggered automatically by the source pipeline after the artifact has been created and published.
+In todays tutorial we will look at how you can utilise `Trivy` as part of your DevOps CI/CD process for deploying Terraform (IaC) by scanning your terraform deployment source code for security risks, before actually deploying the configuration to ensure that there are no vulnerabilities or misconfigurations that could potentially open up security risks.
 
 ## Consume remote pipeline artifacts
 
