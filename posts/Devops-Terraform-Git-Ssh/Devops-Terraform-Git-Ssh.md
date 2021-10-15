@@ -21,7 +21,7 @@ First we have to create a SSH key pair:
 - If a passphrase was used in the creation of the key pair, make a note of the passphrase as we will need it later on.
 - Next run: `ssh-keyscan -H -t rsa ssh.dev.azure.com > $env:userprofile/.ssh/known_hosts`. The content of the file will be used later on in the setup of the [Install SSH Key](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/tasks/utility/install-ssh-key.md) devops task in our DevOps pipeline.
 
-![Sshkey01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Terraform-Git-Ssh/assets/Sshkey1.png)
+![sshkey](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Terraform-Git-Ssh/assets/sshkey.png)
 
 ## Step 2: Prepare Azure Devops
 
