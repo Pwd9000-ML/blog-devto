@@ -3,9 +3,10 @@ title: DevOps/Github service notifications using Azure Logic Apps
 published: true
 description: Using Azure Logic App to send notifications from RSS feeds
 tags: 'tutorial, Azure, github, devops'
-cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/main.png
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Logic-App-RSS/assets/main.png'
 canonical_url: null
 id: 807719
+date: '2021-08-30T19:28:52Z'
 ---
 
 ## Github/DevOps service status
