@@ -3,7 +3,7 @@ title: Access internal APIM securely with Private Link Service
 published: true
 description: Azure - internal APIM + Private Link Service
 tags: 'tutorial, azure, productivity, security'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/PLSMain.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/PLSMain.png'
 canonical_url: null
 id: 756521
 date: '2021-07-11T22:56:40Z'
@@ -17,7 +17,7 @@ date: '2021-07-11T22:56:40Z'
 
 In todays tutorial we will look into an interesting use case for this service, in how we can connect an external source to consume an API management service (internal VNET mode) from an external non-peered VNET. As depicted in the following diagram:
 
-![networkDiag01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/networkDiag01.png)
+![networkDiag01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/networkDiag01.png)
 
 **Note:** The source or entry point where we will place our private endpoint can be in a network that is in a completely different region, tenant or subscription.
 
@@ -138,7 +138,7 @@ $apimService = New-AzApiManagement `
 
 After our APIM is created make a note of the APIM **Private IP** as we will use this in a later step to configure our VM forwarder.
 
-![apimPrivateIP1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/apimPrivateIP1.png)
+![apimPrivateIP1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/apimPrivateIP1.png)
 
 Next we will create our `Virtual machine` in the pls subnet, that will be used as a forwarder:
 
@@ -199,15 +199,15 @@ netsh interface portproxy add v4tov4 listenport=$port listenaddress=$localaddres
 
 - Confirm `IP Enable Router` has been activated:
 
-![reg01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/reg01.png)
+![reg01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/reg01.png)
 
 - Confirm inbound firewall rule has been created for TCP port 443:
 
-![port443](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/port443.png)
+![port443](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/port443.png)
 
 - Confirm there is a new listener on port 443 and forwarding set up (Netstat -AN):
 
-![netstat](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/netstat.png)
+![netstat](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/netstat.png)
 
 After confirming that all the config is there and correct, we can restart our VM and proceed to the next step in setting up our **Standard Load Balancer**:
 
@@ -250,19 +250,19 @@ New-AzLoadBalancer @loadbalancer
 
 After our load balancer is created we can add our VM into the backend pool which is called **plsVMforwarderPool**.
 
-![addvm1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/addvm1.png)
+![addvm1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/addvm1.png)
 
-![addvm2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/addvm2.png)
+![addvm2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/addvm2.png)
 
 After a few minutes we will see that our health probe is working as well which periodically checks port 443 on our forwarder VM.
 
-![probe1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/probe1.png)
+![probe1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/probe1.png)
 
 Next we will create our **Private Link Service** using the load balancer we created, then create a **Private Endpoint** on our remote non-peered VNET. We will also test that we can reach APIM using the Private endpoint from a test VM running in our external non-peered VNET.
 
 In the Azure portal go to `Private Link` and select `+ Add` under `Private Link Services`.
 
-![addpls01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/addpls01.png)
+![addpls01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/addpls01.png)
 
 Under the **Basics** blade, add the following:
 
@@ -272,7 +272,7 @@ Under the **Basics** blade, add the following:
 | Name           | APIM-PLS    |
 | Region         | UK South    |
 
-![basicspls](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/basicspls.png)
+![basicspls](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/basicspls.png)
 
 Under the **Outbound settings** blade, add the following:
 
@@ -285,11 +285,11 @@ Under the **Outbound settings** blade, add the following:
 | Enable TCP proxy V2 | No                      |
 | Private IP address  | Dynamic                 |
 
-![outboundpls](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/outboundpls.png)
+![outboundpls](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/outboundpls.png)
 
 Under the **Access Security** blade, we will use **Restricted by subscription** with a list of our two subscriptions. For more details on the different types of access: `Role-based access control only`, `Restricted by subscription`, `Anyone with your alias`, see this [LINK](https://docs.microsoft.com/en-gb/azure/private-link/private-link-service-overview#control-service-exposure).
 
-![accesspls](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/accesspls.png)
+![accesspls](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/accesspls.png)
 
 Add any tags if required and then create the private link service.
 
@@ -297,7 +297,7 @@ Now that our Private Link Service is created I will navigate to my other subscri
 
 In the Azure portal go to `Private Link` and select `+ Add` under `Private endpoints`.
 
-![addpe01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/addpe01.png)
+![addpe01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/addpe01.png)
 
 Under the **Basics** blade, select the subscription, and region where the external VNET resides (in my case this is in EAST US):
 
@@ -307,7 +307,7 @@ Under the **Basics** blade, select the subscription, and region where the extern
 | Name           | APIM-PE |
 | Region         | East US |
 
-![basicspe1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/basicspe1.png)
+![basicspe1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/basicspe1.png)
 
 Under the **Resource** blade, you can connect to the PLS service we created by it's `resource ID` or by selecting the following:
 
@@ -317,7 +317,7 @@ Under the **Resource** blade, you can connect to the PLS service we created by i
 | Resource Type | Microsoft.Network/privateLinkservices |
 | Resource      | APIM-PLS                              |
 
-![resourcepe](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/resourcepe.png)
+![resourcepe](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/resourcepe.png)
 
 Under the **Configuration** blade, select the external virtual network (in my case this is hosted in EAST US and my VNET is called `External`):
 
@@ -326,27 +326,27 @@ Under the **Configuration** blade, select the external virtual network (in my ca
 | Virtual Network | [external VNET name]   |
 | Subnet          | [External VNET subnet] |
 
-![configpe](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/configpe.png)
+![configpe](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/configpe.png)
 
 Add any tags if required and then create the private endpoint.
 
 And that is it, we have now successfully created a secure entry point to access our private APIM service from a non-peered external VNET hosted in EAST US. I have a VM running in my EAST US external VNET in which we can test our connectivity via the private endpoint we just created. In my case the private endpoint IP allocated to APIM-PE is: `192.168.0.6`.
 
-![peip](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/peip.png)
+![peip](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/peip.png)
 
 My test VM running in my external VNET has an IP of: `192.168.0.4`.
 
-![testvmip1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/testvmip1.png)
+![testvmip1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/testvmip1.png)
 
 To test connectivity to my APIM I will require my APIM endpoints and for this test I will just configure my endpoints on my test machine using the local HOSTS file, but point my APIM endpoints to the APIM-PE (private endpoint we created).
 
-![apimend1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/apimend1.png)
+![apimend1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/apimend1.png)
 
 Let's see if our connectivity is working:
 
-![tst2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/tst2.png)
+![tst2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/tst2.png)
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/Azure-Private-Link-Service-Internal-APIM/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Private-Link-Service-Internal-APIM/code) page. :heart:
 
 ### _Author_
 

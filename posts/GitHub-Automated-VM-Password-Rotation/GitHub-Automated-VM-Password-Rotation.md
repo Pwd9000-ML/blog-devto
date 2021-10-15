@@ -3,7 +3,7 @@ title: Automate password rotation with Github and Azure
 published: true
 description: Automate VM password rotation using Github and Azure key vault
 tags: 'tutorial, security, github, azure'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/GitHub-Automated-VM-Password-Rotation/assets/maincover1.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/maincover1.png'
 canonical_url: null
 id: 698968
 date: '2021-05-17T16:13:19Z'
@@ -119,11 +119,11 @@ Remember at the beginning of this post I mentioned that we will create a github 
 
 3. Paste the JSON object output from the Azure CLI command we ran earlier into the secret's value field. Give the secret the name `AZURE_CREDENTIALS`.
 
-![githubAzureCredentials](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/GitHub-Automated-VM-Password-Rotation/assets/githubAzureCredentials1.png)
+![githubAzureCredentials](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/githubAzureCredentials1.png)
 
 ### Configure our GitHub workflow
 
-Now create a folder in the repository called `.github` and underneath another folder called `workflows`. In the workflows folder we will create a YAML file called `rotate-vm-passwords.yaml`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-VM-Password-Management/blob/master/.github/workflows/rotate-vm-passwords.yaml).
+Now create a folder in the repository called `.github` and underneath another folder called `workflows`. In the workflows folder we will create a YAML file called `rotate-vm-passwords.yaml`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-VM-Password-Management/blob/main/.github/workflows/rotate-vm-passwords.yaml).
 
 ```yaml
 name: Update Azure VM passwords
@@ -226,11 +226,11 @@ The current schedule is set to run on every monday at 9am. If you need to change
 
 The last step we now need to do is populate our key vault with some servers. Navigate to the key vault and create a new secret giving the VM name as the secret key:
 
-![addvm](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/GitHub-Automated-VM-Password-Rotation/assets/addvm.png)
+![addvm](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/addvm.png)
 
 You can just create dummy secrets in the `value` field as these will be overwritten when our workflow is triggered:
 
-![populate](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/GitHub-Automated-VM-Password-Rotation/assets/populate.png)
+![populate](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/populate.png)
 
 **Note:** Only add servers that you want to rotate passwords on, I would recommend not adding any servers or VMs such as domain controllers to the key vault.
 
@@ -238,17 +238,17 @@ As you can see I have 3 vms defined. When our workflow is triggered it will auto
 
 We can trigger our workflow manually by going to our github repository (The trigger will also happen automatically based on our cron schedule):
 
-![trigger](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/GitHub-Automated-VM-Password-Rotation/assets/trigger.png)
+![trigger](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/trigger.png)
 
 Let's take a look at the results of the workflow:
 
-![results](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/GitHub-Automated-VM-Password-Rotation/assets/results.png)
+![results](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/results.png)
 
 As you can see I have 3 VMs defined in my key vault `pwd9000vm01` was powered on and so it's password was rotated. `pwd9000vm02` was found, but was deallocated so was skipped. `pwd9000vm03` is a VM which no longer exists in my subscription so I can safely remove the server key from my key vault.
 
 Now lets see if I can log into my server which have had its password rotated:
 
-![login](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/GitHub-Automated-VM-Password-Rotation/assets/login.gif)
+![login](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/login.gif)
 
 I hope you have enjoyed this post and have learned something new.  
 Using the same techniques I have shown in this post, you can pretty much use this process to rotate secrets for almost anything you can think of, whether that be SQL connection strings or even API keys for your applications.  

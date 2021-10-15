@@ -3,7 +3,7 @@ title: Automate Azure Role Based Access Control (RBAC) using DevOps
 published: true
 description: DevOps - Automate Azure RBAC
 tags: 'tutorial, azure, devops, security'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Automate-Azure-RBAC/assets/Azure-RBAC.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Automate-Azure-RBAC/assets/Azure-RBAC.png'
 canonical_url: null
 id: 688322
 date: '2021-05-05T13:41:50Z'
@@ -21,7 +21,7 @@ Today we will look at how we can utilize Azure DevOps in creating and also maint
 
 Firstly we will need to have an Azure DevOps repository where we can store our custom role definition JSON files. If you need more information on how to set up a new repository, have a look [here](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops).
 
-I called my repository `[Azure_Role_Definitions]`. In my repository I have created 3 main folder paths: ![rbac-repo-structure](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Automate-Azure-RBAC/assets/ADO-RBAC-Repo-Structure.png)
+I called my repository `[Azure_Role_Definitions]`. In my repository I have created 3 main folder paths: ![rbac-repo-structure](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Automate-Azure-RBAC/assets/ADO-RBAC-Repo-Structure.png)
 
 1. **pipelines:** Here we will define and create our Azure yaml pipeline.
 
@@ -241,30 +241,30 @@ Foreach ($file in $RoleDefinitions) {
 ```
 
 Our repository should now look something like this:  
-![rbac-repo-structure2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Automate-Azure-RBAC/assets/ADO-RBAC-Repo-Structure2.png)
+![rbac-repo-structure2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Automate-Azure-RBAC/assets/ADO-RBAC-Repo-Structure2.png)
 
 Now on to the last step. Since our script needs to run and perform tasks in Azure we will create a service connection called `'RbacServicePrincipal'` and we will also give the principal we create access in IAM to be able to perform it's tasks. Follow these steps to [create an Azure DevOps Service Connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml).  
 Ensure you name the service connection the same as what we defined in our Yaml task `[set_rbac.yml]`, namely `'RbacServicePrincipal'`. After the service connection is created we will slightly change the IAM permissions given to the principal to give it only the permissions it requires. So under the DevOps project settings, go to `'Service Connections'` and then select `'Manage Service Connection Roles'`.
 
-![service-connection](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Automate-Azure-RBAC/assets/ADO-RBAC-Service-Connections.png)
+![service-connection](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Automate-Azure-RBAC/assets/ADO-RBAC-Service-Connections.png)
 
 By default the service connection will be assigned the built-in role of `'Contributor'`. This permission is excessive and can be removed. Since our pipeline script only needs to be able to look at management groups and be able to change context as well as be able to create or amend role definitions we will give our service connection principal the following built-in roles at the scope we want to maintain: `'Management Group Reader'` and `'User Access Administrator'`
 
-![service-connection-permissions](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Automate-Azure-RBAC/assets/ADO-RBAC-Service-Connection-Permissions.png)
+![service-connection-permissions](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Automate-Azure-RBAC/assets/ADO-RBAC-Service-Connection-Permissions.png)
 
 Now we can create our pipeline in DevOps from the yaml file we defined earlier in this post:
 
-![Setup-pipeline](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Automate-Azure-RBAC/assets/Setup-pipeline.gif)
+![Setup-pipeline](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Automate-Azure-RBAC/assets/Setup-pipeline.gif)
 
 Next we authorize our pipeline and that's it, now each time a new JSON definition is added or an existing definition is amended on our repository the change will auto-magically be reflected in Azure and we can now use proper version control and automation around governing our Azure RBAC custom role definitions using Azure DevOps.
 
-![Run-pipeline](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Automate-Azure-RBAC/assets/Run-pipeline.gif)
+![Run-pipeline](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Automate-Azure-RBAC/assets/Run-pipeline.gif)
 
 We can also confirm that our role is now published and usable in Azure. :smile:
 
-![Azure-Role-Published](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Automate-Azure-RBAC/assets/Azure-Role-Published.gif)
+![Azure-Role-Published](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Automate-Azure-RBAC/assets/Azure-Role-Published.gif)
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/master/posts/DevOps-Automate-Azure-RBAC/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Automate-Azure-RBAC/code) page. :heart:
 
 If you wanted to see how to do this using Github Actions instead have a look at one of my other posts below: {% link <https://dev.to/pwd9000/automate-azure-role-based-access-control-rbac-using-github-2349> %}
 
