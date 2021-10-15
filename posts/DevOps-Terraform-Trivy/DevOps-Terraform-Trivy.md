@@ -18,7 +18,7 @@ Today we will look at how you can utilise `Trivy` as part of your DevOps CI/CD p
 
 ## How to
 
-xxxx
+xxxxx
 
 ### _Author_
 
