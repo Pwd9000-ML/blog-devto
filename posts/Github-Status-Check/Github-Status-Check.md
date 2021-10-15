@@ -3,9 +3,10 @@ title: Github/DevOps status
 published: true
 description: Useful links for checking GitHub and DevOps status
 tags: 'tutorial, devops, github, productivity'
-cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Github-Status-Check/assets/main01.png
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Github-Status-Check/assets/main01.png'
 canonical_url: null
 id: 805154
+date: '2021-08-27T11:43:08Z'
 ---
 
 You can check the status of github in real-time, incl. historical data on system performance, follow incidents or scheduled maintenance by going to: [https://www.githubstatus.com/](https://www.githubstatus.com/).
@@ -28,4 +29,4 @@ Like, share, follow and connect with me on:
 
 :octopus: [GitHub](https://github.com/Pwd9000-ML)  
 :penguin: [Twitter](https://twitter.com/pwd9000)  
-:space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)  
+:space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)

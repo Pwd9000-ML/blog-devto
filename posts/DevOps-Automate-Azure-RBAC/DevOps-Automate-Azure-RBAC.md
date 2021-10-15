@@ -3,7 +3,7 @@ title: Automate Azure Role Based Access Control (RBAC) using DevOps
 published: true
 description: DevOps - Automate Azure RBAC
 tags: 'tutorial, azure, devops, security'
-cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Automate-Azure-RBAC/assets/Azure-RBAC.png
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Automate-Azure-RBAC/assets/Azure-RBAC.png'
 canonical_url: null
 id: 688322
 date: '2021-05-05T13:41:50Z'
@@ -276,4 +276,4 @@ Like, share, follow and connect with me on:
 
 :octopus: [GitHub](https://github.com/Pwd9000-ML)  
 :penguin: [Twitter](https://twitter.com/pwd9000)  
-:space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)  
+:space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)

@@ -3,7 +3,7 @@ title: Automate Azure Role Based Access Control (RBAC) using Github
 published: true
 description: Github - Automate Azure RBAC
 tags: 'tutorial, azure, github, devops'
-cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Github-Automate-Azure-RBAC/assets/github-azure.png
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Github-Automate-Azure-RBAC/assets/github-azure.png'
 canonical_url: null
 id: 707024
 date: '2021-05-24T16:04:03Z'
@@ -313,4 +313,4 @@ Like, share, follow and connect with me on:
 
 :octopus: [GitHub](https://github.com/Pwd9000-ML)  
 :penguin: [Twitter](https://twitter.com/pwd9000)  
-:space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)  
+:space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
