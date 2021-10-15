@@ -3,7 +3,7 @@ title: Consume artifacts from a remote DevOps project pipeline
 published: true
 description: DevOps - Pipelines - Consume remote artifact
 tags: 'tutorial, azure, productivity, devops'
-cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Pipeline-from-Pipeline/assets/main-ado.png
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Pipeline-from-Pipeline/assets/main-ado.png'
 canonical_url: null
 id: 783932
 date: '2021-08-07T14:06:14Z'
