@@ -1,178 +1,172 @@
 {
-    "definition": {
-        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+  "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "actions": {
+      "azureFeedItem": {
         "actions": {
-            "azureFeedItem": {
-                "actions": {
-                    "azureStatusNotification": {
-                        "inputs": {
-                            "body": {
-                                "Body": "<p><u><strong>Title:</strong></u> @{items('azureFeedItem')['title']}<br>\n<u><strong>Date:</strong></u> @{items('azureFeedItem')?['publishDate']}<br>\n<u><strong>Link:</strong></u> @{items('azureFeedItem')?['primaryLink']}<br>\n<br>\n<u><strong>Summary:</strong></u><br>\n@{items('azureFeedItem')?['summary']}</p>",
-                                "Subject": "Azure Service Status: @{items('azureFeedItem')['title']}",
-                                "To": "pwd9000@hotmail.co.uk"
-                            },
-                            "host": {
-                                "connection": {
-                                    "name": "@parameters('$connections')['outlook']['connectionId']"
-                                }
-                            },
-                            "method": "post",
-                            "path": "/v2/Mail"
-                        },
-                        "runAfter": {},
-                        "type": "ApiConnection"
-                    }
-                },
-                "foreach": "@body('azureStatus')",
-                "runAfter": {
-                    "azureStatus": [
-                        "Succeeded"
-                    ]
-                },
-                "type": "Foreach"
-            },
-            "azureStatus": {
-                "inputs": {
-                    "host": {
-                        "connection": {
-                            "name": "@parameters('$connections')['rss']['connectionId']"
-                        }
-                    },
-                    "method": "get",
-                    "path": "/ListFeedItems",
-                    "queries": {
-                        "feedUrl": "https://azurestatuscdn.azureedge.net/en-gb/status/feed",
-                        "since": "@{addMinutes(utcnow(), -3)}"
-                    }
-                },
-                "runAfter": {},
-                "type": "ApiConnection"
-            },
-            "devopsFeedItem": {
-                "actions": {
-                    "devopsStatusNotification": {
-                        "inputs": {
-                            "body": {
-                                "Body": "<p><u><strong>Title:</strong></u> @{items('devopsFeedItem')['title']}<br>\n<u><strong>Date:</strong></u> @{items('devopsFeedItem')?['publishDate']}<br>\n<u><strong>Link:</strong></u> @{items('devopsFeedItem')?['primaryLink']}<br>\n<br>\n<u><strong>Summary:</strong></u><br>\n@{items('devopsFeedItem')?['summary']}</p>",
-                                "Subject": "DevOps Service Status: @{items('devopsFeedItem')['title']}",
-                                "To": "pwd9000@hotmail.co.uk"
-                            },
-                            "host": {
-                                "connection": {
-                                    "name": "@parameters('$connections')['outlook']['connectionId']"
-                                }
-                            },
-                            "method": "post",
-                            "path": "/v2/Mail"
-                        },
-                        "runAfter": {},
-                        "type": "ApiConnection"
-                    }
-                },
-                "foreach": "@body('devopsStatus')",
-                "runAfter": {
-                    "devopsStatus": [
-                        "Succeeded"
-                    ]
-                },
-                "type": "Foreach"
-            },
-            "devopsStatus": {
-                "inputs": {
-                    "host": {
-                        "connection": {
-                            "name": "@parameters('$connections')['rss']['connectionId']"
-                        }
-                    },
-                    "method": "get",
-                    "path": "/ListFeedItems",
-                    "queries": {
-                        "feedUrl": "https://status.dev.azure.com/_rss",
-                        "since": "@{addMinutes(utcnow(), -3)}"
-                    }
-                },
-                "runAfter": {},
-                "type": "ApiConnection"
-            },
-            "githubFeedItem": {
-                "actions": {
-                    "githubStatusNotification": {
-                        "inputs": {
-                            "body": {
-                                "Body": "<p><u><strong>Title:</strong></u> @{items('githubFeedItem')['title']}<br>\n<u><strong>Date:</strong></u> @{items('githubFeedItem')?['publishDate']}<br>\n<u><strong>Link:</strong></u> @{items('githubFeedItem')?['primaryLink']}<br>\n<br>\n<u><strong>Summary:</strong></u><br>\n@{items('githubFeedItem')?['summary']}</p>",
-                                "Subject": "Github Service Status: @{items('githubFeedItem')['title']}",
-                                "To": "pwd9000@hotmail.co.uk"
-                            },
-                            "host": {
-                                "connection": {
-                                    "name": "@parameters('$connections')['outlook']['connectionId']"
-                                }
-                            },
-                            "method": "post",
-                            "path": "/v2/Mail"
-                        },
-                        "runAfter": {},
-                        "type": "ApiConnection"
-                    }
-                },
-                "foreach": "@body('githubStatus')",
-                "runAfter": {
-                    "githubStatus": [
-                        "Succeeded"
-                    ]
-                },
-                "type": "Foreach"
-            },
-            "githubStatus": {
-                "inputs": {
-                    "host": {
-                        "connection": {
-                            "name": "@parameters('$connections')['rss']['connectionId']"
-                        }
-                    },
-                    "method": "get",
-                    "path": "/ListFeedItems",
-                    "queries": {
-                        "feedUrl": "https://www.githubstatus.com/history.rss",
-                        "since": "@{addMinutes(utcnow(), -3)}"
-                    }
-                },
-                "runAfter": {},
-                "type": "ApiConnection"
-            }
-        },
-        "contentVersion": "1.0.0.0",
-        "outputs": {},
-        "parameters": {
-            "$connections": {
-                "defaultValue": {},
-                "type": "Object"
-            }
-        },
-        "triggers": {
-            "Recurrence": {
-                "recurrence": {
-                    "frequency": "Minute",
-                    "interval": 3
-                },
-                "type": "Recurrence"
-            }
-        }
-    },
-    "parameters": {
-        "$connections": {
-            "value": {
-                "outlook": {
-                    "connectionId": "/subscriptions/259b6576-f261-472e-ad18-e24b1a3ef2ed/resourceGroups/Logic-App-RSS/providers/Microsoft.Web/connections/outlook",
-                    "connectionName": "outlook",
-                    "id": "/subscriptions/259b6576-f261-472e-ad18-e24b1a3ef2ed/providers/Microsoft.Web/locations/uksouth/managedApis/outlook"
-                },
-                "rss": {
-                    "connectionId": "/subscriptions/259b6576-f261-472e-ad18-e24b1a3ef2ed/resourceGroups/Logic-App-RSS/providers/Microsoft.Web/connections/rss",
-                    "connectionName": "rss",
-                    "id": "/subscriptions/259b6576-f261-472e-ad18-e24b1a3ef2ed/providers/Microsoft.Web/locations/uksouth/managedApis/rss"
+          "azureStatusNotification": {
+            "inputs": {
+              "body": {
+                "Body": "<p><u><strong>Title:</strong></u> @{items('azureFeedItem')['title']}<br>\n<u><strong>Date:</strong></u> @{items('azureFeedItem')?['publishDate']}<br>\n<u><strong>Link:</strong></u> @{items('azureFeedItem')?['primaryLink']}<br>\n<br>\n<u><strong>Summary:</strong></u><br>\n@{items('azureFeedItem')?['summary']}</p>",
+                "Subject": "Azure Service Status: @{items('azureFeedItem')['title']}",
+                "To": "pwd9000@hotmail.co.uk"
+              },
+              "host": {
+                "connection": {
+                  "name": "@parameters('$connections')['outlook']['connectionId']"
                 }
+              },
+              "method": "post",
+              "path": "/v2/Mail"
+            },
+            "runAfter": {},
+            "type": "ApiConnection"
+          }
+        },
+        "foreach": "@body('azureStatus')",
+        "runAfter": {
+          "azureStatus": ["Succeeded"]
+        },
+        "type": "Foreach"
+      },
+      "azureStatus": {
+        "inputs": {
+          "host": {
+            "connection": {
+              "name": "@parameters('$connections')['rss']['connectionId']"
             }
-        }
+          },
+          "method": "get",
+          "path": "/ListFeedItems",
+          "queries": {
+            "feedUrl": "https://azurestatuscdn.azureedge.net/en-gb/status/feed",
+            "since": "@{addMinutes(utcnow(), -3)}"
+          }
+        },
+        "runAfter": {},
+        "type": "ApiConnection"
+      },
+      "devopsFeedItem": {
+        "actions": {
+          "devopsStatusNotification": {
+            "inputs": {
+              "body": {
+                "Body": "<p><u><strong>Title:</strong></u> @{items('devopsFeedItem')['title']}<br>\n<u><strong>Date:</strong></u> @{items('devopsFeedItem')?['publishDate']}<br>\n<u><strong>Link:</strong></u> @{items('devopsFeedItem')?['primaryLink']}<br>\n<br>\n<u><strong>Summary:</strong></u><br>\n@{items('devopsFeedItem')?['summary']}</p>",
+                "Subject": "DevOps Service Status: @{items('devopsFeedItem')['title']}",
+                "To": "pwd9000@hotmail.co.uk"
+              },
+              "host": {
+                "connection": {
+                  "name": "@parameters('$connections')['outlook']['connectionId']"
+                }
+              },
+              "method": "post",
+              "path": "/v2/Mail"
+            },
+            "runAfter": {},
+            "type": "ApiConnection"
+          }
+        },
+        "foreach": "@body('devopsStatus')",
+        "runAfter": {
+          "devopsStatus": ["Succeeded"]
+        },
+        "type": "Foreach"
+      },
+      "devopsStatus": {
+        "inputs": {
+          "host": {
+            "connection": {
+              "name": "@parameters('$connections')['rss']['connectionId']"
+            }
+          },
+          "method": "get",
+          "path": "/ListFeedItems",
+          "queries": {
+            "feedUrl": "https://status.dev.azure.com/_rss",
+            "since": "@{addMinutes(utcnow(), -3)}"
+          }
+        },
+        "runAfter": {},
+        "type": "ApiConnection"
+      },
+      "githubFeedItem": {
+        "actions": {
+          "githubStatusNotification": {
+            "inputs": {
+              "body": {
+                "Body": "<p><u><strong>Title:</strong></u> @{items('githubFeedItem')['title']}<br>\n<u><strong>Date:</strong></u> @{items('githubFeedItem')?['publishDate']}<br>\n<u><strong>Link:</strong></u> @{items('githubFeedItem')?['primaryLink']}<br>\n<br>\n<u><strong>Summary:</strong></u><br>\n@{items('githubFeedItem')?['summary']}</p>",
+                "Subject": "Github Service Status: @{items('githubFeedItem')['title']}",
+                "To": "pwd9000@hotmail.co.uk"
+              },
+              "host": {
+                "connection": {
+                  "name": "@parameters('$connections')['outlook']['connectionId']"
+                }
+              },
+              "method": "post",
+              "path": "/v2/Mail"
+            },
+            "runAfter": {},
+            "type": "ApiConnection"
+          }
+        },
+        "foreach": "@body('githubStatus')",
+        "runAfter": {
+          "githubStatus": ["Succeeded"]
+        },
+        "type": "Foreach"
+      },
+      "githubStatus": {
+        "inputs": {
+          "host": {
+            "connection": {
+              "name": "@parameters('$connections')['rss']['connectionId']"
+            }
+          },
+          "method": "get",
+          "path": "/ListFeedItems",
+          "queries": {
+            "feedUrl": "https://www.githubstatus.com/history.rss",
+            "since": "@{addMinutes(utcnow(), -3)}"
+          }
+        },
+        "runAfter": {},
+        "type": "ApiConnection"
+      }
+    },
+    "contentVersion": "1.0.0.0",
+    "outputs": {},
+    "parameters": {
+      "$connections": {
+        "defaultValue": {},
+        "type": "Object"
+      }
+    },
+    "triggers": {
+      "Recurrence": {
+        "recurrence": {
+          "frequency": "Minute",
+          "interval": 3
+        },
+        "type": "Recurrence"
+      }
     }
+  },
+  "parameters": {
+    "$connections": {
+      "value": {
+        "outlook": {
+          "connectionId": "/subscriptions/259b6576-f261-472e-ad18-e24b1a3ef2ed/resourceGroups/Logic-App-RSS/providers/Microsoft.Web/connections/outlook",
+          "connectionName": "outlook",
+          "id": "/subscriptions/259b6576-f261-472e-ad18-e24b1a3ef2ed/providers/Microsoft.Web/locations/uksouth/managedApis/outlook"
+        },
+        "rss": {
+          "connectionId": "/subscriptions/259b6576-f261-472e-ad18-e24b1a3ef2ed/resourceGroups/Logic-App-RSS/providers/Microsoft.Web/connections/rss",
+          "connectionName": "rss",
+          "id": "/subscriptions/259b6576-f261-472e-ad18-e24b1a3ef2ed/providers/Microsoft.Web/locations/uksouth/managedApis/rss"
+        }
+      }
+    }
+  }
 }
