@@ -3,7 +3,7 @@ title: Power virtual machines ON or OFF using Azure functions
 published: true
 description: Azure - Function App to control VM power states
 tags: 'tutorial, powershell, productivity, azure'
-cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-VM-Power-States-Function-App/assets/main-cover.png
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-VM-Power-States-Function-App/assets/main-cover.png'
 canonical_url: null
 id: 724451
 date: '2021-06-10T17:57:09Z'
@@ -244,6 +244,4 @@ I hope you have enjoyed this post and have learned something new. You can also f
 
 Like, share, follow and connect with me on:
 
-:octopus: [GitHub](https://github.com/Pwd9000-ML)
-:penguin: [Twitter](https://twitter.com/pwd9000)
-:space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+:octopus: [GitHub](https://github.com/Pwd9000-ML) :penguin: [Twitter](https://twitter.com/pwd9000) :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)

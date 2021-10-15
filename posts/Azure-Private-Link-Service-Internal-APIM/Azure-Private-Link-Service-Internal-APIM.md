@@ -3,7 +3,7 @@ title: Access internal APIM securely with Private Link Service
 published: true
 description: Azure - internal APIM + Private Link Service
 tags: 'tutorial, azure, productivity, security'
-cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/PLSMain.png
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/Azure-Private-Link-Service-Internal-APIM/assets/PLSMain.png'
 canonical_url: null
 id: 756521
 date: '2021-07-11T22:56:40Z'
@@ -354,6 +354,4 @@ I hope you have enjoyed this post and have learned something new. You can also f
 
 Like, share, follow and connect with me on:
 
-:octopus: [GitHub](https://github.com/Pwd9000-ML)
-:penguin: [Twitter](https://twitter.com/pwd9000)
-:space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+:octopus: [GitHub](https://github.com/Pwd9000-ML) :penguin: [Twitter](https://twitter.com/pwd9000) :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)

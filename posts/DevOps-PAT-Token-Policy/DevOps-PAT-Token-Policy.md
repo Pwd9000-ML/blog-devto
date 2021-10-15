@@ -53,6 +53,4 @@ For more detailed information have a look at: [Managing Personal Access Tokens w
 
 Like, share, follow and connect with me on:
 
-:octopus: [GitHub](https://github.com/Pwd9000-ML)
-:penguin: [Twitter](https://twitter.com/pwd9000)
-:space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+:octopus: [GitHub](https://github.com/Pwd9000-ML) :penguin: [Twitter](https://twitter.com/pwd9000) :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)

@@ -3,9 +3,10 @@ title: Create a PDF document from an Azure DevOps Wiki
 published: true
 description: DevOps - Convert Devops Wiki to PDF
 tags: 'tutorial, azure, productivity, devops'
-cover_image: https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Wiki-To-Pdf/assets/main.png
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/master/posts/DevOps-Wiki-To-Pdf/assets/main.png'
 canonical_url: null
 id: 824638
+date: '2021-09-15T09:20:57Z'
 ---
 
 ## Azure DevOps Wiki
@@ -129,6 +130,4 @@ I hope you have enjoyed this post and have learned something new. You can also f
 
 Like, share, follow and connect with me on:
 
-:octopus: [GitHub](https://github.com/Pwd9000-ML)
-:penguin: [Twitter](https://twitter.com/pwd9000)
-:space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+:octopus: [GitHub](https://github.com/Pwd9000-ML) :penguin: [Twitter](https://twitter.com/pwd9000) :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
