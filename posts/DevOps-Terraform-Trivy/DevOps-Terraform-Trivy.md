@@ -1,5 +1,5 @@
 ---
-title: Terraform (IaC) Scanning with Trivy
+title: Terraform IaC Scanning with Trivy
 published: false
 description: DevOps - Terraform - IaC Scanning with Trivy
 tags: 'tutorial, security, productivity, devops'
