@@ -42,29 +42,29 @@ I also created the following code in **PipelineA.yml**.
 trigger: none
 
 stages:
-  - stage: Build_Artifact
-    displayName: Build Artifact A
+- stage: Build_Artifact
+  displayName: Build Artifact A
 
-    jobs:
-      - job: Build
-        displayName: Build
-        pool:
-          name: Azure Pipelines
-          vmImage: windows-2019
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      name: Azure Pipelines
+      vmImage: windows-2019
+      
+    steps:
+    - task: CopyFiles@2
+      displayName: 'Copy myConfig to Staging'
+      inputs:
+        SourceFolder: '$(Build.SourcesDirectory)'
+        Contents: 'MyConfig.txt'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)/drop'
 
-        steps:
-          - task: CopyFiles@2
-            displayName: 'Copy myConfig to Staging'
-            inputs:
-              SourceFolder: '$(Build.SourcesDirectory)'
-              Contents: 'MyConfig.txt'
-              TargetFolder: '$(Build.ArtifactStagingDirectory)/drop'
-
-          - task: PublishPipelineArtifact@1
-            displayName: 'Publish Artifact to Pipeline'
-            inputs:
-              targetPath: '$(Build.ArtifactStagingDirectory)/drop'
-              artifactName: ArtifactA
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish Artifact to Pipeline'
+      inputs:
+        targetPath: '$(Build.ArtifactStagingDirectory)/drop'
+        artifactName: ArtifactA
 ```
 
 **NOTE:** It is important to note that when we create the above pipeline in our source project we must rename the pipeline to the same name as what we will refer to it in our pipeline resource on **PipelineB**. In my case I will refer to this as **PipelineA**.
@@ -88,43 +88,43 @@ pr: none
 # ------ This is our Pipeline Resource ------
 resources:
   pipelines:
-    - pipeline: PipelineA # identifier for the resource used in pipeline resource variables.
-      project: ProjectA # project for the source; optional for current project.
-      source: PipelineA # name of the pipeline that produces an artifact.
-      trigger: # triggers are not enabled by default unless you add trigger section to the resource.
-        branches: # branch conditions to filter the events, optional; Defaults to all branches.
-          include: # branches to consider the trigger events, optional; Defaults to all branches.
-            - main
+  - pipeline: PipelineA  # identifier for the resource used in pipeline resource variables.
+    project: ProjectA    # project for the source; optional for current project.
+    source: PipelineA    # name of the pipeline that produces an artifact.
+    trigger:             # triggers are not enabled by default unless you add trigger section to the resource.
+      branches:          # branch conditions to filter the events, optional; Defaults to all branches.
+        include:         # branches to consider the trigger events, optional; Defaults to all branches.
+        - main
 # ------------------------------------------
 
 stages:
-  - stage: Consume_Artifact
-    displayName: Consume Artifact A
+- stage: Consume_Artifact
+  displayName: Consume Artifact A
 
-    jobs:
-      - job: Consume
-        displayName: Consume
-        pool:
-          name: Azure Pipelines
-          vmImage: windows-2019
+  jobs:
+  - job: Consume
+    displayName: Consume
+    pool:
+      name: Azure Pipelines
+      vmImage: windows-2019
+      
+    steps:
+    - task: PowerShell@2
+      displayName: 'Information'
+      inputs:
+        targetType: inline
+        script: |
+          Write-output "This pipeline has been triggered by: $(resources.pipeline.PipelineA.pipelineName)"
+    
+    - download: PipelineA
+      artifact: 'ArtifactA'
 
-        steps:
-          - task: PowerShell@2
-            displayName: 'Information'
-            inputs:
-              targetType: inline
-              script: |
-                Write-output "This pipeline has been triggered by: $(resources.pipeline.PipelineA.pipelineName)"
-
-          - download: PipelineA
-            artifact: 'ArtifactA'
-
-          - task: PowerShell@2
-            displayName: 'Get-Content MyConfig.txt'
-            inputs:
-              targetType: inline
-              script: |
-                Get-Content -path $(Pipeline.Workspace)/PipelineA/ArtifactA/MyConfig.txt
+    - task: PowerShell@2
+      displayName: 'Get-Content MyConfig.txt'
+      inputs:
+        targetType: inline
+        script: |
+          Get-Content -path $(Pipeline.Workspace)/PipelineA/ArtifactA/MyConfig.txt
 ```
 
 **NOTE:** It is important to note that we have to configure **ProjectB** pipeline settings to allow it to connect to **ProjectA** in order to download the artifact that was produced.

@@ -18,9 +18,9 @@ Today we will look at how you can utilise `Trivy` as part of your DevOps CI/CD p
 
 ## How to Scan IaC
 
-This tutorial is based on the following [Azure DevOps Repository](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Terraform-Trivy/code) blueprint, which will use a CI/CD YAML pipeline to deploy an Azure Virtual Network using terraform IaC configuration files.  
+This tutorial is based on the following [Azure DevOps Repository](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Terraform-Trivy/code) blueprint, which will use a CI/CD YAML pipeline to deploy an Azure Virtual Network using terraform IaC configuration files.
 
-There are terraform configuration files under the path [/Terraform/networking](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Terraform-Trivy/code/Terraform/networking). There is also a YAML pipeline `network.yml` under [/pipelines/](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Terraform-Trivy/code/pipelines) which is used to deploy the terraform code. The pipeline will trigger a `build.yml` template which essentially creates our Terraform artifact and if successful the pipeline will trigger the `deploy.yml` template which will apply our terraform configuration artifact. The pipeline templates are kept under the path [/task_groups/](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Terraform-Trivy/code/task_groups).  
+There are terraform configuration files under the path [/Terraform/networking](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Terraform-Trivy/code/Terraform/networking). There is also a YAML pipeline `network.yml` under [/pipelines/](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Terraform-Trivy/code/pipelines) which is used to deploy the terraform code. The pipeline will trigger a `build.yml` template which essentially creates our Terraform artifact and if successful the pipeline will trigger the `deploy.yml` template which will apply our terraform configuration artifact. The pipeline templates are kept under the path [/task_groups/](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Terraform-Trivy/code/task_groups).
 
 We will utilise `Trivy` during our build phase, so lets take a look at the `build.yml` file:
 
@@ -29,7 +29,7 @@ We will utilise `Trivy` during our build phase, so lets take a look at the `buil
 
 jobs:
   - job: build
-    pool: 
+    pool:
       vmImage: ${{ parameters.pool }}
     workspace:
       clean: all
@@ -42,20 +42,20 @@ jobs:
           terraformVersion: ${{ parameters.terraformVersion }}
 
       - task: CmdLine@2
-        displayName: "Download and Install Trivy vulnerability scanner"
+        displayName: 'Download and Install Trivy vulnerability scanner'
         inputs:
           script: |
-              sudo apt-get install rpm
-              wget https://github.com/aquasecurity/trivy/releases/download/v${{ parameters.trivyVersion }}/trivy_${{ parameters.trivyVersion }}_Linux-64bit.deb
-              sudo dpkg -i trivy_${{ parameters.trivyVersion }}_Linux-64bit.deb
-              trivy -v
+            sudo apt-get install rpm
+            wget https://github.com/aquasecurity/trivy/releases/download/v${{ parameters.trivyVersion }}/trivy_${{ parameters.trivyVersion }}_Linux-64bit.deb
+            sudo dpkg -i trivy_${{ parameters.trivyVersion }}_Linux-64bit.deb
+            trivy -v
 
       - task: TerraformTaskV2@2
         displayName: Terraform Init
         inputs:
           provider: 'azurerm'
           command: 'init'
-          workingDirectory: "$(Agent.BuildDirectory)/src/${{ parameters.root_directory }}"
+          workingDirectory: '$(Agent.BuildDirectory)/src/${{ parameters.root_directory }}'
           backendServiceArm: ${{ parameters.backend_service_connection_name }}
           backendAzureRmResourceGroupName: ${{ parameters.backend_resource_group }}
           backendAzureRmStorageAccountName: ${{ parameters.backend_storage_accountname }}
@@ -63,32 +63,32 @@ jobs:
           backendAzureRmKey: ${{ parameters.container_key }}
 
       - task: CmdLine@2
-        displayName: "LOW/MED - Trivy vulnerability scanner in IaC mode"
+        displayName: 'LOW/MED - Trivy vulnerability scanner in IaC mode'
         inputs:
           script: |
-              trivy config --severity LOW,MEDIUM --exit-code 0 $(Agent.BuildDirectory)/src/${{ parameters.root_directory }}
+            trivy config --severity LOW,MEDIUM --exit-code 0 $(Agent.BuildDirectory)/src/${{ parameters.root_directory }}
 
       - task: CmdLine@2
-        displayName: "HIGH/CRIT - Trivy vulnerability scanner in IaC mode"
+        displayName: 'HIGH/CRIT - Trivy vulnerability scanner in IaC mode'
         inputs:
           script: |
-              trivy config --severity HIGH,CRITICAL --exit-code 1 $(Agent.BuildDirectory)/src/${{ parameters.root_directory }}
+            trivy config --severity HIGH,CRITICAL --exit-code 1 $(Agent.BuildDirectory)/src/${{ parameters.root_directory }}
 
       - task: TerraformTaskV2@2
         displayName: Terraform Plan
         inputs:
           provider: 'azurerm'
           command: 'plan'
-          workingDirectory: "$(Agent.BuildDirectory)/src/${{ parameters.root_directory }}"
-          commandOptions: "--var-file=$(Agent.BuildDirectory)/src/${{ parameters.root_directory }}${{ parameters.tfvarFile }} --out=$(Agent.BuildDirectory)/src/${{ parameters.root_directory }}plan.tfplan"
+          workingDirectory: '$(Agent.BuildDirectory)/src/${{ parameters.root_directory }}'
+          commandOptions: '--var-file=$(Agent.BuildDirectory)/src/${{ parameters.root_directory }}${{ parameters.tfvarFile }} --out=$(Agent.BuildDirectory)/src/${{ parameters.root_directory }}plan.tfplan'
           environmentServiceNameAzureRM: ${{ parameters.deployment_service_connection_name }}
-      
+
       - task: CopyFiles@2
         displayName: 'Copy Files to Staging'
         inputs:
           SourceFolder: '$(Agent.BuildDirectory)/src'
           Contents: 'Terraform/**'
-          TargetFolder: '$(Build.ArtifactStagingDirectory)'        
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
       - task: ArchiveFiles@2
         inputs:
@@ -101,7 +101,6 @@ jobs:
       - publish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
         artifact: '$(Build.BuildId)-trivy'
         displayName: Publish Pipeline Artifact
-
 ```
 
 As you can see from the `build` process above we are performing the following steps:
