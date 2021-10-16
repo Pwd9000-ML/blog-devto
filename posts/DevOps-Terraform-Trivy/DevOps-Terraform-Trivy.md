@@ -18,9 +18,9 @@ Today we will look at how you can utilise `Trivy` as part of your DevOps CI/CD p
 
 ## How to Scan IaC
 
-This tutorial is based on the following [Azure DevOps Repository](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Trivy/code) blueprint, which will use a CI/CD YAML pipeline to deploy an Azure Virtual Network using terraform IaC configuration files.  
+This tutorial is based on the following [Azure DevOps Repository](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Trivy/code) blueprint, which will use a CI/CD YAML pipeline to deploy an Azure Virtual Network using terraform IaC configuration files.
 
-There are terraform configuration files under the path [/Terraform/networking](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Trivy/code/Terraform/networking). There is also a YAML pipeline `network.yml` under [/pipelines/](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Trivy/code/pipelines) which is used to deploy the terraform code. The pipeline will trigger a `build.yml` template which essentially creates our Terraform artifact and if successful the pipeline will trigger the `deploy.yml` template which will apply our terraform configuration artifact. The pipeline templates are kept under the path [/task_groups/](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Trivy/code/task_groups).  
+There are terraform configuration files under the path [/Terraform/networking](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Trivy/code/Terraform/networking). There is also a YAML pipeline `network.yml` under [/pipelines/](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Trivy/code/pipelines) which is used to deploy the terraform code. The pipeline will trigger a `build.yml` template which essentially creates our Terraform artifact and if successful the pipeline will trigger the `deploy.yml` template which will apply our terraform configuration artifact. The pipeline templates are kept under the path [/task_groups/](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Trivy/code/task_groups).
 
 We will utilise `Trivy` during our build phase, so lets take a look at the `build.yml` file:
 
