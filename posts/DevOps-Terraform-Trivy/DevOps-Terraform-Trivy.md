@@ -161,7 +161,7 @@ When `Trivy` runs a scan against my Terraform configuration you will see that my
 
 ## What is checked?
 
-`Trivy` checks Terraform IaC using [TFSEC](https://github.com/aquasecurity/tfsec). You can take a look at all the checks that `Trivy` performs under the [included checks](https://github.com/aquasecurity/tfsec#included-checks) documentation. In the previous example above `Trivy` detected a risk called: [Potentially sensitive data stored in block attribute](https://tfsec.dev/docs/general/secrets/sensitive-in-attribute/), which notified us that our code was potentially exposing sensitive information.  
+`Trivy` checks Terraform IaC using [TFSEC](https://github.com/aquasecurity/tfsec). You can take a look at all the checks that `Trivy` performs under the [included checks](https://github.com/aquasecurity/tfsec#included-checks) documentation. In the previous example above `Trivy` detected a risk called: [Potentially sensitive data stored in block attribute](https://tfsec.dev/docs/general/secrets/sensitive-in-attribute/), which notified us that our code was potentially exposing sensitive information.
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Trivy/code) page. :heart:
 
