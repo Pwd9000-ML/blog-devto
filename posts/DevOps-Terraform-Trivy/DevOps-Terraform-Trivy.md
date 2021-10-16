@@ -107,16 +107,16 @@ jobs:
 As you can see from the `build` process above we are performing the following steps:
 
 - Download and Install Terraform.
-- Download and Install Trivy vulnerability scanner.
+- Download and Install `Trivy` vulnerability scanner.
 - Perform a Terraform Init on our terraform network configuration.
-- Run Trivy vulnerability scanner in IaC mode for (LOW / MEDIUM) risks.
-- Run Trivy vulnerability scanner in IaC mode for (HIGH / CRITICAL) risks.
+- Run `Trivy` vulnerability scanner in IaC mode for (LOW / MEDIUM) risks.
+- Run `Trivy` vulnerability scanner in IaC mode for (HIGH / CRITICAL) risks.
 - Run a Terraform plan.
 - Copy our Terraform deployment files to a staging area.
 - Create a Terraform deployment Artifact (zip) from the staging area.
 - Publish the Terraform deployment artifact created to the pipeline for later use.
 
-**NOTE:** Trivy will not cause the `build` process of the pipeline to fail on (LOW/MEDIUM) risks, but will cause a failure if any (HIGH/CRITICAL) issues are detected. This is defined by the `--exist-code (1)(0)` argument:
+**NOTE:** `Trivy` will not cause the `build` process of the pipeline to fail on (LOW/MEDIUM) risks, but will cause a failure if any (HIGH/CRITICAL) issues are detected. This is defined by the `--exist-code (1)(0)` argument:
 
 ```yml
 #// code/task_groups/build.yml#L51-L61
@@ -134,7 +134,7 @@ inputs:
         trivy config --severity HIGH,CRITICAL --exit-code 1 $(Agent.BuildDirectory)/src/${{ parameters.root_directory }}
 ```
 
-That is it as far as configuring and integrating Trivy into your CI/CD process to check your Terraform deployments for any security or misconfiguration issues before completing a build. Let's take a look at an example.
+That is it as far as configuring and integrating `Trivy` into your CI/CD process to check your Terraform deployments for any security or misconfiguration issues before completing a build. Let's take a look at an example.
 
 ## Example
 
@@ -155,13 +155,13 @@ provider "azurerm" {
 }
 ```
 
-When trivy runs a scan against my Terraform configuration you will see that my `build` pipeline fails due to a **CRITICAL** security risk that it identified.
+When `Trivy` runs a scan against my Terraform configuration you will see that my `build` process fails due to a **CRITICAL** security risk that it identified.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Terraform-Trivy/assets/detect.png)
 
 ## What is checked?
 
-Trivy checks Terraform IaC using [TFSEC](https://github.com/aquasecurity/tfsec). You can take a look at all the checks that `Trivy` performs under the [included checks](https://github.com/aquasecurity/tfsec#included-checks) documentation. In the previous example above `Trivy` detected a risk called: [Potentially sensitive data stored in block attribute](https://tfsec.dev/docs/general/secrets/sensitive-in-attribute/), which notified us that our code was potentially exposing sensitive data.
+`Trivy` checks Terraform IaC using [TFSEC](https://github.com/aquasecurity/tfsec). You can take a look at all the checks that `Trivy` performs under the [included checks](https://github.com/aquasecurity/tfsec#included-checks) documentation. In the previous example above `Trivy` detected a risk called: [Potentially sensitive data stored in block attribute](https://tfsec.dev/docs/general/secrets/sensitive-in-attribute/), which notified us that our code was potentially exposing sensitive information.  
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Trivy/code) page. :heart:
 
