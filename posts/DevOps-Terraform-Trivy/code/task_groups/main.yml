@@ -1,0 +1,63 @@
+parameters:
+  container_name:
+  container_key:
+  plan_container_name:
+  environment_name:
+  tfvarFile:
+  root_directory:
+  deployment_service_connection_name:
+  backend_service_connection_name:
+  backend_resource_group:
+  backend_storage_accountname:
+  pool:
+  terraformVersion:
+  trivyVersion:
+  environment_name_Job:
+  
+stages:
+  - stage: build
+    jobs:
+    - template: build.yml
+      parameters:
+        container_name: ${{ parameters.container_name }}
+        container_key: ${{ parameters.container_key }}
+        plan_container_name: ${{ parameters.plan_container_name }}
+        environment_name: ${{ parameters.environment_name }}
+        tfvarFile: ${{ parameters.tfvarFile }}
+        root_directory: ${{ parameters.root_directory }}
+        deployment_service_connection_name: ${{ parameters.deployment_service_connection_name }}
+        backend_service_connection_name: ${{ parameters.backend_service_connection_name }}
+        backend_resource_group: ${{ parameters.backend_resource_group }}
+        backend_storage_accountname: ${{ parameters.backend_storage_accountname }}
+        pool: ${{ parameters.pool }}
+        terraformVersion: ${{ parameters.terraformVersion }}
+        trivyVersion: ${{ parameters.trivyVersion }}
+
+
+  - stage: deploy
+    condition: |
+      and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+    dependsOn: "build"
+    jobs:
+      - deployment: ${{ parameters.environment_name_job }}
+        pool: 
+          vmImage: ${{ parameters.pool }}
+        displayName: Deploy
+        environment: ${{ parameters.environment_name }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+              - template: deploy.yml
+                parameters:
+                  container_name: ${{ parameters.container_name }}
+                  container_key: ${{ parameters.container_key }}
+                  plan_container_name: ${{ parameters.plan_container_name }}
+                  environment_name: ${{ parameters.environment_name }}
+                  tfvarFile: ${{ parameters.tfvarFile }}
+                  root_directory: ${{ parameters.root_directory }}
+                  deployment_service_connection_name: ${{ parameters.deployment_service_connection_name }}
+                  backend_service_connection_name: ${{ parameters.backend_service_connection_name }}
+                  backend_resource_group: ${{ parameters.backend_resource_group }}
+                  backend_storage_accountname: ${{ parameters.backend_storage_accountname }}
+                  terraformVersion: ${{ parameters.terraformVersion }}

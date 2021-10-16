@@ -1,0 +1,23 @@
+trigger:
+  none
+
+variables:
+- template: network_vars.yml
+
+stages:
+  - template: ../task_groups/main.yml
+    parameters:
+          container_name: "${{ variables.backendContainerName }}"
+          container_key: "tftrivy_${{ variables.environment }}_networking.tfstate"
+          plan_container_name: "${{ variables.backendContainerName }}"
+          environment_name: "Infrastructure_${{ variables.environment }}"
+          tfvarFile: "network.tf.tfvars"
+          root_directory: "/Terraform/networking/"
+          deployment_service_connection_name: "${{ variables.Deployment_Azure_Service_Connection }}"
+          backend_service_connection_name: "${{ variables.Backend_Azure_Service_Connection }}"
+          backend_resource_group: "${{ variables.terraformBackendRG }}"
+          backend_storage_accountname: "${{ variables.terraformBackendSA }}"
+          pool: "${{ variables.agentPool }}"
+          terraformVersion: "${{ variables.terraformVersion }}"
+          trivyVersion: "${{ variables.trivyVersion }}"
+          environment_name_Job: "tf_${{ variables.environment }}_net"

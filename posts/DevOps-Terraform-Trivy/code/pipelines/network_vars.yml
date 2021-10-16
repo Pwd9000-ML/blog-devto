@@ -1,0 +1,27 @@
+variables:
+  - name: environment
+    value: "Testing"
+
+  - name: terraformVersion
+    value: "1.0.9"
+
+  - name: trivyVersion
+    value: "0.20.0"
+
+  - name: terraformBackendRG
+    value: "TF-Core-Rg"
+
+  - name: terraformBackendSA
+    value: "tfcorebackendsa"
+
+  - name: backendContainerName
+    value: "tftrivy"
+
+  - name: agentPool
+    value: "ubuntu-latest"
+
+  - name: Deployment_Azure_Service_Connection
+    value: "TF-Terraform-SP"
+
+  - name: Backend_Azure_Service_Connection
+    value: "TF-Terraform-SP"
