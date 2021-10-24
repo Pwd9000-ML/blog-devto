@@ -214,7 +214,7 @@ Here is an example of a valid JSON request body for our function app:
 
 Note that our `$Request` input parameter is linked to `$Request.body`, and we set two variables that will be taken from the JSON request body namely, `fileName` and `fileContent`. We will use these two values from the incoming POST request to store the serialized file content (Base64String) in a variable called `$fileContent` and the blob name in a variable called `$fileName`.
 
-**NOTE:** Remember in the previous section `step 5` we set up some environment variables on our function app settings, we can reference the function app settings as environment variables in our function code as `$env:key` as show below):
+**NOTE:** Remember in the previous section `step 5` we set up some environment variables on our function app settings, we can reference these environment variables values in our function code with `$env:appSettingsKey` as show below):
 
 ```powershell
 #// code/run.ps1#L1-L22
