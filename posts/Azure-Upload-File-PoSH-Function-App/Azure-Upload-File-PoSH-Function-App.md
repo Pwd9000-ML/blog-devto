@@ -113,6 +113,10 @@ $functionMI = $(az resource list --name $functionAppName --query [*].identity.pr
     }
 ```
 
+So lets take a look step by step what the above script created.  
+
+- 
+
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Upload-File-PoSH-Function-App/code) page. :heart:
 
 ### _Author_
