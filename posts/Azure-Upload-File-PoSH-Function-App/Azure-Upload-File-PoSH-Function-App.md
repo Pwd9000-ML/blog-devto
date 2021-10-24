@@ -329,6 +329,8 @@ Lets do another test but with an an image this time:
 
 ![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/pngupload.gif)
 
+**NOTE:** Ensure to keep your function app tokens safe. (You can delete your `temp_token` after testing).
+
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Upload-File-PoSH-Function-App/code) page. :heart:
 
 ### _Author_
