@@ -114,7 +114,7 @@ $functionMI = $(az resource list --name $functionAppName --query [*].identity.pr
     }
 ```
 
-So lets take a look step by step what the above script does.
+Lets take a closer look, step-by-step what the above script does as part of setting up the environment.
 
 1. Create a resource group called `Function-App-Storage`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/rg.png)
 2. Create an azure storage account, `secure store` where file uploads will be kept. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/secsa.png)
@@ -125,13 +125,13 @@ So lets take a look step by step what the above script does.
 7. Assign Function App `SystemAssigned` managed identity permissions to Storage account(Read) and container(Write) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/sarbac1.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/conrbac.png)
 8. Remember I mentioned earlier there is one manual step. In the next step we will change the `requirements.psd1` file on our function to allow the `AZ` module inside of our function by uncommenting the following: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/manual1.png)
 
-**NOTE:** Remember to save the manual change above. That is it, our environment is set up and in the next section we will set up the file uploader function API powershell code.
+**NOTE:** Remember to save the manual change we made on `requirements.psd1` above. That is it, our environment is set up and in the next section we will configure the file uploader function API powershell code.
 
 ## File Uploader Function
 
-Now onto our Function App code. The following function app code can also be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Upload-File-PoSH-Function-App/code) page called `run.ps1`.
+The following function app code can also be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Upload-File-PoSH-Function-App/code) page called `run.ps1`.
 
-1. Navigate to the function app that we created in the previous section and select `+ Create` under `Functions`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc.png)
+1. Navigate to the function app we created in the previous section and select `+ Create` under `Functions`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc.png)
 2. Select `Develop in portal` and for the template select `HTTP trigger`, name the function `uploadfile` and hit `Create`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc2.png)
 3. Navigate to `Code + Test` and replace all the code under `run.ps1` with the following powershell code and hit `save`: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc3.png)
 
@@ -200,7 +200,19 @@ Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
 })
 ```
 
-So lets take a closer look at what this code actually does. In the first few lines we can see that the function app will take a `request` input parameter called `$request`. This parameter will be our main input and request body JSON object we will use to send details into our API about the file we want to upload. We also set a status and some variables up.
+Lets take a closer look at what this code actually does. In the first few lines we can see that the function app will take a `request` input parameter called `$request`. This parameter will be our main input and request body JSON object. We will use the JSON body to send details into our API about the file we want to upload. We also set a status and some variables.  
+
+Here is an example of a valid JSON request body for our function app:  
+
+```JSON
+//JSON request Body Example
+{
+    "fileName":  "hello-world.txt",
+    "fileContent":  "VXBsb2FkIHRoaXMgZmlsZSB0byBBenVyZSBjbG91ZCBzdG9yYWdlIHVzaW5nIEZ1bmN0aW9uIEFwcCBGaWxlIHVwbG9hZGVyIEFQSQ=="
+}
+```
+
+Note that our `$Request` input parameter is linked to `$Request.body`, and we set two variables that will be taken from the JSON request body namely, `fileName` and `fileContent`. We will use these two values from the incoming POST request to store the serialized file content (Base64String) in a variable called `$fileContent` and the blob name in a variable called `$fileName`.  
 
 **NOTE:** Remember in the previous section `step 5` we set up some environment variables on our function app settings, we can reference the function app settings as environment variables in our function code as `$env:key` as show below):
 
@@ -222,7 +234,7 @@ $resourceGroupName = $env:SEC_STOR_RGName
 $storageAccountName =  $env:SEC_STOR_StorageAcc
 $blobContainer = $env:SEC_STOR_StorageCon
 
-#Set Vars (From request Body):
+#Set Vars (From JSON request Body):
 $fileName = $Request.Body["fileName"]
 $fileContent = $Request.Body["fileContent"]
 Write-Host "============================================"
@@ -230,7 +242,7 @@ Write-Host "Please wait, uploading new blob: [$fileName]"
 Write-Host "============================================"
 ```
 
-The next section we have a `try/catch` block where we take a serialized Base64 String in our JSON request body object and try to deserialize the `fileContent` into a temporary file:
+Next we have a `try/catch` block where we take the serialized `Base64 String` in the JSON request body and try to deserialize it from the `$fileContent` variable into a temporary file:
 
 ```powershell
 #// code/run.ps1#L25-L33
@@ -245,7 +257,7 @@ catch {
 }
 ```
 
-In the next section we have an `if statement` with a `try/catch` block where we take the deserialized temp file from the previous step and rename and save the file into our `fileuploads` container. Because our function apps identity has been given permission against the container using RBAC earlier when we set up the environment we should have no problems here:
+Then we have an `if statement` with a `try/catch` block where we take the deserialized temp file from the previous step and rename and save the file into our `fileuploads` container using the `$fileName` variable which takes the `fileName` value from our JSON request body. Because our function apps managed identity has been given permission against the container using RBAC earlier when we set up the environment, we should have no problems here:
 
 ```powershell
 #// code/run.ps1#L36-L48
@@ -264,7 +276,7 @@ If ($tempFile) {
 }
 ```
 
-And finally in the last step if all went well we return a message to the user to say that the file has been uploaded successfully.
+Finally in the last step, we return a message to the user to say that the file has been uploaded successfully.
 
 ```powershell
 #// code/run.ps1#L50-L62
@@ -285,7 +297,7 @@ Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
 
 ## Testing the function app
 
-So lastly lets test our function app and see if it does what it says on the tin.
+Lets test our function app and see if it does what it says on the tin.  
 
 Before we test the function lets create a new temporary function key to test with. Navigate to the function app function and select `Function Keys`. Create a `+ New function key` and call the key `temp_token` (Make a note of the token as we will use it in the test script):
 
