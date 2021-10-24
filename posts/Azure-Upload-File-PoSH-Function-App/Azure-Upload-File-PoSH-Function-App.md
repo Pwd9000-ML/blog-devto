@@ -122,13 +122,87 @@ So lets take a look step by step what the above script does.
 5. Configure Function App environment variables. (Will be consumed inside of function API later). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/funcappsettings1.png)
 6. Create `fileuploads` container in secure store storage account. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/sacontainer1.png)
 7. Assign Function App `SystemAssigned` managed identity permissions to Storage account(Read) and container(Write) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/sarbac1.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/conrbac.png)
-8. Remember I mentioned earlier there is one manual step. In the next step we will change the `requirements.txt` file on our function to allow the AZ module inside of our function by uncommenting the following: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/manual1.png)
+8. Remember I mentioned earlier there is one manual step. In the next step we will change the `requirements.psd1` file on our function to allow the `AZ` module inside of our function by uncommenting the following: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/manual1.png)
 
 **NOTE:** Remember to save the manual change above. That is it, our environment is set up and in the next section we will set up the file uploader function API powershell code.
 
 ## File Uploader Function
 
-xxx
+Now onto our Function App code. The following function app code can also be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Upload-File-PoSH-Function-App/code) page called `run.ps1`.  
+
+1. Navigate to the function app that we created in the previous section and select `+ Create` under `Functions`.
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc.png)
+2. Select `Develop in portal` and for the template select `HTTP trigger`, name the function `uploadfile` and hit `Create`.
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc2.png)
+3. Navigate to `Code + Test` and replace all the code under `run.ps1` with the following powershell code and hit `save`:
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc3.png)
+
+```powershell
+using namespace System.Net
+
+# Input bindings are passed in via param block.
+param($Request, $TriggerMetadata)
+
+# Write to the Azure Functions log stream.
+Write-Host "POST request - File Upload triggered."
+
+#Set Status
+$statusGood = $true
+
+#Set Vars (Func App Env Settings):
+$resourceGroupName = $env:SEC_STOR_RGName
+$storageAccountName =  $env:SEC_STOR_StorageAcc
+$blobContainer = $env:SEC_STOR_StorageCon
+
+#Set Vars (From req Body):
+$fileName = $Request.Body["fileName"]
+$fileContent = $Request.Body["fileContent"]
+Write-Host "============================================"
+Write-Host "Please wait, uploading new blob: [$fileName]"
+Write-Host "============================================"
+
+#Construct temp file from fileContent (Base64String)
+try {
+    $bytes = [Convert]::FromBase64String($fileContent)
+    $tempFile = New-TemporaryFile
+    [io.file]::WriteAllBytes($tempFile, $bytes)
+}
+catch {
+    $statusGood = $false
+    $body = "FAIL: Failed to receive file data."
+}
+
+#Get secureStore details and upload blob.
+If ($tempFile) {
+    try {
+        $storageAccount = Get-AzStorageAccount -ResourceGroupName $resourceGroupName -Name $storageAccountName
+        $storageContext = $storageAccount.Context
+        $container = (Get-AzStorageContainer -Name $blobContainer -Context $storageContext).CloudBlobContainer
+
+        Set-AzStorageBlobContent -File $tempFile -Blob $fileName -Container $container.Name -Context $storageContext
+    }
+    catch {
+        $statusGood = $false
+        $body = "FAIL: Failure connecting to Azure blob container: [$($container.Name)], $_"
+    }
+}
+
+if(!$statusGood) {
+    $status = [HttpStatusCode]::BadRequest
+}
+else {
+    $status = [HttpStatusCode]::OK
+    $body = "SUCCESS: File [$fileName] Uploaded OK to Secure Store [$storageAccount] in container [$($container.Name)]"
+}
+
+# Associate values to output bindings by calling 'Push-OutputBinding'.
+Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
+    StatusCode = $status
+    Body = $body
+})
+```
+
+So lets take a closer look at what this code actually does.  
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Upload-File-PoSH-Function-App/code) page. :heart:
 
