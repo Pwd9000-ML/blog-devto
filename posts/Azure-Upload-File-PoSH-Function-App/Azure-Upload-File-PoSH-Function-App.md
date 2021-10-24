@@ -324,7 +324,7 @@ Lets try it out with a txt file:
 
 Lets do another test but with an an image this time:
 
-![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/pngupload.gif)
+![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/pngupload03.gif)
 
 **NOTE:** Ensure to keep your function app tokens safe. (You can delete your `temp_token` after testing).
 
