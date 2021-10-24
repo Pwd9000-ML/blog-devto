@@ -1,7 +1,7 @@
 ﻿$fileToUpload = "C:\temp\hello-world.txt"
 
-$functionUri = "https://storagefunc6190.azurewebsites.net/api/uploadfile"
-$temp_token = "U7ztqa1nun0OtUssx0mpS/EnZ8j/fyiDdeOaVq8bzxZvh5gnI3eO1g=="
+$functionUri = "https://<functionAppname>.azurewebsites.net/api/uploadfile"
+$temp_token = "<TokenSecretValue>"
 
 $fileName = Split-Path $fileToUpload -Leaf
 $fileContent = [Convert]::ToBase64String((Get-Content -Path $fileToUpload -Encoding Byte))
