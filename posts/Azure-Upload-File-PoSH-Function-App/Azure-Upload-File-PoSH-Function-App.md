@@ -128,11 +128,14 @@ So lets take a look step by step what the above script does.
 
 ## File Uploader Function
 
-Now onto our Function App code. The following function app code can also be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Upload-File-PoSH-Function-App/code) page called `run.ps1`.
+Now onto our Function App code. The following function app code can also be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Upload-File-PoSH-Function-App/code) page called `run.ps1`.  
 
-1. Navigate to the function app that we created in the previous section and select `+ Create` under `Functions`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc.png)
-2. Select `Develop in portal` and for the template select `HTTP trigger`, name the function `uploadfile` and hit `Create`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc2.png)
-3. Navigate to `Code + Test` and replace all the code under `run.ps1` with the following powershell code and hit `save`: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc3.png)
+1. Navigate to the function app that we created in the previous section and select `+ Create` under `Functions`.
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc.png)
+2. Select `Develop in portal` and for the template select `HTTP trigger`, name the function `uploadfile` and hit `Create`.
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc2.png)
+3. Navigate to `Code + Test` and replace all the code under `run.ps1` with the following powershell code and hit `save`:
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc3.png)
 
 ```powershell
 using namespace System.Net
@@ -151,7 +154,7 @@ $resourceGroupName = $env:SEC_STOR_RGName
 $storageAccountName =  $env:SEC_STOR_StorageAcc
 $blobContainer = $env:SEC_STOR_StorageCon
 
-#Set Vars (From req Body):
+#Set Vars (From request Body):
 $fileName = $Request.Body["fileName"]
 $fileContent = $Request.Body["fileContent"]
 Write-Host "============================================"
@@ -189,7 +192,7 @@ if(!$statusGood) {
 }
 else {
     $status = [HttpStatusCode]::OK
-    $body = "SUCCESS: File [$fileName] Uploaded OK to Secure Store [$storageAccount] in container [$($container.Name)]"
+    $body = "SUCCESS: File [$fileName] Uploaded OK to Secure Store container [$($container.Name)]"
 }
 
 # Associate values to output bindings by calling 'Push-OutputBinding'.
@@ -199,7 +202,132 @@ Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
 })
 ```
 
-So lets take a closer look at what this code actually does.
+So lets take a closer look at what this code actually does. In the first few lines we can see that the function app will take a `request` input parameter called `$request`. This parameter will be our main input and request body JSON object we will use to send details into our API about the file we want to upload. We also set a status and some variables up.  
+
+**NOTE:** Remember in the previous section `step 5` we set up some environment variables on our function app settings, we can reference the function app settings as environment variables in our function code as `$env:key` as show below):  
+
+```powershell
+#// code/run.ps1#L1-L22
+using namespace System.Net
+
+# Input bindings are passed in via param block.
+param($Request, $TriggerMetadata)
+
+# Write to the Azure Functions log stream.
+Write-Host "POST request - File Upload triggered."
+
+#Set Status
+$statusGood = $true
+
+#Set Vars (Func App Env Settings):
+$resourceGroupName = $env:SEC_STOR_RGName
+$storageAccountName =  $env:SEC_STOR_StorageAcc
+$blobContainer = $env:SEC_STOR_StorageCon
+
+#Set Vars (From request Body):
+$fileName = $Request.Body["fileName"]
+$fileContent = $Request.Body["fileContent"]
+Write-Host "============================================"
+Write-Host "Please wait, uploading new blob: [$fileName]"
+Write-Host "============================================"
+```
+
+The next section we have a `try/catch` block where we take a serialized Base64 String in our JSON request body object and try to deserialize the `fileContent` into a temporary file:  
+
+```powershell
+#// code/run.ps1#L25-L33
+try {
+    $bytes = [Convert]::FromBase64String($fileContent)
+    $tempFile = New-TemporaryFile
+    [io.file]::WriteAllBytes($tempFile, $bytes)
+}
+catch {
+    $statusGood = $false
+    $body = "FAIL: Failed to receive file data."
+}
+```
+
+In the next section we have an `if statement` with a `try/catch` block where we take the deserialized temp file from the previous step and rename and save the file into our `fileuploads` container. Because our function apps identity has been given permission against the container using RBAC earlier when we set up the environment we should have no problems here:  
+
+```powershell
+#// code/run.ps1#L36-L48
+If ($tempFile) {
+    try {
+        $storageAccount = Get-AzStorageAccount -ResourceGroupName $resourceGroupName -Name $storageAccountName
+        $storageContext = $storageAccount.Context
+        $container = (Get-AzStorageContainer -Name $blobContainer -Context $storageContext).CloudBlobContainer
+
+        Set-AzStorageBlobContent -File $tempFile -Blob $fileName -Container $container.Name -Context $storageContext
+    }
+    catch {
+        $statusGood = $false
+        $body = "FAIL: Failure connecting to Azure blob container: [$($container.Name)], $_"
+    }
+}
+```
+
+And finally in the last step if all went well we return a message to the user to say that the file has been uploaded successfully.
+
+```powershell
+#// code/run.ps1#L50-L62
+if(!$statusGood) {
+    $status = [HttpStatusCode]::BadRequest
+}
+else {
+    $status = [HttpStatusCode]::OK
+    $body = "SUCCESS: File [$fileName] Uploaded OK to Secure Store container [$($container.Name)]"
+}
+
+# Associate values to output bindings by calling 'Push-OutputBinding'.
+Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
+    StatusCode = $status
+    Body = $body
+})
+```
+
+## Testing the function app
+
+So lastly lets test our function app and see if it does what it says on the tin.  
+
+Before we test the function lets create a new temporary function key to test with. Navigate to the function app function and select `Function Keys`. Create a `+ New function key` and call the key `temp_token` (Make a note of the token as we will use it in the test script):
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/token.png)
+
+Also make a note of the Function App URL. If you followed this tutorial it would be: `https://<FunctionAppName>.azurewebsites.net/api/uploadfile`. Or you can also get this under `Code + Test` and selecting `Get function URL` and drop down using the key: `temp_token`:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/funcurl.png)
+
+I have created the following powershell script to test the file uploader API. The following test script can be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Upload-File-PoSH-Function-App/code) page called `test_upload.ps1`.  
+
+```powershell
+$fileToUpload = "C:\temp\hello-world.txt"
+
+$functionUri = "https://<functionAppname>.azurewebsites.net/api/uploadfile"
+$temp_token = "<TokenSecretValue>"
+
+$fileName = Split-Path $fileToUpload -Leaf
+$fileContent = [Convert]::ToBase64String((Get-Content -Path $fileToUpload -Encoding Byte))
+
+$body = @{
+    "fileName" = $fileName
+    "fileContent" = $fileContent
+} | ConvertTo-Json -Compress
+
+$header = @{
+    "x-functions-key" = $temp_token
+    "Content-Type" = "application/json"
+}
+
+Invoke-RestMethod -Uri $functionUri -Method 'POST' -Body $body -Headers $header
+```
+
+Lets try it out with a txt file:
+
+![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/txtupload.gif)
+
+Lets do another test but with an an image this time:
+
+![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/pngupload.gif)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Upload-File-PoSH-Function-App/code) page. :heart:
 

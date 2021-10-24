@@ -14,7 +14,7 @@ $resourceGroupName = $env:SEC_STOR_RGName
 $storageAccountName =  $env:SEC_STOR_StorageAcc
 $blobContainer = $env:SEC_STOR_StorageCon
 
-#Set Vars (From req Body):
+#Set Vars (From request Body):
 $fileName = $Request.Body["fileName"]
 $fileContent = $Request.Body["fileContent"]
 Write-Host "============================================"
@@ -52,7 +52,7 @@ if(!$statusGood) {
 }
 else {
     $status = [HttpStatusCode]::OK
-    $body = "SUCCESS: File [$fileName] Uploaded OK to Secure Store [$storageAccount] in container [$($container.Name)]"
+    $body = "SUCCESS: File [$fileName] Uploaded OK to Secure Store container [$($container.Name)]"
 }
 
 # Associate values to output bindings by calling 'Push-OutputBinding'.
