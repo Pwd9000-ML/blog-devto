@@ -200,9 +200,9 @@ Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
 })
 ```
 
-Lets take a closer look at what this code actually does. In the first few lines we can see that the function app will take a `request` input parameter called `$request`. This parameter will be our main input and request body JSON object. We will use the JSON body to send details into our API about the file we want to upload. We also set a status and some variables.  
+Lets take a closer look at what this code actually does. In the first few lines we can see that the function app will take a `request` input parameter called `$request`. This parameter will be our main input and request body JSON object. We will use the JSON body to send details into our API about the file we want to upload. We also set a status and some variables.
 
-Here is an example of a valid JSON request body for our function app:  
+Here is an example of a valid JSON request body for our function app:
 
 ```JSON
 //JSON request Body Example
@@ -212,7 +212,7 @@ Here is an example of a valid JSON request body for our function app:
 }
 ```
 
-Note that our `$Request` input parameter is linked to `$Request.body`, and we set two variables that will be taken from the JSON request body namely, `fileName` and `fileContent`. We will use these two values from the incoming POST request to store the serialized file content (Base64String) in a variable called `$fileContent` and the blob name in a variable called `$fileName`.  
+Note that our `$Request` input parameter is linked to `$Request.body`, and we set two variables that will be taken from the JSON request body namely, `fileName` and `fileContent`. We will use these two values from the incoming POST request to store the serialized file content (Base64String) in a variable called `$fileContent` and the blob name in a variable called `$fileName`.
 
 **NOTE:** Remember in the previous section `step 5` we set up some environment variables on our function app settings, we can reference the function app settings as environment variables in our function code as `$env:key` as show below):
 
@@ -297,7 +297,7 @@ Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
 
 ## Testing the function app
 
-Lets test our function app and see if it does what it says on the tin.  
+Lets test our function app and see if it does what it says on the tin.
 
 Before we test the function lets create a new temporary function key to test with. Navigate to the function app function and select `Function Keys`. Create a `+ New function key` and call the key `temp_token` (Make a note of the token as we will use it in the test script):
 
