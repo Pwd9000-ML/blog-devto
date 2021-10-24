@@ -122,7 +122,7 @@ Lets take a closer look, step-by-step what the above script does as part of sett
 4. Create a PowerShell Function App with `SystemAssigned` managed identity, `consumption` app service plan and `insights`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/func.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/funcmi1.png)
 5. Configure Function App environment variables. (Will be consumed inside of function app later). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/funcappsettings1.png)
 6. Create `fileuploads` container in secure store storage account. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/sacontainer1.png)
-7. Assign Function App `SystemAssigned` managed identity permissions to Storage account(Read) and container(Write) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/sarbac1.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/conrbac.png)
+7. Assign Function App `SystemAssigned` managed identity permissions to Storage account(Read) and container(Write). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/sarbac1.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/conrbac.png)
 8. Remember I mentioned earlier there is one manual step. In the next step we will change the `requirements.psd1` file on our function to allow the `AZ` module inside of our function by uncommenting the following: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/manual1.png)
 
 **NOTE:** Remember to save the manual change we made on `requirements.psd1` above. That is it, our environment is set up and in the next section we will configure the file uploader function API powershell code.
@@ -242,7 +242,7 @@ Write-Host "Please wait, uploading new blob: [$fileName]"
 Write-Host "============================================"
 ```
 
-Next we have a `try/catch` block where we take the serialized `Base64 String` in the JSON request body and try to deserialize it from the `$fileContent` variable into a temporary file:
+Next we have a `try/catch` block where we take the serialized `Base64 String` from the JSON request body `fileContent` stored in the PowerShell variable `$fileContent` and try to deserialize it into a temporary file:
 
 ```powershell
 #// code/run.ps1#L25-L33
@@ -276,7 +276,7 @@ If ($tempFile) {
 }
 ```
 
-Finally in the last step, we return a message to the user to say that the file has been uploaded successfully.
+Finally in the last few lines, given our status is still good, we return a message body to the user to say that the file has been uploaded successfully.
 
 ```powershell
 #// code/run.ps1#L50-L62
