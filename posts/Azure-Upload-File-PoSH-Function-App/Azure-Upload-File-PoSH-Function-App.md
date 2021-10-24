@@ -11,7 +11,7 @@ date: '2021-10-24T13:31:36Z'
 
 ## Overview
 
-With Hacktober 2021 coming to an end soon, I thought I would share with you a little experiment I did using an Azure serverless Function App with Powershell as the code base. The idea was to create an easy to use, reusable `File Uploader API` that would allow someone to upload a file to an Azure Storage Account blob container by posting a HTTP request.
+With Hacktoberfest 2021 coming to an end soon, I thought I would share with you a little experiment I did using an Azure serverless Function App with Powershell as the code base. The idea was to create an easy to use, reusable `File Uploader API` that would allow someone to upload a file to an Azure Storage Account blob container by posting a HTTP request.
 
 The HTTP request would be a JSON body and only requires the file name and the file Content/data in a serialized Base64 string. The PowerShell Function App would then deserialize the base64 string into a temporary file, rename and copy the file as a blob into a storage account container called `fileuploads`.
 
@@ -25,7 +25,7 @@ First we will log into Azure by running:
 az login
 ```
 
-After logging into Azure and selecting the subscription comes the script that will set everything up:
+After logging into Azure and selecting the subscription, we can run the script that will create all the resources and set the environment up:
 
 ```powershell
 # Setup Variables.
