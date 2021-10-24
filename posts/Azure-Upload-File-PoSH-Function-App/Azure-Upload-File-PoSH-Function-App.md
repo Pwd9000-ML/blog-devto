@@ -128,14 +128,11 @@ So lets take a look step by step what the above script does.
 
 ## File Uploader Function
 
-Now onto our Function App code. The following function app code can also be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Upload-File-PoSH-Function-App/code) page called `run.ps1`.  
+Now onto our Function App code. The following function app code can also be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Upload-File-PoSH-Function-App/code) page called `run.ps1`.
 
-1. Navigate to the function app that we created in the previous section and select `+ Create` under `Functions`.
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc.png)
-2. Select `Develop in portal` and for the template select `HTTP trigger`, name the function `uploadfile` and hit `Create`.
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc2.png)
-3. Navigate to `Code + Test` and replace all the code under `run.ps1` with the following powershell code and hit `save`:
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc3.png)
+1. Navigate to the function app that we created in the previous section and select `+ Create` under `Functions`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc.png)
+2. Select `Develop in portal` and for the template select `HTTP trigger`, name the function `uploadfile` and hit `Create`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc2.png)
+3. Navigate to `Code + Test` and replace all the code under `run.ps1` with the following powershell code and hit `save`: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/createfunc3.png)
 
 ```powershell
 using namespace System.Net
@@ -202,7 +199,7 @@ Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
 })
 ```
 
-So lets take a closer look at what this code actually does.  
+So lets take a closer look at what this code actually does.
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Upload-File-PoSH-Function-App/code) page. :heart:
 
