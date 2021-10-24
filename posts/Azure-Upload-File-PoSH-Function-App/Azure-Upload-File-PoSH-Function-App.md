@@ -1,6 +1,6 @@
 ---
 title: Upload Files to Azure Storage using a PowerShell Function App
-published: false
+published: true
 description: Azure - Function App file uploader
 tags: 'tutorial, powershell, productivity, azure'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/main-cover.png'
@@ -322,7 +322,7 @@ Lets try it out with a txt file:
 
 ![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/txtupload01.gif)
 
-Lets do another test but with an an image this time:
+Lets do another test but with an image file this time:
 
 ![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/pngupload04.gif)
 
