@@ -10,13 +10,13 @@ id: 874213
 
 ## Overview
 
-With Hacktober 2021 coming to an end soon, I thought I would share with you a little experiment I did using an Azure serverless Function App with Powershell as the code base. The idea was to create an easy to use, reusable `File Uploader API` that would allow someone to upload a file to an Azure Storage Account blob container by posting a HTTP request.  
+With Hacktober 2021 coming to an end soon, I thought I would share with you a little experiment I did using an Azure serverless Function App with Powershell as the code base. The idea was to create an easy to use, reusable `File Uploader API` that would allow someone to upload a file to an Azure Storage Account blob container by posting a HTTP request.
 
 The HTTP request would be a JSON body and only requires the file name and the file Content/data in a serialized Base64 string. The PowerShell Function App would then deserialize the base64 string into a temporary file, rename and copy the file as a blob into a storage account container called `fileuploads`.
 
 ## Set everything up automatically
 
-To stage and setup the entire environment for my API automatically I wrote a PowerShell script using AZ CLI, that would build and configure all the things I would need to start work on my function. There was one manual step however I will cover a bit later on. But for now you can find the script I used on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Upload-File-PoSH-Function-App/code) page called `setup_environment.ps1`.  
+To stage and setup the entire environment for my API automatically I wrote a PowerShell script using AZ CLI, that would build and configure all the things I would need to start work on my function. There was one manual step however I will cover a bit later on. But for now you can find the script I used on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Upload-File-PoSH-Function-App/code) page called `setup_environment.ps1`.
 
 First we will log into Azure by running:
 
@@ -85,7 +85,7 @@ az functionapp config appsettings set `
     --settings @settings
 
 # Authorize the operation to create the container - Signed in User (Storage Blob Data Contributor Role)
-az ad signed-in-user show --query objectId -o tsv | foreach-object { 
+az ad signed-in-user show --query objectId -o tsv | foreach-object {
     az role assignment create `
         --role "Storage Blob Data Contributor" `
         --assignee "$_" `
@@ -100,12 +100,12 @@ az storage container create `
     --auth-mode login
 
 #Assign Function System MI permissions to Storage account(Read) and container(Write)
-$functionMI = $(az resource list --name $functionAppName --query [*].identity.principalId --out tsv)| foreach-object { 
+$functionMI = $(az resource list --name $functionAppName --query [*].identity.principalId --out tsv)| foreach-object {
     az role assignment create `
         --role "Reader and Data Access" `
         --assignee "$_" `
         --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$secureStore" `
-    
+
     az role assignment create `
         --role "Storage Blob Data Contributor" `
         --assignee "$_" `
