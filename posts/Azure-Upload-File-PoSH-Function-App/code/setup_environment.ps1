@@ -1,7 +1,7 @@
 ﻿# Setup Variables.
 $randomInt = Get-Random -Maximum 9999
 $subscriptionId = (get-azcontext).Subscription.Id
-$resourceGroupName = "Function-App-Storage2"
+$resourceGroupName = "Function-App-Storage"
 $storageName = "storagefuncsa$randomInt"
 $functionAppName = "storagefunc$randomInt"
 $region = "uksouth"
