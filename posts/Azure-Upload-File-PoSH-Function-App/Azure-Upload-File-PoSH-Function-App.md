@@ -320,7 +320,7 @@ Invoke-RestMethod -Uri $functionUri -Method 'POST' -Body $body -Headers $header
 
 Lets try it out with a txt file:
 
-![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/txtupload1.gif)
+![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Upload-File-PoSH-Function-App/assets/txtupload01.gif)
 
 Lets do another test but with an an image this time:
 
