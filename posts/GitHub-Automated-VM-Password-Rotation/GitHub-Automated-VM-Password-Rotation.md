@@ -65,7 +65,7 @@ Next we will create our `Azure AD App` by running the following in a powershell 
 $appName="GitHubSecretsUser"
 
 # create Azure AD app
-az ad app create --display-name $appName --homepage "http://localhost/$appName" --identifier-uris "http://localhost/$appName"
+az ad app create --display-name $appName --homepage "http://localhost/$appName"
 ```
 
 Next we will retrieve the App ID and set it to a powershell variable `$appId`
