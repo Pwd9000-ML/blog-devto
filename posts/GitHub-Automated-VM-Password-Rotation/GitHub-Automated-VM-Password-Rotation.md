@@ -153,6 +153,7 @@ jobs:
         run: |
           [system.reflection.assembly]::LoadWithPartialName("System.Web")
           [String]$random = [System.Web.Security.Membership]::GeneratePassword(64, 32)
+          echo ::add-mask::$random
           echo "RANDOM_CHAR_SET=$random" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
 
       - name: Rotate VM administrator passwords
