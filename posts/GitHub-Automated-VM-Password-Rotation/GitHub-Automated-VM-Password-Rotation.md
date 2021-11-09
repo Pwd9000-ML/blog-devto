@@ -13,7 +13,7 @@ date: '2021-05-17T16:13:19Z'
 
 ### Overview
 
-Today we are going to look at how we can implement a zero-touch fully automated solution under 15 minutes to rotate all our virtual machines local administrator passwords on a schedule by using a single Github workflow and a centrally managed Azure key vault. (The technique/concept used in this tutorial is not limited to only Virtual machines. The same concept can be used and applied to almost anything that requires secret rotation)  
+Today we are going to look at how we can implement a zero-touch fully automated solution under 15 minutes to rotate all our virtual machines local administrator passwords on a schedule by using a single Github workflow and a centrally managed Azure key vault. (The technique/concept used in this tutorial is not limited to only Virtual machines. The same concept can be used and applied to almost anything that requires secret rotation)
 
 In our use case we want to be able to rotate the local administrator password of all virtual machines hosted in an Azure subscription, trigger the rotation manually or on a schedule, ensure each VM has a randomized unique password, and access/store the rotated admin password for each virtual machine inside of the key vault we have hosted in Azure.
 
