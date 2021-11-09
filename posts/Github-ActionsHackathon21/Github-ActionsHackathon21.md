@@ -13,4 +13,12 @@ id: 893134
 ### Overview
 
 I decided to submit one of my github Actions hacks I did earlier this year as part of this years **ActionsHackathon21** contest.  
-In my original post I
+In my original post I ...
+
+Here is the link to the original post
+
+## Submission Category: DIY Deployments
+
+## Yaml File or Link to Code
+
+
