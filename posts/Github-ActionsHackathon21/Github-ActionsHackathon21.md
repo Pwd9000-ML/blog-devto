@@ -18,7 +18,9 @@ Here is the link to the original post, enjoy!
 
 {% link <https://dev.to/pwd9000/automate-password-rotation-with-github-and-azure-412a> %}
 
-## Submission Category: DIY Deployments
+## Submission Category: Wacky Wildcards
+
+😳💥🔥 I know.... ITSec Ops workflows are totally WACKY! 🔥💥😳
 
 ## Yaml File or Link to Code
 
