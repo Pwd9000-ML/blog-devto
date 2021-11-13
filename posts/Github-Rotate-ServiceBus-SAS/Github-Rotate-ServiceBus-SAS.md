@@ -151,7 +151,7 @@ Remember at the beginning of this post I mentioned that we will create a github 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/githubAzureCredentials1.png)
 
-Because we will have two workflows in this demo 
+Because we will have two workflows in this demo
 
 ### Configure our GitHub workflow
 
