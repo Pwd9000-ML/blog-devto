@@ -28,9 +28,13 @@ Even though this is a great feature to be able to have secrets management in Git
 
 ### Let's get started. What do we need to start generating Service Bus SAS tokens?
 
-1. **Azure key vault:** This will be where we centrally store, access and manage all our virtual machine local admin passwords.
-2. **Azure AD App & Service Principal:** This is what we will use to authenticate to Azure from our github workflow.
-3. **Github repository:** This is where we will keep our source control and Github workflow / automation.
+For the purposes of this demo and so you can follow along, I will set up the Azure environment with all the relevant resources we will need.
+
+1. **Resource Group:** This will be where we will create and group all of our Azure resources together.
+2. **Service Bus:** We will create a service Bus and Queue.
+3. **Azure key vault:** This will be where we centrally store, access and manage all our Service Bus SAS tokens.
+4. **Azure AD App & Service Principal:** This is what we will use to authenticate to Azure from our github workflow.
+5. **Github repository:** This is where we will keep all our source code and workflows.
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Trivy/code) page. :heart:
 
