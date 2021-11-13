@@ -14,9 +14,9 @@ In todays tutorial I will demonstrate how to use PowerShell and Github Actions t
 
 We will create an [Azure Service Bus](https://docs.microsoft.com/en-gb/azure/service-bus-messaging/service-bus-messaging-overview) and [Key Vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview) and a single github workflow to handle our SAS token generation as well as a service principal / Azure identity to fully automate everything. When our github workflow is triggered the workflow will generate a Service Bus SAS token that will only be valid for 30 minutes and store the SAS token inside of the key vault (The token validity period can be adjusted based on your needs or requirement).
 
-This means that whenever we need a temporary SAS token to call our Azure service bus we can process this workflow to generate the 30 min token for us and then access the token securely from our key vault using a different process or even a different github workflow.
+This means that whenever we need a temporary SAS token to call our Azure service bus we can process this workflow to generate the 30 min token for us and then access the token securely from our key vault using a different process or even a different github workflow (which will be demonstrated by our second workflow for the purpose of this demo).
 
-Lets take a look a sample use case flow diagram of how this will look like:
+Lets take a look at a sample use case flow diagram of how this will look like:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/flowdiag.png)
 
