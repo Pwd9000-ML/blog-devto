@@ -92,7 +92,7 @@ $policyPrimaryKey = az servicebus namespace authorization-rule keys list --resou
 az keyvault secret set --vault-name $keyVaultName --name "$($policyName)PrimaryKey" --value $policyPrimaryKey
 ```
 
-You will notice that our Service Bus has a Policy with only `Send` and `Listen` configured and our policies `Primary Key` will be saved in our key vault.  
+You will notice that our Service Bus has a Policy with only `Send` and `Listen` configured and our policies `Primary Key` will be saved in our key vault.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sb1.png)
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sb2.png)
