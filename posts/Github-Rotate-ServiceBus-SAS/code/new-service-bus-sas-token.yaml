@@ -1,0 +1,19 @@
+name: New Service Bus SAS Token
+on: 
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    env:
+      KEY_VAULT_NAME: secrets-vault7839
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Log into Azure using github secret AZURE_CREDENTIALS
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        enable-AzPSSession: true

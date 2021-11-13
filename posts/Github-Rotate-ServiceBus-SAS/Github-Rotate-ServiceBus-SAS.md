@@ -153,7 +153,7 @@ Remember at the beginning of this post I mentioned that we will create a github 
 
 ### Configure our GitHub workflow
 
-Now create a folder in the repository called `.github` and underneath another folder called `workflows`. In the workflows folder we will create a YAML file called `new-service-bus-sas-token.yaml`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Github-Rotate-ServiceBus-SAS/blob/main/.github/workflows/new-service-bus-sas-token.yaml).
+Now create a folder in the repository called `.github` and underneath another folder called `workflows`. In the workflows folder we will create a YAML file called `new-service-bus-sas-token.yaml`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/blob/master/.github/workflows/new-service-bus-sas-token.yaml).
 
 ```yaml
 
