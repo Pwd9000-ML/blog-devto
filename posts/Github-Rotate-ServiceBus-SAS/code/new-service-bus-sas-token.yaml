@@ -1,6 +1,5 @@
 name: New Service Bus SAS Token
-on: 
-  workflow_dispatch:
+on: [workflow_call]
 
 jobs:
   publish:

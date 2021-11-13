@@ -10,13 +10,13 @@ id: 897066
 
 ## Overview
 
-In todays tutorial I will demonstrate how to use powerShell in Github Actions to automate Azure Service Bus SAS tokens to generate short lived usable tokens with a validity period of 30 minutes and securely store the newly generated SAS tokens inside of an Azure Key Vault ready for consumption.
+In todays tutorial I will demonstrate how to use powerShell in Github Actions to automate Azure Service Bus SAS tokens to generate short lived usable tokens with a validity period of 10 minutes and securely store the newly generated SAS tokens inside of an Azure Key Vault ready for consumption.
 
-We will create an [Azure Service Bus](https://docs.microsoft.com/en-gb/azure/service-bus-messaging/service-bus-messaging-overview) and [Key Vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview) and a single github workflow to handle our SAS token request as well as a service principal / Azure identity to fully automate everything. When our github workflow is triggered the workflow will generate a temporary usable Service Bus SAS token that will only be valid for 30 minutes and store the SAS token inside of the key vault (The token validity period can be adjusted based on your needs or requirement).
+We will create an [Azure Service Bus](https://docs.microsoft.com/en-gb/azure/service-bus-messaging/service-bus-messaging-overview) and [Key Vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview) and a single **reusable** github workflow to handle our SAS token requests as well as a service principal / Azure identity to fully automate everything. For the purpose of this demonstration we will also have a main workflow that is triggered manually. Our main workflow, when triggered, will first call our **reusable** github workflow that will generate our temporary SAS token that will only be valid for 10 minutes and store the SAS token inside of the key vault (The token validity period can be adjusted based on your needs or requirement). Our main workflow will then retrieve the SAS token from the key vault and send the message through to our service bus queue.
 
-This means that whenever we need a temporary SAS token to call our Azure service bus we can process this GitHub workflow to generate a token for us and we can access the token securely from the key vault using a different process or even a different github workflow (which will be demonstrated by a second workflow for the purpose of this demo).
+This means that whenever we need to call our service bus we can now generate a temporary SAS token to call our Azure service bus using a **reusable** GitHub workflow to generate our token for us and we can access the token securely from key vault using a different process or even a different github workflow.
 
-Lets take a look at a sample use case flow diagram of how this will look like:
+Lets take a look at a sample use case flow diagram of how this would look like:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/flowdiag.png)
 
@@ -150,6 +150,8 @@ Remember at the beginning of this post I mentioned that we will create a github 
 3. Paste the JSON object output from the Azure CLI command we ran earlier into the secret's value field. Give the secret the name `AZURE_CREDENTIALS`.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/githubAzureCredentials1.png)
+
+Because we will have two workflows in this demo 
 
 ### Configure our GitHub workflow
 
