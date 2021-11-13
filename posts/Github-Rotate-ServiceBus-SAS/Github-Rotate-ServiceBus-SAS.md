@@ -10,7 +10,7 @@ id: 897066
 
 ## Overview
 
-In todays tutorial I will demonstrate how to use PowerShell and Github Actions to automate Azure Service Bus SAS token generation for new tokens with a validity period of 30 minutes and securely store the newly generated SAS tokens inside of an Azure Key Vault.
+In todays tutorial I will demonstrate how to use PowerShell and Github Actions to automate Azure Service Bus SAS token generation for new tokens with a validity period of 30 minutes and securely store the newly generated SAS tokens inside of an Azure Key Vault ready for consumption.
 
 We will create an [Azure Service Bus](https://docs.microsoft.com/en-gb/azure/service-bus-messaging/service-bus-messaging-overview) and [Key Vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview) and a single github workflow as well as a service principal / Azure identity to fully automate everything. When our github workflow is triggered the workflow will generate a Service Bus SAS token that will only be valid for 30 minutes and store the SAS token inside of the key vault (The token validity period can be adjusted based on your needs or requirement).
 
@@ -34,7 +34,7 @@ For the purpose of this demo and so you can follow along, I will set up the Azur
 4. **Azure AD App & Service Principal:** This is what we will use to authenticate to Azure from our github workflow.
 5. **Github repository:** This is where we will keep all our source code and workflows.
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Trivy/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Github-Rotate-ServiceBus-SAS/code) page. :heart:
 
 ### _Author_
 
