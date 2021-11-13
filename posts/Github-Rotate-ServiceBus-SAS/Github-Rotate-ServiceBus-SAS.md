@@ -16,6 +16,10 @@ We will create an [Azure Service Bus](https://docs.microsoft.com/en-gb/azure/ser
 
 This means that whenever we need a temporary SAS token to call our Azure service bus we can process this workflow to generate the 30 min token for us and then access the token securely from our key vault using a different process or even a different github workflow.
 
+Lets take a look a sample use case flow diagram of how this will look like:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/flowdiag.png)
+
 **Note:** Maintaining Service Bus SAS tokens using an Azure key vault is particularly useful for teams who maintain secrets management and need to ensure that only relevant users, principals and processes can access secrets from a secure managed location and also be rotated on a regular basis. Azure key vaults are also particularly useful for security or ops teams who maintain secrets management, instead of giving other teams access to our deployment repositories in Github, teams who look after deployments no longer have to worry about giving access to other teams in order to manage secrets as secrets management will be done from an Azure key vault which nicely separates roles of responsibility when spread across different teams.
 
 ### Protecting secrets in github
