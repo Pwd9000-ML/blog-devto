@@ -34,7 +34,7 @@ For the purpose of this demo and so you can follow along, I will set up the Azur
 
 1. **Azure key vault:** This will be where we centrally store, access and manage all our Service Bus SAS tokens.
 2. **Service Bus Namespace:** We will create a service Bus Namespace and Queue.
-3. **Azure AD App & Service Principal:** This is what we will use to authenticate to Azure from our github workflow.
+3. **Azure AD App & Service Principal:** This is what we will use to authenticate to Azure from our github workflows.
 4. **Github repository:** This is where we will keep all our source code and workflows.
 
 ### Create an Azure key vault
@@ -151,9 +151,9 @@ Remember at the beginning of this post I mentioned that we will create a github 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/githubAzureCredentials1.png)
 
-Because we will have two workflows in this demo
+Because we will have two workflows in this demo we will create our **reusable** workflow first called `new-service-bus-sas-token.yaml` then we will create our main workflow that will send a message to our Service bus called `main.yaml`.
 
-### Configure our GitHub workflow
+### Configure our GitHub workflows
 
 Now create a folder in the repository called `.github` and underneath another folder called `workflows`. In the workflows folder we will create a YAML file called `new-service-bus-sas-token.yaml`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/blob/master/.github/workflows/new-service-bus-sas-token.yaml).
 
@@ -161,9 +161,25 @@ Now create a folder in the repository called `.github` and underneath another fo
 
 ```
 
-The above YAML workflow is set to trigger manually.
+**Note:** The only fields that needs to be updated for the workflow to be use din your environment are shown below:
 
-**Note:** If you need to change or use a different key vault you can change this line on the yaml file with the name of the key vault you are using:
+```yaml
+## code/new-service-bus-sas-token.yaml#L7-L11
+
+env:
+    KEY_VAULT_NAME: secrets-vault7839 #Replace with your key vault name
+    SB_NAMESPACE: githubactions       #Replace with your service bus namespace
+    SB_POLICY_NAME: myauthrule        #Replace with your service bus policy
+    SB_POLICY_KEY_NAME: myauthrulePrimaryKey #Replace with your key vault secret name that contains your service bus policy primary key
+```
+
+The above YAML workflow has a special trigger as shown below, which will only run when called by another GitHub workflow.
+
+```yaml
+on: [workflow_call]
+```
+
+Now onto our main workflow file. In the same workflows folder we will create a second YAML file called `main.yaml`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/blob/master/.github/workflows/main.yaml).
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Github-Rotate-ServiceBus-SAS/code) page. :heart:
 
