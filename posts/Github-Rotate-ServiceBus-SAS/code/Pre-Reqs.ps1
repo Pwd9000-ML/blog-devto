@@ -1,10 +1,11 @@
 ﻿az login
 
 #Set variables
+$randomInt = Get-Random -Maximum 9999
 $subscriptionId = $(az account show --query "id" --output tsv)
 $resourceGroupName = "Actions-Service-Bus-Demo"
 $location = "UKSouth"
-$keyVaultName = "secrets-vault01"
+$keyVaultName = "secrets-vault$randomInt"
 $nameSpaceName = "githubactions"
 $queueName = "queue01"
 $policyName = "myauthrule"
