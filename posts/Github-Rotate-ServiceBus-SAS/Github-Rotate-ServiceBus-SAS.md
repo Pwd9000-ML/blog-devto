@@ -149,11 +149,11 @@ Remember at the beginning of this post I mentioned that we will create a github 
 
 3. Paste the JSON object output from the Azure CLI command we ran earlier into the secret's value field. Give the secret the name `AZURE_CREDENTIALS`.
 
-![githubAzureCredentials](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/githubAzureCredentials1.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/githubAzureCredentials1.png)
 
 ### Configure our GitHub workflow
 
-Now create a folder in the repository called `.github` and underneath another folder called `workflows`. In the workflows folder we will create a YAML file called `rotate-vm-passwords.yaml`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-VM-Password-Management/blob/main/.github/workflows/rotate-vm-passwords.yaml).
+Now create a folder in the repository called `.github` and underneath another folder called `workflows`. In the workflows folder we will create a YAML file called `new-service-bus-sas-token.yaml`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Github-Rotate-ServiceBus-SAS/blob/main/.github/workflows/new-service-bus-sas-token.yaml).
 
 ```yaml
 
