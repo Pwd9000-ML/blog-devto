@@ -167,10 +167,10 @@ Now create a folder in the repository called `.github` and underneath another fo
 ## code/new-service-bus-sas-token.yaml#L7-L11
 
 env:
-    KEY_VAULT_NAME: secrets-vault7839 #Replace with your key vault name
-    SB_NAMESPACE: githubactions       #Replace with your service bus namespace
-    SB_POLICY_NAME: myauthrule        #Replace with your service bus policy
-    SB_POLICY_KEY_NAME: myauthrulePrimaryKey #Replace with your key vault secret name that contains your service bus policy primary key
+  KEY_VAULT_NAME: secrets-vault7839
+  SB_NAMESPACE: githubactions
+  SB_POLICY_NAME: myauthrule
+  SB_POLICY_KEY_NAME: myauthrulePrimaryKey
 ```
 
 The above YAML workflow has a special trigger as shown below, which will only run when called by another GitHub workflow.
