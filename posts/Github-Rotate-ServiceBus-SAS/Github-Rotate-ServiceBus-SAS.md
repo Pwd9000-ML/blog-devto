@@ -14,7 +14,7 @@ In todays tutorial I will demonstrate how to use PowerShell and Github Actions t
 
 We will create an [Azure Service Bus](https://docs.microsoft.com/en-gb/azure/service-bus-messaging/service-bus-messaging-overview) and [Key Vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview) and a single github workflow to handle our SAS token generation as well as a service principal / Azure identity to fully automate everything. When our github workflow is triggered the workflow will generate a Service Bus SAS token that will only be valid for 30 minutes and store the SAS token inside of the key vault (The token validity period can be adjusted based on your needs or requirement).
 
-This means that whenever we need a temporary SAS token to call our Azure service bus we can process this workflow to generate the 30 min token for us and then access the token securely from our key vault using a different process or even a different github workflow (which will be demonstrated by our second workflow for the purpose of this demo).
+This means that whenever we need a temporary SAS token to call our Azure service bus we can process this workflow to generate a token for us which will be usable for 30 minutes, stored in key vault, and we can access the token securely from the key vault using a different process or even a different github workflow (which will be demonstrated by a second workflow for the purpose of this demo).
 
 Lets take a look at a sample use case flow diagram of how this will look like:
 
@@ -24,7 +24,7 @@ Lets take a look at a sample use case flow diagram of how this will look like:
 
 ### Protecting secrets in github
 
-[Github Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets) is a great way that will allow us to store sensitive information in our organization, repository, or repository environments. In fact we will set up github secrets later in this tutorial that will allow us to authenticate to Azure, and also store our Service Bus primary key used to generate SAS tokens from.
+[Github Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets) is a great way that will allow us to store sensitive information in our organization, repository, or repository environments. In fact we will set up a github secret later in this tutorial that will allow us to authenticate to Azure.
 
 Even though this is a great feature to be able to have secrets management in Github, you may be looking after many repositories all with different secrets, this can become an administrative overhead when secrets or keys need to be rotated on a regular basis for best security practice, that's where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview) can also be utilized as a central source for all your secret management in your GitHub workflows.
 
@@ -32,11 +32,136 @@ Even though this is a great feature to be able to have secrets management in Git
 
 For the purpose of this demo and so you can follow along, I will set up the Azure environment with all the relevant resources described below.
 
-1. **Resource Group:** This will be where we will create and group all of our Azure resources together.
+1. **Azure key vault:** This will be where we centrally store, access and manage all our Service Bus SAS tokens.
 2. **Service Bus Namespace:** We will create a service Bus Namespace and Queue.
-3. **Azure key vault:** This will be where we centrally store, access and manage all our Service Bus SAS tokens.
-4. **Azure AD App & Service Principal:** This is what we will use to authenticate to Azure from our github workflow.
-5. **Github repository:** This is where we will keep all our source code and workflows.
+3. **Azure AD App & Service Principal:** This is what we will use to authenticate to Azure from our github workflow.
+4. **Github repository:** This is where we will keep all our source code and workflows.
+
+### Create an Azure key vault
+
+**NOTE:** A complete script for all the steps/Pre-Reqs described in building the environment can be found on my [GitHub code page](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Github-Rotate-ServiceBus-SAS/code/Pre-Reqs.ps1)
+
+For this step I will be using Azure CLI using a powershell console. First we will log into Azure by running:
+
+```powershell
+az login
+```
+
+Next we will set some variables:
+
+```powershell
+#Set variables
+$subscriptionId = $(az account show --query "id" --output tsv)
+$resourceGroupName = "Actions-Service-Bus-Demo"
+$location = "UKSouth"
+$keyVaultName = "secrets-vault01"
+$nameSpaceName = "githubactions"
+$queueName = "queue01"
+$policyName = "myauthrule"
+$currentUser = $(az ad signed-in-user show --query "objectId" --output tsv)
+```
+
+Next we will create a `resource group` and `key vault` by running:
+
+```powershell
+#Create ResourceGroup and Key Vault
+az group create --name $resourceGroupName -l $location
+az keyvault create --name $keyVaultName --resource-group $resourceGroupName --location $location --enable-rbac-authorization
+
+#Grant Key Vault Creator/Current User [Key Vault Secrets Officer]
+az role assignment create --assignee-object-id "$currentUser" `
+    --role "Key Vault Secrets Officer" `
+    --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$keyVaultName" `
+    --assignee-principal-type "User"
+```
+
+As you see above we use the option `--enable-rbac-authorization`. The reason for this is because our `current logged in user` as well as our `service principal` used by our github workflow we will create later, will access this key vault using the RBAC permission model. We also grant the key vault creator, in our case the `current logged in user` [Key Vault Secrets Officer](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-officer) access to the key vault as we will store our service bus policy primary key in the key vault.
+
+### Create an Azure Service Bus
+
+Next we will create a `Service Bus Namespace` and `Queue` by running:
+
+```powershell
+#Create Service Bus and Queue (and policy with Send and Listen rights)
+az servicebus namespace create --resource-group $resourceGroupName --name $nameSpaceName --location $location --sku "Basic"
+az servicebus queue create --resource-group $resourceGroupName --namespace-name $nameSpaceName --name $queueName
+az servicebus namespace authorization-rule create --resource-group $resourceGroupName --namespace-name $nameSpaceName --name $policyName --rights "Send" "Listen"
+
+#Retrieve and save primary key of new policy to key vault (will be used later as a GH Secret in GH workflow)
+$policyPrimaryKey = az servicebus namespace authorization-rule keys list --resource-group $resourceGroupName --namespace-name $nameSpaceName --name $policyName --query "primaryKey" --output tsv
+az keyvault secret set --vault-name $keyVaultName --name "$($policyName)PrimaryKey" --value $policyPrimaryKey
+```
+
+You will notice that our Service Bus has a Policy with only `Send` and `Listen` configured and our policies `Primary Key` will be saved in our key vault.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sb01.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sb02.png)
+
+### Create an Azure AD App & Service Principal
+
+Next we will create our `Azure AD App` by running the following in a powershell console window:
+
+```powershell
+# a name for our azure ad app
+$appName="gitHubActionsVaultUser"
+
+# create Azure AD app
+az ad app create --display-name $appName --homepage "http://localhost/$appName"
+```
+
+Next we will retrieve the App ID and set it to a powershell variable `$appId`
+
+```powershell
+# get the app id
+$appId=$(az ad app list --display-name $appName --query [].appId -o tsv)
+```
+
+Now that we have our `appId` we can create our service principal that we will use to authenticate our GitHub workflow with Azure and also give our principal the correct `Role Based Access Control (RBAC)` permissions on our key vault we created earlier. We will give our principal the RBAC/IAM role: [Key Vault Secrets Officer](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-officer) because we want our workflow to be able to retrieve `secret keys` and also set secrets for our `Service Bus SAS tokens`.
+
+```PowerShell
+#Create Service Principal to be used as GH Secret credential to authenticate to Azure (Make note of JSON output on this step)
+az ad sp create-for-rbac --name $appId `
+    --role "Key Vault Secrets Officer" `
+    --scopes /subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$keyVaultName `
+    --sdk-auth
+```
+
+The above command will output a JSON object with the role assignment credentials that provide access to your key vault. Copy this JSON object for later. You will only need the sections with the `clientId`, `clientSecret`, `subscriptionId`, and `tenantId` values:
+
+```JSON
+{
+  "clientId": "<GUID>",
+  "clientSecret": "<PrincipalSecret>",
+  "subscriptionId": "<GUID>",
+  "tenantId": "<GUID>"
+}
+```
+
+### Configure our GitHub repository
+
+Next we will configure our Github repository and Github workflow. My Github repository is called `Azure-Service-Bus-SAS-Management`. You can also take a look or even use my github repository as a template [HERE](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management).
+
+Remember at the beginning of this post I mentioned that we will create a github secret, we will now create this secret on our repository which will be used to authenticate our Github workflow to Azure when it's triggered.
+
+1. In [GitHub](https://github.com), browse your repository.
+
+2. Select Settings > Secrets > New repository secret.
+
+3. Paste the JSON object output from the Azure CLI command we ran earlier into the secret's value field. Give the secret the name `AZURE_CREDENTIALS`.
+
+![githubAzureCredentials](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/githubAzureCredentials1.png)
+
+### Configure our GitHub workflow
+
+Now create a folder in the repository called `.github` and underneath another folder called `workflows`. In the workflows folder we will create a YAML file called `rotate-vm-passwords.yaml`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-VM-Password-Management/blob/main/.github/workflows/rotate-vm-passwords.yaml).
+
+```yaml
+
+```
+
+The above YAML workflow is set to trigger manually.
+
+**Note:** If you need to change or use a different key vault you can change this line on the yaml file with the name of the key vault you are using:
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Github-Rotate-ServiceBus-SAS/code) page. :heart:
 
