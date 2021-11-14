@@ -137,6 +137,15 @@ The above command will output a JSON object with the role assignment credentials
 }
 ```
 
+We also need to give our newly created service principal `clientId` permissions on our resource group. Run the following command:
+
+```powershell
+#Grant Additional access to github workflow service principal
+az role assignment create --assignee "<clientId-from-previous-step>" `
+    --role "Contributor" `
+    --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+```
+
 ### Configure our GitHub repository
 
 Next we will configure our Github repository and Github workflow. My Github repository is called `Azure-Service-Bus-SAS-Management`. You can also take a look or even use my github repository as a template [HERE](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management).

@@ -3,13 +3,19 @@ on:
   workflow_dispatch:
 
 jobs:
+  new-sas-token:
+    name: Generate New Sas Token
+    uses: Pwd9000-ML/Azure-Service-Bus-SAS-Management/.github/workflows/new-service-bus-sas-token.yaml@master
+
   send-sb-message:
+    name: Send Service Bus Message
+    needs: new-sas-token
     runs-on: windows-latest
     env:
       KEY_VAULT_NAME: secrets-vault7839
       SB_NAMESPACE: githubactions
       SB_QUEUE_NAME: queue01
-      SB_POLICY_SAS_NAME: myauthrule-SAS
+      SB_POLICY_SAS_NAME: myauthrule-SAS-TOKEN
 
     steps:
     - name: Check out repository
@@ -36,12 +42,11 @@ jobs:
           
           $serviceBusNameSpace="${{ env.SB_NAMESPACE }}"
           $serviceBusQueueName="${{ env.SB_QUEUE_NAME }}"
-          $keyVaultSbSasSecretName="${{ env.SB_POLICY_SAS_NAME  }}"
           $body = $message.Body
           $message.psobject.properties.Remove("Body")
 
           $URI = "https://$serviceBusNameSpace.servicebus.windows.net/$serviceBusQueueName/messages"
-          $token = "${{ steps.sbSasToken.outputs.$keyVaultSbSasSecretName }}"
+          $token = "${{ steps.sbSasToken.outputs.myauthrule-SAS-TOKEN }}"
           $headers = @{ "Authorization" = "$token"; "Content-Type" = "application/atom+xml;type=entry;charset=utf-8" }
           $headers.Add("BrokerProperties", $(ConvertTo-JSON -InputObject $message -Compress))
 

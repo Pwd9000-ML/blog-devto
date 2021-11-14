@@ -40,7 +40,7 @@ jobs:
           $accessPolicyKeyName="${{ env.SB_POLICY_KEY_NAME }}"
           $dateTime=(Get-Date).ToString()
           $URI="$serviceBusNameSpace.servicebus.windows.net"
-          $accessPolicyKey="${{ steps.sbPrimaryKey.outputs.$accessPolicyKeyName }}"
+          $accessPolicyKey="${{ steps.sbPrimaryKey.outputs.myauthrulePrimaryKey }}"
           
           #Generate Temp SAS Token
           ##Token expires now+600(10 min)
@@ -57,5 +57,5 @@ jobs:
           $secretToken = ConvertTo-SecureString -String $SASToken -AsPlainText -Force
           $tags = @{ "Automation" = "Github-Workflow";  "Temp-SAS" = "true"; "Generated-On" = "$dateTime"}
           $null = Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "$accessPolicyName-SAS" -SecretValue $secretToken -Tags $tags
-          Write-Output 'SAS Token Created and saved to Key Vault Secret: [$accessPolicyName-SAS] '
+          Write-Output 'SAS Token Saved to Key Vault Secret as: [$accessPolicyName-SAS-TOKEN] '
         azPSVersion: 'latest'

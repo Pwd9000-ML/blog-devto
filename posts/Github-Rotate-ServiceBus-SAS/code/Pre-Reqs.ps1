@@ -44,3 +44,8 @@ az ad sp create-for-rbac --name $appId `
     --role "Key Vault Secrets Officer" `
     --scopes "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$keyVaultName" `
     --sdk-auth
+
+#Grant Additional access to github workflow service principal
+az role assignment create --assignee "<clientId-from-previous-step>" `
+    --role "Contributor" `
+    --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
