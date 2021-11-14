@@ -3,7 +3,7 @@ name: New Service Bus SAS Token
 on:
   workflow_call:
     secrets:
-      creds:
+      azure_credentials:
         description: 'Azure Credential passed from the main caller workflow'
         required: true
 
@@ -23,7 +23,7 @@ jobs:
     - name: Log into Azure using github secret AZURE_CREDENTIALS
       uses: Azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        creds: ${{ secrets.azure_credentials }}
         enable-AzPSSession: true
 
     - name: Get Service Bus Policy Key

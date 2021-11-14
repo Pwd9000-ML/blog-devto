@@ -95,7 +95,8 @@ az keyvault secret set --vault-name $keyVaultName --name "$($policyName)PrimaryK
 
 You will notice that our Service Bus has a Policy with only `Send` and `Listen` configured and our policies `Primary Key` will be saved in our key vault.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sb1.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sb2.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sb1.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sb2.png)
 
 ### Create an Azure AD App & Service Principal
 
@@ -158,28 +159,207 @@ Because we will have two workflows in this demo we will create our **reusable** 
 Now create a folder in the repository called `.github` and underneath another folder called `workflows`. In the workflows folder we will create a YAML file called `new-service-bus-sas-token.yaml`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/blob/master/.github/workflows/new-service-bus-sas-token.yaml).
 
 ```yaml
+## code/new-service-bus-sas-token.yaml
+name: New Service Bus SAS Token
 
+on:
+  workflow_call:
+    secrets:
+      azure_credentials:
+        description: 'Azure Credential passed from the main caller workflow'
+        required: true
+
+jobs:
+  new-sas-token:
+    runs-on: windows-latest
+    env:
+      KEY_VAULT_NAME: secrets-vault7839
+      SB_NAMESPACE: githubactions
+      SB_POLICY_NAME: myauthrule
+      SB_POLICY_KEY_NAME: myauthrulePrimaryKey
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Log into Azure using github secret AZURE_CREDENTIALS
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.azure_credentials }}
+        enable-AzPSSession: true
+
+    - name: Get Service Bus Policy Key
+      uses: Azure/get-keyvault-secrets@v1
+      with:
+        keyvault: ${{ env.KEY_VAULT_NAME }}
+        secrets: ${{ env.SB_POLICY_KEY_NAME }}
+      id: sbPrimaryKey
+
+    - name: Generate Service Bus SAS token
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+          $null = [Reflection.Assembly]::LoadWithPartialName("System.Web")
+          
+          #Set Variables
+          $keyVaultName="${{ env.KEY_VAULT_NAME }}"
+          $serviceBusNameSpace="${{ env.SB_NAMESPACE }}"
+          $accessPolicyName="${{ env.SB_POLICY_NAME }}"
+          $accessPolicyKeyName="${{ env.SB_POLICY_KEY_NAME }}"
+          $dateTime=(Get-Date).ToString()
+          $URI="$serviceBusNameSpace.servicebus.windows.net"
+          $accessPolicyKey="${{ steps.sbPrimaryKey.outputs.myauthrulePrimaryKey }}"
+          
+          #Generate Temp SAS Token
+          ##Token expires now+600(10 min)
+          $expires=([DateTimeOffset]::Now.ToUnixTimeSeconds())+600
+          $signatureString=[System.Web.HttpUtility]::UrlEncode($URI)+ "`n" + [string]$expires
+          $HMAC = New-Object System.Security.Cryptography.HMACSHA256
+          $HMAC.key = [Text.Encoding]::ASCII.GetBytes($accessPolicyKey)
+          $signature = $HMAC.ComputeHash([Text.Encoding]::ASCII.GetBytes($signatureString))
+          $signature = [Convert]::ToBase64String($signature)
+          $SASToken = "SharedAccessSignature sr=" + [System.Web.HttpUtility]::UrlEncode($URI) + "&sig=" + [System.Web.HttpUtility]::UrlEncode($signature) + "&se=" + $expires + "&skn=" + $accessPolicyName
+          
+          #Set Temp SAS token in Azure Key Vault
+          Write-Output "Update SAS token in: [$keyVaultName]" 
+          $secretToken = ConvertTo-SecureString -String $SASToken -AsPlainText -Force
+          $tags = @{ "Automation" = "Github-Workflow";  "Temp-SAS" = "true"; "Generated-On" = "$dateTime"}
+          $null = Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "$accessPolicyName-SAS-TOKEN" -SecretValue $secretToken -Tags $tags
+          Write-Output 'SAS Token Saved to Key Vault Secret as: [$accessPolicyName-SAS-TOKEN] '
+        azPSVersion: 'latest'
 ```
 
-**Note:** The only fields that needs to be updated for the workflow to be use din your environment are shown below:
+The above YAML workflow has a special trigger as shown below, which will only run when called by another GitHub workflow. Also note that we have to declare any secrets that are sent into the workflow from the caller using the `secrets` argument.
+
+```yaml
+on:
+  workflow_call:
+    secrets:
+      azure_credentials:
+        description: 'Azure Credential passed from the main caller workflow'
+        required: true
+```
+
+**Note:** The only fields that needs to be updated for the `new-service-bus-sas-token.yaml` workflow to be used in your environment are shown below. (Unfortunately it is not possible to use environment variables inside of step outputs, so we also have to explicitly reference our key vault secret name):
 
 ```yaml
 ## code/new-service-bus-sas-token.yaml#L7-L11
-
 env:
   KEY_VAULT_NAME: secrets-vault7839
   SB_NAMESPACE: githubactions
   SB_POLICY_NAME: myauthrule
   SB_POLICY_KEY_NAME: myauthrulePrimaryKey
+
+## code/new-service-bus-sas-token.yaml#L49-L49
+$accessPolicyKey="${{ steps.sbPrimaryKey.outputs.myauthrulePrimaryKey }}" 
 ```
 
-The above YAML workflow has a special trigger as shown below, which will only run when called by another GitHub workflow.
+Note that our **reusable** github workflow will save out temp Service Bus SAS token in Azure keyvault under the `secret` key name: [ServiceBusPolicyName-SAS-TOKEN]  
 
-```yaml
-on: [workflow_call]
-```
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sastoken.png)
 
 Now onto our main workflow file. In the same workflows folder we will create a second YAML file called `main.yaml`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/blob/master/.github/workflows/main.yaml).
+
+```Yaml
+## code/main.yaml
+name: Send Service Bus Message
+on: 
+  workflow_dispatch:
+
+jobs:
+  new-sas-token:
+    name: Generate New Sas Token
+    uses: Pwd9000-ML/Azure-Service-Bus-SAS-Management/.github/workflows/new-service-bus-sas-token.yaml@master
+    secrets:
+      azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+
+  send-sb-message:
+    name: Send Service Bus Message
+    needs: new-sas-token
+    runs-on: windows-latest
+    env:
+      KEY_VAULT_NAME: secrets-vault7839
+      SB_NAMESPACE: githubactions
+      SB_QUEUE_NAME: queue01
+      SB_POLICY_SAS_NAME: myauthrule-SAS-TOKEN
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Log into Azure using github secret AZURE_CREDENTIALS
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        enable-AzPSSession: true
+
+    - name: Get Service Bus SAS Token
+      uses: Azure/get-keyvault-secrets@v1
+      with:
+        keyvault: ${{ env.KEY_VAULT_NAME }}
+        secrets: ${{ env.SB_POLICY_SAS_NAME }}
+      id: sbSasToken
+
+    - name: Send Service Bus Message
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+          $message = [pscustomobject] @{ "Body" = "Hello ActionsHackathon21" }
+          
+          $serviceBusNameSpace="${{ env.SB_NAMESPACE }}"
+          $serviceBusQueueName="${{ env.SB_QUEUE_NAME }}"
+          $body = $message.Body
+          $message.psobject.properties.Remove("Body")
+
+          $URI = "https://$serviceBusNameSpace.servicebus.windows.net/$serviceBusQueueName/messages"
+          $token = "${{ steps.sbSasToken.outputs.myauthrule-SAS-TOKEN }}"
+          $headers = @{ "Authorization" = "$token"; "Content-Type" = "application/atom+xml;type=entry;charset=utf-8" }
+          $headers.Add("BrokerProperties", $(ConvertTo-JSON -InputObject $message -Compress))
+
+          #Invoke rest method
+          $null = Invoke-RestMethod -Uri $URI -Headers $headers -Method "Post" -Body $body
+        azPSVersion: 'latest'
+```
+
+The above YAML workflow has a manual trigger as shown below. Also note that we have to explicitly pass secrets on to our **reusable** workflow we are calling in the first job using the `secrets` argument.
+
+```yaml
+## Trigger: code/main.yaml#L2-L3
+on: 
+  workflow_dispatch:
+
+## Explicitly pass secret: code/main.yaml#L6-L10
+  new-sas-token:
+    name: Generate New Sas Token
+    uses: Pwd9000-ML/Azure-Service-Bus-SAS-Management/.github/workflows/new-service-bus-sas-token.yaml@master
+    secrets:
+      azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+```
+
+**Note:** The only fields that needs to be updated for the `main.yaml` workflow to be used in your environment are shown below. (Unfortunately it is not possible to use environment variables inside of step outputs, so we also have to explicitly reference our key vault secret name):
+
+```yaml
+## code/new-service-bus-sas-token.yaml#L16-L20
+env:
+    KEY_VAULT_NAME: secrets-vault7839
+    SB_NAMESPACE: githubactions
+    SB_QUEUE_NAME: queue01
+    SB_POLICY_SAS_NAME: myauthrule-SAS-TOKEN
+
+## code/new-service-bus-sas-token.yaml#L51-L51
+$token = "${{ steps.sbSasToken.outputs.myauthrule-SAS-TOKEN }}"
+```
+
+### Testing Workflows
+
+Let's trigger our `main.yaml` workflow. It should trigger our **reusable** workflow called `new-service-bus-sas-token.yaml` that will generate a temp Service Bus SAS token and save this token in our Key Vault. Afterwards it will return to the `main.yaml` workflow and retrieve the temp SAS token from the key vault and send our Service Bus a message with a body of: **"Hello ActionsHackathon21"**.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/gh1.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/gh2.png)  
+
+As you can see our Message was sent to our Queue using the temp SAS token:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sb2.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Github-Rotate-ServiceBus-SAS/code) page. :heart:
 
