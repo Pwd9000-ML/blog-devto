@@ -334,7 +334,7 @@ new-sas-token:
 name: Generate New Sas Token
 uses: Pwd9000-ML/Azure-Service-Bus-SAS-Management/.github/workflows/new-service-bus-sas-token.yaml@master
 secrets:
-    azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+  azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
 ```
 
 **Note:** The only fields that needs to be updated for the `main.yaml` workflow to be used in your environment are shown below. (Unfortunately it is not possible to use environment variables inside of step outputs, so we also have to explicitly reference our key vault secret name):
