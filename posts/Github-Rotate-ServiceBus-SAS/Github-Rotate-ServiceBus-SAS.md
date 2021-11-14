@@ -359,7 +359,7 @@ $token = "${{ steps.sbSasToken.outputs.myauthrule-SAS-TOKEN }}"
 
 Let's trigger our `main.yaml` workflow. It should trigger our **reusable** workflow called `new-service-bus-sas-token.yaml` that will generate a temp Service Bus SAS token and save this token in our Key Vault. Afterwards it will return to the `main.yaml` workflow and retrieve the temp SAS token from the key vault and send our Service Bus a message with a body of: **"Hello ActionsHackathon21"**.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/gh1.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/gh1.png)
 
 Both our workflows ran successfully. The first job generates our temp SAS token from a **reusable** workflow and the second job consumes that temporary SAS token from key vault sends our message to our Service Bus using the short lived SAS token.  
 
