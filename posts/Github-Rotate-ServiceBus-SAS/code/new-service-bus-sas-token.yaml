@@ -2,7 +2,7 @@ name: New Service Bus SAS Token
 on: [workflow_call]
 
 jobs:
-  publish:
+  new-sas-token:
     runs-on: windows-latest
     env:
       KEY_VAULT_NAME: secrets-vault7839

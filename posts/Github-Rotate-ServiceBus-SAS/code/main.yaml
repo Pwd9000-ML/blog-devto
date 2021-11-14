@@ -1,14 +1,15 @@
-name: New Service Bus SAS Token
-on: [workflow_call]
+name: Send Service Bus Message
+on: 
+  workflow_dispatch:
 
 jobs:
-  publish:
+  send-sb-message:
     runs-on: windows-latest
     env:
       KEY_VAULT_NAME: secrets-vault7839
       SB_NAMESPACE: githubactions
-      SB_POLICY_NAME: myauthrule
-      SB_POLICY_KEY_NAME: myauthrulePrimaryKey
+      SB_QUEUE_NAME: queue01
+      SB_POLICY_SAS_NAME: myauthrule-SAS
 
     steps:
     - name: Check out repository
@@ -20,42 +21,30 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         enable-AzPSSession: true
 
-    - name: Get Service Bus Policy Key
+    - name: Get Service Bus SAS Token
       uses: Azure/get-keyvault-secrets@v1
       with:
         keyvault: ${{ env.KEY_VAULT_NAME }}
-        secrets: ${{ env.SB_POLICY_KEY_NAME }}
-      id: sbPrimaryKey
+        secrets: ${{ env.SB_POLICY_SAS_NAME }}
+      id: sbSasToken
 
-    - name: Generate Service Bus SAS token
+    - name: Send Service Bus Message
       uses: azure/powershell@v1
       with:
         inlineScript: |
-          $null = [Reflection.Assembly]::LoadWithPartialName("System.Web")
+          $message = [pscustomobject] @{ "Body" = "Hello ActionsHackathon21" }
           
-          #Set Variables
-          $keyVaultName="${{ env.KEY_VAULT_NAME }}"
           $serviceBusNameSpace="${{ env.SB_NAMESPACE }}"
-          $accessPolicyName="${{ env.SB_POLICY_NAME }}"
-          $accessPolicyKeyName="${{ env.SB_POLICY_KEY_NAME }}"
-          $dateTime=(Get-Date).ToString()
-          $URI="$serviceBusNameSpace.servicebus.windows.net"
-          $accessPolicyKey="${{ steps.sbPrimaryKey.outputs.$accessPolicyKeyName }}"
-          
-          #Generate Temp SAS Token
-          ##Token expires now+600(10 min)
-          $expires=([DateTimeOffset]::Now.ToUnixTimeSeconds())+600
-          $signatureString=[System.Web.HttpUtility]::UrlEncode($URI)+ "`n" + [string]$expires
-          $HMAC = New-Object System.Security.Cryptography.HMACSHA256
-          $HMAC.key = [Text.Encoding]::ASCII.GetBytes($accessPolicyKey)
-          $signature = $HMAC.ComputeHash([Text.Encoding]::ASCII.GetBytes($signatureString))
-          $signature = [Convert]::ToBase64String($signature)
-          $SASToken = "SharedAccessSignature sr=" + [System.Web.HttpUtility]::UrlEncode($URI) + "&sig=" + [System.Web.HttpUtility]::UrlEncode($signature) + "&se=" + $expires + "&skn=" + $accessPolicyName
-          
-          #Set Temp SAS token in Azure Key Vault
-          Write-Output "Update SAS token in: [$keyVaultName]" 
-          $secretToken = ConvertTo-SecureString -String $SASToken -AsPlainText -Force
-          $tags = @{ "Automation" = "Github-Workflow";  "Temp-SAS" = "true"; "Generated-On" = "$dateTime"}
-          $null = Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "$accessPolicyName-SAS" -SecretValue $secretToken -Tags $tags
-          Write-Output 'SAS Token Created and saved to Key Vault Secret: [$accessPolicyName-SAS] '
+          $serviceBusQueueName="${{ env.SB_QUEUE_NAME }}"
+          $keyVaultSbSasSecretName="${{ env.SB_POLICY_SAS_NAME  }}"
+          $body = $message.Body
+          $message.psobject.properties.Remove("Body")
+
+          $URI = "https://$serviceBusNameSpace.servicebus.windows.net/$serviceBusQueueName/messages"
+          $token = "${{ steps.sbSasToken.outputs.$keyVaultSbSasSecretName }}"
+          $headers = @{ "Authorization" = "$token"; "Content-Type" = "application/atom+xml;type=entry;charset=utf-8" }
+          $headers.Add("BrokerProperties", $(ConvertTo-JSON -InputObject $message -Compress))
+
+          #Invoke rest method
+          $null = Invoke-RestMethod -Uri $URI -Headers $headers -Method "Post" -Body $body
         azPSVersion: 'latest'
