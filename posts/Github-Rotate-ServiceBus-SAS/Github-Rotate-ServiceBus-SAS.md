@@ -361,7 +361,9 @@ As you can see our Message was sent to our Queue using the temp SAS token:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sb2.png)
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Github-Rotate-ServiceBus-SAS/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Github-Rotate-ServiceBus-SAS/code) page.  
+
+Additionally you can use this [github repository](https://github.com/Pwd9000-ML/Azure-VM-Password-Management) I used in this post as a template in your own github account and start to automate your Service Bus SAS tokens today. :heart:
 
 ### _Author_
 
