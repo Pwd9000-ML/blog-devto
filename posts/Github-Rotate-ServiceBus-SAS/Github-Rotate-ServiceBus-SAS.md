@@ -179,54 +179,54 @@ jobs:
       SB_POLICY_KEY_NAME: myauthrulePrimaryKey
 
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v2
+      - name: Check out repository
+        uses: actions/checkout@v2
 
-    - name: Log into Azure using github secret AZURE_CREDENTIALS
-      uses: Azure/login@v1
-      with:
-        creds: ${{ secrets.azure_credentials }}
-        enable-AzPSSession: true
+      - name: Log into Azure using github secret AZURE_CREDENTIALS
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.azure_credentials }}
+          enable-AzPSSession: true
 
-    - name: Get Service Bus Policy Key
-      uses: Azure/get-keyvault-secrets@v1
-      with:
-        keyvault: ${{ env.KEY_VAULT_NAME }}
-        secrets: ${{ env.SB_POLICY_KEY_NAME }}
-      id: sbPrimaryKey
+      - name: Get Service Bus Policy Key
+        uses: Azure/get-keyvault-secrets@v1
+        with:
+          keyvault: ${{ env.KEY_VAULT_NAME }}
+          secrets: ${{ env.SB_POLICY_KEY_NAME }}
+        id: sbPrimaryKey
 
-    - name: Generate Service Bus SAS token
-      uses: azure/powershell@v1
-      with:
-        inlineScript: |
-          $null = [Reflection.Assembly]::LoadWithPartialName("System.Web")
-          
-          #Set Variables
-          $keyVaultName="${{ env.KEY_VAULT_NAME }}"
-          $serviceBusNameSpace="${{ env.SB_NAMESPACE }}"
-          $accessPolicyName="${{ env.SB_POLICY_NAME }}"
-          $accessPolicyKeyName="${{ env.SB_POLICY_KEY_NAME }}"
-          $dateTime=(Get-Date).ToString()
-          $URI="$serviceBusNameSpace.servicebus.windows.net"
-          $accessPolicyKey="${{ steps.sbPrimaryKey.outputs.myauthrulePrimaryKey }}"
-          
-          #Generate Temp SAS Token
-          ##Token expires now+600(10 min)
-          $expires=([DateTimeOffset]::Now.ToUnixTimeSeconds())+600
-          $signatureString=[System.Web.HttpUtility]::UrlEncode($URI)+ "`n" + [string]$expires
-          $HMAC = New-Object System.Security.Cryptography.HMACSHA256
-          $HMAC.key = [Text.Encoding]::ASCII.GetBytes($accessPolicyKey)
-          $signature = $HMAC.ComputeHash([Text.Encoding]::ASCII.GetBytes($signatureString))
-          $signature = [Convert]::ToBase64String($signature)
-          $SASToken = "SharedAccessSignature sr=" + [System.Web.HttpUtility]::UrlEncode($URI) + "&sig=" + [System.Web.HttpUtility]::UrlEncode($signature) + "&se=" + $expires + "&skn=" + $accessPolicyName
-          
-          #Set Temp SAS token in Azure Key Vault
-          Write-Output "Update SAS token in: [$keyVaultName]" 
-          $secretToken = ConvertTo-SecureString -String $SASToken -AsPlainText -Force
-          $tags = @{ "Automation" = "Github-Workflow";  "Temp-SAS" = "true"; "Generated-On" = "$dateTime"}
-          $null = Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "$accessPolicyName-SAS-TOKEN" -SecretValue $secretToken -Tags $tags
-          Write-Output 'SAS Token Saved to Key Vault Secret as: [$accessPolicyName-SAS-TOKEN] '
-        azPSVersion: 'latest'
+      - name: Generate Service Bus SAS token
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            $null = [Reflection.Assembly]::LoadWithPartialName("System.Web")
+
+            #Set Variables
+            $keyVaultName="${{ env.KEY_VAULT_NAME }}"
+            $serviceBusNameSpace="${{ env.SB_NAMESPACE }}"
+            $accessPolicyName="${{ env.SB_POLICY_NAME }}"
+            $accessPolicyKeyName="${{ env.SB_POLICY_KEY_NAME }}"
+            $dateTime=(Get-Date).ToString()
+            $URI="$serviceBusNameSpace.servicebus.windows.net"
+            $accessPolicyKey="${{ steps.sbPrimaryKey.outputs.myauthrulePrimaryKey }}"
+
+            #Generate Temp SAS Token
+            ##Token expires now+600(10 min)
+            $expires=([DateTimeOffset]::Now.ToUnixTimeSeconds())+600
+            $signatureString=[System.Web.HttpUtility]::UrlEncode($URI)+ "`n" + [string]$expires
+            $HMAC = New-Object System.Security.Cryptography.HMACSHA256
+            $HMAC.key = [Text.Encoding]::ASCII.GetBytes($accessPolicyKey)
+            $signature = $HMAC.ComputeHash([Text.Encoding]::ASCII.GetBytes($signatureString))
+            $signature = [Convert]::ToBase64String($signature)
+            $SASToken = "SharedAccessSignature sr=" + [System.Web.HttpUtility]::UrlEncode($URI) + "&sig=" + [System.Web.HttpUtility]::UrlEncode($signature) + "&se=" + $expires + "&skn=" + $accessPolicyName
+
+            #Set Temp SAS token in Azure Key Vault
+            Write-Output "Update SAS token in: [$keyVaultName]" 
+            $secretToken = ConvertTo-SecureString -String $SASToken -AsPlainText -Force
+            $tags = @{ "Automation" = "Github-Workflow";  "Temp-SAS" = "true"; "Generated-On" = "$dateTime"}
+            $null = Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "$accessPolicyName-SAS-TOKEN" -SecretValue $secretToken -Tags $tags
+            Write-Output 'SAS Token Saved to Key Vault Secret as: [$accessPolicyName-SAS-TOKEN] '
+          azPSVersion: 'latest'
 ```
 
 The above YAML workflow has a special trigger as shown below, which will only run when called by another GitHub workflow. Also note that we have to declare any secrets that are sent into the workflow from the caller using the `secrets` argument.
@@ -251,7 +251,7 @@ env:
   SB_POLICY_KEY_NAME: myauthrulePrimaryKey
 
 ## //code/new-service-bus-sas-token.yaml#L49-L49
-$accessPolicyKey="${{ steps.sbPrimaryKey.outputs.myauthrulePrimaryKey }}" 
+$accessPolicyKey="${{ steps.sbPrimaryKey.outputs.myauthrulePrimaryKey }}"
 ```
 
 Note that our **reusable** github workflow will save out temp Service Bus SAS token in Azure keyvault under the `secret` key name: [ServiceBusPolicyName-SAS-TOKEN]
@@ -325,10 +325,10 @@ The above YAML workflow has a manual trigger as shown below. Also note that we h
 
 ```yaml
 ## Trigger: //code/main.yaml#L2-L3
-on: 
+on:
   workflow_dispatch:
 
-## Explicitly pass secret: //code/main.yaml#L6-L10
+  ## Explicitly pass secret: //code/main.yaml#L6-L10
   new-sas-token:
     name: Generate New Sas Token
     uses: Pwd9000-ML/Azure-Service-Bus-SAS-Management/.github/workflows/new-service-bus-sas-token.yaml@master
