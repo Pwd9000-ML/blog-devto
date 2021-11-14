@@ -6,6 +6,7 @@ tags: 'devops, security, azure, github'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/main-sb.png'
 canonical_url: null
 id: 897066
+date: '2021-11-14T10:04:58Z'
 ---
 
 ## Overview
