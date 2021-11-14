@@ -232,6 +232,7 @@ jobs:
 The above YAML workflow has a special trigger as shown below, which will only run when called by another GitHub workflow. Also note that we have to declare any secrets that are sent into the workflow from the caller using the `secrets` argument.
 
 ```yaml
+## //code/new-service-bus-sas-token.yaml#L3-L8
 on:
   workflow_call:
     secrets:
@@ -328,12 +329,12 @@ The above YAML workflow has a manual trigger as shown below. Also note that we h
 on:
   workflow_dispatch:
 
-  ## Explicitly pass secret: //code/main.yaml#L6-L10
-  new-sas-token:
-    name: Generate New Sas Token
-    uses: Pwd9000-ML/Azure-Service-Bus-SAS-Management/.github/workflows/new-service-bus-sas-token.yaml@master
-    secrets:
-      azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+## Explicitly pass secret: //code/main.yaml#L6-L10
+new-sas-token:
+name: Generate New Sas Token
+uses: Pwd9000-ML/Azure-Service-Bus-SAS-Management/.github/workflows/new-service-bus-sas-token.yaml@master
+secrets:
+    azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
 ```
 
 **Note:** The only fields that needs to be updated for the `main.yaml` workflow to be used in your environment are shown below. (Unfortunately it is not possible to use environment variables inside of step outputs, so we also have to explicitly reference our key vault secret name):
