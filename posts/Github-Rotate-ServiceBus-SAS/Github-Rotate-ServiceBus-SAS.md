@@ -93,11 +93,11 @@ $policyPrimaryKey = az servicebus namespace authorization-rule keys list --resou
 az keyvault secret set --vault-name $keyVaultName --name "$($policyName)PrimaryKey" --value $policyPrimaryKey
 ```
 
-You will notice that our Service Bus has a Policy called `myauthrule` with only `Send` and `Listen` configured:  
+You will notice that our Service Bus has a Policy called `myauthrule` with only `Send` and `Listen` configured:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sb1.png)
 
-And our policies `Primary Key` will be saved in our key vault called `myauthrulePrimaryKey`. We will use this secret later in our GitHub workflow to generate our temp SAS token:  
+And our policies `Primary Key` will be saved in our key vault called `myauthrulePrimaryKey`. We will use this secret later in our GitHub workflow to generate our temp SAS token:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sb2.png)
 
