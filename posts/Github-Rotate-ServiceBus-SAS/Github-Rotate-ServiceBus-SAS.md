@@ -159,7 +159,7 @@ Because we will have two workflows in this demo we will create our **reusable** 
 Now create a folder in the repository called `.github` and underneath another folder called `workflows`. In the workflows folder we will create a YAML file called `new-service-bus-sas-token.yaml`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/blob/master/.github/workflows/new-service-bus-sas-token.yaml).
 
 ```yaml
-## code/new-service-bus-sas-token.yaml
+## //code/new-service-bus-sas-token.yaml
 name: New Service Bus SAS Token
 
 on:
@@ -243,14 +243,14 @@ on:
 **Note:** The only fields that needs to be updated for the `new-service-bus-sas-token.yaml` workflow to be used in your environment are shown below. (Unfortunately it is not possible to use environment variables inside of step outputs, so we also have to explicitly reference our key vault secret name):
 
 ```yaml
-## code/new-service-bus-sas-token.yaml#L7-L11
+## //code/new-service-bus-sas-token.yaml#L7-L11
 env:
   KEY_VAULT_NAME: secrets-vault7839
   SB_NAMESPACE: githubactions
   SB_POLICY_NAME: myauthrule
   SB_POLICY_KEY_NAME: myauthrulePrimaryKey
 
-## code/new-service-bus-sas-token.yaml#L49-L49
+## //code/new-service-bus-sas-token.yaml#L49-L49
 $accessPolicyKey="${{ steps.sbPrimaryKey.outputs.myauthrulePrimaryKey }}" 
 ```
 
@@ -261,7 +261,7 @@ Note that our **reusable** github workflow will save out temp Service Bus SAS to
 Now onto our main workflow file. In the same workflows folder we will create a second YAML file called `main.yaml`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/blob/master/.github/workflows/main.yaml).
 
 ```Yaml
-## code/main.yaml
+## //code/main.yaml
 name: Send Service Bus Message
 on: 
   workflow_dispatch:
@@ -324,11 +324,11 @@ jobs:
 The above YAML workflow has a manual trigger as shown below. Also note that we have to explicitly pass secrets on to our **reusable** workflow we are calling in the first job using the `secrets` argument.
 
 ```yaml
-## Trigger: code/main.yaml#L2-L3
+## Trigger: //code/main.yaml#L2-L3
 on: 
   workflow_dispatch:
 
-## Explicitly pass secret: code/main.yaml#L6-L10
+## Explicitly pass secret: //code/main.yaml#L6-L10
   new-sas-token:
     name: Generate New Sas Token
     uses: Pwd9000-ML/Azure-Service-Bus-SAS-Management/.github/workflows/new-service-bus-sas-token.yaml@master
@@ -339,14 +339,14 @@ on:
 **Note:** The only fields that needs to be updated for the `main.yaml` workflow to be used in your environment are shown below. (Unfortunately it is not possible to use environment variables inside of step outputs, so we also have to explicitly reference our key vault secret name):
 
 ```yaml
-## code/new-service-bus-sas-token.yaml#L16-L20
+## //code/new-service-bus-sas-token.yaml#L16-L20
 env:
     KEY_VAULT_NAME: secrets-vault7839
     SB_NAMESPACE: githubactions
     SB_QUEUE_NAME: queue01
     SB_POLICY_SAS_NAME: myauthrule-SAS-TOKEN
 
-## code/new-service-bus-sas-token.yaml#L51-L51
+## //code/new-service-bus-sas-token.yaml#L51-L51
 $token = "${{ steps.sbSasToken.outputs.myauthrule-SAS-TOKEN }}"
 ```
 
