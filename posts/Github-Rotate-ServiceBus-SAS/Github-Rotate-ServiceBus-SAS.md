@@ -367,7 +367,7 @@ As you can see our Message was sent to our Service Bus Queue using the temporary
 
 ### Conclusion
 
-The main take away of this tutorial is to know that we can create **reusable** GitHub Action workflows that can be called as separate jobs in other workflows. By carving up large workflows and referencing reusable workflows we can cut down on duplication and also make our workflows much more dynamic. Additionally we did something cool by creating a security process in which we generate short secured SAS tokens that are stored in an Azure Key Vault and can be consumed by other services.
+The main take away of this tutorial is to know that we can create **reusable** GitHub Action workflows that can be called as separate jobs in other workflows. By carving up large workflows and referencing reusable workflows we can cut down on duplication and also make our workflows much more dynamic. Additionally we did something cool by creating a security process in which we generate short lived secure Service Bus SAS tokens that are stored in an Azure Key Vault and can be permissioned and consumed by other services in a controlled manner.
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Github-Rotate-ServiceBus-SAS/code) page.
 
