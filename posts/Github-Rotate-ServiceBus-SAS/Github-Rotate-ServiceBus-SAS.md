@@ -166,11 +166,11 @@ Now create a folder in the repository called `.github` and underneath another fo
 ```yaml
 ## code/new-service-bus-sas-token.yaml#L7-L11
 
+runs-on: windows-latest
 env:
   KEY_VAULT_NAME: secrets-vault7839
   SB_NAMESPACE: githubactions
   SB_POLICY_NAME: myauthrule
-  SB_POLICY_KEY_NAME: myauthrulePrimaryKey
 ```
 
 The above YAML workflow has a special trigger as shown below, which will only run when called by another GitHub workflow.
