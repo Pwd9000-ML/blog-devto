@@ -1,6 +1,11 @@
 name: New Service Bus SAS Token
 
-on: [workflow_call]
+on:
+  workflow_call:
+    secrets:
+      creds:
+        description: 'Azure Credential passed from the main caller workflow'
+        required: true
 
 jobs:
   new-sas-token:
