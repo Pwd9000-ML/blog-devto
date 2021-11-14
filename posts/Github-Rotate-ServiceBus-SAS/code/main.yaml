@@ -6,6 +6,8 @@ jobs:
   new-sas-token:
     name: Generate New Sas Token
     uses: Pwd9000-ML/Azure-Service-Bus-SAS-Management/.github/workflows/new-service-bus-sas-token.yaml@master
+    secrets:
+      creds: ${{ secrets.AZURE_CREDENTIALS }}
 
   send-sb-message:
     name: Send Service Bus Message
