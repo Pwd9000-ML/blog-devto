@@ -361,11 +361,11 @@ Let's trigger our `main.yaml` workflow. It should trigger our **reusable** workf
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/gh1.png)  
 
-As you can see both our workflows ran successfully. The first job which ran from a completely different workflow generated our temp SAS token and the second job from our main workflow then consumed that temporary SAS token from key vault and used the short lived token to send our message to our Service Bus.  
+Both our workflows ran successfully. The first job generates our temp SAS token from a **reusable** workflow and the second job consumes that temporary SAS token from key vault sends our message to our Service Bus using the short lived SAS token.  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/gh2.png)
 
-As you can see our Message was sent to our Service Bus Queue using the temporary SAS token retrieved from the keyvault:
+As you can see our message was sent to our Service Bus Queue using the temporary SAS token retrieved from the keyvault:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/test.png)
 
