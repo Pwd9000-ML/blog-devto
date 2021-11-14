@@ -371,7 +371,7 @@ The main take away of this tutorial is to know that we can create **reusable** G
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Github-Rotate-ServiceBus-SAS/code) page.
 
-Additionally you can use this [github repository](https://github.com/Pwd9000-ML/Azure-VM-Password-Management) I used in this post as a template in your own github account and start to automate your Service Bus SAS tokens today. :heart:
+Additionally you can use this [github repository](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management) used in this tutorial as a template in your own github account and start to generate and automate your Service Bus SAS tokens today. :heart:
 
 ### _Author_
 
