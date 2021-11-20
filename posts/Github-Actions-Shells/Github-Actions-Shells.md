@@ -10,7 +10,7 @@ id: 904114
 
 ## :turtle: What are Actions Shells? :turtle:
 
-Let's start by looking at what is [GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions).  
+Let's first start by looking at what are [GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)?
 GitHub Actions helps automate tasks within your software development life cycle. They are event-driven, meaning that you can run a series of commands after a specified event has occurred. For example, every time someone creates a pull request for a repository, you can automatically run a command that executes a software testing script. In fact you can create any sort of creative automation using GitHub Actions.
 
 [GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) consists of a few different components, let's take a look at some of these components in a bit more detail.
