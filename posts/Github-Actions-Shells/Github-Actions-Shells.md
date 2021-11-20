@@ -22,25 +22,25 @@ A workflow is a YAML based file that acts as an automated procedure that you add
 
 An event is a specific activity that triggers a workflow. For example, activity can originate from GitHub when someone pushes a commit to a repository or when an issue or pull request is created. You can also use the [repository dispatch webhook](https://docs.github.com/en/rest/reference/repos#create-a-repository-dispatch-event) to trigger a workflow when an external event occurs. You can have workflows run on a specified schedule using CRON or even have the option to trigger a workflow run manually. There is a whole [LIST](https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows) of events that can be used to trigger workflows.
 
-- **Jobs**  
+- **Jobs**
 
 A job is a set of steps that execute on the same runner. By default, a workflow with multiple jobs will run those jobs in parallel. You can also configure a workflow to run jobs sequentially. For example, a workflow can have two sequential jobs that build and test code, where the test job is dependent on the status of the build job. If the build job fails, the test job will not run.
 
-- **Steps**  
+- **Steps**
 
 A step is an individual task that can run commands in a job. A step can be either an **action** or a **shell** command. Each step in a job executes on the same runner, allowing the actions in that job to share data with each other.
 
-- **Actions**  
+- **Actions**
 
 Actions are standalone commands that are combined into steps to create a job. Actions are the smallest portable building block of a workflow. You can create your own actions, or use actions created by the GitHub community. To use an action in a workflow, you must include it as a step.
 
-- **Runners**  
+- **Runners**
 
 A runner is a server that has the **GitHub Actions runner application** installed. It is synonymous to Azure DevOps-hosted agents. You can use a runner hosted by GitHub, or you can host your own. A runner listens for available jobs, runs one job at a time, and reports the progress, logs, and results back to GitHub. GitHub-hosted runners are based on Ubuntu Linux, Microsoft Windows, and macOS, and each job in a workflow runs in a fresh virtual environment, you can also see what software are installed on each of the [GitHub-hosted runners VM images](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners). If you need a different operating system or require a specific hardware configuration, you can host your own runners using [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners).
 
 ## :turtle: What are Actions Shells? :turtle:
 
-Now that you have some idea of all the different components that makes up GitHub Actions lets take a look at what **Shells** are.  
+Now that you have some idea of all the different components that makes up GitHub Actions lets take a look at what **Shells** are.
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Complex-Vars/code) page. :heart:
 
