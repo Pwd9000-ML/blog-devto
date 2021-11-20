@@ -14,11 +14,11 @@ Let's first start by looking at what are [GitHub Actions](https://docs.github.co
 
 [GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) consists of a few different components, let's take a look at some of these components in a bit more detail.
 
-- **Workflows**  
+- **Workflows**
 
 A workflow is a YAML based file that acts as an automated procedure that you add to your repository in a special directory path `.github/workflows` at the root of your GitHub repository. It is synonymous to an Azure DevOps multistage YAML pipeline and also shares a very similar [YAML syntax schema](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions). Workflows are made up of one or more jobs and can be scheduled or triggered by an event. Workflows can be used to build, test, package, release, or deploy a project on GitHub. You can even reference a workflow within another workflow by [Reusing workflows](https://docs.github.com/en/actions/learn-github-actions/reusing-workflows)
 
-- **Events**  
+- **Events**
 
 An event is a specific activity that triggers a workflow. For example, activity can originate from GitHub when someone pushes a commit to a repository or when an issue or pull request is created. You can also use the [repository dispatch webhook](https://docs.github.com/en/rest/reference/repos#create-a-repository-dispatch-event) to trigger a workflow when an external event occurs. You can have workflows run on a specified schedule using CRON or even have the option to trigger a workflow run manually. There is a whole [LIST](https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows) of events that can be used to trigger workflows.
 
