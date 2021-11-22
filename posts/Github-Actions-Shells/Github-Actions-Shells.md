@@ -1,6 +1,6 @@
 ---
 title: GitHub Actions - All the Shells
-published: false
+published: true
 description: GitHub Actions Shells
 tags: 'devops, actions, tutorial, github'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Actions-Shells/assets/main-sh.png'
@@ -89,7 +89,7 @@ jobs:
 
 You will notice that I have again used a PowerShell command: `write-output "Hello World"`, but my **runner** environment this time is a non-windows `ubuntu-latest` VM image. The default **Shell** on Ubuntu would be `bash` but I have explicitly set an override of `pwsh` / PowerShell Core by specifying `shell: pwsh` before my **run**.
 
-Here are a few more examples on how `Shell:` can be used to override a **runners** default command line program:
+Here are a few more examples on how `shell:` can be used to override a **runners** default command line program:
 
 - Running a script using bash
 
