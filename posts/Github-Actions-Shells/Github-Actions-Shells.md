@@ -87,9 +87,9 @@ jobs:
           write-output "Hello World"
 ```
 
-You will notice that I have again used a PowerShell command: `write-output "Hello World"`, but my **runner** environment this time is a non-windows `ubuntu-latest` VM image. The default **Shell** on Ubuntu would be `bash` but I have explicitly set an override of `pwsh` or **PowerShell Core** by specifying `shell: pwsh` before my **run**.
+You will notice that I have again used a PowerShell command: `write-output "Hello World"`, but my **runner** environment this time is a non-windows `ubuntu-latest` VM image. The default **Shell** on Ubuntu would be `bash` but I have explicitly set an override of `pwsh` / PowerShell Core by specifying `shell: pwsh` before my **run**.
 
-Here are a few more examples on how **Shell:** can be used to override a **runners** default command line program:
+Here are a few more examples on how `Shell:` can be used to override a **runners** default command line program:
 
 - Running a script using bash
 
@@ -152,7 +152,7 @@ steps:
     shell: perl {0}
 ```
 
-The command used, perl in this example, must be installed on the runner.
+The command used, `perl` in this example, must be installed on the runner.
 
 I hope you have enjoyed this post and have learned something new. :heart: You can find more information on action shells on the [Github actions syntax page](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsshell)
 
