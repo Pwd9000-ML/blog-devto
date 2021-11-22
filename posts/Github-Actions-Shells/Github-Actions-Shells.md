@@ -115,7 +115,7 @@ steps:
 ```yaml
 steps:
   - name: Display the path
-    run: echo ${env:PATH}
+    run: write-output ${env:PATH}
     shell: pwsh
 ```
 
@@ -124,7 +124,7 @@ steps:
 ```yaml
 steps:
   - name: Display the path
-    run: echo ${env:PATH}
+    run: write-output ${env:PATH}
     shell: powershell
 ```
 
