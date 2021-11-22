@@ -42,7 +42,9 @@ A runner is a server that has the **GitHub Actions runner application** installe
 
 Now that you have some idea of all the different components that makes up GitHub Actions lets take a look at what **Shells** are.  
 
-As you know within a workflow **job** you can have certain **steps**, and a step can be either an **action** or a **shell** command. So let's take a look at a typical shell command that can be initiated using **runs**. Each **run** keyword represents a new process and **shell** in the **runner** environment. When you provide multi-line commands, each line runs in the same shell. Here is an example of a basic run command in a workflow step:
+As you know within a workflow **job** you can have certain **steps**, and a step can be either an **action** or a **shell** command. So let's take a look at a typical shell command that can be initiated using **runs**. Each **run** keyword represents a new process and **shell** in the **runner** environment.  
+
+When you provide multi-line commands, each line runs in the same shell. Here is an example of a basic run command in a workflow step:
 
 ```yaml
 jobs:
