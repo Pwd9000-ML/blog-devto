@@ -10,7 +10,7 @@ id: 904114
 
 ## :bulb: What are GitHub Actions? :bulb:
 
-Let's first start by looking at what are [GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)? GitHub Actions helps automate tasks within your software development life cycle. They are event-driven, meaning that you can run a series of commands after a specified event has occurred. For example, every time someone creates a pull request for a repository, you can automatically run a command that executes a software testing script. In fact you can create any sort of creative automation using GitHub Actions.
+[GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) helps automate tasks within your software development life cycle. They are event-driven, meaning that you can run a series of commands after a specified event has occurred. For example, every time someone creates a pull request for a repository, you can automatically run a command that executes a software testing script. In fact you can create any sort of creative automation using GitHub Actions.
 
 [GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) consists of a few different components, let's take a look at some of these components in a bit more detail.
 
@@ -40,7 +40,119 @@ A runner is a server that has the **GitHub Actions runner application** installe
 
 ## :turtle: What are Actions Shells? :turtle:
 
-Now that you have some idea of all the different components that makes up GitHub Actions lets take a look at what **Shells** are.
+Now that you have some idea of all the different components that makes up GitHub Actions lets take a look at what **Shells** are.  
+
+As you know within a workflow **job** you can have certain **steps**, and a step can be either an **action** or a **shell** command. So let's take a look at a typical shell command that can be initiated using **runs**. Each **run** keyword represents a new process and **shell** in the **runner** environment. When you provide multi-line commands, each line runs in the same shell. Here is an example of a basic run command in a workflow step:
+
+```yaml
+jobs:
+  name-of-job:
+    runs-on: windows-latest
+    steps:
+      - name: Hello world
+        run: |
+          write-output "Hello World"
+```
+
+Let's take a closer look at the YAML. You will notice that I have used a powershell command: `write-output "Hello World"` So you might be wondering why would I use powershell commands here? The reason is because the **runner** environment in my case is using a VM image of `windows-latest` and each runner environment will have a different default shell language to run commands, for **windows** this happens to be `pwsh (PowerShell core)`. Here is a table showing the default shells for different **runner** environments:
+
+| Platforms | Default Shell | Description |
+|--------------------|---------------|-------------|
+| Windows            | `pwsh`        | This is the default shell used on Windows. The PowerShell Core. GitHub appends the extension .ps1 to your script name. If your self-hosted Windows runner does not have PowerShell Core installed, then PowerShell Desktop is used instead. |
+| non-Windows platforms | `bash` | The default shell on non-Windows platforms with a fallback to sh. When specifying a bash shell on Windows, the bash shell included with Git for Windows is used. |
+
+Additional shells that are supported but must be specified explicitly (non-default) are as follow:
+
+| Platforms | Shell | Description |
+|--------------------|-------|-------------|
+| All (windows + Linux) | `python` | Executes the python command |
+| All (windows + Linux) | `pwsh`   | Default shell used on Windows, must be specified on other **runner** environment types |
+| All (windows + Linux) | `bash`   | Default shell used on non-Windows platforms, must be specified on other **runner** environment types |
+| Linux / macOS      | `sh`     | The fallback behavior for non-Windows platforms if no shell is provided and bash is not found in the path. |
+| Windows | `cmd` | GitHub appends the extension .cmd to your script |
+| Windows | `PowerShell` | The PowerShell Desktop. GitHub appends the extension .ps1 to your script name. |
+
+Let's take a look and see how we can explicitly set our shell to be a scripting shell language we prefer to override the default of the **runner** environment:
+
+```yaml
+jobs:
+  name-of-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello world
+        shell: pwsh
+        run: |
+          write-output "Hello World"
+```
+
+Let's take a closer look at the YAML. You will notice that I have again used a PowerShell command: `write-output "Hello World"` but my **runner** environment is a non-windows `ubuntu-latest` VM image. The default **Shell** on Ubuntu would be `bash` but I have explicitly set an override of `pwsh` or **PowerShell Core** by specifying `shell: pwsh` before my **run**.
+
+Here are a few more examples on how **Shell:** can be used to override a **runners** default command line program or **Shell**:  
+
+- Running a script using bash
+
+```yaml
+steps:
+  - name: Display the path
+    run: echo $PATH
+    shell: bash
+```
+
+- Running a script using Windows cmd
+
+```yaml
+steps:
+  - name: Display the path
+    run: echo %PATH%
+    shell: cmd
+```
+
+- Running a script using PowerShell Core
+
+```yaml
+steps:
+  - name: Display the path
+    run: echo ${env:PATH}
+    shell: pwsh
+```
+
+- Using PowerShell Desktop to run a script
+
+```yaml
+steps:
+  - name: Display the path
+    run: echo ${env:PATH}
+    shell: powershell
+```
+
+- Running a python script
+
+```yaml
+steps:
+  - name: Display the path
+    run: |
+      import os
+      print(os.environ['PATH'])
+    shell: python
+```
+
+- Custom shell
+
+You can set the shell value to a template string using `command […options] {0} [..more_options]`. GitHub interprets the first whitespace-delimited word of the string as the command, and inserts the file name for the temporary script at `{0}`.  
+
+For example:  
+
+```yaml
+steps:
+  - name: Display the environment variables and their values
+    run: |
+      print %ENV
+    shell: perl {0}
+```
+
+The command used, perl in this example, must be installed on the runner.  
+
+You can find more information on action shells on the [Github actions syntax page](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsshell)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Complex-Vars/code) page. :heart:
 
