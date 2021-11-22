@@ -8,7 +8,7 @@ canonical_url: null
 id: 904114
 ---
 
-## :bulb: What are GitHub Actions? :bulb:
+## :bulb: What are GitHub Actions?
 
 [GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) helps automate tasks within your software development life cycle. They are event-driven, meaning that you can run a series of commands after a specified event has occurred. For example, every time someone creates a pull request for a repository, you can automatically run a command that executes a software testing script. In fact you can create any sort of creative automation using GitHub Actions.
 
@@ -38,7 +38,7 @@ Actions are standalone commands that are combined into steps to create a job. Ac
 
 A runner is a server that has the **GitHub Actions runner application** installed. It is synonymous to Azure DevOps-hosted agents. You can use a runner hosted by GitHub, or you can host your own. A runner listens for available jobs, runs one job at a time, and reports the progress, logs, and results back to GitHub. GitHub-hosted runners are based on Ubuntu Linux, Microsoft Windows, and macOS, and each job in a workflow runs in a fresh virtual environment, you can also see what software are installed on each of the [GitHub-hosted runners VM images](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners). If you need a different operating system or require a specific hardware configuration, you can host your own runners using [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners).
 
-## :turtle: What are Actions Shells? :turtle:
+## :turtle: What are Actions Shells?
 
 Now that you have some idea of all the different components that makes up GitHub Actions lets take a look at what **Shells** are.
 
