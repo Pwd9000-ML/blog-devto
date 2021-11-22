@@ -6,6 +6,7 @@ tags: 'devops, actions, tutorial, github'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Actions-Shells/assets/main-sh.png'
 canonical_url: null
 id: 904114
+date: '2021-11-22T17:35:44Z'
 ---
 
 ## :bulb: What are GitHub Actions?
