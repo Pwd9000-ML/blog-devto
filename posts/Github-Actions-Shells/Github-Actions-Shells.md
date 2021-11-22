@@ -140,7 +140,7 @@ steps:
 
 - Custom shell
 
-You can set the shell value to a template string using `command […options] {0} [..more_options]`. GitHub interprets the first whitespace-delimited word of the string as the command, and inserts the file name for the temporary script at `{0}`.
+You can set the shell value to a template string using: `command […options] {0} [..more_options]`. GitHub interprets the first whitespace-delimited word of the string as the command, and inserts the file name for the temporary script at `{0}`.
 
 For example:
 
@@ -152,11 +152,9 @@ steps:
     shell: perl {0}
 ```
 
-The command used, perl in this example, must be installed on the runner.
+The command used, perl in this example, must be installed on the runner.  
 
-You can find more information on action shells on the [Github actions syntax page](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsshell)
-
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Complex-Vars/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. :heart: You can find more information on action shells on the [Github actions syntax page](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsshell)  
 
 ### _Author_
 
