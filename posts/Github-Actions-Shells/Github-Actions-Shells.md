@@ -152,9 +152,9 @@ steps:
     shell: perl {0}
 ```
 
-The command used, perl in this example, must be installed on the runner.  
+The command used, perl in this example, must be installed on the runner.
 
-I hope you have enjoyed this post and have learned something new. :heart: You can find more information on action shells on the [Github actions syntax page](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsshell)  
+I hope you have enjoyed this post and have learned something new. :heart: You can find more information on action shells on the [Github actions syntax page](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsshell)
 
 ### _Author_
 
