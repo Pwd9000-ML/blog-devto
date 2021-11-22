@@ -87,9 +87,9 @@ jobs:
           write-output "Hello World"
 ```
 
-Let's take a closer look at the YAML. You will notice that I have again used a PowerShell command: `write-output "Hello World"` but my **runner** environment is a non-windows `ubuntu-latest` VM image. The default **Shell** on Ubuntu would be `bash` but I have explicitly set an override of `pwsh` or **PowerShell Core** by specifying `shell: pwsh` before my **run**.
+You will notice that I have again used a PowerShell command: `write-output "Hello World"`, but my **runner** environment this time is a non-windows `ubuntu-latest` VM image. The default **Shell** on Ubuntu would be `bash` but I have explicitly set an override of `pwsh` or **PowerShell Core** by specifying `shell: pwsh` before my **run**.  
 
-Here are a few more examples on how **Shell:** can be used to override a **runners** default command line program or **Shell**:
+Here are a few more examples on how **Shell:** can be used to override a **runners** default command line program:  
 
 - Running a script using bash
 
