@@ -56,7 +56,7 @@ jobs:
           write-output "Hello World"
 ```
 
-Let's take a closer look at the YAML. You will notice that I have used a powershell command: `write-output "Hello World"` So you might be wondering why would I use powershell commands here? The reason is because the **runner** environment in my case is using a VM image of `windows-latest` and each runner environment will have a different default shell language to run commands, for **windows** this happens to be `pwsh (PowerShell core)`. Here is a table showing the default shells for different **runner** environments:
+You will notice that I have used a powershell command: `write-output "Hello World"`, you might be wondering why would I use powershell commands here? The reason is because the **runner** environment I have specified is using a VM image: `windows-latest` and each runner environment will have a different **default shell** language to run commands, for **windows** this happens to be `pwsh (PowerShell core)`. Here is a table showing the default shells for different **runner** environments/platforms:
 
 | Platforms | Default Shell | Description |
 | --- | --- | --- |
