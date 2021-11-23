@@ -95,13 +95,13 @@ Note on our pipeline the task used is specifically to export a private Azure Dev
 
 ```yml
 - task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@2
-    displayName: 'Export a private Azure DevOps WIKI'
-    inputs:
-      cloneRepo: true
-      repo: 'https://dev.azure.com/magiconionM/Devto_Blog_Demos/_git/DevOps.Wiki'
-      useAgentToken: true
-      localpath: '$(System.DefaultWorkingDirectory)/DevOpsWiki'
-      outputFile: '$(Build.ArtifactStagingDirectory)/PDF/DevOpsWiki.pdf'
+  displayName: 'Export a private Azure DevOps WIKI'
+  inputs:
+    cloneRepo: true
+    repo: 'https://dev.azure.com/magiconionM/Devto_Blog_Demos/_git/DevOps.Wiki'
+    useAgentToken: true
+    localpath: '$(System.DefaultWorkingDirectory)/DevOpsWiki'
+    outputFile: '$(Build.ArtifactStagingDirectory)/PDF/DevOpsWiki.pdf'
 ```
 
 Here are two more examples. Export a Single File:
@@ -121,13 +121,13 @@ Export a public GitHub WIKI:
 
 ```yml
 - task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@2
-   displayName: 'Export a public GitHub WIKI'
-   inputs:
-     cloneRepo: true
-     repo: 'https://github.com/rfennell/AzurePipelines.wiki.git'
-     useAgentToken: false
-     localpath: '$(System.DefaultWorkingDirectory)\GitHubRepo'
-     outputFile: '$(Build.ArtifactStagingDirectory)\PDF\GitHubWiki.pdf'
+  displayName: 'Export a public GitHub WIKI'
+  inputs:
+    cloneRepo: true
+    repo: 'https://github.com/rfennell/AzurePipelines.wiki.git'
+    useAgentToken: false
+    localpath: '$(System.DefaultWorkingDirectory)\GitHubRepo'
+    outputFile: '$(Build.ArtifactStagingDirectory)\PDF\GitHubWiki.pdf'
 ```
 
 **NOTE:** This blog post has been updated to reflect the changes in V2 of the task/extension. The `AzureDevOps.WikiPDFExport` tool since 4.0.0 is [.NET6](https://dotnet.microsoft.com/download/dotnet/6.0) based. Hence [.NET6](https://dotnet.microsoft.com/download/dotnet/6.0) must be installed on the agent.
