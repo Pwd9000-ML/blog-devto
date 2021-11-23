@@ -12,7 +12,14 @@ stages:
       vmImage: windows-latest
     
     steps:
-    - task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@1
+    - task: UseDotNet@2
+      displayName: 'Use .NET Core sdk'
+      inputs:
+        packageType: 'sdk'
+        version: '6.0.x'
+        includePreviewVersions: true
+
+    - task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@2
       displayName: 'Export a private Azure DevOps WIKI'
       inputs:
         cloneRepo: true

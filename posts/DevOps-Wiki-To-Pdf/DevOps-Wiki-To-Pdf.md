@@ -56,7 +56,14 @@ stages:
       vmImage: windows-latest
     
     steps:
-    - task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@1
+    - task: UseDotNet@2
+      displayName: 'Use .NET Core sdk'
+      inputs:
+        packageType: 'sdk'
+        version: '6.0.x'
+        includePreviewVersions: true
+
+    - task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@2
       displayName: 'Export a private Azure DevOps WIKI'
       inputs:
         cloneRepo: true
@@ -70,8 +77,6 @@ stages:
       inputs:
         targetPath: '$(Build.ArtifactStagingDirectory)/PDF'
         artifactName: DevOpsWiki
-
-
 ```
 
 We can then set up this pipeline and trigger it manually, once the pipeline has completed it will generate an artifact that contains the PDF document.
@@ -87,23 +92,24 @@ We can then set up this pipeline and trigger it manually, once the pipeline has 
 Note on our pipeline the task used is specifically to export a private Azure DevOps WIKI:
 
 ```yml
-- task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@1
+- task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@2
     displayName: 'Export a private Azure DevOps WIKI'
     inputs:
-    cloneRepo: true
-    repo: 'https://dev.azure.com/magiconionM/Devto_Blog_Demos/_git/DevOps.Wiki'
-    useAgentToken: true
-    localpath: '$(System.DefaultWorkingDirectory)/DevOpsWiki'
-    outputFile: '$(Build.ArtifactStagingDirectory)/PDF/DevOpsWiki.pdf'
+      cloneRepo: true
+      repo: 'https://dev.azure.com/magiconionM/Devto_Blog_Demos/_git/DevOps.Wiki'
+      useAgentToken: true
+      localpath: '$(System.DefaultWorkingDirectory)/DevOpsWiki'
+      outputFile: '$(Build.ArtifactStagingDirectory)/PDF/DevOpsWiki.pdf'
 ```
 
 Here are two more examples. Export a Single File:
 
 ```yml
-- task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@1
+- task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@2
   displayName: 'Export Single File'
   inputs:
     cloneRepo: false
+    usePreRelease: false
     localpath: '$(System.DefaultWorkingDirectory)'
     singleFile: 'release_notes.md'
     outputFile: '$(Build.ArtifactStagingDirectory)/PDF/ReleaseNotes.pdf'
@@ -112,7 +118,7 @@ Here are two more examples. Export a Single File:
 Export a public GitHub WIKI:
 
 ```yml
-- task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@1
+- task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@2
    displayName: 'Export a public GitHub WIKI'
    inputs:
      cloneRepo: true
@@ -120,6 +126,21 @@ Export a public GitHub WIKI:
      useAgentToken: false
      localpath: '$(System.DefaultWorkingDirectory)\GitHubRepo'
      outputFile: '$(Build.ArtifactStagingDirectory)\PDF\GitHubWiki.pdf'
+```
+
+**NOTE:** This blog post has been updated to reflect the changes in V2 of the task/extension. The `AzureDevOps.WikiPDFExport` tool since 4.0.0 is [.NET6](https://dotnet.microsoft.com/download/dotnet/6.0) based. Hence [.NET6](https://dotnet.microsoft.com/download/dotnet/6.0) must be installed on the agent.  
+
+This can easily be done by using the following build pipeline task as shown on the yaml config, before the extension is called.
+
+```yaml
+# code/wiki-to-pdf.yml#L15-L20
+
+- task: UseDotNet@2
+  displayName: 'Use .NET Core sdk'
+  inputs:
+    packageType: 'sdk'
+    version: '6.0.x'
+    includePreviewVersions: true
 ```
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Wiki-To-Pdf/code) page. :heart:
