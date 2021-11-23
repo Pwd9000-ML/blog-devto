@@ -77,6 +77,8 @@ stages:
       inputs:
         targetPath: '$(Build.ArtifactStagingDirectory)/PDF'
         artifactName: DevOpsWiki
+
+
 ```
 
 We can then set up this pipeline and trigger it manually, once the pipeline has completed it will generate an artifact that contains the PDF document.
@@ -128,7 +130,7 @@ Export a public GitHub WIKI:
      outputFile: '$(Build.ArtifactStagingDirectory)\PDF\GitHubWiki.pdf'
 ```
 
-**NOTE:** This blog post has been updated to reflect the changes in V2 of the task/extension. The `AzureDevOps.WikiPDFExport` tool since 4.0.0 is [.NET6](https://dotnet.microsoft.com/download/dotnet/6.0) based. Hence [.NET6](https://dotnet.microsoft.com/download/dotnet/6.0) must be installed on the agent.  
+**NOTE:** This blog post has been updated to reflect the changes in V2 of the task/extension. The `AzureDevOps.WikiPDFExport` tool since 4.0.0 is [.NET6](https://dotnet.microsoft.com/download/dotnet/6.0) based. Hence [.NET6](https://dotnet.microsoft.com/download/dotnet/6.0) must be installed on the agent.
 
 This can easily be done by using the following build pipeline task as shown on the yaml config, before the extension is called.
 
