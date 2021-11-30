@@ -2,7 +2,7 @@
 title: Terraform - Complex Variable Types
 published: true
 description: DevOps - Terraform - Complex Variable Types
-tags: 'tutorial, azure, productivity, devops'
+tags: 'terraform, azure, iac, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Terraform-Complex-Vars/assets/main-tf.png'
 canonical_url: null
 id: 849831

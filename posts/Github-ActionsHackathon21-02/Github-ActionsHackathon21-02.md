@@ -2,7 +2,7 @@
 title: GitHub Actions Hackathon 2021 - Reusable workflows to automate tokens
 published: true
 description: GitHub Actions Hackathon 2021 Submission 02
-tags: 'actionshackathon21, actions, secdevops, github'
+tags: 'actionshackathon21, githubactions, secdevops, github'
 cover_image: ''
 canonical_url: null
 id: 897750

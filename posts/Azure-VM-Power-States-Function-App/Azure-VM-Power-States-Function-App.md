@@ -2,7 +2,7 @@
 title: Power virtual machines ON or OFF using Azure functions
 published: true
 description: Azure - Function App to control VM power states
-tags: 'tutorial, powershell, productivity, azure'
+tags: 'azurefunctions, azure, serverless, powershell'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-VM-Power-States-Function-App/assets/main-cover.png'
 canonical_url: null
 id: 724451

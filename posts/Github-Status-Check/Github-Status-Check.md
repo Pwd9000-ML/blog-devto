@@ -2,7 +2,7 @@
 title: Github/DevOps status
 published: true
 description: Useful links for checking GitHub and DevOps status
-tags: 'tutorial, devops, github, productivity'
+tags: 'cloudmonitoring, devops, github'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Status-Check/assets/main01.png'
 canonical_url: null
 id: 805154

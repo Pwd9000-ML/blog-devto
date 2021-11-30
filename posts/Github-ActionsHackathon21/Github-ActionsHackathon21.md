@@ -2,7 +2,7 @@
 title: GitHub Actions Hackathon 2021 - Automate Password Rotation using Github Actions
 published: true
 description: GitHub Actions Hackathon 2021 Submission
-tags: 'actionshackathon21, actions, opensource, github'
+tags: 'actionshackathon21, githubactions, secdevops, github'
 cover_image: ''
 canonical_url: null
 id: 893134
