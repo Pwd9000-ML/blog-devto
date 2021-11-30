@@ -17,7 +17,7 @@ We will create an [Azure Service Bus](https://docs.microsoft.com/en-gb/azure/ser
 
 This means that whenever we need to call our service bus we can now generate a temporary SAS token to call our Azure service bus using a **reusable** GitHub workflow to generate our token for us and we can access the token securely from key vault using a different process or even a different github workflow.
 
-Lets take a look at a sample use case flow diagram of how this would look like:
+Lets take a look at a sample use case flow diagram of how this would look like.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/flowdiag001.png)
 
