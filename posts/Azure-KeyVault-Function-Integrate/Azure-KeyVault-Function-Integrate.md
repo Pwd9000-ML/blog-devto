@@ -102,7 +102,7 @@ Now we will configure our function app to reference our key vault secrets and te
 We will use the following [Reference syntax](https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references#reference-syntax).
 
 ```txt
-@Microsoft.KeyVault(VaultName=myvault;SecretName=mysecret;SecretVersion=<secret-version>)
+@Microsoft.KeyVault(VaultName=<myVault>;SecretName=<mySecret>;SecretVersion=<secretVersion>)
 ```
 
 In addition you can reference a key vault secret using the URI:
