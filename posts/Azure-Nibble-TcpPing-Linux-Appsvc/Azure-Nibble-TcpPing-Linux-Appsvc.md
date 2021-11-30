@@ -29,8 +29,8 @@ Go to your app service Kudu site: **<https://[sitename].scm.azurewebsites.net/we
 
 Run the following:
 
-1. `apt-get install tcptraceroute` (**Required:** if not already present)
-2. `apt-get install bc` (**Required:** if minimal Linux Runtime used, e.g. docker)
+1. `apt-get install tcptraceroute` (**Required:** if not already present.)
+2. `apt-get install bc` (**Required:** if minimal Linux Runtime used, e.g. docker.)
 3. `cd /usr/bin`
 4. `wget http://www.vdberg.org/~richard/tcpping`
 5. `chmod 755 tcpping`
