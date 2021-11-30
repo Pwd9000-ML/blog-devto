@@ -2,7 +2,7 @@
 title: Protect secrets in Azure Functions using Key Vault
 published: true
 description: Azure - Integrate Key Vault with Functions
-tags: 'tutorial, azure, productivity, security'
+tags: 'azurefunctions, azure, #serverless, cloudsecurity'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-KeyVault-Function-Integrate/assets/key-func-main.png'
 canonical_url: null
 id: 740019
@@ -102,7 +102,19 @@ Now we will configure our function app to reference our key vault secrets and te
 We will use the following [Reference syntax](https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references#reference-syntax).
 
 ```txt
-@Microsoft.KeyVault(VaultName=myvault;SecretName=mysecret)
+@Microsoft.KeyVault(VaultName=myvault;SecretName=mysecret;SecretVersion=<secret-version>)
+```
+
+In addition you can reference a key vault secret using the URI:
+
+```txt
+@Microsoft.KeyVault(SecretUri=https://<key-vault-name>.vault.azure.net/secrets/<secret-name>/<secret-version>)
+```
+
+**NOTE:** If you want the reference to always take the latest version of the secret from Key Vault, then put the secret identifier URL to the SecretUri, and simply omit the secret version like below. Make sure that the URI **MUST** end with the trailing slash (/).
+
+```txt
+@Microsoft.KeyVault(SecretUri=https://<key-vault-name>.vault.azure.net/secrets/<secret-name>/)
 ```
 
 Under our function **Settings** pane select **Configuration** and add two new **Application settings:**
