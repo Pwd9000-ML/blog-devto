@@ -20,7 +20,7 @@ Here is the link to the original post, enjoy!
 
 ## Submission Category: Wacky Wildcards
 
-😳💥🔥 I know.... ITSec Ops workflows are totally WACKY! 🔥💥😳
+😳💥🔥 I know... ITSec Ops workflows are totally WACKY! 🔥💥😳
 
 ## Yaml File or Link to Code
 
