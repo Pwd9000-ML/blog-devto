@@ -1,6 +1,6 @@
 ---
 title: Sharing with the Tech Community - My talk at Festive Tech Calendar 2021
-published: false
+published: true
 description: My talk at Festive Tech Calendar 2021
 tags: 'githubactions, festivetechcalendar, github, azure'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-FestiveTechCalendar2021/assets/main_techCal21.jpg'
