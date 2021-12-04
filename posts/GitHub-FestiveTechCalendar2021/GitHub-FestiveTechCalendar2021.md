@@ -16,7 +16,7 @@ Firstly I'd like to say a big thank you to **[Gregor Suttie](https://twitter.com
 
 I'd also like to ask that, if you like my or any other authors content, to please help the events initiative to raise support and contributions towards a very worthy charity: **Girls Who Code**. Thank you to **[April Edwards](https://twitter.com/TheAprilEdwards)** for setting this up.
 
-Please donate or share to this just giving page:  
+Please donate or share to this just giving page:
 
 **[Girls Who Code](https://www.justgiving.com/fundraising/festivetechcalendar)**
 
