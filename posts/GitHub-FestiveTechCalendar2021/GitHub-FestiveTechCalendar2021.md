@@ -16,11 +16,13 @@ Firstly I'd like to say a big thank you to **[Gregor Suttie](https://twitter.com
 
 I'd also like to ask that, if you like my or any other authors content, to please help the events initiative to raise support and contributions towards a very worthy charity: **Girls Who Code**. Thank you to **[April Edwards](https://twitter.com/TheAprilEdwards)** for setting this up.
 
-Please donate or share if you can to **Girls Who Code**: <https://www.justgiving.com/fundraising/festivetechcalendar>
+Please donate or share to this just giving page:  
 
-## :bulb: How to rotate VM passwords using Github Actions with Azure Key Vault
+**[Girls Who Code](https://www.justgiving.com/fundraising/festivetechcalendar)**
 
-{% youtube nSSQtOvwVzA %}
+## Have a look at the talk
+
+See the video link of my talk - How to rotate VM passwords using Github Actions with Azure Key Vault: {% youtube nSSQtOvwVzA %}
 
 ## Have a look at the blog
 
