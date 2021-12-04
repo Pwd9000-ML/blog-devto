@@ -237,7 +237,7 @@ You can just create dummy secrets in the `value` field as these will be overwrit
 
 ![populate](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/populate.png)
 
-**Note:** Only add servers that you want to rotate passwords on, I would recommend **NOT** adding any servers or VMs such as **Domain Controllers** to the key vault. Also as you may recall when we created our key vault, we set the key vault to use the RBAC access model, so if someone requests access to a specific secret we can now allow access on the object level meaning we can give access to a specific secret (and not any other secrets). if we used the `Vault Access Policy` model access can only be given to the entire vault.  
+**Note:** Only add servers that you want to rotate passwords on, I would recommend **NOT** adding any servers or VMs such as **Domain Controllers** to the key vault. Also as you may recall when we created our key vault, we set the key vault to use the RBAC access model, so if someone requests access to a specific secret we can now allow access on the object level meaning we can give access to a specific secret (and not any other secrets). if we used the `Vault Access Policy` model access can only be given to the entire vault.
 
 [image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/vaultiam.png)
 
