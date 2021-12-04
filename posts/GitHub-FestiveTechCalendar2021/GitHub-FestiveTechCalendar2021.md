@@ -10,7 +10,7 @@ id: 917323
 
 ## Festive Tech Calendar 2021
 
-This article is part of the [Festive Tech Calendar 2021](https://festivetechcalendar.com/). You'll find other helpful tech stories and talks published daily by through the month of December by other community members and experts, so make sure to check it out every day.
+This article is part of the [Festive Tech Calendar 2021](https://festivetechcalendar.com/). You'll find other helpful tech stories and talks published daily through the month of December by other community members and experts, so make sure to check it out every day.
 
 Firstly I'd like to say a big thank you to **[Gregor Suttie](https://twitter.com/gregor_suttie)** and **[Richard Hooper](https://twitter.com/Pixel_Robots)** who are the organizers of this wonderful community tech event and for inviting me to speak at this years event.
 
