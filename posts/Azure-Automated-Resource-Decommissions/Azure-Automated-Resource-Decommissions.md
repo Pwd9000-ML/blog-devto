@@ -145,21 +145,20 @@ Lets take a closer look, step-by-step what the above script does as part of sett
 4. Configure Function App environment variables. (Will be consumed inside of function app later). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/funcappsettings1.png)
 5. Create `Tracker` and `Failed` storage tables in the function apps storage account. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/satabbles1.png)
 6. Assign Function App `SystemAssigned` managed identity permissions to Storage account(Read), table(Write) and subscription(Contributor). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/sarbac1.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/subrbac1.png)
-7. Remember I mentioned earlier there is one manual step. In the next step we will change the `requirements.psd1` file on our function to allow the `AZ` module inside of our function by uncommenting the following, as well as adding a module to be installed called `AzTable`:  
+7. Remember I mentioned earlier there is one manual step. In the next step we will change the `requirements.psd1` file on our function to allow the `AZ` module inside of our function by uncommenting the following, as well as adding a module to be installed called `AzTable`  
 
-    ```powershell
-    # This file enables modules to be automatically managed by the Functions service.
-    # See https://aka.ms/functionsmanageddependency for additional information.
-    #
-    @{
-        # For latest supported version, go to 'https://www.powershellgallery.com/packages/Az'. 
-        # To use the Az module in your function app, please uncomment the line below.
-        'Az' = '7.*'
-        'AzTable' = '2.*'
-    }
-    ```
+```powershell
+# This file enables modules to be automatically managed by the Functions service.
+# See https://aka.ms/functionsmanageddependency for additional information.
+#
+@{
+    # For latest supported version, go to 'https://www.powershellgallery.com/packages/Az'. 
+    # To use the Az module in your function app, please uncomment the line below.
+    'Az' = '7.*'
+    'AzTable' = '2.*'
+}
+```
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/manual1.png)
 
 **NOTE:** Remember to save the manual change we made on `requirements.psd1` above. That is it, our environment is set up and in the next section we will configure the function to run automated decommissions and schedule a timer.
-
