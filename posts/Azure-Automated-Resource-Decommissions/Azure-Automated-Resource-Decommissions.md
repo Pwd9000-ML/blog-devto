@@ -26,15 +26,15 @@ The idea is simple, place the **Decommission** tag on the **resource** OR **reso
 
 ## Pre-Requisites
 
-To set up everything we need for our function app I wrote a PowerShell script using AZ CLI, that would build and configure all the things needed. There was one manual step however I will cover a bit later on. But for now you can find the script I used on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Automated-Resource-Decommissions/code) page called [Azure-Pre-Reqs.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-Automated-Resource-Decommissions/code/Azure-Pre-Reqs.ps1).  
+To set up everything we need for our function app I wrote a PowerShell script using AZ CLI, that would build and configure all the things needed. There was one manual step however I will cover a bit later on. But for now you can find the script I used on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Automated-Resource-Decommissions/code) page called [Azure-Pre-Reqs.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-Automated-Resource-Decommissions/code/Azure-Pre-Reqs.ps1).
 
-First we will log into Azure by running:  
+First we will log into Azure by running:
 
 ```powershell
 az login
 ```
 
-After logging into Azure and selecting the subscription, we can run the script that will create all the resources and set the environment up:  
+After logging into Azure and selecting the subscription, we can run the script that will create all the resources and set the environment up:
 
 ```powershell
 ## code/Azure-Pre-Reqs.ps1
@@ -80,7 +80,7 @@ az functionapp create `
 
 #Configure Function App environment variables:
 $settings = @(
-  "Function_Scopes=$scopes"  
+  "Function_Scopes=$scopes"
   "Function_RGName=$resourceGroupName"
   "Function_SaActName=$storageName"
   "Function_TableName=$tableName"
@@ -145,14 +145,14 @@ Lets take a closer look, step-by-step what the above script does as part of sett
 4. Configure Function App environment variables. (Will be consumed inside of function app later). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/funcappsettings1.png)
 5. Create `Tracker` and `Failed` storage tables in the function apps storage account. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/satabbles1.png)
 6. Assign Function App `SystemAssigned` managed identity permissions to Storage account(Read), table(Write) and subscription(Contributor). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/sarbac1.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/subrbac1.png)
-7. Remember I mentioned earlier there is one manual step. In the next step we will change the `requirements.psd1` file on our function to allow the `AZ` module inside of our function by uncommenting the following, as well as adding a module to be installed called `AzTable`  
+7. Remember I mentioned earlier there is one manual step. In the next step we will change the `requirements.psd1` file on our function to allow the `AZ` module inside of our function by uncommenting the following, as well as adding a module to be installed called `AzTable`
 
 ```powershell
 # This file enables modules to be automatically managed by the Functions service.
 # See https://aka.ms/functionsmanageddependency for additional information.
 #
 @{
-    # For latest supported version, go to 'https://www.powershellgallery.com/packages/Az'. 
+    # For latest supported version, go to 'https://www.powershellgallery.com/packages/Az'.
     # To use the Az module in your function app, please uncomment the line below.
     'Az' = '7.*'
     'AzTable' = '2.*'
