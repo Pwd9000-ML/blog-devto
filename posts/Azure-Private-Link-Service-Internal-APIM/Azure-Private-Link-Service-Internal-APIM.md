@@ -2,7 +2,7 @@
 title: Access internal APIM securely with Private Link Service
 published: true
 description: Azure - internal APIM + Private Link Service
-tags: 'apim, azure, cloudsecurity'
+tags: 'apim, azure, cloudsecurity, api'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Private-Link-Service-Internal-APIM/assets/PLSMain.png'
 canonical_url: null
 id: 756521
