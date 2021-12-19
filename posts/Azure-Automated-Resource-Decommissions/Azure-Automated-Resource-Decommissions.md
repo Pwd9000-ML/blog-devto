@@ -26,3 +26,4 @@ The idea is simple, place the **Decommission** tag on the **resource** OR **reso
 
 ## Pre-Requisites
 
+so
