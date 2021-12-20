@@ -161,18 +161,18 @@ Lets take a closer look, step-by-step what the above script does as part of sett
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/manual1.png)
 
-**NOTE:** Remember to save the manual change we made on `requirements.psd1` above. Our environment is now set up and in the next section we will configure the function to run automated decommissions and schedule a timer.  
+**NOTE:** Remember to save the manual change we made on `requirements.psd1` above. Our environment is now set up and in the next section we will configure the function to run automated decommissions and schedule a timer.
 
 ## Decommission Function
 
 The following function app code can also be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Automated-Resource-Decommissions/code) page called [run.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-Automated-Resource-Decommissions/code/run.ps1).
 
 1. Navigate to the function app we created in the previous section and select `+ Create` under `Functions`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/create.png)
-2. Select `Develop in portal` and for the template select `Timer trigger`, name the function `ResourceDecommission`, set the cron schedule to run on the frequency you need (in my case I have set this to once a day at 23:55pm) `0 55 23 * * *`, and hit `Create`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/create2.png)  
+2. Select `Develop in portal` and for the template select `Timer trigger`, name the function `ResourceDecommission`, set the cron schedule to run on the frequency you need (in my case I have set this to once a day at 23:55pm) `0 55 23 * * *`, and hit `Create`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/create2.png)
 
-    **NOTE:** You can change the cron timer trigger anytime by going to the functions **Integration** section. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/create3.png)  
+   **NOTE:** You can change the cron timer trigger anytime by going to the functions **Integration** section. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/create3.png)
 
-3. Navigate to `Code + Test` and replace all the code under `run.ps1` with the following powershell code and hit `save`: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/create4.png)  
+3. Navigate to `Code + Test` and replace all the code under `run.ps1` with the following powershell code and hit `save`: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/create4.png)
 
 ```powershell
 ## code/run.ps1
@@ -263,8 +263,8 @@ Function Get-Resource4Decom {
         If ($objTags.Keys -contains $TagKey) {
             $tagValue = $objTags["$TagKey"]
             If (($tagValue -lt $date) -or ($tagValue -eq $date)) {
-                $Resource = [pscustomobject]@{Subscription = (Get-AzSubscription -SubscriptionId $subscription).Name; 
-                    ResourceGroup = $ObjResource.ResourceGroupName; 
+                $Resource = [pscustomobject]@{Subscription = (Get-AzSubscription -SubscriptionId $subscription).Name;
+                    ResourceGroup = $ObjResource.ResourceGroupName;
                     ResourceType = $ObjResource.ResourceType;
                     ResourceID = $ObjResource.ResourceId;
                     ResourceName = $ObjResource.Name;
@@ -278,8 +278,8 @@ Function Get-Resource4Decom {
         If ($objTags.Keys -contains $TagKey) {
             $tagValue = $objTags["$TagKey"]
             If ($tagValue -gt $date) {
-                $Resource = [pscustomobject]@{Subscription = (Get-AzSubscription -SubscriptionId $subscription).Name; 
-                    ResourceGroup = $ObjResource.ResourceGroupName; 
+                $Resource = [pscustomobject]@{Subscription = (Get-AzSubscription -SubscriptionId $subscription).Name;
+                    ResourceGroup = $ObjResource.ResourceGroupName;
                     ResourceType = $ObjResource.ResourceType;
                     ResourceID = $ObjResource.ResourceId;
                     ResourceName = $ObjResource.Name;
