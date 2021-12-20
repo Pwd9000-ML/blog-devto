@@ -137,7 +137,7 @@ $functionMI = $(az resource list --name $functionAppName --query [*].identity.pr
     }
 ```
 
-**NOTE:** In the `Azure-Pre-Reqs.ps1` script, the following variable `$scopes` will determine which scopes the decommission function will search for resources to decommission.  
+**NOTE:** In the `Azure-Pre-Reqs.ps1` script, the following variable `$scopes` will determine which scopes the decommission function will search for resources to decommission.
 
 ```powershell
 ## code/Azure-Pre-Reqs.ps1#L13-L13
@@ -373,12 +373,12 @@ Lets take a closer look at what this code actually does. In the first few lines 
 
 Next we are loading two **Powershell** functions, one that will evaluate and return **Resources to be decommissioned** and another to return **Resource Groups to be decomissioned**. You can look at each of these PowerShell functions individually on my GitHub code page as well. [Get-Resource4Decom.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-Automated-Resource-Decommissions/code/Get-Resource4Decom.ps1) and [Get-ResourceGroup4Decom.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-Automated-Resource-Decommissions/code/Get-ResourceGroup4Decom.ps1)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code2.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code2.png)
 
 Now comes the main section that will process decommissions, first we set some variables. These variables are from the function apps **Application Settings** our pre-req script created:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/funcappsettings1.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/funcappsettings1.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code3.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code3.png)
 
-The remaining code will utilise the two functions to resturn the **Resource IDs** of the relevant resources and resource groups that will be decomissioned and also 
+The remaining code will utilise the two functions to resturn the **Resource IDs** of the relevant resources and resource groups that will be decomissioned and also
