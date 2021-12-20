@@ -1,6 +1,6 @@
 ---
 title: Automate Azure Resource Decommissions (with tracking)
-published: false
+published: true
 description: Azure - Automate Azure Resource Decommissions
 tags: 'azurefunctions, azure, serverless, automation'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/mainfunc.png'
@@ -412,7 +412,9 @@ So based on my test date **20/12/2021** and looking at the above table I would e
 
 I can also see that **TestRG2** and **pwd9000sa3** which had resource locks enabled failed to decommission and was also recorded in my `Failed` Table.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test3.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test4.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test3.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test4.png)  
+
+Everything is working as expected. Now we can easily preset resources we would like to decommission by simply just adding a tag to the resource or resource group with the tag key of **Decommission** and tag value of the date we want the resource to be decommission on in date format **dd/MM/yyyy**. We could also give our users access to set tags themselves on resources they manage to allow them to remove resources in a controlled manner. Our function app will just run on its schedule and decommission resources which are tagged and also track the automated decommissions and failures in table storage.  
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Automated-Resource-Decommissions/code) page. :heart:
 
