@@ -358,3 +358,11 @@ Foreach ($rID in $MatchedResources | Where-Object {$_ -ne $null}) {
    }
 }
 ```
+
+Lets take a closer look at what this code actually does. In the first few lines we can see that the function app will take an input parameter called `$Timer`. This parameter is linked to the cron timer we set when we created the function app earlier.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code1.png)  
+
+Next we are loading two **Powershell** functions, one that will evaluate and return **Resources to be decommissioned** and another to return **Resource Groups to be decomissioned**. Yoi can look at each of these PowerShell functions individually on my GitHub code page as well. [Get-Resource4Decom.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-Automated-Resource-Decommissions/code/Get-Resource4Decom.ps1) and [Get-ResourceGroup4Decom.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-Automated-Resource-Decommissions/code/Get-ResourceGroup4Decom.ps1)  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code2.png)  
