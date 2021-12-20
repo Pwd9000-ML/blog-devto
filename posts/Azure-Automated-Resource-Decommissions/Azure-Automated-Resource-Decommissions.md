@@ -161,4 +161,4 @@ Lets take a closer look, step-by-step what the above script does as part of sett
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/manual1.png)
 
-**NOTE:** Remember to save the manual change we made on `requirements.psd1` above. That is it, our environment is set up and in the next section we will configure the function to run automated decommissions and schedule a timer.
+**NOTE:** Remember to save the manual change we made on `requirements.psd1` above. Our environment is now set up and in the next section we will configure the function to run automated decommissions and schedule a timer.
