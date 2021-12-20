@@ -408,12 +408,12 @@ Lets test our function app and see if it does what it says on the tin. In my env
 
 So based on my test date **20/12/2021** and looking at the above table I would expect **TestRG3** and **pwd9000sa2** to successfully be removed and recorded in my **Tracking** table when my function app is triggered. This is in fact what happened and I can see that those resources are no longer in my Azure subscription and was also recorded:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test1.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test1.png)
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test2.png)
 
 I can also see that **TestRG2** and **pwd9000sa3** which had resource locks enabled failed to decommission and was also recorded in my `Failed` Table.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test3.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test3.png)
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test4.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Automated-Resource-Decommissions/code) page. :heart:
