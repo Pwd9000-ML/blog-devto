@@ -381,40 +381,40 @@ Now comes the main section that will process decommissions, first we set some va
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code3.png)
 
-**NOTE:** Scopes can be one or more comma separated subscription IDs that the function app will search for resources or resource groups to decommission. If you have more than one subscription defined, please ensure that the function apps managed identity has the relevant IAM/RBAC access over any additional subscriptions you want the function app to cover.  
+**NOTE:** Scopes can be one or more comma separated subscription IDs that the function app will search for resources or resource groups to decommission. If you have more than one subscription defined, please ensure that the function apps managed identity has the relevant IAM/RBAC access over any additional subscriptions you want the function app to cover.
 
-The remaining code will consume the two loaded functions to return the **Resource IDs** of the relevant resources and resource groups that will be decommissioned and also record this Resource ID on successful decommission in the functions storage account under a table called **Tracking** or if the decommission failed the resource ID of the failed decommission will be recorded in the table called **Failed**.  
+The remaining code will consume the two loaded functions to return the **Resource IDs** of the relevant resources and resource groups that will be decommissioned and also record this Resource ID on successful decommission in the functions storage account under a table called **Tracking** or if the decommission failed the resource ID of the failed decommission will be recorded in the table called **Failed**.
 
-Resource Groups are decommissioned first:  
+Resource Groups are decommissioned first:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code4.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code4.png)
 
-Followed by resources:  
+Followed by resources:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code5.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code5.png)
 
 ## Testing the function app
 
-Lets test our function app and see if it does what it says on the tin. In my environment I set up 3x Resource Groups and 3x Storage Accounts as per the below table. I also placed a `delete` resource lock on some resources so that the decommission process would fail to see if those resources gets recorded in my `Failed` table):  
+Lets test our function app and see if it does what it says on the tin. In my environment I set up 3x Resource Groups and 3x Storage Accounts as per the below table. I also placed a `delete` resource lock on some resources so that the decommission process would fail to see if those resources gets recorded in my `Failed` table):
 
-| Test Run date | Resource Name | Resource Type   | Tag Key      | Tag Value  | Resource Lock Applied |
-|---------------|---------------|-----------------|--------------|------------|-----------------------|
-| 20/12/2021    | TestRG1       | Resource Group  | Decommission | 24/12/2021 | FALSE                 |
-| 20/12/2021    | TestRG2       | Resource Group  | Decommission | 19/12/2021 | TRUE                  |
-| 20/12/2021    | TestRG3       | Resource Group  | Decommission | 19/12/2021 | FALSE                 |
-| 20/12/2021    | pwd9000sa1    | Storage Account | Decommission | 30/12/2021 | FALSE                 |
-| 20/12/2021    | pwd9000sa2    | Storage Account | Decommission | 20/12/2021 | FALSE                 |
-| 20/12/2021    | pwd9000sa3    | Storage Account | Decommission | 20/12/2021 | TRUE                  |
+| Test Run date | Resource Name | Resource Type | Tag Key | Tag Value | Resource Lock Applied |
+| --- | --- | --- | --- | --- | --- |
+| 20/12/2021 | TestRG1 | Resource Group | Decommission | 24/12/2021 | FALSE |
+| 20/12/2021 | TestRG2 | Resource Group | Decommission | 19/12/2021 | TRUE |
+| 20/12/2021 | TestRG3 | Resource Group | Decommission | 19/12/2021 | FALSE |
+| 20/12/2021 | pwd9000sa1 | Storage Account | Decommission | 30/12/2021 | FALSE |
+| 20/12/2021 | pwd9000sa2 | Storage Account | Decommission | 20/12/2021 | FALSE |
+| 20/12/2021 | pwd9000sa3 | Storage Account | Decommission | 20/12/2021 | TRUE |
 
 So based on my test date **20/12/2021** and looking at the above table I would expect **TestRG3** and **pwd9000sa2** to successfully be removed and recorded in my **Tracking** table when my function app is triggered. This is in fact what happened and I can see that those resources are no longer in my Azure subscription and was also recorded:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test1.png)  
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test2.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test2.png)
 
 I can also see that **TestRG2** and **pwd9000sa3** which had resource locks enabled failed to decommission and was also recorded in my `Failed` Table.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test3.png)  
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test4.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test4.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Automated-Resource-Decommissions/code) page. :heart:
 
