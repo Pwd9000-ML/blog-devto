@@ -24,7 +24,7 @@ But by no means, feel free to integrate the steps in this tutorial in addition t
 
 [SendGrid](https://docs.sendgrid.com/for-developers/partners/microsoft-azure-2021#create-a-twilio-sendgrid-account) is a third party provider in Azure that provides a cloud-based email service. The service manages various types of email including shipping notifications, friend requests, sign-up confirmations, and email newsletters. It also handles internet service provider (ISP) monitoring, domain keys, sender policy framework (SPF), and feedback loops. Additionally provides link tracking, open rate reporting. It also allows companies to track email opens, unsubscribes, bounces, and spam reports.
 
-In Azure, **SendGrid** offers a variety of **[pricing plans](https://sendgrid.com/marketing/sendgrid-services-cro/#pricing-app)**. For the purpose of our use case and this tutorial we will create and use the **FREE** plan which gives us access to the API and also 100 emails/day forever.
+Azure offers a variety of **[SendGrid pricing plans](https://sendgrid.com/marketing/sendgrid-services-cro/#pricing-app)**. For the purpose of our use case and this tutorial we will create and use the **FREE** plan which gives us access to the API and also 100 emails/day forever.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/sendgrid_free1.png)
 
