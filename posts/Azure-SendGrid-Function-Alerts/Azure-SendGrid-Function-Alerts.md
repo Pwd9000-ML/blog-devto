@@ -14,11 +14,11 @@ I recently posted a tutorial on how to better manage and maintain Azure resource
 
 The full tutorial can be found here: {% link <https://dev.to/pwd9000/automate-azure-resource-decommissions-with-tracking-aok> %}
 
-So this brings me to this new tutorial I wanted to share with you today. I was thinking how we can even better the process by also getting an email alert when a resource has been successfully decommissioned or if a decommission has failed, perhaps including the error message if it was a failure in the email alert? So today I will share with you a general guide on how we can utilize a service in Azure called **SenGrid** to send us an email from an Azure **Function App**.
+So this brings me to this new tutorial I wanted to share with you today. I was thinking how we can even better the process by also getting an email alert when a resource has been successfully decommissioned or if a decommission has failed, perhaps including the error message if it was a failure in the email alert? So today I will share with you a general guide on how we can utilize a service in Azure called **SenGrid** to send us an email from an **Azure Function App**.
 
-This tutorial will only be a general guide on how to utilize **SendGrid** in an Azure Function App to send emails and does not follow on my previous tutorial. This post is mainly meant to serve as a supplement and guide guide to set up **SendGrid** to use in any Powershell based Function App in your own environment to send email alerts.
+This tutorial will only be a general guide on how to utilize the **SendGrid** service inside of a **Function App** to send emails and does not follow on my previous tutorial. This guide is mainly meant to serve as a supplement guide to set up the **SendGrid** service and show how to use the service in any **Powershell** based **Function App** in your own environment to send email alerts to relevant stakeholders.
 
-But by no means feel free to also integrate the steps in this tutorial in addition to my previous blog post. Let's get started.
+But by no means, feel free to also integrate these steps in this tutorial in addition to my previous blog post if you have the requirement to also be notified by email about resource decommissions. Let's get started.
 
 ## What is SendGrid?
 
