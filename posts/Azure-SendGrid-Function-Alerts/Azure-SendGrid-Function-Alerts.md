@@ -10,13 +10,13 @@ id: 947134
 
 ## Overview
 
-I recently posted a tutorial on how to better manage and maintain Azure resource lifecycle and decommissions by automating the decommission process by using a simple **Decommission** tag with a date value, and an Azure serverless **Function App**. The tutorial also includes how we can track successful decommissions and failed decommissions using the **function apps** own storage account by recording the automated decommission events into table storage.  
+I recently posted a tutorial on how to better manage and maintain Azure resource lifecycle and decommissions by automating the decommission process by using a simple **Decommission** tag with a date value, and an Azure serverless **Function App**. The tutorial also includes how we can track successful decommissions and failed decommissions using the **function apps** own storage account by recording the automated decommission events into table storage.
 
-The full tutorial can be found here: {% link <https://dev.to/pwd9000/automate-azure-resource-decommissions-with-tracking-aok> %}  
+The full tutorial can be found here: {% link <https://dev.to/pwd9000/automate-azure-resource-decommissions-with-tracking-aok> %}
 
-So this brings me to this new tutorial I wanted to share with you today. I was thinking how we can even better the process by also getting an email alert when a resource has been successfully decommissioned or if a decommission has failed, perhaps including the error message if it was a failure in the email alert? So today I will share with you a general guide on how we can utilize a service in Azure called **SenGrid** to send us an email from an Azure **Function App**.  
+So this brings me to this new tutorial I wanted to share with you today. I was thinking how we can even better the process by also getting an email alert when a resource has been successfully decommissioned or if a decommission has failed, perhaps including the error message if it was a failure in the email alert? So today I will share with you a general guide on how we can utilize a service in Azure called **SenGrid** to send us an email from an Azure **Function App**.
 
-This tutorial will only be a general guide on how to utilize **SendGrid** in an Azure Function App to send emails and does not follow on my previous tutorial. This post is mainly meant to serve as a supplement and guide guide to set up **SendGrid** to use in any Powershell based Function App in your own environment to send email alerts.  
+This tutorial will only be a general guide on how to utilize **SendGrid** in an Azure Function App to send emails and does not follow on my previous tutorial. This post is mainly meant to serve as a supplement and guide guide to set up **SendGrid** to use in any Powershell based Function App in your own environment to send email alerts.
 
 But by no means feel free to also integrate the steps in this tutorial in addition to my previous blog post. Let's get started.
 
