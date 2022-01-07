@@ -197,7 +197,7 @@ Additionally also update the `fromAddress` secret in the key vault with the send
 
 ## 4. Create a SendGrid API PowerShell Function
 
-The PowerShell function in this section can also be found on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page called [SendGrid-Notification.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-SendGrid-Function-Alerts/code/SendGrid-Notification.ps1)  
+The PowerShell function in this section can also be found on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page called [SendGrid-Notification.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-SendGrid-Function-Alerts/code/SendGrid-Notification.ps1)
 
 The PowerShell code below is a simple **PowerShell** function to interact with and send an email via the SendGrid service API.
 
@@ -381,7 +381,7 @@ Next we set up some variables, create a forced error and then send that error in
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/code3.png)
 
-**NOTE:** Note that the **apiKey** and **from** address on line73 and line74 are actually referenced from environment variables, which are the application settings of the **Function App** which are referencing the key vault secrets we set up earlier. So we are not exposing any API secrets in our function app code nor the function app settings.  
+**NOTE:** Note that the **apiKey** and **from** address on line73 and line74 are actually referenced from environment variables, which are the application settings of the **Function App** which are referencing the key vault secrets we set up earlier. So we are not exposing any API secrets in our function app code nor the function app settings.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/funcappsettings1.png)
 
