@@ -113,7 +113,7 @@ az keyvault secret set --vault-name "$kvName" --name "fromAddress" --value ""
 #Configure Function App environment variables:
 $settings = @(
   # @Microsoft.KeyVault(SecretUri=https://<key-vault-name>.vault.azure.net/secrets/<secret-name>/<secret-version>)
-  # or @Microsoft.KeyVault(SecretUri=https://<key-vault-name>.vault.azure.net/secrets/<secret-name>/) '/' at end means to take latest secret  
+  # or @Microsoft.KeyVault(SecretUri=https://<key-vault-name>.vault.azure.net/secrets/<secret-name>/) '/' at end means to take latest secret
   "sendGridApiKey=@Microsoft.KeyVault(SecretUri=https://$kvName.vault.azure.net/secrets/sendGridApiKey/)" #from KV
   "fromAddress=@Microsoft.KeyVault(SecretUri=https://$kvName.vault.azure.net/secrets/fromAddress/)" #from KV
 )
