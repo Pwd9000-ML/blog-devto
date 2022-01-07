@@ -74,7 +74,7 @@ $apiKey = $env:sendGridApiKey #SendGrid API Key
 $from = $env:fromAddress #SendGrid Sender Address
 
 #Set additional Function variables
-$to = "pwd9000@hotmail.co.uk"
+$to = "recipient@domain.com"
 $subscriptionName = (get-azcontext).Subscription.name
 $subscriptionId = (get-azcontext).Subscription.Id
 

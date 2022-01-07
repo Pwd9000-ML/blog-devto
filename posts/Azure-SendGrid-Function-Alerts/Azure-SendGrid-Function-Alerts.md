@@ -349,7 +349,7 @@ $apiKey = $env:sendGridApiKey #SendGrid API Key
 $from = $env:fromAddress #SendGrid Sender Address
 
 #Set additional Function variables
-$to = "pwd9000@hotmail.co.uk"
+$to = "recipient@domain.com"
 $subscriptionName = (get-azcontext).Subscription.name
 $subscriptionId = (get-azcontext).Subscription.Id
 
@@ -390,7 +390,7 @@ Lets run and test our Function app and see if we get an email alert via the Send
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/test.png)
 
-A few seconds later you should see the email notification that wa triggered by the Function App and sent via the **SendGrid** service API:
+A few seconds later you should see the email notification that was triggered by the Function App and sent via the **SendGrid** service API:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/result.png)
 
