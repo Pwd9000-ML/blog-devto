@@ -248,7 +248,113 @@ Function SendGrid-Notification {
 
 ## 5. Integrate PowerShell Function into Function App
 
-x
+The following function app code can also be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page called [run.ps1](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code/run.ps1).
+
+1. Navigate to the function app we created previously and select `+ Create` under `Functions`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/create.png)
+2. Select `Develop in portal` and for the template select `Timer trigger`, name the function `SendGrid-Demo`, set the cron schedule to run on the frequency you need (in my case I have set this to once a day at 23:00pm) `0 0 23 * * *`, and hit `Create`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/create2.png)
+3. Navigate to `Code + Test` and replace all the code under `run.ps1` with the following powershell code and hit `save`: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/create3.png)
+
+```powershell
+## code/run.ps1
+
+# Input bindings are passed in via param block.
+param($Timer)
+
+# Get the current universal time in the default string format.
+$currentUTCtime = (Get-Date).ToUniversalTime()
+
+# The 'IsPastDue' property is 'true' when the current function invocation is later than scheduled.
+if ($Timer.IsPastDue) {
+    Write-Host "PowerShell timer is running late!"
+}
+
+# SendGrid-Notification Function #
+Function SendGrid-Notification {
+    [CmdletBinding(SupportsShouldProcess)]
+    Param(
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [String]$ToAddress,
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [String]$FromAddress,
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [String]$Subject,
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [String]$Body,
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [String]$APIKey
+    )
+
+    # Body 
+    $SendGridBody = @{
+        "personalizations" = @(
+            @{
+                "to"      = @(
+                    @{
+                        "email" = $ToAddress
+                    }
+                )
+                "subject" = $Subject
+            }
+        )
+
+        "content"          = @(
+            @{
+                "type"  = "text/html"
+                "value" = $Body
+            }
+        )
+
+        "from"             = @{
+            "email" = $FromAddress
+        }
+    }
+
+    $BodyJson = $SendGridBody | ConvertTo-Json -Depth 4
+
+    #Header for SendGrid API
+    $Header = @{
+        "authorization" = "Bearer $APIKey"
+    }
+
+    #Send the email through SendGrid API
+    $Parameters = @{
+        Method      = "POST"
+        Uri         = "https://api.sendgrid.com/v3/mail/send"
+        Headers     = $Header
+        ContentType = "application/json"
+        Body        = $BodyJson
+    }
+    Invoke-RestMethod @Parameters
+}
+
+# Set these environment variables up in Function App settings:
+# These variables are from the Function App and is referenced from Key Vault
+$apiKey = $env:sendGridApiKey #SendGrid API Key
+$from = $env:fromAddress #SendGrid Sender Address
+
+#Set additional Function variables
+$to = "pwd9000@hotmail.co.uk"
+
+Write-Error "This is a forced error, something has failed, Please investigate xxxx"
+$failureMessage = $error[0].Exception.message.ToString()
+
+$Parameters = @{
+    ToAddress   = "$to"
+    FromAddress = "$from"
+    Subject     = "Error notification from Azure Function App via SendGrid API"
+    Body        = "$failureMessage"
+    APIKey      = "$apiKey"
+}
+SendGrid-Notification @Parameters
+```
+
+Lets take a closer look at what this code actually does. In the first few lines we can see that the function app will take an input parameter called `$Timer`. This parameter is linked to the cron timer we set when we created the function app earlier.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/code1.png)
+
+Next we are loading the **Powershell** function we created to allow us to send notifications via the **SendGrid** service API.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/code2.png)
 
 ## Testing the Function
 
