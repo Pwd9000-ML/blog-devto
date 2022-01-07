@@ -160,9 +160,31 @@ From the dashboard we will proceed to create the **Sender Identity**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/sgrid_sender.png)
 
-**Note:** For the **From Email Address**, verification is required. If the email domain doesn't match one of your authenticated domains, you'll need to verify ownership of the email address before using it as a sender.
+**Note:** For the **From Email Address**, [sender verification](https://docs.sendgrid.com/ui/sending-email/sender-verification) is required. If the email domain doesn't match one of your authenticated domains, you'll need to verify ownership of the email address before using it as a sender.
 
+## 3. Generate a SendGrid API Key
 
+Next we will create an API key. Navigate to **Settings** -> **API Keys** and click on `Create API key`.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/sgrid_api.png)
+
+Give the API Key a Name, then select **Full Access** and then click on `Create & View`.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/sgrid_api2.png)
+
+The API key will only be displayed once, so make sure that you copy the key and navigate back to the key vault that we created in the previous step and save the key under the key vault secret called `sendGridApiKey`.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/kvsec1.png)
+
+## 4. Create a SendGrid API PowerShell Function
+
+v
+
+## 5. Integrate PowerShell Function into Function App
+
+x
+
+## Testing the Function
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page. :heart:
 
