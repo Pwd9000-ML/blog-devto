@@ -137,7 +137,7 @@ Lets take a closer look, step-by-step what the above script does as part of sett
 2. Create a **PowerShell** Function App with `SystemAssigned` managed identity, `consumption` app service plan, `insights`, a `key vault` and function app `storage account`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/func.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/funcmi1.png)
 3. Configure Function App environment variables. (Will be consumed inside of function app later). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/funcappsettings1.png)
 
-    **NOTE:** You will see that we are referencing the `fromAddress` and `sendGridApiKey` from our key vault.  
+   **NOTE:** You will see that we are referencing the `fromAddress` and `sendGridApiKey` from our key vault.
 
 4. Assign Function App `SystemAssigned` managed identity permissions to access/read secrets on the key vault. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/kvrbac1.png)
 5. Create two dummy key vault secrets called `fromAddress` and `sendGridApiKey` which we will update later. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/kvsec1.png)
