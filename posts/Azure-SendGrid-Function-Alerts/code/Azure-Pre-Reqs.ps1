@@ -50,10 +50,10 @@ az functionapp create `
     --functions-version "3" `
     --assign-identity
 
-# Set Key Vault Secrets (secret values are empty as we will update these later after creating SendGrid account)
+# Set Key Vault Secrets (secret values are set to 'xxxx', we will update these later after creating SendGrid account)
 Start-Sleep -s 15
-az keyvault secret set --vault-name "$kvName" --name "sendGridApiKey" --value ""
-az keyvault secret set --vault-name "$kvName" --name "fromAddress" --value ""
+az keyvault secret set --vault-name "$kvName" --name "sendGridApiKey" --value "xxxx"
+az keyvault secret set --vault-name "$kvName" --name "fromAddress" --value "xxxx"
 
 #Configure Function App environment variables:
 $settings = @(
