@@ -14,7 +14,7 @@ I recently posted a tutorial on how to better manage and maintain the lifecycle 
 
 The full tutorial can be found here: {% link <https://dev.to/pwd9000/automate-azure-resource-decommissions-with-tracking-aok> %}
 
-This brings me to this new tutorial I want to share with you today. I was thinking how we can even better the process by also getting an email alert when a resource has been decommissioned or if a decommission has failed, and perhaps including the error message if it was a failure in an email alert? So today I will share with you a general guide on how we can utilize a service in Azure called **SenGrid** to send us email notifications from an **Azure Function App**.
+This brings me to this new tutorial I want to share with you today. I was thinking how we can even better the process by also getting an email alert when a resource has been decommissioned or if a decommission has failed, and perhaps including the error message in the alert if it was a failed decommission. So today I will share with you a general guide on how we can utilize a service in Azure called **SendGrid** to send us email notifications from an **Azure Function App**.
 
 This tutorial is only a general guide on how to utilize the **SendGrid** service inside of a **Function App** to send notification emails and does not follow on my previous tutorial. This guide is meant to serve as a supplement to show how to set up the **SendGrid** service and utilize the service in any **Powershell** based **Function App** in any environment, giving the ability to send email notifications to relevant stakeholders.
 
