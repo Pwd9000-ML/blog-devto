@@ -180,7 +180,7 @@ Additionally also update the `fromAddress` secret in the key vault with the send
 
 ## 4. Create a SendGrid API PowerShell Function
 
-The following function can also be found on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page called [SendGrid-Notification.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-SendGrid-Function-Alerts/code/SendGrid-Notification.ps1)  
+The following function can also be found on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page called [SendGrid-Notification.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-SendGrid-Function-Alerts/code/SendGrid-Notification.ps1)
 
 It is a simple **PowerShell** function to send an email via the SendGrid API and service we created in an earlier step.
 
@@ -202,7 +202,7 @@ Function SendGrid-Notification {
         [String]$APIKey
     )
 
-    # Body 
+    # Body
     $SendGridBody = @{
         "personalizations" = @(
             @{
