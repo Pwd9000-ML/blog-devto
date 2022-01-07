@@ -144,15 +144,15 @@ Lets take a closer look, step-by-step what the above script does as part of sett
 
 ## 2. Create a SendGrid account
 
-Next we will create a SendGrid Account. Go to the **Azure Portal** and search services for **SendGrid** and **create** an account. We will use the **Free** account as mentioned earlier.  
+Next we will create a SendGrid Account. Go to the **Azure Portal** and search services for **SendGrid** and **create** an account. We will use the **Free** account as mentioned earlier.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/sgrid_plan.png)
 
-You will need to provide contact details such as your email address and phone number as **SendGrid** is a SaaS service subscription. Shortly after creating the **SendGrid** Azure resource you will receive an activation email on the email address you have provided at creation time.  
+You will need to provide contact details such as your email address and phone number as **SendGrid** is a SaaS service subscription. Shortly after creating the **SendGrid** Azure resource you will receive an activation email on the email address you have provided at creation time.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/sgrid_activate.png)
 
-After activation you can navigate to the **SendGrid** publisher's site directly from Azure.  
+After activation you can navigate to the **SendGrid** publisher's site directly from Azure.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/sgrid_nav.png)
 
@@ -161,8 +161,6 @@ From the dashboard we will proceed to create the **Sender Identity**.
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/sgrid_sender.png)
 
 **Note:** For the **From Email Address**, verification is required. If the email domain doesn't match one of your authenticated domains, you'll need to verify ownership of the email address before using it as a sender.
-
-
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page. :heart:
 
