@@ -172,9 +172,9 @@ Give the API Key a Name, then select **Full Access** and then click on `Create &
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/sgrid_api2.png)
 
-The API key will only be displayed once, so make sure that you copy the key and navigate back to the key vault that we created in the previous step and save the key under the key vault secret called `sendGridApiKey`.  
+The API key will only be displayed once, so make sure that you copy the key and navigate back to the key vault that we created in the previous step and save the key under the key vault secret called `sendGridApiKey`.
 
-Additionally also update the `fromAddress` secret in the key vault with the sender identity **From Email Address** that you have verified in the previous step.  
+Additionally also update the `fromAddress` secret in the key vault with the sender identity **From Email Address** that you have verified in the previous step.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/kvsec1.png)
 
