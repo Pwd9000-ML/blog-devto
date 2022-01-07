@@ -300,7 +300,7 @@ Function SendGrid-Notification {
         [String]$APIKey
     )
 
-    # Body 
+    # Body
     $SendGridBody = @{
         "personalizations" = @(
             @{
