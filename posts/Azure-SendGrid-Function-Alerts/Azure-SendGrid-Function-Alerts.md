@@ -1,6 +1,6 @@
 ---
 title: Get email alerts from serverless Azure functions using SendGrid
-published: false
+published: true
 description: Azure - Function app alerts via SendGrid
 tags: 'azurefunctions, azure, serverless, sendgrid'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/main.png'
