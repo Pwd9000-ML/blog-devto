@@ -6,6 +6,7 @@ tags: 'azurefunctions, azure, serverless, sendgrid'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/main.png'
 canonical_url: null
 id: 947134
+date: '2022-01-07T20:40:38Z'
 ---
 
 ## Overview
