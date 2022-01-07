@@ -75,15 +75,19 @@ $from = $env:fromAddress #SendGrid Sender Address
 
 #Set additional Function variables
 $to = "pwd9000@hotmail.co.uk"
+$subscriptionName = (get-azcontext).Subscription.name
+$subscriptionId = (get-azcontext).Subscription.Id
 
 Write-Error "This is a forced error, something has failed, Please investigate xxxx"
 $failureMessage = $error[0].Exception.message.ToString()
+
+$body = "$failureMessage - Subscruption Details: [Name: $subscriptionName, Id: $subscriptionId ]"
 
 $Parameters = @{
     ToAddress   = "$to"
     FromAddress = "$from"
     Subject     = "Error notification from Azure Function App via SendGrid API"
-    Body        = "$failureMessage"
+    Body        = "$body"
     APIKey      = "$apiKey"
 }
 SendGrid-Notification @Parameters

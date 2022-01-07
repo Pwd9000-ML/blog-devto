@@ -40,7 +40,7 @@ We are going to need to perform the following steps:
 
 ## 1. Create Azure resources
 
-To set up the function app I wrote a PowerShell script using AZ CLI, that would build and configure the function app to use as a demo for this tutorial. You can find the script I used on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page called [Azure-Pre-Reqs.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-SendGrid-Function-Alerts/code/Azure-Pre-Reqs.ps1).
+To set up the function app I wrote a PowerShell script using AZ CLI, that would build and configure the function app to use as a demo for this tutorial. There was one manual step however I will cover a bit later on. You can find the script I used on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page called [Azure-Pre-Reqs.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-SendGrid-Function-Alerts/code/Azure-Pre-Reqs.ps1).
 
 First we will log into Azure by running:
 
@@ -141,6 +141,22 @@ Lets take a closer look, step-by-step what the above script does as part of sett
 
 4. Assign Function App `SystemAssigned` managed identity permissions to access/read secrets on the key vault. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/kvrbac1.png)
 5. Create two dummy key vault secrets called `fromAddress` and `sendGridApiKey` which we will update later. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/kvsec1.png)
+6. Remember I mentioned earlier there is one manual step. In the next step we will change the `requirements.psd1` file on our function to allow the `AZ` module inside of our function by uncommenting the following:
+
+```powershell
+# This file enables modules to be automatically managed by the Functions service.
+# See https://aka.ms/functionsmanageddependency for additional information.
+#
+@{
+    # For latest supported version, go to 'https://www.powershellgallery.com/packages/Az'.
+    # To use the Az module in your function app, please uncomment the line below.
+    'Az' = '7.*'
+}
+```
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/manual1.png)
+
+**NOTE:** Remember to save the manual change we made on `requirements.psd1` above.
 
 ## 2. Create a SendGrid account
 
@@ -284,7 +300,7 @@ Function SendGrid-Notification {
         [String]$APIKey
     )
 
-    # Body
+    # Body 
     $SendGridBody = @{
         "personalizations" = @(
             @{
@@ -334,15 +350,19 @@ $from = $env:fromAddress #SendGrid Sender Address
 
 #Set additional Function variables
 $to = "pwd9000@hotmail.co.uk"
+$subscriptionName = (get-azcontext).Subscription.name
+$subscriptionId = (get-azcontext).Subscription.Id
 
 Write-Error "This is a forced error, something has failed, Please investigate xxxx"
 $failureMessage = $error[0].Exception.message.ToString()
+
+$body = "$failureMessage - Subscruption Details: [Name: $subscriptionName, Id: $subscriptionId ]"
 
 $Parameters = @{
     ToAddress   = "$to"
     FromAddress = "$from"
     Subject     = "Error notification from Azure Function App via SendGrid API"
-    Body        = "$failureMessage"
+    Body        = "$body"
     APIKey      = "$apiKey"
 }
 SendGrid-Notification @Parameters
@@ -356,7 +376,23 @@ Next we are loading the **Powershell** function we created to allow us to send n
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/code2.png)
 
+Next we set up some variables, create a forced error and then send that error in an email alert to a recipient address via the **SendGrid** service API.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/code3.png)
+
+**NOTE:** Note that the **apiKey** and **from** address on line73 and line74 are actually referenced from environment variables, which are the application settings of the **Function App** which is referenced by the Key Vault secrets we set up earlier.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/funcappsettings1.png)
+
 ## Testing the Function
+
+Lets run and test our Function app and see if we get an email alert via the SendGrid service. Navigate to the Function app and select the function we created earlier. Select `Code + Test` followed by `Test/Run` and then click on `Run`.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/test.png)
+
+A few seconds later you shpuld see the email notification:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/result.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page. :heart:
 
