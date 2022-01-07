@@ -284,7 +284,7 @@ Function SendGrid-Notification {
         [String]$APIKey
     )
 
-    # Body 
+    # Body
     $SendGridBody = @{
         "personalizations" = @(
             @{
@@ -352,7 +352,7 @@ Lets take a closer look at what this code actually does. In the first few lines 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/code1.png)
 
-Next we are loading the **Powershell** function we created to allow us to send notifications via the **SendGrid** service API.  
+Next we are loading the **Powershell** function we created to allow us to send notifications via the **SendGrid** service API.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/code2.png)
 
