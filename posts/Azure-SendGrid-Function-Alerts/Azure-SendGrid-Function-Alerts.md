@@ -1,5 +1,5 @@
 ---
-title: Get email alerts from serverless Azure functions using SendGrid
+title: Get email notifications from serverless Azure functions using SendGrid
 published: true
 description: Azure - Function app alerts via SendGrid
 tags: 'azurefunctions, azure, serverless, sendgrid'
@@ -15,7 +15,7 @@ I recently posted a tutorial on how to better manage and maintain the lifecycle 
 
 The full tutorial can be found here: {% link <https://dev.to/pwd9000/automate-azure-resource-decommissions-with-tracking-aok> %}
 
-This brings me to this new tutorial I want to share with you today. I was thinking how we can even better the process by also getting an email alert when a resource has been decommissioned or if a decommission has failed, and perhaps including the error message in the alert if it was a failed decommission. So today I will share with you a general guide on how we can utilize a service in Azure called **SendGrid** to send us email notifications from an **Azure Function App**.
+This brings me to this new tutorial I want to share with you today. I was thinking how we can even better the process by also getting an email notification when a resource has been decommissioned or if a decommission has failed, and perhaps including the error message in the alert if it was a failed decommission. So today I will share with you a general guide on how we can utilize a SaaS service in Azure called **SendGrid** to send us email notifications from an **Azure Function App**.
 
 This tutorial is only a general guide on how to utilize the **SendGrid** service inside of a **Function App** to send notification emails and does not follow on my previous tutorial. This guide is meant to serve as a supplement to show how to set up the **SendGrid** service and utilize the service in any **Powershell** based **Function App** in any environment, giving the ability to send email notifications to relevant stakeholders.
 
@@ -35,8 +35,8 @@ We are going to need to perform the following steps:
 
 1. **Create Azure resources:** (Optional) We will first create a Resource Group, PowerShell based Function App and KeyVault. This step is optional only for this demo/tutorial.
 2. **Create a SendGrid account:** We will create a FREE SendGrid account, activate the account and create a sender identity.
-3. **Generate a SendGrid API Key:** We will generate an API Key, store this key in the key vault and consume it in our PowerShell function to authenticate to the SendGrid service.
-4. **Create a SendGrid API PowerShell Function:** We will create a PowerShell function to interact with the SendGrid API and service to send an email notification.
+3. **Generate a SendGrid API Key:** We will generate an API Key, store this key in the key vault and consume it in our PowerShell function to authenticate to the SendGrid API.
+4. **Create a SendGrid API PowerShell Function:** We will create a PowerShell function to interact with the SendGrid API to send an email notification.
 5. **Integrate PowerShell Function into Function App:** We will integrate our PowerShell function into our Function App and test.
 
 ## 1. Create Azure resources
@@ -136,9 +136,9 @@ Lets take a closer look, step-by-step what the above script does as part of sett
 
 1. Create a resource group called `SendGrid-Function-App-Demo`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/rg.png)
 2. Create a **PowerShell** Function App with `SystemAssigned` managed identity, `consumption` app service plan, `insights`, a `key vault` and function app `storage account`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/func.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/funcmi1.png)
-3. Configure Function App environment variables. (Will be consumed inside of function app later). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/funcappsettings1.png)
+3. Configure Function App environment variables. (These settings/variables will be consumed inside of the function app later). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/funcappsettings1.png)
 
-   **NOTE:** You will see that we are referencing the `fromAddress` and `sendGridApiKey` from our key vault.
+   **NOTE:** You will see that we are referencing the `fromAddress` and `sendGridApiKey` from the key vault we created.
 
 4. Assign Function App `SystemAssigned` managed identity permissions to access/read secrets on the key vault. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/kvrbac1.png)
 5. Create two dummy key vault secrets called `fromAddress` and `sendGridApiKey` which we will update later. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/kvsec1.png)
@@ -197,9 +197,9 @@ Additionally also update the `fromAddress` secret in the key vault with the send
 
 ## 4. Create a SendGrid API PowerShell Function
 
-The following function can also be found on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page called [SendGrid-Notification.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-SendGrid-Function-Alerts/code/SendGrid-Notification.ps1)
+The PowerShell function in this section can also be found on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page called [SendGrid-Notification.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-SendGrid-Function-Alerts/code/SendGrid-Notification.ps1)  
 
-It is a simple **PowerShell** function to send an email via the SendGrid API and service we created in an earlier step.
+The PowerShell code below is a simple **PowerShell** function to interact with and send an email via the SendGrid service API.
 
 ```powershell
 ## code/SendGrid-Notification.ps1
@@ -265,7 +265,7 @@ Function SendGrid-Notification {
 
 ## 5. Integrate PowerShell Function into Function App
 
-The following function app code can also be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page called [run.ps1](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code/run.ps1).
+The function app code in this section can also be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page called [run.ps1](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code/run.ps1).
 
 1. Navigate to the function app we created previously and select `+ Create` under `Functions`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/create.png)
 2. Select `Develop in portal` and for the template select `Timer trigger`, name the function `SendGrid-Demo`, set the cron schedule to run on the frequency you need (in my case I have set this to once a day at 23:00pm) `0 0 23 * * *`, and hit `Create`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/create2.png)
@@ -381,21 +381,22 @@ Next we set up some variables, create a forced error and then send that error in
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/code3.png)
 
-**NOTE:** Note that the **apiKey** and **from** address on line73 and line74 are actually referenced from environment variables, which are the application settings of the **Function App** which is referenced by the Key Vault secrets we set up earlier.
+**NOTE:** Note that the **apiKey** and **from** address on line73 and line74 are actually referenced from environment variables, which are the application settings of the **Function App** which are referencing the key vault secrets we set up earlier. So we are not exposing any API secrets in our function app code nor the function app settings.  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/funcappsettings1.png)
 
 ## Testing the Function
 
-Lets run and test our Function app and see if we get an email alert via the SendGrid service. Navigate to the Function app and select the function we created earlier. Select `Code + Test` followed by `Test/Run` and then click on `Run`.
+Lets run and test our Function app and see if we get an email notification via the SendGrid service. Navigate to the function app and select the function we created. Select `Code + Test` followed by `Test/Run` and then click on `Run`.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/test.png)
 
-A few seconds later you should see the email notification that was triggered by the Function App and sent via the **SendGrid** service API:
+A few seconds later you should see the email notification that was triggered by the function app and sent via the **SendGrid** service API.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-SendGrid-Function-Alerts/assets/result.png)
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page. :heart:
+That concludes this tutorial and I hope that you can utilize this great service in other use cases and functions that you may be running inside of your environment.  
+I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-SendGrid-Function-Alerts/code) page. :heart:
 
 ### _Author_
 
