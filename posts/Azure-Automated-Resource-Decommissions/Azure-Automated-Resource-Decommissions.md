@@ -419,7 +419,7 @@ Everything is working as expected. Now we can easily preset resources we would l
 
 ## Going even further with SendGrid
 
-If you want to enable email notifications for your decommissions, have a look at my other blog post on how to use a service called **SendGrid** to send email notifications from within your functions.
+If you want to enable email notifications for your decommissions, have a look at my other blog post on how to utilize a SaaS email service called **SendGrid** to send email notifications from within your functions.
 
 {% link <https://dev.to/pwd9000/https://dev.to/pwd9000/get-email-alerts-from-serverless-azure-functions-using-sendgrid-217m> %}
 
