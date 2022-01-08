@@ -417,6 +417,12 @@ I can also see that **TestRG2** and **pwd9000sa3** which had resource locks enab
 
 Everything is working as expected. Now we can easily preset resources we would like to decommission by simply just adding a tag to the resource or resource group with the tag key of **Decommission** and tag value of the date we want the resource to be decommissioned on in date format **dd/MM/yyyy**. We could also give our users access to set tags themselves on resources they manage to allow them to remove resources in a controlled manner. Our function app will just run on its schedule and decommission resources which are tagged and also track the automated decommissions and failures in table storage.
 
+## Going even further with SendGrid
+
+If you want to enable email notifications for your decommissions, have a look at my other blog post on how to use a service called **SendGrid** to send email notifications from within your functions.
+
+{% link <https://dev.to/pwd9000/https://dev.to/pwd9000/get-email-alerts-from-serverless-azure-functions-using-sendgrid-217m> %}
+
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Automated-Resource-Decommissions/code) page. :heart:
 
 ### _Author_
