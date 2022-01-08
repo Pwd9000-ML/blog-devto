@@ -108,7 +108,7 @@ The above command will output a JSON object with the role assignment credentials
 We also want to give our service principal `clientId` permissions on our subscription in order to look up VMs as well as set/change VM passwords. We will grant our service principal identity the following RBAC role: [Virtual Machine Contributor](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#virtual-machine-contributor). Run the following command:
 
 ```powershell
-# Assign additional RBAC role to Service Principal Subscription to manage Virtual machines 
+# Assign additional RBAC role to Service Principal Subscription to manage Virtual machines
 az ad sp list --display-name $appId --query [].appId -o tsv | ForEach-Object {
     az role assignment create --assignee "$_" `
         --role "Virtual Machine Contributor" `
