@@ -421,7 +421,7 @@ Everything is working as expected. Now we can easily preset resources we would l
 
 If you want to enable email notifications for your decommissions, have a look at my other blog post on how to utilize a SaaS email service called **SendGrid** to send email notifications from within your functions.
 
-{% link <https://dev.to/pwd9000/https://dev.to/pwd9000/get-email-alerts-from-serverless-azure-functions-using-sendgrid-217m> %}
+{% link <https://dev.to/pwd9000/get-email-alerts-from-serverless-azure-functions-using-sendgrid-217m> %}
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Automated-Resource-Decommissions/code) page. :heart:
 
