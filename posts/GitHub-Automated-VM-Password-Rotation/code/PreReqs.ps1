@@ -26,10 +26,12 @@ az ad sp create-for-rbac --name $appId `
     --scopes /subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.KeyVault/vaults/$keyVaultName `
     --sdk-auth
 
-# Assign aditional RBAC role to Service Principal Subscription to manage Virtual machines 
-az role assignment create --assignee "<ClientID from previous step>" `
-    --role "Virtual Machine Contributor" `
-    --subscription $subscriptionId
+# Assign additional RBAC role to Service Principal Subscription to manage Virtual machines 
+az ad sp list --display-name $appId --query [].appId -o tsv | ForEach-Object {
+    az role assignment create --assignee "$_" `
+        --role "Virtual Machine Contributor" `
+        --subscription $subscriptionId
+    }
 
 # Authorize the operation to create a few secrets - Signed in User (Key Vault Secrets Officer)
 az ad signed-in-user show --query objectId -o tsv | foreach-object {

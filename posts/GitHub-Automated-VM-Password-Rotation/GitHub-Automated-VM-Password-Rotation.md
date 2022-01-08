@@ -105,12 +105,15 @@ The above command will output a JSON object with the role assignment credentials
 }
 ```
 
-We also want to give our `clientId` permissions on our subscription in order to look up VMs as well as set/change VM passwords. We will grant our service principal identity the following RBAC role: [Virtual Machine Contributor](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#virtual-machine-contributor). Run the following command:
+We also want to give our service principal `clientId` permissions on our subscription in order to look up VMs as well as set/change VM passwords. We will grant our service principal identity the following RBAC role: [Virtual Machine Contributor](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#virtual-machine-contributor). Run the following command:
 
 ```powershell
-az role assignment create --assignee "<ClientID from previous step>" `
-    --role "Virtual Machine Contributor" `
-    --subscription "<SubscriptionId-where-keyvault-and-Vms-are-hosted>"
+# Assign additional RBAC role to Service Principal Subscription to manage Virtual machines 
+az ad sp list --display-name $appId --query [].appId -o tsv | ForEach-Object {
+    az role assignment create --assignee "$_" `
+        --role "Virtual Machine Contributor" `
+        --subscription $subscriptionId # SubscriptionId where key vault and Vms are hosted
+    }
 ```
 
 We will also give our signed in user the same key vault access to be able to create secrets later on as we will create secrets representing each of our servers a bit later on in this tutorial.
