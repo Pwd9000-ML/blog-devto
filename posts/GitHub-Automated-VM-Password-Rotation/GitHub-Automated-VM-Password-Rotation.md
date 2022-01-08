@@ -108,9 +108,21 @@ The above command will output a JSON object with the role assignment credentials
 We also want to give our `clientId` permissions on our subscription in order to look up VMs as well as set/change VM passwords. We will grant our service principal identity the following RBAC role: [Virtual Machine Contributor](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#virtual-machine-contributor). Run the following command:
 
 ```powershell
-az role assignment create --assignee "<clientId>" `
+az role assignment create --assignee "<ClientID from previous step>" `
     --role "Virtual Machine Contributor" `
     --subscription "<SubscriptionId-where-keyvault-and-Vms-are-hosted>"
+```
+
+We will also give our signed in user the same key vault access to be able to create secrets later on as we will create secrets representing each of our servers a bit later on in this tutorial.
+
+```powershell
+# Authorize the operation to create a few secrets - Signed in User (Key Vault Secrets Officer)
+az ad signed-in-user show --query objectId -o tsv | foreach-object {
+    az role assignment create `
+        --role "Key Vault Secrets Officer" `
+        --assignee "$_" `
+        --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.KeyVault/vaults/$keyVaultName"
+    }
 ```
 
 ### Configure our GitHub repository
@@ -189,7 +201,7 @@ jobs:
                 }
                 Else {
                   Write-output "VM is in a [running] state... Generating new secure Password for: [$vmName]"
-                  $passwordGen = ("$${{ env.RANDOM_CHAR_SET }}" | sort {Get-Random})[0..15] -join ''
+                  $passwordGen = (("$${{ env.RANDOM_CHAR_SET }}")[0..15] | Get-Random -Count 15) -join ''
                   $secretPassword = ConvertTo-SecureString -String $passwordGen -AsPlainText -Force
                   Write-Output "Updating key vault: [$keyVaultName] with new random secure password for virtual machine: [$vmName]"
                   $Date = (Get-Date).tostring("dd-MM-yyyy")
