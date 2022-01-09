@@ -204,7 +204,7 @@ jobs:
                 }
                 Else {
                   Write-output "VM is in a [running] state... Generating new secure Password for: [$vmName]"
-                  $passwordGen = (("$${{ env.RANDOM_CHAR_SET }}")[0..15] | Get-Random -Count 15) -join ''
+                  $passwordGen = (("$${{ env.RANDOM_CHAR_SET }}")[0..64] | Get-Random -Count 15) -join ''
                   $secretPassword = ConvertTo-SecureString -String $passwordGen -AsPlainText -Force
                   Write-Output "Updating key vault: [$keyVaultName] with new random secure password for virtual machine: [$vmName]"
                   $Date = (Get-Date).tostring("dd-MM-yyyy")
