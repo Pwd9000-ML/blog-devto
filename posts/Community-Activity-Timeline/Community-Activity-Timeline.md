@@ -15,7 +15,7 @@ When it comes to cloud technology, I usually blog and go where my curiosity take
 
 Here is a summary and timeline of my community activity, speaking events and contributions. Including events I will be presenting at in the near future. Feel free to reach out to me if you would like me to speak at a community user group, event, conference or meetup.
 
-## 🔥 Upcoming 🔥
+# 🔥 Upcoming 🔥
 
 If you like my content feel free to bookmark this page as it gets updated frequently to showcase any new content or upcoming events/conferences/podcasts I will be presenting at.
 
@@ -26,8 +26,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | **26/01/2022** | [Cloud Lunch and Learn Weekly Sessions! - Automate password rotation with Github and Azure](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, GitHub, PowerShell | Security, SecDevOps, Automation, Podcast |
 
 ---
-
-## 👉 2022 👈
+# 👉 2022 👈
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
@@ -37,7 +36,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 ---
 
-## ✨ 2021 ✨
+# ✨ 2021 ✨
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
