@@ -10,7 +10,7 @@ id: 953760
 
 ## Tech Community Contributions
 
-When it comes to cloud technology, I usually blog and go where my curiosity takes me covering topics on Microsoft Azure, Azure DevOps and GitHub. I enjoy creating technical content, public speaking & virtual meetups, and love to share my knowledge in these areas with the tech community.  
+When it comes to cloud technology, I usually blog and go where my curiosity takes me covering topics on Microsoft Azure, Azure DevOps and GitHub. I enjoy creating technical content, public speaking & virtual meetups, and love to share my knowledge in these areas with the tech community.
 
 Here is a summary and timeline of my community activity, speaking events and contributions. Including events I will be presenting at in the near future. Feel free to reach out to me if you would like me to speak at a community user group, event, conference or meetup.  
 ## 2022
