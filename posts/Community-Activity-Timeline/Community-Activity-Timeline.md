@@ -15,10 +15,11 @@ When it comes to cloud technology, I usually blog and go where my curiosity take
 Here is a summary and timeline of my community activity, speaking events and contributions. Including events I will be presenting at in the near future. Feel free to reach out to me if you would like me to speak at a community user group, event, conference or meetup.  
 ## 2022
 
-This page gets updated frequently to showcase any new content or upcoming events I will be attending.  
+If you like my content feel free to bookmark this page as it gets updated frequently to showcase any new content or upcoming events I will be attending.  
 
-|Date       |Activity                                          |Type               | Topic Area    |Tags|
-|2/26/2021  |Creating Templates For Azure DevOps Pipeline Jobs |Blog/Website Post  | Azure SDK (S) |    |
+|Date |Activity |Type |Topic Area |Tags |
+|-----|---------|-----|-----------|-----|
+|2/26/2021 |Creating Templates For Azure DevOps Pipeline Jobs |Blog/Website Post |Azure SDK (S) | test |
 
 ### _Author_
 
