@@ -16,11 +16,11 @@ Here is a summary and timeline of my community activity, speaking events and con
 
 ## 2022
 
-If you like my content feel free to bookmark this page as it gets updated frequently to showcase any new content or upcoming events I will be attending.  
+If you like my content feel free to bookmark this page as it gets updated frequently to showcase any new content or upcoming events I will be attending.
 
-|Date |Activity |Type |Topic Area |Tags |
-|-----|---------|-----|-----------|-----|
-|2/26/2021 |Creating Templates For Azure DevOps Pipeline Jobs |Blog/Website Post |Azure SDK (S) | test |
+| Date | Activity | Type | Topic Area | Tags |
+| --- | --- | --- | --- | --- |
+| 2/26/2021 | Creating Templates For Azure DevOps Pipeline Jobs | Blog/Website Post | Azure SDK (S) | test |
 
 ## 2021
 
