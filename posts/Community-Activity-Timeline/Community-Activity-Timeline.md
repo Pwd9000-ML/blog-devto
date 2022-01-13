@@ -6,6 +6,7 @@ tags: 'devcommunity, azure, devops, microsoftcloud'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Community-Activity-Timeline/assets/main.png'
 canonical_url: null
 id: 953760
+date: '2022-01-13T11:34:23Z'
 ---
 
 ## Tech Community Contributions
@@ -44,7 +45,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | **24/10/2021** | [Upload Files to Azure Storage using a PowerShell Function App](https://dev.to/pwd9000/upload-files-to-azure-storage-using-a-powershell-function-app-15li) | Blog/Website Post | Azure, PowerShell | Automation, API, Serverless, FunctionApps, Tutorial |
 | **16/10/2021** | [Terraform IaC Scanning with Trivy](https://dev.to/pwd9000/terraform-iac-scanning-with-trivy-3cai) | Blog/Website Post | Azure DevOps | Terraform, Automation, IaC, SecDevOps, Tutorial |
 | **03/10/2021** | [Terraform - Complex Variable Types](https://dev.to/pwd9000/terraform-complex-variable-types-173e) | Blog/Website Post | DevOps | Terraform, Automation, IaC, Tutorial |
-| **15/09/2021** | [Create a PDF document from an Azure DevOps Wiki](https://dev.to/pwd9000/create-a-pdf-document-from-an-azure-devops-wiki-fjh) | Blog/Website Post | Azure DevOps| Pipelines, Automation, Tutorial |
+| **15/09/2021** | [Create a PDF document from an Azure DevOps Wiki](https://dev.to/pwd9000/create-a-pdf-document-from-an-azure-devops-wiki-fjh) | Blog/Website Post | Azure DevOps | Pipelines, Automation, Tutorial |
 | **08/09/2021** | [Azure Nibble - Hosts File Generator using KQL for App Services](https://dev.to/pwd9000/azure-nibble-hosts-file-generator-using-kql-for-app-services-p5i) | Blog/Website Post | Azure | Kusto, Monitoring, Automation, Tips |
 | **30/08/2021** | [DevOps/Github service notifications using Azure Logic Apps](https://dev.to/pwd9000/devops-github-service-notifications-using-azure-logic-apps-124e) | Blog/Website Post | Azure, Azure Devops, GitHub | Serverless, Monitoring, Automation, LogicApps, Tutorial |
 | **27/08/2021** | [Github/DevOps status](https://dev.to/pwd9000/github-devops-status-2eji) | Blog/Website Post | Azure DevOps,GitHub | Monitoring, Tips |
