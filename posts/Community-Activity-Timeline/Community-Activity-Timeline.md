@@ -1,6 +1,6 @@
 ---
 title: My Tech Community Activity Timeline
-published: false
+published: true
 description: Showcase and timeline of my tech community activity and contributions
 tags: 'devcommunity, azure, devops, microsoftcloud'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Community-Activity-Timeline/assets/main.png'
@@ -20,17 +20,30 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| 2/26/2021 | Creating Templates For Azure DevOps Pipeline Jobs | Blog/Website Post | Azure SDK (S) | test |
+| **23/03/2022** | [Cloud Lunch and Learn Weekly Sessions! - Automate Azure Resource Decommissions using Azure Serverless Function App (with tracking)](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
+| **23/02/2022** | [Cloud Lunch and Learn Weekly Sessions! - Reusable GitHub workflows to automate tokens](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, ServiceBus, SecDevOps, Podcast |
+| **26/01/2022** | [Cloud Lunch and Learn Weekly Sessions! - Automate password rotation with Github and Azure](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, GitHub, PowerShell | Security, SecDevOps, Automation, Podcast |
+
 ## 2022
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| 2/26/2021 | Creating Templates For Azure DevOps Pipeline Jobs | Blog/Website Post | Azure SDK (S) | test |
+| **09/01/2022** | [DevCon6 - Automate password rotation with Github and Azure](https://youtu.be/UaS3I38XK2U) | Public Speaking | GitHub, PowerShell | Security, SecDevOps, Automation, Conference |
+| **08/01/2022** | [myNewsWrap – SAP and Microsoft (Episode 66) - Automate Azure Resource Decommissions (with tracking)](https://youtu.be/b6gXihOsfCo) | Podcast | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
+| **07/01/2022** | [Get email notifications from serverless Azure functions using SendGrid](https://dev.to/pwd9000/get-email-alerts-from-serverless-azure-functions-using-sendgrid-217m) | Blog/Website Post | Azure, PowerShell | Automation, Serverless, FunctionApps, SendGrid, Tutorial |
 
 ## 2021
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **20/12/2021** | [Automate Azure Resource Decommissions (with tracking)](https://dev.to/pwd9000/automate-azure-resource-decommissions-with-tracking-aok) | Blog/Website Post | Azure, PowerShell | Automation, Serverless, FunctionApps, Tutorial |
+| **03/12/2021** | [Festive Tech Calendar 2021 - Automate password rotation with Github and Azure](https://youtu.be/nSSQtOvwVzA) | Public Speaking | GitHub, PowerShell | Security, SecDevOps, Automation, Conference |
+| **14/11/2021** | [GitHub Actions Hackathon 2021 - Reusable workflows to automate tokens](https://dev.to/pwd9000/github-actions-hackathon-2021-reusable-workflows-to-automate-tokens-3hke) | Hackathon | GitHub | Automation, Security, GitHubActions |
+| **14/11/2021** | [Automate Azure Service Bus SAS tokens with Github](https://dev.to/pwd9000/automate-azure-service-bus-sas-tokens-with-github-37ok) | Blog/Website Post | Azure, GitHub | Automation, Security, GitHubActions, ServiceBus, SecDevOps, Tutorial |
+| **09/11/2021** | [GitHub Actions Hackathon 2021 - Automate Password Rotation using Github Actions](https://dev.to/pwd9000/github-actions-hackathon-2021-automate-password-rotation-using-github-actions-1kbb) | Hackathon | GitHub | Automation, Security, GitHubActions |
+| **24/10/2021** | [Upload Files to Azure Storage using a PowerShell Function App](https://dev.to/pwd9000/upload-files-to-azure-storage-using-a-powershell-function-app-15li) | Blog/Website Post | Azure, PowerShell | Automation, API, Serverless, FunctionApps, Tutorial |
+| **16/10/2021** | [Terraform IaC Scanning with Trivy](https://dev.to/pwd9000/terraform-iac-scanning-with-trivy-3cai) | Blog/Website Post | Azure DevOps | Terraform, Automation, IaC, SecDevOps, Tutorial |
+| **03/10/2021** | [Terraform - Complex Variable Types](https://dev.to/pwd9000/terraform-complex-variable-types-173e) | Blog/Website Post | DevOps | Terraform, Automation, IaC, Tutorial |
 | **15/09/2021** | [Create a PDF document from an Azure DevOps Wiki](https://dev.to/pwd9000/create-a-pdf-document-from-an-azure-devops-wiki-fjh) | Blog/Website Post | Azure DevOps| Pipelines, Automation, Tutorial |
 | **08/09/2021** | [Azure Nibble - Hosts File Generator using KQL for App Services](https://dev.to/pwd9000/azure-nibble-hosts-file-generator-using-kql-for-app-services-p5i) | Blog/Website Post | Azure | Kusto, Monitoring, Automation, Tips |
 | **30/08/2021** | [DevOps/Github service notifications using Azure Logic Apps](https://dev.to/pwd9000/devops-github-service-notifications-using-azure-logic-apps-124e) | Blog/Website Post | Azure, Azure Devops, GitHub | Serverless, Monitoring, Automation, LogicApps, Tutorial |
