@@ -36,6 +36,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | **07/01/2022** | [Get email notifications from serverless Azure functions using SendGrid](https://dev.to/pwd9000/get-email-alerts-from-serverless-azure-functions-using-sendgrid-217m) | Blog/Website Post | Azure, PowerShell | Automation, Serverless, FunctionApps, SendGrid, Tutorial |
 
 ---
+
 <h1 align="center"> ✨ 2021 ✨ </h1>
 <span align="center"> <h1> ✨ 2021 ✨ </h1> </span>
 
