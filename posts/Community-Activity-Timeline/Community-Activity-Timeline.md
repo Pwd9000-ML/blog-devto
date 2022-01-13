@@ -37,11 +37,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 ---
 
-<h1 style="text-align: center;">✨ 2021 ✨</h1>
-
-<h1 align="center"> ✨ 2021 ✨ </h1>
-
-<span align="center"> <h1> ✨ 2021 ✨ </h1> </span>
+## ✨ 2021 ✨
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
