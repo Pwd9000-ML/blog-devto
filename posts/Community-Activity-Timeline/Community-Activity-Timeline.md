@@ -21,6 +21,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
 | 2/26/2021 | Creating Templates For Azure DevOps Pipeline Jobs | Blog/Website Post | Azure SDK (S) | test |
+
 ## 2022
 
 | Date | Activity | Type | Topic Area | Tags |
