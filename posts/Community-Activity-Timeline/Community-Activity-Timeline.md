@@ -21,6 +21,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **27/04/2022** | [Cloud Lunch and Learn Weekly Sessions! - Automate Azure Role Based Access Control (RBAC) using Azure DevOps)](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure DevOps, PowerShell | Security, SecDevOps, RBAC, Automation, Podcast |
 | **23/03/2022** | [Cloud Lunch and Learn Weekly Sessions! - Automate Azure Resource Decommissions using Azure Serverless Function App (with tracking)](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
 | **23/02/2022** | [Cloud Lunch and Learn Weekly Sessions! - Reusable GitHub workflows to automate tokens](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, ServiceBus, SecDevOps, Podcast |
 | **26/01/2022** | [Cloud Lunch and Learn Weekly Sessions! - Automate password rotation with Github and Azure](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, GitHub, PowerShell | Security, SecDevOps, Automation, Podcast |
