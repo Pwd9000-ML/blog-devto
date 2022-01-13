@@ -26,6 +26,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | **26/01/2022** | [Cloud Lunch and Learn Weekly Sessions! - Automate password rotation with Github and Azure](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, GitHub, PowerShell | Security, SecDevOps, Automation, Podcast |
 
 ---
+
 # 👉 2022 👈
 
 | Date | Activity | Type | Topic Area | Tags |
