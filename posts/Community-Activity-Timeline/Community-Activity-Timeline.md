@@ -25,6 +25,8 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | **23/02/2022** | [Cloud Lunch and Learn Weekly Sessions! - Reusable GitHub workflows to automate tokens](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, ServiceBus, SecDevOps, Podcast |
 | **26/01/2022** | [Cloud Lunch and Learn Weekly Sessions! - Automate password rotation with Github and Azure](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, GitHub, PowerShell | Security, SecDevOps, Automation, Podcast |
 
+---
+
 ## 👉 2022 👈
 
 | Date | Activity | Type | Topic Area | Tags |
@@ -32,6 +34,8 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | **09/01/2022** | [DevCon6 - Automate password rotation with Github and Azure](https://youtu.be/UaS3I38XK2U) | Public Speaking | GitHub, PowerShell | Security, SecDevOps, Automation, Conference |
 | **08/01/2022** | [myNewsWrap – SAP and Microsoft (Episode 66) - Automate Azure Resource Decommissions (with tracking)](https://youtu.be/b6gXihOsfCo) | Podcast | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
 | **07/01/2022** | [Get email notifications from serverless Azure functions using SendGrid](https://dev.to/pwd9000/get-email-alerts-from-serverless-azure-functions-using-sendgrid-217m) | Blog/Website Post | Azure, PowerShell | Automation, Serverless, FunctionApps, SendGrid, Tutorial |
+
+---
 
 ## ✨ 2021 ✨
 
@@ -62,6 +66,8 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | **17/05/2021** | [Automate password rotation with Github and Azure](https://dev.to/pwd9000/automate-password-rotation-with-github-and-azure-412a) | Blog/Website Post | GitHub, PowerShell | Security, SecDevOps, Automation, Tutorial |
 | **05/05/2021** | [Automate Azure Role Based Access Control (RBAC) using DevOps](https://dev.to/pwd9000/automate-azure-role-based-access-control-rbac-with-devops-2ehf) | Blog/Website Post | Azure Devops, PowerShell | Security, SecDevOps, RBAC, Automation, Tutorial |
 | **02/05/2021** | [PowerShell - Using Parameter Sets](https://dev.to/pwd9000/powershell-using-parameter-sets-5da8) | Blog/Website Post | PowerShell | Tutorial |
+
+---
 
 ### _Author_
 
