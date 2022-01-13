@@ -65,7 +65,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | **24/05/2021** | [Automate Azure Role Based Access Control (RBAC) using Github](https://dev.to/pwd9000/automate-azure-role-based-access-control-rbac-using-github-2349) | Blog/Website Post | GitHub, PowerShell | Security, SecDevOps, RBAC, Automation, Tutorial |
 | **17/05/2021** | [Automate password rotation with Github and Azure](https://dev.to/pwd9000/automate-password-rotation-with-github-and-azure-412a) | Blog/Website Post | GitHub, PowerShell | Security, SecDevOps, Automation, Tutorial |
 | **05/05/2021** | [Automate Azure Role Based Access Control (RBAC) using DevOps](https://dev.to/pwd9000/automate-azure-role-based-access-control-rbac-with-devops-2ehf) | Blog/Website Post | Azure Devops, PowerShell | Security, SecDevOps, RBAC, Automation, Tutorial |
-| <font size="2"> 02/05/2021 </font>  | [PowerShell - Using Parameter Sets](https://dev.to/pwd9000/powershell-using-parameter-sets-5da8) | Blog/Website Post | PowerShell | <font size="1"> Tutorial </font> |
+| <font size="2"> 02/05/2021 </font> | [PowerShell - Using Parameter Sets](https://dev.to/pwd9000/powershell-using-parameter-sets-5da8) | Blog/Website Post | PowerShell | <font size="1"> Tutorial </font> |
 
 ---
 
