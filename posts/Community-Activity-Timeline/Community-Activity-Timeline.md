@@ -21,6 +21,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
 | 2/26/2021 | Creating Templates For Azure DevOps Pipeline Jobs | Blog/Website Post | Azure SDK (S) | test |
+
 ## 2022
 
 | Date | Activity | Type | Topic Area | Tags |
@@ -31,7 +32,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **15/09/2021** | [Create a PDF document from an Azure DevOps Wiki](https://dev.to/pwd9000/create-a-pdf-document-from-an-azure-devops-wiki-fjh) | Blog/Website Post | Azure DevOps| Pipelines, Automation, Tutorial |
+| **15/09/2021** | [Create a PDF document from an Azure DevOps Wiki](https://dev.to/pwd9000/create-a-pdf-document-from-an-azure-devops-wiki-fjh) | Blog/Website Post | Azure DevOps | Pipelines, Automation, Tutorial |
 | **08/09/2021** | [Azure Nibble - Hosts File Generator using KQL for App Services](https://dev.to/pwd9000/azure-nibble-hosts-file-generator-using-kql-for-app-services-p5i) | Blog/Website Post | Azure | Kusto, Monitoring, Automation, Tips |
 | **30/08/2021** | [DevOps/Github service notifications using Azure Logic Apps](https://dev.to/pwd9000/devops-github-service-notifications-using-azure-logic-apps-124e) | Blog/Website Post | Azure, Azure Devops, GitHub | Serverless, Monitoring, Automation, LogicApps, Tutorial |
 | **27/08/2021** | [Github/DevOps status](https://dev.to/pwd9000/github-devops-status-2eji) | Blog/Website Post | Azure DevOps,GitHub | Monitoring, Tips |
