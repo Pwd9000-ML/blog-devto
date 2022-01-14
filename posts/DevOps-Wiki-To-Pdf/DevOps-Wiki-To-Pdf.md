@@ -2,7 +2,7 @@
 title: Create a PDF document from an Azure DevOps Wiki
 published: true
 description: DevOps - Convert Devops Wiki to PDF
-tags: 'automation, azure, devops'
+tags: 'automation, azure, devops, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Wiki-To-Pdf/assets/main.png'
 canonical_url: null
 id: 824638

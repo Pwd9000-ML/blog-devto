@@ -2,7 +2,7 @@
 title: Restrict Azure DevOps PAT tokens with Azure AD policy
 published: true
 description: DevOps - Personal Access Token (PAT) policy
-tags: 'azure, devops, devopssecurity'
+tags: 'azure, devops, devopssecurity, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-PAT-Token-Policy/assets/azure-pat2.png'
 canonical_url: null
 id: 739025
