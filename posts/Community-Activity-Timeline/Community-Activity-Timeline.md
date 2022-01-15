@@ -32,6 +32,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **15/01/2022** | [myNewsWrap – SAP and Microsoft (Episode 67) - 3x posts featured](https://youtu.be/0g7pcxk6YWE) | Podcast | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
 | **09/01/2022** | [DevCon6 - Automate password rotation with Github and Azure](https://youtu.be/UaS3I38XK2U) | Public Speaking | GitHub, PowerShell | Security, SecDevOps, Automation, Conference |
 | **08/01/2022** | [myNewsWrap – SAP and Microsoft (Episode 66) - Automate Azure Resource Decommissions (with tracking)](https://youtu.be/b6gXihOsfCo) | Podcast | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
 | **07/01/2022** | [Get email notifications from serverless Azure functions using SendGrid](https://dev.to/pwd9000/get-email-alerts-from-serverless-azure-functions-using-sendgrid-217m) | Blog/Website Post | Azure, PowerShell | Automation, Serverless, FunctionApps, SendGrid, Tutorial |
