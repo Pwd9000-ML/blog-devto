@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 957428
 series: Automate password rotation
+date: '2022-01-16T17:32:53Z'
 ---
 
 ### Overview
@@ -59,7 +60,7 @@ name: Update Azure VM passwords
 on:
   workflow_dispatch:
   schedule:
-    - cron:  '0 9 * * 1' ##Runs at 9AM UTC every Monday##
+    - cron: '0 9 * * 1' ##Runs at 9AM UTC every Monday##
 
 jobs:
   publish:
@@ -68,19 +69,19 @@ jobs:
       KEY_VAULT_NAME: 'your-key-vault-name'
 
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v2
+      - name: Check out repository
+        uses: actions/checkout@v2
 
-    - name: Log into Azure using github secret AZURE_CREDENTIALS
-      uses: Azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        enable-AzPSSession: true
+      - name: Log into Azure using github secret AZURE_CREDENTIALS
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
 
-    - name: Rotate VMs administrator passwords
-      uses: Pwd9000-ML/azure-vm-password-rotate@v1.0.2
-      with:
-        key-vault-name: ${{ env.KEY_VAULT_NAME }}
+      - name: Rotate VMs administrator passwords
+        uses: Pwd9000-ML/azure-vm-password-rotate@v1.0.2
+        with:
+          key-vault-name: ${{ env.KEY_VAULT_NAME }}
 ```
 
 ## Notes
