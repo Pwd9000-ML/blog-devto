@@ -3,7 +3,7 @@ title: PowerShell - Using Parameter Sets
 published: true
 description: Powershell - How to use parameter sets in PowerShell functions
 tags: 'powershell, PoSH'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Powershell-Using-Parameter-Sets/assets/PowerShellHowTo.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Powershell-Using-Parameter-Sets/assets/PowerShellHowTo.png'
 canonical_url: null
 id: 685386
 date: '2021-05-02T12:29:00Z'
@@ -53,11 +53,11 @@ We will also give parameter switch `$B` and it's corresponding parameters, it's 
 
 Now that we have defined our parameter sets and grouped the relevant parameters according to their sets our function/Cmdlet will now only present corresponding parameters based on which switch is used when calling the function/Cmdlet.
 
-![testFunctionAnimation](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Powershell-Using-Parameter-Sets/assets/TestFunctionAnimation.gif)
+![testFunctionAnimation](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Powershell-Using-Parameter-Sets/assets/TestFunctionAnimation.gif)
 
 You can also find some very helpful documentation on parameter sets on [Microsoft Docs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_parameter_sets?view=powershell-7.1).
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Powershell-Using-Parameter-Sets/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-Powershell-Using-Parameter-Sets/code) page. :heart:
 
 ### _Author_
 
