@@ -14,7 +14,7 @@ date: '2022-01-16T17:32:53Z'
 
 Welcome to part 2 of my series on **automating password rotation**. A few months ago I published a tutorial on how to automate password rotation using a **GitHub Action workflow** and an **Azure key vault**. Due to the popularity of that post I decided to create a public **GitHub Action** on the GitHub Actions marketplace for anyone to use in their own environments.
 
-In this second part of the series I will discuss how to make use of the public marketplace action. For a full in depth understanding on the concepts I am using I would recommend going through Part 1 first.
+In this second part of the series I will discuss how to make use of the public marketplace action. For a full in depth understanding on the concepts I am using I would recommend going through [Part 1](https://dev.to/pwd9000/automate-password-rotation-with-github-and-azure-412a) first.
 
 - Link to GitHub Action on the public marketplace: [Rotate AZURE Virtual Machine Passwords](https://github.com/marketplace/actions/rotate-azure-virtual-machine-passwords)
 
