@@ -3,7 +3,7 @@ title: Protect secrets in Azure Functions using Key Vault
 published: true
 description: Azure - Integrate Key Vault with Functions
 tags: 'azurefunctions, azure, serverless, cloudsecurity'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-KeyVault-Function-Integrate/assets/key-func-main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-KeyVault-Function-Integrate/assets/key-func-main.png'
 canonical_url: null
 id: 740019
 date: '2021-07-03T07:54:05Z'
@@ -74,16 +74,16 @@ Next we will enable the function app with a **system assigned** [managed identit
 
 Under the function app **settings** pane select **Identity** and enable the **system assigned** setting to be `ON` and save the setting:
 
-![managedIdentity-01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-KeyVault-Function-Integrate/assets/managedIdentity-01.png)
+![managedIdentity-01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-KeyVault-Function-Integrate/assets/managedIdentity-01.png)
 
 With the managed identity now created, we can add a role assignment and permissions (IAM) to our key vault. We will give the function identity the role [Key Vault Secrets User](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-user) because we only want the function to be able to retrieve secrets.
 
 On the same **settings** pane where we set the **identity** you will now see a new setting called **Permissions**. Click on **Azure Role Assignments** and add the relevant permissions on the key vault.  
 **Note:** You can also add the role assignment permissions on the key vault by going to the key vault and select **IAM** on the key vault directly.
 
-![managedIdentity-02](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-KeyVault-Function-Integrate/assets/managedIdentity-02.png)
+![managedIdentity-02](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-KeyVault-Function-Integrate/assets/managedIdentity-02.png)
 
-![managedIdentity-03](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-KeyVault-Function-Integrate/assets/managedIdentity-03.png)
+![managedIdentity-03](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-KeyVault-Function-Integrate/assets/managedIdentity-03.png)
 
 We can also check the **IAM** permissions under our key vault for our function app:
 
@@ -96,7 +96,7 @@ Create some secrets in the key vault for testing:
 | SecUser01 | pwd9000admin        |
 | SecPass01 | S8p3r$3cR3t2021!\*! |
 
-![kvsecrets](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-KeyVault-Function-Integrate/assets/kvsecrets.png)
+![kvsecrets](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-KeyVault-Function-Integrate/assets/kvsecrets.png)
 
 Now we will configure our function app to reference our key vault secrets and test the solution.  
 We will use the following [Reference syntax](https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references#reference-syntax).
@@ -119,13 +119,13 @@ In addition you can reference a key vault secret using the URI:
 
 Under our function **Settings** pane select **Configuration** and add two new **Application settings:**
 
-![app-settings-1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-KeyVault-Function-Integrate/assets/app-settings-1.png)
+![app-settings-1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-KeyVault-Function-Integrate/assets/app-settings-1.png)
 
-![app-settings-2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-KeyVault-Function-Integrate/assets/app-settings-2.png)
+![app-settings-2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-KeyVault-Function-Integrate/assets/app-settings-2.png)
 
-![app-settings-3](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-KeyVault-Function-Integrate/assets/app-settings-3.png)
+![app-settings-3](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-KeyVault-Function-Integrate/assets/app-settings-3.png)
 
-Under the **Functions** pane click **Add** with the following settings: ![function-add](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-KeyVault-Function-Integrate/assets/function-add.png)
+Under the **Functions** pane click **Add** with the following settings: ![function-add](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-KeyVault-Function-Integrate/assets/function-add.png)
 
 | Name                    | Value             |
 | ----------------------- | ----------------- |
@@ -170,7 +170,7 @@ Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
 })
 ```
 
-Here is also a [Link](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-KeyVault-Function-Integrate/code/function.ps1) to the function code.
+Here is also a [Link](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-Azure-KeyVault-Function-Integrate/code/function.ps1) to the function code.
 
 **Note:** Our secret references that we configured on the functions application settings are loaded into environment variables as you can see from the function code above:
 
@@ -186,9 +186,9 @@ Write-Host "Password retrieved from key vault: $Pass"
 
 Let's test our function app by triggering the code manually using **Test/Run** to see if our function can retrieve our secrets we specified.
 
-![log-01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-KeyVault-Function-Integrate/assets/log-01.png)
+![log-01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-KeyVault-Function-Integrate/assets/log-01.png)
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-KeyVault-Function-Integrate/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-Azure-KeyVault-Function-Integrate/code) page. :heart:
 
 ### _Author_
 
