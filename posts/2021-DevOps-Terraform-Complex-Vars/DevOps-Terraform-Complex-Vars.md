@@ -3,7 +3,7 @@ title: Terraform - Complex Variable Types
 published: true
 description: DevOps - Terraform - Complex Variable Types
 tags: 'terraform, azure, iac, devops'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/DevOps-Terraform-Complex-Vars/assets/main-tf.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-DevOps-Terraform-Complex-Vars/assets/main-tf.png'
 canonical_url: null
 id: 849831
 date: '2021-10-03T14:55:03Z'
@@ -163,7 +163,7 @@ storage_config = [
 
 As you can see from the last example, using complex variable types and making our configurations more object oriented can offer much greater flexibility and granularity in terraform deployments.
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/DevOps-Terraform-Complex-Vars/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-DevOps-Terraform-Complex-Vars/code) page. :heart:
 
 ### _Author_
 
