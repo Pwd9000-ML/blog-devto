@@ -44,7 +44,9 @@ This is where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault
 2. **Azure AD App & Service Principal:** This is what we will use to authenticate to Azure from our github workflow.
 3. **Github repository:** This is where we will keep our source control and Github workflow / automation.
 
-### Create an Azure Key Vault
+**Note:** For Steps 1 and 2 above, you can also run the [PreReqs.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2021-GitHub-Automate-VM-Password-Rotation-Part1/code/PreReqs.ps1) script, but lets take a look at what that script does in detail below.  
+
+### 1. Create an Azure Key Vault
 
 For this step I will be using Azure CLI using a powershell console. First we will log into Azure by running:
 
@@ -61,7 +63,7 @@ az keyvault create --name "github-secrets-vault3" --resource-group "Github-Asset
 
 As you see above we use the option `--enable-rbac-authorization`. The reason for this is because our service principal we will create in the next step will access this key vault using the RBAC permission model. You can also create an Azure key vault by using the Azure portal. For information on using the portal see this [link](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).
 
-Another nice benefit of using the RBAC model is that if anyone wanted to access certain secrets in our key vault, we will be able to give granular access to inividual secrets at the secrets object layer rather than the entire key vault.
+Another nice benefit of using the RBAC model is that if anyone wanted to access certain secrets in our key vault, we will be able to give granular access to individual secrets at the secrets object layer rather than the entire key vault.
 
 ### Create an Azure AD App & Service Principal
 
@@ -269,11 +271,11 @@ The current schedule is set to run on every monday at 9am UTC. If you need to ch
 
 The last step we now need to do is populate our key vault with some servers. Navigate to the key vault and create a new secret giving the VM name as the secret key:
 
-![addvm](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-GitHub-Automate-VM-Password-Rotation-Part1/assets/addvm.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-GitHub-Automate-VM-Password-Rotation-Part1/assets/addvm.png)
 
 You can just create dummy secrets in the `value` field as these will be overwritten when our workflow is triggered:
 
-![populate](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-GitHub-Automate-VM-Password-Rotation-Part1/assets/populate.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-GitHub-Automate-VM-Password-Rotation-Part1/assets/populate.png)
 
 **Note:** Only add servers that you want to rotate passwords on, I would recommend **NOT** adding any servers or VMs such as **Domain Controllers** to the key vault. Also as you may recall when we created our key vault, we set the key vault to use the RBAC access model, so if someone requests access to a specific secret we can now allow access on the object level meaning we can give access to a specific secret (and not any other secrets). if we used the `Vault Access Policy` model access can only be given to the entire vault.
 
@@ -283,7 +285,7 @@ As you can see I have 3 vms defined. When our workflow is triggered it will auto
 
 We can trigger our workflow manually by going to our github repository (The trigger will also happen automatically based on our cron schedule):
 
-![trigger](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-GitHub-Automate-VM-Password-Rotation-Part1/assets/trigger.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-GitHub-Automate-VM-Password-Rotation-Part1/assets/trigger.png)
 
 Let's take a look at the results of the workflow:
 
