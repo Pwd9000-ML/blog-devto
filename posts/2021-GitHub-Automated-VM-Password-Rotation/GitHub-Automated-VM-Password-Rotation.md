@@ -3,7 +3,7 @@ title: Automate password rotation with Github and Azure
 published: true
 description: Automate VM password rotation using Github and Azure key vault
 tags: 'githubactions, secdevops, github, azure'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/maincover1.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-GitHub-Automated-VM-Password-Rotation/assets/maincover1.png'
 canonical_url: null
 id: 698968
 date: '2021-05-17T16:13:19Z'
@@ -140,7 +140,7 @@ Remember at the beginning of this post I mentioned that we will create a github 
 
 3. Paste the JSON object output from the Azure CLI command we ran earlier into the secret's value field. Give the secret the name `AZURE_CREDENTIALS`.
 
-![githubAzureCredentials](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/githubAzureCredentials1.png)
+![githubAzureCredentials](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-GitHub-Automated-VM-Password-Rotation/assets/githubAzureCredentials1.png)
 
 ### Configure our GitHub workflow
 
@@ -148,82 +148,84 @@ Now create a folder in the repository called `.github` and underneath another fo
 
 ```yaml
 name: Update Azure VM passwords
-on:
+on: 
   workflow_dispatch:
   schedule:
-    - cron: '0 9 * * 1'
+    - cron:  '0 9 * * 1'
 
 jobs:
   publish:
     runs-on: windows-latest
     env:
       KEY_VAULT_NAME: github-secrets-vault3
+      PASSWORD_LENGTH: 24
 
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
+    - name: Check out repository
+      uses: actions/checkout@v2
 
-      - name: Log into Azure using github secret AZURE_CREDENTIALS
-        uses: Azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          enable-AzPSSession: true
+    - name: Log into Azure using github secret AZURE_CREDENTIALS
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        enable-AzPSSession: true
 
-      - name: Generate Random Char Set using System.Web Assembly and set environment
-        shell: powershell
-        run: |
-          [system.reflection.assembly]::LoadWithPartialName("System.Web")
-          [String]$random = [System.Web.Security.Membership]::GeneratePassword(64, 32)
-          echo ::add-mask::$random
-          echo "RANDOM_CHAR_SET=$random" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+    - name: Generate Random Char Set using System.Web Assembly and set environment
+      shell: powershell
+      run: |
+        [system.reflection.assembly]::LoadWithPartialName("System.Web")
+        [String]$random = [System.Web.Security.Membership]::GeneratePassword(64, 32)
+        echo ::add-mask::$random
+        echo "RANDOM_CHAR_SET=$random" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
 
-      - name: Rotate VM administrator passwords
-        uses: azure/powershell@v1
-        with:
-          inlineScript: |
-            $keyVaultName = "${{ env.KEY_VAULT_NAME }}"
-            Write-Output "Creating array of all VM names in key vault: [$keyVaultName]."
-            $keys = (Get-AzKeyVaultSecret -VaultName $keyVaultName).Name
-            Write-Output "Looping through each VM key and changing the local admin password"
-            Foreach ($key in $keys) {
-              $vmName = $key
-              If (Get-AzVm -Name $vmName -ErrorAction SilentlyContinue) {
-                $resourceGroup = (Get-AzVm -Name $vmName).ResourceGroupName
-                $location = (Get-AzVm -Name $vmName).Location
-                Write-Output "Server found: [$vmName]... Checking if VM is in a running state"
-                $vmObj = Get-AzVm -ResourceGroupName $resourceGroup -Name $vmName -Status
-                [String]$vmStatusDetail = "deallocated"
-                Foreach ($vmStatus in $vmObj.Statuses) {
-                  If ($vmStatus.Code -eq "PowerState/running") {
-                    [String]$vmStatusDetail = $vmStatus.Code.Split("/")[1]
-                  }
+    - name: Rotate VM administrator passwords
+      uses: azure/powershell@v1
+      with:
+        inlineScript: | 
+          [int]$length = ${{ env.PASSWORD_LENGTH }}
+          $keyVaultName = "${{ env.KEY_VAULT_NAME }}"
+          Write-Output "Creating array of all VM names in key vault: [$keyVaultName]."
+          $keys = (Get-AzKeyVaultSecret -VaultName $keyVaultName).Name
+          Write-Output "Looping through each VM key and changing the local admin password"
+          Foreach ($key in $keys) {
+            $vmName = $key
+            If (Get-AzVm -Name $vmName -ErrorAction SilentlyContinue) {
+              $resourceGroup = (Get-AzVm -Name $vmName).ResourceGroupName
+              $location = (Get-AzVm -Name $vmName).Location
+              Write-Output "Server found: [$vmName]... Checking if VM is in a running state"
+              $vmObj = Get-AzVm -ResourceGroupName $resourceGroup -Name $vmName -Status
+              [String]$vmStatusDetail = "deallocated"
+              Foreach ($vmStatus in $vmObj.Statuses) {
+                If ($vmStatus.Code -eq "PowerState/running") {
+                  [String]$vmStatusDetail = $vmStatus.Code.Split("/")[1]
                 }
-                If ($vmStatusDetail -ne "running") {
-                  Write-Warning "VM is NOT in a [running] state... Skipping"
-                  Write-Output "--------------------------"
-                }
-                Else {
-                  Write-output "VM is in a [running] state... Generating new secure Password for: [$vmName]"
-                  $passwordGen = (("$${{ env.RANDOM_CHAR_SET }}")[0..64] | Get-Random -Count 15) -join ''
-                  $secretPassword = ConvertTo-SecureString -String $passwordGen -AsPlainText -Force
-                  Write-Output "Updating key vault: [$keyVaultName] with new random secure password for virtual machine: [$vmName]"
-                  $Date = (Get-Date).tostring("dd-MM-yyyy")
-                  $Tags = @{ "Automation" = "Github-Workflow";  "Password-Rotated" = "true"; "Password-Rotated-On" = "$Date"}
-                  $null = Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "$vmName" -SecretValue $secretPassword -Tags $Tags
-                  Write-Output "Updating VM with new password..."
-                  $adminUser = (Get-AzVm -Name $vmName | Select-Object -ExpandProperty OSProfile).AdminUsername
-                  $Cred = New-Object System.Management.Automation.PSCredential ($adminUser, $secretPassword)
-                  $null = Set-AzVMAccessExtension -ResourceGroupName $resourceGroup -Location $location -VMName $vmName -Credential $Cred -typeHandlerVersion "2.0" -Name VMAccessAgent
-                  Write-Output "Vm password changed successfully."
-                  Write-Output "--------------------------"
-                }
+              }
+              If ($vmStatusDetail -ne "running") {
+                Write-Warning "VM is NOT in a [running] state... Skipping"
+                Write-Output "--------------------------"
               }
               Else {
-               Write-Warning "VM NOT found: [$vmName]."
-               Write-Output "--------------------------"
+                Write-output "VM is in a [running] state... Generating new secure Password for: [$vmName]"
+                $passwordGen = (("$${{ env.RANDOM_CHAR_SET }}")[0..64] | Get-Random -Count length) -join ''
+                $secretPassword = ConvertTo-SecureString -String $passwordGen -AsPlainText -Force
+                Write-Output "Updating key vault: [$keyVaultName] with new random secure password for virtual machine: [$vmName]"
+                $Date = (Get-Date).tostring("dd-MM-yyyy")
+                $Tags = @{ "Automation" = "Github-Workflow";  "Password-Rotated" = "true"; "Password-Rotated-On" = "$Date"}
+                $null = Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "$vmName" -SecretValue $secretPassword -Tags $Tags
+                Write-Output "Updating VM with new password..."
+                $adminUser = (Get-AzVm -Name $vmName | Select-Object -ExpandProperty OSProfile).AdminUsername
+                $Cred = New-Object System.Management.Automation.PSCredential ($adminUser, $secretPassword)
+                $null = Set-AzVMAccessExtension -ResourceGroupName $resourceGroup -Location $location -VMName $vmName -Credential $Cred -typeHandlerVersion "2.0" -Name VMAccessAgent
+                Write-Output "Vm password changed successfully."
+                Write-Output "--------------------------"
               }
             }
-          azPSVersion: 'latest'
+            Else {
+             Write-Warning "VM NOT found: [$vmName]."
+             Write-Output "--------------------------"
+            }
+          }
+        azPSVersion: 'latest'
 ```
 
 The above YAML workflow is set to trigger automatically every monday at 9am. Which means our workflow will connect to our Azure key vault and get all the VM names we defined, populate the secret values with newly generated passwords and rotate the VMs local admin password with the newly generated password.
@@ -248,31 +250,31 @@ The current schedule is set to run on every monday at 9am. If you need to change
 
 The last step we now need to do is populate our key vault with some servers. Navigate to the key vault and create a new secret giving the VM name as the secret key:
 
-![addvm](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/addvm.png)
+![addvm](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-GitHub-Automated-VM-Password-Rotation/assets/addvm.png)
 
 You can just create dummy secrets in the `value` field as these will be overwritten when our workflow is triggered:
 
-![populate](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/populate.png)
+![populate](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-GitHub-Automated-VM-Password-Rotation/assets/populate.png)
 
 **Note:** Only add servers that you want to rotate passwords on, I would recommend **NOT** adding any servers or VMs such as **Domain Controllers** to the key vault. Also as you may recall when we created our key vault, we set the key vault to use the RBAC access model, so if someone requests access to a specific secret we can now allow access on the object level meaning we can give access to a specific secret (and not any other secrets). if we used the `Vault Access Policy` model access can only be given to the entire vault.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/vaultiam.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-GitHub-Automated-VM-Password-Rotation/assets/vaultiam.png)
 
 As you can see I have 3 vms defined. When our workflow is triggered it will automatically populate our VM keys with randomly generated passwords and rotate them on a weekly basis at 9am on a monday, if a VM key exists in the key vault but the VM does not exist in the Azure subscription or our principal does not have access to the VM, it will be skipped. Similarly if a VM is deallocated and the power state is OFF it will also be skipped. The rotation will only happen on VMs that exist and are powered ON. Let's give it a go and see what happens when we trigger our workflow manually.
 
 We can trigger our workflow manually by going to our github repository (The trigger will also happen automatically based on our cron schedule):
 
-![trigger](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/trigger.png)
+![trigger](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-GitHub-Automated-VM-Password-Rotation/assets/trigger.png)
 
 Let's take a look at the results of the workflow:
 
-![results](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/results.png)
+![results](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-GitHub-Automated-VM-Password-Rotation/assets/results.png)
 
 As you can see I have 3 VMs defined in my key vault `pwd9000vm01` was powered on and so it's password was rotated. `pwd9000vm02` was found, but was deallocated so was skipped. `pwd9000vm03` is a VM which no longer exists in my subscription so I can safely remove the server key from my key vault.
 
 Now lets see if I can log into my server which have had its password rotated:
 
-![login](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/GitHub-Automated-VM-Password-Rotation/assets/login.gif)
+![login](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-GitHub-Automated-VM-Password-Rotation/assets/login.gif)
 
 I hope you have enjoyed this post and have learned something new.  
 Using the same techniques I have shown in this post, you can pretty much use this process to rotate secrets for almost anything you can think of, whether that be SQL connection strings or even API keys for your applications.  
