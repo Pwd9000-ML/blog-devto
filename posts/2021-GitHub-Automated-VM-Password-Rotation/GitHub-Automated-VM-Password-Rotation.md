@@ -206,7 +206,7 @@ jobs:
               }
               Else {
                 Write-output "VM is in a [running] state... Generating new secure Password for: [$vmName]"
-                $passwordGen = (("$${{ env.RANDOM_CHAR_SET }}")[0..64] | Get-Random -Count length) -join ''
+                $passwordGen = (("$${{ env.RANDOM_CHAR_SET }}")[0..64] | Get-Random -Count $length) -join ''
                 $secretPassword = ConvertTo-SecureString -String $passwordGen -AsPlainText -Force
                 Write-Output "Updating key vault: [$keyVaultName] with new random secure password for virtual machine: [$vmName]"
                 $Date = (Get-Date).tostring("dd-MM-yyyy")
@@ -226,19 +226,21 @@ jobs:
             }
           }
         azPSVersion: 'latest'
+
 ```
 
-The above YAML workflow is set to trigger automatically every monday at 9am. Which means our workflow will connect to our Azure key vault and get all the VM names we defined, populate the secret values with newly generated passwords and rotate the VMs local admin password with the newly generated password.
+The above YAML workflow is set to trigger automatically every monday at 9am UTC. Which means our workflow will connect to our Azure key vault and get all the VM names we defined, populate the secret values with newly generated passwords and rotate the VMs local admin password with the newly generated password.  
 
-**Note:** If you need to change or use a different key vault you can change this line on the yaml file with the name of the key vault you are using:
+**Note:** If you need to change or use a different key vault or change the password length you can change these lines on the yaml file with the name of the key vault you are using:
 
 ```txt
-// code/rotate-vm-passwords.yaml#L11-L11
+// code/rotate-vm-passwords.yaml#L11-L12
 
 KEY_VAULT_NAME: github-secrets-vault3
+PASSWORD_LENGTH: 24
 ```
 
-The current schedule is set to run on every monday at 9am. If you need to change the cron schedule you can amend this line:
+The current schedule is set to run on every monday at 9am UTC. If you need to change the cron schedule you can amend this line:
 
 ```txt
 // code/rotate-vm-passwords.yaml#L5-L5
