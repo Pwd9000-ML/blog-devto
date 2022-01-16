@@ -27,14 +27,14 @@ This Action will connect to a provided AZURE key vault as input and will loop th
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/azure-vm-password-rotate/master/assets/kvsecrets.png)
 
-You can use the [AzurePreReqs](https://github.com/Pwd9000-ML/azure-vm-password-rotate/tree/master/azurePreReqs) script to create a key vault, generate a GitHub Secret to use as `AZURE_CREDENTIALS` and sets relevant RBAC access on the key vault, `Key Vault Officer`, as well as `Virtual Machine Contributor` over virtual machines in the Azure subscription.  
+You can use the [AzurePreReqs](https://github.com/Pwd9000-ML/azure-vm-password-rotate/tree/master/azurePreReqs) script to create a key vault, generate a GitHub Secret to use as `AZURE_CREDENTIALS` and sets relevant RBAC access on the key vault, `Key Vault Officer`, as well as `Virtual Machine Contributor` over virtual machines in the Azure subscription.
 
 See [Part 1](https://dev.to/pwd9000/automate-password-rotation-with-github-and-azure-412a) of this series on setting up the Azure key vault and GitHub Secret Credential (if needed).
 
 ## GitHub Action Inputs
 
 | Inputs | Required | Description | Default |
-|--------|----------|-------------|---------|
+| --- | --- | --- | --- |
 | key-vault-name | True | Name of the Azure key vault pre-populated with secret name keys representing server names hosted in Azure. | N/A |
 | password-length | False | The amount of characters in the password. | 24 |
 
@@ -56,7 +56,7 @@ Here is a link to an example [workflow file](https://github.com/Pwd9000-ML/azure
 
 ```yaml
 name: Update Azure VM passwords
-on: 
+on:
   workflow_dispatch:
   schedule:
     - cron:  '0 9 * * 1' ##Runs at 9AM UTC every Monday##
@@ -107,10 +107,10 @@ jobs:
 
 At the moment only windows runners are supported. Support for all runner types will be released soon.
 
-| Environment | YAML Label |
-| --------------------|---------------------|
+| Environment         | YAML Label                         |
+| ------------------- | ---------------------------------- |
 | Windows Server 2019 | `windows-latest` or `windows-2019` |
-| Windows Server 2016 | `windows-2016` |
+| Windows Server 2016 | `windows-2016`                     |
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github Action](https://github.com/Pwd9000-ML/azure-vm-password-rotate) page. :heart:
 
