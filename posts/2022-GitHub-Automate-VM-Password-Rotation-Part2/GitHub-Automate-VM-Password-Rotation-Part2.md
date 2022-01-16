@@ -38,9 +38,11 @@ See [Part 1](https://dev.to/pwd9000/automate-password-rotation-with-github-and-a
 | key-vault-name | True | Name of the Azure key vault pre-populated with secret name keys representing server names hosted in Azure. | N/A |
 | password-length | False | The amount of characters in the password. | 24 |
 
-## AZURE VMs password rotate action
+## INSTALLATION
 
-```yaml
+Copy and paste the following snippet into your .yml file.
+
+```yml
 - name: Rotate VMs administrator passwords
     uses: Pwd9000-ML/azure-vm-password-rotate@v1.0.2
     with:
@@ -54,7 +56,7 @@ Here is a link to an example [workflow file](https://github.com/Pwd9000-ML/azure
 
 ## Example - Rotate VM Passwords every monday at 09:00 UTC
 
-```yaml
+```yml
 name: Update Azure VM passwords
 on:
   workflow_dispatch:
