@@ -245,7 +245,7 @@ jobs:
 
 ```
 
-The above YAML workflow is set to trigger automatically every monday at 9am UTC. Which means our workflow will connect to our Azure key vault and get all the VM names we defined, populate the secret values with newly generated passwords and rotate the VMs local admin password with the newly generated password.  
+The above YAML workflow is set to trigger automatically every monday at 9am UTC. Which means our workflow will connect to our Azure key vault and get all the VM names we defined, populate the secret values with newly generated passwords and rotate the VMs local admin password with the newly generated password.
 
 **Note:** If you need to change or use a different key vault or change the password length you can change these lines on the yaml file with the name of the key vault you are using:
 
