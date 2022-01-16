@@ -3,7 +3,7 @@ title: GitHub Actions - All the Shells
 published: true
 description: GitHub Actions Shells
 tags: 'devops, githubactions, github, automation'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Actions-Shells/assets/main-sh.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Github-Actions-Shells/assets/main-sh.png'
 canonical_url: null
 id: 904114
 date: '2021-11-22T17:35:44Z'
