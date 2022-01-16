@@ -3,7 +3,7 @@ title: Automate Azure Resource Decommissions (with tracking)
 published: true
 description: Azure - Automate Azure Resource Decommissions
 tags: 'azurefunctions, azure, serverless, automation'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/mainfunc.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/mainfunc.png'
 canonical_url: null
 id: 930485
 date: '2021-12-20T16:50:33Z'
@@ -21,13 +21,13 @@ So in this demo I will be using a **[Resource Tag](https://docs.microsoft.com/en
 | ------------ | ---------- |
 | Decommission | dd/MM/yyyy |
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/date_Tag.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/date_Tag.png)
 
 The idea is simple, place the **Decommission** tag on the **resource** OR **resource group** that you would like to decommission as well as the date that you want that decommission to take place on. The function app will run on a daily **Cron** schedule and search resources/resource groups that are tagged with the **Decommission** key and evaluate based on the current **Date** whether the decommission should be initiated or not, and also track the decommission by recording the event into an Azure **Storage Account Table** with the resource ID and date of the successful/failed decommission, so that we can track and audit our automated events.
 
 ## Pre-Requisites
 
-To set up everything we need for our function app I wrote a PowerShell script using AZ CLI, that would build and configure all the things needed. There was one manual step however I will cover a bit later on. But for now you can find the script I used on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Automated-Resource-Decommissions/code) page called [Azure-Pre-Reqs.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-Automated-Resource-Decommissions/code/Azure-Pre-Reqs.ps1).
+To set up everything we need for our function app I wrote a PowerShell script using AZ CLI, that would build and configure all the things needed. There was one manual step however I will cover a bit later on. But for now you can find the script I used on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-Azure-Automated-Resource-Decommissions/code) page called [Azure-Pre-Reqs.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2021-Azure-Automated-Resource-Decommissions/code/Azure-Pre-Reqs.ps1).
 
 First we will log into Azure by running:
 
@@ -148,12 +148,12 @@ $scopes = "$subscriptionId" #Array of Subscriptions that will be covered by auto
 
 Lets take a closer look, step-by-step what the above script does as part of setting up the environment.
 
-1. Create a resource group called `Automated-Resource-Decommissioning`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/rg.png)
-2. Create an azure storage account for the function app. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/funcsa.png)
-3. Create a PowerShell Function App with `SystemAssigned` managed identity, `consumption` app service plan and `insights`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/func.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/funcmi1.png)
-4. Configure Function App environment variables. (Will be consumed inside of function app later). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/funcappsettings1.png)
-5. Create `Tracker` and `Failed` storage tables in the function apps storage account. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/satabbles1.png)
-6. Assign Function App `SystemAssigned` managed identity permissions to Storage account(Read), table(Write) and subscription(Contributor). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/sarbac1.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/subrbac1.png)
+1. Create a resource group called `Automated-Resource-Decommissioning`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/rg.png)
+2. Create an azure storage account for the function app. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/funcsa.png)
+3. Create a PowerShell Function App with `SystemAssigned` managed identity, `consumption` app service plan and `insights`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/func.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/funcmi1.png)
+4. Configure Function App environment variables. (Will be consumed inside of function app later). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/funcappsettings1.png)
+5. Create `Tracker` and `Failed` storage tables in the function apps storage account. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/satabbles1.png)
+6. Assign Function App `SystemAssigned` managed identity permissions to Storage account(Read), table(Write) and subscription(Contributor). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/sarbac1.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/subrbac1.png)
 7. Remember I mentioned earlier there is one manual step. In the next step we will change the `requirements.psd1` file on our function to allow the `AZ` module inside of our function by uncommenting the following, as well as adding a module to be installed called `AzTable`
 
 ```powershell
@@ -168,20 +168,20 @@ Lets take a closer look, step-by-step what the above script does as part of sett
 }
 ```
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/manual1.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/manual1.png)
 
 **NOTE:** Remember to save the manual change we made on `requirements.psd1` above. Our environment is now set up and in the next section we will configure the function to run automated decommissions and schedule a timer.
 
 ## Decommission Function
 
-The following function app code can also be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Automated-Resource-Decommissions/code) page called [run.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-Automated-Resource-Decommissions/code/run.ps1).
+The following function app code can also be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-Azure-Automated-Resource-Decommissions/code) page called [run.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2021-Azure-Automated-Resource-Decommissions/code/run.ps1).
 
-1. Navigate to the function app we created in the previous section and select `+ Create` under `Functions`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/create.png)
-2. Select `Develop in portal` and for the template select `Timer trigger`, name the function `ResourceDecommission`, set the cron schedule to run on the frequency you need (in my case I have set this to once a day at 23:55pm) `0 55 23 * * *`, and hit `Create`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/create2.png)
+1. Navigate to the function app we created in the previous section and select `+ Create` under `Functions`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/create.png)
+2. Select `Develop in portal` and for the template select `Timer trigger`, name the function `ResourceDecommission`, set the cron schedule to run on the frequency you need (in my case I have set this to once a day at 23:55pm) `0 55 23 * * *`, and hit `Create`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/create2.png)
 
-   **NOTE:** You can change the cron timer trigger anytime by going to the functions **Integration** section. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/create3.png)
+   **NOTE:** You can change the cron timer trigger anytime by going to the functions **Integration** section. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/create3.png)
 
-3. Navigate to `Code + Test` and replace all the code under `run.ps1` with the following powershell code and hit `save`: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/create4.png)
+3. Navigate to `Code + Test` and replace all the code under `run.ps1` with the following powershell code and hit `save`: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/create4.png)
 
 ```powershell
 ## code/run.ps1
@@ -370,17 +370,17 @@ Foreach ($rID in $MatchedResources | Where-Object {$_ -ne $null}) {
 
 Lets take a closer look at what this code actually does. In the first few lines we can see that the function app will take an input parameter called `$Timer`. This parameter is linked to the cron timer we set when we created the function app earlier.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code1.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/code1.png)
 
-Next we are loading two **Powershell** functions, one that will evaluate and return **Resources to be decommissioned** and another to return **Resource Groups to be decommissioned**. You can look at each of these PowerShell functions individually on my GitHub code page as well. [Get-Resource4Decom.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-Automated-Resource-Decommissions/code/Get-Resource4Decom.ps1) and [Get-ResourceGroup4Decom.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/Azure-Automated-Resource-Decommissions/code/Get-ResourceGroup4Decom.ps1)
+Next we are loading two **Powershell** functions, one that will evaluate and return **Resources to be decommissioned** and another to return **Resource Groups to be decommissioned**. You can look at each of these PowerShell functions individually on my GitHub code page as well. [Get-Resource4Decom.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2021-Azure-Automated-Resource-Decommissions/code/Get-Resource4Decom.ps1) and [Get-ResourceGroup4Decom.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2021-Azure-Automated-Resource-Decommissions/code/Get-ResourceGroup4Decom.ps1)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code2.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/code2.png)
 
 Now comes the main section that will process decommissions, first we set some variables. These variables are from the function apps **Application Settings** our pre-req script created:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/funcappsettings1.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/funcappsettings1.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code3.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/code3.png)
 
 **NOTE:** Scopes can be one or more comma separated subscription IDs that the function app will search for resources or resource groups to decommission. If you have more than one subscription defined, please ensure that the function apps managed identity has the relevant IAM/RBAC access over any additional subscriptions you want the function app to cover.
 
@@ -388,11 +388,11 @@ The remaining code will consume the two loaded functions to return the **Resourc
 
 Resource Groups are decommissioned first:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code4.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/code4.png)
 
 Followed by resources:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/code5.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/code5.png)
 
 ## Testing the function app
 
@@ -409,11 +409,11 @@ Lets test our function app and see if it does what it says on the tin. In my env
 
 So based on my test date **20/12/2021** and looking at the above table I would expect **TestRG3** and **pwd9000sa2** to successfully be removed and recorded in my **Tracking** table when my function app is triggered. This is in fact what happened and I can see that those resources are no longer in my Azure subscription and was also recorded:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test1.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test2.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/test1.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/test2.png)
 
 I can also see that **TestRG2** and **pwd9000sa3** which had resource locks enabled failed to decommission and was also recorded in my `Failed` Table.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test3.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Azure-Automated-Resource-Decommissions/assets/test4.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/test3.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Automated-Resource-Decommissions/assets/test4.png)
 
 Everything is working as expected. Now we can easily preset resources we would like to decommission by simply just adding a tag to the resource or resource group with the tag key of **Decommission** and tag value of the date we want the resource to be decommissioned on in date format **dd/MM/yyyy**. We could also give our users access to set tags themselves on resources they manage to allow them to remove resources in a controlled manner. Our function app will just run on its schedule and decommission resources which are tagged and also track the automated decommissions and failures in table storage.
 
@@ -423,7 +423,7 @@ If you want to enable email notifications for your decommissions, have a look at
 
 {% link <https://dev.to/pwd9000/get-email-alerts-from-serverless-azure-functions-using-sendgrid-217m> %}
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Azure-Automated-Resource-Decommissions/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-Azure-Automated-Resource-Decommissions/code) page. :heart:
 
 ### _Author_
 
