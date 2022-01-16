@@ -1,6 +1,6 @@
 ---
 title: Automate password rotation with Github and Azure (Part 2)
-published: false
+published: true
 description: Automate VM password rotation using Github and Azure key vault
 tags: 'githubactions, secdevops, github, azure'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-VM-Password-Rotation-Part2/assets/main.png'
@@ -29,9 +29,9 @@ This Action will connect to a provided AZURE key vault as input and will loop th
 
 You can use the [AzurePreReqs](https://github.com/Pwd9000-ML/azure-vm-password-rotate/tree/master/azurePreReqs) script to create a key vault, generate a GitHub Secret to use as `AZURE_CREDENTIALS` and sets relevant RBAC access on the key vault, `Key Vault Officer`, as well as `Virtual Machine Contributor` over virtual machines in the Azure subscription.  
 
-See this [tutorial](https://dev.to/pwd9000/automate-password-rotation-with-github-and-azure-412a) on setting up the Azure key vault and GitHub Secret Credential (if needed).
+See [Part 1](https://dev.to/pwd9000/automate-password-rotation-with-github-and-azure-412a) of this series on setting up the Azure key vault and GitHub Secret Credential (if needed).
 
-## Inputs
+## GitHub Action Inputs
 
 | Inputs | Required | Description | Default |
 |--------|----------|-------------|---------|
@@ -40,11 +40,12 @@ See this [tutorial](https://dev.to/pwd9000/automate-password-rotation-with-githu
 
 ## AZURE VMs password rotate action
 
-```
+```yaml
 - name: Rotate VMs administrator passwords
     uses: Pwd9000-ML/azure-vm-password-rotate@v1.0.2
     with:
       key-vault-name: ${{ env.KEY_VAULT_NAME }}
+      password-length: 24 ##Optional configuration
 ```
 
 ## Example Usage
@@ -53,7 +54,7 @@ Here is a link to an example [workflow file](https://github.com/Pwd9000-ML/azure
 
 ## Example - Rotate VM Passwords every monday at 09:00 UTC
 
-```
+```yaml
 name: Update Azure VM passwords
 on: 
   workflow_dispatch:
