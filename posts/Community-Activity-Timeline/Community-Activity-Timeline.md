@@ -32,6 +32,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **16/01/2022** | [Automate password rotation with Github and Azure (Part 2)](https://dev.to/pwd9000/automate-password-rotation-with-github-and-azure-part-2-1gme) | Blog/Website Post | GitHub, PowerShell | Security, SecDevOps, Automation, Tutorial |
 | **16/01/2022** | [OSS maintainer - GitHub Action - Password rotation for Azure VMs](https://github.com/marketplace/actions/rotate-azure-virtual-machine-passwords) | Open Source Software | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, SecDevOps, Maintainer |
 | **15/01/2022** | [myNewsWrap – SAP and Microsoft (Episode 67) - 3x posts featured](https://youtu.be/0g7pcxk6YWE) | Podcast | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
 | **09/01/2022** | [DevCon6 - Automate password rotation with Github and Azure](https://youtu.be/UaS3I38XK2U) | Public Speaking | GitHub, PowerShell | Security, SecDevOps, Automation, Conference |
@@ -66,7 +67,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | **19/06/2021** | [Securing Azure Logic apps with Private Endpoints](https://dev.to/pwd9000/securing-azure-logic-apps-with-private-endpoints-4c3f) | Blog/Website Post | Azure | Serverless, Security, LogicApps, Networking, Tutorial |
 | **10/06/2021** | [Power virtual machines ON or OFF using Azure functions](https://dev.to/pwd9000/power-virtual-machines-on-or-off-using-azure-functions-4k8o) | Blog/Website Post | Azure, PowerShell | Serverless, FunctionApps, Automation, Tutorial |
 | **24/05/2021** | [Automate Azure Role Based Access Control (RBAC) using Github](https://dev.to/pwd9000/automate-azure-role-based-access-control-rbac-using-github-2349) | Blog/Website Post | GitHub, PowerShell | Security, SecDevOps, RBAC, Automation, Tutorial |
-| **17/05/2021** | [Automate password rotation with Github and Azure](https://dev.to/pwd9000/automate-password-rotation-with-github-and-azure-412a) | Blog/Website Post | GitHub, PowerShell | Security, SecDevOps, Automation, Tutorial |
+| **17/05/2021** | [Automate password rotation with Github and Azure (Part 1)](https://dev.to/pwd9000/automate-password-rotation-with-github-and-azure-412a) | Blog/Website Post | GitHub, PowerShell | Security, SecDevOps, Automation, Tutorial |
 | **05/05/2021** | [Automate Azure Role Based Access Control (RBAC) using DevOps](https://dev.to/pwd9000/automate-azure-role-based-access-control-rbac-with-devops-2ehf) | Blog/Website Post | Azure Devops, PowerShell | Security, SecDevOps, RBAC, Automation, Tutorial |
 | **02/05/2021** | [PowerShell - Using Parameter Sets](https://dev.to/pwd9000/powershell-using-parameter-sets-5da8) | Blog/Website Post | PowerShell | Tutorial |
 
