@@ -44,7 +44,7 @@ This is where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault
 2. **Azure AD App & Service Principal:** This is what we will use to authenticate to Azure from our github workflow.
 3. **Github repository:** This is where we will keep our source control and Github workflow / automation.
 
-**Note:** For Steps 1 and 2 above, you can also run the [PreReqs.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2021-GitHub-Automate-VM-Password-Rotation-Part1/code/PreReqs.ps1) script, but lets take a look at what that script does in detail below.  
+**Note:** For Steps 1 and 2 above, you can also run the [PreReqs.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2021-GitHub-Automate-VM-Password-Rotation-Part1/code/PreReqs.ps1) script, but lets take a look at what that script does in detail below.
 
 ### 1. Create an Azure Key Vault
 
