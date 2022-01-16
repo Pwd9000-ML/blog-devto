@@ -1,5 +1,5 @@
 ---
-title: With Github and Azure (Part 1)
+title: Automate password rotation with Github and Azure (Part 1)
 published: true
 description: Automate VM password rotation using Github and Azure key vault
 tags: 'githubactions, secdevops, github, azure'
