@@ -3,7 +3,7 @@ title: Automate Azure Service Bus SAS tokens with Github
 published: true
 description: Github - Actions - Automate Service Bus SAS tokens
 tags: 'githubactions, secdevops, azure, github'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/main-sb.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Github-Rotate-ServiceBus-SAS/assets/main-sb.png'
 canonical_url: null
 id: 897066
 date: '2021-11-14T10:04:58Z'
@@ -19,7 +19,7 @@ This means that whenever we need to call our service bus we can now generate a t
 
 Lets take a look at a sample use case flow diagram of how this would look like.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/flowdiag001.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Github-Rotate-ServiceBus-SAS/assets/flowdiag001.png)
 
 **Note:** Maintaining Service Bus SAS tokens using an Azure key vault is particularly useful for teams who maintain secrets management and need to ensure that only relevant users, principals and processes can access secrets from a secure managed location and also be rotated on a regular basis. Azure key vaults are also particularly useful for security or ops teams who maintain secrets management, instead of giving other teams access to your deployment repositories in Github, teams who look after deployments no longer have to worry about giving access to other teams in order to manage secrets as secrets management will be done from an Azure key vault which nicely separates roles of responsibility when spread across different teams.
 
@@ -40,7 +40,7 @@ For the purpose of this demo and so you can follow along, I will set up the Azur
 
 ### Create an Azure key vault
 
-**NOTE:** A complete script for all the steps/Pre-Reqs described in building the environment can be found on my [GitHub code page](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Github-Rotate-ServiceBus-SAS/code/Pre-Reqs.ps1)
+**NOTE:** A complete script for all the steps/Pre-Reqs described in building the environment can be found on my [GitHub code page](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-Github-Rotate-ServiceBus-SAS/code/Pre-Reqs.ps1)
 
 For this step I will be using Azure CLI using a powershell console. First we will log into Azure by running:
 
@@ -96,11 +96,11 @@ az keyvault secret set --vault-name $keyVaultName --name "$($policyName)PrimaryK
 
 You will notice that our Service Bus has a Policy called `myauthrule` with only `Send` and `Listen` configured:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sb1.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Github-Rotate-ServiceBus-SAS/assets/sb1.png)
 
 And our policies `Primary Key` will be saved in our key vault called `myauthrulePrimaryKey`. We will use this secret later in our GitHub workflow to generate our temp SAS token:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sb2.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Github-Rotate-ServiceBus-SAS/assets/sb2.png)
 
 ### Create an Azure AD App & Service Principal
 
@@ -154,7 +154,7 @@ Remember at the beginning of this post I mentioned that we will create a github 
 
 3. Paste the JSON object output from the Azure CLI command we ran earlier into the secret's value field. Give the secret the name `AZURE_CREDENTIALS`.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/githubAzureCredentials1.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Github-Rotate-ServiceBus-SAS/assets/githubAzureCredentials1.png)
 
 Because we will have two workflows in this demo we will create our **reusable** workflow first called `new-service-bus-sas-token.yaml` then we will create our main workflow that will send a message to our Service bus called `main.yaml`.
 
@@ -261,7 +261,7 @@ $accessPolicyKey="${{ steps.sbPrimaryKey.outputs.myauthrulePrimaryKey }}"
 
 Note that our **reusable** github workflow will save the temporary Service Bus SAS token in Azure keyvault under the `secret` key name: **[ServiceBusPolicyName-SAS-TOKEN]**. This SAS token will only be valid for 10 minutes.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/sastoken.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Github-Rotate-ServiceBus-SAS/assets/sastoken.png)
 
 Now onto our main workflow file. In the same workflows folder we will create a second YAML file called `main.yaml`. The YAML file can also be accessed [HERE](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/blob/master/.github/workflows/main.yaml).
 
@@ -359,21 +359,21 @@ $token = "${{ steps.sbSasToken.outputs.myauthrule-SAS-TOKEN }}"
 
 Let's trigger our `main.yaml` workflow. It should trigger our **reusable** workflow called `new-service-bus-sas-token.yaml` that will generate a temp Service Bus SAS token and save this token in our Key Vault. Afterwards it will return to the `main.yaml` workflow and retrieve the temp SAS token from the key vault and send our Service Bus a message with a body of: **"Hello ActionsHackathon21"**.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/gh1.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Github-Rotate-ServiceBus-SAS/assets/gh1.png)
 
 Both our workflows ran successfully. The first job generates our temp SAS token from a **reusable** workflow and the second job consumes that temporary SAS token from key vault sends our message to our Service Bus using the short lived SAS token.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/gh2.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Github-Rotate-ServiceBus-SAS/assets/gh2.png)
 
 As you can see our message was sent to our Service Bus Queue using the temporary SAS token retrieved from the keyvault:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Github-Rotate-ServiceBus-SAS/assets/test.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Github-Rotate-ServiceBus-SAS/assets/test.png)
 
 ### Conclusion
 
 The main take away of this tutorial is to know that we can create **reusable** GitHub Action workflows that can be called as separate jobs in other workflows. By carving up large workflows and referencing reusable workflows we can cut down on duplication and also make our workflows much more dynamic. Additionally we did something cool by creating a security process in which we generate short lived secure Service Bus SAS tokens that are stored in an Azure Key Vault and can be permissioned and consumed by other services in a controlled manner.
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/Github-Rotate-ServiceBus-SAS/code) page.
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-Github-Rotate-ServiceBus-SAS/code) page.
 
 Additionally you can use this [github repository](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management) used in this tutorial as a template in your own github account and start to generate and automate your Service Bus SAS tokens today. :heart:
 
