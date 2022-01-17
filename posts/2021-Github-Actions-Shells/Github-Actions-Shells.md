@@ -155,7 +155,7 @@ steps:
 
 The command used, `perl` in this example, must be installed on the runner.
 
-## Set default shell
+## Setting a default shell
 
 You can use `defaults.run` to provide the default `shell` option for all run steps in a workflow. You can also set default settings for run that are only available to a job. When more than one default setting is defined with the same name, GitHub uses the most specific default setting. For example, a default setting defined in a job will override a default setting that has the same name defined in a workflow.
 
