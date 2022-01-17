@@ -155,6 +155,28 @@ steps:
 
 The command used, `perl` in this example, must be installed on the runner.
 
+## Set default shell
+
+You can use `defaults.run` to provide default `shell` option for all run steps in a workflow. You can also set default settings for run that are only available to a job. When more than one default setting is defined with the same name, GitHub uses the most specific default setting. For example, a default setting defined in a job will override a default setting that has the same name defined in a workflow.
+
+**Example:** Set the default shell and working directory
+
+```yaml
+name: my workflow
+on: push
+
+jobs:
+  name-of-job:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Hello world
+        run: |
+          write-output "Hello World"
+```
+
 I hope you have enjoyed this post and have learned something new. :heart: You can find more information on action shells on the [Github actions syntax page](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsshell)
 
 ### _Author_
