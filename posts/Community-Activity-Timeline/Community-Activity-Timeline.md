@@ -21,11 +21,11 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **27/04/2022** | [Cloud Lunch and Learn - Automate Azure Role Based Access Control (RBAC) using Azure DevOps)](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure DevOps, PowerShell | Security, SecDevOps, RBAC, Automation, Podcast |
-| **23/03/2022** | [Cloud Lunch and Learn - Automate Azure Resource Decommissions using Azure Serverless Function App (with tracking)](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
-| **23/02/2022** | [Cloud Lunch and Learn - Reusable GitHub workflows to automate tokens](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, ServiceBus, SecDevOps, Podcast |
-| **16/02/2022** | [Welsh Azure User Group - VIRTUAL EVENT (February 2022) - Automate Azure Resource Decommissions (with tracking)](https://www.meetup.com/MSFT-Stack/events/282143598) | Public Speaking | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
 | **26/01/2022** | [Cloud Lunch and Learn - Automate password rotation with Github and Azure](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, GitHub, PowerShell | Security, SecDevOps, Automation, Podcast |
+| **16/02/2022** | [Welsh Azure User Group - VIRTUAL EVENT (February 2022) - Automate Azure Resource Decommissions (with tracking)](https://www.meetup.com/MSFT-Stack/events/282143598) | Public Speaking | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
+| **23/02/2022** | [Cloud Lunch and Learn - Reusable GitHub workflows to automate tokens](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, ServiceBus, SecDevOps, Podcast |
+| **23/03/2022** | [Cloud Lunch and Learn - Automate Azure Resource Decommissions using Azure Serverless Function App (with tracking)](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
+| **27/04/2022** | [Cloud Lunch and Learn - Automate Azure Role Based Access Control (RBAC) using Azure DevOps)](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure DevOps, PowerShell | Security, SecDevOps, RBAC, Automation, Podcast |
 
 ---
 
