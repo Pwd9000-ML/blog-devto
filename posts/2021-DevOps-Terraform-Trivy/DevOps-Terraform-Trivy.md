@@ -2,7 +2,7 @@
 title: Terraform IaC Scanning with Trivy
 published: true
 description: DevOps - Terraform - IaC Scanning with Trivy
-tags: 'terraform, azuredevops, iac, secdevops'
+tags: 'terraform, azuredevops, iac, DevSecOps'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-DevOps-Terraform-Trivy/assets/main-trivy.png'
 canonical_url: null
 id: 864896

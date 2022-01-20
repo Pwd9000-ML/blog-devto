@@ -2,7 +2,7 @@
 title: Automate Azure Service Bus SAS tokens with Github
 published: true
 description: Github - Actions - Automate Service Bus SAS tokens
-tags: 'githubactions, secdevops, azure, github'
+tags: 'githubactions, DevSecOps, azure, github'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Github-Rotate-ServiceBus-SAS/assets/main-sb.png'
 canonical_url: null
 id: 897066
