@@ -31,6 +31,8 @@ Hopefully you can even utilize these concepts in your own organization to build 
 
 ### Pre-Requisites
 
+xxxx
+
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page. :heart:
 
 ### _Author_
