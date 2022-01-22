@@ -33,6 +33,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **22/01/2022** | [myNewsWrap – SAP and Microsoft (Episode 68) - Upload Files to Azure Storage using a PowerShell Function App](https://youtu.be/YU7pMTJ7pJk) | Podcast | Azure, PowerShell | Automation, API, Serverless, FunctionApps, Podcast |
 | **21/01/2022** | [Jonnychipz Weekly # 56 – Back to it - Dynamic terraform deployments using DevOps replace tokens](https://jonnychipz.com/2022/01/21/jonnychipz-weekly-56-back-to-it/) | Podcast | Azure DevOps | Pipelines, Terraform, Automation, IaC, Tutorial |
 | **21/01/2022** | [Top Stories from the Microsoft DevOps Community – 2022.01.21 - Automate password rotation with Github and Azure (Part 2)](https://devblogs.microsoft.com/devops/top-stories-from-the-microsoft-devops-community-2022-01-21/?WT.mc_id=modinfra-54912-jagord) | Article | GitHub, PowerShell | Security, DevSecOps, Automation, Tutorial |
 | **16/01/2022** | [Automate password rotation with Github and Azure (Part 2)](https://dev.to/pwd9000/automate-password-rotation-with-github-and-azure-part-2-1gme) | Blog/Website Post | GitHub, PowerShell | Security, DevSecOps, Automation, Tutorial |
