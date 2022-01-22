@@ -35,7 +35,7 @@ Hopefully you can even utilize these concepts in your own organization to build 
 
 ### Pre-Requisites
 
-To start things off we will build a few pre-requisites that is needed to integrate our **GitHub** project and workflows with **AZURE** before we can start building resources.  
+To start things off we will build a few pre-requisites that is needed to integrate our **GitHub** project and workflows with **AZURE** before we can start building resources.
 
 We are going to perform the following steps:
 
@@ -44,7 +44,6 @@ We are going to perform the following steps:
 3. **Create a GitHub repository:** We will create a GitHub project and set up the relevant secrets and environments that we will be using. The project will host our workflows and terraform configurations.
 4. **Create some terraform modules:** We will set up a few terraform ROOT modules. Separated and modular from each other (non-monolithic).
 5. **Create GitHub Workflows:** After we have our repository and terraform ROOT modules configured we will create our reusable workflows and configure multi-stage deployments to run and deploy resources in Azure based on our terraform ROOT Modules.
-
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page. :heart:
 
