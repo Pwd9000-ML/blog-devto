@@ -20,6 +20,8 @@ I have been wanting to do a tutorial to demonstrate how to perform large scale t
 
 There are also many blogs and tutorials out there on using and integrating **Terraform** with DevOps **CI/CD** processes using Azure DevOps specifically. So I decided to share with you today how to use **GitHub reusable workflows** and **GitHub environments** to build enterprise scale multi environment infrastructure deployments in **Azure** using a **non-monolithic** approach, to construct and simplify complex terraform deployments into simpler manageable work streams, that can be updated independently, increase build time, and reduce duplicate workflow code by utilizing **reusable GitHub workflows**.  
 
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actons-Terraform-Deployment-Part1/assets/mainwf.png)
+
 Things you will get out of this tutorial:
 
 - Learn about **GitHub reusable workflows**.
