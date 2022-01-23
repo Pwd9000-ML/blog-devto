@@ -616,19 +616,19 @@ jobs:
       arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}
 ```
 
-Notice that we have multiple `jobs:` in the caller workflow, one job to generate a terraform plan and one job to deploy the plan, per environment.  
+Notice that we have multiple `jobs:` in the caller workflow, one job to generate a terraform plan and one job to deploy the plan, per environment.
 
 You will see that each plan job uses the different TFVARS files: `config-dev.tfvars`, `config-uat.tfvars` and `config-prod.tfvars` respectively of each environment, but using the same ROOT module configuration in the **path:** `./01_Foundation/foundation_resources.tf`.
 
-Each reusable workflows **inputs** are specified on the **caller** workflows `jobs:` using `with:`, and **Secrets** using `secret:`.  
+Each reusable workflows **inputs** are specified on the **caller** workflows `jobs:` using `with:`, and **Secrets** using `secret:`.
 
 You will also note that only the **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:`, are linked with an input `gh_environment` which specifies which GitHub environment the job is linked to. Each **Plan** jobs: `Plan_Dev:`, `Plan_Uat:`, `Plan_Prod:`, are not linked to any GitHub Environment.
 
-Each **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:` are also linked with the relevant `needs:` setting of it's corresponding plan. This means that the plan job must be successful before the deploy job can initialize and run. Deploy jobs are also linked with earlier deploy jobs using `needs:` so that **Dev** gets built first and if successful be followed by **Uat**, and if successful followed by **Prod**. However if you remember, we configured a **GitHub Protection Rule** on our Production environment which needs to be approved before it can run.  
+Each **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:` are also linked with the relevant `needs:` setting of it's corresponding plan. This means that the plan job must be successful before the deploy job can initialize and run. Deploy jobs are also linked with earlier deploy jobs using `needs:` so that **Dev** gets built first and if successful be followed by **Uat**, and if successful followed by **Prod**. However if you remember, we configured a **GitHub Protection Rule** on our Production environment which needs to be approved before it can run.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/mainwf.png)
 
-**NOTE:** if you have been following this tutorial step by step, and used a cloned copy of the [Demo Repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments) you will need to update the **caller** workflows: `./.github/workflows/01_Foundation.yml` and `./.github/workflows/02_Storage.yml` with the **inputs** specified under `with:` using the values of your environment.  
+**NOTE:** if you have been following this tutorial step by step, and used a cloned copy of the [Demo Repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments) you will need to update the **caller** workflows: `./.github/workflows/01_Foundation.yml` and `./.github/workflows/02_Storage.yml` with the **inputs** specified under `with:` using the values of your environment.
 
 ## Testing
 
