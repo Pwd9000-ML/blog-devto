@@ -618,11 +618,11 @@ jobs:
 
 Notice that we have multiple `jobs:` in the caller workflow, one job to generate a terraform plan and one job to deploy the plan, per environment.  
 
-You will see that each plan job uses the different TFVARS files: `config-dev.tfvars`, `config-uat.tfvars` and `config-prod.tfvars` respectively of each environment, but using the same ROOT module configuration in the **path:** `./01_Foundation/foundation_resources.tf`.  
+You will see that each plan job uses the different TFVARS files: `config-dev.tfvars`, `config-uat.tfvars` and `config-prod.tfvars` respectively of each environment, but using the same ROOT module configuration in the **path:** `./01_Foundation/foundation_resources.tf`.
 
 Each reusable workflows **inputs** are specified on the **caller** workflows `jobs:` using `with:`, and **Secrets** using `secret:`.  
 
-You will also note that only the **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:`, are linked with an input `gh_environment` which specifies which GitHub environment the job is linked to. Each **Plan** jobs: `Plan_Dev:`, `Plan_Uat:`, `Plan_Prod:`, are not linked to any GitHub Environment.  
+You will also note that only the **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:`, are linked with an input `gh_environment` which specifies which GitHub environment the job is linked to. Each **Plan** jobs: `Plan_Dev:`, `Plan_Uat:`, `Plan_Prod:`, are not linked to any GitHub Environment.
 
 Each **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:` are also linked with the relevant `needs:` setting of it's corresponding plan. This means that the plan job must be successful before the deploy job can initialize and run. Deploy jobs are also linked with earlier deploy jobs using `needs:` so that **Dev** gets built first and if successful be followed by **Uat**, and if successful followed by **Prod**. However if you remember, we configured a **GitHub Protection Rule** on our Production environment which needs to be approved before it can run.  
 
