@@ -634,7 +634,35 @@ Each **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:` are also link
 
 Let's run the workflow: **01_Foundation** and see what happens.
 
-I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page. :heart:
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run.png)
+
+After the run you will see that each plan was created and DEV as well as UAT terraform configurations have been deployed to Azure as per the terraform configuration under `path: ./01_Foundation`:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run2.png)
+
+After approving **Production** we can see that approval has triggered the production deployment and now we also have a production resource group.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run3.png)
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run4.png)
+
+You will notice that each resource group contains a key vault as per our foundation terraform configuration.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run5.png)
+
+Let's run the workflow: **02_Foundation** and also approve production to run.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run6.png)
+
+Now you will notice that each of our environments resource groups also contains storage accounts as per the terraform configuration under `path: ./02_Storage`.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run7.png)
+
+Lastly, if we navigate to the terraform backend storage account, you will see that based on the `tf_key` inputs we gave each of our **caller** workflow `jobs:`, each terraform deployment has its own state file per ROOT module/collection, per environment, which nicely segregates the terraform configuration state files independently from each other.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/state.png)
+
+I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page. You can also look at the [Demo template project](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments) or even create your own projects and workflows from that [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments). :heart:
 
 ### _Author_
 
