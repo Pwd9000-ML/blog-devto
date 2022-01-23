@@ -139,11 +139,11 @@ For this step I actually created a [template repository](https://github.com/Pwd9
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghtemplate.png)
 
-After creating the GitHub repository there are a few things we do need to set on the repository before we can start using it.  
+After creating the GitHub repository there are a few things we do need to set on the repository before we can start using it.
 
 1. Add the secrets that was created in the `Key Vault` step above, into the newly created GitHub repository as **[Repository Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)**
 
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghsecrets.png)
+   ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghsecrets.png)
 
 2. Create the following **[GitHub Environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment)**. Or environments that matches your own requirements. In my case these are: `Development`, `UserAcceptanceTesting`, `Production`. Note that GitHub environments are available on public repos, but for private repos you will need GitHub Enterprise.
 
