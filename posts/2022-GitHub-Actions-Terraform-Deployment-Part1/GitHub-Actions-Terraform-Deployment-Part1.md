@@ -35,7 +35,7 @@ Hopefully you can even utilize these concepts in your own organization to build 
 
 ### Pre-Requisites
 
-To start things off we will build a few pre-requisites that is needed to integrate our **GitHub** project and workflows with **AZURE** before we can start building resources.  
+To start things off we will build a few pre-requisites that is needed to integrate our **GitHub** project and workflows with **AZURE** before we can start building resources.
 
 We are going to perform the following steps:
 
