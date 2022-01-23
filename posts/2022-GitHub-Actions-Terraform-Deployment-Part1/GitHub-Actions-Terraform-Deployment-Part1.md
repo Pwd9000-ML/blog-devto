@@ -129,7 +129,7 @@ az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
 
 Lets take a closer look, step-by-step what the above script does as part of setting up the Terraform backend environment.
 
-1. Create a resource group called `Demo-Terraform-Core-Backend-RG`, containing an Azure key vault and storage account. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/prereqs.png)
+1. Create a resource group called `Demo-Terraform-Core-Backend-RG`, containing an Azure key vault and storage account. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/prereqs1.png)
 2. Create an **AAD App and Service Principal** that has access to the key vault and the subscription. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/spn.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/rbac.png)
 3. The **AAD App and Service Principal** details are saved inside the key vault. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-SendGrid-Function-Alerts/assets/secrets.png)
 
