@@ -11,7 +11,7 @@ date: '2022-01-23T15:14:24Z'
 
 ### Overview
 
-This tutorial uses examples from the following GitHub demo project [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).  
+This tutorial uses examples from the following GitHub demo project [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).
 
 I have been wanting to do a tutorial to demonstrate how to perform large scale terraform deployments in Azure using a **non-monolithic** approach. I have seen so many large deployments fall into this same trap of using one big **monolithic** configuration when doing deployments at scale. Throwing everything into one unwieldy configuration can be troublesome for many reasons. To name a few:
 
