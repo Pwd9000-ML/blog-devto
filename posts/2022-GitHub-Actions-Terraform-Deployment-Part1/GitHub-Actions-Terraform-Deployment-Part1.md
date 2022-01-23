@@ -667,6 +667,12 @@ Lastly, if we navigate to the terraform backend storage account, you will see th
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/state.png)
 
+## Conclusion
+
+Following the same pattern shown in this tutorial you can now further expand your **Terraform** deployments in a modular structured way, by making more modules in separate paths e.g `./03_ect_ect` and extend your cloud deployments in more manageable chunks.  
+
+You can structure your **Terraform** modules/collections in such a way such as grouping certain resources together that forms a function such as **Foundation** or **Networking** for example, or a certain service such as **Storage** or **Apps**, so that when changes to IaC are needed for a certain function or service in a large scale architecture the changes can be implemented safely and independently.  
+
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page. You can also look at the demo project or even create your own projects and workflows from the demo project [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments). :heart:
 
 ### _Author_
