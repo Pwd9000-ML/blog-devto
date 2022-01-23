@@ -39,12 +39,96 @@ To start things off we will build a few pre-requisites that is needed to integra
 
 We are going to perform the following steps:
 
-1. **Create Azure resources (Terraform Backend):** (Optional) We will first create a few resources that will host our terraform backend state configuration. We will need a Resource Group, Storage Account and KeyVault. This step is optional only for this demo/tutorial.
+1. **Create Azure Resources (Terraform Backend):** (Optional) We will first create a few resources that will host our terraform backend state configuration. We will need a Resource Group, Storage Account and KeyVault. This step is optional only for this demo/tutorial.
 2. **Azure Active Directory Service Principal:** We will create an AAD Service Principal/Application that will have access to our Terraform backend and subscription in Azure. We will link this Service Principal with our GitHub project and workflows later in the tutorial.
-3. **Create a GitHub repository:** We will create a GitHub project and set up the relevant secrets and environments that we will be using. The project will host our workflows and terraform configurations.
-4. **Create some terraform modules:** We will set up a few terraform ROOT modules. Separated and modular from each other (non-monolithic).
+3. **Create a GitHub Repository:** We will create a GitHub project and set up the relevant secrets and environments that we will be using. The project will host our workflows and terraform configurations.
+4. **Create Terraform Modules (Modular):** We will set up a few terraform ROOT modules. Separated and modular from each other (non-monolithic).
 5. **Create GitHub Workflows:** After we have our repository and terraform ROOT modules configured we will create our reusable workflows and configure multi-stage deployments to run and deploy resources in Azure based on our terraform ROOT Modules.
 
+## 1. Create Azure resources (Terraform Backend)
+
+To set up the resources that will act as our Terraform backend, I wrote a PowerShell script using AZ CLI that will build and configure everything and store the relevant details/secrets we need to link our GitHub project in a key vault. You can find the script on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page called [AZ-GH-TF-Pre-Reqs.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code/AZ-GH-TF-Pre-Reqs.ps1).
+
+First we will log into Azure by running:
+
+```powershell
+az login
+```
+
+After logging into Azure and selecting the subscription, we can run the script that will create all the pre-requirements we'll need:
+
+```powershell
+## code/AZ-GH-TF-Pre-Reqs.ps1
+
+#Log into Azure
+#az login
+
+# Setup Variables.
+$randomInt = Get-Random -Maximum 9999
+$subscriptionId = (get-azcontext).Subscription.Id
+$resourceGroupName = "Demo-Terraform-Core-Backend-RG"
+$storageName = "tfcorebackendsa$randomInt"
+$kvName = "tf-core-backend-kv$randomInt"
+$appName="tf-core-github-SPN$randomInt"
+$region = "uksouth"
+
+# Create a resource resourceGroupName
+az group create --name "$resourceGroupName" --location "$region"
+
+# Create a Key Vault (RBAC mode)
+az keyvault create `
+    --name "$kvName" `
+    --resource-group "$resourceGroupName" `
+    --location "$region" `
+    --enable-rbac-authorization
+
+# Authorize the operation to create a few secrets - Signed in User (Key Vault Secrets Officer)
+az ad signed-in-user show --query objectId -o tsv | foreach-object {
+    az role assignment create `
+        --role "Key Vault Secrets Officer" `
+        --assignee "$_" `
+        --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$kvName"
+    }
+
+# Create an azure storage account - Terraform Backend Storage Account
+az storage account create `
+    --name "$storageName" `
+    --location "$region" `
+    --resource-group "$resourceGroupName" `
+    --sku "Standard_LRS" `
+    --kind "StorageV2" `
+    --https-only true `
+    --min-tls-version "TLS1_2"
+
+# Create Terraform Service Principal and assign RBAC Role on Key Vault 
+$spnJSON = az ad sp create-for-rbac --name $appName `
+    --role "Key Vault Secrets Officer" `
+    --scopes /subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$kvName 
+
+# Save new Terraform Service Principal details to key vault for later use
+$spnObj = $spnJSON | ConvertFrom-Json
+foreach($object_properties in $spnObj.psobject.properties) {
+    If ($object_properties.Name -eq "appId") {
+        $null = az keyvault secret set --vault-name $kvName --name "ARM-CLIENT-ID" --value $object_properties.Value
+    }
+    If ($object_properties.Name -eq "password") {
+        $null = az keyvault secret set --vault-name $kvName --name "ARM-CLIENT-SECRET" --value $object_properties.Value
+    }
+    If ($object_properties.Name -eq "tenant") {
+        $null = az keyvault secret set --vault-name $kvName --name "ARM-TENANT-ID" --value $object_properties.Value
+    }
+}
+$null = az keyvault secret set --vault-name $kvName --name "ARM-SUBSCRIPTION-ID" --value $subscriptionId
+
+# Assign additional RBAC role to Terraform Service Principal Subscription as Contributor
+az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
+    az role assignment create --assignee "$_" `
+        --role "Contributor" `
+        --subscription $subscriptionId
+    }
+```
+
+Lets take a closer look, step-by-step what the above script does as part of setting up the Terraform backend environment.
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page. :heart:
 
