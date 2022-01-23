@@ -182,7 +182,7 @@ You will notice that there are **numbered** workflows: `./.github/workflows/01_F
 
 Let's take a closer look at the reusable workflows:
 
-- **az_tf_plan.yml**:  
+- **az_tf_plan.yml**:
 
 This workflow is a reusable workflow to plan a terraform deployment, create an artifact and upload that artifact to workspace artifacts for consumption.
 
@@ -345,7 +345,7 @@ This workflow when called will perform the following steps:
 - Compress the plan artifacts.
 - Upload the compressed plan as a workflow artifact.
 
-- **az_tf_apply.yml**:  
+- **az_tf_apply.yml**:
 
 This workflow is a reusable workflow to download a terraform artifact built by `az_tf_plan.yml` and apply the artifact/plan (Deploy the planned terraform configuration).
 
