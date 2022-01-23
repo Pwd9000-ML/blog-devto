@@ -155,24 +155,7 @@ Also note that on my **Production** environment I have set a **Required Reviewer
 
 **NOTE:** You can also configure **GitHub Secrets** at the **Environment** scope if you have separate Service Principals or even separate Subscriptions in Azure for each **Environment**. (Example: Your Development resources are in subscription A and your Production resources are in Subscription B). See [Creating encrypted secrets for an environment](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-an-environment) for details.
 
-## 3. Create Terraform Modules (Modular)
 
-Now that our repository is all configured and ready to go, we can start to create some modular terraform configurations, or in other words separate independent deployment configurations based on ROOT terraform modules. If you look at the [Demo Repository](https://github.com/Pwd9000-ML/Demo-Repo-TF-Azure) you will see that on the root of the repository I have paths/folders that are numbered e.g. **./01_Foundation** and **./02_Storage**.  
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/tfmods.png)
-
-These paths each contain a terraform ROOT module, which consists of a **collection** of items that can **independently** be configured and deployed. You do not have to use the same naming/numbering as I have chosen, but the idea is to understand that these paths/folders each represent a unique independent modular terraform configuration that consists of collection of resources that we want to deploy independently.  
-
-So in this example:
-
-- `path: ./01_Foundation` contains the terraform ROOT module/configuration of an Azure Resource Group and key vault.
-- `path: ./02_Storage` contains the terraform ROOT module/configuration for one General-V2 and one Data Lake V2 Storage storage account.
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/tffoundation.png)
-
-**NOTE:** You will also notice that each module contains 3x separate TFVARS files: `config-dev.tfvars`, `config-uat.tfvars`, `config-prod.tfvars`. Each representing an environment. This is because each of my environments will use the same configuration: `foundation_resources.tf`, but may have slightly different configuration values or naming in each environment. (Example: The **Development** resource group name will be called `Demo-Infra-Dev-Rg`, whereas the **Production** resource group will be called `Demo-Infra-Prod-Rg`).
-
-## 4. Create GitHub Workflows
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page. :heart:
 
