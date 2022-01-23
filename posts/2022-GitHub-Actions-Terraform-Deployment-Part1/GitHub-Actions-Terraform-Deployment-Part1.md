@@ -14,8 +14,8 @@ I have been wanting to do a tutorial to demonstrate how to perform large scale t
 
 - Making a small change can potentially break something much larger somewhere else in the configuration unintentionally.
 - Build time aka `terraform plan/apply` is increased. A tiny change can take a long time to run as the entire state is checked.
-- It can become cumbersome and complex for a team or team member to understand the entire code base.
-- Module and provider versioning and dependencies can be fairly confusing to debug in this paradigm.
+- It can become cumbersome and complex for a team or team members to understand the entire code base.
+- Module and provider versioning and dependencies can be fairly confusing to debug in this paradigm and may become restrictive.
 - It becomes unmanageable, risky and time consuming to plan and implement any changes.
 
 There's also many blogs and tutorials out there on how to integrate **Terraform** with DevOps **CI/CD** processes using Azure DevOps. So I decided to share with you today how to use **Terraform** with **GitHub** instead.
