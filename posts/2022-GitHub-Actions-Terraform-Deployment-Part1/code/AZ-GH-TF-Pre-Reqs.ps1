@@ -38,6 +38,21 @@ az storage account create `
     --https-only true `
     --min-tls-version "TLS1_2"
 
+# Authorize the operation to create the container - Signed in User (Storage Blob Data Contributor Role)
+az ad signed-in-user show --query objectId -o tsv | foreach-object { 
+    az role assignment create `
+        --role "Storage Blob Data Contributor" `
+        --assignee "$_" `
+        --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageName"
+    }
+
+#Create Upload container in storage account to store terraform state files
+Start-Sleep -s 40
+az storage container create `
+    --account-name "$storageName" `
+    --name "tfstate" `
+    --auth-mode login
+
 # Create Terraform Service Principal and assign RBAC Role on Key Vault 
 $spnJSON = az ad sp create-for-rbac --name $appName `
     --role "Key Vault Secrets Officer" `
@@ -58,9 +73,13 @@ foreach($object_properties in $spnObj.psobject.properties) {
 }
 $null = az keyvault secret set --vault-name $kvName --name "ARM-SUBSCRIPTION-ID" --value $subscriptionId
 
-# Assign additional RBAC role to Terraform Service Principal Subscription as Contributor
+# Assign additional RBAC role to Terraform Service Principal Subscription as Contributor and access to backend storage
 az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
     az role assignment create --assignee "$_" `
         --role "Contributor" `
         --subscription $subscriptionId
+
+    az role assignment create --assignee "$_" `
+        --role "Storage Blob Data Contributor" `
+        --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageName" `
     }

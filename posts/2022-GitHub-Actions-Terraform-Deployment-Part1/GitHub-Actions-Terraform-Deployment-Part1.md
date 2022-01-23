@@ -74,7 +74,7 @@ $region = "uksouth"
 # Create a resource resourceGroupName
 az group create --name "$resourceGroupName" --location "$region"
 
-# Create a Key Vault (RBAC mode)
+# Create a Key Vault
 az keyvault create `
     --name "$kvName" `
     --resource-group "$resourceGroupName" `
@@ -99,12 +99,27 @@ az storage account create `
     --https-only true `
     --min-tls-version "TLS1_2"
 
-# Create Terraform Service Principal and assign RBAC Role on Key Vault
+# Authorize the operation to create the container - Signed in User (Storage Blob Data Contributor Role)
+az ad signed-in-user show --query objectId -o tsv | foreach-object { 
+    az role assignment create `
+        --role "Storage Blob Data Contributor" `
+        --assignee "$_" `
+        --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageName"
+    }
+
+#Create Upload container in storage account to store terraform state files
+Start-Sleep -s 40
+az storage container create `
+    --account-name "$storageName" `
+    --name "tfstate" `
+    --auth-mode login
+
+# Create Terraform Service Principal and assign RBAC Role on Key Vault 
 $spnJSON = az ad sp create-for-rbac --name $appName `
     --role "Key Vault Secrets Officer" `
-    --scopes /subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$kvName
+    --scopes /subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$kvName 
 
-# Save new Terraform Service Principal details to key vault for later use
+# Save new Terraform Service Principal details to key vault
 $spnObj = $spnJSON | ConvertFrom-Json
 foreach($object_properties in $spnObj.psobject.properties) {
     If ($object_properties.Name -eq "appId") {
@@ -119,18 +134,23 @@ foreach($object_properties in $spnObj.psobject.properties) {
 }
 $null = az keyvault secret set --vault-name $kvName --name "ARM-SUBSCRIPTION-ID" --value $subscriptionId
 
-# Assign additional RBAC role to Terraform Service Principal Subscription as Contributor
+# Assign additional RBAC role to Terraform Service Principal Subscription as Contributor and access to backend storage
 az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
     az role assignment create --assignee "$_" `
         --role "Contributor" `
         --subscription $subscriptionId
+
+    az role assignment create --assignee "$_" `
+        --role "Storage Blob Data Contributor" `
+        --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageName" `
     }
+
 ```
 
 Lets take a closer look, step-by-step what the above script does as part of setting up the Terraform backend environment.
 
 1. Create a resource group called `Demo-Terraform-Core-Backend-RG`, containing an Azure key vault and storage account. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/prereqs1.png)
-2. Create an **AAD App and Service Principal** that has access to the key vault and the subscription. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/spn.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/rbac.png)
+2. Create an **AAD App and Service Principal** that has access to the key vault, backend storage account, container and the subscription. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/spn.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/rbac.png)
 3. The **AAD App and Service Principal** details are saved inside the key vault. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/secrets.png)
 
 ## 2. Create a GitHub Repository
@@ -345,9 +365,9 @@ This workflow when called will perform the following steps:
 - Compress the plan artifacts.
 - Upload the compressed plan as a workflow artifact.
 
-Let's take a look at our second **reusable workflow**.
+Let's take a look at our second **reusable workflow**.  
 
-- **az_tf_apply.yml**:
+- **az_tf_apply.yml**:  
 
 This workflow is a reusable workflow to download a terraform artifact built by `az_tf_plan.yml` and apply the artifact/plan (Deploy the planned terraform configuration).
 
@@ -477,6 +497,140 @@ This workflow when called will perform the following steps:
 - Install and use the version of terraform as per the input.
 - Re-initialize the terraform module.
 - Apply the terraform configuration based on the terraform plan and values in the TFVARS file.
+
+Let's take a look at one of the **caller workflows** next. These workflows will be used to call the **reusable workflows**.
+
+- **01_Foundation.yml**:  
+
+This workflow is a **Caller** workflow. It will call and trigger a reusable workflow `az_tf_plan.yml` and create a foundational terraform deployment `PLAN` based on the repository `path: ./01_Foundation` containing the terraform ROOT module/configuration of an Azure Resource Group and key vault. The plan artifacts are validated, compressed and uploaded into the workflow artifacts, the caller workflow `01_Foundation` will then call and trigger the second reusable workflow `az_tf_apply.yml` that will download and decompress the `PLAN` artifact and trigger the deployment based on the plan. (Also demonstrated is how to use GitHub Environments to do multi staged environment based deployments with approvals - Optional)
+
+```yml
+## code/01_Foundation.yml
+name: "01_Foundation"
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+jobs:
+  Plan_Dev:
+    #if: github.ref == 'refs/heads/master' && github.event_name == 'pull_request'
+    uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_plan.yml@master
+    with:
+      path: 01_Foundation                               ## Path to terraform root module (Required)
+      tf_version: latest                                ## Terraform version e.g: 1.1.0 Default=latest (Optional)
+      az_resource_group: Demo-Terraform-Core-Backend-RG ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
+      az_storage_acc: tfcorebackendsa4653               ## AZ backend - AZURE terraform backend storage acc (Required)
+      az_container_name: tfstate                        ## AZ backend - AZURE storage container hosting state files (Required)
+      tf_key: foundation-dev                            ## AZ backend - Specifies name that will be given to terraform state file (Required)
+      tf_vars_file: config-dev.tfvars                   ## Terraform TFVARS (Required)
+    secrets:
+      arm_client_id: ${{ secrets.ARM_CLIENT_ID }}             ## ARM Client ID 
+      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}     ## ARM Client Secret
+      arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }} ## ARM Subscription ID
+      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}             ## ARM Tenant ID
+
+  Deploy_Dev:
+    needs: Plan_Dev
+    uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_apply.yml@master
+    with:
+      path: 01_Foundation                               ## Path to terraform root module (Required)
+      tf_version: latest                                ## Terraform version e.g: 1.1.0 Default=latest (Optional)
+      az_resource_group: Demo-Terraform-Core-Backend-RG ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
+      az_storage_acc: tfcorebackendsa4653               ## AZ backend - AZURE terraform backend storage acc (Required)
+      az_container_name: tfstate                        ## AZ backend - AZURE storage container hosting state files (Required)
+      tf_key: foundation-dev                            ## AZ backend - Specifies name that will be given to terraform state file (Required)
+      gh_environment: Development                       ## GH Environment. Default=null - (Optional)
+      tf_vars_file: config-dev.tfvars                   ## Terraform TFVARS (Required)
+    secrets:
+      arm_client_id: ${{ secrets.ARM_CLIENT_ID }}             ## ARM Client ID 
+      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}     ## ARM Client Secret
+      arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }} ## ARM Subscription ID
+      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}             ## ARM Tenant ID
+
+  Plan_Uat:
+    #if: github.ref == 'refs/heads/master' && github.event_name == 'pull_request'
+    uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_plan.yml@master
+    with:
+      path: 01_Foundation
+      az_resource_group: Demo-Terraform-Core-Backend-RG
+      az_storage_acc: tfcorebackendsa4653
+      az_container_name: tfstate
+      tf_key: foundation-uat
+      tf_vars_file: config-uat.tfvars
+    secrets:
+      arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
+      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
+      arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}
+
+  Deploy_Uat:
+    needs: [Plan_Uat, Deploy_Dev]
+    uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_apply.yml@master
+    with:
+      path: 01_Foundation
+      az_resource_group: Demo-Terraform-Core-Backend-RG
+      az_storage_acc: tfcorebackendsa4653
+      az_container_name: tfstate
+      tf_key: foundation-uat
+      gh_environment: UserAcceptanceTesting
+      tf_vars_file: config-uat.tfvars
+    secrets:
+      arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
+      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
+      arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}
+
+  Plan_Prod:
+    #if: github.ref == 'refs/heads/master' && github.event_name == 'pull_request'
+    uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_plan.yml@master
+    with:
+      path: 01_Foundation
+      tf_version: latest
+      az_resource_group: Demo-Terraform-Core-Backend-RG
+      az_storage_acc: tfcorebackendsa4653
+      az_container_name: tfstate
+      tf_key: foundation-prod
+      tf_vars_file: config-prod.tfvars
+    secrets:
+      arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
+      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
+      arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}
+
+  Deploy_Prod:
+    needs: [Plan_Prod, Deploy_Uat]
+    uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_apply.yml@master
+    with:
+      path: 01_Foundation
+      az_resource_group: Demo-Terraform-Core-Backend-RG
+      az_storage_acc: tfcorebackendsa4653
+      az_container_name: tfstate
+      tf_key: foundation-prod
+      gh_environment: Production
+      tf_vars_file: config-prod.tfvars
+    secrets:
+      arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
+      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
+      arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}
+```
+
+Notice that we have multiple **jobs:** in the caller workflow, one job to generate a terraform plan and one job to deploy the plan, per environment.  You will se that each plan job uses the different TFVARS files: `config-dev.tfvars`, `config-uat.tfvars` and `config-prod.tfvars` respectively of each environment, but using the same ROOT module configuration in the **path:** `./01_Foundation/foundation_resources.tf`.
+
+Each reusable workflows **inputs** are specified on the **caller** workflows **jobs:** using **with:**, and **Secrets** using **secret:**.  
+
+You will also note that only the **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:`, are linked with an input `gh_environment` which specifies which GitHub environment the job is linked to. Each **Plan** jobs: `Plan_Dev:`, `Plan_Uat:`, `Plan_Prod:`, are not linked to any GitHub Environment.  
+
+Each **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:` are also linked with the relevant `needs:` setting of it's corresponding plan. This means that the plan Job must be successful for the deploy job to initialize and run. Deploy jobs are also linked with earlier deploy jobs under `needs:` so that Dev gets built first and if successful be followed by Uat, and if successful followed by Prod. However if you remember, we set a **GitHub Protection Rule** on our Production environment which needs to be approved before it can run.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/mainwf.png)
+
+**NOTE:** if you have been following this tutorial step by step, and used a cloned copy of the [Demo Repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments) you will need to update your **Caller** workflows: `./.github/workflows/01_Foundation.yml` and `./.github/workflows/02_Storage.yml` with the **inputs** specified under `with:` using the values of your Azure Environment.
+
+## Testing
+
+Let's run the workflow **01_Foundation** and see what happens.
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page. :heart:
 
