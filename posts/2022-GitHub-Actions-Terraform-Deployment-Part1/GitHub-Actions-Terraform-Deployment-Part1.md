@@ -345,9 +345,9 @@ This workflow when called will perform the following steps:
 - Compress the plan artifacts.
 - Upload the compressed plan as a workflow artifact.
 
-Let's take a look at our second **reusable workflow**.  
+Let's take a look at our second **reusable workflow**.
 
-- **az_tf_apply.yml**:  
+- **az_tf_apply.yml**:
 
 This workflow is a reusable workflow to download a terraform artifact built by `az_tf_plan.yml` and apply the artifact/plan (Deploy the planned terraform configuration).
 
