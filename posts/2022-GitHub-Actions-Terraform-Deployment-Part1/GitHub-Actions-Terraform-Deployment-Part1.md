@@ -170,7 +170,7 @@ So in this example:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/tffoundation.png)
 
-**NOTE:** You will also notice that each module contains 3x separate TFVARS files: `config-dev.tfvars`, `config-uat.tfvars`, `config-prod.tfvars`. Each representing an environment. This is because each of my environments will use the same configuration: `foundation_resources.tf`, but may have slightly different configuration values or naming in each environment. (Example: The **Development** resource group name will be called `Demo-Infra-Dev-Rg`, whereas the **Production** resource group will be called `Demo-Infra-Prod-Rg`)
+**NOTE:** You will also notice that each module contains 3x separate TFVARS files: `config-dev.tfvars`, `config-uat.tfvars`, `config-prod.tfvars`. Each representing an environment. This is because each of my environments will use the same configuration: `foundation_resources.tf`, but may have slightly different configuration values or naming in each environment. (Example: The **Development** resource group name will be called `Demo-Infra-Dev-Rg`, whereas the **Production** resource group will be called `Demo-Infra-Prod-Rg`).
 
 ## 4. Create GitHub Workflows
 
