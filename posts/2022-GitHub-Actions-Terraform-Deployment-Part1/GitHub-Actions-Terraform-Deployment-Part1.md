@@ -139,7 +139,21 @@ For this step I actually created a [template repository](https://github.com/Pwd9
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghtemplate.png)
 
-After creating the GitHub repository there are a few things we do need to set on the repository before we can start using it.
+After creating the GitHub repository there are a few things we do need to set on the repository before we can start using it.  
+
+1. Add the secrets that was created in the `Key Vault` step above, into the newly created GitHub repository as **[Repository Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)**
+
+    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghsecrets.png)
+
+2. Create the following **[GitHub Environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment)**. Or environments that matches your own requirements. In my case these are: `Development`, `UserAcceptanceTesting`, `Production`. Note that GitHub environments are available on public repos, but for private repos you will need GitHub Enterprise.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghenv.png)
+
+Also note that on my **Production** environment I have set a **Required Reviewer**. This will basically allow me to set explicit reviewers that have to physically approve deployments to the **Production** environment. To learn more about approvals see [Environment Protection Rules](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#environment-protection-rules).
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghprotect.png)
+
+**NOTE:** You can also configure **GitHub Secrets** at the **Environment** scope if you have separate Service Principals or even separate Subscriptions in Azure for each **Environment**. (Example: Your Development resources is in subscription A and your Production resources are in Subscription B). See [Creating encrypted secrets for an environment](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-an-environment) for details.
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page. :heart:
 
