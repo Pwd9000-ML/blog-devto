@@ -168,9 +168,9 @@ After creating the GitHub repository there are a few things we do need to set on
 
    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghsecrets.png)
 
-2. This step is **Optional**. Create the following **[GitHub Environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment)**, or environments that matches your own requirements. In my case these are: `Development`, `UserAcceptanceTesting`, `Production`. You do not have to set up and use **GitHub Environments**, this is optional and is used in this tutorial to demonstrate deployment approvals via **Protection Rules**.  
+2. This step is **Optional**. Create the following **[GitHub Environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment)**, or environments that matches your own requirements. In my case these are: `Development`, `UserAcceptanceTesting`, `Production`. You do not have to set up and use **GitHub Environments**, this is optional and is used in this tutorial to demonstrate deployment approvals via **Protection Rules**.
 
-**NOTE:** GitHub environments and Protection Rules are available on public repos, but for private repos you will need GitHub Enterprise.  
+**NOTE:** GitHub environments and Protection Rules are available on public repos, but for private repos you will need GitHub Enterprise.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghenv.png)
 
@@ -627,7 +627,7 @@ You will see that each plan job uses the different TFVARS files: `config-dev.tfv
 
 Each reusable workflows **inputs** are specified on the **caller** workflows `jobs:` using `with:`, and **Secrets** using `secret:`.
 
-(Optional) - You will also note that only the **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:`, are linked with an input `gh_environment` which specifies which GitHub environment the job is linked to. Each **Plan** jobs: `Plan_Dev:`, `Plan_Uat:`, `Plan_Prod:`, are not linked to any GitHub Environment.  
+(Optional) - You will also note that only the **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:`, are linked with an input `gh_environment` which specifies which GitHub environment the job is linked to. Each **Plan** jobs: `Plan_Dev:`, `Plan_Uat:`, `Plan_Prod:`, are not linked to any GitHub Environment.
 
 If you don't use GitHub environments you can leave out the `gh_environment` input completely. The benefits of using GitHub Environments are **Protection rules** for approvals, and also Secrets at the Environment scope. This setting/input: `gh_environment` is only optional.
 
