@@ -168,7 +168,7 @@ So in this example:
 - **path:** `./01_Foundation` contains the terraform ROOT module/configuration of an Azure Resource Group and key vault.
 - **path:** `./02_Storage` contains the terraform ROOT module/configuration for one General-V2 and one Data Lake V2 Storage storage account.
 
-**NOTE:** You will also notice that each ROOT module contains 3x separate TFVARS files: `config-dev.tfvars`, `config-uat.tfvars` and `config-prod.tfvars`. Each representing an environment. This is because each of my environments will use the same configuration: `foundation_resources.tf`, but may have slightly different configuration values or naming.  
+**NOTE:** You will also notice that each ROOT module contains 3x separate TFVARS files: `config-dev.tfvars`, `config-uat.tfvars` and `config-prod.tfvars`. Each representing an environment. This is because each of my environments will use the same configuration: `foundation_resources.tf`, but may have slightly different configuration values or naming.
 
 Example: The **Development** resource group name will be called `Demo-Infra-Dev-Rg`, whereas the **Production** resource group will be called `Demo-Infra-Prod-Rg`.
 
@@ -176,7 +176,7 @@ Example: The **Development** resource group name will be called `Demo-Infra-Dev-
 
 ## 4. Create GitHub Workflows
 
-Next we will create a special folder/path structure in the root of our repository called `.github/workflows`. This folder/path will contain our **[GitHub Action Workflows](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)**.  
+Next we will create a special folder/path structure in the root of our repository called `.github/workflows`. This folder/path will contain our **[GitHub Action Workflows](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)**.
 
 You will notice that there are **numbered** workflows: `./.github/workflows/01_Foundation.yml` and `./.github/workflows/02_Storage.yml`, these are **caller** workflows. Each caller workflow represents a terraform module and is named the same as the **path** containing the ROOT terraform module as described in the section above. There are also 2x **[GitHub Reusable Workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows)** called `./.github/workflows/az_tf_plan.yml` and `./.github/workflows/az_tf_apply.yml`.
 
@@ -190,7 +190,7 @@ This workflow is a reusable workflow to plan a terraform deployment, create an a
 ## code/az_tf_plan.yml
 
 ### Reusable workflow to plan terraform deployment, create artifact and upload to workspace artifacts for consumption ###
-name: "Build_TF_Plan"
+name: 'Build_TF_Plan'
 on:
   workflow_call:
     inputs:
@@ -261,7 +261,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.arm_client_secret }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.arm_subscription_id }}
       ARM_TENANT_ID: ${{ secrets.arm_tenant_id }}
-  
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -278,7 +278,7 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init --backend-config="storage_account_name=$STORAGE_ACCOUNT" --backend-config="container_name=$CONTAINER_NAME" --backend-config="resource_group_name=$RESOURCE_GROUP" --backend-config="key=$TF_KEY"
-      
+
       - name: Terraform Validate
         id: validate
         run: terraform validate
@@ -298,8 +298,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: "${{ inputs.tf_key }}"
-          path: "${{ inputs.path }}/${{ inputs.tf_key }}.zip"
+          name: '${{ inputs.tf_key }}'
+          path: '${{ inputs.path }}/${{ inputs.tf_key }}.zip'
           retention-days: 5
 ```
 
@@ -312,10 +312,10 @@ on:
   workflow_call:
 ```
 
-As you can see the reusable workflow can be given specific **inputs** when called by the **caller** workflow. Notice that one of the inputs are called **path:** which we can use to specify the path of the ROOT terraform module that we want to plan and deploy.  
+As you can see the reusable workflow can be given specific **inputs** when called by the **caller** workflow. Notice that one of the inputs are called **path:** which we can use to specify the path of the ROOT terraform module that we want to plan and deploy.
 
 | Inputs | Required | Description | Default |
-|--------|----------|-------------|---------|
+| --- | --- | --- | --- |
 | path | True | Specifies the path of the root terraform module. | - |
 | tf_version | False | Specifies version of Terraform to use. e.g: 1.1.0 Default=latest. | latest |
 | az_resource_group | True | Specifies the Azure Resource Group where the backend storage account is hosted. | - |
@@ -325,16 +325,16 @@ As you can see the reusable workflow can be given specific **inputs** when calle
 | gh_environment | False | Specifies the GitHub deployment environment. | null |
 | tf_vars_file | True | Specifies the Terraform TFVARS file. | - |
 
-We aso need to pass some secrets from the **caller** to the **reusable workflow**. This is the details of our Service Principal we created to have access in Azure and is linked with our **GitHub Repository Secrets** we configured earlier.  
+We aso need to pass some secrets from the **caller** to the **reusable workflow**. This is the details of our Service Principal we created to have access in Azure and is linked with our **GitHub Repository Secrets** we configured earlier.
 
-| Secret | Required | Description |
-|--------|----------|-------------|
-| arm_client_id | True | Specifies the Azure ARM CLIENT ID. |
-| arm_client_secret | True | Specifies the Azure ARM CLIENT SECRET. |
-| arm_subscription_id | True | Specifies the Azure ARM SUBSCRIPTION ID. |
-| arm_tenant_id | True | Specifies the Azure ARM TENANT ID. |
+| Secret              | Required | Description                              |
+| ------------------- | -------- | ---------------------------------------- |
+| arm_client_id       | True     | Specifies the Azure ARM CLIENT ID.       |
+| arm_client_secret   | True     | Specifies the Azure ARM CLIENT SECRET.   |
+| arm_subscription_id | True     | Specifies the Azure ARM SUBSCRIPTION ID. |
+| arm_tenant_id       | True     | Specifies the Azure ARM TENANT ID.       |
 
-This workflow when called will perform the following steps:  
+This workflow when called will perform the following steps:
 
 - Check out the code repository and set the path context given as input to the path containing the terraform module.
 - Install and use the version of terraform as per the input.
@@ -353,7 +353,7 @@ This workflow is a reusable workflow to download a terraform artifact built by `
 ## code/az_tf_apply.yml
 
 ### Reusable workflow to download terraform artifact built by `az_tf_plan` and apply the artifact/plan ###
-name: "Apply_TF_Plan"
+name: 'Apply_TF_Plan'
 on:
   workflow_call:
     inputs:
@@ -424,7 +424,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.arm_client_secret }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.arm_subscription_id }}
       ARM_TENANT_ID: ${{ secrets.arm_tenant_id }}
-  
+
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v2
@@ -448,10 +448,10 @@ jobs:
         run: terraform apply --var-file=$TF_VARS --auto-approve
 ```
 
-The **inputs** and **secrets** are the same as our previous **reusable workflow** which created the terraform plan.  
+The **inputs** and **secrets** are the same as our previous **reusable workflow** which created the terraform plan.
 
 | Inputs | Required | Description | Default |
-|--------|----------|-------------|---------|
+| --- | --- | --- | --- |
 | path | True | Specifies the path of the root terraform module. | - |
 | tf_version | False | Specifies version of Terraform to use. e.g: 1.1.0 Default=latest. | latest |
 | az_resource_group | True | Specifies the Azure Resource Group where the backend storage account is hosted. | - |
@@ -461,22 +461,20 @@ The **inputs** and **secrets** are the same as our previous **reusable workflow*
 | gh_environment | False | Specifies the GitHub deployment environment. | null |
 | tf_vars_file | True | Specifies the Terraform TFVARS file. | - |
 
-| Secret | Required | Description |
-|--------|----------|-------------|
-| arm_client_id | True | Specifies the Azure ARM CLIENT ID. |
-| arm_client_secret | True | Specifies the Azure ARM CLIENT SECRET. |
-| arm_subscription_id | True | Specifies the Azure ARM SUBSCRIPTION ID. |
-| arm_tenant_id | True | Specifies the Azure ARM TENANT ID. |
+| Secret              | Required | Description                              |
+| ------------------- | -------- | ---------------------------------------- |
+| arm_client_id       | True     | Specifies the Azure ARM CLIENT ID.       |
+| arm_client_secret   | True     | Specifies the Azure ARM CLIENT SECRET.   |
+| arm_subscription_id | True     | Specifies the Azure ARM SUBSCRIPTION ID. |
+| arm_tenant_id       | True     | Specifies the Azure ARM TENANT ID.       |
 
-This workflow when called will perform the following steps:  
+This workflow when called will perform the following steps:
 
 - Download the terraform plan (workflow artifact).
 - Decompress the terraform plan (workflow artifact).
 - Install and use the version of terraform as per the input.
 - Re-initialize the terraform module.
 - Apply the terraform configuration based on the terraform plan and values in the TFVARS file.
-
-
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page. :heart:
 
