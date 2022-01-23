@@ -135,7 +135,9 @@ Lets take a closer look, step-by-step what the above script does as part of sett
 
 ## 2. Create a GitHub Repository
 
-For this step I actually created a [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments) you can just copy with everything to get started.  
+For this step I actually created a [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments) that contains everything to get started. Feel free to create your repository from my template by selecting `Use this template`. (Optional)  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghtemplate.png)
 
 After creating the GitHub repository there are a few things we do need to set on the repository before we can start using it.
 
