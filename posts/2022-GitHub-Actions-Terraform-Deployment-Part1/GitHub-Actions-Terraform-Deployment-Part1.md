@@ -507,7 +507,7 @@ This workflow is a **Caller** workflow. It will call and trigger a reusable work
 
 ```yml
 ## code/01_Foundation.yml
-name: '01_Foundation'
+name: "01_Foundation"
 on:
   workflow_dispatch:
   pull_request:
@@ -518,45 +518,45 @@ jobs:
     #if: github.ref == 'refs/heads/master' && github.event_name == 'pull_request'
     uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_plan.yml@master
     with:
-      path: 01_Foundation ## Path to terraform root module (Required)
-      tf_version: latest ## Terraform version e.g: 1.1.0 Default=latest (Optional)
-      az_resource_group: Demo-Terraform-Core-Backend-RG ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
-      az_storage_acc: tfcorebackendsa4653 ## AZ backend - AZURE terraform backend storage acc (Required)
-      az_container_name: tfstate ## AZ backend - AZURE storage container hosting state files (Required)
-      tf_key: foundation-dev ## AZ backend - Specifies name that will be given to terraform state file (Required)
-      tf_vars_file: config-dev.tfvars ## Terraform TFVARS (Required)
+      path: 01_Foundation                         ## Path to terraform root module (Required)
+      tf_version: latest                          ## Terraform version e.g: 1.1.0 Default=latest (Optional)
+      az_resource_group: your-resource-group-name ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
+      az_storage_acc: your-storage-account-name   ## AZ backend - AZURE terraform backend storage acc (Required)
+      az_container_name: your-sa-container-name   ## AZ backend - AZURE storage container hosting state files (Required)
+      tf_key: foundation-dev                      ## AZ backend - Specifies name that will be given to terraform state file (Required)
+      tf_vars_file: config-dev.tfvars             ## Terraform TFVARS (Required)
     secrets:
-      arm_client_id: ${{ secrets.ARM_CLIENT_ID }} ## ARM Client ID
-      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }} ## ARM Client Secret
+      arm_client_id: ${{ secrets.ARM_CLIENT_ID }}             ## ARM Client ID 
+      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}     ## ARM Client Secret
       arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }} ## ARM Subscription ID
-      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## ARM Tenant ID
+      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}             ## ARM Tenant ID
 
   Deploy_Dev:
     needs: Plan_Dev
     uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_apply.yml@master
     with:
-      path: 01_Foundation ## Path to terraform root module (Required)
-      tf_version: latest ## Terraform version e.g: 1.1.0 Default=latest (Optional)
-      az_resource_group: Demo-Terraform-Core-Backend-RG ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
-      az_storage_acc: tfcorebackendsa4653 ## AZ backend - AZURE terraform backend storage acc (Required)
-      az_container_name: tfstate ## AZ backend - AZURE storage container hosting state files (Required)
-      tf_key: foundation-dev ## AZ backend - Specifies name that will be given to terraform state file (Required)
-      gh_environment: Development ## GH Environment. Default=null - (Optional)
-      tf_vars_file: config-dev.tfvars ## Terraform TFVARS (Required)
+      path: 01_Foundation                         ## Path to terraform root module (Required)
+      tf_version: latest                          ## Terraform version e.g: 1.1.0 Default=latest (Optional)
+      az_resource_group: your-resource-group-name ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
+      az_storage_acc: your-storage-account-name   ## AZ backend - AZURE terraform backend storage acc (Required)
+      az_container_name: your-sa-container-name   ## AZ backend - AZURE storage container hosting state files (Required)
+      tf_key: foundation-dev                      ## AZ backend - Specifies name that will be given to terraform state file (Required)
+      gh_environment: Development                 ## GH Environment. Default=null - (Optional)
+      tf_vars_file: config-dev.tfvars             ## Terraform TFVARS (Required)
     secrets:
-      arm_client_id: ${{ secrets.ARM_CLIENT_ID }} ## ARM Client ID
-      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }} ## ARM Client Secret
+      arm_client_id: ${{ secrets.ARM_CLIENT_ID }}             ## ARM Client ID 
+      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}     ## ARM Client Secret
       arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }} ## ARM Subscription ID
-      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## ARM Tenant ID
+      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}             ## ARM Tenant ID
 
   Plan_Uat:
     #if: github.ref == 'refs/heads/master' && github.event_name == 'pull_request'
     uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_plan.yml@master
     with:
       path: 01_Foundation
-      az_resource_group: Demo-Terraform-Core-Backend-RG
-      az_storage_acc: tfcorebackendsa4653
-      az_container_name: tfstate
+      az_resource_group: your-resource-group-name
+      az_storage_acc: your-storage-account-name
+      az_container_name: your-sa-container-name
       tf_key: foundation-uat
       tf_vars_file: config-uat.tfvars
     secrets:
@@ -570,9 +570,9 @@ jobs:
     uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_apply.yml@master
     with:
       path: 01_Foundation
-      az_resource_group: Demo-Terraform-Core-Backend-RG
-      az_storage_acc: tfcorebackendsa4653
-      az_container_name: tfstate
+      az_resource_group: your-resource-group-name
+      az_storage_acc: your-storage-account-name
+      az_container_name: your-sa-container-name
       tf_key: foundation-uat
       gh_environment: UserAcceptanceTesting
       tf_vars_file: config-uat.tfvars
@@ -588,9 +588,9 @@ jobs:
     with:
       path: 01_Foundation
       tf_version: latest
-      az_resource_group: Demo-Terraform-Core-Backend-RG
-      az_storage_acc: tfcorebackendsa4653
-      az_container_name: tfstate
+      az_resource_group: your-resource-group-name
+      az_storage_acc: your-storage-account-name
+      az_container_name: your-sa-container-name
       tf_key: foundation-prod
       tf_vars_file: config-prod.tfvars
     secrets:
@@ -604,9 +604,9 @@ jobs:
     uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_apply.yml@master
     with:
       path: 01_Foundation
-      az_resource_group: Demo-Terraform-Core-Backend-RG
-      az_storage_acc: tfcorebackendsa4653
-      az_container_name: tfstate
+      az_resource_group: your-resource-group-name
+      az_storage_acc: your-storage-account-name
+      az_container_name: your-sa-container-name
       tf_key: foundation-prod
       gh_environment: Production
       tf_vars_file: config-prod.tfvars
