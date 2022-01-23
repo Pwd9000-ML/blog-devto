@@ -43,7 +43,7 @@ To start things off we will build a few pre-requisites that is needed to integra
 We are going to perform the following steps:
 
 1. **Create Azure Resources (Terraform Backend):** (Optional) We will first create a few resources that will host our terraform backend state configuration. We will need a Resource Group, Storage Account and KeyVault. We will also create an **Azure Active Directory App & Service Principal** that will have access to our Terraform backend and subscription in Azure. We will link this Service Principal with our GitHub project and workflows later in the tutorial.
-2. **Create a GitHub Repository:** We will create a GitHub project and set up the relevant secrets and environments that we will be using. The project will host our workflows and terraform configurations.
+2. **Create a GitHub Repository:** We will create a GitHub project and set up the relevant secrets and (optional) GitHub environments that we will be using. The project will host our workflows and terraform configurations.
 3. **Create Terraform Modules (Modular):** We will set up a few terraform ROOT modules. Separated and modular from each other (non-monolithic).
 4. **Create GitHub Workflows:** After we have our repository and terraform ROOT modules configured we will create our reusable workflows and configure multi-stage deployments to run and deploy resources in Azure based on our terraform ROOT Modules.
 
@@ -168,11 +168,13 @@ After creating the GitHub repository there are a few things we do need to set on
 
    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghsecrets.png)
 
-2. Create the following **[GitHub Environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment)**. Or environments that matches your own requirements. In my case these are: `Development`, `UserAcceptanceTesting`, `Production`. Note that GitHub environments are available on public repos, but for private repos you will need GitHub Enterprise.
+2. This step is **Optional**. Create the following **[GitHub Environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment)**, or environments that matches your own requirements. In my case these are: `Development`, `UserAcceptanceTesting`, `Production`. You do not have to set up and use **GitHub Environments**, this is optional and is used in this tutorial to demonstrate deployment approvals via **Protection Rules**.  
+
+**NOTE:** GitHub environments and Protection Rules are available on public repos, but for private repos you will need GitHub Enterprise.  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghenv.png)
 
-Also note that on my **Production** environment I have set a **Required Reviewer**. This will basically allow me to set explicit reviewers that have to physically approve deployments to the **Production** environment. To learn more about approvals see [Environment Protection Rules](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#environment-protection-rules).
+Note that on my **Production** GitHub environment I have set a **Required Reviewer**. This will basically allow me to set explicit reviewers that have to physically approve deployments to the **Production** environment. To learn more about approvals see [Environment Protection Rules](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#environment-protection-rules).
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghprotect.png)
 
@@ -340,12 +342,12 @@ As you can see the reusable workflow can be given specific **inputs** when calle
 | Inputs | Required | Description | Default |
 | --- | --- | --- | --- |
 | path | True | Specifies the path of the root terraform module. | - |
-| tf_version | False | Specifies version of Terraform to use. e.g: 1.1.0 Default=latest. | latest |
+| tf_version | False | (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default=latest. | latest |
 | az_resource_group | True | Specifies the Azure Resource Group where the backend storage account is hosted. | - |
 | az_storage_acc | True | Specifies the Azure Storage Account where the backend state is hosted. | - |
 | az_container_name | True | Specifies the Azure Storage account container where backend Terraform state is hosted. | - |
 | tf_key | True | Specifies the Terraform state file name for this plan. | - |
-| gh_environment | False | Specifies the GitHub deployment environment. | null |
+| gh_environment | False | (Optional) Specifies the GitHub deployment environment. Leave this setting out if you do not have GitHub Environments configured. | null |
 | tf_vars_file | True | Specifies the Terraform TFVARS file. | - |
 
 We aso need to pass some secrets from the **caller** to the **reusable workflow**. This is the details of our Service Principal we created to have access in Azure and is linked with our **GitHub Repository Secrets** we configured earlier.
@@ -478,12 +480,12 @@ The **inputs** and **secrets** are the same as our previous **reusable workflow*
 | Inputs | Required | Description | Default |
 | --- | --- | --- | --- |
 | path | True | Specifies the path of the root terraform module. | - |
-| tf_version | False | Specifies version of Terraform to use. e.g: 1.1.0 Default=latest. | latest |
+| tf_version | False | (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default=latest. | latest |
 | az_resource_group | True | Specifies the Azure Resource Group where the backend storage account is hosted. | - |
 | az_storage_acc | True | Specifies the Azure Storage Account where the backend state is hosted. | - |
 | az_container_name | True | Specifies the Azure Storage account container where backend Terraform state is hosted. | - |
 | tf_key | True | Specifies the Terraform state file name for this plan. | - |
-| gh_environment | False | Specifies the GitHub deployment environment. | null |
+| gh_environment | False | (Optional) Specifies the GitHub deployment environment. Leave this setting out if you do not have GitHub Environments configured. | null |
 | tf_vars_file | True | Specifies the Terraform TFVARS file. | - |
 
 | Secret              | Required | Description                              |
@@ -625,7 +627,9 @@ You will see that each plan job uses the different TFVARS files: `config-dev.tfv
 
 Each reusable workflows **inputs** are specified on the **caller** workflows `jobs:` using `with:`, and **Secrets** using `secret:`.
 
-You will also note that only the **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:`, are linked with an input `gh_environment` which specifies which GitHub environment the job is linked to. Each **Plan** jobs: `Plan_Dev:`, `Plan_Uat:`, `Plan_Prod:`, are not linked to any GitHub Environment.
+(Optional) - You will also note that only the **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:`, are linked with an input `gh_environment` which specifies which GitHub environment the job is linked to. Each **Plan** jobs: `Plan_Dev:`, `Plan_Uat:`, `Plan_Prod:`, are not linked to any GitHub Environment.  
+
+If you don't use GitHub environments you can leave out the `gh_environment` input completely. The benefits of using GitHub Environments are **Protection rules** for approvals, and also Secrets at the Environment scope. This setting/input: `gh_environment` is only optional.
 
 Each **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:` are also linked with the relevant `needs:` setting of it's corresponding plan. This means that the plan job must be successful before the deploy job can initialize and run. Deploy jobs are also linked with earlier deploy jobs using `needs:` so that **Dev** gets built first and if successful be followed by **Uat**, and if successful followed by **Prod**. However if you remember, we configured a **GitHub Protection Rule** on our Production environment which needs to be approved before it can run.
 
