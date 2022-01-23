@@ -100,10 +100,10 @@ az storage account create `
     --https-only true `
     --min-tls-version "TLS1_2"
 
-# Create Terraform Service Principal and assign RBAC Role on Key Vault 
+# Create Terraform Service Principal and assign RBAC Role on Key Vault
 $spnJSON = az ad sp create-for-rbac --name $appName `
     --role "Key Vault Secrets Officer" `
-    --scopes /subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$kvName 
+    --scopes /subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$kvName
 
 # Save new Terraform Service Principal details to key vault for later use
 $spnObj = $spnJSON | ConvertFrom-Json
