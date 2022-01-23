@@ -1,6 +1,6 @@
 ---
 title: Multi environment AZURE deployments with Terraform and GitHub
-published: false
+published: true
 description: Enterprise scale multi environment Azure deployments using Terraform and Github reusable workflows.
 tags: 'terraform, iac, github, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/main.png'
@@ -646,11 +646,11 @@ After approving **Production** we can see that approval has triggered the produc
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run4.png)
 
-You will notice that each resource group contains a key vault as per our foundation terraform configuration.
+You will notice that each resource group contains a key vault as per our foundation terraform configuration under `path: ./01_Foundation`.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run5.png)
 
-Let's run the workflow: **02_Foundation** and also approve production to run.
+Let's run the workflow: **02_Storage** and after deploying DEV and UAT, also approve PRODUCTION to run.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run6.png)
 
@@ -662,7 +662,7 @@ Lastly, if we navigate to the terraform backend storage account, you will see th
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/state.png)
 
-I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page. You can also look at the [Demo template project](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments) or even create your own projects and workflows from that [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments). :heart:
+I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page. You can also look at the demo project or even create your own projects and workflows from the demo project [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments). :heart:
 
 ### _Author_
 
