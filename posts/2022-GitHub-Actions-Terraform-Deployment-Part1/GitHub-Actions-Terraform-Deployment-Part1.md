@@ -157,11 +157,11 @@ Also note that on my **Production** environment I have set a **Required Reviewer
 
 ## 3. Create Terraform Modules (Modular)
 
-Now that our repository is all configured and ready to go, we can start to create some modular terraform configurations, or in other words separate independent deployment configurations based on ROOT terraform modules. If you look at the [Demo Repository](https://github.com/Pwd9000-ML/Demo-Repo-TF-Azure) you will see that on the root of the repository I have paths/folders that are numbered e.g. **./01_Foundation** and **./02_Storage**.  
+Now that our repository is all configured and ready to go, we can start to create some modular terraform configurations, or in other words separate independent deployment configurations based on ROOT terraform modules. If you look at the [Demo Repository](https://github.com/Pwd9000-ML/Demo-Repo-TF-Azure) you will see that on the root of the repository I have paths/folders that are numbered e.g. **./01_Foundation** and **./02_Storage**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/tfmods.png)
 
-These paths each contain a terraform ROOT module, which consists of a **collection** of items that can **independently** be configured and deployed. You do not have to use the same naming/numbering as I have chosen, but the idea is to understand that these paths/folders each represent a unique independent modular terraform configuration that consists of collection of resources that we want to deploy independently.  
+These paths each contain a terraform ROOT module, which consists of a **collection** of items that can **independently** be configured and deployed. You do not have to use the same naming/numbering as I have chosen, but the idea is to understand that these paths/folders each represent a unique independent modular terraform configuration that consists of collection of resources that we want to deploy independently.
 
 So in this example:
 
