@@ -39,11 +39,10 @@ To start things off we will build a few pre-requisites that is needed to integra
 
 We are going to perform the following steps:
 
-1. **Create Azure Resources (Terraform Backend):** (Optional) We will first create a few resources that will host our terraform backend state configuration. We will need a Resource Group, Storage Account and KeyVault. This step is optional only for this demo/tutorial.
-2. **Azure Active Directory Service Principal:** We will create an AAD Service Principal/Application that will have access to our Terraform backend and subscription in Azure. We will link this Service Principal with our GitHub project and workflows later in the tutorial.
-3. **Create a GitHub Repository:** We will create a GitHub project and set up the relevant secrets and environments that we will be using. The project will host our workflows and terraform configurations.
-4. **Create Terraform Modules (Modular):** We will set up a few terraform ROOT modules. Separated and modular from each other (non-monolithic).
-5. **Create GitHub Workflows:** After we have our repository and terraform ROOT modules configured we will create our reusable workflows and configure multi-stage deployments to run and deploy resources in Azure based on our terraform ROOT Modules.
+1. **Create Azure Resources (Terraform Backend):** (Optional) We will first create a few resources that will host our terraform backend state configuration. We will need a Resource Group, Storage Account and KeyVault. We will also create an **Azure Active Directory App & Service Principal** that will have access to our Terraform backend and subscription in Azure. We will link this Service Principal with our GitHub project and workflows later in the tutorial.
+2. **Create a GitHub Repository:** We will create a GitHub project and set up the relevant secrets and environments that we will be using. The project will host our workflows and terraform configurations.
+3. **Create Terraform Modules (Modular):** We will set up a few terraform ROOT modules. Separated and modular from each other (non-monolithic).
+4. **Create GitHub Workflows:** After we have our repository and terraform ROOT modules configured we will create our reusable workflows and configure multi-stage deployments to run and deploy resources in Azure based on our terraform ROOT Modules.
 
 ## 1. Create Azure resources (Terraform Backend)
 
@@ -129,6 +128,12 @@ az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
 ```
 
 Lets take a closer look, step-by-step what the above script does as part of setting up the Terraform backend environment.
+
+1. Create a resource group called `Demo-Terraform-Core-Backend-RG`, containing an Azure key vault and storage account. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/prereqs.png)
+2. Create an **AAD App and Service Principal** that has access to the key vault and the subscription. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/spn.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/rbac.png)
+3. The **AAD App and Service Principal** details are saved inside the key vault. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-SendGrid-Function-Alerts/assets/secrets.png)
+
+## 2. Create a GitHub Repository
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page. :heart:
 
