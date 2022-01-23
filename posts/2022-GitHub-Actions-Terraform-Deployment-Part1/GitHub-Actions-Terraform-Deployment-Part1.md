@@ -650,7 +650,7 @@ You will notice that each resource group contains a key vault as per our foundat
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run5.png)
 
-Let's run the workflow: **02_Foundation** and also approve production to run.  
+Let's run the workflow: **02_Foundation** and also approve production to run.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run6.png)
 
@@ -658,7 +658,7 @@ Now you will notice that each of our environments resource groups also contains 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run7.png)
 
-Lastly, if we navigate to the terraform backend storage account, you will see that based on the `tf_key` inputs we gave each of our **caller** workflow `jobs:`, each terraform deployment has its own state file per ROOT module/collection, per environment, which nicely segregates the terraform configuration state files independently from each other.  
+Lastly, if we navigate to the terraform backend storage account, you will see that based on the `tf_key` inputs we gave each of our **caller** workflow `jobs:`, each terraform deployment has its own state file per ROOT module/collection, per environment, which nicely segregates the terraform configuration state files independently from each other.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/state.png)
 
