@@ -213,7 +213,7 @@ This workflow is a reusable workflow to plan a terraform deployment, create an a
 ## code/az_tf_plan.yml
 
 ### Reusable workflow to plan terraform deployment, create artifact and upload to workspace artifacts for consumption ###
-name: 'Build_TF_Plan'
+name: "Build_TF_Plan"
 on:
   workflow_call:
     inputs:
@@ -284,10 +284,20 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.arm_client_secret }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.arm_subscription_id }}
       ARM_TENANT_ID: ${{ secrets.arm_tenant_id }}
-
+  
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Scan IaC - tfsec
+        uses: tfsec/tfsec-sarif-action@v0.0.6
+        with:
+          sarif_file: tfsec.sarif         
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: tfsec.sarif  
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1.3.2
@@ -301,7 +311,7 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init --backend-config="storage_account_name=$STORAGE_ACCOUNT" --backend-config="container_name=$CONTAINER_NAME" --backend-config="resource_group_name=$RESOURCE_GROUP" --backend-config="key=$TF_KEY"
-
+      
       - name: Terraform Validate
         id: validate
         run: terraform validate
@@ -321,8 +331,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: '${{ inputs.tf_key }}'
-          path: '${{ inputs.path }}/${{ inputs.tf_key }}.zip'
+          name: "${{ inputs.tf_key }}"
+          path: "${{ inputs.path }}/${{ inputs.tf_key }}.zip"
           retention-days: 5
 ```
 
@@ -360,6 +370,7 @@ We aso need to pass some secrets from the **caller** to the **reusable workflow*
 This workflow when called will perform the following steps:
 
 - Check out the code repository and set the path context given as input to the path containing the terraform module.
+- Scan IaC in the path provided for any vulnerabilities or issues (Published to GitHub Security Tab)
 - Install and use the version of terraform as per the input.
 - Format check the terraform module code.
 - Initialize the terraform module in the given path.
@@ -367,6 +378,15 @@ This workflow when called will perform the following steps:
 - Create a terraform plan based on the given TFVARS file specified at input.
 - Compress the plan artifacts.
 - Upload the compressed plan as a workflow artifact.
+
+**IaC Security Scanning (TFSEC)**  
+
+In addition IaC scanning using TFSEC has also been applied to the `PLAN` **reusable workflow**.  
+Each modular terraform configuration that is deployed, when calling the plan workflow will be scanned at the `PLAN` stage for any Terraform IaC vulnerabilities and the results of each workflow scan will be published on the GitHub Projects `Security` tab e.g:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/tfsec.png)  
+
+The IaC security scan will not stop or FAIL any terraform plan or deployment, but is meant to highlight issues in code that can be looked at and corrected or improved upon.  
 
 Let's take a look at our second **reusable workflow**.
 
