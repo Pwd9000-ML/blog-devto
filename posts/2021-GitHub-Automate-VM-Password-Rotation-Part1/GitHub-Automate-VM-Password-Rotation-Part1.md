@@ -67,37 +67,25 @@ Another nice benefit of using the RBAC model is that if anyone wanted to access 
 
 ### Create an Azure AD App & Service Principal
 
-Next we will create our `Azure AD App` by running the following in a powershell console window:
+Next we will create our `Azure AD App & Service Principal` by running the following in a powershell console window:
 
 ```powershell
-# a name for our azure ad app
+# variables
+$subscriptionId = (get-azcontext).Subscription.Id
 $appName="GitHubSecretsUser"
-
-# create Azure AD app
-az ad app create --display-name $appName --homepage "http://localhost/$appName"
-```
-
-Next we will retrieve the App ID and set it to a powershell variable `$appId`
-
-```powershell
-# get the app id
-$appId=$(az ad app list --display-name $appName --query [].appId -o tsv)
-```
-
-Now that we have our `appId` we can create our service principal and also give our principal the correct `Role Based Access Control (RBAC)` permissions on our key vault we created earlier. We will give our principal the RBAC/IAM role: [Key Vault Secrets Officer](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-officer) because we want our workflow to be able to retrieve `secret keys` and also set each `key value`.
-
-```powershell
-$subscriptionId=$(az account show --query id -o tsv) # You can change this value to the subscription ID where the key vault resides
 $resourceGroup="Github-Assets"
 $keyVaultName="github-secrets-vault3"
 
-az ad sp create-for-rbac --name $appId `
+# Create AAD App and Service Principal and assign to RBAC Role on Key Vault 
+az ad sp create-for-rbac --name $appName `
     --role "Key Vault Secrets Officer" `
     --scopes /subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.KeyVault/vaults/$keyVaultName `
     --sdk-auth
 ```
 
-The above command will output a JSON object with the role assignment credentials that provide access to your key vault. Copy this JSON object for later. You will only need the sections with the `clientId`, `clientSecret`, `subscriptionId`, and `tenantId` values:
+The above command will create an AAD app & service principal and set the correct `Role Based Access Control (RBAC)` permissions on our key vault we created earlier. We will give our principal the RBAC/IAM role: [Key Vault Secrets Officer](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-officer) because we want our workflow to be able to retrieve `secret keys` and also set each `key value`.  
+
+The above command will also output a JSON object containing the credentials of the service principal that will provide access to the key vault. Copy this JSON object for later. You will only need the sections with the `clientId`, `clientSecret`, `subscriptionId`, and `tenantId` values:
 
 ```JSON
 {
