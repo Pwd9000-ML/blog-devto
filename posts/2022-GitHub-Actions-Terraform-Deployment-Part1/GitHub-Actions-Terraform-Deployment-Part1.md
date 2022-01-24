@@ -378,7 +378,7 @@ This workflow is a reusable workflow to download a terraform artifact built by `
 ## code/az_tf_apply.yml
 
 ### Reusable workflow to download terraform artifact built by `az_tf_plan` and apply the artifact/plan ###
-name: 'Apply_TF_Plan'
+name: "Apply_TF_Plan"
 on:
   workflow_call:
     inputs:
@@ -412,10 +412,6 @@ on:
         required: false
         type: string
         default: null
-      tf_vars_file:
-        description: 'Specifies the Terraform TFVARS file.'
-        required: true
-        type: string
     secrets:
       arm_client_id:
         description: 'Specifies the Azure ARM CLIENT ID.'
@@ -443,13 +439,12 @@ jobs:
       CONTAINER_NAME: ${{ inputs.az_container_name }}
       RESOURCE_GROUP: ${{ inputs.az_resource_group }}
       TF_KEY: ${{ inputs.tf_key }}.tfstate
-      TF_VARS: ${{ inputs.tf_vars_file }}
       ###AZURE Client details###
       ARM_CLIENT_ID: ${{ secrets.arm_client_id }}
       ARM_CLIENT_SECRET: ${{ secrets.arm_client_secret }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.arm_subscription_id }}
       ARM_TENANT_ID: ${{ secrets.arm_tenant_id }}
-
+  
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v2
@@ -470,10 +465,10 @@ jobs:
         run: terraform init --backend-config="storage_account_name=$STORAGE_ACCOUNT" --backend-config="container_name=$CONTAINER_NAME" --backend-config="resource_group_name=$RESOURCE_GROUP" --backend-config="key=$TF_KEY"
 
       - name: Terraform Apply
-        run: terraform apply --var-file=$TF_VARS --auto-approve
+        run: terraform apply plan.tfplan
 ```
 
-The **inputs** and **secrets** are the same as our previous **reusable workflow** which created the terraform plan.
+The **inputs** and **secrets** are almost the same as our previous **reusable workflow** which created the terraform plan.  
 
 | Inputs | Required | Description | Default |
 | --- | --- | --- | --- |
@@ -484,7 +479,6 @@ The **inputs** and **secrets** are the same as our previous **reusable workflow*
 | az_container_name | True | Specifies the Azure Storage account container where backend Terraform state is hosted. | - |
 | tf_key | True | Specifies the Terraform state file name for this plan. | - |
 | gh_environment | False | (Optional) Specifies the GitHub deployment environment. Leave this setting out if you do not have GitHub Environments configured. | null |
-| tf_vars_file | True | Specifies the Terraform TFVARS file. | - |
 
 | Secret              | Required | Description                              |
 | ------------------- | -------- | ---------------------------------------- |
@@ -499,7 +493,7 @@ This workflow when called will perform the following steps:
 - Decompress the terraform plan (workflow artifact).
 - Install and use the version of terraform as per the input.
 - Re-initialize the terraform module.
-- Apply the terraform configuration based on the terraform plan and values in the TFVARS file.
+- Apply the terraform configuration based on the terraform plan that was created by the previous workflow.
 
 Let's take a look at one of the **caller workflows** next. These workflows will be used to call the **reusable workflows**.
 
