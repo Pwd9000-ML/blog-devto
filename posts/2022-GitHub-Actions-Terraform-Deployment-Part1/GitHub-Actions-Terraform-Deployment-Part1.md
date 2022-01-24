@@ -378,7 +378,7 @@ This workflow is a reusable workflow to download a terraform artifact built by `
 ## code/az_tf_apply.yml
 
 ### Reusable workflow to download terraform artifact built by `az_tf_plan` and apply the artifact/plan ###
-name: "Apply_TF_Plan"
+name: 'Apply_TF_Plan'
 on:
   workflow_call:
     inputs:
@@ -444,7 +444,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.arm_client_secret }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.arm_subscription_id }}
       ARM_TENANT_ID: ${{ secrets.arm_tenant_id }}
-  
+
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v2
@@ -468,7 +468,7 @@ jobs:
         run: terraform apply plan.tfplan
 ```
 
-The **inputs** and **secrets** are almost the same as our previous **reusable workflow** which created the terraform plan.  
+The **inputs** and **secrets** are almost the same as our previous **reusable workflow** which created the terraform plan.
 
 | Inputs | Required | Description | Default |
 | --- | --- | --- | --- |
