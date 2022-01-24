@@ -379,7 +379,7 @@ This workflow when called will perform the following steps:
 - Compress the plan artifacts.
 - Upload the compressed plan as a workflow artifact.
 
-**IaC Security Scanning (TFSEC)**
+### IaC Security Scanning (TFSEC)
 
 In addition IaC scanning using TFSEC has also been applied to the `PLAN` **reusable workflow**.
 
