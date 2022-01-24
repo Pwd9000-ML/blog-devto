@@ -34,9 +34,9 @@ Things you will get out of this tutorial:
 - Learn how to deploy resources in **AZURE** at scale.
 - Learn about **multi-stage** deployments and approvals using **GitHub Environments**.
 
-As an added bonus I have also added IaC security scanning with TFSEC to demonstrate IaC security scans as part of the CI/CD process to highlight any Terraform/Azure vulnerabilities or misconfigurations and the results will be published on the GitHub Projects `Security` tab.  
+As an added bonus I have also added IaC security scanning with TFSEC to demonstrate IaC security scans and code quality as part of the CI/CD process to highlight any Terraform/Azure vulnerabilities or misconfigurations inside of the terraform code. Scan results are published on the GitHub Projects `Security` tab.  
 
-Hopefully you can even utilize these concepts in your own organization to build **AZURE** Infrastructure at scale in your own awesome cloud projects.
+Hopefully you can utilize these concepts in your own organization to build **AZURE** Infrastructure at scale and succeed in your own awesome cloud projects.
 
 ### Pre-Requisites
 
