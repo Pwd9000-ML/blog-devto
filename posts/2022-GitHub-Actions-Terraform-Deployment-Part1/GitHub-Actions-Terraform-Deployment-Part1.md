@@ -538,7 +538,6 @@ jobs:
       az_container_name: your-sa-container-name ## AZ backend - AZURE storage container hosting state files (Required)
       tf_key: foundation-dev ## AZ backend - Specifies name that will be given to terraform state file (Required)
       gh_environment: Development ## GH Environment. Default=null - (Optional)
-      tf_vars_file: config-dev.tfvars ## Terraform TFVARS (Required)
     secrets:
       arm_client_id: ${{ secrets.ARM_CLIENT_ID }} ## ARM Client ID
       arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }} ## ARM Client Secret
@@ -571,7 +570,6 @@ jobs:
       az_container_name: your-sa-container-name
       tf_key: foundation-uat
       gh_environment: UserAcceptanceTesting
-      tf_vars_file: config-uat.tfvars
     secrets:
       arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
       arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
@@ -605,7 +603,6 @@ jobs:
       az_container_name: your-sa-container-name
       tf_key: foundation-prod
       gh_environment: Production
-      tf_vars_file: config-prod.tfvars
     secrets:
       arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
       arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
