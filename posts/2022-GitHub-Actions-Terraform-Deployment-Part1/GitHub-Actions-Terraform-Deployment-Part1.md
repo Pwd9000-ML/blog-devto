@@ -382,7 +382,7 @@ This workflow when called will perform the following steps:
 **IaC Security Scanning (TFSEC)**
 
 In addition IaC scanning using TFSEC has also been applied to the `PLAN` **reusable workflow**.  
-Each modular terraform configuration that is deployed, when calling the plan workflow will be scanned at the `PLAN` stage for any Terraform IaC vulnerabilities and the results of each workflow scan will be published on the GitHub Projects `Security` tab e.g:
+Each modular terraform configuration that is deployed, when calling the plan workflow will be scanned at the `PLAN` stage for any Terraform IaC vulnerabilities and the results will be published on the GitHub Projects `Security` tab e.g:  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/tfsec.png)
 
