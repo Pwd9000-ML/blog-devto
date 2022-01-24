@@ -33,14 +33,8 @@ az keyvault secret set --vault-name $keyVaultName --name "$($policyName)PrimaryK
 # a name for our azure ad app
 $appName="gitHubActionsVaultUser"
 
-# create Azure AD app
-az ad app create --display-name $appName --homepage "http://localhost/$appName"
-
-# get the app id
-$appId=$(az ad app list --display-name $appName --query [].appId -o tsv)
-
-#Create Service Principal to be used as GH Secret credential to authenticate to Azure (Make note of JSON output on this step)
-az ad sp create-for-rbac --name $appId `
+#Create azure ad app & Service Principal to be used as GH Secret credential to authenticate to Azure (Make note of JSON output on this step)
+az ad sp create-for-rbac --name $appName `
     --role "Key Vault Secrets Officer" `
     --scopes "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$keyVaultName" `
     --sdk-auth
