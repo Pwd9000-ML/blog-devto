@@ -76,14 +76,14 @@ $appName="GitHubSecretsUser"
 $resourceGroup="Github-Assets"
 $keyVaultName="github-secrets-vault3"
 
-# Create AAD App and Service Principal and assign to RBAC Role on Key Vault 
+# Create AAD App and Service Principal and assign to RBAC Role on Key Vault
 az ad sp create-for-rbac --name $appName `
     --role "Key Vault Secrets Officer" `
     --scopes /subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.KeyVault/vaults/$keyVaultName `
     --sdk-auth
 ```
 
-The above command will create an AAD app & service principal and set the correct `Role Based Access Control (RBAC)` permissions on our key vault we created earlier. We will give our principal the RBAC/IAM role: [Key Vault Secrets Officer](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-officer) because we want our workflow to be able to retrieve `secret keys` and also set each `key value`.  
+The above command will create an AAD app & service principal and set the correct `Role Based Access Control (RBAC)` permissions on our key vault we created earlier. We will give our principal the RBAC/IAM role: [Key Vault Secrets Officer](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-officer) because we want our workflow to be able to retrieve `secret keys` and also set each `key value`.
 
 The above command will also output a JSON object containing the credentials of the service principal that will provide access to the key vault. Copy this JSON object for later. You will only need the sections with the `clientId`, `clientSecret`, `subscriptionId`, and `tenantId` values:
 
