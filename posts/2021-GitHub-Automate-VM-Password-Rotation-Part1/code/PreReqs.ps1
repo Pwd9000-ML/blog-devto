@@ -19,7 +19,7 @@ az ad sp create-for-rbac --name $appName `
     --sdk-auth
 
 # Assign additional RBAC role to Service Principal Subscription to manage Virtual machines 
-az ad sp list --display-name $appId --query [].appId -o tsv | ForEach-Object {
+az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
     az role assignment create --assignee "$_" `
         --role "Virtual Machine Contributor" `
         --subscription $subscriptionId

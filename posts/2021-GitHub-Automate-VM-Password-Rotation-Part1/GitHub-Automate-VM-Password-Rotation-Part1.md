@@ -100,7 +100,7 @@ We also want to give our service principal `clientId` permissions on our subscri
 
 ```powershell
 # Assign additional RBAC role to Service Principal Subscription to manage Virtual machines
-az ad sp list --display-name $appId --query [].appId -o tsv | ForEach-Object {
+az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
     az role assignment create --assignee "$_" `
         --role "Virtual Machine Contributor" `
         --subscription $subscriptionId # SubscriptionId where key vault and Vms are hosted
