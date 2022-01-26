@@ -211,12 +211,12 @@ Let's take a closer look at the reusable workflows:
 
 - **[az_tf_plan.yml](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code/az_tf_plan.yml)**:
 
-This workflow is a reusable workflow to plan a terraform deployment, create an artifact and upload that artifact to workspace artifacts for consumption.
+This workflow is a reusable workflow to plan a terraform deployment, create an artifact and upload that artifact to workflow artifacts for consumption.
 
 ```yml
 ## code/az_tf_plan.yml
 
-### Reusable workflow to plan terraform deployment, create artifact and upload to workspace artifacts for consumption ###
+### Reusable workflow to plan terraform deployment, create artifact and upload to workflow artifacts for consumption ###
 name: 'Build_TF_Plan'
 on:
   workflow_call:
@@ -243,7 +243,7 @@ on:
         required: true
         type: string
       tf_key:
-        description: 'Specifies the Terraform state file name for this plan.'
+        description: 'Specifies the Terraform state file name for this plan. Workflow artifact will use same name.'
         required: true
         type: string
       gh_environment:
@@ -358,7 +358,7 @@ As you can see the reusable workflow can be given specific **inputs** when calle
 | az_resource_group | True | Specifies the Azure Resource Group where the backend storage account is hosted. | - |
 | az_storage_acc | True | Specifies the Azure Storage Account where the backend state is hosted. | - |
 | az_container_name | True | Specifies the Azure Storage account container where backend Terraform state is hosted. | - |
-| tf_key | True | Specifies the Terraform state file name for this plan. | - |
+| tf_key | True | Specifies the Terraform state file name for this plan. Workflow artifact will use same name. | - |
 | gh_environment | False | (Optional) Specifies the GitHub deployment environment. Leave this setting out if you do not have GitHub Environments configured. | null |
 | tf_vars_file | True | Specifies the Terraform TFVARS file. | - |
 
@@ -429,7 +429,7 @@ on:
         required: true
         type: string
       tf_key:
-        description: 'Specifies the Terraform state file name for this plan.'
+        description: 'Specifies the Terraform state file name. Workflow artifact will be the same name.'
         required: true
         type: string
       gh_environment:
@@ -502,7 +502,7 @@ The **inputs** and **secrets** are almost the same as our previous **reusable wo
 | az_resource_group | True | Specifies the Azure Resource Group where the backend storage account is hosted. | - |
 | az_storage_acc | True | Specifies the Azure Storage Account where the backend state is hosted. | - |
 | az_container_name | True | Specifies the Azure Storage account container where backend Terraform state is hosted. | - |
-| tf_key | True | Specifies the Terraform state file name for this plan. | - |
+| tf_key | True | Specifies the Terraform state file name for this plan. Workflow artifact will be the same name. | - |
 | gh_environment | False | (Optional) Specifies the GitHub deployment environment. Leave this setting out if you do not have GitHub Environments configured. | null |
 
 | Secret              | Required | Description                              |
@@ -544,7 +544,7 @@ jobs:
       az_resource_group: your-resource-group-name ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
       az_storage_acc: your-storage-account-name ## AZ backend - AZURE terraform backend storage acc (Required)
       az_container_name: your-sa-container-name ## AZ backend - AZURE storage container hosting state files (Required)
-      tf_key: foundation-dev ## AZ backend - Specifies name that will be given to terraform state file (Required)
+      tf_key: foundation-dev ## AZ backend - Specifies name that will be given to terraform state file and workflow artifact name (Required)
       tf_vars_file: config-dev.tfvars ## Terraform TFVARS (Required)
     secrets:
       arm_client_id: ${{ secrets.ARM_CLIENT_ID }} ## ARM Client ID
@@ -561,7 +561,7 @@ jobs:
       az_resource_group: your-resource-group-name ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
       az_storage_acc: your-storage-account-name ## AZ backend - AZURE terraform backend storage acc (Required)
       az_container_name: your-sa-container-name ## AZ backend - AZURE storage container hosting state files (Required)
-      tf_key: foundation-dev ## AZ backend - Specifies name that will be given to terraform state file (Required)
+      tf_key: foundation-dev ## AZ backend - Specifies name of the terraform state file and workflow artifact to download (Required)
       gh_environment: Development ## GH Environment. Default=null - (Optional)
     secrets:
       arm_client_id: ${{ secrets.ARM_CLIENT_ID }} ## ARM Client ID
@@ -637,7 +637,11 @@ jobs:
 
 Notice that we have multiple `jobs:` in the caller workflow, one job to generate a terraform plan and one job to deploy the plan, per environment.
 
-You will see that each plan job uses the different TFVARS files: `config-dev.tfvars`, `config-uat.tfvars` and `config-prod.tfvars` respectively of each environment, but using the same ROOT module configuration in the **path:** `./01_Foundation/foundation_resources.tf`.
+You will see that each plan job uses the different TFVARS files: `config-dev.tfvars`, `config-uat.tfvars` and `config-prod.tfvars` respectively of each environment, but using the same ROOT module configuration in the **path:** `./01_Foundation/foundation_resources.tf`.  
+
+Each plan job is also linked to a `tf_key` which represents the name of the backend state file as well as the name given to the compressed uploaded workflow artifact containing the terraform plan:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/artifact.png)
 
 Each reusable workflows **inputs** are specified on the **caller** workflows `jobs:` using `with:`, and **Secrets** using `secret:`.
 
