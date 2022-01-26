@@ -3,7 +3,7 @@
 
 # Setup Variables.
 $randomInt = Get-Random -Maximum 9999
-$subscriptionId = (get-azcontext).Subscription.Id
+$subscriptionId=$(az account show --query id -o tsv)
 $resourceGroupName = "SendGrid-Function-App-Demo"
 $storageName = "sgridfuncsa$randomInt"
 $functionAppName = "sgridfunc$randomInt"

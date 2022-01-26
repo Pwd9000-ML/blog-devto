@@ -71,7 +71,7 @@ After logging into Azure and selecting the subscription, we can run the script t
 
 # Setup Variables.
 $randomInt = Get-Random -Maximum 9999
-$subscriptionId = (get-azcontext).Subscription.Id
+$subscriptionId=$(az account show --query id -o tsv)
 $resourceGroupName = "Demo-Terraform-Core-Backend-RG"
 $storageName = "tfcorebackendsa$randomInt"
 $kvName = "tf-core-backend-kv$randomInt"

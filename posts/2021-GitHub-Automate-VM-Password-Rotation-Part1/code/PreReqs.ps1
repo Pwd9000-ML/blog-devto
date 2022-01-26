@@ -2,7 +2,7 @@
 az login
 
 # Variables
-$subscriptionId = (get-azcontext).Subscription.Id
+$subscriptionId=$(az account show --query id -o tsv)
 $resourceGroup="<RGName>"
 $keyVaultName="<KVName>"
 $appName="<SPNAppName>"

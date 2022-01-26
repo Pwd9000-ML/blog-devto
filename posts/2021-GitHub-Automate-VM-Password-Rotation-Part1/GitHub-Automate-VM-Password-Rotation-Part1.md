@@ -71,7 +71,7 @@ Next we will create our `Azure AD App & Service Principal` by running the follow
 
 ```powershell
 # variables
-$subscriptionId = (get-azcontext).Subscription.Id
+$subscriptionId=$(az account show --query id -o tsv)
 $appName="GitHubSecretsUser"
 $resourceGroup="Github-Assets"
 $keyVaultName="github-secrets-vault3"

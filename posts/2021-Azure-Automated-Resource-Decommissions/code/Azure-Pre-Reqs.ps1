@@ -3,7 +3,7 @@
 
 # Setup Variables.
 $randomInt = Get-Random -Maximum 9999
-$subscriptionId = (get-azcontext).Subscription.Id
+$subscriptionId=$(az account show --query id -o tsv)
 $resourceGroupName = "Automated-Resource-Decommissioning"
 $storageName = "decomfuncsa$randomInt"
 $tableName = "Tracker"
