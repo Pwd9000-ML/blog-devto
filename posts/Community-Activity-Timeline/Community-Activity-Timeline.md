@@ -33,6 +33,8 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **26/01/2022** | [OSS maintainer - GitHub Action - Terraform Plan for AZURE](https://github.com/marketplace/actions/terraform-plan-for-azure) | Open Source Software | Azure, GitHub, Terraform | Terraform, GitHubActions, Azure, IaC, CICD, Maintainer |
+| **26/01/2022** | [OSS maintainer - GitHub Action - Terraform Apply for AZURE](https://github.com/marketplace/actions/terraform-apply-for-azure) | Open Source Software | Azure, GitHub, Terraform | Terraform, GitHubActions, Azure, IaC, CICD, Maintainer |
 | **23/01/2022** | [Multi environment AZURE deployments with Terraform and GitHub](https://dev.to/pwd9000/multi-environment-azure-deployments-with-terraform-and-github-2450) | Blog/Website Post | Azure, GitHub, Terraform | GitHubActions, Terraform, Automation, IaC, Tutorial |
 | **22/01/2022** | [myNewsWrap – SAP and Microsoft (Episode 68) - Upload Files to Azure Storage using a PowerShell Function App](https://youtu.be/YU7pMTJ7pJk) | Podcast | Azure, PowerShell | Automation, API, Serverless, FunctionApps, Podcast |
 | **21/01/2022** | [Jonnychipz Weekly # 56 – Back to it - Dynamic terraform deployments using DevOps replace tokens](https://jonnychipz.com/2022/01/21/jonnychipz-weekly-56-back-to-it/) | Podcast | Azure DevOps | Pipelines, Terraform, Automation, IaC, Podcast |
