@@ -637,9 +637,9 @@ jobs:
 
 Notice that we have multiple `jobs:` in the caller workflow, one job to generate a terraform plan and one job to deploy the plan, per environment.
 
-You will see that each plan job uses the different TFVARS files: `config-dev.tfvars`, `config-uat.tfvars` and `config-prod.tfvars` respectively of each environment, but using the same ROOT module configuration in the **path:** `./01_Foundation/foundation_resources.tf`.  
+You will see that each plan job uses the different TFVARS files: `config-dev.tfvars`, `config-uat.tfvars` and `config-prod.tfvars` respectively of each environment, but using the same ROOT module configuration in the **path:** `./01_Foundation/foundation_resources.tf`.
 
-Each plan job is also linked to a `tf_key` which represents the name of the backend state file as well as the name given to the compressed uploaded workflow artifact containing the terraform plan:  
+Each plan job is also linked to a `tf_key` which represents the name of the backend state file as well as the name given to the compressed uploaded workflow artifact containing the terraform plan:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/artifact.png)
 
