@@ -32,8 +32,8 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **23/01/2022** | [Multi environment AZURE deployments with Terraform and GitHub (Part 2)](https://dev.to/pwd9000/multi-environment-azure-deployments-with-terraform-and-github-part-2-pdl) | Blog/Website Post | Azure, GitHub, Terraform | GitHubActions, Terraform, Automation, IaC, Tutorial |
-| **26/01/2022** | [Cloud Lunch and Learn - Automate password rotation with Github and Azure](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, GitHub, PowerShell | Security, DevSecOps, Automation, Podcast |
+| **27/01/2022** | [Multi environment AZURE deployments with Terraform and GitHub (Part 2)](https://dev.to/pwd9000/multi-environment-azure-deployments-with-terraform-and-github-part-2-pdl) | Blog/Website Post | Azure, GitHub, Terraform | GitHubActions, Terraform, Automation, IaC, Tutorial |
+| **26/01/2022** | [Cloud Lunch and Learn - Automate password rotation with Github and Azure](https://youtu.be/TJZSFdHlSTs) | Public Speaking | Azure, GitHub, PowerShell | Security, DevSecOps, Automation, Podcast |
 | **26/01/2022** | [OSS maintainer - GitHub Action - Terraform Plan for AZURE](https://github.com/marketplace/actions/terraform-plan-for-azure) | Open Source Software | Azure, GitHub, Terraform | Terraform, GitHubActions, Azure, IaC, CICD, Maintainer |
 | **26/01/2022** | [OSS maintainer - GitHub Action - Terraform Apply for AZURE](https://github.com/marketplace/actions/terraform-apply-for-azure) | Open Source Software | Azure, GitHub, Terraform | Terraform, GitHubActions, Azure, IaC, CICD, Maintainer |
 | **23/01/2022** | [Multi environment AZURE deployments with Terraform and GitHub (Part 1)](https://dev.to/pwd9000/multi-environment-azure-deployments-with-terraform-and-github-2450) | Blog/Website Post | Azure, GitHub, Terraform | GitHubActions, Terraform, Automation, IaC, Tutorial |
