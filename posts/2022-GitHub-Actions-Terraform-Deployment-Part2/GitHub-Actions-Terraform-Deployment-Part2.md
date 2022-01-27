@@ -100,7 +100,7 @@ You will also see that the `Apply_Dev:` job has a special `needs:` argument whic
 
 Additionally on the `Apply_Dev:` job, if you use **[GitHub Environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment)** you can also link the job using the `environment:` argument and apply approvals by using **[Environment Protection Rules](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#environment-protection-rules)**.
 
-Input parameters are passed into each of the actions using the `with:` argument. Lets take a look at each actions available inputs.  
+Input parameters are passed into each of the actions using the `with:` argument. Lets take a look at each actions available inputs.
 
 ## PLAN Action Inputs
 
