@@ -26,7 +26,6 @@ We are going to perform the following steps:
 1. **Create Azure Resources (Terraform Backend):** (Optional) We will first create a few resources that will host our terraform backend state configuration. We will need a Resource Group, Storage Account and KeyVault. We will also create an **Azure Active Directory App & Service Principal** that will have access to our Terraform backend and subscription in Azure. We will link this Service Principal with our GitHub project and workflows later in the tutorial.
 2. **Create a GitHub Repository:** We will create a GitHub project and set up the relevant secrets and (optional) GitHub environments that we will be using. The project will host our workflows and terraform configurations.
 3. **Create Terraform Modules (Modular):** We will set up a few terraform ROOT modules. Separated and modular from each other (non-monolithic).
-   The only difference in this part of the series will be Step 4. Instead of creating **re-usable GitHub workflows** we will be creating a normal workflow with the marketplace actions.
 4. **Create GitHub Workflows using marketplace Actions:** After we have our repository and terraform ROOT modules configured we will create a workflow and configure multi-stage deployments using public marketplace actions to run and deploy resources in Azure based on our terraform ROOT Modules.
 
 ## Steps 1 to 3
