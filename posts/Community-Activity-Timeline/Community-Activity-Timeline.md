@@ -21,7 +21,6 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **26/01/2022** | [Cloud Lunch and Learn - Automate password rotation with Github and Azure](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, GitHub, PowerShell | Security, DevSecOps, Automation, Podcast |
 | **16/02/2022** | [Welsh Azure User Group - VIRTUAL EVENT (February 2022) - Automate Azure Resource Decommissions (with tracking)](https://www.meetup.com/MSFT-Stack/events/282143598) | Public Speaking | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
 | **23/02/2022** | [Cloud Lunch and Learn - Reusable GitHub workflows to automate tokens](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, ServiceBus, DevSecOps, Podcast |
 | **23/03/2022** | [Cloud Lunch and Learn - Automate Azure Resource Decommissions using Azure Serverless Function App (with tracking)](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
@@ -33,9 +32,11 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **23/01/2022** | [Multi environment AZURE deployments with Terraform and GitHub (Part 2)](https://dev.to/pwd9000/multi-environment-azure-deployments-with-terraform-and-github-part-2-pdl) | Blog/Website Post | Azure, GitHub, Terraform | GitHubActions, Terraform, Automation, IaC, Tutorial |
+| **26/01/2022** | [Cloud Lunch and Learn - Automate password rotation with Github and Azure](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, GitHub, PowerShell | Security, DevSecOps, Automation, Podcast |
 | **26/01/2022** | [OSS maintainer - GitHub Action - Terraform Plan for AZURE](https://github.com/marketplace/actions/terraform-plan-for-azure) | Open Source Software | Azure, GitHub, Terraform | Terraform, GitHubActions, Azure, IaC, CICD, Maintainer |
 | **26/01/2022** | [OSS maintainer - GitHub Action - Terraform Apply for AZURE](https://github.com/marketplace/actions/terraform-apply-for-azure) | Open Source Software | Azure, GitHub, Terraform | Terraform, GitHubActions, Azure, IaC, CICD, Maintainer |
-| **23/01/2022** | [Multi environment AZURE deployments with Terraform and GitHub](https://dev.to/pwd9000/multi-environment-azure-deployments-with-terraform-and-github-2450) | Blog/Website Post | Azure, GitHub, Terraform | GitHubActions, Terraform, Automation, IaC, Tutorial |
+| **23/01/2022** | [Multi environment AZURE deployments with Terraform and GitHub (Part 1)](https://dev.to/pwd9000/multi-environment-azure-deployments-with-terraform-and-github-2450) | Blog/Website Post | Azure, GitHub, Terraform | GitHubActions, Terraform, Automation, IaC, Tutorial |
 | **22/01/2022** | [myNewsWrap – SAP and Microsoft (Episode 68) - Upload Files to Azure Storage using a PowerShell Function App](https://youtu.be/YU7pMTJ7pJk) | Podcast | Azure, PowerShell | Automation, API, Serverless, FunctionApps, Podcast |
 | **21/01/2022** | [Jonnychipz Weekly # 56 – Back to it - Dynamic terraform deployments using DevOps replace tokens](https://jonnychipz.com/2022/01/21/jonnychipz-weekly-56-back-to-it/) | Podcast | Azure DevOps | Pipelines, Terraform, Automation, IaC, Podcast |
 | **21/01/2022** | [Top Stories from the Microsoft DevOps Community – 2022.01.21 - Automate password rotation with Github and Azure (Part 2)](https://devblogs.microsoft.com/devops/top-stories-from-the-microsoft-devops-community-2022-01-21/?WT.mc_id=modinfra-54912-jagord) | Article | GitHub, PowerShell | Security, DevSecOps, Automation, Article |
