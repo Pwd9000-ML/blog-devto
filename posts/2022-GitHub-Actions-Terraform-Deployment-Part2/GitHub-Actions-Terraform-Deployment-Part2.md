@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 969349
 series: Using Terraform on GitHub
+date: '2022-01-27T10:18:59Z'
 ---
 
 ### Overview
