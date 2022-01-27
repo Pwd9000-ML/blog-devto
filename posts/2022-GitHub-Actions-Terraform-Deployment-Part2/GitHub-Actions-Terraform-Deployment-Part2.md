@@ -94,13 +94,13 @@ jobs:
           arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## (Required) ARM Tenant ID
 ```
 
-As you can see this workflow has two `jobs:`, one is called `Plan_Dev:` and the other is called `Apply_Dev:`. You will also notice that each job calls the marketplace actions with `uses:` in a `steps:` argument.  
+As you can see this workflow has two `jobs:`, one is called `Plan_Dev:` and the other is called `Apply_Dev:`. You will also notice that each job calls the marketplace actions with `uses:` in a `steps:` argument.
 
-You will also see that the `Apply_Dev:` job has a special `needs:` argument which means, the apply job requires the plan job to successfully run first and create the terraform plan, as it will use the `PLAN` created to perform the `APPLY`.  (The plan is actually uploaded into the workflow as an artifact, the apply job will download that `PLAN` artifact from the workflow artifacts)  
+You will also see that the `Apply_Dev:` job has a special `needs:` argument which means, the apply job requires the plan job to successfully run first and create the terraform plan, as it will use the `PLAN` created to perform the `APPLY`. (The plan is actually uploaded into the workflow as an artifact, the apply job will download that `PLAN` artifact from the workflow artifacts)
 
-Additionally on the `Apply_Dev:` job, if you use **[GitHub Environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment)** you can also link the job using the `environment:` argument and apply approvals by using **[Environment Protection Rules](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#environment-protection-rules)**.  
+Additionally on the `Apply_Dev:` job, if you use **[GitHub Environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment)** you can also link the job using the `environment:` argument and apply approvals by using **[Environment Protection Rules](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#environment-protection-rules)**.
 
-Input parameters are passed into the action using the `with:` argument. Lets take a look at each actions available inputs.  
+Input parameters are passed into the action using the `with:` argument. Lets take a look at each actions available inputs.
 
 ## PLAN Action Inputs
 
