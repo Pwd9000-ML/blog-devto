@@ -1,6 +1,6 @@
 ---
 title: Multi environment AZURE deployments with Terraform and GitHub (Part 2)
-published: false
+published: true
 description: Enterprise scale multi environment Azure deployments using Terraform and Github Actions.
 tags: 'terraform, iac, github, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part2/assets/main.png'
