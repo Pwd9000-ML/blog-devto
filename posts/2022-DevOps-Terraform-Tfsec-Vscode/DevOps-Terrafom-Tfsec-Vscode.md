@@ -1,5 +1,5 @@
 ---
-title: IaC Scanning with TFSEC for VsCode (Extension)
+title: Terraform - IaC Scanning with TFSEC for VsCode (Extension)
 published: true
 description: DevOps - Terraform - IaC Scanning with TFSEC for VsCode
 tags: 'terraform, azuredevops, iac, DevSecOps'
