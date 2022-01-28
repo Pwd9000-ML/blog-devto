@@ -32,6 +32,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **28/01/2022** | [Terraform - IaC Scanning with TFSEC for VsCode (Extension)](https://dev.to/pwd9000/iac-scanning-with-tfsec-for-vscode-extension-27h8) | Blog/Website Post | Azure, Terraform | Terraform, Automation, IaC, DevSecOps, Tutorial |
 | **27/01/2022** | [Multi environment AZURE deployments with Terraform and GitHub (Part 2)](https://dev.to/pwd9000/multi-environment-azure-deployments-with-terraform-and-github-part-2-pdl) | Blog/Website Post | Azure, GitHub, Terraform | GitHubActions, Terraform, Automation, IaC, Tutorial |
 | **26/01/2022** | [Cloud Lunch and Learn - Automate password rotation with Github and Azure](https://youtu.be/TJZSFdHlSTs) | Public Speaking | Azure, GitHub, PowerShell | Security, DevSecOps, Automation, Podcast |
 | **26/01/2022** | [OSS maintainer - GitHub Action - Terraform Plan for AZURE](https://github.com/marketplace/actions/terraform-plan-for-azure) | Open Source Software | Azure, GitHub, Terraform | Terraform, GitHubActions, Azure, IaC, CICD, Maintainer |
