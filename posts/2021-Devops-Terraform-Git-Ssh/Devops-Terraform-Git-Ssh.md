@@ -6,6 +6,7 @@ tags: 'terraform, azuredevops, iac, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Devops-Terraform-Git-Ssh/assets/main-tf-ado1.png'
 canonical_url: null
 id: 767794
+series: Terraform Pro Tips
 date: '2021-07-22T10:52:57Z'
 ---
 

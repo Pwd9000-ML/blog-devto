@@ -6,6 +6,7 @@ tags: 'terraform, azure, iac, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-DevOps-Terraform-Complex-Vars/assets/main-tf.png'
 canonical_url: null
 id: 849831
+series: Terraform Pro Tips
 date: '2021-10-03T14:55:03Z'
 ---
 
