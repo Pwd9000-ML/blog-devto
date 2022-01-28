@@ -79,7 +79,7 @@ Click on the button that says **Run tfsec now**:
 
 As you can see all of my Terraform have been scanned and notified me of what issues are in my configuration, the severity rating of the issue, as well as guidance on remediating the issue.
 
-![image.png](![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/assets/result.png))
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/assets/result.png)
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/code) page. :heart:
 
