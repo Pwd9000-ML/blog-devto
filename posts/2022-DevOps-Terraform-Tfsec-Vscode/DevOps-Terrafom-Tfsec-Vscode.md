@@ -18,7 +18,7 @@ Designed to run locally and in your CI pipelines, developer-friendly output and 
 
 `tfsec` takes a developer-first approach to scanning your Terraform templates; using static analysis and deep integration with the official HCL parser it ensures that security issues can be detected before your infrastructure changes take effect.
 
-## IaC using the TFSEC VsCode extension
+## Using the TFSEC VsCode extension
 
 In this tutorial we will go through how to install **tfsec** and the **tfsec extension for VsCode** on your development machine where you are developing and writing your Terraform code, and show how you can scan and detect for any vulnerabilities or misconfigurations to detect potential issues that expose your deployments to the risk of attack.
 
@@ -70,7 +70,7 @@ Next we will create a simple **Terraform** configuration and use the extension t
 
 I created a very basic terraform configuration that will build a resource group and key vault. You can take a look at the configuration [here](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/code/TF_Module).
 
-After writing you terraform configuration navigate to the **TFSEC** extension on teh left of the screen:
+After writing you terraform configuration navigate to the **TFSEC** extension on the left of the screen:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/assets/nav.png)
 
