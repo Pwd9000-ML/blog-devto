@@ -1,6 +1,6 @@
 ---
 title: IaC Scanning with TFSEC for VsCode (Extension)
-published: false
+published: true
 description: DevOps - Terraform - IaC Scanning with TFSEC for VsCode
 tags: 'terraform, azuredevops, iac, DevSecOps'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/assets/main-tfsec.png'
@@ -77,7 +77,7 @@ Click on the button that says **Run tfsec now**:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/assets/run.png)
 
-As you can see all of my Terraform have been scanned and notified me of what issues are in my configuration, the severity rating of the issue, as well as guidance on remediating the issue.
+As you can see my Terraform configurations have been scanned and notified me of what issues are in my configuration, the severity rating of the issues detected, as well as guidance on remediating the issues.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/assets/result.png)
 
