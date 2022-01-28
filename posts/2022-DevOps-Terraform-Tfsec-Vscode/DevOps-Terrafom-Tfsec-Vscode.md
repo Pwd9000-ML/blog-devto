@@ -9,23 +9,23 @@ id: 970626
 series: Terraform Pro Tips
 ---
 
-## TFSEC Vulnerability Scanner  
+## TFSEC Vulnerability Scanner
 
-`tfsec` is a static analysis security scanner for your Terraform code.  
+`tfsec` is a static analysis security scanner for your Terraform code.
 
-Designed to run locally and in your CI pipelines, developer-friendly output and fully documented checks mean detection and remediation can take place as quickly and efficiently as possible.  
+Designed to run locally and in your CI pipelines, developer-friendly output and fully documented checks mean detection and remediation can take place as quickly and efficiently as possible.
 
-`tfsec` takes a developer-first approach to scanning your Terraform templates; using static analysis and deep integration with the official HCL parser it ensures that security issues can be detected before your infrastructure changes take effect.  
+`tfsec` takes a developer-first approach to scanning your Terraform templates; using static analysis and deep integration with the official HCL parser it ensures that security issues can be detected before your infrastructure changes take effect.
 
 ## IaC using the TFSEC VsCode extension
 
-In this tutorial we will go through how to install **tfsec** and the **tfsec extension for VsCode** on your development machine where you are developing and writing your Terraform code, and show how you can scan and detect for any vulnerabilities or misconfigurations to detect potential issues that expose your deployments to the risk of attack.  
+In this tutorial we will go through how to install **tfsec** and the **tfsec extension for VsCode** on your development machine where you are developing and writing your Terraform code, and show how you can scan and detect for any vulnerabilities or misconfigurations to detect potential issues that expose your deployments to the risk of attack.
 
 You can scan your Terraform configuration artifacts easily giving you the confidence that all is well with your configuration before committing your code to source control / deploying your Terraform (IaC) configurations. It is a free/open source tool by AquaSecurity. For more information go check out the [Tfsec github page](https://github.com/aquasecurity/tfsec)
 
 ## Installing TFSEC
 
-First we need to make sure we have the latest version of `tfsec` installed on our development machine. There are a couple of ways to do this:  
+First we need to make sure we have the latest version of `tfsec` installed on our development machine. There are a couple of ways to do this:
 
 Install with [brew/linuxbrew](https://brew.sh)
 
@@ -53,21 +53,21 @@ Alternatively, install with Go:
 go install github.com/aquasecurity/tfsec/cmd/tfsec@latest
 ```
 
-Please note that using `go install` will install directly from the `master` branch and version numbers will not be reported via `tfsec --version`.  
+Please note that using `go install` will install directly from the `master` branch and version numbers will not be reported via `tfsec --version`.
 
-## Installing TFSEC extension for VSCODE  
+## Installing TFSEC extension for VSCODE
 
-The next step is to just open up VsCode and under extensions you can search for the extension called **TFSEC** and hit the `install` button.  
+The next step is to just open up VsCode and under extensions you can search for the extension called **TFSEC** and hit the `install` button.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/assets/install.png)
 
-You should now see the **TFSEC** logo on your **VsCode** side bar to the left.  
+You should now see the **TFSEC** logo on your **VsCode** side bar to the left.
 
 ## Run TFSEC VsCode extension
 
-Next we will create a simple **Terraform** configuration and use the extension to inspect for any issues before committing the code to source control.  
+Next we will create a simple **Terraform** configuration and use the extension to inspect for any issues before committing the code to source control.
 
-I created a very basic terraform configuration that will build a resource group and key vault. You can take a look at the configuration [here](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/code/TF_Module).  
+I created a very basic terraform configuration that will build a resource group and key vault. You can take a look at the configuration [here](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/code/TF_Module).
 
 After writing you terraform configuration navigate to the **TFSEC** extension on teh left of the screen:
 
@@ -79,7 +79,7 @@ Click on the button that says **Run tfsec now**:
 
 As you can see all of my Terraform have been scanned and notified me of what issues are in my configuration, the severity rating of the issue, as well as guidance on remediating the issue.
 
-![image.png](![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/assets/result.png))
+![image.png](<![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/assets/result.png)>)
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/code) page. :heart:
 
