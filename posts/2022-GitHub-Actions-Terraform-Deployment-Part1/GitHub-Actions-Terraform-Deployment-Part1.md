@@ -218,7 +218,7 @@ This workflow is a reusable workflow to plan a terraform deployment, create an a
 ## code/az_tf_plan.yml
 
 ### Reusable workflow to plan terraform deployment, create artifact and upload to workflow artifacts for consumption ###
-name: 'Build_TF_Plan'
+name: "Build_TF_Plan"
 on:
   workflow_call:
     inputs:
@@ -244,7 +244,7 @@ on:
         required: true
         type: string
       tf_key:
-        description: 'Specifies the Terraform state file name for this plan. Workflow artifact will use same name.'
+        description: 'Specifies the Terraform state file name for this plan. Workflow artifact will use same name'
         required: true
         type: string
       gh_environment:
@@ -256,6 +256,11 @@ on:
         description: 'Specifies the Terraform TFVARS file.'
         required: true
         type: string
+      enable_TFSEC:
+        description: '(Optional) Enables TFSEC IaC scans and code quality checks on Terraform configurations'
+        required: false
+        type: bool
+        default: false
     secrets:
       arm_client_id:
         description: 'Specifies the Azure ARM CLIENT ID.'
@@ -284,25 +289,28 @@ jobs:
       RESOURCE_GROUP: ${{ inputs.az_resource_group }}
       TF_KEY: ${{ inputs.tf_key }}.tfstate
       TF_VARS: ${{ inputs.tf_vars_file }}
+      ENABLE_TFSEC: $ {{ inputs.enable_TFSEC }}
       ###AZURE Client details###
       ARM_CLIENT_ID: ${{ secrets.arm_client_id }}
       ARM_CLIENT_SECRET: ${{ secrets.arm_client_secret }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.arm_subscription_id }}
       ARM_TENANT_ID: ${{ secrets.arm_tenant_id }}
-
+  
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Scan IaC - tfsec
+        if: ${{ inputs.ENABLE_TFSEC == true }}
         uses: tfsec/tfsec-sarif-action@v0.0.6
         with:
-          sarif_file: tfsec.sarif
+          sarif_file: tfsec.sarif         
 
       - name: Upload SARIF file
+        if: ${{ inputs.ENABLE_TFSEC == true }}
         uses: github/codeql-action/upload-sarif@v1
         with:
-          sarif_file: tfsec.sarif
+          sarif_file: tfsec.sarif  
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1.3.2
@@ -316,7 +324,7 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init --backend-config="storage_account_name=$STORAGE_ACCOUNT" --backend-config="container_name=$CONTAINER_NAME" --backend-config="resource_group_name=$RESOURCE_GROUP" --backend-config="key=$TF_KEY"
-
+      
       - name: Terraform Validate
         id: validate
         run: terraform validate
@@ -336,8 +344,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: '${{ inputs.tf_key }}'
-          path: '${{ inputs.path }}/${{ inputs.tf_key }}.zip'
+          name: "${{ inputs.tf_key }}"
+          path: "${{ inputs.path }}/${{ inputs.tf_key }}.zip"
           retention-days: 5
 ```
 
@@ -354,28 +362,29 @@ As you can see the reusable workflow can be given specific **inputs** when calle
 
 | Inputs | Required | Description | Default |
 | --- | --- | --- | --- |
-| path | True | Specifies the path of the root terraform module. | - |
-| tf_version | False | (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default=latest. | latest |
-| az_resource_group | True | Specifies the Azure Resource Group where the backend storage account is hosted. | - |
-| az_storage_acc | True | Specifies the Azure Storage Account where the backend state is hosted. | - |
-| az_container_name | True | Specifies the Azure Storage account container where backend Terraform state is hosted. | - |
-| tf_key | True | Specifies the Terraform state file name for this plan. Workflow artifact will use same name. | - |
-| gh_environment | False | (Optional) Specifies the GitHub deployment environment. Leave this setting out if you do not have GitHub Environments configured. | null |
-| tf_vars_file | True | Specifies the Terraform TFVARS file. | - |
+| `path` | True | Specifies the path of the root terraform module. | - |
+| `tf_version` | False | (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default=latest. | latest |
+| `az_resource_group` | True | Specifies the Azure Resource Group where the backend storage account is hosted. | - |
+| `az_storage_acc` | True | Specifies the Azure Storage Account where the backend state is hosted. | - |
+| `az_container_name` | True | Specifies the Azure Storage account container where backend Terraform state is hosted. | - |
+| `tf_key` | True | Specifies the Terraform state file name for this plan. Workflow artifact will use same name. | - |
+| `gh_environment` | False | (Optional) Specifies the GitHub deployment environment. Leave this setting out if you do not have GitHub Environments configured. | null |
+| `tf_vars_file` | True | Specifies the Terraform TFVARS file. | - |
+| `enable_TFSEC` | FALSE | Enable IaC TFSEC scan, results are posted to GitHub Project Security Tab. | FALSE |
 
 We aso need to pass some secrets from the **caller** to the **reusable workflow**. This is the details of our Service Principal we created to have access in Azure and is linked with our **GitHub Repository Secrets** we configured earlier.
 
 | Secret              | Required | Description                              |
 | ------------------- | -------- | ---------------------------------------- |
-| arm_client_id       | True     | Specifies the Azure ARM CLIENT ID.       |
-| arm_client_secret   | True     | Specifies the Azure ARM CLIENT SECRET.   |
-| arm_subscription_id | True     | Specifies the Azure ARM SUBSCRIPTION ID. |
-| arm_tenant_id       | True     | Specifies the Azure ARM TENANT ID.       |
+| `arm_client_id`       | True     | Specifies the Azure ARM CLIENT ID.       |
+| `arm_client_secret`   | True     | Specifies the Azure ARM CLIENT SECRET.   |
+| `arm_subscription_id` | True     | Specifies the Azure ARM SUBSCRIPTION ID. |
+| `arm_tenant_id`       | True     | Specifies the Azure ARM TENANT ID.       |
 
 This workflow when called will perform the following steps:
 
 - Check out the code repository and set the path context given as input to the path containing the terraform module.
-- Scan IaC in the path provided for any vulnerabilities or issues (Published to GitHub Security Tab)
+- Scan IaC in the path provided for any vulnerabilities or issues (Published to GitHub Security Tab). Private repositories requires GitHub enterprise.
 - Install and use the version of terraform as per the input.
 - Format check the terraform module code.
 - Initialize the terraform module in the given path.
@@ -386,7 +395,9 @@ This workflow when called will perform the following steps:
 
 ### IaC Security Scanning (TFSEC)
 
-In addition IaC scanning using TFSEC has also been applied to the `PLAN` **reusable workflow**.
+In addition IaC scanning using TFSEC has also been applied to the `PLAN` **reusable workflow**, using the input `enable_TFSEC`. By default this setting is set to `FALSE`.  
+
+**NOTE:** If you are using a **Private** repository you will need a **GitHub Enterprise** account to enable code scanning with TFSEC. The code scanning feature is included however on any **Public** repositories. If you are using a **Private** repository and do not have an enterprise account, leave this setting on the default: `FALSE` and have a look at my other blog post on [IaC Scanning with TFSEC for VsCode (Extension)](https://dev.to/pwd9000/iac-scanning-with-tfsec-for-vscode-extension-27h8) instead.
 
 Each terraform configuration, when calling the `PLAN` **reusable workflow** will be scanned for any Terraform IaC vulnerabilities and misconfigurations and the results will be published on the GitHub Projects `Security` tab e.g:
 
@@ -498,20 +509,20 @@ The **inputs** and **secrets** are almost the same as our previous **reusable wo
 
 | Inputs | Required | Description | Default |
 | --- | --- | --- | --- |
-| path | True | Specifies the path of the root terraform module. | - |
-| tf_version | False | (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default=latest. | latest |
-| az_resource_group | True | Specifies the Azure Resource Group where the backend storage account is hosted. | - |
-| az_storage_acc | True | Specifies the Azure Storage Account where the backend state is hosted. | - |
-| az_container_name | True | Specifies the Azure Storage account container where backend Terraform state is hosted. | - |
-| tf_key | True | Specifies the Terraform state file name for this plan. Workflow artifact will be the same name. | - |
-| gh_environment | False | (Optional) Specifies the GitHub deployment environment. Leave this setting out if you do not have GitHub Environments configured. | null |
+| `path` | True | Specifies the path of the root terraform module. | - |
+| `tf_version` | False | (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default=latest. | latest |
+| `az_resource_group` | True | Specifies the Azure Resource Group where the backend storage account is hosted. | - |
+| `az_storage_acc` | True | Specifies the Azure Storage Account where the backend state is hosted. | - |
+| `az_container_name` | True | Specifies the Azure Storage account container where backend Terraform state is hosted. | - |
+| `tf_key` | True | Specifies the Terraform state file name for this plan. Workflow artifact will be the same name. | - |
+| `gh_environment` | False | (Optional) Specifies the GitHub deployment environment. Leave this setting out if you do not have GitHub Environments configured. | null |
 
 | Secret              | Required | Description                              |
 | ------------------- | -------- | ---------------------------------------- |
-| arm_client_id       | True     | Specifies the Azure ARM CLIENT ID.       |
-| arm_client_secret   | True     | Specifies the Azure ARM CLIENT SECRET.   |
-| arm_subscription_id | True     | Specifies the Azure ARM SUBSCRIPTION ID. |
-| arm_tenant_id       | True     | Specifies the Azure ARM TENANT ID.       |
+| `arm_client_id`       | True     | Specifies the Azure ARM CLIENT ID.       |
+| `arm_client_secret`   | True     | Specifies the Azure ARM CLIENT SECRET.   |
+| `arm_subscription_id` | True     | Specifies the Azure ARM SUBSCRIPTION ID. |
+| `arm_tenant_id`       | True     | Specifies the Azure ARM TENANT ID.       |
 
 This workflow when called will perform the following steps:
 
