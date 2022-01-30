@@ -592,7 +592,7 @@ jobs:
       az_container_name: your-sa-container-name
       tf_key: foundation-uat
       tf_vars_file: config-uat.tfvars
-      enable_TFSEC: true       
+      enable_TFSEC: true
     secrets:
       arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
       arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
@@ -626,7 +626,7 @@ jobs:
       az_container_name: your-sa-container-name
       tf_key: foundation-prod
       tf_vars_file: config-prod.tfvars
-      enable_TFSEC: true               
+      enable_TFSEC: true
     secrets:
       arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
       arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
