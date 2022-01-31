@@ -113,16 +113,16 @@ This action will connect to a remote Terraform backend in Azure, creates a terra
 | --- | --- | --- | --- |
 | `path` | FALSE | Specify path to Terraform module relevant to repo root. | "." |
 | `tf_version` | FALSE | Specifies the Terraform version to use. | "latest" |
-| `az_resource_group` | TRUE | AZ backend - AZURE Resource Group name hosting terraform backend storage account | N/A |
-| `az_storage_acc` | TRUE | AZ backend - AZURE terraform backend storage account name | N/A |
-| `az_container_name` | TRUE | AZ backend - AZURE storage container hosting state files | N/A |
-| `tf_key` | TRUE | AZ backend - Specifies name that will be given to terraform state file and plan artifact | N/A |
-| `tf_vars_file` | TRUE | Specifies Terraform TFVARS file name inside module path | N/A |
+| `az_resource_group` | TRUE | AZ backend - AZURE Resource Group name hosting terraform backend storage account. | N/A |
+| `az_storage_acc` | TRUE | AZ backend - AZURE terraform backend storage account name. | N/A |
+| `az_container_name` | TRUE | AZ backend - AZURE storage container hosting state files. | N/A |
+| `tf_key` | TRUE | AZ backend - Specifies name that will be given to terraform state file and plan artifact. | N/A |
+| `tf_vars_file` | TRUE | Specifies Terraform TFVARS file name inside module path. | N/A |
 | `enable_TFSEC` | FALSE | Enable IaC TFSEC scan, results are posted to GitHub Project Security Tab. (Private repos require GitHub enterprise). | FALSE |
-| `arm_client_id` | TRUE | The Azure Service Principal Client ID | N/A |
-| `arm_client_secret` | TRUE | The Azure Service Principal Secret | N/A |
-| `arm_subscription_id` | TRUE | The Azure Subscription ID | N/A |
-| `arm_tenant_id` | TRUE | The Azure Service Principal Tenant ID | N/A |
+| `arm_client_id` | TRUE | The Azure Service Principal Client ID. | N/A |
+| `arm_client_secret` | TRUE | The Azure Service Principal Secret. | N/A |
+| `arm_subscription_id` | TRUE | The Azure Subscription ID. | N/A |
+| `arm_tenant_id` | TRUE | The Azure Service Principal Tenant ID. | N/A |
 
 The terraform plan will be created and is compressed and published to the workflow as an artifact using the same name of the input `tf_key`:
 
