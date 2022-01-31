@@ -143,14 +143,14 @@ This action will download a Terraform plan workflow artifact created by `Pwd9000
 | Input | Required | Description | Default |
 | --- | --- | --- | --- |
 | `tf_version` | FALSE | Specifies the Terraform version to use. | "latest" |
-| `az_resource_group` | TRUE | AZ backend - AZURE Resource Group name hosting terraform backend storage account | N/A |
-| `az_storage_acc` | TRUE | AZ backend - AZURE terraform backend storage account name | N/A |
-| `az_container_name` | TRUE | AZ backend - AZURE storage container hosting state files | N/A |
-| `tf_key` | TRUE | Specifies name of the terraform state file and plan artifact to download | N/A |
-| `arm_client_id` | TRUE | The Azure Service Principal Client ID | N/A |
-| `arm_client_secret` | TRUE | The Azure Service Principal Secret | N/A |
-| `arm_subscription_id` | TRUE | The Azure Subscription ID | N/A |
-| `arm_tenant_id` | TRUE | The Azure Service Principal Tenant ID | N/A |
+| `az_resource_group` | TRUE | AZ backend - AZURE Resource Group name hosting terraform backend storage account. | N/A |
+| `az_storage_acc` | TRUE | AZ backend - AZURE terraform backend storage account name. | N/A |
+| `az_container_name` | TRUE | AZ backend - AZURE storage container hosting state files. | N/A |
+| `tf_key` | TRUE | Specifies name of the terraform state file and plan artifact to download. | N/A |
+| `arm_client_id` | TRUE | The Azure Service Principal Client ID. | N/A |
+| `arm_client_secret` | TRUE | The Azure Service Principal Secret. | N/A |
+| `arm_subscription_id` | TRUE | The Azure Subscription ID. | N/A |
+| `arm_tenant_id` | TRUE | The Azure Service Principal Tenant ID. | N/A |
 
 This terraform apply action will download and apply the artifact created by the plan action using the same `tf_key` input.
 
