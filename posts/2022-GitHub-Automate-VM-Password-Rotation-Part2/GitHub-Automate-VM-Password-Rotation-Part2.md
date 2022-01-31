@@ -18,9 +18,9 @@ Welcome to part 2 of my series on **automating password rotation**. A few months
 
 In this second part of the series I will discuss how to make use of the public marketplace action. For a full in depth understanding on the concepts I am using I would recommend going through [Part 1](https://dev.to/pwd9000/automate-password-rotation-with-github-and-azure-412a) first.
 
-- Link to GitHub Action on the public marketplace: [Rotate AZURE Virtual Machine Passwords](https://github.com/marketplace/actions/rotate-azure-virtual-machine-passwords)
+- Link to GitHub Action on the public marketplace: [Rotate AZURE Virtual Machine Passwords](https://github.com/marketplace/actions/rotate-azure-virtual-machine-passwords).
 
-- Link to my public GitHub repository hosting this action: [GitHub Repository](https://github.com/Pwd9000-ML/azure-vm-password-rotate)
+- Link to my public GitHub repository hosting this action: [GitHub Repository](https://github.com/Pwd9000-ML/azure-vm-password-rotate).
 
 ### Concept
 
