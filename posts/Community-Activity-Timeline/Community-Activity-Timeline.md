@@ -15,6 +15,8 @@ When it comes to cloud technology, I usually blog and go where my curiosity take
 
 Here is a summary and timeline of my community activity, speaking events and contributions. Including events I will be presenting at in the near future. Feel free to reach out to me if you would like me to speak at a community user group, event, conference or meetup.
 
+<a href="https://www.buymeacoffee.com/pwd9000"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=pwd9000&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
+
 # 🔥 Upcoming 🔥
 
 If you like my content feel free to bookmark this page as it gets updated frequently to showcase any new content or upcoming events/conferences/podcasts I will be presenting at.
