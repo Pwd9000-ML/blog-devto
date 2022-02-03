@@ -543,12 +543,9 @@ This workflow is a **Caller** workflow. It will call and trigger a reusable work
 name: '01_Foundation'
 on:
   workflow_dispatch:
-  pull_request:
-    branches:
-      - master
+
 jobs:
   Plan_Dev:
-    #if: github.ref == 'refs/heads/master' && github.event_name == 'pull_request'
     uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_plan.yml@master
     with:
       path: 01_Foundation ## Path to terraform root module (Required)
@@ -583,7 +580,6 @@ jobs:
       arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## ARM Tenant ID
 
   Plan_Uat:
-    #if: github.ref == 'refs/heads/master' && github.event_name == 'pull_request'
     uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_plan.yml@master
     with:
       path: 01_Foundation
@@ -616,7 +612,6 @@ jobs:
       arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}
 
   Plan_Prod:
-    #if: github.ref == 'refs/heads/master' && github.event_name == 'pull_request'
     uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_plan.yml@master
     with:
       path: 01_Foundation

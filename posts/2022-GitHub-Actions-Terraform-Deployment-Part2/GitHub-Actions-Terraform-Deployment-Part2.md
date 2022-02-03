@@ -51,9 +51,7 @@ Let's take a closer look at this workflow:
 name: 'Marketplace-Example'
 on:
   workflow_dispatch:
-  pull_request:
-    branches:
-      - master
+
 jobs:
   Plan_Dev:
     runs-on: ubuntu-latest
