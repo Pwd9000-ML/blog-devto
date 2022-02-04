@@ -47,7 +47,7 @@ Copy and paste the following snippet into your .yml file.
 
 ```yml
 - name: Rotate VMs administrator passwords
-    uses: Pwd9000-ML/azure-vm-password-rotate@v1.0.2
+    uses: Pwd9000-ML/azure-vm-password-rotate@v1.1.0
     with:
       key-vault-name: ${{ env.KEY_VAULT_NAME }}
       password-length: 24 ##Optional configuration
@@ -83,7 +83,7 @@ jobs:
           enable-AzPSSession: true
 
       - name: Rotate VMs administrator passwords
-        uses: Pwd9000-ML/azure-vm-password-rotate@v1.0.2
+        uses: Pwd9000-ML/azure-vm-password-rotate@v1.1.0
         with:
           key-vault-name: ${{ env.KEY_VAULT_NAME }}
 ```
@@ -110,12 +110,15 @@ jobs:
 
 ## Versions of runner that can be used
 
-At the moment only windows runners are supported. Support for all runner types will be released soon.
+As of release v1.1.0; Support for linux and windows runner types now available.
 
-| Environment         | YAML Label                         |
-| ------------------- | ---------------------------------- |
+| Environment | YAML Label |
+| --------------------|---------------------|
+| Windows Server 2022 | `windows-2022` |
 | Windows Server 2019 | `windows-latest` or `windows-2019` |
-| Windows Server 2016 | `windows-2016`                     |
+| Windows Server 2016 (deprecated )| `windows-2016` |
+| Ubuntu 20.04 | `ubuntu-latest` or `ubuntu-20.04` |
+| Ubuntu 18.04 | `ubuntu-18.04` |
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github Action](https://github.com/Pwd9000-ML/azure-vm-password-rotate) page. :heart:
 
