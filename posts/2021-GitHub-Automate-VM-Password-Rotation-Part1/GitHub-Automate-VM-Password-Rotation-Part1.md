@@ -139,10 +139,10 @@ Now create a folder in the repository called `.github` and underneath another fo
 
 ```yaml
 name: Update Azure VM passwords
-on:
+on: 
   workflow_dispatch:
   schedule:
-    - cron: '0 9 * * 1'
+    - cron:  '0 9 * * 1'
 
 jobs:
   publish:
@@ -152,68 +152,68 @@ jobs:
       PASSWORD_LENGTH: 24
 
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
+    - name: Check out repository
+      uses: actions/checkout@v2
 
-      - name: Log into Azure using github secret AZURE_CREDENTIALS
-        uses: Azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          enable-AzPSSession: true
+    - name: Log into Azure using github secret AZURE_CREDENTIALS
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        enable-AzPSSession: true
 
-      - name: Generate Random Char Set using System.Web Assembly and set environment
-        shell: powershell
-        run: |
-          [system.reflection.assembly]::LoadWithPartialName("System.Web")
-          [String]$random = [System.Web.Security.Membership]::GeneratePassword(64, 32)
-          echo ::add-mask::$random
-          echo "RANDOM_CHAR_SET=$random" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+    - name: Rotate VM administrator passwords
+      uses: azure/powershell@v1
+      with:
+        inlineScript: | 
+          #Generate Randomized Character Set
+          #---------------------------------
+          $null = Add-Type -AssemblyName System.Web
+          $charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{]+-[*=@:)}$^%;(_!&#?>/|.'.ToCharArray()
+          $crypt = New-Object System.Security.Cryptography.RNGCryptoServiceProvider
+          $bytes = New-Object 'System.Array[]'(128)
+          For ($i = 0; $i -lt $bytes.Count ; $i++)
+          {
+              $bytes[$i] = New-Object byte[](2)
+          }
 
-      - name: Rotate VM administrator passwords
-        uses: azure/powershell@v1
-        with:
-          inlineScript: |
-            [int]$length = ${{ env.PASSWORD_LENGTH }}
-            $keyVaultName = "${{ env.KEY_VAULT_NAME }}"
-            Write-Output "Creating array of all VM names in key vault: [$keyVaultName]."
-            $keys = (Get-AzKeyVaultSecret -VaultName $keyVaultName).Name
-            Write-Output "Looping through each VM key and changing the local admin password"
-            Foreach ($key in $keys) {
-              $vmName = $key
-              If (Get-AzVm -Name $vmName -ErrorAction SilentlyContinue) {
-                $resourceGroup = (Get-AzVm -Name $vmName).ResourceGroupName
-                $location = (Get-AzVm -Name $vmName).Location
-                Write-Output "Server found: [$vmName]... Checking if VM is in a running state"
-                $vmObj = Get-AzVm -ResourceGroupName $resourceGroup -Name $vmName -Status
-                [String]$vmStatusDetail = "deallocated"
-                Foreach ($vmStatus in $vmObj.Statuses) {
-                  If ($vmStatus.Code -eq "PowerState/running") {
-                    [String]$vmStatusDetail = $vmStatus.Code.Split("/")[1]
-                  }
+          $charSetRandom = New-Object char[](128)
+          For ($i = 0 ; $i -lt 128 ; $i++) {
+              Do {
+                  $crypt.GetBytes($bytes[$i])
+                  $num = [System.BitConverter]::ToUInt16($bytes[$i],0)
+              } While ($num -gt ([uint16]::MaxValue - ([uint16]::MaxValue % $CharSet.Length) -1))
+              $charSetRandom[$i] = $charSet[$num % $charSet.Length]
+          }
+          $charSetRandom = $charSetRandom -join ''
+          #---------------------------------
+
+          #Vm Password rotate Key Vault from Randomized Character Set
+          #----------------------------------------------------------
+          [int]$length = ${{ env.PASSWORD_LENGTH }}
+          $keyVaultName = "${{ env.KEY_VAULT_NAME }}"
+          Write-Output "Creating array of all VM names in key vault: [$keyVaultName]."
+          $keys = (Get-AzKeyVaultSecret -VaultName $keyVaultName).Name
+          Write-Output "Looping through each VM key and changing the local admin password"
+          Foreach ($key in $keys) {
+            $vmName = $key
+            If (Get-AzVm -Name $vmName -ErrorAction SilentlyContinue) {
+              $resourceGroup = (Get-AzVm -Name $vmName).ResourceGroupName
+              $location = (Get-AzVm -Name $vmName).Location
+              Write-Output "Server found: [$vmName]... Checking if VM is in a running state"
+              $vmObj = Get-AzVm -ResourceGroupName $resourceGroup -Name $vmName -Status
+              [String]$vmStatusDetail = "deallocated"
+              Foreach ($vmStatus in $vmObj.Statuses) {
+                If ($vmStatus.Code -eq "PowerState/running") {
+                  [String]$vmStatusDetail = $vmStatus.Code.Split("/")[1]
                 }
-                If ($vmStatusDetail -ne "running") {
-                  Write-Warning "VM is NOT in a [running] state... Skipping"
-                  Write-Output "--------------------------"
-                }
-                Else {
-                  Write-output "VM is in a [running] state... Generating new secure Password for: [$vmName]"
-                  $passwordGen = (("$${{ env.RANDOM_CHAR_SET }}")[0..64] | Get-Random -Count length) -join ''
-                  $secretPassword = ConvertTo-SecureString -String $passwordGen -AsPlainText -Force
-                  Write-Output "Updating key vault: [$keyVaultName] with new random secure password for virtual machine: [$vmName]"
-                  $Date = (Get-Date).tostring("dd-MM-yyyy")
-                  $Tags = @{ "Automation" = "Github-Workflow";  "Password-Rotated" = "true"; "Password-Rotated-On" = "$Date"}
-                  $null = Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "$vmName" -SecretValue $secretPassword -Tags $Tags
-                  Write-Output "Updating VM with new password..."
-                  $adminUser = (Get-AzVm -Name $vmName | Select-Object -ExpandProperty OSProfile).AdminUsername
-                  $Cred = New-Object System.Management.Automation.PSCredential ($adminUser, $secretPassword)
-                  $null = Set-AzVMAccessExtension -ResourceGroupName $resourceGroup -Location $location -VMName $vmName -Credential $Cred -typeHandlerVersion "2.0" -Name VMAccessAgent
-                  Write-Output "Vm password changed successfully."
-                  Write-Output "--------------------------"
-                }
+              }
+              If ($vmStatusDetail -ne "running") {
+                Write-Warning "VM is NOT in a [running] state... Skipping"
+                Write-Output "--------------------------"
               }
               Else {
                 Write-output "VM is in a [running] state... Generating new secure Password for: [$vmName]"
-                $passwordGen = (("$${{ env.RANDOM_CHAR_SET }}")[0..64] | Get-Random -Count $length) -join ''
+                $passwordGen = (($charSetRandom)[0..64] | Get-Random -Count $length) -join ''
                 $secretPassword = ConvertTo-SecureString -String $passwordGen -AsPlainText -Force
                 Write-Output "Updating key vault: [$keyVaultName] with new random secure password for virtual machine: [$vmName]"
                 $Date = (Get-Date).tostring("dd-MM-yyyy")
@@ -232,8 +232,8 @@ jobs:
              Write-Output "--------------------------"
             }
           }
+          #----------------------------------------------------------
         azPSVersion: 'latest'
-
 ```
 
 The above YAML workflow is set to trigger automatically every monday at 9am UTC. Which means our workflow will connect to our Azure key vault and get all the VM names we defined, populate the secret values with newly generated passwords and rotate the VMs local admin password with the newly generated password.
