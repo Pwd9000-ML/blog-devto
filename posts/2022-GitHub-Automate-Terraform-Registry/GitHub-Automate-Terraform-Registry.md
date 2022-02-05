@@ -60,7 +60,7 @@ updates:
       interval: 'daily'
 ```
 
-**NOTE:** The package-ecosystem: `terraform` and the `versions.tf` file is at the root of my project repository, which is represented bt the directory: `"/"`
+**NOTE:** The package-ecosystem is `terraform` and the `versions.tf` file is at the root of my project repository, which is represented bt the directory: `"/"`
 
 Once the dependabot `YAML` file has been created and committed to the repository, you will notice that it automatically opened a Pull-Request for me, showing me that my provider version is out of date:
 
