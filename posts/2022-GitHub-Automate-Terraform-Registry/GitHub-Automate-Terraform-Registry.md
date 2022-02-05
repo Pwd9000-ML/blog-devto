@@ -44,7 +44,7 @@ terraform {
 }
 ```
 
-We will set up dependabot by creating a special folder at the root of the project called `.github` and inside that folder create a `YAML` file called [dependabot.yml](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets/blob/master/.github/dependabot.yml):
+We will set up dependabot by creating a special folder at the root of the repository called `.github` and inside that folder create a `YAML` file called [dependabot.yml](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets/blob/master/.github/dependabot.yml):
 
 ```yaml
 # To get started with Dependabot version updates, you'll need to specify which
