@@ -6,6 +6,7 @@ tags: 'githubactions, Terraform, IaC, Automation'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/main1.png'
 canonical_url: null
 id: 979002
+date: '2022-02-05T15:38:50Z'
 ---
 
 ### Overview
