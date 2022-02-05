@@ -1,6 +1,6 @@
 ---
 title: Automate Terraform Module Releases on the public registry using GitHub
-published: false
+published: true
 description: Automate Terraform Module Releases on the public terraform registry using GitHub Actions
 tags: 'githubactions, Terraform, IaC, Automation'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/main1.png'
@@ -120,17 +120,17 @@ After creating the tag `1.0.4` and pushing the tag to the remote repository. Not
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/rel.png)
 
-**NOTE:** The workflow step that creates the release has an input setting: `generateReleaseNotes: true`, so the release notes have also been created for us dynamically.
+**NOTE:** The **GitHub Action** that creates the release has an input setting: `generateReleaseNotes: true`, so the release notes have also been created for us dynamically.
 
-As you can see th new version is also now published on the **Terraform Registry**
+As you can see the new version is also now published on the **Terraform Registry**
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/rel2.png)
 
-That's it, now we can automatically let **Dependabot** take care of our terraform versions and create pull requests automatically when new provider versions are released.
+That's it, now we can automatically let **Dependabot** take care of our terraform provider versioning and create pull requests automatically when new provider versions are released.
 
-Additionally we also have a really straight forward easy way to create new releases of our own module by simply creating a valid semantic version number as a tag and then push that tag to our remote repository where the **GitHub Workflow** will create a release for us.
+Additionally we also have a really straight forward easy way to create new releases of our own module by simply creating a valid semantic version number as a tag and then push that tag to our remote repository where the **GitHub Workflow** will create a release for us based on the semantic version tag.
 
-As an added bonus, I also added another section onto the **Dependabot** config file to also regularly check the **GitHub Action** used in the workflow called: `ncipollo/release-action@v1` so when a new version of that comes out, **Dependabot** will also let me know that I can update my workflow actions that creates releases.
+As an added bonus, I also added another section onto the **Dependabot** config file to also regularly check the **GitHub Actions** used in the workflow called: `ncipollo/release-action@v1` and `actions/checkout@v2` so when a new versions of these actions come out, **Dependabot** will also let me know that I can update my workflow actions.
 
 ```yml
 version: 2
