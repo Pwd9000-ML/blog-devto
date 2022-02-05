@@ -24,11 +24,11 @@ In todays tutorial we are going to focus more on maintaining an existing module 
 
 ### Dependabot
 
-Dependabot is a service built into GitHub that helps you update your dependencies automatically, so you can spend less time updating dependencies and more time building. Dependabot even includes checks for version updates for **terraform providers** inside of your configuration files which we will look at today.  
+Dependabot is a service built into GitHub that helps you update your dependencies automatically, so you can spend less time updating dependencies and more time building. Dependabot even includes checks for version updates for **terraform providers** inside of your configuration files which we will look at today.
 
-Check out this list of **[package-ecosystems](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates#package-ecosystem)** that's supported.  
+Check out this list of **[package-ecosystems](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates#package-ecosystem)** that's supported.
 
-One key benefit is that dependency updates might contain security vulnerability fixes, bug fixes etc and manually keeping track of updates or updating them when a newer version is available is a lot of hassle. This is where **Dependabot** can help by automatically raising a Pull Request whenever there is a newer version of a dependency.  
+One key benefit is that dependency updates might contain security vulnerability fixes, bug fixes etc and manually keeping track of updates or updating them when a newer version is available is a lot of hassle. This is where **Dependabot** can help by automatically raising a Pull Request whenever there is a newer version of a dependency.
 
 In my [Terraform module repository - Dynamic Subnets](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets), I have a terraform file called `versions.tf`:
 
@@ -54,26 +54,23 @@ We will set up dependabot by creating a special folder at the root of the projec
 
 version: 2
 updates:
-  - package-ecosystem: "terraform" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: 'terraform' # See documentation for possible values
+    directory: '/' # Location of package manifests
     schedule:
-      interval: "daily"
+      interval: 'daily'
 ```
 
 **NOTE:** The package-ecosystem is `terraform` and the `versions.tf` file is at the root of my project repository, which is represented bt the directory `"/"`
 
 Once the dependabot `YAML` file has been created and committed to the repository, you will notice that it automatically opened a Pull-Request for me, showing me that my provider version is out of date:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/pr1.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/pr1.png)
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/pr2.png)
 
 Now we can decide whether we want to accept this version bump or not by either accepting and merging the pull request or cancelling and closing the pull request. As you can also see the schedule interval is set to `daily` which means dependabot will check everyday to see if there are any new terraform provider versions released and automatically open a pull request if there is. Pretty neat!
 
 ### Automate push to Terraform Registry
-
-
-
 
 ### _Author_
 
