@@ -20,7 +20,7 @@ Anyone can publish and share modules on the [Terraform Registry](https://registr
 
 This initial process is fairly well documented on HashiCorps tutorial on: [How to publish modules to the registry](https://www.terraform.io/registry/modules/publish). It is a fairly easy and frictionless process.
 
-In todays tutorial we are going to focus more on maintaining an existing module and how to automate releasing new versions using **GitHub Actions**. We will also look at how we can automate the Terraform and provider version inside the module using a great feature of HitHub called **GitHub Dependabot**.
+In this tutorial we are going to focus more on maintaining an existing module and how to automate releasing new versions using **GitHub Actions**. We will also look at how we can automatically update the provider versions (dependencies) used inside of the terraform module using a great feature of GitHub called **Dependabot**.
 
 ### Dependabot
 
@@ -110,40 +110,40 @@ This corresponds with the current release on the **GitHub** repository hosting t
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/pre2.png)
 
-With the **GitHub workflow** set up, Let's create a new tag and push that to our repository on GitHub. The workflow will trigger and create a new release for us automatically, so let's try it out.
+With the **GitHub workflow** set up, Let's create a new tag and push that to our repository on GitHub. The workflow will trigger and create a new release for us automatically, so let's try it out.  
 
 ![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/tag.gif)
 
 After creating the tag `1.0.4` and pushing the tag to the remote repository. Notice that the workflow has triggered and ran, creating a new release automatically using the tag version number:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/work.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/work.png)  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/rel.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/rel.png)  
 
-**NOTE:** The workflow step that creates the release has an input setting: `generateReleaseNotes: true`, so the release notes have also been created for us dynamically.
+**NOTE:** The workflow step that creates the release has an input setting: `generateReleaseNotes: true`, so the release notes have also been created for us dynamically.  
 
 As you can see th new version is also now published on the **Terraform Registry**
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/rel2.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/rel2.png)  
 
-That's it, now we can automatically let **Dependabot** take care of our terraform versions and create pull requests automatically when new provider versions are released.
+That's it, now we can automatically let **Dependabot** take care of our terraform versions and create pull requests automatically when new provider versions are released.  
 
-Additionally we also have a really straight forward easy way to create new releases of our own module by simply creating a valid semantic version number as a tag and then push that tag to our remote repository where the **GitHub Workflow** will create a release for us.
+Additionally we also have a really straight forward easy way to create new releases of our own module by simply creating a valid semantic version number as a tag and then push that tag to our remote repository where the **GitHub Workflow** will create a release for us.  
 
-As an added bonus, I also added another section onto the **Dependabot** config file to also regularly check the **GitHub Action** used in the workflow called: `ncipollo/release-action@v1` so when a new version of that comes out, **Dependabot** will also let me know that I can update my workflow actions that creates releases.
+As an added bonus, I also added another section onto the **Dependabot** config file to also regularly check the **GitHub Action** used in the workflow called: `ncipollo/release-action@v1` so when a new version of that comes out, **Dependabot** will also let me know that I can update my workflow actions that creates releases.  
 
 ```yml
 version: 2
 updates:
-  - package-ecosystem: 'terraform' # See documentation for possible values
-    directory: '/' # Location of package manifests
+  - package-ecosystem: "terraform" # See documentation for possible values
+    directory: "/" # Location of package manifests
     schedule:
-      interval: 'daily'
+      interval: "daily"
 
-  - package-ecosystem: 'github-actions' # See documentation for possible values
-    directory: '/' # Location of package manifests
+  - package-ecosystem: "github-actions" # See documentation for possible values
+    directory: "/" # Location of package manifests
     schedule:
-      interval: 'daily'
+      interval: "daily"
 ```
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my GitHub project [Terraform module repository - Dynamic Subnets](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets). :heart:
