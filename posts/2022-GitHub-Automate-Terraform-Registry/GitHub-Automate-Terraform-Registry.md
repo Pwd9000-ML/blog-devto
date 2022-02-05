@@ -24,11 +24,11 @@ In todays tutorial we are going to focus more on maintaining an existing module 
 
 ### Dependabot
 
-Dependabot is a service built into GitHub that helps you update your dependencies automatically, so you can spend less time updating dependencies and more time building. Dependabot even includes checks for version updates for **terraform providers** inside of your configuration files which we will look at today.  
+Dependabot is a service built into GitHub that helps you update your dependencies automatically, so you can spend less time updating dependencies and more time building. Dependabot even includes checks for version updates for **terraform providers** inside of your configuration files which we will look at today.
 
-Check out this list of **[package-ecosystems](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates#package-ecosystem)** that's supported.  
+Check out this list of **[package-ecosystems](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/configuration-options-for-dependency-updates#package-ecosystem)** that's supported.
 
-One key benefit is that dependency updates might contain security vulnerability fixes, bug fixes etc and manually keeping track of updates or updating them when a newer version is available is a lot of hassle. This is where **Dependabot** can help by automatically raising a Pull Request whenever there is a newer version of a dependency.  
+One key benefit is that dependency updates might contain security vulnerability fixes, bug fixes etc and manually keeping track of updates or updating them when a newer version is available is a lot of hassle. This is where **Dependabot** can help by automatically raising a Pull Request whenever there is a newer version of a dependency.
 
 In my [Terraform module repository - Dynamic Subnets](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets), I have a terraform file called [versions.tf](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets/blob/master/versions.tf):
 
@@ -54,17 +54,17 @@ We will set up dependabot by creating a special folder at the root of the projec
 
 version: 2
 updates:
-  - package-ecosystem: "terraform" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: 'terraform' # See documentation for possible values
+    directory: '/' # Location of package manifests
     schedule:
-      interval: "daily"
+      interval: 'daily'
 ```
 
 **NOTE:** The package-ecosystem: `terraform` and the `versions.tf` file is at the root of my project repository, which is represented bt the directory: `"/"`
 
 Once the dependabot `YAML` file has been created and committed to the repository, you will notice that it automatically opened a Pull-Request for me, showing me that my provider version is out of date:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/pr1.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/pr1.png)
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/pr2.png)
 
@@ -72,7 +72,7 @@ Now we can decide whether we want to accept this version bump or not by either a
 
 ### Automate push to Terraform Registry
 
-Say for example we take this version change (or any changes and improvements on our module), and after testing the changes on our module we want to create a new public release version of our module on the public **[Terraform Registry](https://registry.terraform.io/)**. For this step we will create a **workflow**.  
+Say for example we take this version change (or any changes and improvements on our module), and after testing the changes on our module we want to create a new public release version of our module on the public **[Terraform Registry](https://registry.terraform.io/)**. For this step we will create a **workflow**.
 
 Under the `.github` directory we will create a new folder called `workflows` and in this folder we will create another `YAML` file called: [push-tf-registry.yml](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets/blob/master/.github/workflows/push-tf-registry.yml).
 
@@ -88,19 +88,19 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: ncipollo/release-action@v1
-      with:
-        generateReleaseNotes: true
-        name: "v${{ github.ref_name }}"
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v2
+      - uses: ncipollo/release-action@v1
+        with:
+          generateReleaseNotes: true
+          name: 'v${{ github.ref_name }}'
+          token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-This workflow will trigger on a tag push and create a **GitHub Release**. As per the [documented process](https://www.terraform.io/registry/modules/publish#releasing-new-versions) for creating a new release on the public terraform registry we have to use a valid semantic version, optionally prefixed with a v.  
+This workflow will trigger on a tag push and create a **GitHub Release**. As per the [documented process](https://www.terraform.io/registry/modules/publish#releasing-new-versions) for creating a new release on the public terraform registry we have to use a valid semantic version, optionally prefixed with a v.
 
-Example of valid tags are: v1.0.1 and 0.9.4. To publish a new module, you must already have at least one tag created.  
+Example of valid tags are: v1.0.1 and 0.9.4. To publish a new module, you must already have at least one tag created.
 
-To release a new version, create and push a new tag with the proper format. The webhook will notify the registry of the new version and it will appear on the registry usually in less than a minute.  
+To release a new version, create and push a new tag with the proper format. The webhook will notify the registry of the new version and it will appear on the registry usually in less than a minute.
 
 The current version of my public module is `version = 1.0.3`:
 
@@ -110,9 +110,7 @@ This corresponds with the current release on the **GitHub** repository hosting t
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/pre2.png)
 
-With the **GitHub workflow** set up, Let's create a new tag and push that to our repository on GitHub. The workflow will trigger and create a new release for us automatically, so let's try it out.  
-
-
+With the **GitHub workflow** set up, Let's create a new tag and push that to our repository on GitHub. The workflow will trigger and create a new release for us automatically, so let's try it out.
 
 ### _Author_
 
