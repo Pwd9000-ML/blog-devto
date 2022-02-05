@@ -71,7 +71,7 @@ Once the dependabot `YAML` file has been created and committed to the repository
 
 Now we can decide whether we want to accept this version bump or not by either accepting and merging the pull request or cancelling and closing the pull request. As you can also see the schedule interval is set to `daily` which means **dependabot** will check everyday to see if there are any new terraform provider versions released and automatically open a pull request if there is. Pretty neat!
 
-### Automate push to Terraform Registry
+### Automate Releases - Terraform Registry
 
 Say for example we take this version change (or any changes and improvements on our module), and after testing the changes on our module we want to create a new public release version of our module on the public **[Terraform Registry](https://registry.terraform.io/)**. For this step we will create a **workflow**.
 
