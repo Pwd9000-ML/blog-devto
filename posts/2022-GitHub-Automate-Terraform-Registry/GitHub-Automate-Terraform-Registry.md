@@ -147,14 +147,14 @@ updates:
       interval: 'daily'
 ```
 
-I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my GitHub project [Terraform module repository - Dynamic Subnets](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets). :heart:  
+I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my GitHub project [Terraform module repository - Dynamic Subnets](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets). :heart:
 
-If you are interested in checking out my public terraform modules on the registry here they are:  
+If you are interested in checking out my public terraform modules on the registry here they are:
 
-* [AZURE - Dynamic Subnets](https://registry.terraform.io/modules/Pwd9000-ML/dynamic-subnets/azurerm/latest)  
-* [AZURE - Secure Backend](https://registry.terraform.io/modules/Pwd9000-ML/secure-backend/azurerm/latest)  
+- [AZURE - Dynamic Subnets](https://registry.terraform.io/modules/Pwd9000-ML/dynamic-subnets/azurerm/latest)
+- [AZURE - Secure Backend](https://registry.terraform.io/modules/Pwd9000-ML/secure-backend/azurerm/latest)
 
-I will be adding a few more cool modules on the public registry in due course.  
+I will be adding a few more cool modules on the public registry in due course.
 
 ### _Author_
 
