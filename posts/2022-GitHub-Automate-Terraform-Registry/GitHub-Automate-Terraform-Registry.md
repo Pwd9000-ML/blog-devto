@@ -22,7 +22,7 @@ This initial process is fairly well documented on HashiCorps tutorial on: [How t
 
 In this tutorial we are going to focus more on maintaining an existing module and how to automate releasing new versions using **GitHub Actions**. We will also look at how we can automatically update the provider versions (dependencies) used inside of the terraform module using a great feature of GitHub called **Dependabot**.
 
-### Dependabot
+### Enable Dependabot
 
 Dependabot is a service built into GitHub that helps you update your dependencies automatically, so you can spend less time updating dependencies and more time building. Dependabot even includes checks for version updates for **terraform providers** inside of your configuration files which we will look at today.
 
