@@ -112,7 +112,7 @@ This corresponds with the current release on the **GitHub** repository hosting t
 
 With the **GitHub workflow** set up, Let's create a new tag and push that to our repository on GitHub. The workflow will trigger and create a new release for us automatically, so let's try it out.  
 
-![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/tag.png)
+![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/tag.gif)
 
 After creating the tag `1.0.4` and pushing the tag to the remote repository. Notice that the workflow has triggered and ran, creating a new release automatically using the tag version number:
 
