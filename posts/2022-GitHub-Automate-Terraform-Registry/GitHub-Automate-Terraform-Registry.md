@@ -68,7 +68,7 @@ Once the dependabot `YAML` file has been created and committed to the repository
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/pr2.png)
 
-Now we can decide whether we want to accept this version bump or not by either accepting and merging the pull request or cancelling and closing the pull request. As you can also see the schedule interval is set to `daily` which means dependabot will check everyday to see if there are any new terraform provider versions released and automatically open a pull request if there is. Pretty neat!
+Now we can decide whether we want to accept this version bump or not by either accepting and merging the pull request or cancelling and closing the pull request. As you can also see the schedule interval is set to `daily` which means **dependabot** will check everyday to see if there are any new terraform provider versions released and automatically open a pull request if there is. Pretty neat!
 
 ### Automate push to Terraform Registry
 
