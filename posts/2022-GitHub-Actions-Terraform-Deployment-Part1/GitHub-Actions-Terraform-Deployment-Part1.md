@@ -54,7 +54,7 @@ We are going to perform the following steps:
 
 ## 1. Create Azure resources (Terraform Backend)
 
-To set up the resources that will act as our Terraform backend, I wrote a PowerShell script using AZ CLI that will build and configure everything and store the relevant details/secrets we need to link our GitHub project in a key vault. You can find the script on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page called [AZ-GH-TF-Pre-Reqs.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code/AZ-GH-TF-Pre-Reqs.ps1).
+To set up the resources that will act as our Terraform backend, I wrote a PowerShell script using AZ CLI that will build and configure everything and store the relevant details/secrets we need to link our GitHub project in a key vault. You can find the script on my github code page: [AZ-GH-TF-Pre-Reqs.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code/AZ-GH-TF-Pre-Reqs.ps1).
 
 First we will log into Azure by running:
 
@@ -185,7 +185,7 @@ Note that on the **Production** environment I have configured a **Required Revie
 
 ## 3. Create Terraform Modules (Modular)
 
-Now that our repository is all configured and ready to go, we can start to create some modular terraform configurations, or in other words separate independent deployment configurations based on ROOT terraform modules. If you look at the [Demo Repository](https://github.com/Pwd9000-ML/Demo-Repo-TF-Azure) you will see that on the root of the repository I have paths/folders that are numbered e.g. **./01_Foundation** and **./02_Storage**.
+Now that our repository is all configured and ready to go, we can start to create some modular terraform configurations, or in other words separate independent deployment configurations based on ROOT terraform modules. If you look at the [Demo Repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments) you will see that on the root of the repository I have paths/folders that are numbered e.g. **./01_Foundation** and **./02_Storage**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/tfmods.png)
 
@@ -210,13 +210,11 @@ You will notice that there are **numbered** workflows: `./.github/workflows/01_F
 
 Let's take a closer look at the reusable workflows:
 
-- **[az_tf_plan.yml](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code/az_tf_plan.yml)**:
+- **[az_tf_plan.yml](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/blob/master/.github/workflows/az_tf_plan.yml)**:
 
 This workflow is a reusable workflow to plan a terraform deployment, create an artifact and upload that artifact to workflow artifacts for consumption.
 
 ```yml
-## code/az_tf_plan.yml
-
 ### Reusable workflow to plan terraform deployment, create artifact and upload to workflow artifacts for consumption ###
 name: 'Build_TF_Plan'
 on:
@@ -352,8 +350,6 @@ jobs:
 **NOTE:** The reusable workflow can only be triggered by another workflow, aka the **caller** workflows. We can see this by the `on:` trigger called `workflow_call:`.
 
 ```yml
-## code/az_tf_plan.yml#L3-L4
-
 on:
   workflow_call:
 ```
@@ -407,13 +403,11 @@ The IaC security scan will not stop or FAIL any terraform plan or deployment, bu
 
 Let's take a look at our second **reusable workflow**.
 
-- **[az_tf_apply.yml](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code/az_tf_apply.yml)**:
+- **[az_tf_apply.yml](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/blob/master/.github/workflows/az_tf_apply.yml)**:
 
 This workflow is a reusable workflow to download a terraform artifact built by `az_tf_plan.yml` and apply the artifact/plan (Deploy the planned terraform configuration).
 
 ```yml
-## code/az_tf_apply.yml
-
 ### Reusable workflow to download terraform artifact built by `az_tf_plan` and apply the artifact/plan ###
 name: 'Apply_TF_Plan'
 on:
@@ -534,13 +528,12 @@ This workflow when called will perform the following steps:
 
 Let's take a look at one of the **caller workflows** next. These workflows will be used to call the **reusable workflows**.
 
-- **[01_Foundation.yml](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code/01_Foundation.yml)**:
+- **[01_Foundation.yml](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/blob/master/.github/workflows/01_Foundation.yml)**:
 
 This workflow is a **Caller** workflow. It will call and trigger a reusable workflow `az_tf_plan.yml` and create a foundational terraform deployment `PLAN` based on the repository `path: ./01_Foundation` containing the terraform ROOT module/configuration of an Azure Resource Group and key vault. The plan artifacts are validated, compressed and uploaded into the workflow artifacts, the caller workflow `01_Foundation` will then call and trigger the second reusable workflow `az_tf_apply.yml` that will download and decompress the `PLAN` artifact and trigger the deployment based on the plan. (Also demonstrated is how to use GitHub Environments to do multi staged environment based deployments with approvals - Optional)
 
 ```yml
-## code/01_Foundation.yml
-name: '01_Foundation'
+name: "01_Foundation"
 on:
   workflow_dispatch:
 
@@ -548,47 +541,47 @@ jobs:
   Plan_Dev:
     uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_plan.yml@master
     with:
-      path: 01_Foundation ## Path to terraform root module (Required)
-      tf_version: latest ## Terraform version e.g: 1.1.0 Default=latest (Optional)
-      az_resource_group: your-resource-group-name ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
-      az_storage_acc: your-storage-account-name ## AZ backend - AZURE terraform backend storage acc (Required)
-      az_container_name: your-sa-container-name ## AZ backend - AZURE storage container hosting state files (Required)
-      tf_key: foundation-dev ## AZ backend - Specifies name that will be given to terraform state file and workflow artifact name (Required)
-      tf_vars_file: config-dev.tfvars ## Terraform TFVARS (Required)
-      enable_TFSEC: true ## (Optional)  Enable TFSEC IaC scans (Private repo requires GitHub enterprise)
+      path: 01_Foundation                ## Path to terraform root module (Required)
+      tf_version: latest                 ## Terraform version e.g: 1.1.0 Default=latest (Optional)
+      az_resource_group: TF-Core-Rg      ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
+      az_storage_acc: tfcorebackendsa    ## AZ backend - AZURE terraform backend storage acc (Required)
+      az_container_name: ghdeploytfstate ## AZ backend - AZURE storage container hosting state files (Required)
+      tf_key: foundation-dev             ## AZ backend - Specifies name that will be given to terraform state file and plan artifact (Required)
+      tf_vars_file: config-dev.tfvars    ## Terraform TFVARS (Required)
+      enable_TFSEC: true                 ## (Optional)  Enable TFSEC IaC scans (Private repo requires GitHub enterprise)
     secrets:
-      arm_client_id: ${{ secrets.ARM_CLIENT_ID }} ## ARM Client ID
-      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }} ## ARM Client Secret
+      arm_client_id: ${{ secrets.ARM_CLIENT_ID }}             ## ARM Client ID 
+      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}     ## ARM Client Secret
       arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }} ## ARM Subscription ID
-      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## ARM Tenant ID
+      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}             ## ARM Tenant ID
 
   Deploy_Dev:
     needs: Plan_Dev
     uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_apply.yml@master
     with:
-      path: 01_Foundation ## Path to terraform root module (Required)
-      tf_version: latest ## Terraform version e.g: 1.1.0 Default=latest (Optional)
-      az_resource_group: your-resource-group-name ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
-      az_storage_acc: your-storage-account-name ## AZ backend - AZURE terraform backend storage acc (Required)
-      az_container_name: your-sa-container-name ## AZ backend - AZURE storage container hosting state files (Required)
-      tf_key: foundation-dev ## AZ backend - Specifies name of the terraform state file and workflow artifact to download (Required)
-      gh_environment: Development ## GH Environment. Default=null - (Optional)
+      path: 01_Foundation                ## Path to terraform root module (Required)
+      tf_version: latest                 ## Terraform version e.g: 1.1.0 Default=latest (Optional)
+      az_resource_group: TF-Core-Rg      ## AZ backend - AZURE Resource Group hosting terraform backend storage acc (Required)
+      az_storage_acc: tfcorebackendsa    ## AZ backend - AZURE terraform backend storage acc (Required)
+      az_container_name: ghdeploytfstate ## AZ backend - AZURE storage container hosting state files (Required)
+      tf_key: foundation-dev             ## AZ backend - Specifies name of the terraform state file and workflow artifact to download (Required)
+      gh_environment: Development        ## GH Environment. Default=null - (Optional)
     secrets:
-      arm_client_id: ${{ secrets.ARM_CLIENT_ID }} ## ARM Client ID
-      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }} ## ARM Client Secret
+      arm_client_id: ${{ secrets.ARM_CLIENT_ID }}             ## ARM Client ID 
+      arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}     ## ARM Client Secret
       arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }} ## ARM Subscription ID
-      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## ARM Tenant ID
+      arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}             ## ARM Tenant ID
 
   Plan_Uat:
     uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_plan.yml@master
     with:
       path: 01_Foundation
-      az_resource_group: your-resource-group-name
-      az_storage_acc: your-storage-account-name
-      az_container_name: your-sa-container-name
+      az_resource_group: TF-Core-Rg
+      az_storage_acc: tfcorebackendsa
+      az_container_name: ghdeploytfstate
       tf_key: foundation-uat
       tf_vars_file: config-uat.tfvars
-      enable_TFSEC: true
+      enable_TFSEC: true                       
     secrets:
       arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
       arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
@@ -600,9 +593,9 @@ jobs:
     uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_apply.yml@master
     with:
       path: 01_Foundation
-      az_resource_group: your-resource-group-name
-      az_storage_acc: your-storage-account-name
-      az_container_name: your-sa-container-name
+      az_resource_group: TF-Core-Rg
+      az_storage_acc: tfcorebackendsa
+      az_container_name: ghdeploytfstate
       tf_key: foundation-uat
       gh_environment: UserAcceptanceTesting
     secrets:
@@ -616,12 +609,12 @@ jobs:
     with:
       path: 01_Foundation
       tf_version: latest
-      az_resource_group: your-resource-group-name
-      az_storage_acc: your-storage-account-name
-      az_container_name: your-sa-container-name
+      az_resource_group: TF-Core-Rg
+      az_storage_acc: tfcorebackendsa
+      az_container_name: ghdeploytfstate
       tf_key: foundation-prod
       tf_vars_file: config-prod.tfvars
-      enable_TFSEC: true
+      enable_TFSEC: true                          
     secrets:
       arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
       arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
@@ -633,9 +626,9 @@ jobs:
     uses: Pwd9000-ML/Azure-Terraform-Deployments/.github/workflows/az_tf_apply.yml@master
     with:
       path: 01_Foundation
-      az_resource_group: your-resource-group-name
-      az_storage_acc: your-storage-account-name
-      az_container_name: your-sa-container-name
+      az_resource_group: TF-Core-Rg
+      az_storage_acc: tfcorebackendsa
+      az_container_name: ghdeploytfstate
       tf_key: foundation-prod
       gh_environment: Production
     secrets:
