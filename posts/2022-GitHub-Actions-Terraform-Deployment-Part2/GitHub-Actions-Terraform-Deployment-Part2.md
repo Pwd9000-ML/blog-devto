@@ -44,11 +44,11 @@ Let's take a closer look at this workflow:
 - **[Marketplace_Example.yml](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/blob/master/.github/workflows/Marketplace_Example.yml)**:
 
 ```yml
-# I have created public github marketplace actions (plan and apply) as well that can be used as shown in this example. 
+# I have created public github marketplace actions (plan and apply) as well that can be used as shown in this example.
 #Plan: https://github.com/marketplace/actions/terraform-plan-for-azure
 #Apply: https://github.com/marketplace/actions/terraform-apply-for-azure
 
-name: "Marketplace-Example"
+name: 'Marketplace-Example'
 on:
   workflow_dispatch:
   pull_request:
@@ -59,7 +59,7 @@ jobs:
   Plan_Dev:
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
-    environment: null #(Optional) If using GitHub Environments          
+    environment: null #(Optional) If using GitHub Environments
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -67,36 +67,36 @@ jobs:
       - name: Dev TF Plan
         uses: Pwd9000-ML/terraform-azurerm-plan@v1.0.4
         with:
-          path: 01_Foundation                ## (Optional) Specify path TF module relevant to repo root. Default="."
-          az_resource_group: TF-Core-Rg      ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage acc 
-          az_storage_acc: tfcorebackendsa    ## (Required) AZ backend - AZURE terraform backend storage acc 
-          az_container_name: ghdeploytfstate ## (Required) AZ backend - AZURE storage container hosting state files 
-          tf_key: foundation-dev             ## (Required) AZ backend - Specifies name that will be given to terraform state file and plan artifact
-          tf_vars_file: config-dev.tfvars    ## (Required) Specifies Terraform TFVARS file name inside module path
-          enable_TFSEC: true                 ## (Optional)  Enable TFSEC IaC scans
-          arm_client_id: ${{ secrets.ARM_CLIENT_ID }}             ## (Required - Actions Secrets) ARM Client ID 
-          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}     ## (Required - Actions Secrets) ARM Client Secret
+          path: 01_Foundation ## (Optional) Specify path TF module relevant to repo root. Default="."
+          az_resource_group: TF-Core-Rg ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage acc
+          az_storage_acc: tfcorebackendsa ## (Required) AZ backend - AZURE terraform backend storage acc
+          az_container_name: ghdeploytfstate ## (Required) AZ backend - AZURE storage container hosting state files
+          tf_key: foundation-dev ## (Required) AZ backend - Specifies name that will be given to terraform state file and plan artifact
+          tf_vars_file: config-dev.tfvars ## (Required) Specifies Terraform TFVARS file name inside module path
+          enable_TFSEC: true ## (Optional)  Enable TFSEC IaC scans
+          arm_client_id: ${{ secrets.ARM_CLIENT_ID }} ## (Required - Actions Secrets) ARM Client ID
+          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }} ## (Required - Actions Secrets) ARM Client Secret
           arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }} ## (Required - Actions Secrets) ARM Subscription ID
-          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}             ## (Required - Actions Secrets) ARM Tenant ID
+          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## (Required - Actions Secrets) ARM Tenant ID
           github_token: ${{ secrets.GITHUB_TOKEN }} ## (Required) Needed to comment output on PR's. ${{ secrets.GITHUB_TOKEN }} already has permissions.
 
   Apply_Dev:
     needs: Plan_Dev
     runs-on: ubuntu-latest
-    environment: Development #(Optional) If using GitHub Environments      
+    environment: Development #(Optional) If using GitHub Environments
     steps:
       - name: Dev TF Deploy
         if: ${{ github.actor != 'dependabot[bot]' }}
         uses: Pwd9000-ML/terraform-azurerm-apply@v1.0.2
         with:
-          az_resource_group: TF-Core-Rg      ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage acc 
-          az_storage_acc: tfcorebackendsa    ## (Required) AZ backend - AZURE terraform backend storage acc 
-          az_container_name: ghdeploytfstate ## (Required) AZ backend - AZURE storage container hosting state files 
-          tf_key: foundation-dev             ## (Required) Specifies name of the terraform state file and plan artifact to download
-          arm_client_id: ${{ secrets.ARM_CLIENT_ID }}             ## (Required - Actions Secrets) ARM Client ID 
-          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}     ## (Required - Actions Secrets) ARM Client Secret
+          az_resource_group: TF-Core-Rg ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage acc
+          az_storage_acc: tfcorebackendsa ## (Required) AZ backend - AZURE terraform backend storage acc
+          az_container_name: ghdeploytfstate ## (Required) AZ backend - AZURE storage container hosting state files
+          tf_key: foundation-dev ## (Required) Specifies name of the terraform state file and plan artifact to download
+          arm_client_id: ${{ secrets.ARM_CLIENT_ID }} ## (Required - Actions Secrets) ARM Client ID
+          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }} ## (Required - Actions Secrets) ARM Client Secret
           arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }} ## (Required - Actions Secrets) ARM Subscription ID
-          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}             ## (Required - Actions Secrets) ARM Tenant ID
+          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## (Required - Actions Secrets) ARM Tenant ID
 ```
 
 As you can see this workflow has two `jobs:`, one is called `Plan_Dev:` and the other is called `Apply_Dev:`. You will also notice that each job calls the marketplace actions with `uses:` in a `steps:` argument.
