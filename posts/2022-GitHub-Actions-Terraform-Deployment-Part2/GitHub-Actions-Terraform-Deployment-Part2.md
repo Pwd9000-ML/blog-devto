@@ -58,7 +58,7 @@ on:
 jobs:
   Plan_Dev:
     runs-on: ubuntu-latest
-    environment: null #(Optional) If using GitHub Environments          
+    environment: null #(Optional) If using GitHub Environments
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -66,17 +66,17 @@ jobs:
       - name: Dev TF Plan
         uses: Pwd9000-ML/terraform-azurerm-plan@v1.0.4
         with:
-          path: "path-to-TFmodule"                 ## (Optional) Specify path TF module relevant to repo root. Default="."
-          az_resource_group: "resource-group-name" ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage acc 
-          az_storage_acc: "storage-account-name"   ## (Required) AZ backend - AZURE terraform backend storage acc 
-          az_container_name: "container-name"      ## (Required) AZ backend - AZURE storage container hosting state files 
-          tf_key: "state-file-name"                ## (Required) AZ backend - Specifies name that will be given to terraform state file and plan artifact
-          tf_vars_file: "tfvars-file-name"         ## (Required) Specifies Terraform TFVARS file name inside module path
-          enable_TFSEC: true                       ## (Optional)  Enable TFSEC IaC scans (Private repo requires GitHub enterprise)
-          arm_client_id: ${{ secrets.ARM_CLIENT_ID }}             ## (Required) ARM Client ID 
-          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}     ## (Required)ARM Client Secret
+          path: 'path-to-TFmodule' ## (Optional) Specify path TF module relevant to repo root. Default="."
+          az_resource_group: 'resource-group-name' ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage acc
+          az_storage_acc: 'storage-account-name' ## (Required) AZ backend - AZURE terraform backend storage acc
+          az_container_name: 'container-name' ## (Required) AZ backend - AZURE storage container hosting state files
+          tf_key: 'state-file-name' ## (Required) AZ backend - Specifies name that will be given to terraform state file and plan artifact
+          tf_vars_file: 'tfvars-file-name' ## (Required) Specifies Terraform TFVARS file name inside module path
+          enable_TFSEC: true ## (Optional)  Enable TFSEC IaC scans (Private repo requires GitHub enterprise)
+          arm_client_id: ${{ secrets.ARM_CLIENT_ID }} ## (Required) ARM Client ID
+          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }} ## (Required)ARM Client Secret
           arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }} ## (Required) ARM Subscription ID
-          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}             ## (Required) ARM Tenant ID
+          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## (Required) ARM Tenant ID
           github_token: ${{ secrets.GITHUB_TOKEN }} ## (Required) Needed to comment output on PR's. ${{ secrets.GITHUB_TOKEN }} already has permissions.
 
   Apply_Dev:
@@ -135,7 +135,7 @@ The terraform plan will be created and is compressed and published to the workfl
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part2/assets/tfsec.png)
 
-If using a private repository, GitHub enterprise is needed when enabling TFSEC. However if a public repository is used, code analysis is included and TFSEC can be enabled on public repositories without the need for a GitHub enterprise account.  
+If using a private repository, GitHub enterprise is needed when enabling TFSEC. However if a public repository is used, code analysis is included and TFSEC can be enabled on public repositories without the need for a GitHub enterprise account.
 
 Also note that if the `PLAN` action is used in the context of a Pull Request (PR) the output will be added as a comment on the PR. Additionally failures on `fmt`, `init` and `validate` will also added to the PR. e.g.:
 
