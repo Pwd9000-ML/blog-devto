@@ -14,6 +14,8 @@ date: '2022-01-23T15:14:24Z'
 
 This tutorial uses examples from the following GitHub demo project [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).
 
+Welcome to Part 1 of my two part series: **Using Terraform on GitHub**.  
+
 I have been wanting to do a tutorial to demonstrate how to perform large scale terraform deployments in Azure using a **non-monolithic** approach. I have seen so many large deployments fall into this same trap of using one big **monolithic** configuration when doing deployments at scale. Throwing everything into one unwieldy configuration can be troublesome for many reasons. To name a few:
 
 - Making a small change can potentially break something much larger somewhere else in the configuration unintentionally.
@@ -28,12 +30,14 @@ In this tutorial we will use **GitHub reusable workflows** and **GitHub environm
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/mainwf.png)
 
-Things you will get out of this tutorial:
+Things you will get out of this 2 part tutorial:
 
 - Learn about **GitHub reusable workflows**.
+- Learn about **GitHub Actions**.
 - Learn how to integrate terraform deployments with **CI/CD** using **GitHub**.
-- Learn how to deploy resources in **AZURE** at scale.
+- Learn how to deploy resources in **AZURE** at scale using **GitHub**.
 - Learn about **multi-stage** deployments and approvals using **GitHub Environments**.
+- Learn how to build **Terraform modules** using a non-monolithic approach.
 
 As an added bonus I have also added IaC security scanning with **TFSEC** to demonstrate IaC security scans and code quality checks as part of the CI/CD process to highlight any Terraform/Azure vulnerabilities or misconfigurations inside of the terraform code. Scan results are published on the GitHub Projects `Security` tab.
 
