@@ -185,7 +185,7 @@ This action will connect to a remote Terraform backend in Azure, creates a terra
 | `arm_tenant_id` | TRUE | The Azure Service Principal Tenant ID | N/A |
 | `github_token` | TRUE | Specify GITHUB TOKEN, only used in PRs to comment outputs such as `plan`, `fmt`, `init` and `validate`. `${{ secrets.GITHUB_TOKEN }}` already has permissions, but if using own token, ensure repo scope. | N/A |
 
-In both examples the terraform plan will be created and is compressed and published to the workflow as an artifact using the same name of the inputs `[plan_mode]-[tf_key]`:
+In the example: **[Marketplace_Example.yml](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/blob/master/.github/workflows/Marketplace_Example.yml)** the terraform plans will be created and is compressed and published to the workflow as artifacts using the same name of the inputs `[plan_mode]-[tf_key]`:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part2/assets/artifact1.png)
 
