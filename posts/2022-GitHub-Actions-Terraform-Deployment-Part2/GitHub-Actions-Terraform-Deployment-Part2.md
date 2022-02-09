@@ -44,11 +44,11 @@ Let's take a closer look at this workflow:
 - **[Marketplace_Example.yml](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/blob/master/.github/workflows/Marketplace_Example.yml)**:
 
 ```yml
-# I have created public github marketplace actions (plan and apply) as well that can be used as shown in this example.
+# I have created public github marketplace actions (plan and apply) as well that can be used as shown in this example. 
 #Plan: https://github.com/marketplace/actions/terraform-plan-for-azure
 #Apply: https://github.com/marketplace/actions/terraform-apply-for-azure
 
-name: 'Marketplace-Example'
+name: "Marketplace-Example"
 on:
   workflow_dispatch:
   pull_request:
@@ -56,102 +56,102 @@ on:
       - master
 
 jobs:
-  ##### PLAN A DEPLOYMENT #####
+##### PLAN A DEPLOYMENT #####
   Plan_Dev_Deploy:
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
-    environment: null #(Optional) If using GitHub Environments
+    environment: null #(Optional) If using GitHub Environments          
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Dev TF Plan Deploy
-        uses: Pwd9000-ML/terraform-azurerm-plan@v1.1.2
+        uses: Pwd9000-ML/terraform-azurerm-plan@v1.2.0
         with:
-          path: 01_Foundation ## (Optional) Specify path TF module relevant to repo root. Default="."
-          plan_mode: deploy ## (Optional) Specify plan mode. Valid options are "deploy" or "destroy". Default="deploy"
-          tf_version: latest ## (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default="latest"
-          tf_vars_file: config-dev.tfvars ## (Required) Specifies Terraform TFVARS file name inside module path.
-          tf_key: foundation-dev ## (Required) AZ backend - Specifies name that will be given to terraform state file and plan artifact
-          enable_TFSEC: true ## (Optional) Enable TFSEC IaC scans (Private repo requires GitHub enterprise). Default=false
-          az_resource_group: TF-Core-Rg ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage acc
-          az_storage_acc: tfcorebackendsa ## (Required) AZ backend - AZURE terraform backend storage acc
-          az_container_name: ghdeploytfstate ## (Required) AZ backend - AZURE storage container hosting state files
-          arm_client_id: ${{ secrets.ARM_CLIENT_ID }} ## (Required - Actions Secrets) ARM Client ID
-          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }} ## (Required - Actions Secrets) ARM Client Secret
+          path: 01_Foundation                  ## (Optional) Specify path TF module relevant to repo root. Default="."
+          plan_mode: deploy                    ## (Optional) Specify plan mode. Valid options are "deploy" or "destroy". Default="deploy"
+          tf_version: latest                   ## (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default="latest"
+          tf_vars_file: config-dev.tfvars      ## (Required) Specifies Terraform TFVARS file name inside module path.
+          tf_key: foundation-dev               ## (Required) AZ backend - Specifies name that will be given to terraform state file and plan artifact
+          enable_TFSEC: true                   ## (Optional) Enable TFSEC IaC scans (Private repo requires GitHub enterprise). Default=false
+          az_resource_group: TF-Core-Rg        ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage acc 
+          az_storage_acc: tfcorebackendsa      ## (Required) AZ backend - AZURE terraform backend storage acc 
+          az_container_name: ghdeploytfstate   ## (Required) AZ backend - AZURE storage container hosting state files 
+          arm_client_id: ${{ secrets.ARM_CLIENT_ID }}             ## (Required - Actions Secrets) ARM Client ID 
+          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}     ## (Required - Actions Secrets) ARM Client Secret
           arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }} ## (Required - Actions Secrets) ARM Subscription ID
-          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## (Required - Actions Secrets) ARM Tenant ID
+          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}             ## (Required - Actions Secrets) ARM Tenant ID
           github_token: ${{ secrets.GITHUB_TOKEN }} ## (Required) Needed to comment output on PR's. ${{ secrets.GITHUB_TOKEN }} already has permissions
 
-  ##### APPLY DEPLOY #####
+##### APPLY DEPLOY #####
   Apply_Dev_Deploy:
     needs: Plan_Dev_Deploy
     runs-on: ubuntu-latest
-    environment: Development #(Optional) If using GitHub Environments
+    environment: Development #(Optional) If using GitHub Environments      
     steps:
       - name: Dev TF Deploy
         if: ${{ github.actor != 'dependabot[bot]' }}
-        uses: Pwd9000-ML/terraform-azurerm-apply@v1.1.0
+        uses: Pwd9000-ML/terraform-azurerm-apply@v1.2.0
         with:
-          plan_mode: deploy ## (Optional) Specify plan mode. Valid options are "deploy" or "destroy". Default="deploy"
-          tf_version: latest ## (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default="latest"
-          tf_key: foundation-dev ## (Required) Specifies name of the terraform state file and plan artifact to download
-          az_resource_group: TF-Core-Rg ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage acc
-          az_storage_acc: tfcorebackendsa ## (Required) AZ backend - AZURE terraform backend storage acc
-          az_container_name: ghdeploytfstate ## (Required) AZ backend - AZURE storage container hosting state files
-          arm_client_id: ${{ secrets.ARM_CLIENT_ID }} ## (Required - Actions Secrets) ARM Client ID
-          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }} ## (Required - Actions Secrets) ARM Client Secret
+          plan_mode: deploy                  ## (Optional) Specify plan mode. Valid options are "deploy" or "destroy". Default="deploy"
+          tf_version: latest                 ## (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default="latest"
+          tf_key: foundation-dev             ## (Required) Specifies name of the terraform state file and plan artifact to download
+          az_resource_group: TF-Core-Rg      ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage acc 
+          az_storage_acc: tfcorebackendsa    ## (Required) AZ backend - AZURE terraform backend storage acc 
+          az_container_name: ghdeploytfstate ## (Required) AZ backend - AZURE storage container hosting state files 
+          arm_client_id: ${{ secrets.ARM_CLIENT_ID }}             ## (Required - Actions Secrets) ARM Client ID 
+          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}     ## (Required - Actions Secrets) ARM Client Secret
           arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }} ## (Required - Actions Secrets) ARM Subscription ID
-          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## (Required - Actions Secrets) ARM Tenant ID
+          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}             ## (Required - Actions Secrets) ARM Tenant ID
 
-  ##### PLAN A DESTROY #####
+##### PLAN A DESTROY #####
   Plan_Dev_Destroy:
     needs: Apply_Dev_Deploy
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
-    environment: null #(Optional) If using GitHub Environments
+    environment: null #(Optional) If using GitHub Environments          
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Dev TF Plan Destroy
-        uses: Pwd9000-ML/terraform-azurerm-plan@v1.1.2
+        uses: Pwd9000-ML/terraform-azurerm-plan@v1.2.0
         with:
-          path: 01_Foundation ## (Optional) Specify path TF module relevant to repo root. Default="."
-          plan_mode: destroy ## (Optional) Specify plan mode. Valid options are "deploy" or "destroy". Default="deploy"
-          tf_version: latest ## (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default="latest"
-          tf_vars_file: config-dev.tfvars ## (Required) Specifies Terraform TFVARS file name inside module path.
-          tf_key: foundation-dev ## (Required) AZ backend - Specifies name that will be given to terraform state file and plan artifact
-          enable_TFSEC: false ## (Optional) Enable TFSEC IaC scans (Private repo requires GitHub enterprise). Default=false
-          az_resource_group: TF-Core-Rg ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage acc
-          az_storage_acc: tfcorebackendsa ## (Required) AZ backend - AZURE terraform backend storage acc
-          az_container_name: ghdeploytfstate ## (Required) AZ backend - AZURE storage container hosting state files
-          arm_client_id: ${{ secrets.ARM_CLIENT_ID }} ## (Required - Actions Secrets) ARM Client ID
-          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }} ## (Required - Actions Secrets) ARM Client Secret
+          path: 01_Foundation                ## (Optional) Specify path TF module relevant to repo root. Default="."
+          plan_mode: destroy                 ## (Optional) Specify plan mode. Valid options are "deploy" or "destroy". Default="deploy"
+          tf_version: latest                 ## (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default="latest"
+          tf_vars_file: config-dev.tfvars    ## (Required) Specifies Terraform TFVARS file name inside module path.
+          tf_key: foundation-dev             ## (Required) AZ backend - Specifies name that will be given to terraform state file and plan artifact
+          enable_TFSEC: false                ## (Optional) Enable TFSEC IaC scans (Private repo requires GitHub enterprise). Default=false
+          az_resource_group: TF-Core-Rg      ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage acc 
+          az_storage_acc: tfcorebackendsa    ## (Required) AZ backend - AZURE terraform backend storage acc 
+          az_container_name: ghdeploytfstate ## (Required) AZ backend - AZURE storage container hosting state files 
+          arm_client_id: ${{ secrets.ARM_CLIENT_ID }}             ## (Required - Actions Secrets) ARM Client ID 
+          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}     ## (Required - Actions Secrets) ARM Client Secret
           arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }} ## (Required - Actions Secrets) ARM Subscription ID
-          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## (Required - Actions Secrets) ARM Tenant ID
+          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}             ## (Required - Actions Secrets) ARM Tenant ID
           github_token: ${{ secrets.GITHUB_TOKEN }} ## (Required) Needed to comment output on PR's. ${{ secrets.GITHUB_TOKEN }} already has permissions
 
-  ##### APPLY DESTROY #####
+##### APPLY DESTROY #####
   Apply_Dev_Destroy:
     needs: Plan_Dev_Destroy
     runs-on: ubuntu-latest
-    environment: Development #(Optional) If using GitHub Environments
+    environment: Development #(Optional) If using GitHub Environments      
     steps:
       - name: Dev TF Destroy
         if: ${{ github.actor != 'dependabot[bot]' }}
-        uses: Pwd9000-ML/terraform-azurerm-apply@v1.1.0
+        uses: Pwd9000-ML/terraform-azurerm-apply@v1.2.0
         with:
-          plan_mode: destroy ## (Optional) Specify plan mode. Valid options are "deploy" or "destroy". Default="deploy"
-          tf_version: latest ## (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default="latest"
-          tf_key: foundation-dev ## (Required) Specifies name of the terraform state file and plan artifact to download
-          az_resource_group: TF-Core-Rg ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage acc
-          az_storage_acc: tfcorebackendsa ## (Required) AZ backend - AZURE terraform backend storage acc
-          az_container_name: ghdeploytfstate ## (Required) AZ backend - AZURE storage container hosting state files
-          arm_client_id: ${{ secrets.ARM_CLIENT_ID }} ## (Required - Actions Secrets) ARM Client ID
-          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }} ## (Required - Actions Secrets) ARM Client Secret
+          plan_mode: destroy                 ## (Optional) Specify plan mode. Valid options are "deploy" or "destroy". Default="deploy"
+          tf_version: latest                 ## (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default="latest"
+          tf_key: foundation-dev             ## (Required) Specifies name of the terraform state file and plan artifact to download
+          az_resource_group: TF-Core-Rg      ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage acc 
+          az_storage_acc: tfcorebackendsa    ## (Required) AZ backend - AZURE terraform backend storage acc 
+          az_container_name: ghdeploytfstate ## (Required) AZ backend - AZURE storage container hosting state files 
+          arm_client_id: ${{ secrets.ARM_CLIENT_ID }}             ## (Required - Actions Secrets) ARM Client ID 
+          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}     ## (Required - Actions Secrets) ARM Client Secret
           arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }} ## (Required - Actions Secrets) ARM Subscription ID
-          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## (Required - Actions Secrets) ARM Tenant ID
+          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}             ## (Required - Actions Secrets) ARM Tenant ID
 ```
 
 As you can see this workflow has four `jobs:`, `Plan_Dev_Deploy`, `Apply_Dev_Deploy`, `Plan_Dev_Destroy`, `Apply_Dev_Destroy`. You will also notice that each job calls the marketplace actions with `uses:` in a `steps:` argument.
@@ -185,9 +185,13 @@ This action will connect to a remote Terraform backend in Azure, creates a terra
 | `arm_tenant_id` | TRUE | The Azure Service Principal Tenant ID | N/A |
 | `github_token` | TRUE | Specify GITHUB TOKEN, only used in PRs to comment outputs such as `plan`, `fmt`, `init` and `validate`. `${{ secrets.GITHUB_TOKEN }}` already has permissions, but if using own token, ensure repo scope. | N/A |
 
-The terraform plan will be created and is compressed and published to the workflow as an artifact using the same name of the input `tf_key`:
+In both examples the terraform plan will be created and is compressed and published to the workflow as an artifact using the same name of the inputs `[plan_mode]-[tf_key]`:  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part2/assets/artifact.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part2/assets/artifact1.png)  
+
+As mentioned earlier, the artifacts will either contain a deployment plan called `deploy_plan.tfplan` if `plan_mode: "deploy"` is used, or a destroy plan called `destroy_plan.tfplan` if `plan_mode: "destroy"` is used.  
+
+The terraform apply action will download and apply the plan inside of the artifact created by the plan action using the same `[plan_mode]-[tf_key]` and will start a deploy or destroy action based on the `plan_mode`.  
 
 **NOTE:** If `enable_TFSEC` is set to `true` on plan stage, Terraform IaC will be scanned using TFSEC and results are published to the GitHub Project `Security` tab:
 
@@ -218,7 +222,7 @@ This action will download a Terraform plan workflow artifact created by `Pwd9000
 | `arm_subscription_id` | TRUE | The Azure Subscription ID | N/A |
 | `arm_tenant_id` | TRUE | The Azure Service Principal Tenant ID | N/A |
 
-The terraform apply action will download and apply the artifact created by the plan action using the same `tf_key` input and apply the relevant plan based on which `plan_mode` was used in the creation of the plan artifact.
+The terraform apply action will download and apply the plan inside of the artifact created by the plan action using the same `[plan_mode]-[tf_key]` and apply the relevant plan based on which `plan_mode` was used in the creation of the plan artifact.  
 
 ## Conclusion
 
