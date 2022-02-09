@@ -220,7 +220,7 @@ This workflow is a reusable workflow to plan a terraform deployment, create an a
 
 ```yml
 ### Reusable workflow to plan terraform deployment, create artifact and upload to workflow artifacts for consumption ###
-name: "Build_TF_Plan"
+name: 'Build_TF_Plan'
 on:
   workflow_call:
     inputs:
@@ -296,7 +296,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.arm_client_secret }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.arm_subscription_id }}
       ARM_TENANT_ID: ${{ secrets.arm_tenant_id }}
-  
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -305,13 +305,13 @@ jobs:
         if: ${{ inputs.ENABLE_TFSEC == 'true' }}
         uses: tfsec/tfsec-sarif-action@v0.0.6
         with:
-          sarif_file: tfsec.sarif         
+          sarif_file: tfsec.sarif
 
       - name: Upload SARIF file
         if: ${{ inputs.ENABLE_TFSEC == 'true' }}
         uses: github/codeql-action/upload-sarif@v1
         with:
-          sarif_file: tfsec.sarif  
+          sarif_file: tfsec.sarif
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1.3.2
@@ -325,7 +325,7 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init --backend-config="storage_account_name=$STORAGE_ACCOUNT" --backend-config="container_name=$CONTAINER_NAME" --backend-config="resource_group_name=$RESOURCE_GROUP" --backend-config="key=$TF_KEY"
-      
+
       - name: Terraform Validate
         id: validate
         run: terraform validate
@@ -345,8 +345,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: "${{ inputs.tf_key }}"
-          path: "${{ inputs.path }}/${{ inputs.tf_key }}.zip"
+          name: '${{ inputs.tf_key }}'
+          path: '${{ inputs.path }}/${{ inputs.tf_key }}.zip'
           retention-days: 5
 ```
 
@@ -412,7 +412,7 @@ This workflow is a reusable workflow to download a terraform artifact built by `
 
 ```yml
 ### Reusable workflow to download terraform artifact built by `az_tf_plan` and apply the artifact/plan ###
-name: "Apply_TF_Plan"
+name: 'Apply_TF_Plan'
 on:
   workflow_call:
     inputs:
@@ -478,7 +478,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.arm_client_secret }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.arm_subscription_id }}
       ARM_TENANT_ID: ${{ secrets.arm_tenant_id }}
-  
+
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v2
