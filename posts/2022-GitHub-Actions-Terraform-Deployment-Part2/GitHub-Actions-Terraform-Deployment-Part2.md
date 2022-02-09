@@ -83,7 +83,7 @@ jobs:
           arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## (Required - Actions Secrets) ARM Tenant ID
           github_token: ${{ secrets.GITHUB_TOKEN }} ## (Required) Needed to comment output on PR's. ${{ secrets.GITHUB_TOKEN }} already has permissions
 
-  ##### DEPLOY #####
+  ##### APPLY DEPLOY #####
   Apply_Dev_Deploy:
     needs: Plan_Dev_Deploy
     runs-on: ubuntu-latest
@@ -132,7 +132,7 @@ jobs:
           arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## (Required - Actions Secrets) ARM Tenant ID
           github_token: ${{ secrets.GITHUB_TOKEN }} ## (Required) Needed to comment output on PR's. ${{ secrets.GITHUB_TOKEN }} already has permissions
 
-  ##### DESTROY #####
+  ##### APPLY DESTROY #####
   Apply_Dev_Destroy:
     needs: Plan_Dev_Destroy
     runs-on: ubuntu-latest
