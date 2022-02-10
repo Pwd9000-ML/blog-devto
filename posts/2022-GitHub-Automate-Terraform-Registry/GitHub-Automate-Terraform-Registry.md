@@ -154,9 +154,9 @@ updates:
 
 ### Fully Automated Testing and Release on changes to IaC
 
-I am currently working on a separate blog post to show how to do fully automated integration test when **Dependabot** opens a PR. Followed by automatically merging the pull request once all tests have finished and then also as a last step automatically deploy a new release/version and pushing that to the Terraform registry.  
+I am currently working on a separate blog post to show how to do fully automated integration test when **Dependabot** opens a PR. Followed by automatically merging the pull request once all tests have finished and then also as a last step automatically deploy a new release/version and pushing that to the Terraform registry.
 
-If you are interested to see what that workflow looks like right now, while I am still writing the tutorial. Here is a link to the workflow:  
+If you are interested to see what that workflow looks like right now, while I am still writing the tutorial. Here is a link to the workflow:
 
 **[dependency-tests.yml](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets/blob/master/.github/workflows/dependency-tests.yml)**
 
@@ -166,7 +166,7 @@ If you are interested to see what that workflow looks like right now, while I am
 ### If tests are successful the PR is automatically merged to master ###
 ### If the merge was completed the next patch version is released and the patch is bumped and pushed to terraform registry ###
 
-name: "Automated-Dependency-Tests-and-Release"
+name: 'Automated-Dependency-Tests-and-Release'
 on:
   workflow_dispatch:
   pull_request:
@@ -174,7 +174,7 @@ on:
       - master
 
 jobs:
-# Dependabot will open a PR on terraform version changes, this 'dependabot' job is only used to test TF version changes by running a plan, apply and destroy in sequence.
+  # Dependabot will open a PR on terraform version changes, this 'dependabot' job is only used to test TF version changes by running a plan, apply and destroy in sequence.
   dependabot-plan-apply-destroy:
     runs-on: ubuntu-latest
     permissions:
@@ -189,21 +189,21 @@ jobs:
       - name: Run Dependency Tests - Plan AND Apply AND Destroy
         uses: Pwd9000-ML/terraform-azurerm-tests@v1.0.1
         with:
-          test_type: plan-apply-destroy      ## (Required) Valid options are "plan", "plan-apply", "plan-apply-destroy". Default="plan"
-          path: "tests/auto_test1"           ## (Optional) Specify path to test module to run.
-          tf_version: latest                 ## (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default="latest"
-          tf_vars_file: testing.tfvars       ## (Required) Specifies Terraform TFVARS file name inside module path (Testing vars)
-          tf_key: tf-mod-tests-dyn-subn      ## (Required) AZ backend - Specifies name that will be given to terraform state file and plan artifact (testing state)
-          az_resource_group: TF-Core-Rg      ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage account
-          az_storage_acc: tfcorebackendsa    ## (Required) AZ backend - AZURE terraform backend storage account
-          az_container_name: ghdeploytfstate ## (Required) AZ backend - AZURE storage container hosting state files 
-          arm_client_id: ${{ secrets.ARM_CLIENT_ID }}             ## (Required - Dependabot Secrets) ARM Client ID 
-          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}     ## (Required - Dependabot Secrets) ARM Client Secret
+          test_type: plan-apply-destroy ## (Required) Valid options are "plan", "plan-apply", "plan-apply-destroy". Default="plan"
+          path: 'tests/auto_test1' ## (Optional) Specify path to test module to run.
+          tf_version: latest ## (Optional) Specifies version of Terraform to use. e.g: 1.1.0 Default="latest"
+          tf_vars_file: testing.tfvars ## (Required) Specifies Terraform TFVARS file name inside module path (Testing vars)
+          tf_key: tf-mod-tests-dyn-subn ## (Required) AZ backend - Specifies name that will be given to terraform state file and plan artifact (testing state)
+          az_resource_group: TF-Core-Rg ## (Required) AZ backend - AZURE Resource Group hosting terraform backend storage account
+          az_storage_acc: tfcorebackendsa ## (Required) AZ backend - AZURE terraform backend storage account
+          az_container_name: ghdeploytfstate ## (Required) AZ backend - AZURE storage container hosting state files
+          arm_client_id: ${{ secrets.ARM_CLIENT_ID }} ## (Required - Dependabot Secrets) ARM Client ID
+          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }} ## (Required - Dependabot Secrets) ARM Client Secret
           arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }} ## (Required - Dependabot Secrets) ARM Subscription ID
-          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}             ## (Required - Dependabot Secrets) ARM Tenant ID
+          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }} ## (Required - Dependabot Secrets) ARM Tenant ID
           github_token: ${{ secrets.GITHUB_TOKEN }} ## (Required) Needed to comment output on PR's. ${{ secrets.GITHUB_TOKEN }} already has permissions.
 
-##### If dependency tests are successful merge the pull request #####
+  ##### If dependency tests are successful merge the pull request #####
   merge_pr:
     needs: dependabot-plan-apply-destroy
     runs-on: ubuntu-latest
@@ -216,7 +216,7 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v1.1.1
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: Auto-merge PR after tests
         run: gh pr merge --auto --merge "$PR_URL"
@@ -224,7 +224,7 @@ jobs:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-##### Create and automate new release based on next patch version of releases #####
+  ##### Create and automate new release based on next patch version of releases #####
   release_new_version:
     needs: merge_pr
     runs-on: ubuntu-latest
@@ -232,7 +232,7 @@ jobs:
       contents: write
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
-      - name: Determine version 
+      - name: Determine version
         id: version
         uses: zwaldowski/semver-release-action@v2
         with:
@@ -240,12 +240,12 @@ jobs:
           dry_run: true
           github_token: ${{secrets.GITHUB_TOKEN}}
 
-      - name: Create new release and push to registry 
+      - name: Create new release and push to registry
         id: release
         uses: ncipollo/release-action@v1
         with:
           generateReleaseNotes: true
-          name: "v${{ steps.version.outputs.version }}"
+          name: 'v${{ steps.version.outputs.version }}'
           tag: ${{ steps.version.outputs.version }}
           token: ${{ secrets.GITHUB_TOKEN }}
 ```
