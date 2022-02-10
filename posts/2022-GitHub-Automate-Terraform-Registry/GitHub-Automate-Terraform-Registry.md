@@ -73,11 +73,16 @@ Now we can decide whether we want to accept this version bump or not by either a
 
 ### Automate Releases - Terraform Registry
 
-Say for example we take this version change (or any changes and improvements on our module), and after testing the changes on our module we want to create a new public release version of our module on the public **[Terraform Registry](https://registry.terraform.io/)**. For this step we will create a **workflow**.
+Say for example we take this version change (or any changes and improvements on our module), and after testing the changes on our module we want to create a new public release version of our module on the public **[Terraform Registry](https://registry.terraform.io/)**.  
+
+**NOTE:** I have written a public **GitHub marketplace Action** called: [Terraform Tests for AZURE](https://github.com/marketplace/actions/terraform-tests-for-azure) to do automated tests. Check it out.  
+
+After testing to perform a release we will create a **workflow**.  
 
 Under the `.github` directory we will create a new folder called `workflows` and in this folder we will create another `YAML` file called: [push-tf-registry.yml](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets/blob/master/.github/workflows/push-tf-registry.yml).
 
 ```yml
+### This workflow can be used to manually create new release versions from a tag push using e.g. VSCODE ###
 on:
   push:
     tags:
@@ -147,7 +152,7 @@ updates:
       interval: 'daily'
 ```
 
-### Full automation testing from start to finish
+### Fully Automated Testing and Release on changes to IaC
 
 I am currently working on a separate blog post to show how to do fully automated integration test when **Dependabot** opens a PR. Followed by automatically merging the pull request once all tests have finished and then also as a last step automatically deploy a new release/version and pushing that to the Terraform registry.  
 
