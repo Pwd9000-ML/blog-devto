@@ -5,6 +5,11 @@
 
 version: 2
 updates:
+  - package-ecosystem: "github-actions" # search for actions - there are other options available
+    directory: "/" # search in .github/workflows under root `/`
+    schedule:
+      interval: "daily"
+      
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
