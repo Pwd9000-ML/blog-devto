@@ -203,7 +203,7 @@ dependabot-plan-apply-destroy:
         github_token: ${{ secrets.GITHUB_TOKEN }} ## (Required) Needed to comment output on PR's. ${{ secrets.GITHUB_TOKEN }} already has permissions.
 ```
 
-As you can see we have an `if:` expression to say that the job should only run if the PR was opened by **dependabot**, also note that the action I am using in this job will need the ability to add comments/issues on the Pull Request to display any issues and the plans from the terraform runs.  
+As you can see we have an `if:` expression to say that the job should only run if the PR was opened by **dependabot**, also note that the action I am using in this job will need the ability to add comments/issues on the Pull Request to display any issues and the plans from the terraform runs.
 
 To do this a special token called `GITHUB_TOKEN` is needed, by default this token in the context of **dependabot** will be **read-only** and so we can give the token additional permissions as you can see from the following `YAML` code:
 
