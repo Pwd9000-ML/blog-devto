@@ -13,11 +13,11 @@ series: Using Terraform on GitHub
 
 This tutorial uses examples from the following GitHub project [Terraform module repository - Dynamic Subnets](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets).
 
-In the previous tutorial on this blog series **Using Terraform on GitHub**, we looked at how to [automate terraform module releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-4775). In todays tutorial we will build on the same topic but take a look at how we can also perform full end to end automation that includes:  
+In the previous tutorial on this blog series **Using Terraform on GitHub**, we looked at how to [automate terraform module releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-4775). In todays tutorial we will build on the same topic but take a look at how we can also perform full end to end automation that includes:
 
 - Automated dependency checks for Terraform modules using GitHub **dependabot**.
 - Triggering an automated Terraform test when **dependabot** opens a Pull Request (PR) on the version change.
-- Test if the terraform code changes in the PR will work.  
+- Test if the terraform code changes in the PR will work.
 - If all tests are successful automatically merge the PR.
 - Once the PR is merged automatically create a new release of the public module on the public Terraform registry.
 
