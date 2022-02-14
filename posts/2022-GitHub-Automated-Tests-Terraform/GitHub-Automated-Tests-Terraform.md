@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 988582
 series: Using Terraform on GitHub
+date: '2022-02-14T12:03:25Z'
 ---
 
 ### Overview
@@ -339,7 +340,7 @@ release_new_version:
         token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-This job will look at the project releases and determine what the next release version (semantic versioning) should be and then creates a new release automatically.  
+This job will look at the project releases and determine what the next release version (semantic versioning) should be and then creates a new release automatically.
 
 We can decide what we want to increment the version by specifying: `bump: patch` (This can also be `bump: minor` or `bump: major`) depending on how you want to perform your releases, but because this use case is just a version change of the terraform provider dependency a `patch` increment should be fine.
 
