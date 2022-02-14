@@ -34,6 +34,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **09/02/2022** | [OSS Maintainer - Terraform Tests for AZURE](https://github.com/marketplace/actions/terraform-tests-for-azure) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
 | **05/02/2022** | [Automate Terraform Module Releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-4775) | Blog/Website Post | Azure, Terraform, GitHub | Terraform, Automation, IaC, GitHubActions, Dependabot, Tutorial |
 | **04/02/2022** | [OSS maintainer - Terraform Module: Secure Backend (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/secure-backend/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
 | **04/02/2022** | [OSS maintainer - Terraform Module: Dynamic Subnets (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/dynamic-subnets/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
