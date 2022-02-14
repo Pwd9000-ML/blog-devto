@@ -203,7 +203,9 @@ dependabot-plan-apply-destroy:
         github_token: ${{ secrets.GITHUB_TOKEN }} ## (Required) Needed to comment output on PR's. ${{ secrets.GITHUB_TOKEN }} already has permissions.
 ```
 
-As you can see we have an `if:` expression to say that the job should only run if the PR was opened by **dependabot**, also note that the action I am using in this job will need the ability to add comments/issues on the Pull Request to display any issues and the plans from the terraform runs. To do this a special token called `GITHUB_TOKEN` is needed, by default this token in the context of **dependabot** will be **read-only** and so we can give the token additional permissions as you can see from the following `YAML` code:
+As you can see we have an `if:` expression to say that the job should only run if the PR was opened by **dependabot**, also note that the action I am using in this job will need the ability to add comments/issues on the Pull Request to display any issues and the plans from the terraform runs.  
+
+To do this a special token called `GITHUB_TOKEN` is needed, by default this token in the context of **dependabot** will be **read-only** and so we can give the token additional permissions as you can see from the following `YAML` code:
 
 ```yml
 permissions:
@@ -212,6 +214,8 @@ permissions:
   actions: read
 if: ${{ github.actor == 'dependabot[bot]' }}
 ```
+
+**NOTE:** To see what extra permissions can be granted to the `GITHUB_TOKEN` see: [Permissions for the github_token](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)
 
 The automated tests are then run using the action: `uses: Pwd9000-ML/terraform-azurerm-tests@v1.0.1`
 
