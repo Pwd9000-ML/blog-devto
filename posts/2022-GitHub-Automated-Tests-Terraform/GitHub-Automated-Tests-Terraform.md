@@ -250,7 +250,7 @@ Also note that **dependabots** secrets are managed separately to **actions** sec
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automated-Tests-Terraform/assets/secrets.png)
 
-As you can see I have written a terraform test in the path: [path: "tests/auto_test1"](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets/tree/master/tests/auto_test1)
+As you can see I have written a terraform test in the `path:` [path: "tests/auto_test1"](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets/tree/master/tests/auto_test1)
 
 ```hcl
 terraform {
