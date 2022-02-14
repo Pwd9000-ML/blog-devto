@@ -41,7 +41,7 @@ updates:
       interval: 'daily'
 ```
 
-This dependabot file enables **dependabot** on our **GitHub** project repository and will check our repository root folder, `directory: '/'` for any terraform files that have provider versions configured and checks if they are the latest version.
+This dependabot file enables **dependabot** on our **GitHub** project repository and will `daily` check our repository root folder, `directory: '/'` for any terraform files that have provider versions configured and checks if the provider versions are the latest version.
 
 We discussed **dependabot** in much more detail on the previous tutorial [automate terraform module releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-4775), so take a look at the previous tutorial for more details on enabling **dependabot**.
 
