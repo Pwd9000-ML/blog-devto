@@ -155,7 +155,7 @@ updates:
 
 ### Fully Automated Testing and Release on changes to IaC
 
-Check out the next blog post on this series: **Using Terraform on GitHub** that shows how to perform fully automated integration test when **Dependabot** opens a PR. Followed by automatically merging that pull request once if all tests have finished successfully and then also as a last step automatically deploy a new release/version and pushing that to the Terraform registry:
+Check out the next blog post on this series: **Using Terraform on GitHub** that shows how to perform fully automated integration test when **Dependabot** opens a PR. Followed by automatically merging that pull request if all tests have finished successfully and then also as a last step automatically deploy a new release/version and pushing that to the Terraform registry:
 
 [Automated Terraform Tests for Azure using GitHub Actions](https://dev.to/pwd9000/automated-terraform-tests-for-azure-using-github-actions-4349)
 
