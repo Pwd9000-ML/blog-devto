@@ -36,14 +36,9 @@ If you look at the following GitHub project: [Terraform module repository - Dyna
 version: 2
 updates:
   - package-ecosystem: 'terraform' # See documentation for possible values
-    directory: '/' # Location of package manifests
+    directory: '/' # Location of terraform version file
     schedule:
       interval: 'daily'
-
-  - package-ecosystem: 'github-actions' # See documentation for possible values
-    directory: '/' # Location of package manifests
-    schedule:
-      interval: 'weekly'
 ```
 
 This dependabot file enables **dependabot** on our **GitHub** project repository and will check our repository root folder, `directory: '/'` for any terraform files that have provider versions configured and checks if they are the latest version.  
