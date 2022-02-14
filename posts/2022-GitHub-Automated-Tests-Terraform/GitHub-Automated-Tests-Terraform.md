@@ -274,8 +274,9 @@ module "dynamic-subnets-test" {
 }
 ```
 
-As you can see my terraform test is a simple terraform configuration using a source: `source = "../.."`, which will target the root module hosted at the root of my project.  
-The test actually involves creating a terraform plan, followed by an apply, followed by a destroy in sequence, as I selected input: `test_type: plan-apply-destroy`
+As you can see my terraform test is a simple terraform configuration using a source: `source = "../.."` which will target the root module hosted at the root of my project.  
+
+The test actually involves creating a terraform **plan**, followed by an **apply**, followed by a **destroy** in sequence, as I selected input: `test_type: plan-apply-destroy`
 
 Any issues or plans during the tests are then added to the PR as well as artifacts on the workflow.
 
