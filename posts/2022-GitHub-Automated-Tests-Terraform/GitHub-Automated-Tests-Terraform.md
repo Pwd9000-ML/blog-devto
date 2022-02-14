@@ -1,6 +1,6 @@
 ---
 title: Automated Terraform Tests for Azure using GitHub Actions
-published: false
+published: true
 description: Automate Terraform Module Test and Release on the public terraform registry using GitHub Actions
 tags: 'githubactions, Terraform, IaC, Automation'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automated-Tests-Terraform/assets/main1.png'
@@ -272,7 +272,7 @@ module "dynamic-subnets-test" {
 }
 ```
 
-As you can see my terraform test is a simple terraform configuration using a source: `source = "../.."`, which will target the root module histed at the root of my project.  
+As you can see my terraform test is a simple terraform configuration using a source: `source = "../.."`, which will target the root module hosted at the root of my project.  
 The test actually involves creating a terraform plan, followed by an apply, followed by a destroy in sequence, as I selected input: `test_type: plan-apply-destroy`
 
 Any issues or plans during the tests are then added to the PR as well as artifacts on the workflow.
@@ -339,7 +339,9 @@ release_new_version:
         token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-This job will look at the project releases and determine what the next release version (semantic versioning) should be and then creates a new release automatically. We can decide what we want to increment the version by specifying: `bump: patch` (This can also be `bump: minor` or `bump: major`) depending on how you want to perform your releases, but because this use case is just a version change of the terraform provider dependency a `patch` increment should be fine.
+This job will look at the project releases and determine what the next release version (semantic versioning) should be and then creates a new release automatically.  
+
+We can decide what we want to increment the version by specifying: `bump: patch` (This can also be `bump: minor` or `bump: major`) depending on how you want to perform your releases, but because this use case is just a version change of the terraform provider dependency a `patch` increment should be fine.
 
 As you can see a new release will automatically be created and reflected on the terraform registry:
 
