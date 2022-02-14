@@ -242,11 +242,11 @@ This action has a special input called `test_type:` which can be used to run dif
 - **test_type: "plan-apply-destroy"**
   - This test type will perform a terraform `plan`, a terraform `apply` AND a terraform `destroy` in sequence against a terraform configuration.
 
-**WARNING:** Apply tests will create resources in your environment. Please be aware of cost and also please be aware of the environment used. When applying new resources ensure you are using a test subscription or test resource group inside of your test configuration file being targeted by the `path:` input or by using testing vars via a test `TFVARS` file.  
+**WARNING:** Apply tests will create resources in your environment. Please be aware of cost and also please be aware of the environment used. When applying new resources ensure you are using a test subscription or test resource group inside of your test configuration file being targeted by the `path:` input or by using testing vars via a test `TFVARS` file.
 
-It is also really important to mention that the tests action requires a few **secrets** to be set on the GitHub repository, such as `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`, by navigating to **Settings->Security->Secrets**.  
+It is also really important to mention that the tests action requires a few **secrets** to be set on the GitHub repository, such as `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`, by navigating to **Settings->Security->Secrets**.
 
-Also note that **dependabots** secrets are managed separately to **actions** secrets. So if the tests action is used in normal **Actions** PRs then the secrets needs to be added to the **Actions** secrets, but because we are working with PRs made by **Dependabot** specifically, we have to add these secrets to the **Dependabot** secrets:  
+Also note that **dependabots** secrets are managed separately to **actions** secrets. So if the tests action is used in normal **Actions** PRs then the secrets needs to be added to the **Actions** secrets, but because we are working with PRs made by **Dependabot** specifically, we have to add these secrets to the **Dependabot** secrets:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automated-Tests-Terraform/assets/secrets.png)
 
