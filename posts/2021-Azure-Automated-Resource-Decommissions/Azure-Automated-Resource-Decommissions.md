@@ -124,12 +124,12 @@ $functionMI = $(az resource list --name $functionAppName --query [*].identity.pr
     az role assignment create `
         --role "Reader and Data Access" `
         --assignee "$_" `
-        --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageName" `
+        --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageName"
 
     az role assignment create `
         --role "Storage Table Data Contributor" `
         --assignee "$_" `
-        --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageName/tableServices/default/tables/blogs"
+        --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageName"
 
     az role assignment create `
         --role "Contributor" `
