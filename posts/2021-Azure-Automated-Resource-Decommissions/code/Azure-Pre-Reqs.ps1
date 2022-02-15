@@ -69,13 +69,13 @@ $storageKey = az storage account keys list -g $resourceGroupName -n $storageName
 az storage table create `
     --account-name "$storageName" `
     --account-key "$storageKey" `
-    --name "$tableName" `
+    --name "$tableName"
 
 #Create Table in Function storage to track failed decommissions
 az storage table create `
     --account-name "$storageName" `
     --account-key "$storageKey" `
-    --name "Failed" `
+    --name "Failed"
 
 #Assign Function System MI permissions to Storage account(Read) and table(Write) and contributor to subscription to be able to do decommissions
 $functionMI = $(az resource list --name $functionAppName --query [*].identity.principalId --out tsv)| foreach-object {
