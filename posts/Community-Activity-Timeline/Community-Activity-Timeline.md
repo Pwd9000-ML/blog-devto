@@ -33,7 +33,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **16/02/2022** | [Welsh Azure User Group - VIRTUAL EVENT (February 2022) - Automate Azure Resource Decommissions (with tracking)](https://www.meetup.com/MSFT-Stack/events/282143598) | Public Speaking | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
+| **16/02/2022** | [Welsh Azure User Group - VIRTUAL EVENT (February 2022) - Automate Azure Resource Decommissions (with tracking)](https://youtu.be/2f4QRfxWPPs) | Public Speaking | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
 | **14/02/2022** | [Automated Terraform Tests for Azure using GitHub Actions](https://dev.to/pwd9000/automated-terraform-tests-for-azure-using-github-actions-4349) | Blog/Website Post | Azure, Terraform, GitHub | Terraform, Automation, IaC, GitHubActions, Dependabot, Tutorial |
 | **09/02/2022** | [OSS Maintainer - Terraform Tests for AZURE](https://github.com/marketplace/actions/terraform-tests-for-azure) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
 | **05/02/2022** | [Automate Terraform Module Releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-4775) | Blog/Website Post | Azure, Terraform, GitHub | Terraform, Automation, IaC, GitHubActions, Dependabot, Tutorial |
