@@ -33,6 +33,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **21/02/2022** | [OSS maintainer - Terraform Module: Custom-Role-Definitions (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/custom-role-definitions/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
 | **16/02/2022** | [Welsh Azure User Group - VIRTUAL EVENT (February 2022) - Automate Azure Resource Decommissions (with tracking)](https://youtu.be/2f4QRfxWPPs) | Public Speaking | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
 | **14/02/2022** | [Automated Terraform Tests for Azure using GitHub Actions](https://dev.to/pwd9000/automated-terraform-tests-for-azure-using-github-actions-4349) | Blog/Website Post | Azure, Terraform, GitHub | Terraform, Automation, IaC, GitHubActions, Dependabot, Tutorial |
 | **09/02/2022** | [OSS Maintainer - Terraform Tests for AZURE](https://github.com/marketplace/actions/terraform-tests-for-azure) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
