@@ -9,6 +9,8 @@ id: 897066
 date: '2021-11-14T10:04:58Z'
 ---
 
+{% youtube tUNxpPecxKU %}
+
 ## Overview
 
 In todays tutorial I will demonstrate how to use powerShell in Github Actions to automate Azure Service Bus SAS tokens to generate short lived usable tokens with a validity period of 10 minutes and securely store the newly generated SAS tokens inside of an Azure Key Vault ready for consumption.
