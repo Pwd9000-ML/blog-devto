@@ -2,7 +2,7 @@
 title: Automate Terraform Module Releases on the public registry using GitHub
 published: true
 description: Automate Terraform Module Releases on the public terraform registry using GitHub Actions
-tags: 'githubactions, Terraform, IaC, Automation'
+tags: 'githubactions, Terraform, IaC, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-Terraform-Registry/assets/main1.png'
 canonical_url: null
 id: 979002
