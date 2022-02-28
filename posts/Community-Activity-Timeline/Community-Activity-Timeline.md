@@ -23,6 +23,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **17/03/2022** | [Azure Spring Clean 2022 - Automate password rotation with Github and Azure](https://azurespringclean.com/) | Public Speaking | Azure, GitHub, PowerShell | Security, DevSecOps, Automation, Podcast |
 | **23/03/2022** | [Cloud Lunch and Learn - Automate Azure Resource Decommissions using Azure Serverless Function App (with tracking)](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
 | **27/04/2022** | [Cloud Lunch and Learn - Automate Azure Role Based Access Control (RBAC) using Azure DevOps)](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure DevOps, PowerShell | Security, DevSecOps, RBAC, Automation, Podcast |
 
