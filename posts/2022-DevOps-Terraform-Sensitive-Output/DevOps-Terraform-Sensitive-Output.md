@@ -96,9 +96,10 @@ Notice now that when the terraform plan is being run, terraform will mask the ou
 
 ## Sensitive Output Types
 
-Similarly to variables, outputs can also be marked as sensitive. For example say we want to create a sensitive output we can mark the output as `sensitive`:
+Similarly to variables, outputs can also be marked as sensitive. For example say we want to create a sensitive output we can mark the `output` as `sensitive = true` as shown the the below example:
 
 ```hcl
+## appservices.tf ##
 resource "azurerm_application_insights" "INSIGHTS" {
   name                = var.app_insights_name
   location            = azurerm_resource_group.RG.location
