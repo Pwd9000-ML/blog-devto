@@ -79,7 +79,7 @@ Notice that when the terraform plan is being run, terraform will actually output
 
 This can be an issue because the data will be leaked to anyone who has access to the CI/CD logs/output. Especially dangerous if the repository or project is public.
 
-So what we can do to mask the setting from output is to mark the variable as `sensitive`. We can do that by adding `sensitive = true` to the variable:
+So what we can do to mask the setting from output is to mark the variable as [sensitive](https://www.terraform.io/language/values/variables#suppressing-values-in-cli-output). We can do that by adding `sensitive = true` to the variable:
 
 ```hcl
 ## variables.tf ##
@@ -91,13 +91,13 @@ variable "appsvc_settings" {
 }
 ```
 
-Notice now that when the terraform plan is being run, terraform will mask the output of the the variable:
+Notice now that when the terraform plan is being run, terraform will mask the output of the variable:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Sensitive-Output/assets/var02.png)
 
 ## Sensitive Output Type
 
-Similarly to variables, outputs can also be marked as sensitive. For example say we want to create a sensitive output we can mark the `output` as `sensitive = true` as shown the the below example:
+Similarly to variables, outputs can also be marked as [sensitive](https://www.terraform.io/language/values/outputs#sensitive-suppressing-values-in-cli-output). For example say we want to create a sensitive output we can mark the `output` as `sensitive = true` as shown the the below example:
 
 ```hcl
 ## appservices.tf ##
@@ -117,7 +117,7 @@ output "insights_key" {
 
 ## Sensitive Function
 
-Another way to mark out put sensitive is by using the `sensitive()` function. in the demo [configuration](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/04_App_Acr) let's change the way we send `app_settings` to the app service configuration by creating a dynamic `locals` config instead of a variable:
+Another way to mark output as sensitive is by using the `sensitive()` [function](https://www.terraform.io/language/functions/sensitive). in the demo [configuration](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/04_App_Acr) let's change the way we send `app_settings` to the app service configuration by creating a dynamic `locals` config instead of a variable:
 
 ```hcl
 ## local.tf ##
