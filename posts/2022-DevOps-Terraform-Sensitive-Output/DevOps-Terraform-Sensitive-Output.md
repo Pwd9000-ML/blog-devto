@@ -11,11 +11,11 @@ series: Terraform Pro Tips
 
 ## Overview
 
-This tutorial uses examples from the following GitHub project: [Azure Terraform Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).  
+This tutorial uses examples from the following GitHub project: [Azure Terraform Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).
 
-When creating terraform configurations, especially when using CI/CD tooling such as Azure DevOps or GitHub it is very easy to overlook what exactly is being output as part of a Terraform configuration plan, especially if the configuration contains sensitive data. This could lead to sensitive data and settings to be leaked.  
+When creating terraform configurations, especially when using CI/CD tooling such as Azure DevOps or GitHub it is very easy to overlook what exactly is being output as part of a Terraform configuration plan, especially if the configuration contains sensitive data. This could lead to sensitive data and settings to be leaked.
 
-In todays tutorial we will look at examples on how we can protect and hide sensitive data in terraform output using masking.  
+In todays tutorial we will look at examples on how we can protect and hide sensitive data in terraform output using masking.
 
 ## Sensitive Variable Types
 
@@ -26,7 +26,7 @@ In the following demo [configuration](https://github.com/Pwd9000-ML/Azure-Terraf
 - App Insights
 - App Service
 
-Let's take a closer look at the App service configuration:  
+Let's take a closer look at the App service configuration:
 
 ```hcl
 ## appservices.tf ##
@@ -62,7 +62,7 @@ variable "appsvc_settings" {
 }
 ```
 
-If we pass the following variable into the terraform config: 
+If we pass the following variable into the terraform config:
 
 ```hcl
 appsvc_settings = {
@@ -76,9 +76,9 @@ Notice that when the terraform plan is being run, terraform will actually output
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Sensitive-Output/assets/var01.png)
 
-This can be an issue because the data will be leaked to anyone who has access to the CI/CD logs/output. Especially dangerous if the repository or project is public.  
+This can be an issue because the data will be leaked to anyone who has access to the CI/CD logs/output. Especially dangerous if the repository or project is public.
 
-So what we can do to mask the setting from output is to mark the variable as `sensitive`. We can do that by adding `sensitive = true` to the variable:  
+So what we can do to mask the setting from output is to mark the variable as `sensitive`. We can do that by adding `sensitive = true` to the variable:
 
 ```hcl
 ## variables.tf ##
@@ -115,5 +115,3 @@ output "insights_key" {
 ```
 
 ## Sensitive Function
-
-
