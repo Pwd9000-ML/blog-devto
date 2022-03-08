@@ -116,7 +116,7 @@ output "insights_key" {
 
 ## Sensitive Function
 
-Another way to mark out put sensitive is by using the `sensitive()` function. in the demo [configuration](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/04_App_Acr) let's change the way we send `app_settings` to the app service configuration by creating a dynamic `locals` config instead of a variable:  
+Another way to mark out put sensitive is by using the `sensitive()` function. in the demo [configuration](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/04_App_Acr) let's change the way we send `app_settings` to the app service configuration by creating a dynamic `locals` config instead of a variable:
 
 ```hcl
 ## local.tf ##
@@ -163,7 +163,7 @@ resource "azurerm_app_service" "APPSVC" {
 }
 ```
 
-Since our app insights instrumentation key output is already marked as a sensitive output, it is all good and well for that value to be hidden from the output:  
+Since our app insights instrumentation key output is already marked as a sensitive output, it is all good and well for that value to be hidden from the output:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Sensitive-Output/assets/lookup01.png)
 
@@ -190,7 +190,7 @@ locals {
 }
 ```
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Sensitive-Output/assets/lookup02.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Sensitive-Output/assets/lookup02.png)
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Sensitive-Output/assets/appsvc.png)
 
