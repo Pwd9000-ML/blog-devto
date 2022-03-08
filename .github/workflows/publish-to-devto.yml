@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup Node
       uses: actions/setup-node@v3
@@ -18,7 +18,7 @@ jobs:
         node-version: 12
 
     - name: Install Dependencies
-      uses: bahmutov/npm-install@v1.7.12
+      uses: bahmutov/npm-install@v1.8.0
 
     - name: Run Prettier (Write)
       run: yarn run prettier:write
