@@ -1,6 +1,6 @@
 ---
 title: Terraform - Sensitive Output
-published: false
+published: true
 description: DevOps - Terraform - Sensitive Output
 tags: 'terraform, azure, iac, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Sensitive-Output/assets/main-tf.png'
