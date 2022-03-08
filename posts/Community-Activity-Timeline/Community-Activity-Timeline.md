@@ -33,6 +33,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **08/03/2022** | [Terraform - Sensitive Output](https://dev.to/pwd9000/terraform-sensitive-output-2pjm) | Blog/Website Post | DevOps | Terraform, Automation, IaC, Tutorial |
 | **23/02/2022** | [Cloud Lunch and Learn - Reusable GitHub workflows to automate tokens](https://youtu.be/tUNxpPecxKU) | Public Speaking | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, ServiceBus, DevSecOps, Podcast |
 | **21/02/2022** | [OSS maintainer - Terraform Module: Custom-Role-Definitions (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/custom-role-definitions/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
 | **16/02/2022** | [Welsh Azure User Group - VIRTUAL EVENT (February 2022) - Automate Azure Resource Decommissions (with tracking)](https://youtu.be/2f4QRfxWPPs) | Public Speaking | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
