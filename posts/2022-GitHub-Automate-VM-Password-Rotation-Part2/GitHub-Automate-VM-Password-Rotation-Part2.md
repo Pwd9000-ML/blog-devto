@@ -2,7 +2,7 @@
 title: Automate password rotation with Github and Azure (Part 2)
 published: true
 description: Automate VM password rotation using Github and Azure key vault
-tags: 'githubactions, DevSecOps, github, azure'
+tags: 'githubactions, DevSecOps, github, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-VM-Password-Rotation-Part2/assets/main.png'
 canonical_url: null
 id: 957428
@@ -10,9 +10,15 @@ series: Automate password rotation
 date: '2022-01-16T17:32:53Z'
 ---
 
-### Overview
+It’s that time of year again, time for [Azure Spring Clean](https://www.azurespringclean.com/). Big thanks and a shout out to the event organizers [Joe Carlyle](https://twitter.com/wedoazure) and [Thomas Thornton](https://twitter.com/tamstar1234) for featuring my contribution on this years **Azure Spring Clean 2022**.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-VM-Password-Rotation-Part2/assets/Bit22.png)
+
+### Live Recording
 
 {% youtube TJZSFdHlSTs %}
+
+### Overview
 
 Welcome to part 2 of my series on **automating password rotation**. A few months ago I published a tutorial on how to automate password rotation using a **GitHub Action workflow** and an **Azure key vault**. Due to the popularity of that post I decided to create a public **GitHub Action** on the GitHub Actions marketplace for anyone to use in their own environments.
 
