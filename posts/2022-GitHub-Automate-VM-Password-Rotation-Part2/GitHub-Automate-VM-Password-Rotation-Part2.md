@@ -10,7 +10,7 @@ series: Automate password rotation
 date: '2022-01-16T17:32:53Z'
 ---
 
-It’s that time of year again, time for [Azure Spring Clean](https://www.azurespringclean.com/).  
+It’s that time of year again, time for [Azure Spring Clean](https://www.azurespringclean.com/).
 
 Firstly a big thanks and a shout out to the event organizers [Joe Carlyle](https://twitter.com/wedoazure) and [Thomas Thornton](https://twitter.com/tamstar1234) for featuring my contribution on this years **Azure Spring Clean 2022**.
 
@@ -18,7 +18,7 @@ Firstly a big thanks and a shout out to the event organizers [Joe Carlyle](https
 
 ### Live Recording
 
-See the following youtube video for a live demo recording of my talk.  
+See the following youtube video for a live demo recording of my talk.
 
 {% youtube TJZSFdHlSTs %}
 
