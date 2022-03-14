@@ -10,11 +10,15 @@ series: Automate password rotation
 date: '2022-01-16T17:32:53Z'
 ---
 
-It’s that time of year again, time for [Azure Spring Clean](https://www.azurespringclean.com/). Big thanks and a shout out to the event organizers [Joe Carlyle](https://twitter.com/wedoazure) and [Thomas Thornton](https://twitter.com/tamstar1234) for featuring my contribution on this years **Azure Spring Clean 2022**.
+It’s that time of year again, time for [Azure Spring Clean](https://www.azurespringclean.com/).  
+
+Firstly a big thanks and a shout out to the event organizers [Joe Carlyle](https://twitter.com/wedoazure) and [Thomas Thornton](https://twitter.com/tamstar1234) for featuring my contribution on this years **Azure Spring Clean 2022**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automate-VM-Password-Rotation-Part2/assets/Bit22.png)
 
 ### Live Recording
+
+See the following youtube video for a live demo recording of my talk.  
 
 {% youtube TJZSFdHlSTs %}
 
