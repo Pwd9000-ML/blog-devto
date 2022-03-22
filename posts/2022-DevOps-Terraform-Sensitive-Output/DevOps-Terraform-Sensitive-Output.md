@@ -46,6 +46,7 @@ resource "azurerm_app_service" "APPSVC" {
     acr_use_managed_identity_credentials = true
     ftps_state                           = "FtpsOnly"
     linux_fx_version                     = var.asp_kind == "linux" ? local.linux_fx_version : null
+    vnet_route_all_enabled               = var.vnet_route_all_enabled
   }
 
   app_settings = var.appsvc_settings
@@ -158,6 +159,7 @@ resource "azurerm_app_service" "APPSVC" {
     acr_use_managed_identity_credentials = true
     ftps_state                           = "FtpsOnly"
     linux_fx_version                     = var.asp_kind == "linux" ? local.linux_fx_version : null
+    vnet_route_all_enabled               = var.vnet_route_all_enabled
   }
 
   app_settings = lookup(local.app_settings, "linux_app_settings", null)
