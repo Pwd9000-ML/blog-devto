@@ -3,7 +3,7 @@ title: Terraform - Creating dynamic variables using locals
 published: false
 description: DevOps - Terraform - Dynamic Variables
 tags: 'terraform, azure, iac, azuredevops'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Sensitive-Output/assets/main-tf.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Dynamic-Variables/assets/main-tf.png'
 canonical_url: null
 id: 1030720
 series: Terraform Pro Tips
