@@ -6,7 +6,7 @@ tags: 'terraform, azuredevops, iac, DevSecOps'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/assets/main-tfsec.png'
 canonical_url: null
 id: 970626
-series: Terraform Pro Tips
+series: Terraform IaC security
 date: '2022-01-28T09:33:04Z'
 ---
 

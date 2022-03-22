@@ -6,7 +6,7 @@ tags: 'githubactions, Terraform, IaC, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Automated-Tests-Terraform/assets/main1.png'
 canonical_url: null
 id: 988582
-series: Using Terraform on GitHub
+series: Terraform Registry
 date: '2022-02-14T12:03:25Z'
 ---
 
@@ -14,7 +14,7 @@ date: '2022-02-14T12:03:25Z'
 
 This tutorial uses examples from the following GitHub project [Terraform module repository - Dynamic Subnets](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets).
 
-In the previous tutorial on this blog series **Using Terraform on GitHub**, we looked at how to [automate terraform module releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-4775). In todays tutorial we will build on the same topic but take a look at how we can also perform full end to end automation that includes:
+In the previous tutorial on this blog series **Terraform Registry**, we looked at how to [automate terraform module releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-4775). In todays tutorial we will build on the same topic but take a look at how we can also perform full end to end automation that includes:
 
 - Automated dependency checks for Terraform modules using GitHub **dependabot**.
 - Triggering an automated Terraform test when **dependabot** opens a Pull Request (PR) on the version change.
