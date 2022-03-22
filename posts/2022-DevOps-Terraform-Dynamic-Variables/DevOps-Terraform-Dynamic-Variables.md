@@ -13,11 +13,11 @@ series: Terraform Pro Tips
 
 This tutorial uses examples from the following GitHub project: [Azure Terraform Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).
 
-In todays tutorial we will look at an interesting use case example whereby we will be creating a dynamic Terraform variable using [locals](https://www.terraform.io/language/values/locals) and a [for loop](https://www.terraform.io/language/expressions/for).  
+In todays tutorial we will look at an interesting use case example whereby we will be creating a dynamic Terraform variable using [locals](https://www.terraform.io/language/values/locals) and a [for loop](https://www.terraform.io/language/expressions/for).
 
-Let's take a moment to talk about the use case before going into the code. Let's say for example we need to set up and configure an [Azure Container Registry (ACR)](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro) or maybe another PaaS service such as an Azure SQL database or maybe an Azure Storage account.  
+Let's take a moment to talk about the use case before going into the code. Let's say for example we need to set up and configure an [Azure Container Registry (ACR)](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro) or maybe another PaaS service such as an Azure SQL database or maybe an Azure Storage account.
 
-These Azure PaaS services has networking features called **Firewalls and Virtual networks** which gives us the ability to configure allowed public network access where we can define rules such as a **Firewall IP whitelist** or allowing only **selected networks** access, in order to limit network connectivity to the PaaS service.  
+These Azure PaaS services has networking features called **Firewalls and Virtual networks** which gives us the ability to configure allowed public network access where we can define rules such as a **Firewall IP whitelist** or allowing only **selected networks** access, in order to limit network connectivity to the PaaS service.
 
 In today's tutorial we will use Terraform to build the following:
 
@@ -28,15 +28,15 @@ In today's tutorial we will use Terraform to build the following:
 - VNET integrated App Service
 - Azure Container Registry (ACR)
 
-By default an ACR accepts connections over the internet from hosts on any network. So we will as part of the Terraform configuration restrict the ACR with a **Firewall IP whitelist** to only allow the outbound IPs of our VNET integrated **App service**. In addition we will also provide a variable that contains **custom IP ranges** we want to include to the **Firewall IP whitelist** of the ACR.  
+By default an ACR accepts connections over the internet from hosts on any network. So we will as part of the Terraform configuration restrict the ACR with a **Firewall IP whitelist** to only allow the outbound IPs of our VNET integrated **App service**. In addition we will also provide a variable that contains **custom IP ranges** we want to include to the **Firewall IP whitelist** of the ACR.
 
-Since we are building all of this with IaC using Terraform the question is how can we allow all the **possible outbound IPs** of our VNET integrated **App Service** to be whitelisted on the **ACR** if the outbound IPs of the VNET integrated App Service is not known until the App Service is built.  
+Since we are building all of this with IaC using Terraform the question is how can we allow all the **possible outbound IPs** of our VNET integrated **App Service** to be whitelisted on the **ACR** if the outbound IPs of the VNET integrated App Service is not known until the App Service is built.
 
 This is where I will demonstrate how we can achieve this using **Dynamic Variables** in Terraform using locals.
 
 ## Dynamic Variables
 
-In the following demo [configuration](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/04_App_Acr).  Let's take a closer look at the App service configuration:
+In the following demo [configuration](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/04_App_Acr). Let's take a closer look at the App service configuration:
 
 ```hcl
 ## appservices.tf ##
