@@ -159,13 +159,13 @@ dynamic "network_rule_set" {
 }
 ```
 
-You will see that we are specifying a **local** value called `local.acr_fw_rules`. (The dynamic block allows us to make this configuration item optional).
+You will note that we are specifying a **local** value called `local.acr_fw_rules` (The dynamic block allows us to make this configuration item optional).
 
-But lets take a look at the **locals.tf** file next:
+Lets take a look at the **local.tf** file in more detail:
 
 ### Locals ([local.tf](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/blob/master/04_App_Acr/local.tf))
 
-Notice the local called `allowed_ips` as well as `acr_fw_rules`:
+Notice the locals variables called `allowed_ips` as well as `acr_fw_rules`:
 
 ```hcl
 ## ACR Firewall rules ##
@@ -197,7 +197,10 @@ Let's take a closer look at `allowed_ips` first:
 allowed_ips = distinct(flatten(concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
 ```
 
-This local variable uses a few Terraform functions and I will explain each function separately. The first function is called [concat()](https://www.terraform.io/language/functions/concat). The **concat function** will combine two or more lists into a single list. As you can see from the values in the brackets, we are taking the output from the **App service (APPSVC)** we created earlier, called **possible_outbound_ip_address_list** and combining it with a variable (list) called **var.acr_custom_fw_rules**.
+This locals variable uses a few Terraform functions and I will explain each function separately.  
+
+The first function is called [concat()](https://www.terraform.io/language/functions/concat).
+The **concat function** will combine two or more lists into a single list. As you can see from the values in the brackets, we are taking the output from the **App service (APPSVC)** we created earlier, called **possible_outbound_ip_address_list** and combining it with a variable (list) called **var.acr_custom_fw_rules**.
 
 ```hcl
 concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)
@@ -219,13 +222,15 @@ acr_custom_fw_rules = ["183.44.33.0/24", "8.8.8.8"]
 
 So the end result of our function: `concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)` will give us one list of our custom IPs and IP ranges, combined with the list of possible outbound IPs from the **App service** we are building.
 
-The next function is called [flatten()](https://www.terraform.io/language/functions/flatten). This function will just flatten any nested lists we combined using concat, into a flat list:
+The next function is called [flatten()](https://www.terraform.io/language/functions/flatten).
+This function will just flatten any nested lists we combined using concat, into a single flat list:
 
 ```hcl
 flatten(concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules))
 ```
 
-The last function is called [distinct()](https://www.terraform.io/language/functions/distinct). This function will just remove any duplicate IPs or ranges. (this function is handy if we are building more than one app service and want to combine all the IPs of all the App services, but remove the duplicates.)
+The last function is called [distinct()](https://www.terraform.io/language/functions/distinct).
+This function will just remove any duplicate IPs or ranges. (The `distinct()` function is handy if we are building more than one app service and want to combine all the IPs of all the App services, and remove any the duplicate IPs from our final list.)
 
 ```hcl
 distinct(flatten(concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
@@ -252,7 +257,7 @@ acr_fw_rules = [
 ]
 ```
 
-If you remember the dynamic block we created on our ACR config earlier, we need to specify a default action which is set to `"Deny"`, but if you see the `ip_rules` value, we are using a **For Loop** to construct a dynamic rule set based on our `local.allowed_ips`:
+If you remember the **dynamic block** we created on our **ACR.tf** resource config earlier, we need to specify a `network_rule_set`. The default action is set to `"Deny"`, but if you see the `ip_rules` value, we are using a **For Loop** to construct a dynamic rule set based on our `local.allowed_ips`:
 
 ```hcl
 ip_rules = [for i in local.allowed_ips : {
@@ -262,11 +267,13 @@ ip_rules = [for i in local.allowed_ips : {
     ]
 ```
 
-This loop will **dynamically** create an **"Allow"** entry on our ACR firewall for each outbound IP of our **App service**, as well as the custom IPs we added via our custom variable called **var.acr_custom_fw_rules**.
+This loop will **dynamically** create an **"Allow"** entry on our ACR firewall for each outbound IP of our **App service**, as well as the custom IPs/ranges we added via our custom variable called **var.acr_custom_fw_rules**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Dynamic-Variables/assets/fw.png)
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Dynamic-Variables/assets/fw2.png)
+
+As you can see from this demo configuration and tutorial, we can secure our public ACR using **Firewall rules** that are dynamically created by only allowing our **App services** and **On premise IPs/ranges** to connect into our ACR.  
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/04_App_Acr) page. :heart:
 
