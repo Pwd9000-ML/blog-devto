@@ -28,7 +28,7 @@ Some Azure PaaS services (such an ACR) has networking features called **Firewall
 
 By default an ACR is public accepts connections over the internet from hosts on any network. So we will as part of the Terraform configuration block all access to the ACR and use the **Firewall IP whitelist** to only allow the outbound IPs of our VNET integrated **App service**. In addition we will also provide a list that contains **custom IP ranges** we can set which will represent the on premises public IPs of the company to also be included on the **Firewall IP whitelist** of the ACR.
 
-**IMPORTANT:** ACR `network_rule_set_set` can only be specified for a **Premium** Sku.  
+**IMPORTANT:** ACR `network_rule_set_set` can only be specified for a **Premium** Sku.
 
 Since we are building all of this configuration with IaC using Terraform the question is how can we allow all the **possible outbound IPs** of our VNET integrated **App Service** to be whitelisted on the **ACR** if the outbound IPs of the VNET integrated App Service will not be known to us until the App Service is built.
 
@@ -158,7 +158,6 @@ dynamic "network_rule_set" {
   }
 }
 ```
-
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/04_App_Acr) page. :heart:
 
