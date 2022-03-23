@@ -28,7 +28,7 @@ Some Azure PaaS services (such an ACR) has networking features called **Firewall
 
 By default an ACR is public and accepts connections over the internet from hosts on any network. So we will as part of the Terraform configuration restrict all network access to the ACR and use the **Firewall IP whitelist** to only allow the outbound IPs of our VNET integrated **App service**. In addition we will also provide a list that contains **custom IP ranges** we can set which will represent the on premises public IPs of our company to also be included on the **Firewall IP whitelist** of the ACR.
 
-**IMPORTANT:** ACR `network_rule_set_set` can only be specified for a **Premium** Sku.  
+**IMPORTANT:** ACR `network_rule_set_set` can only be specified for a **Premium** Sku.
 
 Since we are building all of this with IaC using Terraform the question is how can we allow all the **possible outbound IPs** of our VNET integrated **App Service** to be whitelisted on the **ACR** if the outbound IPs of the App Service will not be known to us until the App Service is deployed?
 
@@ -159,9 +159,9 @@ dynamic "network_rule_set" {
 }
 ```
 
-You will see that we are specifying a **local** value called `local.acr_fw_rules`. (The dynamic block allows us to make this configuration item optional).  
+You will see that we are specifying a **local** value called `local.acr_fw_rules`. (The dynamic block allows us to make this configuration item optional).
 
-But lets take a look at the **locals.tf** file next:  
+But lets take a look at the **locals.tf** file next:
 
 ### Locals ([local.tf](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/blob/master/04_App_Acr/local.tf))
 
@@ -197,13 +197,13 @@ Let's take a closer look at `allowed_ips` first:
 allowed_ips = distinct(flatten(concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
 ```
 
-This local variable uses a few Terraform functions and I will explain each function separately. The first function is called [concat()](https://www.terraform.io/language/functions/concat). The **concat function** will combine two or more lists into a single list. As you can see from the values in the brackets, we are taking the output from the **App service (APPSVC)** we created earlier, called **possible_outbound_ip_address_list** and combining it with a variable (list) called **var.acr_custom_fw_rules**.  
+This local variable uses a few Terraform functions and I will explain each function separately. The first function is called [concat()](https://www.terraform.io/language/functions/concat). The **concat function** will combine two or more lists into a single list. As you can see from the values in the brackets, we are taking the output from the **App service (APPSVC)** we created earlier, called **possible_outbound_ip_address_list** and combining it with a variable (list) called **var.acr_custom_fw_rules**.
 
 ```hcl
 concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)
 ```
 
-Here is the variable we can expand on manually if needed:  
+Here is the variable we can expand on manually if needed:
 
 ```hcl
 ## variables.tf ##
@@ -217,9 +217,9 @@ variable "acr_custom_fw_rules" {
 acr_custom_fw_rules = ["183.44.33.0/24", "8.8.8.8"]
 ```
 
-So the end result of our function: `concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)` will give us one list of our custom IPs and IP ranges, combined with the list of possible outbound IPs from the **App service** we are building.  
+So the end result of our function: `concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)` will give us one list of our custom IPs and IP ranges, combined with the list of possible outbound IPs from the **App service** we are building.
 
-The next function is called [flatten()](https://www.terraform.io/language/functions/flatten). This function will just flatten any nested lists we combined using concat, into a flat list:  
+The next function is called [flatten()](https://www.terraform.io/language/functions/flatten). This function will just flatten any nested lists we combined using concat, into a flat list:
 
 ```hcl
 flatten(concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules))
@@ -252,7 +252,7 @@ acr_fw_rules = [
 ]
 ```
 
-If you remember the dynamic block we created on our ACR config earlier, we need to specify a default action which is set to `"Deny"`, but if you see the `ip_rules` value, we are using a **For Loop** to construct a dynamic rule set based on our `local.allowed_ips`:  
+If you remember the dynamic block we created on our ACR config earlier, we need to specify a default action which is set to `"Deny"`, but if you see the `ip_rules` value, we are using a **For Loop** to construct a dynamic rule set based on our `local.allowed_ips`:
 
 ```hcl
 ip_rules = [for i in local.allowed_ips : {
