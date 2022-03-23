@@ -26,13 +26,13 @@ Let's take a moment to talk about the use case before going into the code. We wi
 
 Some Azure PaaS services (such an ACR) has networking features called **Firewalls and Virtual networks** which gives us the ability to configure allowed public network access where we can define **Firewall IP whitelist** rules or allow only **selected networks** access, in order to limit network connectivity to the PaaS service.
 
-By default an ACR is public accepts connections over the internet from hosts on any network. So we will as part of the Terraform configuration block all access to the ACR and use the **Firewall IP whitelist** to only allow the outbound IPs of our VNET integrated **App service**. In addition we will also provide a list that contains **custom IP ranges** we can set which will represent the on premises public IPs of the company to also be included on the **Firewall IP whitelist** of the ACR.
+By default an ACR is public and accepts connections over the internet from hosts on any network. So we will as part of the Terraform configuration restrict all network access to the ACR and use the **Firewall IP whitelist** to only allow the outbound IPs of our VNET integrated **App service**. In addition we will also provide a list that contains **custom IP ranges** we can set which will represent the on premises public IPs of our company to also be included on the **Firewall IP whitelist** of the ACR.
 
-**IMPORTANT:** ACR `network_rule_set_set` can only be specified for a **Premium** Sku.
+**IMPORTANT:** ACR `network_rule_set_set` can only be specified for a **Premium** Sku.  
 
 Since we are building all of this with IaC using Terraform the question is how can we allow all the **possible outbound IPs** of our VNET integrated **App Service** to be whitelisted on the **ACR** if the outbound IPs of the App Service will not be known to us until the App Service is deployed?
 
-This is where I will demonstrate how we can achieve this using **Dynamic Variables** to dynamically create the IP whitelist in Terraform using **locals**.
+This is where I will demonstrate how we can achieve this using **Dynamic Variables** to dynamically create the IP whitelist we can use using **locals**.
 
 ## App Service (VNET integrated)
 
@@ -158,6 +158,115 @@ dynamic "network_rule_set" {
   }
 }
 ```
+
+You will see that we are specifying a **local** value called `local.acr_fw_rules`. (The dynamic block allows us to make this configuration item optional).  
+
+But lets take a look at the **locals.tf** file next:  
+
+### Locals ([local.tf](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/blob/master/04_App_Acr/local.tf))
+
+Notice the local called `allowed_ips` as well as `acr_fw_rules`:
+
+```hcl
+## ACR Firewall rules ##
+#Get all possible outbound IPs from VNET integrated App services and combine with allowed On Prem IP ranges from var.acr_custom_fw_rules
+
+allowed_ips = distinct(flatten(concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
+
+acr_fw_rules = [
+  {
+    default_action = "Deny"
+    ip_rules = [for i in local.allowed_ips : {
+      action   = "Allow"
+      ip_range = i
+      }
+    ]
+    virtual_network_subnets = [
+      {
+        action    = "Allow"
+        subnet_id = azurerm_subnet.SUBNETS["App-Service-Integration-Subnet"].id
+      }
+    ]
+  }
+]
+```
+
+Let's take a closer look at `allowed_ips` first:
+
+```hcl
+allowed_ips = distinct(flatten(concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
+```
+
+This local variable uses a few Terraform functions and I will explain each function separately. The first function is called [concat()](https://www.terraform.io/language/functions/concat). The **concat function** will combine two or more lists into a single list. As you can see from the values in the brackets, we are taking the output from the **App service (APPSVC)** we created earlier, called **possible_outbound_ip_address_list** and combining it with a variable (list) called **var.acr_custom_fw_rules**.  
+
+```hcl
+concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)
+```
+
+Here is the variable we can expand on manually if needed:  
+
+```hcl
+## variables.tf ##
+variable "acr_custom_fw_rules" {
+  type        = list(string)
+  description = "Specifies a list of custom IPs or CIDR ranges to whitelist on the ACR."
+  default     = null
+}
+
+## config-dev.tfvars ##
+acr_custom_fw_rules = ["183.44.33.0/24", "8.8.8.8"]
+```
+
+So the end result of our function: `concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)` will give us one list of our custom IPs and IP ranges, combined with the list of possible outbound IPs from the **App service** we are building.  
+
+The next function is called [flatten()](https://www.terraform.io/language/functions/flatten). This function will just flatten any nested lists we combined using concat, into a flat list:  
+
+```hcl
+flatten(concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules))
+```
+
+The last function is called [distinct()](https://www.terraform.io/language/functions/distinct). This function will just remove any duplicate IPs or ranges. (this function is handy if we are building more than one app service and want to combine all the IPs of all the App services, but remove the duplicates.)
+
+```hcl
+distinct(flatten(concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
+```
+
+Let's take a closer look at `acr_fw_rules` next:
+
+```hcl
+acr_fw_rules = [
+  {
+    default_action = "Deny"
+    ip_rules = [for i in local.allowed_ips : {
+      action   = "Allow"
+      ip_range = i
+      }
+    ]
+    virtual_network_subnets = [
+      {
+        action    = "Allow"
+        subnet_id = azurerm_subnet.SUBNETS["App-Service-Integration-Subnet"].id
+      }
+    ]
+  }
+]
+```
+
+If you remember the dynamic block we created on our ACR config earlier, we need to specify a default action which is set to `"Deny"`, but if you see the `ip_rules` value, we are using a **For Loop** to construct a dynamic rule set based on our `local.allowed_ips`:  
+
+```hcl
+ip_rules = [for i in local.allowed_ips : {
+      action   = "Allow"
+      ip_range = i
+      }
+    ]
+```
+
+This loop will **dynamically** create an **"Allow"** entry on our ACR firewall for each outbound IP of our **App service**, as well as the custom IPs we added via our custom variable called **var.acr_custom_fw_rules**.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Dynamic-Variables/assets/fw.png)
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Dynamic-Variables/assets/fw2.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/04_App_Acr) page. :heart:
 
