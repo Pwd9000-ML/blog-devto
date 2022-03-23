@@ -1,6 +1,6 @@
 ---
 title: Terraform - Creating dynamic variables using locals
-published: false
+published: true
 description: DevOps - Terraform - Dynamic Variables
 tags: 'terraform, azure, iac, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Dynamic-Variables/assets/main-tf-tips.png'
@@ -254,7 +254,7 @@ acr_fw_rules = [
 ]
 ```
 
-If you remember the **dynamic block** we created on our **ACR.tf** resource config earlier, we need to specify a `network_rule_set`. The default action is set to `"Deny"`, but if you see the `ip_rules` value, we are using a **For Loop** to construct a dynamic rule set based on our `local.allowed_ips`:
+If you remember the **dynamic block** we created on our **acr.tf** resource config earlier, we need to specify a `network_rule_set`. The default action is set to `"Deny"`, but if you see the `ip_rules` value, we are using a **for loop** to construct a dynamic rule set based on the value of our `local.allowed_ips`:
 
 ```hcl
 ip_rules = [for i in local.allowed_ips : {
@@ -270,7 +270,7 @@ This loop will **dynamically** create an **"Allow"** entry on our ACR firewall f
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Dynamic-Variables/assets/fw2.png)
 
-As you can see from this demo configuration and tutorial, we can secure our public ACR using **Firewall rules** that are dynamically created by only allowing our **App services** and **On premise IPs/ranges** to connect into our ACR.
+As you can see from this tutorial, we can secure our public ACR using **Firewall rules** that are dynamically created by only allowing our **App services** and **On premise IPs/ranges** to connect into our ACR.
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/04_App_Acr) page. :heart:
 
