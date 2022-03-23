@@ -32,6 +32,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **23/03/2022** | [Terraform - Creating dynamic variables using locals](https://dev.to/pwd9000/terraform-creating-dynamic-variables-using-locals-2dkf) | Blog/Website Post | DevOps | Terraform, Automation, IaC, Tutorial |
 | **14/03/2022** | [Azure Spring Clean 2022 - Automate password rotation with Github and Azure](https://azurespringclean.com/) | Public Speaking | Azure, GitHub, PowerShell | Security, DevSecOps, Automation, Podcast |
 | **08/03/2022** | [Terraform - Sensitive Output](https://dev.to/pwd9000/terraform-sensitive-output-2pjm) | Blog/Website Post | DevOps | Terraform, Automation, IaC, Tutorial |
 | **23/02/2022** | [Cloud Lunch and Learn - Reusable GitHub workflows to automate tokens](https://youtu.be/tUNxpPecxKU) | Public Speaking | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, ServiceBus, DevSecOps, Podcast |
