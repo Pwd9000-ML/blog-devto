@@ -28,6 +28,8 @@ Some Azure PaaS services (such an ACR) has networking features called **Firewall
 
 By default an ACR is public accepts connections over the internet from hosts on any network. So we will as part of the Terraform configuration block all access to the ACR and use the **Firewall IP whitelist** to only allow the outbound IPs of our VNET integrated **App service**. In addition we will also provide a list that contains **custom IP ranges** we can set which will represent the on premises public IPs of the company to also be included on the **Firewall IP whitelist** of the ACR.
 
+**IMPORTANT:** ACR `network_rule_set_set` can only be specified for a **Premium** Sku.  
+
 Since we are building all of this configuration with IaC using Terraform the question is how can we allow all the **possible outbound IPs** of our VNET integrated **App Service** to be whitelisted on the **ACR** if the outbound IPs of the VNET integrated App Service will not be known to us until the App Service is built.
 
 This is where I will demonstrate how we can achieve this using **Dynamic Variables** to dynamically create the IP whitelist in Terraform using locals.
@@ -78,6 +80,85 @@ resource "azurerm_app_service_virtual_network_swift_connection" "azure_vnet_conn
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Dynamic-Variables/assets/vint.png)
 
 ### Azure Container Registry (ACR) resource
+
+```hcl
+## acr.tf ##
+resource "azurerm_container_registry" "ACR" {
+  name                = var.acr_name
+  location            = azurerm_resource_group.RG.location
+  resource_group_name = azurerm_resource_group.RG.name
+  sku                 = var.acr_sku
+  admin_enabled       = var.acr_admin_enabled
+
+  dynamic "identity" {
+    for_each = var.acr_requires_identity == true ? [1] : []
+    content {
+      type = "SystemAssigned"
+    }
+  }
+
+  dynamic "georeplications" {
+    for_each = var.acr_sku == "Premium" ? var.acr_georeplications_configuration : []
+    content {
+      location                = georeplications.value.location
+      zone_redundancy_enabled = georeplications.value.zone_redundancy_enabled
+    }
+  }
+
+  ## Need Premium SKU to use the following config ##
+  dynamic "network_rule_set" {
+    for_each = local.acr_fw_rules != null ? local.acr_fw_rules : []
+    content {
+      default_action = network_rule_set.value.default_action
+      dynamic "ip_rule" {
+        for_each = network_rule_set.value["ip_rules"] != [] ? network_rule_set.value["ip_rules"] : []
+        content {
+          action   = ip_rule.value["action"]
+          ip_range = ip_rule.value["ip_range"]
+        }
+      }
+
+      dynamic "virtual_network" {
+        for_each = network_rule_set.value["virtual_network_subnets"] != [] ? network_rule_set.value["virtual_network_subnets"] : []
+        content {
+          action    = virtual_network.value["action"]
+          subnet_id = virtual_network.value["subnet_id"]
+        }
+      }
+    }
+  }
+
+}
+```
+
+As you can see from the above resource block that is building out the ACR notice the dynamic block called `network_rule_set`:
+
+```hcl
+## acr.tf ##
+## Need Premium SKU to use the following config ##
+dynamic "network_rule_set" {
+  for_each = local.acr_fw_rules != null ? local.acr_fw_rules : []
+  content {
+    default_action = network_rule_set.value.default_action
+    dynamic "ip_rule" {
+      for_each = network_rule_set.value["ip_rules"] != [] ? network_rule_set.value["ip_rules"] : []
+      content {
+        action   = ip_rule.value["action"]
+        ip_range = ip_rule.value["ip_range"]
+      }
+    }
+
+    dynamic "virtual_network" {
+      for_each = network_rule_set.value["virtual_network_subnets"] != [] ? network_rule_set.value["virtual_network_subnets"] : []
+      content {
+        action    = virtual_network.value["action"]
+        subnet_id = virtual_network.value["subnet_id"]
+      }
+    }
+  }
+}
+```
+
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/04_App_Acr) page. :heart:
 
