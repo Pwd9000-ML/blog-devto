@@ -9,6 +9,12 @@ id: 930485
 date: '2021-12-20T16:50:33Z'
 ---
 
+### Live Recording
+
+See the following youtube video for a live demo recording.
+
+{% youtube 7v3tCDczDTo %}
+
 ## Overview
 
 Today we are going to look at a common use case around resource management in Azure, how to manage our resource decommissions more effectively, and even having the ability for our users to self serve a resource decommission by simply using an Azure tag, and also be able to track decommissions or failed decommissions using a tracker table **(Azure table storage)**.
