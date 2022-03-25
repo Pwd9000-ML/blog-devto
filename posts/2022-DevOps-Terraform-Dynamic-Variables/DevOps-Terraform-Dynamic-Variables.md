@@ -176,7 +176,7 @@ Notice the locals variables called `allowed_ips` as well as `acr_fw_rules`:
 ```hcl
 ## ACR Firewall rules ##
 #Get all possible outbound IPs from VNET integrated App services and combine with allowed On Prem IP ranges from var.acr_custom_fw_rules
-allowed_ips = distinct(flatten(concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
+allowed_ips = distinct(flatten(concat(azurerm_linux_web_app.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
 
 acr_fw_rules = [
   {
@@ -199,7 +199,7 @@ acr_fw_rules = [
 Let's take a closer look at `allowed_ips` first:
 
 ```hcl
-allowed_ips = distinct(flatten(concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
+allowed_ips = distinct(flatten(concat(azurerm_linux_web_app.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
 ```
 
 This locals variable uses a few Terraform functions and I will explain each function separately.
@@ -207,7 +207,7 @@ This locals variable uses a few Terraform functions and I will explain each func
 The first function is called [concat()](https://www.terraform.io/language/functions/concat). The **concat function** will combine two or more lists into a single list. As you can see from the values in the brackets, we are taking the output from the **App service (APPSVC)** we created earlier, called **possible_outbound_ip_address_list** and combining it with a variable (list) called **var.acr_custom_fw_rules**.
 
 ```hcl
-concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)
+concat(azurerm_linux_web_app.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)
 ```
 
 Here is the variable we can expand on manually if needed:
@@ -224,18 +224,18 @@ variable "acr_custom_fw_rules" {
 acr_custom_fw_rules = ["183.44.33.0/24", "8.8.8.8"]
 ```
 
-So the end result of our function: `concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)` will give us one list of our custom IPs and IP ranges, combined with the list of possible outbound IPs from the **App service** we are building.
+So the end result of our function: `concat(azurerm_linux_web_app.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)` will give us one list of our custom IPs and IP ranges, combined with the list of possible outbound IPs from the **App service** we are building.
 
 The next function is called [flatten()](https://www.terraform.io/language/functions/flatten). This function will just flatten any nested lists we combined using concat, into a single flat list:
 
 ```hcl
-flatten(concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules))
+flatten(concat(azurerm_linux_web_app.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules))
 ```
 
 The last function is called [distinct()](https://www.terraform.io/language/functions/distinct). This function will just remove any duplicate IPs or ranges. (The `distinct()` function is handy if we are building more than one app service and want to combine all the IPs of all the App services, and remove any the duplicate IPs from our final list.)
 
 ```hcl
-distinct(flatten(concat(azurerm_app_service.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
+distinct(flatten(concat(azurerm_linux_web_app.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
 ```
 
 Let's take a closer look at `acr_fw_rules` next:
