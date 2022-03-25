@@ -27,15 +27,17 @@ In the following demo [configuration](https://github.com/Pwd9000-ML/Azure-Terraf
 - App Insights
 - App Service
 
+**NOTE:** All the code samples used in this tutorial are updated to use the the latest version of the **AzureRM provider 3.0**.
+
 Let's take a closer look at the App service configuration:
 
 ```hcl
 ## appservices.tf ##
-resource "azurerm_app_service" "APPSVC" {
+resource "azurerm_linux_web_app" "APPSVC" {
   name                = var.appsvc_name
   location            = azurerm_resource_group.RG.location
   resource_group_name = azurerm_resource_group.RG.name
-  app_service_plan_id = azurerm_app_service_plan.ASP.id
+  service_plan_id     = azurerm_service_plan.ASP.id
   https_only          = true
 
   identity {
@@ -43,10 +45,13 @@ resource "azurerm_app_service" "APPSVC" {
   }
 
   site_config {
-    acr_use_managed_identity_credentials = true
-    ftps_state                           = "FtpsOnly"
-    linux_fx_version                     = var.asp_kind == "linux" ? local.linux_fx_version : null
-    vnet_route_all_enabled               = var.vnet_route_all_enabled
+    container_registry_use_managed_identity = true
+    ftps_state                              = "FtpsOnly"
+    application_stack {
+      docker_image     = "${var.acr_name}.azurecr.io/${var.appsvc_name}"
+      docker_image_tag = "latest"
+    }
+    vnet_route_all_enabled = var.vnet_route_all_enabled
   }
 
   app_settings = var.appsvc_settings
@@ -136,7 +141,7 @@ locals {
       LINUX_SENSITIVE_VALUE          = "!!sensitive_value!!"
     }
   }
-  linux_fx_version = "DOCKER|${var.acr_name}/${var.appsvc_name}:latest"
+
 }
 ```
 
@@ -144,11 +149,11 @@ As you can see the locals configuration has two configurations, one called `defa
 
 ```hcl
 ## appservices.tf ##
-resource "azurerm_app_service" "APPSVC" {
+resource "azurerm_linux_web_app" "APPSVC" {
   name                = var.appsvc_name
   location            = azurerm_resource_group.RG.location
   resource_group_name = azurerm_resource_group.RG.name
-  app_service_plan_id = azurerm_app_service_plan.ASP.id
+  service_plan_id     = azurerm_service_plan.ASP.id
   https_only          = true
 
   identity {
@@ -156,10 +161,13 @@ resource "azurerm_app_service" "APPSVC" {
   }
 
   site_config {
-    acr_use_managed_identity_credentials = true
-    ftps_state                           = "FtpsOnly"
-    linux_fx_version                     = var.asp_kind == "linux" ? local.linux_fx_version : null
-    vnet_route_all_enabled               = var.vnet_route_all_enabled
+    container_registry_use_managed_identity = true
+    ftps_state                              = "FtpsOnly"
+    application_stack {
+      docker_image     = "${var.acr_name}.azurecr.io/${var.appsvc_name}"
+      docker_image_tag = "latest"
+    }
+    vnet_route_all_enabled = var.vnet_route_all_enabled
   }
 
   app_settings = lookup(local.app_settings, "linux_app_settings", null)
@@ -189,7 +197,7 @@ locals {
       LINUX_SENSITIVE_VALUE          = "!!sensitive_value!!"
     })
   }
-  linux_fx_version = "DOCKER|${var.acr_name}/${var.appsvc_name}:latest"
+
 }
 ```
 

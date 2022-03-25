@@ -39,6 +39,8 @@ This is where I will demonstrate how we can achieve this using **Dynamic Variabl
 
 In the following demo [configuration](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/04_App_Acr). Let's take a closer look at the App service configuration and VNET integration:
 
+**NOTE:** All the code samples used in this tutorial are updated to use the the latest version of the **AzureRM provider 3.0**.
+
 ### App Service resource ([appservices.tf](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/blob/master/04_App_Acr/appservices.tf))
 
 ```hcl
