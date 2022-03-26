@@ -23,6 +23,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **27/04/2022** | [DeveloperWeek Europe 2022 - Reusable GitHub workflows to automate tokens](https://bit.ly/3IiNkgH) | Public Speaking | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, ServiceBus, DevSecOps, Speaker |
 | **27/04/2022** | [Cloud Lunch and Learn - Automate Azure Role Based Access Control (RBAC) using Azure DevOps)](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure DevOps, PowerShell | Security, DevSecOps, RBAC, Automation, Podcast |
 
 ---
