@@ -111,87 +111,75 @@ resource "azurerm_container_registry" "ACR" {
     }
   }
 
-  ## Need Premium SKU to use the following config ##
-  dynamic "network_rule_set" {
-    for_each = local.acr_fw_rules != null ? local.acr_fw_rules : []
-    content {
-      default_action = network_rule_set.value.default_action
-      dynamic "ip_rule" {
-        for_each = network_rule_set.value["ip_rules"] != [] ? network_rule_set.value["ip_rules"] : []
-        content {
-          action   = ip_rule.value["action"]
-          ip_range = ip_rule.value["ip_range"]
+  network_rule_set = [
+    {
+      default_action = var.acr_network_rule_set_default_action
+      ip_rule = [for each in local.acr_ip_rules :
+        {
+          action   = each["action"]
+          ip_range = each["ip_range"]
         }
-      }
-
-      dynamic "virtual_network" {
-        for_each = network_rule_set.value["virtual_network_subnets"] != [] ? network_rule_set.value["virtual_network_subnets"] : []
-        content {
-          action    = virtual_network.value["action"]
-          subnet_id = virtual_network.value["subnet_id"]
+      ]
+      virtual_network = [for each in local.acr_virtual_network_subnets :
+        {
+          action    = each["action"]
+          subnet_id = each["subnet_id"]
         }
-      }
+      ]
     }
-  }
+  ]
 
 }
 ```
 
-As you can see from the above resource block that is building out the ACR notice the dynamic block called `network_rule_set`:
+As you can see from the above resource block that is building out the ACR notice the attribute called `network_rule_set`:
 
 ```hcl
 ## acr.tf ##
 ## Need Premium SKU to use the following config ##
-dynamic "network_rule_set" {
-  for_each = local.acr_fw_rules != null ? local.acr_fw_rules : []
-  content {
-    default_action = network_rule_set.value.default_action
-    dynamic "ip_rule" {
-      for_each = network_rule_set.value["ip_rules"] != [] ? network_rule_set.value["ip_rules"] : []
-      content {
-        action   = ip_rule.value["action"]
-        ip_range = ip_rule.value["ip_range"]
+network_rule_set = [
+  {
+    default_action = var.acr_network_rule_set_default_action
+    ip_rule = [for each in local.acr_ip_rules :
+      {
+        action   = each["action"]
+        ip_range = each["ip_range"]
       }
-    }
-
-    dynamic "virtual_network" {
-      for_each = network_rule_set.value["virtual_network_subnets"] != [] ? network_rule_set.value["virtual_network_subnets"] : []
-      content {
-        action    = virtual_network.value["action"]
-        subnet_id = virtual_network.value["subnet_id"]
+    ]
+    virtual_network = [for each in local.acr_virtual_network_subnets :
+      {
+        action    = each["action"]
+        subnet_id = each["subnet_id"]
       }
-    }
+    ]
   }
-}
+]
 ```
 
-You will note that we are specifying a **local** value called `local.acr_fw_rules` (The dynamic block allows us to make this configuration item optional).
+You will note that in `network_rule_set` we are using `for` loops on **local** values called `local.acr_ip_rules` and `local.acr_virtual_network_subnets`. We are also using a variable to declare the default action `default_action = var.acr_network_rule_set_default_action` which is set to `"Deny"`.  
 
 Lets take a look at the **local.tf** file in more detail:
 
 ### Locals ([local.tf](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/blob/master/04_App_Acr/local.tf))
 
-Notice the locals variables called `allowed_ips` as well as `acr_fw_rules`:
+Notice the locals variables called `allowed_ips`, `local.acr_ip_rules` and `local.acr_virtual_network_subnets`:
 
 ```hcl
 ## ACR Firewall rules ##
 #Get all possible outbound IPs from VNET integrated App services and combine with allowed On Prem IP ranges from var.acr_custom_fw_rules
 allowed_ips = distinct(flatten(concat(azurerm_linux_web_app.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
 
-acr_fw_rules = [
+acr_ip_rules = [for i in local.allowed_ips :
   {
-    default_action = "Deny"
-    ip_rules = [for i in local.allowed_ips : {
-      action   = "Allow"
-      ip_range = i
-      }
-    ]
-    virtual_network_subnets = [
-      {
-        action    = "Allow"
-        subnet_id = azurerm_subnet.SUBNETS["App-Service-Integration-Subnet"].id
-      }
-    ]
+    action   = "Allow"
+    ip_range = i
+  }
+]
+
+acr_virtual_network_subnets = [
+  {
+    action    = "Allow"
+    subnet_id = azurerm_subnet.SUBNETS["App-Service-Integration-Subnet"].id
   }
 ]
 ```
@@ -199,6 +187,7 @@ acr_fw_rules = [
 Let's take a closer look at `allowed_ips` first:
 
 ```hcl
+## local.tf ##
 allowed_ips = distinct(flatten(concat(azurerm_linux_web_app.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
 ```
 
@@ -238,35 +227,28 @@ The last function is called [distinct()](https://www.terraform.io/language/funct
 distinct(flatten(concat(azurerm_linux_web_app.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
 ```
 
-Let's take a closer look at `acr_fw_rules` next:
+Let's take a closer look at `acr_ip_rules` next:
 
 ```hcl
-acr_fw_rules = [
+## local.tf##
+acr_ip_rules = [for i in local.allowed_ips :
   {
-    default_action = "Deny"
-    ip_rules = [for i in local.allowed_ips : {
-      action   = "Allow"
-      ip_range = i
-      }
-    ]
-    virtual_network_subnets = [
-      {
-        action    = "Allow"
-        subnet_id = azurerm_subnet.SUBNETS["App-Service-Integration-Subnet"].id
-      }
-    ]
+    action   = "Allow"
+    ip_range = i
   }
 ]
 ```
 
-If you remember the **dynamic block** we created on our **acr.tf** resource config earlier, we need to specify a `network_rule_set`. The default action is set to `"Deny"`, but if you see the `ip_rules` value, we are using a **for loop** to construct a dynamic rule set based on the value of our `local.allowed_ips`:
+If you remember the attribute `network_rule_set` we created on our **acr.tf** resource config earlier, we need to specify a nested attribute called `ip_rule`and the default action is set to `"Deny"`, but if you see the `ip_rule` value, we are using a **for loop** to construct a dynamic rule set based on the value of our `local.acr_ip_rules`:
 
 ```hcl
-ip_rules = [for i in local.allowed_ips : {
-      action   = "Allow"
-      ip_range = i
-      }
-    ]
+## acr.tf ##
+ip_rule = [for each in local.acr_ip_rules :
+  {
+    action   = each["action"]
+    ip_range = each["ip_range"]
+  }
+]
 ```
 
 This loop will **dynamically** create an **"Allow"** entry on our ACR firewall for each outbound IP of our **App service**, as well as the custom IPs/ranges we added via our custom variable called **var.acr_custom_fw_rules**.
