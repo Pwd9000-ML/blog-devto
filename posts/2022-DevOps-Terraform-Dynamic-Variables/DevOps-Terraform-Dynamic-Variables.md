@@ -221,7 +221,7 @@ The next function is called [flatten()](https://www.terraform.io/language/functi
 flatten(concat(azurerm_linux_web_app.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules))
 ```
 
-The last function is called [distinct()](https://www.terraform.io/language/functions/distinct). This function will just remove any duplicate IPs or ranges. (The `distinct()` function is handy if we are building more than one app service and want to combine all the IPs of all the App services, and remove any the duplicate IPs from our final list.)
+The last function is called [distinct()](https://www.terraform.io/language/functions/distinct). This function will just remove any duplicate IPs or ranges. (The `distinct()` function is handy if we are building more than one app service and want to combine all the IPs of all the App services, and remove any the duplicate IPs from our final list.)  
 
 ```hcl
 distinct(flatten(concat(azurerm_linux_web_app.APPSVC.possible_outbound_ip_address_list, var.acr_custom_fw_rules)))
