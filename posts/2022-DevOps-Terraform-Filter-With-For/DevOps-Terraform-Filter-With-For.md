@@ -11,7 +11,7 @@ series: Terraform Pro Tips
 
 ## Overview
 
-In todays tutorial we will take a look at a fairly common question I often get from the community and it is around how to filter results in Terraform or even if it is possible. We will also look at a real world usage example so that we can see how and when we would use filters in Terraform.  
+In todays tutorial we will take a look at a fairly common question I often get from the community and it is around how to filter results in Terraform or even if it is possible. We will also look at a real world usage example so that we can see how and when we would use filters in Terraform.
 
 **Filtering** in Terraform can be achieved using [for loop](https://www.terraform.io/language/expressions/for) expressions. Though `for` loop constructs in terraform performs looping, it can also be used for manipulating data structures such as the following to name a few:
 
@@ -21,7 +21,7 @@ In todays tutorial we will take a look at a fairly common question I often get f
 
 ## Filtering results
 
-Let's take a look at the following example variable where we have a list of applications:  
+Let's take a look at the following example variable where we have a list of applications:
 
 ```hcl
 variable "apps" {
@@ -55,7 +55,7 @@ variable "apps" {
 }
 ```
 
-Say you want to filter only on `app_require_feature = true` you could write a `for` loop with an `if` expression like in the following local variable:  
+Say you want to filter only on `app_require_feature = true` you could write a `for` loop with an `if` expression like in the following local variable:
 
 ```hcl
 locals {
@@ -78,8 +78,6 @@ result = ["App3"]
 ## Real world example
 
 Let's take a real world usage case where we would need such a `for` construct to filter and only configure something based on certain criteria.
-
-
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/04_App_Acr) page. :heart:
 
