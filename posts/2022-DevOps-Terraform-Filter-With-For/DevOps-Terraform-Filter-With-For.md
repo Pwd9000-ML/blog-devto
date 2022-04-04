@@ -124,13 +124,13 @@ variable "storage_config" {
       account_tier              = "Standard"
       account_replication_type  = "LRS"
       enable_https_traffic_only = true
-      access_tier               = "Cool"
+      access_tier               = "Hot"
       is_hns_enabled            = false
       requires_private_endpoint = false
     },
     #V2 Storage with private endpoint
     {
-      name                      = "pwd9000v2sa001"
+      name                      = "pwd9000v2sa002"
       account_kind              = "StorageV2"
       account_tier              = "Standard"
       account_replication_type  = "LRS"
