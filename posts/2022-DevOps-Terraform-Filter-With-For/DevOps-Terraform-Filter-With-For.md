@@ -69,7 +69,7 @@ output "result" {
 
 This will return a set of `app_names` that have the objects key `"app_require_feature"` set to `true`
 
-```txt
+```sh
 $ terraform apply
 Outputs:
 
@@ -90,7 +90,7 @@ output "result2" {
 
 This will return a set of `app_names` that have the objects key `"app_kind"` set to `"windows"`
 
-```txt
+```sh
 $ terraform apply
 Outputs:
 
