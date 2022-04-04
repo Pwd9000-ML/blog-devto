@@ -101,7 +101,7 @@ result2 = ["App3", "App4"]
 
 Let's take a real world usage case where we would need such a `for` construct to filter and only configure something based on certain criteria.
 
-Say we have a variable with three storage accounts we want to create, but we only want to configure `private endpoints` on certain storage accounts. We could create an extra object `key` item called `requires_private_endpoint` like in the following example:
+Say we have a variable with three `storage accounts` we want to create, but we only want to configure `private endpoints` on certain storage accounts. We could create an extra object `key` item called `requires_private_endpoint` like in the following example:
 
 ````hcl
 ## variables ##
