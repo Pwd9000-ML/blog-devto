@@ -226,7 +226,7 @@ So in the example above, all four storage accounts will be created:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Filter-With-For/assets/storage.png)
 
-But only one storage account was configured to have private endpoints enabled, namely stotage account: `pwd9000adls2sa001`
+But only one storage account was configured to have private endpoints enabled, namely storage account: `pwd9000adls2sa001`
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Filter-With-For/assets/pe.png)
 
