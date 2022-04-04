@@ -16,7 +16,7 @@ In todays tutorial we will take a look at a fairly common question I often get f
 **Filtering** in Terraform can be achieved using [for loop](https://www.terraform.io/language/expressions/for) expressions. Though `for` loop constructs in terraform performs looping, it can also be used for manipulating data structures such as the following to name a few:
 
 - **Transform:** Changing the data structure.
-- **Filter:** Filter only on desired items in combination with `if` expression.
+- **Filter:** Filter only on desired items in combination with an `if` expression.
 - **Group:** Group elements together in a new `list` by key.
 
 ## Filtering results
@@ -67,12 +67,34 @@ output "result" {
 }
 ```
 
-This will return a set of `app_names` that have the objects key `"app_require_feature"` set to true
+This will return a set of `app_names` that have the objects key `"app_require_feature"` set to `true`
 
-```txt$ terraform apply
+```txt
+$ terraform apply
 Outputs:
 
 result = ["App3"]
+```
+
+So let's say you want to filter the same variable but this time you want to only see the apps that are `windows`, you could write a `for` loop with an `if` expression like in the following local variable:
+
+```hcl
+locals {
+  windows_apps = toset([for each in var.apps : each.app_name if each.app_kind == "windows"])
+}
+
+output "result2" {
+  value = local.windows_apps
+}
+```
+
+This will return a set of `app_names` that have the objects key `"app_kind"` set to `"windows"`
+
+```txt
+$ terraform apply
+Outputs:
+
+result2 = ["App3", "App4"]
 ```
 
 ## Real world example
