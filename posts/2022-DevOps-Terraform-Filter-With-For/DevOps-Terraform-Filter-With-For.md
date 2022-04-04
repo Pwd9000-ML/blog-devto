@@ -99,9 +99,106 @@ result2 = ["App3", "App4"]
 
 ## Real world example
 
-Let's take a real world usage case where we would need such a `for` construct to filter and only configure something based on certain criteria.
+Let's take a real world usage case where we would need such a `for` construct to filter and only configure something based on certain criteria.  
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/04_App_Acr) page. :heart:
+Say we have a variable with three storage accounts we want to create, but we only want to configure `private endpoints` on certain storage accounts. We could write an extra `key` object item called `requires_private_endpoint` like in the following example:  
+
+```hcl
+## variables ##
+variable "storage_config" {
+  type = list(object({
+    name                      = string
+    account_kind              = string
+    account_tier              = string
+    account_replication_type  = string
+    access_tier               = string
+    enable_https_traffic_only = bool
+    is_hns_enabled            = bool
+    requires_private_endpoint = bool
+  }))
+  default = [
+    #V2 Storage without private endpoint
+    {
+      name                      = "pwd9000v2sa001"
+      account_kind              = "StorageV2"
+      account_tier              = "Standard"
+      account_replication_type  = "LRS"
+      enable_https_traffic_only = true
+      access_tier               = "Cool"
+      is_hns_enabled            = false
+      requires_private_endpoint = false
+    },
+    #V2 Storage with private endpoint
+    {
+      name                      = "pwd9000v2sa001"
+      account_kind              = "StorageV2"
+      account_tier              = "Standard"
+      account_replication_type  = "LRS"
+      enable_https_traffic_only = true
+      access_tier               = "Cool"
+      is_hns_enabled            = false
+      requires_private_endpoint = true
+    },
+    #ADLS2 Storage with private endpoint
+    {
+      name                      = "pwd9000adls2sa001"
+      account_kind              = "BlockBlobStorage"
+      account_tier              = "Premium"
+      account_replication_type  = "ZRS"
+      enable_https_traffic_only = false
+      access_tier               = "Hot"
+      is_hns_enabled            = true
+      requires_private_endpoint = true
+    }
+  ]
+}
+
+We can then create all three storage accounts with the following resource config:  
+
+```hcl
+resource "azurerm_resource_group" "RG" {
+  name     = "example-resources"
+  location = "uksouth"
+}
+
+resource "azurerm_storage_account" "SAS" {
+  for_each = { for n in var.storage_config : n.name => n }
+
+  #Implicit dependency from previous resource
+  resource_group_name = azurerm_resource_group.RG.name
+  location            = azurerm_resource_group.RG.location
+
+  #values from variable storage_config objects
+  name                      = each.value.name
+  account_kind              = each.value.account_kind
+  account_tier              = each.value.account_tier
+  account_replication_type  = each.value.account_replication_type
+  access_tier               = each.value.access_tier
+  enable_https_traffic_only = each.value.enable_https_traffic_only
+  is_hns_enabled            = each.value.is_hns_enabled
+}
+```
+
+In the following resource block we can now configure private endpoints, but we will only do so for storage accounts that have an object `key` of `requires_private_endpoint` set to `true` like in the following resource config:  
+
+```hcl
+resource "azurerm_private_endpoint" "SASPE" {
+  for_each            = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])
+  name                = "${each.value.name}-pe"
+  location            = azurerm_resource_group.RG.location
+  resource_group_name = azurerm_resource_group.RG.name
+  subnet_id           = data.azurerm_subnet.data_subnet.id
+
+  private_service_connection {
+    name                           = "${each.value.name}-pe-sc"
+    private_connection_resource_id = azurerm_storage_account.SAS[each.value.name].id
+    is_manual_connection           = false
+  }
+```
+
+If you take a closer look at the `for_each` in the `azurerm_private_endpoint` resource we are using the filter there as follow: `for_each = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])`. Thus we can then use selected list(object)/storage config keys as shown by the `each.value.xxxx` config to specify the values used to create private endpoints for selected storage accounts only.  
+
+I hope you have enjoyed this post and have learned something new. :heart:
 
 ### _Author_
 
