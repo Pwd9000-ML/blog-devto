@@ -102,7 +102,7 @@ result2 = ["App3", "App4"]
 
 Let's take a real world usage case where we would need such a `for` construct to filter and only configure something based on certain criteria.
 
-Say we have a variable with three `storage accounts` we want to create, but we only want to configure `private endpoints` on certain storage accounts. We could create an extra object `key` item called `requires_private_endpoint` like in the following example:
+Say we have a variable with four `storage accounts` we want to create, but we only want to configure `private endpoints` on certain storage accounts. We could create an extra object `key` item called `requires_private_endpoint` like in the following example:
 
 ````hcl
 ## variables ##
@@ -119,7 +119,7 @@ variable "storage_config" {
     requires_private_endpoint = bool
   }))
   default = [
-    #V2 Storage without private endpoint
+    #V2 Storage (hot) without private endpoint
     {
       name                      = "pwd9000v2sa001"
       account_kind              = "StorageV2"
@@ -130,7 +130,7 @@ variable "storage_config" {
       is_hns_enabled            = false
       requires_private_endpoint = false
     },
-    #V2 Storage with private endpoint
+    #V2 Storage (cool) without private endpoint
     {
       name                      = "pwd9000v2sa002"
       account_kind              = "StorageV2"
@@ -139,9 +139,9 @@ variable "storage_config" {
       enable_https_traffic_only = true
       access_tier               = "Cool"
       is_hns_enabled            = false
-      requires_private_endpoint = true
+      requires_private_endpoint = false
     },
-    #ADLS2 Storage with private endpoint
+    #ADLS2 Storage with private endpoint enabled
     {
       name                      = "pwd9000adls2sa001"
       account_kind              = "BlockBlobStorage"
@@ -151,12 +151,23 @@ variable "storage_config" {
       access_tier               = "Hot"
       is_hns_enabled            = true
       requires_private_endpoint = true
+    },
+    #ADLS2 Storage without private endpoint
+    {
+      name                      = "pwd9000adls2sa002"
+      account_kind              = "BlockBlobStorage"
+      account_tier              = "Premium"
+      account_replication_type  = "ZRS"
+      enable_https_traffic_only = false
+      access_tier               = "Hot"
+      is_hns_enabled            = true
+      requires_private_endpoint = false
     }
   ]
 }
 ```
 
-We can then create all three storage accounts with the following resource config:
+We can then create all four storage accounts with the following resource config:
 
 ```hcl
 ## storage resources ##
@@ -184,7 +195,7 @@ resource "azurerm_storage_account" "SAS" {
 }
 ```
 
-In the following resource block we can now configure private endpoints, but we will only do so for storage accounts that have an object `key` of `requires_private_endpoint` set to `true` like in the following resource config:
+In the following resource block we can now configure private endpoints, but we will only do so for storage accounts that have an object `"key"` of `"requires_private_endpoint"` set to `"true"` like in the following resource config:
 
 ```hcl
 ## private endpoint resources ##
@@ -200,16 +211,24 @@ resource "azurerm_private_endpoint" "SASPE" {
     name                           = "${each.value}-pe-sc"
     private_connection_resource_id = azurerm_storage_account.SAS[each.value].id
     is_manual_connection           = false
-    subresource_names              = ["blob", "dfs"]
+    subresource_names              = ["dfs"]
   }
 }
 ```
 
-If you take a closer look at the `for_each` in the `azurerm_private_endpoint` resource we are using the filter there as follow:
+If you take a closer look at the `for_each` in the `azurerm_private_endpoint` resource we are using the filter there as follow:  
 
-`for_each = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])`
+`for_each = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])`  
 
-This `for` loop will filter and return a set of storage account names that we can use to loop the resource creation of the private endpoints for the selected storage accounts. The storage account name values will be represented by `each.value` that matches the filter: `requires_private_endpoint == true`.
+This `for` loop will filter and return a set of storage account names that we can use to loop the resource creation of the private endpoints for the selected storage accounts. The storage account name values will be represented by `each.value` that matches the filter: `requires_private_endpoint == true`.  
+
+So in the example above, all four storage accounts will be created:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Filter-With-For/assets/storage.png)
+
+But only one storage account was configured to have private endpoints enabled, namely stotage account: `pwd9000adls2sa001`
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Filter-With-For/assets/pe.png)
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
