@@ -230,3 +230,4 @@ But only one storage account was configured to have private endpoints enabled, n
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Filter-With-For/assets/pe.png)
 
+````
