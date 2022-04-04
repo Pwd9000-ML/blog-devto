@@ -202,7 +202,7 @@ resource "azurerm_private_endpoint" "SASPE" {
   }
 ```
 
-If you take a closer look at the `for_each` in the `azurerm_private_endpoint` resource we are using the filter there as follow: `for_each = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])`.  
+If you take a closer look at the `for_each` in the `azurerm_private_endpoint` resource we are using the filter there as follow: `for_each = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])`.
 
 Thus we can then use selected list(object)/storage config keys as shown by the `each.value.xxxx` config to specify the values used to create private endpoints for selected storage accounts only.
 
