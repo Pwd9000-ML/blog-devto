@@ -99,11 +99,11 @@ result2 = ["App3", "App4"]
 
 ## Real world example
 
-Let's take a real world usage case where we would need such a `for` construct to filter and only configure something based on certain criteria.
+Let's take a real world usage case where we would need such a `for` construct to filter and only configure something based on certain criteria.  
 
-Say we have a variable with three storage accounts we want to create, but we only want to configure `private endpoints` on certain storage accounts. We could write an extra `key` object item called `requires_private_endpoint` like in the following example:
+Say we have a variable with three storage accounts we want to create, but we only want to configure `private endpoints` on certain storage accounts. We could create an extra object `key` item called `requires_private_endpoint` like in the following example:  
 
-````hcl
+```hcl
 ## variables ##
 variable "storage_config" {
   type = list(object({
@@ -153,7 +153,7 @@ variable "storage_config" {
   ]
 }
 
-We can then create all three storage accounts with the following resource config:
+We can then create all three storage accounts with the following resource config:  
 
 ```hcl
 resource "azurerm_resource_group" "RG" {
@@ -177,9 +177,9 @@ resource "azurerm_storage_account" "SAS" {
   enable_https_traffic_only = each.value.enable_https_traffic_only
   is_hns_enabled            = each.value.is_hns_enabled
 }
-````
+```
 
-In the following resource block we can now configure private endpoints, but we will only do so for storage accounts that have an object `key` of `requires_private_endpoint` set to `true` like in the following resource config:
+In the following resource block we can now configure private endpoints, but we will only do so for storage accounts that have an object `key` of `requires_private_endpoint` set to `true` like in the following resource config:  
 
 ```hcl
 resource "azurerm_private_endpoint" "SASPE" {
@@ -196,7 +196,7 @@ resource "azurerm_private_endpoint" "SASPE" {
   }
 ```
 
-If you take a closer look at the `for_each` in the `azurerm_private_endpoint` resource we are using the filter there as follow: `for_each = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])`. Thus we can then use selected list(object)/storage config keys as shown by the `each.value.xxxx` config to specify the values used to create private endpoints for selected storage accounts only.
+If you take a closer look at the `for_each` in the `azurerm_private_endpoint` resource we are using the filter there as follow: `for_each = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])`. Thus we can then use selected list(object)/storage config keys as shown by the `each.value.xxxx` config to specify the values used to create private endpoints for selected storage accounts only.  
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
