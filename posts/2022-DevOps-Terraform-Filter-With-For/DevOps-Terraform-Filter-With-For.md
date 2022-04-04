@@ -191,26 +191,25 @@ In the following resource block we can now configure private endpoints, but we w
 
 resource "azurerm_private_endpoint" "SASPE" {
   for_each            = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])
-  name                = "${each.value.name}-pe"
+  name                = "${each.value}-pe"
   location            = azurerm_resource_group.RG.location
   resource_group_name = azurerm_resource_group.RG.name
   subnet_id           = data.azurerm_subnet.data_subnet.id
 
   private_service_connection {
-    name                           = "${each.value.name}-pe-sc"
-    private_connection_resource_id = azurerm_storage_account.SAS[each.value.name].id
+    name                           = "${each.value}-pe-sc"
+    private_connection_resource_id = azurerm_storage_account.SAS[each.value].id
     is_manual_connection           = false
+    subresource_names              = ["blob", "dfs"]
   }
 }
 ```
 
-If you take a closer look at the `for_each` in the `azurerm_private_endpoint` resource we are using the filter there as follow:
+If you take a closer look at the `for_each` in the `azurerm_private_endpoint` resource we are using the filter there as follow:  
 
-`for_each = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])`
+`for_each = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])`  
 
-This `for` loop will filter and return a set of storage account names we can use to loop the resource creation of the private endpoints on the selected storage accounts.
-
-Thus we can then use selected list(object)/storage config key that represents the storage account name as shown by the `each.value.name` to specify the values used for each storage account to create private endpoints for the selected storage accounts only that matches the filter: `requires_private_endpoint == true`.
+This `for` loop will filter and return a set of storage account names that we can use to loop the resource creation of the private endpoints for the selected storage accounts. The storage account name values will be represented by `each.value` that matches the filter: `requires_private_endpoint == true`.  
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
