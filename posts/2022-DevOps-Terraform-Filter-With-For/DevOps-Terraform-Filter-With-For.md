@@ -204,7 +204,7 @@ resource "azurerm_private_endpoint" "SASPE" {
 
 If you take a closer look at the `for_each` in the `azurerm_private_endpoint` resource we are using the filter there as follow: `for_each = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])`.
 
-This `for` loop will filter and return a set of storage account names we can use to loop the resource creation of the private endpoints on the selected storage accounts.  
+This `for` loop will filter and return a set of storage account names we can use to loop the resource creation of the private endpoints on the selected storage accounts.
 
 Thus we can then use selected list(object)/storage config keys as shown by the `each.value.name` to specify the values used for each storage account to create private endpoints for those selected storage accounts only.
 
