@@ -1,6 +1,6 @@
 ---
 title: Terraform - Filter results using 'for' loops
-published: false
+published: true
 description: DevOps - Terraform - Filter with 'for'
 tags: 'terraform, azure, iac, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Filter-With-For/assets/main-tf-tips.png'
