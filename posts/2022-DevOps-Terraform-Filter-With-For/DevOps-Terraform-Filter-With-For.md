@@ -202,7 +202,7 @@ resource "azurerm_private_endpoint" "SASPE" {
   }
 ```
 
-If you take a closer look at the `for_each` in the `azurerm_private_endpoint` resource we are using the filter there as follow: `for_each = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])`.  
+If you take a closer look at the `for_each` in the `azurerm_private_endpoint` resource we are using the filter there as follow: `for_each = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])`.
 
 This `for` loop will filter and return a set of storage account names we can use to loop the resource creation of the private endpoints on the selected storage accounts.  
 
@@ -217,3 +217,4 @@ Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :
 {% user pwd9000 %}
 
 <a href="https://www.buymeacoffee.com/pwd9000"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=pwd9000&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
+````
