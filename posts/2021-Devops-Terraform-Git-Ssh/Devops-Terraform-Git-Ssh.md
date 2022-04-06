@@ -85,9 +85,7 @@ Here is an example of how we can reference our Azure DevOps repo containing our 
 
 ```hcl
 module "mymodule" {
-
-  source = "git::git@ssh.dev.azure.com:v3/Org/Project/repo"
-
+  source = "git::ssh://git@ssh.dev.azure.com/v3/<OrgName>/<ProjectName>/<RepoName>//<SubPath>?ref=<VersionRef>"
 }
 ```
 
