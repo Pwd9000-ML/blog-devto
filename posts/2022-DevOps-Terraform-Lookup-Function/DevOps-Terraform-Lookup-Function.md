@@ -11,11 +11,11 @@ series: Terraform Pro Tips
 
 ## Overview
 
-This tutorial uses examples from the following GitHub project: [Azure Terraform Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).
+This tutorial uses examples from the following GitHub project: [Azure Terraform Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).  
 
-In todays tutorial we will take a look at an interesting Terraform function called [lookup()](https://www.terraform.io/language/functions/lookup).
+In todays tutorial we will take a look at an interesting Terraform function called [lookup()](https://www.terraform.io/language/functions/lookup).  
 
-The `lookup()` function can be used to lookup a particular value inside of a `map`, given its `key` and if the given key does not exist, the given `default` value is returned instead:
+The `lookup()` function can be used to lookup a particular value inside of a `map`, given its `key` and if the given key does not exist, the given `default` value is returned instead:  
 
 ```hcl
 lookup(map, key, default)
@@ -34,141 +34,66 @@ $ lookup({a="hello", b="world"}, "c", "what?")
 "what?"
 ```
 
-So how can this be useful in Infrastructure As Code (IaC)?
+So how can this be useful in Infrastructure as Code (IaC)?  
 
-Well this allows us to be more creative and granular with Terraform configurations by allowing us to create multiple configurations for different scenarios and be able to select what scenario or configuration we want to deploy. Let's take a look at a real world example.
+It allows us to be more creative and granular with Terraform configurations by allowing us to create multiple configurations for different scenarios and be able to select what scenario or configuration we want to deploy. Let's take a look at a real world example of this.  
 
 ## Real world example
 
-Say for example we have to create Azure cloud resources for multiple sites of our organization. In the following example we will use **Site A** and **Site B** as two separate sites for our Org.
+The example code used in the following section can also be found here: [05_lookup_demo](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/05_lookup_demo).  
 
-################### Say we have a variable with four `storage accounts` we want to create, but we only want to configure `private endpoints` on certain storage accounts. We could create an extra object `key` item called `requires_private_endpoint` like in the following example:
+Say for example we have to create Azure cloud resources for multiple sites of our organization. In the following example we will use **Site A** in _UK South_ and **Site B** in _UK West_ as two separate sites for our Org.  
+
+We start off by creating a list of sites in a variable for **siteA** and **siteB**:  
 
 ```hcl
-## variables ##
+## variables.tf ##
 
-variable "storage_config" {
-  type = list(object({
-    name                      = string
-    account_kind              = string
-    account_tier              = string
-    account_replication_type  = string
-    access_tier               = string
-    enable_https_traffic_only = bool
-    is_hns_enabled            = bool
-    requires_private_endpoint = bool
-  }))
-  default = [
-    #V2 Storage (hot) without private endpoint
-    {
-      name                      = "pwd9000v2sa001"
-      account_kind              = "StorageV2"
-      account_tier              = "Standard"
-      account_replication_type  = "LRS"
-      enable_https_traffic_only = true
-      access_tier               = "Hot"
-      is_hns_enabled            = false
-      requires_private_endpoint = false
+variable "site_names" {
+  type        = list(string)
+  default     = ["siteA", "siteB"]
+  description = "Provide a list of all Contoso site names - Will be mapped to local var 'site_configs'"
+}
+```
+
+Next we create a `locals` variable called `site_configs`, a `map` configuration containing child `maps` for each of the sites we want to set certain criteria against:  
+
+```hcl
+## local.tf ##
+
+locals {
+  site_configs = {
+    siteA = {
+      resource_group_name = "Demo-Inf-SiteA-RG"
+      location            = "UKSouth"
+      allowed_ips         = ["8.8.8.8", "8.8.8.9"]
     },
-    #V2 Storage (cool) without private endpoint
-    {
-      name                      = "pwd9000v2sa002"
-      account_kind              = "StorageV2"
-      account_tier              = "Standard"
-      account_replication_type  = "LRS"
-      enable_https_traffic_only = true
-      access_tier               = "Cool"
-      is_hns_enabled            = false
-      requires_private_endpoint = false
-    },
-    #ADLS2 Storage with private endpoint enabled
-    {
-      name                      = "pwd9000adls2sa001"
-      account_kind              = "BlockBlobStorage"
-      account_tier              = "Premium"
-      account_replication_type  = "ZRS"
-      enable_https_traffic_only = false
-      access_tier               = "Hot"
-      is_hns_enabled            = true
-      requires_private_endpoint = true
-    },
-    #ADLS2 Storage without private endpoint
-    {
-      name                      = "pwd9000adls2sa002"
-      account_kind              = "BlockBlobStorage"
-      account_tier              = "Premium"
-      account_replication_type  = "ZRS"
-      enable_https_traffic_only = false
-      access_tier               = "Hot"
-      is_hns_enabled            = true
-      requires_private_endpoint = false
+    siteB = {
+      resource_group_name = "Demo-Inf-SiteB-RG"
+      location            = "UKWest"
+      allowed_ips         = ["7.7.7.7", "7.7.7.8"]
     }
-  ]
-}
-```
-
-We can then create all four storage accounts with the following resource config:
-
-```hcl
-## storage resources ##
-
-resource "azurerm_resource_group" "RG" {
-  name     = "example-resources"
-  location = "uksouth"
-}
-
-resource "azurerm_storage_account" "SAS" {
-  for_each = { for n in var.storage_config : n.name => n }
-
-  #Implicit dependency from previous resource
-  resource_group_name = azurerm_resource_group.RG.name
-  location            = azurerm_resource_group.RG.location
-
-  #values from variable storage_config objects
-  name                      = each.value.name
-  account_kind              = each.value.account_kind
-  account_tier              = each.value.account_tier
-  account_replication_type  = each.value.account_replication_type
-  access_tier               = each.value.access_tier
-  enable_https_traffic_only = each.value.enable_https_traffic_only
-  is_hns_enabled            = each.value.is_hns_enabled
-}
-```
-
-In the following resource block we can now configure private endpoints, but we will only do so for storage accounts that have an object `"key"` of `"requires_private_endpoint"` set to `"true"` like in the following resource config:
-
-```hcl
-## private endpoint resources ##
-
-resource "azurerm_private_endpoint" "SASPE" {
-  for_each            = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])
-  name                = "${each.value}-pe"
-  location            = azurerm_resource_group.RG.location
-  resource_group_name = azurerm_resource_group.RG.name
-  subnet_id           = data.azurerm_subnet.data_subnet.id
-
-  private_service_connection {
-    name                           = "${each.value}-pe-sc"
-    private_connection_resource_id = azurerm_storage_account.SAS[each.value].id
-    is_manual_connection           = false
-    subresource_names              = ["dfs"]
   }
 }
 ```
 
-If you take a closer look at the `for_each` in the `azurerm_private_endpoint` resource we are using the filter there as follow:
+So for our first set of resources we will deploy azure resource groups for each of our sites:  
 
-`for_each = toset([for pe in var.storage_config : pe.name if pe.requires_private_endpoint == true])`
+```hcl
+## storage_resources.tf ##
 
-This `for` loop will filter and return a set of storage account names that we can use to loop the resource creation of the private endpoints for the selected storage accounts. The storage account name values will be represented by `each.value` that matches the filter: `requires_private_endpoint == true`.
+resource "azurerm_resource_group" "RGS" {
+  for_each = toset(var.site_names)
+  name     = lookup(local.site_configs[each.value], "resource_group_name", null)
+  location = lookup(local.site_configs[each.value], "location", null)
+}
+```
 
-So in the example above, all four storage accounts will be created:
+Notice that we are using a `for_each` loop using the list we created earlier with our site names, **siteA** and **siteB**. The `lookuo()` function is then used to lookup the corresponding `key` for each site config inside of our `site_configs` map, that corresponds to **siteA** and **siteB**.  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Filter-With-For/assets/storage.png)
+As you see each Azure resource group has been created for each site in the locations we defined in our `local` variable for _UK South_ and _UK West_:  
 
-But only one storage account was configured to have private endpoints enabled, namely storage account: `pwd9000adls2sa001`
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Filter-With-For/assets/pe.png)
+![image.png]()
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
