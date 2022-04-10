@@ -9,6 +9,7 @@ id: 1016375
 series: Terraform Pro Tips
 date: '2022-03-08T19:11:29Z'
 ---
+
 ## Overview
 
 This tutorial uses examples from the following GitHub project: [Azure Terraform Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).

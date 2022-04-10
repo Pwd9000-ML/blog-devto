@@ -11,11 +11,11 @@ series: Terraform Pro Tips
 
 ## Overview
 
-This tutorial uses examples from the following GitHub project: [Azure Terraform Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).  
+This tutorial uses examples from the following GitHub project: [Azure Terraform Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).
 
-In todays tutorial we will take a look at an interesting Terraform function called [lookup()](https://www.terraform.io/language/functions/lookup).  
+In todays tutorial we will take a look at an interesting Terraform function called [lookup()](https://www.terraform.io/language/functions/lookup).
 
-The `lookup()` function can be used to lookup a particular value inside of a `map`, given its `key` and if the given key does not exist, the given `default` value is returned instead:  
+The `lookup()` function can be used to lookup a particular value inside of a `map`, given its `key` and if the given key does not exist, the given `default` value is returned instead:
 
 ```hcl
 lookup(map, key, default)
@@ -34,17 +34,15 @@ $ lookup({a="hello", b="world"}, "c", "what?")
 "what?"
 ```
 
-So how can this be useful in Infrastructure As Code (IaC)?  
+So how can this be useful in Infrastructure As Code (IaC)?
 
-Well this allows us to be more creative and granular with Terraform configurations by allowing us to create multiple configurations for different scenarios and be able to select what scenario or configuration we want to deploy. Let's take a look at a real world example.  
+Well this allows us to be more creative and granular with Terraform configurations by allowing us to create multiple configurations for different scenarios and be able to select what scenario or configuration we want to deploy. Let's take a look at a real world example.
 
 ## Real world example
 
 Say for example we have to create Azure cloud resources for multiple sites of our organization. In the following example we will use **Site A** and **Site B** as two separate sites for our Org.
 
-
-###################
-Say we have a variable with four `storage accounts` we want to create, but we only want to configure `private endpoints` on certain storage accounts. We could create an extra object `key` item called `requires_private_endpoint` like in the following example:
+################### Say we have a variable with four `storage accounts` we want to create, but we only want to configure `private endpoints` on certain storage accounts. We could create an extra object `key` item called `requires_private_endpoint` like in the following example:
 
 ```hcl
 ## variables ##
