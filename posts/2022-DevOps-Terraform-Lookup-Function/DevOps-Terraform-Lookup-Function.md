@@ -91,7 +91,7 @@ resource "azurerm_resource_group" "RGS" {
 
 Notice that we are using a `for_each` loop using the list we created earlier with our site names, **siteA** and **siteB**. The `lookuo()` function is then used to lookup the corresponding `key` for each site config inside of our `site_configs` map, that corresponds to **siteA** and **siteB**.
 
-As you see each Azure resource group has been created for each site in the locations we defined in our `local` variable for _UK South_ and _UK West_:
+As you can see each Azure resource group was created for each site in the locations we defined in our `local` variable for _UK South_ and _UK West_:
 
 ![image.png]()
 
