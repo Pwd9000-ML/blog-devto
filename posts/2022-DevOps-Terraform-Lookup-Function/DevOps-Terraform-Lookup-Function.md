@@ -11,11 +11,11 @@ series: Terraform Pro Tips
 
 ## Overview
 
-This tutorial uses examples from the following GitHub project: [Azure Terraform Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).  
+This tutorial uses examples from the following GitHub project: [Azure Terraform Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).
 
-In todays tutorial we will take a look at an interesting Terraform function called [lookup()](https://www.terraform.io/language/functions/lookup).  
+In todays tutorial we will take a look at an interesting Terraform function called [lookup()](https://www.terraform.io/language/functions/lookup).
 
-The `lookup()` function can be used to lookup a particular value inside of a `map`, given its `key` and if the given key does not exist, the given `default` value is returned instead:  
+The `lookup()` function can be used to lookup a particular value inside of a `map`, given its `key` and if the given key does not exist, the given `default` value is returned instead:
 
 ```hcl
 lookup(map, key, default)
@@ -34,17 +34,17 @@ $ lookup({a="hello", b="world"}, "c", "what?")
 "what?"
 ```
 
-So how can this be useful in Infrastructure as Code (IaC)?  
+So how can this be useful in Infrastructure as Code (IaC)?
 
-It allows us to be more creative and granular with Terraform configurations by allowing us to create multiple configurations for different scenarios and be able to select what scenario or configuration we want to deploy. Let's take a look at a real world example of this.  
+It allows us to be more creative and granular with Terraform configurations by allowing us to create multiple configurations for different scenarios and be able to select what scenario or configuration we want to deploy. Let's take a look at a real world example of this.
 
 ## Real world example
 
-The example code used in the following section can also be found here: [05_lookup_demo](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/05_lookup_demo).  
+The example code used in the following section can also be found here: [05_lookup_demo](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/05_lookup_demo).
 
-Say for example we have to create Azure cloud resources for multiple sites of our organization. In the following example we will use **Site A** in _UK South_ and **Site B** in _UK West_ as two separate sites for our Org.  
+Say for example we have to create Azure cloud resources for multiple sites of our organization. In the following example we will use **Site A** in _UK South_ and **Site B** in _UK West_ as two separate sites for our Org.
 
-We start off by creating a list of sites in a variable for **siteA** and **siteB**:  
+We start off by creating a list of sites in a variable for **siteA** and **siteB**:
 
 ```hcl
 ## variables.tf ##
@@ -56,7 +56,7 @@ variable "site_names" {
 }
 ```
 
-Next we create a `locals` variable called `site_configs`, a `map` configuration containing child `maps` for each of the sites we want to set certain criteria against:  
+Next we create a `locals` variable called `site_configs`, a `map` configuration containing child `maps` for each of the sites we want to set certain criteria against:
 
 ```hcl
 ## local.tf ##
@@ -77,7 +77,7 @@ locals {
 }
 ```
 
-So for our first set of resources we will deploy azure resource groups for each of our sites:  
+So for our first set of resources we will deploy azure resource groups for each of our sites:
 
 ```hcl
 ## storage_resources.tf ##
@@ -89,9 +89,9 @@ resource "azurerm_resource_group" "RGS" {
 }
 ```
 
-Notice that we are using a `for_each` loop using the list we created earlier with our site names, **siteA** and **siteB**. The `lookuo()` function is then used to lookup the corresponding `key` for each site config inside of our `site_configs` map, that corresponds to **siteA** and **siteB**.  
+Notice that we are using a `for_each` loop using the list we created earlier with our site names, **siteA** and **siteB**. The `lookuo()` function is then used to lookup the corresponding `key` for each site config inside of our `site_configs` map, that corresponds to **siteA** and **siteB**.
 
-As you see each Azure resource group has been created for each site in the locations we defined in our `local` variable for _UK South_ and _UK West_:  
+As you see each Azure resource group has been created for each site in the locations we defined in our `local` variable for _UK South_ and _UK West_:
 
 ![image.png]()
 
