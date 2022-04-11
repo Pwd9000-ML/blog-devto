@@ -9,3 +9,5 @@ id: 1051702
 ---
 
 # My new post
+
+Hello Arindam, this is how I manage my blog posts
