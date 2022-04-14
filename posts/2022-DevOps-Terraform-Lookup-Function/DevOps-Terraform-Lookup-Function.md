@@ -197,9 +197,9 @@ As you can see **Site A** storage accounts are set with allowed IPs of `allowed_
 
 And **Site B** storage accounts are set with allowed IPs of `allowed_ips = ["7.7.7.7", "7.7.7.8"]`
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/sa_siteb.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/ip_siteb.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/sa_siteb.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/ip_siteb.png)
 
-As you can see the Terraform `lookup()` function can be quite useful in cases where we have multiple sites or different configs and having the ability match and correlate different configurations for different scenarios.  
+As you can see the Terraform `lookup()` function can be quite useful in cases where we have multiple sites or different configs and having the ability match and correlate different configurations for different scenarios.
 
 I hope you have enjoyed this post and have learned something new. :heart: Code samples used in this tutorial can also be found here: [05_lookup_demo](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/05_lookup_demo).
 
