@@ -23,7 +23,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **28/04/2022** | [Microsoft Cloud Security User Group - Automate Azure Role Based Access Control using Azure DevOps](https://sessionize.com/microsoft-cloud-security-user-group/) | Public Speaking | Azure DevOps, PowerShell | Security, DevSecOps, RBAC, Automation, Podcast |
+| **28/04/2022** | [Microsoft Cloud Security User Group - Automate Azure Role Based Access Control using Azure DevOps](https://go.mscsug.org/smd) | Public Speaking | Azure DevOps, PowerShell | Security, DevSecOps, RBAC, Automation, Podcast |
 | **28/04/2022** | [DeveloperWeek Europe 2022 - Reusable GitHub workflows to automate tokens](https://bit.ly/3IiNkgH) | Public Speaking | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, ServiceBus, DevSecOps, Speaker |
 | **27/04/2022** | [Cloud Lunch and Learn - Automate Azure Role Based Access Control using Azure DevOps](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure DevOps, PowerShell | Security, DevSecOps, RBAC, Automation, Podcast |
 
