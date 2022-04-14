@@ -33,6 +33,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **14/04/2022** | [Terraform - Selective configuration with 'lookup()'](https://dev.to/pwd9000/terraform-selective-configuration-with-lookup-goe) | Blog/Website Post | DevOps | Terraform, Automation, IaC, Tutorial |
 | **08/04/2022** | [Top Stories from the Microsoft DevOps Community - 2022.08.04 - Using Terraform to Filter ‘For’ Loops](https://devblogs.microsoft.com/devops/top-stories-from-the-microsoft-devops-community-2022-08-04/) | Article | DevOps | Terraform, Automation, IaC, Tutorial |
 | **04/04/2022** | [Terraform - Filter results using 'for' loops](https://dev.to/pwd9000/terraform-filter-results-using-for-loops-4n75) | Blog/Website Post | DevOps | Terraform, Automation, IaC, Tutorial |
 | **23/03/2022** | [Cloud Lunch and Learn - Automate Azure Resource Decommissions using Azure Serverless Function App (with tracking)](https://youtu.be/7v3tCDczDTo) | Public Speaking | Azure, PowerShell | Automation, Serverless, FunctionApps, Podcast |
