@@ -158,7 +158,7 @@ locals {
 }
 ```
 
-Notice that when we are building out the storage accounts for each of the sites we can now lookup the `network_rules` to apply to each of our storage accounts that corresponds to the allowed IPs for that site using the `lookup()` function `ip_rules = lookup(local.site_configs[each.value.site_name], "allowed_ips", null)` as shown below:  
+Notice that when we are building out the storage accounts for each of the sites we can now lookup the `network_rules` to apply to each of our storage accounts that corresponds to the allowed IPs for that site using the `lookup()` function `ip_rules = lookup(local.site_configs[each.value.site_name], "allowed_ips", null)` as shown below:
 
 ```hcl
 resource "azurerm_storage_account" "SAS" {
