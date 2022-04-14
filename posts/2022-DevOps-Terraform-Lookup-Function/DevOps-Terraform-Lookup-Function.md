@@ -95,7 +95,7 @@ As you can see each Azure resource group was created for each site in the locati
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/rgs.png)
 
-Next we will create a few storage accounts for each of our sites. We have a variable called `storage_config` which is a list of objects where each object represents a storage account configuration. But notice that one of the keys of each storage config/object has a `key` called `site_name`.  
+Next we will create a few storage accounts for each of our sites. We have a variable called `storage_config` which is a list of objects where each object represents a storage account configuration. But notice that one of the keys of each storage config/object has a `key` called `site_name`.
 
 ```hcl
 ## config-dev.tfvars ##
@@ -137,7 +137,7 @@ storage_config = [
 ]
 ```
 
-This `site_name` corresponds with the local variable maps `key` of each of the `site_configs` maps:  
+This `site_name` corresponds with the local variable maps `key` of each of the `site_configs` maps:
 
 ```hcl
 ## local.tf ##
@@ -158,7 +158,7 @@ locals {
 }
 ```
 
-Notice that when we are building out the storage accounts for each of the sites we can now lookup the `network_rules` to apply to each of our storage accounts that corresponds to the allowed IPs for that site:  
+Notice that when we are building out the storage accounts for each of the sites we can now lookup the `network_rules` to apply to each of our storage accounts that corresponds to the allowed IPs for that site:
 
 ```hcl
 resource "azurerm_storage_account" "SAS" {
@@ -193,12 +193,12 @@ resource "random_integer" "sa_num" {
 As you can see **Site A** storage accounts are set with allowed IPs of `allowed_ips = ["8.8.8.8", "8.8.8.9"]`.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/sa_sitea.png)  
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/ip_sitea.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/ip_sitea.png)
 
 And **Site B** storage accounts are set with allowed IPs of `allowed_ips = ["7.7.7.7", "7.7.7.8"]`
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/sa_siteb.png)  
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/ip_siteb.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/ip_siteb.png)
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
