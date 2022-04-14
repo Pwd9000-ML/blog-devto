@@ -1,6 +1,6 @@
 ---
 title: Terraform - Selective configuration with 'lookup()'
-published: false
+published: true
 description: DevOps - Terraform - Selective configuration with 'lookup()'
 tags: 'terraform, azure, iac, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/main-tf-tips.png'
@@ -190,17 +190,17 @@ resource "random_integer" "sa_num" {
 }
 ```
 
-As you can see **Site A** storage accounts are set with allowed IPs of `allowed_ips = ["8.8.8.8", "8.8.8.9"]`.
+As you can see **Site A** storage accounts are set with allowed IPs of `allowed_ips = ["8.8.8.8", "8.8.8.9"]`.  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/sa_sitea.png)  
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/ip_sitea.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/sa_sitea.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/ip_sitea.png)  
 
-And **Site B** storage accounts are set with allowed IPs of `allowed_ips = ["7.7.7.7", "7.7.7.8"]`
+And **Site B** storage accounts are set with allowed IPs of `allowed_ips = ["7.7.7.7", "7.7.7.8"]`  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/sa_siteb.png)  
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/ip_siteb.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/sa_siteb.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/ip_siteb.png)  
 
-I hope you have enjoyed this post and have learned something new. :heart:
+I hope you have enjoyed this post and have learned something new. :heart: Code samples used in this tutorial can also be found here: [05_lookup_demo](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/05_lookup_demo).  
 
 ### _Author_
 
