@@ -26,7 +26,6 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | **29/04/2022** | [Journey To The Cloud 4.0 - Protect secrets in Azure Functions using Key Vault](https://www.linkedin.com/video/event/urn:li:ugcPost:6922498030445166592/) | Public Speaking | Security, Serverless, FunctionApps, Tutorial |
 | **28/04/2022** | [Microsoft Cloud Security User Group - Automate Azure Role Based Access Control using Azure DevOps](https://go.mscsug.org/smd) | Public Speaking | Azure DevOps, PowerShell | Security, DevSecOps, RBAC, Automation, Podcast |
 | **28/04/2022** | [DeveloperWeek Europe 2022 - Reusable GitHub workflows to automate tokens](https://bit.ly/3IiNkgH) | Public Speaking | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, ServiceBus, DevSecOps, Speaker |
-| **27/04/2022** | [Cloud Lunch and Learn - Automate Azure Role Based Access Control using Azure DevOps](https://www.cloudlunchlearn.com/weeklysessions) | Public Speaking | Azure DevOps, PowerShell | Security, DevSecOps, RBAC, Automation, Podcast |
 
 ---
 
@@ -34,6 +33,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **27/04/2022** | [Cloud Lunch and Learn - Automate Azure Role Based Access Control using Azure DevOps](https://youtu.be/USw7nbRwWbY) | Public Speaking | Azure DevOps, PowerShell | Security, DevSecOps, RBAC, Automation, Podcast |
 | **14/04/2022** | [Terraform - Selective configuration with 'lookup()'](https://dev.to/pwd9000/terraform-selective-configuration-with-lookup-goe) | Blog/Website Post | DevOps | Terraform, Automation, IaC, Tutorial |
 | **08/04/2022** | [Top Stories from the Microsoft DevOps Community - 2022.08.04 - Using Terraform to Filter ‘For’ Loops](https://devblogs.microsoft.com/devops/top-stories-from-the-microsoft-devops-community-2022-08-04/) | Article | DevOps | Terraform, Automation, IaC, Tutorial |
 | **04/04/2022** | [Terraform - Filter results using 'for' loops](https://dev.to/pwd9000/terraform-filter-results-using-for-loops-4n75) | Blog/Website Post | DevOps | Terraform, Automation, IaC, Tutorial |
