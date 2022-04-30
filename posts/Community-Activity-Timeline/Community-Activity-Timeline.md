@@ -23,7 +23,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **25/05/2022** | [Microsoft Build 2022 - Create Serverless Logic with Azure Functions](https://register.build.microsoft.com/) | Public Speaking | Serverless, FunctionApps, Tutorial |
+| **25/05/2022** | [Microsoft Build 2022 - Create Serverless Logic with Azure Functions](https://register.build.microsoft.com/) | Public Speaking | FunctionApps | Serverless, Tutorial |
 
 ---
 
