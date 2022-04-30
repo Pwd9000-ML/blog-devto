@@ -23,9 +23,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **29/04/2022** | [Journey To The Cloud 4.0 - Protect secrets in Azure Functions using Key Vault](https://www.linkedin.com/video/event/urn:li:ugcPost:6922498030445166592/) | Public Speaking | Security, Serverless, FunctionApps, Tutorial |
-| **28/04/2022** | [Microsoft Cloud Security User Group - Automate Azure Role Based Access Control using Azure DevOps](https://go.mscsug.org/smd) | Public Speaking | Azure DevOps, PowerShell | Security, DevSecOps, RBAC, Automation, Podcast |
-| **28/04/2022** | [DeveloperWeek Europe 2022 - Reusable GitHub workflows to automate tokens](https://bit.ly/3IiNkgH) | Public Speaking | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, ServiceBus, DevSecOps, Speaker |
+| **25/05/2022** | [Microsoft Build 2022 - Create Serverless Logic with Azure Functions](https://register.build.microsoft.com/) | Public Speaking | Serverless, FunctionApps, Tutorial |
 
 ---
 
@@ -33,6 +31,9 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **30/04/2022** | [Microsoft Cloud Security User Group - Automate Azure Role Based Access Control using Azure DevOps](https://youtu.be/QwA1Ai1oUP8) | Public Speaking | Azure DevOps, PowerShell | Security, DevSecOps, RBAC, Automation, Podcast |
+| **29/04/2022** | [Journey To The Cloud 4.0 - Protect secrets in Azure Functions using Key Vault](https://youtu.be/C0s6A758mn0) | Public Speaking | Security, Serverless, FunctionApps, Tutorial |
+| **28/04/2022** | [DeveloperWeek Europe 2022 - Reusable GitHub workflows to automate tokens](https://www.developerweek.com/europe/speakers/) | Public Speaking | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, ServiceBus, DevSecOps, Speaker |
 | **27/04/2022** | [Cloud Lunch and Learn - Automate Azure Role Based Access Control using Azure DevOps](https://youtu.be/USw7nbRwWbY) | Public Speaking | Azure DevOps, PowerShell | Security, DevSecOps, RBAC, Automation, Podcast |
 | **14/04/2022** | [Terraform - Selective configuration with 'lookup()'](https://dev.to/pwd9000/terraform-selective-configuration-with-lookup-goe) | Blog/Website Post | DevOps | Terraform, Automation, IaC, Tutorial |
 | **08/04/2022** | [Top Stories from the Microsoft DevOps Community - 2022.08.04 - Using Terraform to Filter ‘For’ Loops](https://devblogs.microsoft.com/devops/top-stories-from-the-microsoft-devops-community-2022-08-04/) | Article | DevOps | Terraform, Automation, IaC, Tutorial |
