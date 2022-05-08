@@ -1,5 +1,5 @@
 ---
-title: Implement CI/CD with GitHub - Deploy Azure Functions 
+title: Implement CI/CD with GitHub - Deploy Azure Functions
 published: false
 description: Implementing CI/CD with GitHub by automating Azure Function deployment
 tags: 'githubactions, azuredevops, github, azurefunctions'
