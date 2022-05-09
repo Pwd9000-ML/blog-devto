@@ -73,7 +73,7 @@ The above script created a resource group containing the function app, function 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/func.png)
 
-**NOTE:** We have only created our **Function App** at this stage, we do not have any Functions yet. We will create our first function later on in this tutorial with GitHub.  
+**NOTE:** We have only created our **Function App** at this stage, we do not have any Functions yet. We will create our first function later on in this tutorial with GitHub.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/func02.png)
 
@@ -116,7 +116,7 @@ Next we will create an empty folder inside of our locally cloned repository. Thi
 
 **NOTE:** I have called my folder in my repo the same name as the name I have given to my Azure Function App we created earlier; **demofunc6144**.
 
-Now we will create our first function inside of the folder using the **Azure Functions extension for Visual Studio Code** we installed earlier.  
+Now we will create our first function inside of the folder using the **Azure Functions extension for Visual Studio Code** we installed earlier.
 
 In VSCode you will see the extension installed on the left side of the screen. Click on the extension and select **Create New Project**:
 
@@ -128,48 +128,38 @@ This will then open the **Command Palette** again, browse to and select the empt
 
 The **Command Palette** will now present you with some options, select the following:
 
-1. Select a language: **C#**
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj03.png)
+1. Select a language: **C#** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj03.png)
 
-2. Select a .NET runtime: **.NET 6**
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj04.png)
+2. Select a .NET runtime: **.NET 6** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj04.png)
 
-3. Select a template for your project;s first function: **HTTP trigger**
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj05.png)
+3. Select a template for your project;s first function: **HTTP trigger** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj05.png)
 
-4. Give the function a name: **MyFirstDotnetFunction**
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj06.png)
+4. Give the function a name: **MyFirstDotnetFunction** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj06.png)
 
-5. Provide a namespace: **My.Function**
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj07.png)
+5. Provide a namespace: **My.Function** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj07.png)
 
-6. Select appropriate access rights: **Anonymous/Function/Admin**
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj08.png)
+6. Select appropriate access rights: **Anonymous/Function/Admin** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj08.png)
 
-Once the above process has completed, notice that now we have a **C#** function app template in our folder **demofunc6144** we can straight away start working on. Because this is also in our local **git repository** we can ensure that our code is always managed through source control.  
+Once the above process has completed, notice that now we have a **C#** function app template in our folder **demofunc6144** we can straight away start working on. Because this is also in our local **git repository** we can ensure that our code is always managed through source control.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj09.png)
 
 Save and commit the the changes, then push the new function to the remote **GitHub repository**:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj10.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj10.png)
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj11.png)
 
 ## Deploy Function App
 
-Now we have a fully integrated workspace we can use to create and develop **Functions**. But we have not set up any CI/CD yet.  
+Now we have a fully integrated workspace we can use to create and develop **Functions**. But we have not set up any CI/CD yet.
 
-This brings us to the last step, automating the deployment of our **Functions** with CI/CD using **GitHub Actions**  
+This brings us to the last step, automating the deployment of our **Functions** with CI/CD using **GitHub Actions**
 
-1. Navigate back to the **Function App** hosted in Azure that we created earlier in this tutorial and got to **Deployment Center**:
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/depl01.png)
+1. Navigate back to the **Function App** hosted in Azure that we created earlier in this tutorial and got to **Deployment Center**: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/depl01.png)
 
-2. Select Source **GitHub** and set the **Org**, **Repo** and **Branch** we created and hit **Save**. (**NOTE:** You will be asked to link your GitHub account if you are performing this step for the very first time):
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/depl02.png)
+2. Select Source **GitHub** and set the **Org**, **Repo** and **Branch** we created and hit **Save**. (**NOTE:** You will be asked to link your GitHub account if you are performing this step for the very first time): ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/depl02.png)
 
-**NOTE:** You can also manage the **Publish Profile** from the above step.  
+**NOTE:** You can also manage the **Publish Profile** from the above step.
 
 When you **save** the configuration above, you will notice that on the **GitHub repository** there is a new automation workflow that is automatically set up as well as a new repository secret.
-
-
