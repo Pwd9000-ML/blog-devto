@@ -3,7 +3,7 @@ az login
 
 # Setup Variables.
 $randomInt = Get-Random -Maximum 9999
-$subscriptionId=$(az account show --query id -o tsv)
+$subscriptionId = $(az account show --query id -o tsv)
 $resourceGroupName = "GitHub-Managed-Function-Demo"
 $storageName = "demofuncsa$randomInt"
 $functionAppName = "demofunc$randomInt"
@@ -30,6 +30,6 @@ az functionapp create `
     --resource-group "$resourceGroupName" `
     --os-type "Windows" `
     --runtime "dotnet" `
-    --runtime-version "6.0" `
+    --runtime-version "6" `
     --functions-version "4" `
     --assign-identity
