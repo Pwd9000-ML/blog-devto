@@ -162,15 +162,15 @@ This brings us to the last step, automating the deployment of our **Functions** 
 
 **NOTE:** You can also manage the **Publish Profile** from the above step.
 
-When you **save** the configuration above, you will notice that on the **GitHub repository** there is a new automation workflow that is automatically set up as well as a new repository secret.  
+When you **save** the configuration above, you will notice that on the **GitHub repository** there is a new automation workflow that is automatically set up as well as a new repository secret.
 
 The workflow will be in a special folder called **.github/workflows** that is automatically created by Azure:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/work01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/work01.png)
 
 In my case the workflow is called **master_decomfunc6144.yml**:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/work02.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/work02.png)
 
 Let's take a closer look at this workflow:
 
@@ -285,23 +285,23 @@ publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AD8BBBC377A040C480EB
 
 Note that the **Publish Profile** is actually stored as a GitHub Action Secret, this was also automatically created by Azure as part of the workflow YAML file:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/sec01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/sec01.png)
 
 **NOTE:** This Actions Secret is basically the contents of the Function Apps **Publish Profile File** which can be downloaded and re-added if ever needed manually:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/pub01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/pub01.png)
 
 Let's trigger this workflow manually and deploy our function into the Azure Function App. In GitHub navigate to Actions, select the workflow and then **Run Workflow**:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/run01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/run01.png)
 
 After the workflow as ran, we can now see our Function in the Function App on Azure.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/fin01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/fin01.png)
 
 ## Conclusion
 
-That's all there is to it, now we have successfully integrated our function app development lifecycle using source control with Git and GitHub and have the ability to automatically deploy our Functions using CI/CD workflows with GitHub Actions.  
+That's all there is to it, now we have successfully integrated our function app development lifecycle using source control with Git and GitHub and have the ability to automatically deploy our Functions using CI/CD workflows with GitHub Actions.
 
 We can simply create additional folders for any new Function Apps along with a corresponding YAML workflow linked to deploy functions created for the relevant Function Apps in Azure.
 
