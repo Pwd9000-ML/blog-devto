@@ -170,6 +170,155 @@ This brings us to the last step, automating the deployment of our **Functions** 
 
 **NOTE:** You can also manage the **Publish Profile** from the above step.  
 
-When you **save** the configuration above, you will notice that on the **GitHub repository** there is a new automation workflow that is automatically set up as well as a new repository secret.
+When you **save** the configuration above, you will notice that on the **GitHub repository** there is a new automation workflow that is automatically set up as well as a new repository secret.  
 
+The workflow will be in a special folder called **.github/workflows** that is automatically created by Azure:
 
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/work01.png)  
+
+In my case the workflow is called **master_decomfunc6144.yml**:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/work02.png)  
+
+Let's take a closer look at this workflow:
+
+```yml
+name: Build and deploy dotnet core app to Azure Function App - demofunc6144
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'demofunc6144/**'
+  workflow_dispatch:
+
+env:
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'demofunc6144' # set this to the path to your web app project, defaults to the repository root
+  DOTNET_VERSION: '6.0.x' # set this to the dotnet version to use
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    steps:
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@v2
+
+      - name: Setup DotNet ${{ env.DOTNET_VERSION }} Environment
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: 'Resolve Project Dependencies Using Dotnet'
+        shell: pwsh
+        run: |
+          pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+          dotnet build --configuration Release --output ./output
+          popd
+
+      - name: 'Run Azure Functions Action'
+        uses: Azure/functions-action@v1
+        id: fa
+        with:
+          app-name: 'demofunc6144'
+          slot-name: 'Production'
+          package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AD8BBBC377A040C480EB918BC04CE61C }}
+```
+
+**NOTE:** I have added the workflow trigger to only trigger on my **master** branch and for any changes made under the folder/repo path **demofunc6144**. The **workflow_dispatch:** trigger allows us to additionally trigger and run the automation workflow manually.
+
+```yml
+#Trigger
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'demofunc6144/**'
+  workflow_dispatch:
+```
+
+Also note that I have changed the environment variables for the function app package path to **demofunc6144**
+
+```yml
+#Environment variables
+env:
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'demofunc6144' # set this to the path to your web app project, defaults to the repository root
+  DOTNET_VERSION: '6.0.x' # set this to the dotnet version to use
+```
+
+Let's take a look at what this automation workflow will do when it is triggered:
+
+```yml
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    steps:
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@v2
+
+      - name: Setup DotNet ${{ env.DOTNET_VERSION }} Environment
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: 'Resolve Project Dependencies Using Dotnet'
+        shell: pwsh
+        run: |
+          pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+          dotnet build --configuration Release --output ./output
+          popd
+
+      - name: 'Run Azure Functions Action'
+        uses: Azure/functions-action@v1
+        id: fa
+        with:
+          app-name: 'demofunc6144'
+          slot-name: 'Production'
+          package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AD8BBBC377A040C480EB918BC04CE61C }}
+```
+
+The above job basically has 4 steps:
+
+1. The code is checked out onto the GitHub runner.
+2. The version of .NET we specified in the environment variables will be installed on the GitHub runner.
+3. The Azure Function is built and packaged
+4. The Function is deployed to the Azure Function App, **demofunc6144** using the **publish-profile** of the Function App:
+
+```yml
+publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AD8BBBC377A040C480EB918BC04CE61C }}
+```
+
+Note that the **Publish Profile** is actually stored as a GitHub Action Secret, this was also automatically created by Azure as part of the workflow YAML file:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/sec01.png)  
+
+**NOTE:** This Actions Secret is basically the contents of the Function Apps **Publish Profile File** which can be downloaded and re-added if ever needed manually:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/pub01.png)  
+
+Let's trigger this workflow manually and deploy our function into the Azure Function App. In GitHub navigate to Actions, select the workflow and then **Run Workflow**:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/run01.png)  
+
+After the workflow as ran, we can now see our Function in the Function App on Azure.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/fin01.png)  
+
+## Conclusion
+
+That's all there is to it, now we have successfully integrated our function app development lifecycle using source control with Git and GitHub and have the ability to automatically deploy our Functions using CI/CD workflows with GitHub Actions.  
+
+We can simply create additional folders for any new Function Apps along with a corresponding YAML workflow linked to deploy functions created for the relevant Function Apps in Azure.
+
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github Action](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Function-CICD/code) page. :heart:
+
+### _Author_
+
+Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [Twitter](https://twitter.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+
+{% user pwd9000 %}
+
+<a href="https://www.buymeacoffee.com/pwd9000"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=pwd9000&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
