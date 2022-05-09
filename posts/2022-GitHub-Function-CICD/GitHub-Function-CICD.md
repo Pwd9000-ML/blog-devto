@@ -71,7 +71,7 @@ az functionapp create `
 
 The above script created a resource group containing the function app, function app storage and insights as well as the consumption app service plan.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/func.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/func.png)
 
 **NOTE:** We have only created our **Function App** at this stage, we do not have any Functions yet. We will create our first function later on in this tutorial with GitHub.
 
@@ -99,16 +99,13 @@ Install the following tools:
 With all our tools now installed we can now clone our GitHub function repository to our local machine:
 
 1. Copy the **clone URL**  
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/clone01.png)  
+   ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/clone01.png)
 
-2. Open VSCode and navigate to the **Command Palette**
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/clone02.png)  
+2. Open VSCode and navigate to the **Command Palette** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/clone02.png)
 
-3. In the command palette type clone and click on **Git:clone**
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/clone03.png)  
+3. In the command palette type clone and click on **Git:clone** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/clone03.png)
 
-4. Paste in the copied **clone URL** and select a folder you want to clone the repository to. (**Note:** The repo will be cloned to a sub folder in the folder you selected, the name of this sub folder will match the repo name and will contain all your repo files.)
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/clone04.png)  
+4. Paste in the copied **clone URL** and select a folder you want to clone the repository to. (**Note:** The repo will be cloned to a sub folder in the folder you selected, the name of this sub folder will match the repo name and will contain all your repo files.) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/clone04.png)
 
 ## Link Azure Function App with GitHub Repository
 
@@ -116,10 +113,8 @@ Next we will create an empty folder inside of our locally cloned repository. Thi
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/folder.png)
 
-**NOTE:** I have called my folder in my repo the same name as the name I have given to my Azure Function App we created earlier.  
+**NOTE:** I have called my folder in my repo the same name as the name I have given to my Azure Function App we created earlier.
 
-Now we will create our first function inside of the folder using the **Azure Functions extension for Visual Studio Code** we installed earlier.  
+Now we will create our first function inside of the folder using the **Azure Functions extension for Visual Studio Code** we installed earlier.
 
-
-
-## Deploy Function App 
+## Deploy Function App
