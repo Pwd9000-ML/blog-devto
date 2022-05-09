@@ -1,5 +1,5 @@
 ---
-title: Implement CI/CD with GitHub - Deploy Azure Functions
+title: Implement CI/CD with GitHub - Deploy Azure Functions 
 published: false
 description: Implementing CI/CD with GitHub by automating Azure Function deployment
 tags: 'githubactions, azuredevops, github, azurefunctions'
@@ -69,18 +69,31 @@ az functionapp create `
     --assign-identity
 ```
 
-The above script created a resource group containing the function app, function app storage and insights as well as the consumption app service plan.
+The above script created a resource group containing the function app, function app storage and insights as well as the consumption app service plan.  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/func.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/func.png)  
 
 ## Create a GitHub repository
 
 Next up head over to your GitHub account and create a new repository. We will use this repository to link our function app/s source code to.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/ghrepo01.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/ghrepo01.png)  
 
-I have called my repository **_Demo-Azure-Functions_**
+I have called my repository ***Demo-Azure-Functions***
 
 ## Prepare Local Requirements
 
-As mentioned at the beginning of this post we will now install and run a few pre-requirements on the machine we will be working and developing our function code on.
+As mentioned at the beginning of this post we will now install and run a few pre-requirements on the machine we will be working and developing our function code on.  
+
+Install the following tools:  
+
+- [Install Azure Function Core Tools](https://github.com/Azure/azure-functions-core-tools#installing)
+- [Install VSCode](https://code.visualstudio.com/download)
+- [Install Azure Functions extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
+- [Install C# extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+
+## Clone GitHub Function repository
+
+With all our tools now installed we can now clone our GitHub function repository to our local machine: 
+
+![image.gif]()
