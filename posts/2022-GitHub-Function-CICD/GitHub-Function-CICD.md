@@ -1,5 +1,5 @@
 ---
-title: Implement CI/CD with GitHub - Deploy Azure Functions
+title: Implement CI/CD with GitHub - Deploy Azure Functions 
 published: false
 description: Implementing CI/CD with GitHub by automating Azure Function deployment
 tags: 'githubactions, azuredevops, github, azurefunctions'
@@ -29,7 +29,7 @@ You will also need to install a few local pre-requirements on the machine you wi
 
 ## Create an Azure Function App
 
-Lets start by creating a resource group and a windows dotnet function app in our Azure subscription. For this step I have written a PowerShell script using Azure CLI. You can also find ths script on my [GitHub repository]()
+Lets start by creating a resource group and a windows dotnet function app in our Azure subscription. For this step I have written a PowerShell script using Azure CLI. You can also find ths script on my [GitHub repository](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2022-GitHub-Function-CICD/code/Azure-Pre-Reqs.ps1).
 
 ```powershell
 #Log into Azure
@@ -68,3 +68,20 @@ az functionapp create `
     --functions-version "4" `
     --assign-identity
 ```
+
+The above script created a resource group containing the function app, function app storage and insights as well as the consumption app service plan.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/func.png)  
+
+## Create a GitHub repository
+
+Next up head over to your GitHub account and create a new repository. We will use this repository to link our function app/s source code to.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/ghrepo01.png)  
+
+I have called my repository ***Demo-Azure-Functions***
+
+## Prepare Local Requirements
+
+As mentioned at the beginning of this post we will now install and run a few pre-requirements on the machine we will be working and developing our function code on.  
+
