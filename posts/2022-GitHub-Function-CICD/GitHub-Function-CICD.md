@@ -77,11 +77,10 @@ The above script created a resource group containing the function app, function 
 
 ## Create a GitHub repository
 
-Next up head over to your GitHub account and create a new repository. We will use this repository to link our function app/s source code to.
+Next up head over to your GitHub account and create a new repository. We will use this repository to link our function app/s source code to.  
+I have called my repository **_Demo-Azure-Functions_**
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/ghrepo01.png)
-
-I have called my repository **_Demo-Azure-Functions_**
 
 ## Prepare Local Requirements
 
