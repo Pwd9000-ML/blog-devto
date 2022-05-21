@@ -140,7 +140,7 @@ The **Command Palette** will now present you with some options, select the follo
 
 6. Select appropriate access rights: **Anonymous/Function/Admin** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj08.png)
 
-Once the above process has completed, notice that now we have a **C#** function app template in our folder **demofunc6144** we can straight away start working on. Because this is also in our local **git repository** we can ensure that our code is always managed through source control.
+Once the above process has completed, notice that now we have a **C#** function app template in our folder **demofunc6144** we can start working on straight away. Because this code is also now in our local **git repository** we can ensure that our code is always managed through source control.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj09.png)
 
@@ -152,23 +152,23 @@ Save and commit the the changes, then push the new function to the remote **GitH
 
 ## Deploy Function App
 
-Now we have a fully integrated workspace we can use to create and develop **Functions**. But we have not set up any CI/CD yet.
+Now we have a fully integrated workspace we can use to create and develop **Functions** for our Function App. But we have not set up any CI/CD yet.
 
 This brings us to the last step, automating the deployment of our **Functions** with CI/CD using **GitHub Actions**
 
-1. Navigate back to the **Function App** hosted in Azure that we created earlier in this tutorial and got to **Deployment Center**: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/depl01.png)
+1. Navigate back to the **Function App** hosted in Azure that we created earlier in this tutorial and go to **Deployment Center**: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/depl01.png)
 
 2. Select Source **GitHub** and set the **Org**, **Repo** and **Branch** we created and hit **Save**. (**NOTE:** You will be asked to link your GitHub account if you are performing this step for the very first time): ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/depl02.png)
 
 **NOTE:** You can also manage the **Publish Profile** from the above step.
 
-When you **save** the configuration above, you will notice that on the **GitHub repository** there is a new automation workflow that is automatically set up as well as a new repository secret.
+When you **save** on the configuration above, you will notice that on the **GitHub repository** there is a new automation workflow that is automatically created as well as a new repository secret.
 
-The workflow will be in a special folder called **.github/workflows** that is automatically created by Azure:
+The workflow will be located in a special folder called **.github/workflows** that is automatically created by Azure:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/work01.png)
 
-In my case the workflow is called **master_decomfunc6144.yml**:
+In my case the workflow was called **master_decomfunc6144.yml**:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/work02.png)
 
@@ -272,7 +272,7 @@ jobs:
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AD8BBBC377A040C480EB918BC04CE61C }}
 ```
 
-The above job basically has 4 steps:
+The above job has 4 steps:
 
 1. The code is checked out onto the GitHub runner.
 2. The version of .NET we specified in the environment variables will be installed on the GitHub runner.
