@@ -31,6 +31,8 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **13/05/2022** | [Top Stories from the Microsoft DevOps Community – 13.05.2022](https://devblogs.microsoft.com/devops/top-stories-from-the-microsoft-devops-community-06-13-2022/) | Article | GitHub, Azure | Functions, CICD, Automation, Tutorial |
+| **11/05/2022** | [Implement CI/CD with GitHub - Deploy Azure Functions](https://dev.to/pwd9000/implement-cicd-with-github-deploy-azure-functions-3kma) | Blog/Website Post | GitHub, Azure | Functions, CICD, Automation, Tutorial |
 | **30/04/2022** | [Microsoft Cloud Security User Group - Automate Azure Role Based Access Control using Azure DevOps](https://youtu.be/QwA1Ai1oUP8) | Public Speaking | Azure DevOps, PowerShell | Security, DevSecOps, RBAC, Automation, Podcast |
 | **29/04/2022** | [Journey To The Cloud 4.0 - Protect secrets in Azure Functions using Key Vault](https://youtu.be/C0s6A758mn0) | Public Speaking | Security, Serverless, FunctionApps, Tutorial |
 | **28/04/2022** | [DeveloperWeek Europe 2022 - Reusable GitHub workflows to automate tokens](https://www.developerweek.com/europe/speakers/) | Public Speaking | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, ServiceBus, DevSecOps, Speaker |
