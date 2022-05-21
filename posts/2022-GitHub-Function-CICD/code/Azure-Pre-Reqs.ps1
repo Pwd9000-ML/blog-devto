@@ -3,7 +3,6 @@ az login
 
 # Setup Variables.
 $randomInt = Get-Random -Maximum 9999
-$subscriptionId = $(az account show --query id -o tsv)
 $resourceGroupName = "GitHub-Managed-Function-Demo"
 $storageName = "demofuncsa$randomInt"
 $functionAppName = "demofunc$randomInt"

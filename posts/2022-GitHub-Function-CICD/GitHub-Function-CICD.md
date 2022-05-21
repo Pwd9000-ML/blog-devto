@@ -38,7 +38,6 @@ az login
 
 # Setup Variables.
 $randomInt = Get-Random -Maximum 9999
-$subscriptionId = $(az account show --query id -o tsv)
 $resourceGroupName = "GitHub-Managed-Function-Demo"
 $storageName = "demofuncsa$randomInt"
 $functionAppName = "demofunc$randomInt"
@@ -133,7 +132,7 @@ The **Command Palette** will now present you with some options, select the follo
 
 2. Select a .NET runtime: **.NET 6** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj04.png)
 
-3. Select a template for your project;s first function: **HTTP trigger** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj05.png)
+3. Select a template for your project's first function: **HTTP trigger** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj05.png)
 
 4. Give the function a name: **MyFirstDotnetFunction** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/proj06.png)
 
@@ -277,7 +276,7 @@ The above job basically has 4 steps:
 
 1. The code is checked out onto the GitHub runner.
 2. The version of .NET we specified in the environment variables will be installed on the GitHub runner.
-3. The Azure Function is built and packaged
+3. The Azure Function is built and packaged.
 4. The Function is deployed to the Azure Function App, **demofunc6144** using the **publish-profile** of the Function App:
 
 ```yml
@@ -296,7 +295,7 @@ Let's trigger this workflow manually and deploy our function into the Azure Func
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/run01.png)
 
-After the workflow as ran, we can now see our Function in the Function App on Azure.
+After the workflow has run, we can now see our Function in the Function App on Azure.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/fin01.png)
 
