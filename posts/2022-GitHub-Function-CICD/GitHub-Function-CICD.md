@@ -6,6 +6,7 @@ tags: 'githubactions, azuredevops, github, azurefunctions'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Function-CICD/assets/main.png'
 canonical_url: null
 id: 1051702
+date: '2022-05-11T09:47:24Z'
 ---
 
 ## Overview
