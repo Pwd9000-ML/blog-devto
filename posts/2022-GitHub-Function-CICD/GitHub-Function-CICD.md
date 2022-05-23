@@ -305,7 +305,7 @@ That's all there is to it, now we have successfully integrated our function app 
 
 We can simply create additional folders for any new Function Apps along with a corresponding YAML workflow linked to deploy functions created for the relevant Function Apps in Azure.
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github Action](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Function-CICD/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Function-CICD/code) page. :heart:
 
 ### _Author_
 
