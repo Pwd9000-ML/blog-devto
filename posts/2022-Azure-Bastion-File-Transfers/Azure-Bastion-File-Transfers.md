@@ -20,8 +20,6 @@ To get started you'll need a few things, firstly:
 - An Azure Subscription
 - A GitHub Account and Git repository
 
-
-
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-Azure-Bastion-File-Transfers/code) page. :heart:
 
 ### _Author_
