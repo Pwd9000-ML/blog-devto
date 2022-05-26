@@ -23,7 +23,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **25/05/2022** | [Microsoft Build 2022 - Create Serverless Logic with Azure Functions](https://register.build.microsoft.com/) | Public Speaking | FunctionApps | Serverless, Tutorial |
+| **25/05/2022** | [Microsoft Build 2022 - Create Serverless Logic with Azure Functions](https://www.linkedin.com/posts/marcel-l-61b0a96b_msbuild2022-azure-serverless-activity-6935348798332280833-Fs37?utm_source=linkedin_share&utm_medium=member_desktop_web) | Public Speaking | FunctionApps | Serverless, Tutorial |
 
 ---
 
@@ -31,6 +31,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **25/05/2022** | [Microsoft Build 2022 - Create Serverless Logic with Azure Functions](https://www.linkedin.com/posts/marcel-l-61b0a96b_msbuild2022-azure-serverless-activity-6935348798332280833-Fs37?utm_source=linkedin_share&utm_medium=member_desktop_web) | Public Speaking | FunctionApps | Serverless, Tutorial |
 | **13/05/2022** | [Top Stories from the Microsoft DevOps Community – 13.05.2022](https://devblogs.microsoft.com/devops/top-stories-from-the-microsoft-devops-community-06-13-2022/) | Article | GitHub, Azure | Functions, CICD, Automation, Tutorial |
 | **11/05/2022** | [Implement CI/CD with GitHub - Deploy Azure Functions](https://dev.to/pwd9000/implement-cicd-with-github-deploy-azure-functions-3kma) | Blog/Website Post | GitHub, Azure | Functions, CICD, Automation, Tutorial |
 | **30/04/2022** | [Microsoft Cloud Security User Group - Automate Azure Role Based Access Control using Azure DevOps](https://youtu.be/QwA1Ai1oUP8) | Public Speaking | Azure DevOps, PowerShell | Security, DevSecOps, RBAC, Automation, Podcast |
