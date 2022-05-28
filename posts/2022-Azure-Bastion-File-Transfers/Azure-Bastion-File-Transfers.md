@@ -3,7 +3,7 @@ title: Upload files to Azure Virtual Machines with Azure Bastion in tunnel mode.
 published: false
 description: Upload files to an Azure Linux VM using Azure Bastion on Windows using the SSH native Client
 tags: 'azure, bastion, cloudnetworking, tunnel'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/main1.png'
 canonical_url: null
 id: 1093908
 ---
