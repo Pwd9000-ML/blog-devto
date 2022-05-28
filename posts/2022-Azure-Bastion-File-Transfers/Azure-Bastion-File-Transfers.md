@@ -128,7 +128,7 @@ However in my case I will connect with a private key instead of a Password. To d
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/winscp3.png)
 
-**Note:** If you are using a `PEM` private key, WinSCP will automatically create a converted copy of the `PEM` in PPK format. If you select **OK** in the following screen it will ask you where to save the converted `PPK` formatted key:
+**Note:** If you are using a `PEM` private key, WinSCP will automatically create a converted copy of the `PEM` in `PPK` format. If you select **OK** in the following screen it will ask you where to save the converted `PPK` formatted key:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/winscp2.png)
 
