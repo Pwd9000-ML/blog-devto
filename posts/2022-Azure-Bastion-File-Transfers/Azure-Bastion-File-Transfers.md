@@ -87,7 +87,7 @@ Next we will enable native client support. Navigate to the **Bastion Configurati
 
 Now with our Azure Bastion set up and configured we will open a secure tunnel through Azure Bastion to our Azure hosted Linux VM, which we can then connect to using WinSCP to start uploading files to our VM.
 
-Navigate to the Linux VM in the Azure portal and go to **Properties** and mak a not eof the **Resource ID** as we will need this value when we open the Bastion tunnel.
+Navigate to the Linux VM in the Azure portal, go to **Properties** and make a note of the **Resource ID** as we will need this value when we open the Bastion tunnel.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/rid.png)
 
