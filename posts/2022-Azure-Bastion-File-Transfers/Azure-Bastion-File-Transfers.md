@@ -43,7 +43,7 @@ To get started you'll need a few things, firstly:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/vnet.png)
 
-Next I will be using **Azure CLI** in a PowerShell Script below called: [Bastion_Setup.ps1](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-Azure-Bastion-File-Transfers/code/Bastion_Setup.ps1) to set up the Bastion Host:
+Next I will be using **Azure CLI** in a PowerShell script below called: [Bastion_Setup.ps1](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-Azure-Bastion-File-Transfers/code/Bastion_Setup.ps1) to set up the Bastion Host:
 
 ```powershell
 #### Ensure VNET and AzureBastionSubnet with /26 CIDR is available before creation of Bastion Host ####
