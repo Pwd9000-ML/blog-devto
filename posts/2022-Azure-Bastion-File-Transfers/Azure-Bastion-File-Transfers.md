@@ -1,5 +1,5 @@
 ---
-title: Upload files to Azure Virtual Machines with Azure Bastion in tunnel mode.
+title: Upload files to Azure Virtual Machines with Azure Bastion in tunnel mode
 published: false
 description: Upload files to an Azure Linux VM using Azure Bastion on Windows using the SSH native Client
 tags: 'azure, bastion, cloudnetworking, tunnel'
@@ -34,7 +34,16 @@ To get started you'll need a few things, firstly:
 - An Azure Subscription
 - An Azure Bastion (Standard SKU)
 - Azure CLI (Version 2.32 or later)
-- The Resource ID for the VM to which you want to upload files to. (In our case it will be our Linux VM hosted in Azure).
+- WinSCP (Version 5.19.6 or later)
+- The Resource ID of the VM to which you want to upload files to. (In my case it will be a Linux VM hosted in Azure).
+
+## Setting up an Azure Bastion (Standard SKU)
+
+**NOTE:** Before we can set up an Azure Bastion host we need an Azure Virtual Network with a **/26** subnet called **AzureBastionSubnet**. I already have a VNET and subnet set up in my environment:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/vnet.png)
+
+For this step I will be using **Azure CLI** in a [PowerShell Script](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-Azure-Bastion-File-Transfers/code/Bastion_setup.ps1) to set up 
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-Azure-Bastion-File-Transfers/code) page. :heart:
 
