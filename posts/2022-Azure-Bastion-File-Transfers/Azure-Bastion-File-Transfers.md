@@ -110,7 +110,7 @@ az network bastion tunnel --name $bastionName `
     --port "50022"
 ```
 
-As you can see we now have a tunnel open on port: `50022` on out local Windows machine.
+As you can see we now have a tunnel open on port: `50022` on our local Windows machine (127.0.0.1).
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/tunnel.png)
 
