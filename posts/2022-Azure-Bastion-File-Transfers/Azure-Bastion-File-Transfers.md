@@ -124,7 +124,7 @@ Next we will open WinSCP and connect to our localhost (127.0.0.1) to the open po
 
 **Note:** The file protocol is `SCP` and the **UserName** and **Password** is that of our target VM.
 
-However in my case I will connect with a private key instead of a Password. To do so, in WinSCP on the screen above click on **Advanced** and select the private key you want to use.
+However in my case I will connect with a private key instead of a Password. To do so, in WinSCP on the screen above click on **Advanced** and select the private key you want to use under the SSH -> Authentication section.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/winscp3.png)
 
