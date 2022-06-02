@@ -1,6 +1,6 @@
 ---
 title: Upload files to Azure Virtual Machines with Azure Bastion in tunnel mode
-published: false
+published: true
 description: Upload files to an Azure Linux VM using Azure Bastion on Windows using the SSH native Client
 tags: 'azure, bastion, cloudnetworking, tunnel'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/main1.png'
@@ -10,18 +10,22 @@ id: 1093908
 
 ## Overview
 
-**Note:** The topics shown in this blog post is currently in **Public Preview** as of February 2022 and has potential to change.
-
 In todays tutorial we will take a look at a cool new feature that is available to us in [Azure Bastion](https://docs.microsoft.com/en-us/azure/bastion/bastion-overview) whereby we can upload and download files to a VM using a native client. You can read more about [this feature](https://docs.microsoft.com/en-us/azure/bastion/vm-upload-download-native) on Microsoft Docs.
+
+With the new Azure Bastion native client support, available with Standard SKU, you can now:  
+
+* Connect to your target Azure virtual machine via Azure Bastion using Azure CLI and a native client on your local machine.
+* Log into Azure Active Directory-joined virtual machines using your Azure Active Directory credentials.
+* Access the features available with your chosen native client (ex: file transfer).
 
 Today we will look specifically at how we can upload files from a **Windows OS** based local machine using **WinSCP** to a Linux Azure VM using Azure Bastion in **Tunnel Mode**.
 
 There are a few important notes and limitations I would like to cover off first before we start:
 
-- File transfers are supported using the **native client** only. You can't upload or download files using PowerShell or via the Azure portal.
-- To both **upload** and **download** files, you must use the **Windows** native client and **RDP**.
-- You can upload files to a VM using the native client of your choice and either **RDP** or **SSH**.
-- This feature requires the **Standard SKU**. The Basic SKU doesn't support using the native client.
+* File transfers are supported using the **native client** only. You can't upload or download files using PowerShell or via the Azure portal.
+* To both **upload** and **download** files, you must use the **Windows** native client and **RDP**.
+* You can upload files to a VM using the native client of your choice and either **RDP** or **SSH**.
+* This feature requires the **Standard SKU**. The Basic SKU doesn't support using the native client.
 
 In this demonstration, since our target VM is running a Linux OS we will be using Azure Bastion in **tunnel mode**, we will only be able to upload files and downloading files is **NOT** supported yet.
 
@@ -31,11 +35,11 @@ If you want to see how you can **Upload** and **Download** files using the nativ
 
 To get started you'll need a few things, firstly:
 
-- An Azure Subscription
-- An Azure Bastion (Standard SKU)
-- Azure CLI (Version 2.32 or later)
-- WinSCP (Version 5.19.6 or later)
-- The Resource ID of the VM to which you want to upload files to. (In my case it will be a Linux VM hosted in Azure).
+* An Azure Subscription
+* An Azure Bastion (Standard SKU)
+* Azure CLI (Version 2.32 or later)
+* WinSCP (Version 5.19.6 or later)
+* The Resource ID of the VM to which you want to upload files to. (In my case it will be a Linux VM hosted in Azure).
 
 ## Setting up an Azure Bastion (Standard SKU)
 
