@@ -25,7 +25,7 @@ Before building and running docker images we need to set a few things up first. 
 
 - Install a code editor such as [VSCode](https://code.visualstudio.com/download)
 
-- Install and enable WSL2 (For more information see: [how to enable WSL2](https://docs.microsoft.com/en-us/windows/wsl/install)):  
+- Install and enable WSL2 (For more information see: [how to enable WSL2](https://docs.microsoft.com/en-us/windows/wsl/install)):
 
 _Open PowerShell as administrator and run:_
 
@@ -43,7 +43,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Conta
 
 - Download and Install [Docker Desktop For Windows](https://docs.docker.com/desktop/windows/install/) (This will automatically also install **Docker-Compose**)
 
-- Once **Docker Desktop For Windows** is installed you need to switch to Windows containers. Use the Docker item in the Windows system tray:  
+- Once **Docker Desktop For Windows** is installed you need to switch to Windows containers. Use the Docker item in the Windows system tray:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/winc.png)
 
