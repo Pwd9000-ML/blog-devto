@@ -47,13 +47,13 @@ Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Conta
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/winc.png)
 
-### PowerShell Scripts used in image creation
+### Prepare PowerShell Scripts used in image creation
 
 Now that we have **Docker-Desktop** as well as **Docker-Compose** installed and set to use **Windows Containers** we can start to build out our self hosted GitHub runner docker image.
 
-Open VSCode, you can clone the repo found on my GitHub project [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows) which contains all the files or simply follow along with the following steps:
+Open VSCode, you can clone the repo found on my GitHub project [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows) which contains all the files or simply follow along with the following steps. We will prepare a few PowerShell scripts that will be needed as part of our docker image creation.  
 
-- Create a root folder called `docker-github-runner-windows` and then another sub folder called `scripts`. Inside of the [scripts](https://github.com/Pwd9000-ML/docker-github-runner-windows/tree/master/scripts) folder you can create the following three powershell scripts:
+Create a `root` folder called `docker-github-runner-windows` and then another sub folder called `scripts`. Inside of the [scripts](https://github.com/Pwd9000-ML/docker-github-runner-windows/tree/master/scripts) folder you can create the following three powershell scripts:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/scripts.png)
 
