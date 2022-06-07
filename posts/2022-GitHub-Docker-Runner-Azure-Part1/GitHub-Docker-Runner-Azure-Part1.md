@@ -21,12 +21,29 @@ Part two will focus on building a **Linux based Ubuntu image** and in parts thre
 
 ### Setup environment
 
-To start of, before building and running our docker images we need to set up a few things. For my environment I will be using a **Windows11** virtual machine. You can also use Windows Server 2019/2022 or any Windows based OS that your prefer to run your docker environment on. Things that we will need on our VM are:
+Before building and running docker images we need to set a few things up first. For my environment I will be using a **Windows 11** virtual machine running **WSL2**. Here is more information on running docker on [Windows Server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-Server#install-docker). Things that we will need on our VM are:
 
--
--
--
--
+1. Install a code editor such as [VSCode](https://code.visualstudio.com/download)
+
+2. Install and enable WSL2:  
+    - Open PowerShell as administrator and run `wsl --install`
+    - Also run `Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Containers") -All`
+    - Reboot the system
+
+    **NOTE:** Here is some more information on [how to enable WSL2](https://docs.microsoft.com/en-us/windows/wsl/install)
+
+3. Download and Install [Docker Desktop For Windows](https://docs.docker.com/desktop/windows/install/)
+
+    **NOTE:** When you install Docker Desktop for Windows this will automatically also install **Docker-Compose**.
+
+4. Once **Docker Desktop For Windows** is installed you need to switch to Windows containers.  
+    You can use either the Docker item in the Windows system tray:  
+    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/winc.png)
+    Or by using the following command in a PowerShell prompt: `& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .`
+
+### Building the Docker Image (Windows)
+
+Now that we have **Docker-Desktop** as well as **Docker-Compose** intalled
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-windows) page. :heart:
 
