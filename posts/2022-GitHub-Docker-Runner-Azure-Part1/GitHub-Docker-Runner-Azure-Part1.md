@@ -232,16 +232,20 @@ ADD scripts/Cleanup-Runners.ps1 .
 ENTRYPOINT ["pwsh.exe", ".\\start.ps1"]
 ```
 
-Let's break down and see what this docker build file will actually do step by step:
-
-```dockerfile
-FROM mcr.microsoft.com/windows/servercore/insider:10.0.19035.1
-```
+Let's break down and see what this docker build file will actually do step by step:  
 
 The `FROM` instruction will tell our docker build to fetch and use a windows OS base image. Because windows base images can be fairly large we are using servercore **insider** edition, because the size is very compact and optimized.  
 
 **NOTE:** For compatibility on "your" host/VM running docker you may need to use a specific tag. The host OS version must match the container OS version. If you want to run a container based on a newer Windows build, make sure you have an equivalent host build. Otherwise, you can use Hyper-V isolation to run older containers on new host builds. `mcr.microsoft.com/windows/servercore/insider:10.0.{build}.{revision}`  
 Servercore tag reference: https://mcr.microsoft.com/en-us/product/windows/servercore/insider/tags
+
+```dockerfile
+FROM mcr.microsoft.com/windows/servercore/insider:10.0.19035.1
+```
+
+The next section we define an input argument using `ARG`. This is so that we can instruct the docker build command to use a very specific version of the `GitHub runner` agent when building the image.  
+
+In addition we can also label our image with some metadata using `LABEL` to put more information against the docker image. You can change these values as necessary.
 
 ```dockerfile
 #input GitHub runner version argument
@@ -254,9 +258,7 @@ LABEL BaseImage="servercore/insider:10.0.19035.1"
 LABEL RunnerVersion=${RUNNER_VERSION}
 ```
 
-The next section we define an input argument using `ARG`. This is so that we can instruct the docker build command to use a very specific version of the `GitHub runner` agent when building the image.  
-
-In addition we can also label our image with some metadata using `LABEL` to put more information against the docker image. You can change these values as necessary.  
+Next we define....
 
 ```dockerfile
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
@@ -265,7 +267,6 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 WORKDIR /actions-runner
 ```
 
-Next we define....
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-windows) page. :heart:
 
