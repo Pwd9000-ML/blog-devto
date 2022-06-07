@@ -25,27 +25,23 @@ Before building and running docker images we need to set a few things up first. 
 
 1. Install a code editor such as [VSCode](https://code.visualstudio.com/download)
 
-2. Install and enable WSL2:
+2. Install and enable WSL2 (For more information see: [how to enable WSL2](https://docs.microsoft.com/en-us/windows/wsl/install)):
 
-   - Open PowerShell as administrator and run:
+   _Open PowerShell as administrator and run:_
 
    ```powershell
    wsl --install
    ```
 
-   - Also run:
+   _After WSL is installed, run:_
 
    ```powershell
    Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Containers") -All
    ```
 
-   - Reboot the system
+   _Reboot the system_  
 
-   **NOTE:** Here is some more information on [how to enable WSL2](https://docs.microsoft.com/en-us/windows/wsl/install)
-
-3. Download and Install [Docker Desktop For Windows](https://docs.docker.com/desktop/windows/install/)
-
-   **NOTE:** When you install Docker Desktop for Windows this will automatically also install **Docker-Compose**.
+3. Download and Install [Docker Desktop For Windows](https://docs.docker.com/desktop/windows/install/) (This will automatically also install **Docker-Compose**)  
 
 4. Once **Docker Desktop For Windows** is installed you need to switch to Windows containers.  
    You can use either the Docker item in the Windows system tray:  
