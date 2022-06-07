@@ -40,10 +40,6 @@ Before building and running docker images we need to set a few things up first. 
 
     - Reboot the system
 
-   - Open PowerShell as administrator and run `wsl --install`
-   - Also run `Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Containers") -All`
-   - Reboot the system
-
    **NOTE:** Here is some more information on [how to enable WSL2](https://docs.microsoft.com/en-us/windows/wsl/install)
 
 3. Download and Install [Docker Desktop For Windows](https://docs.docker.com/desktop/windows/install/)
