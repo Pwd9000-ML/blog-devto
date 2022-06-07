@@ -39,9 +39,9 @@ Before building and running docker images we need to set a few things up first. 
    Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Containers") -All
    ```
 
-   _Reboot the system_  
+   _Reboot the system_
 
-3. Download and Install [Docker Desktop For Windows](https://docs.docker.com/desktop/windows/install/) (This will automatically also install **Docker-Compose**)  
+3. Download and Install [Docker Desktop For Windows](https://docs.docker.com/desktop/windows/install/) (This will automatically also install **Docker-Compose**)
 
 4. Once **Docker Desktop For Windows** is installed you need to switch to Windows containers.  
    You can use either the Docker item in the Windows system tray:  
