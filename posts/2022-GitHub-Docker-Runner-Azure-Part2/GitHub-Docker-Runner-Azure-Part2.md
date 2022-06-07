@@ -8,4 +8,3 @@ canonical_url: null
 id: 1107071
 series: Self Hosted Docker GitHub Runners on Azure
 ---
-
