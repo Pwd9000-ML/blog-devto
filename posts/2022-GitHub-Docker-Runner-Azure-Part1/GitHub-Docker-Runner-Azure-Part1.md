@@ -53,7 +53,7 @@ Now that we have **Docker-Desktop** as well as **Docker-Compose** installed and 
 
 Open VSCode, you can clone the repo found on my GitHub project [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows) which contains all the files or simply follow along with the following steps. We will prepare a few PowerShell scripts that will be needed as part of our docker image creation.
 
-Create a `root` folder called `docker-github-runner-windows` and then another sub folder called `scripts`. Inside of the [scripts](https://github.com/Pwd9000-ML/docker-github-runner-windows/tree/master/scripts) folder you can create the following three powershell scripts:
+Create a `root` folder called `docker-github-runner-windows` and then another sub folder called `scripts`. Inside of the [scripts](https://github.com/Pwd9000-ML/docker-github-runner-windows/tree/master/scripts) folder you can create the following three PowerShell scripts:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/scripts.png)
 
@@ -124,10 +124,10 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://com
 
 ### [start.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/scripts/start.ps1)
 
-This script will be used as our `ENTRYPOINT` script and will be used to bootstrap our docker container when we start/run a container rom the image we will be creating. The main purpose of this script is to register a new self hosted GitHub runner instance on the repo we pass into the docker environment each time a new container is spun up from the image.
+This script will be used as our `ENTRYPOINT` script and will be used to bootstrap our docker container when we start/run a container from the image we will be creating. The main purpose of this script is to register a new self hosted GitHub runner instance on the repo we pass into the docker environment each time a new container is spun up from the image.
 
 ```powershell
-#This script invokes GitHub-CLI (Already installed on container)
+#This script invokes GitHub-CLI (Already installed on container image)
 #To use this entrypoint script run: Docker run -e GH_TOKEN='myPatToken' -e GH_OWNER='orgName' -e GH_REPOSITORY='repoName' -d imageName
 Param (
     [Parameter(Mandatory = $false)]
@@ -154,7 +154,7 @@ try {
     write-host "Registering GitHub Self Hosted Runner on: $owner/$repo"
     ./config.cmd --unattended --url "https://github.com/$owner/$repo" --token $regToken --name $runnerName
 
-    #Remove PAT token after cleanup
+    #Remove PAT token after registering new instance
     $pat=$null
     $env:GH_TOKEN=$null
 
