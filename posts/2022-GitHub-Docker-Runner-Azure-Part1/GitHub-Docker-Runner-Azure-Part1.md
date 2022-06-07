@@ -232,7 +232,7 @@ ADD scripts/Cleanup-Runners.ps1 .
 ENTRYPOINT ["pwsh.exe", ".\\start.ps1"]
 ```
 
-Let's break down and see what this docker build file will actually do step by step:  
+Let's break down and see what this docker build file will actually do step by step:
 
 The `FROM` instruction will tell our docker build to fetch and use a windows OS base image. Because windows base images can be fairly large we are using servercore **insider** edition, because the size is very compact and optimized.
 
@@ -243,7 +243,7 @@ Servercore tag reference: https://mcr.microsoft.com/en-us/product/windows/server
 FROM mcr.microsoft.com/windows/servercore/insider:10.0.19035.1
 ```
 
-The next section we define an input argument using `ARG`. This is so that we can instruct the docker build command to use a very specific version of the `GitHub runner` agent when building the image.  
+The next section we define an input argument using `ARG`. This is so that we can instruct the docker build command to use a very specific version of the `GitHub runner` agent when building the image.
 
 In addition we can also label our image with some metadata using `LABEL` to put more information against the docker image. You can change these values as necessary.
 
@@ -266,7 +266,6 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 #Set working directory
 WORKDIR /actions-runner
 ```
-
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-windows) page. :heart:
 
