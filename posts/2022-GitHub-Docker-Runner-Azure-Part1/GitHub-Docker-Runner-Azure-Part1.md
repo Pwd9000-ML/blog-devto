@@ -40,16 +40,19 @@ Before building and running docker images we need to set a few things up first. 
 
     - Reboot the system
 
-    **NOTE:** Here is some more information on [how to enable WSL2](https://docs.microsoft.com/en-us/windows/wsl/install)
+   - Open PowerShell as administrator and run `wsl --install`
+   - Also run `Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Containers") -All`
+   - Reboot the system
+
+   **NOTE:** Here is some more information on [how to enable WSL2](https://docs.microsoft.com/en-us/windows/wsl/install)
 
 3. Download and Install [Docker Desktop For Windows](https://docs.docker.com/desktop/windows/install/)
 
-    **NOTE:** When you install Docker Desktop for Windows this will automatically also install **Docker-Compose**.
+   **NOTE:** When you install Docker Desktop for Windows this will automatically also install **Docker-Compose**.
 
 4. Once **Docker Desktop For Windows** is installed you need to switch to Windows containers.  
-    You can use either the Docker item in the Windows system tray:  
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/winc.png)
-    Or by using the following command in a PowerShell prompt: `& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .`
+   You can use either the Docker item in the Windows system tray:  
+   ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/winc.png) Or by using the following command in a PowerShell prompt: `& $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .`
 
 ### Building the Docker Image (Windows)
 
