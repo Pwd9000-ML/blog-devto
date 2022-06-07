@@ -234,7 +234,7 @@ ENTRYPOINT ["pwsh.exe", ".\\start.ps1"]
 
 Let's break down and see what this docker build file will actually do step by step:  
 
-The `FROM` instruction will tell our docker build to fetch and use a windows OS base image. Because windows base images can be fairly large we are using servercore **insider** edition, because the size is very compact and optimized.  
+The `FROM` instruction will tell our docker build to fetch and use a windows OS base image. Because windows base images can be fairly large we are using servercore **insider** edition, because the size is very compact and optimized.
 
 **NOTE:** For compatibility on "your" host/VM running docker you may need to use a specific tag. The host OS version must match the container OS version. If you want to run a container based on a newer Windows build, make sure you have an equivalent host build. Otherwise, you can use Hyper-V isolation to run older containers on new host builds. `mcr.microsoft.com/windows/servercore/insider:10.0.{build}.{revision}`  
 Servercore tag reference: https://mcr.microsoft.com/en-us/product/windows/servercore/insider/tags
