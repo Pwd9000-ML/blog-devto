@@ -25,7 +25,7 @@ Before building and running docker images we need to set a few things up first. 
 
 - Install a code editor such as [VSCode](https://code.visualstudio.com/download)
 
-- Install and enable WSL2 (For more information see: [how to enable WSL2](https://docs.microsoft.com/en-us/windows/wsl/install)):  
+- Install and enable WSL2 (For more information see: [how to enable WSL2](https://docs.microsoft.com/en-us/windows/wsl/install)):
 
 _Open PowerShell as administrator and run:_
 
@@ -43,23 +43,23 @@ Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Conta
 
 - Download and Install [Docker Desktop For Windows](https://docs.docker.com/desktop/windows/install/) (This will automatically also install **Docker-Compose**)
 
-- Once **Docker Desktop For Windows** is installed you need to switch to Windows containers. Use the Docker item in the Windows system tray:  
+- Once **Docker Desktop For Windows** is installed you need to switch to Windows containers. Use the Docker item in the Windows system tray:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/winc.png)
 
 ### PowerShell Scripts used in image creation
 
-Now that we have **Docker-Desktop** as well as **Docker-Compose** installed and set to use **Windows Containers** we can start to build out our self hosted GitHub runner docker image.  
+Now that we have **Docker-Desktop** as well as **Docker-Compose** installed and set to use **Windows Containers** we can start to build out our self hosted GitHub runner docker image.
 
-Open VSCode, you can clone the repo found on my GitHub project [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows) which contains all the files or simply follow along with the following steps:  
+Open VSCode, you can clone the repo found on my GitHub project [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows) which contains all the files or simply follow along with the following steps:
 
-- Create a root folder called `docker-github-runner-windows` and then another sub folder called `scripts`. Inside of the [scripts](https://github.com/Pwd9000-ML/docker-github-runner-windows/tree/master/scripts) folder you can create the following three powershell scripts:  
+- Create a root folder called `docker-github-runner-windows` and then another sub folder called `scripts`. Inside of the [scripts](https://github.com/Pwd9000-ML/docker-github-runner-windows/tree/master/scripts) folder you can create the following three powershell scripts:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/scripts.png)
 
-### [Cleanup-Runners.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/scripts/Cleanup-Runners.ps1)  
+### [Cleanup-Runners.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/scripts/Cleanup-Runners.ps1)
 
-This script will be used to remove/un-register old or stale GitHub runner containers when we start to look at scaling containers up and down based on our needs.  
+This script will be used to remove/un-register old or stale GitHub runner containers when we start to look at scaling containers up and down based on our needs.
 
 ```powershell
 #This script invokes GitHub-CLI (Pre-installed on container image)
@@ -102,9 +102,9 @@ $pat=$null
 $env:GH_TOKEN=$null
 ```
 
-### [Install-Choco.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/scripts/Install-Choco.ps1)  
+### [Install-Choco.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/scripts/Install-Choco.ps1)
 
-This script will be used to install Chocolatey (Windows package manager) into our docker image when we build the image.  
+This script will be used to install Chocolatey (Windows package manager) into our docker image when we build the image.
 
 ```powershell
 $securityProtocolSettingsOriginal = [System.Net.ServicePointManager]::SecurityProtocol
@@ -122,13 +122,13 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://com
 [System.Net.ServicePointManager]::SecurityProtocol = $securityProtocolSettingsOriginal
 ```
 
-### [start.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/scripts/start.ps1)  
+### [start.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/scripts/start.ps1)
 
-This script will be used as our `ENTRYPOINT` script and will be used to bootstrap our docker container when we start/run a container rom the image we will be creating. The main purpose of this script is to register a new self hosted GitHub runner instance on the repo we pass into the docker environment each time a new container is spun up from the image.  
+This script will be used as our `ENTRYPOINT` script and will be used to bootstrap our docker container when we start/run a container rom the image we will be creating. The main purpose of this script is to register a new self hosted GitHub runner instance on the repo we pass into the docker environment each time a new container is spun up from the image.
 
 ```powershell
 #This script invokes GitHub-CLI (Already installed on container)
-#To use this entrypoint script run: Docker run -e GH_TOKEN='myPatToken' -e GH_OWNER='orgName' -e GH_REPOSITORY='repoName' -d imageName 
+#To use this entrypoint script run: Docker run -e GH_TOKEN='myPatToken' -e GH_OWNER='orgName' -e GH_REPOSITORY='repoName' -d imageName
 Param (
     [Parameter(Mandatory = $false)]
     [string]$owner = $env:GH_OWNER,
@@ -174,7 +174,7 @@ finally {
 
 ### Building the Docker Image (Windows)
 
-Now with our scripts ready, we can get to the fun part... Building the **windows docker image**. Navigate back to the root folder and create a file called: `dockerfile`:  
+Now with our scripts ready, we can get to the fun part... Building the **windows docker image**. Navigate back to the root folder and create a file called: `dockerfile`:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/folder.png)
 
@@ -186,9 +186,9 @@ This dockerfile contains the instructions to build our container image.
 ##### BASE IMAGE INFO ######
 #Using servercore insider edition for compacted size.
 #For compatibility on "your" host running docker you may need to use a specific tag.
-#E.g. the host OS version must match the container OS version. 
-#If you want to run a container based on a newer Windows build, make sure you have an equivalent host build. 
-#Otherwise, you can use Hyper-V isolation to run older containers on new host builds. 
+#E.g. the host OS version must match the container OS version.
+#If you want to run a container based on a newer Windows build, make sure you have an equivalent host build.
+#Otherwise, you can use Hyper-V isolation to run older containers on new host builds.
 #The default entrypoint is for this image is Cmd.exe. To run the image:
 #docker run mcr.microsoft.com/windows/servercore/insider:10.0.{build}.{revision}
 #tag reference: https://mcr.microsoft.com/en-us/product/windows/servercore/insider/tags
@@ -232,9 +232,7 @@ ADD scripts/Cleanup-Runners.ps1 .
 ENTRYPOINT ["pwsh.exe", ".\\start.ps1"]
 ```
 
-Let's see what this docker build file will actually do step by step:  
-
-
+Let's see what this docker build file will actually do step by step:
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-windows) page. :heart:
 
