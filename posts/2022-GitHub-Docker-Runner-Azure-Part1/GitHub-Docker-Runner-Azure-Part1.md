@@ -23,10 +23,10 @@ Part two will focus on building a **Linux based Ubuntu image** and in parts thre
 
 Before building and running docker images we need to set a few things up first. For my environment I will be using a **Windows 11** virtual machine running **WSL2**. Here is more information on running docker on [Windows Server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-Server#install-docker). Things that we will need on our VM are:
 
-- Install a code editor such as [VSCode](https://code.visualstudio.com/download)  
+- Install a code editor such as [VSCode](https://code.visualstudio.com/download)
 
 - Install and enable WSL2 (For more information see: [how to enable WSL2](https://docs.microsoft.com/en-us/windows/wsl/install)):  
-_Open PowerShell as administrator and run:_
+  _Open PowerShell as administrator and run:_
 
 ```powershell
 wsl --install
@@ -42,7 +42,7 @@ _Reboot the system_
 
 - Download and Install [Docker Desktop For Windows](https://docs.docker.com/desktop/windows/install/) (This will automatically also install **Docker-Compose**)
 
-- Once **Docker Desktop For Windows** is installed you need to switch to Windows containers. You can use either the Docker item in the Windows system tray:  
+- Once **Docker Desktop For Windows** is installed you need to switch to Windows containers. You can use either the Docker item in the Windows system tray:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/winc.png)
 
