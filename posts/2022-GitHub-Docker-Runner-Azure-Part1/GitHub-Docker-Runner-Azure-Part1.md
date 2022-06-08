@@ -193,7 +193,11 @@ This dockerfile contains the instructions to build our container image.
 #docker run mcr.microsoft.com/windows/servercore/insider:10.0.{build}.{revision}
 #tag reference: https://mcr.microsoft.com/en-us/product/windows/servercore/insider/tags
 
-FROM mcr.microsoft.com/windows/servercore/insider:10.0.19035.1
+#Win10
+#FROM mcr.microsoft.com/windows/servercore/insider:10.0.19035.1
+
+#Win11
+FROM mcr.microsoft.com/windows/servercore/insider:10.0.20348.1
 
 #input GitHub runner version argument
 ARG RUNNER_VERSION
@@ -234,18 +238,15 @@ ENTRYPOINT ["pwsh.exe", ".\\start.ps1"]
 
 Let's break down and see what this docker build file will actually do step by step:
 
+```dockerfile
+#Win11
+FROM mcr.microsoft.com/windows/servercore/insider:10.0.20348.1
+```
+
 The `FROM` instruction will tell our docker build to fetch and use a windows OS base image. Because windows base images can be fairly large we are using servercore **insider** edition, because the size is very compact and optimized.
 
 **NOTE:** For compatibility on "your" host/VM running docker you may need to use a specific tag. The host OS version must match the container OS version. If you want to run a container based on a newer Windows build, make sure you have an equivalent host build. Otherwise, you can use Hyper-V isolation to run older containers on new host builds. `mcr.microsoft.com/windows/servercore/insider:10.0.{build}.{revision}`  
 Servercore tag reference: https://mcr.microsoft.com/en-us/product/windows/servercore/insider/tags
-
-```dockerfile
-FROM mcr.microsoft.com/windows/servercore/insider:10.0.19035.1
-```
-
-The next section we define an input argument using `ARG`. This is so that we can instruct the docker build command to use a very specific version of the `GitHub runner` agent when building the image.
-
-In addition we can also label our image with some metadata using `LABEL` to put more information against the docker image. You can change these values as necessary.
 
 ```dockerfile
 #input GitHub runner version argument
@@ -258,7 +259,9 @@ LABEL BaseImage="servercore/insider:10.0.19035.1"
 LABEL RunnerVersion=${RUNNER_VERSION}
 ```
 
-Next we define....
+The next section we define an input argument using `ARG`. This is so that we can instruct the docker build command to use a very specific version of the **GitHub runner** agent when building the image. Because we are using a **windows container**, `ARG` will create a system variable **$env:RUNNER_VERSION** which will be accessible to PowerShell.  
+
+In addition we can also label our image with some **metadata** using `LABEL` to add more information about the image. You can change these values as necessary.
 
 ```dockerfile
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
@@ -266,6 +269,48 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 #Set working directory
 WORKDIR /actions-runner
 ```
+
+We then configure **PowerShell** as our default shell for running scripts or commands and also set a working directory named **actions-runner**
+
+```dockerfile
+#Install chocolatey
+ADD scripts/Install-Choco.ps1 .
+RUN .\Install-Choco.ps1 -Wait; \
+    Remove-Item .\Install-Choco.ps1 -Force
+
+#Install Git, GitHub-CLI, Azure-CLI and PowerShell Core with Chocolatey (add more tooling if needed at build)
+RUN choco install -y \
+    git \
+    gh \
+    powershell-core \
+    azure-cli
+```
+
+The `ADD` instruction will copy our **Install-Choco.ps1** script into the working directory called **actions-runner**, then `RUN` the script which will install **Chocolatey** into the image, and then cleanup/remove the script.  
+
+The second `RUN` will then use **Chocolatey** to install **Git**, **GitHub-CLI**, **Azure-CLI** and **PowerShell Core** into the image. You can add any additional tooling you which to add to the image at build time here.  
+
+**NOTE:** Try not to install too many packages at build time to keep the image as lean, compact and re-usable as possible. You can always use a **GitHub Action** in a workflow when running the container and use **Chocolatey** which is baked into the image/container to install more software. I will be showing how we can add more software e.g. **Terraform** later on when we run our container, using a GitHub Action.  
+
+```dockerfile
+#Download GitHub Runner based on RUNNER_VERSION argument (Can use: Docker build --build-arg RUNNER_VERSION=x.y.z)
+RUN Invoke-WebRequest -Uri "https://github.com/actions/runner/releases/download/v$env:RUNNER_VERSION/actions-runner-win-x64-$env:RUNNER_VERSION.zip" -OutFile "actions-runner.zip"; \
+    Expand-Archive -Path ".\\actions-runner.zip" -DestinationPath '.'; \
+    Remove-Item ".\\actions-runner.zip" -Force
+```
+
+The next `RUN` instruction will run a series of PowerShell commands to download and extract a specific version of the GitHub runner binaries based on the `ARG` value passed into the container build process, that sets the environment variable: **$env:RUNNER_VERSION** as described earlier.  
+
+```dockerfile
+#Add GitHub runner configuration startup script
+ADD scripts/start.ps1 .
+ADD scripts/Cleanup-Runners.ps1 .
+ENTRYPOINT ["pwsh.exe", ".\\start.ps1"]
+```
+
+The last section will copy our **Cleanup-Runners.ps1** as well as an `ENTRYPOINT` script named **start.ps1** into the working directory **actions-runner**. This entrypoint script is set to run each time a new container is run/created. It acts as a bootstrapper that will look for specific environment variables we can pass into the **Docker Run** command later on such as, **$env:GH_OWNER**, **env:GH_REPOSITORY** and **$env:GH_TOKEN** in order to register our self hosted runner against a specific **repository** in our **GitHub organisation**.  
+
+!?!
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-windows) page. :heart:
 
