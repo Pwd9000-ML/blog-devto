@@ -327,7 +327,7 @@ Note that the `'ENTRYPOINT'` script will be run using **PowerShell Core** with `
 
 Now that we have our scripts as well as our dockerfile ready we can build our image.
 
-**NOTE:** We can build and run the windows container image using **docker-desktop** or **docker-compose**, I will show both methods next.
+**NOTE:** We can build and run the windows container images using **docker-desktop** or **docker-compose**, I will show both methods next.
 
 ### Building the Docker Image - Docker Desktop (Windows)
 
