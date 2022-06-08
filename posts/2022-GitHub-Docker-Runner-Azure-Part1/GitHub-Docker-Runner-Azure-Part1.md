@@ -473,7 +473,7 @@ services:
 
 In the docker compose configuration file we can set out the parameters for our docker image by specifying things like the image name, GitHub runner version, as well as our environment variables.
 
-Note that we have to set these environment variables on our **host**, windows 11 machine in order for **docker compose** to be able to interpret the values specified on the `'YAML'` file inside of the `'${}'` symbols. This can easily be dne by running th following PowerShell commands:
+Note that we have to set these environment variables on our **host**, windows 11 machine in order for **docker compose** to be able to interpret the values specified on the `'YAML'` file inside of the `'${}'` symbols. This can easily be done by running the following PowerShell commands on the windows 11 host:
 
 ```powershell
 #set system environment with $env: (or use .env file to pass GH_TOKEN, GH_OWNER, GH_REPOSITORY)
