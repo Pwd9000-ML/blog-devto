@@ -299,7 +299,7 @@ RUN choco install -y \
 
 The `'ADD'` instruction will copy our **Install-Choco.ps1** script into the working directory and `'RUN'` the script which will install **Chocolatey** into the image, and then cleanup/remove the script.
 
-The second `'RUN'` will then use **Chocolatey** to install **Git**, **GitHub-CLI**, **Azure-CLI** and **PowerShell Core** into the image. You can add any additional tooling you want to add to the image at build time here.
+The second `'RUN'` will then uses **Chocolatey** to install **Git**, **GitHub-CLI**, **Azure-CLI** and **PowerShell Core** into the image. You can add any additional tooling you want to add to the image at build time here.
 
 **NOTE:** Try not to install too many packages at build time to keep the image as lean, compact and re-usable as possible. You can always use a **GitHub Action** later in a workflow when running the container and use **Chocolatey** which is now loaded into the image/container to install more software.
 
@@ -321,11 +321,13 @@ ADD scripts/Cleanup-Runners.ps1 .
 ENTRYPOINT ["pwsh.exe", ".\\start.ps1"]
 ```
 
-The last section will `'ADD'` the **Cleanup-Runners.ps1** as well as an `'ENTRYPOINT'` script named **start.ps1** into the working directory. This entrypoint script will run each time a new container is created. It acts as a bootstrapper that will, based on specific environment variables we pass into the **Docker Run** command, such as, **$env:GH_OWNER**, **env:GH_REPOSITORY** and **$env:GH_TOKEN** to register the container self hosted runner against a specific **repository** in our **GitHub organisation**.
+The last section will `'ADD'` the **Cleanup-Runners.ps1** as well as an `'ENTRYPOINT'` script named **start.ps1** into the working directory. The entrypoint script will run each time a new container is created. It acts as a bootstrapper that will, based on specific environment variables we pass into the **Docker Run** command, such as, **$env:GH_OWNER**, **$env:GH_REPOSITORY** and **$env:GH_TOKEN** to register the containers self hosted runner agent against a specific **repository** in our **GitHub organisation** we specify.
 
-Note that the `'ENTRYPOINT'` script is run using **PowerShell Core** with `"pwsh.exe"`. Remember we used Chocolatey to install **PowerShell Core** as part of the image creation.
+Note that the `'ENTRYPOINT'` script will be run using **PowerShell Core** with `"pwsh.exe"`. Remember we used Chocolatey to install **PowerShell Core** as part of the image creation.
 
-Now that we have our scripts as well as our dockerfile ready we can build our image. We can build and run the windows container image using **docker-desktop** or **docker-compose**, I will show both methods next.
+Now that we have our scripts as well as our dockerfile ready we can build our image.  
+
+**NOTE:** We can build and run the windows container image using **docker-desktop** or **docker-compose**, I will show both methods next.
 
 ### Building the Docker Image - Docker Desktop (Windows)
 
