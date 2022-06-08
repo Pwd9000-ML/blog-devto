@@ -279,7 +279,7 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 WORKDIR /actions-runner
 ```
 
-We then configure **PowerShell** as our default `'SHELL'` for running scripts or commands and also set a working directory named **actions-runner** with `'WORKDIR'`. This directory will contain our GitHub runner binaries and scripts, uner the path: `C:\actions-runner` inside of teh windows container.  
+We then configure **PowerShell** as our default `'SHELL'` for running scripts or commands and also set a working directory named **actions-runner** with `'WORKDIR'`. This directory will contain our GitHub runner binaries and scripts, uner the path: `C:\actions-runner` inside of teh windows container.
 
 ```dockerfile
 #Install chocolatey
