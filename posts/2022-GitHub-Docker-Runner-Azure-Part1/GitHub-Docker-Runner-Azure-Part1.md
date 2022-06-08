@@ -325,7 +325,7 @@ The last section will `'ADD'` the **Cleanup-Runners.ps1** as well as an `'ENTRYP
 
 Note that the `'ENTRYPOINT'` script is run using **PowerShell Core** with `"pwsh.exe"`. Remember we used Chocolatey to install **PowerShell Core** as part of the image creation.
 
-Now that we have our scripts as well as our dockerfile ready we can build our image. We can build the windows container image using **docker-desktop** or **docker-compose**, I will show both methods next.
+Now that we have our scripts as well as our dockerfile ready we can build our image. We can build and run the windows container image using **docker-desktop** or **docker-compose**, I will show both methods next.
 
 ### Building the Docker Image - Docker Desktop (Windows)
 
@@ -345,6 +345,110 @@ Once the process is complete, you will see the new image in **Docker Desktop for
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/docker-image.png)
 
 ### Run the Docker Image - Docker Desktop (Windows)
+
+To run and provision a new self hosted GitHub runner windows container from the image we just created, run the following command. We have to pass in some **environment variables** using the `'-e'` option to specify the **PAT (Personal Access Token)**, **GitHub Organisation** and **Repository** to register the runner against.  
+
+See [creating a personal access token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) on how to create a GitHub PAT token. PAT tokens are only displayed once and are sensitive, so ensure they are kept safe.  
+
+The minimum permission scopes required on the PAT token to register a self hosted runner are: `"repo"`, `"read:org"`:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/PAT.png)  
+
+**Tip:** I recommend only using short lived PAT tokens and generating new tokens whenever new agent runner registrations are required.  
+
+```powershell
+#Run container from image: 
+docker run -e GH_TOKEN='myPatToken' -e GH_OWNER='orgName' -e GH_REPOSITORY='repoName' -d image-name
+```
+
+After running this command, under the GitHub repository settings, you will see a new self hosted GitHub runner. (This is our docker container):  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/nodes.png)  
+
+You will also be able to see the running container under **Docker Desktop for Windows** under **Containers**:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/container-run.png)  
+
+Lets test our new docker container self hosted GitHub runner by creating a **GitHub workflow** to run a few **GitHub Actions** and installing **Terraform** on the running container.  
+
+You can also get this [test workflow](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/.github/workflows/testRunner.yml) on my GitHub project: [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows).  
+
+Create a new workflow under the GitHub repository where you deployed the self hosted runner where it is running:  
+
+```yml
+name: Local runner test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  testRunner:
+    runs-on: [self-hosted]
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Terraform
+      run: choco install terraform -y
+    - name: Refresh Environment
+      run: refreshenv
+    - name: Display Terraform Version
+      run: terraform --version
+    - name: Display Azure-CLI Version
+      run: az --version
+```
+
+Notice that the workflow `'runs-on: [self-hosted]'` and that the default shell is set to PowerShell Core, `'shell: pwsh'`, because we loaded PowerShell core into our image we created.  
+
+We can now use the following step to install **Terraform** using **Chocolatey** we loaded into and is a part of our docker image and running container:  
+
+```yml
+steps:
+- name: Setup Terraform
+    run: choco install terraform -y
+- name: Display Terraform Version
+    run: terraform --version
+```
+
+We will then also display out the version of terraform the action installs:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/terra.png)  
+
+To spin up additional docker runners we just simply re-run the docker command we ran earlier (Each run will create an additional runner):  
+
+```powershell
+#Run container from image: 
+docker run -e GH_TOKEN='myPatToken' -e GH_OWNER='orgName' -e GH_REPOSITORY='repoName' -d image-name
+```
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/runners.png)  
+
+Next we will look at stopping/destroying our running docker instances and cleaning up the registrations for all the self hosted runners registered against our GitHub repository.  
+
+To stop and remove all running containers simply run:  
+
+```powershell
+docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
+```
+
+You will notice that all the running containers under **Docker Desktop for Windows** are no longer there, but we still have the registrations against our GitHub repository which now shows as `'Offline'`:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/runners-offline.png)  
+
+To unregister or clean-up these stale registrations just run the script we created earlier under the **./scripts** folder called **Cleanup-Runners.ps1**:  
+
+```powershell
+.\scripts\Cleanup-Runners.ps1 -owner "orgName" -repo "repoName" -pat "myPatToken"
+```
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/cleanup.png)
+
+**NOTE:** for convenience, the same cleanup script is also copied to each container under the working directory `'C:\actions-runner\Cleanup-Runners.ps1'`  
+
+Will notice that the stale registrations are now gone.  
+
+Next we will look how we can build the image and also run our image at scale using **docker-compose**.  
 
 ### Building the Docker Image - Docker Compose (Windows)
 
