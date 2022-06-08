@@ -59,7 +59,7 @@ Create a `root` folder called `docker-github-runner-windows` and then another su
 
 ### [Cleanup-Runners.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/scripts/Cleanup-Runners.ps1)
 
-This script will be used to remove/un-register old or stale GitHub runner containers when we start to look at scaling containers up and down based on our needs.
+Because we will run and scale self hosted runners using docker/docker-compose dynamically using our image, this script will be used to remove and unregister any old/offline GitHub runner registrations against our GitHub repository when we scale containers up and down based on our needs.
 
 ```powershell
 #This script invokes GitHub-CLI (Pre-installed on container image)
