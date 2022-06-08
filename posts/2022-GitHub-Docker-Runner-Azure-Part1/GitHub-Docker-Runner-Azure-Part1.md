@@ -245,13 +245,13 @@ FROM mcr.microsoft.com/windows/servercore/insider:10.0.20348.1
 
 The `FROM` instruction will tell our docker build to fetch and use a windows OS **base image**. Because windows base images can be fairly large we are using servercore **insider** edition, because the size is very compact and optimized.
 
-For compatibility on "your" host/VM running docker you may need to use a different tag, `mcr.microsoft.com/windows/servercore/insider:10.0.{build}.{revision}`  
+For compatibility on "your" host/VM running docker you may need to use a different tag, `mcr.microsoft.com/windows/servercore/insider:10.0.{build}.{revision}`
 
-The **host** OS version must be higher than the **base image** OS version. You can use Hyper-V isolation to run older containers on new host builds also.  
+The **host** OS version must be higher than the **base image** OS version. You can use Hyper-V isolation to run older containers on new host builds also.
 
-Because docker is running on my Windows 11 host build version: `10.0.22000.0`. I'm using a container OS version of: "mcr.microsoft.com/windows/servercore/insider:**10.0.20348.1**". Just make sure that your host build version is **higher** than the **base image** build version you are using in the dockerfile when building the image.  
+Because docker is running on my Windows 11 host build version: `10.0.22000.0`. I'm using a container OS version of: "mcr.microsoft.com/windows/servercore/insider:**10.0.20348.1**". Just make sure that your host build version is **higher** than the **base image** build version you are using in the dockerfile when building the image.
 
-You can use the following **Servercore insider** tag reference: https://mcr.microsoft.com/en-us/product/windows/servercore/insider/tags  
+You can use the following **Servercore insider** tag reference: https://mcr.microsoft.com/en-us/product/windows/servercore/insider/tags
 
 **NOTE:** To check your host OS build version you can run the following powershell command: `[System.Environment]::OSVersion.Version`
 
