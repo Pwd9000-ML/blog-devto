@@ -507,7 +507,7 @@ GH_REPOSITORY=repoName
 GH_TOKEN=myPatToken
 ```
 
-**IMPORTANT:** Don't use this method, and don't commit this file to source control if you are using **sensitive values** and storing your in a remote source control. Add this file to your `'.gitignore'` file so that it is not pushed into source control.
+**IMPORTANT:** Don't use this method, and don't commit this file to source control if you are using **sensitive values** and storing your code in a remote source control repository. Add this environment file to your `'.gitignore'` file if needed, so that it is not pushed into source control.  
 
 Which ever method you decide to use, you can kick off the build process after creating this **docker-compose.yml** file by running the following PowerShell command:
 
