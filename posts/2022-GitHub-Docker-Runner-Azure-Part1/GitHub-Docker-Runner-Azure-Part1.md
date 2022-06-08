@@ -268,7 +268,7 @@ LABEL BaseImage="servercore/insider:10.0.19035.1"
 LABEL RunnerVersion=${RUNNER_VERSION}
 ```
 
-The next section we define an input argument using `'ARG'`. This is so that we can instruct the docker build command to use a very specific version of the **GitHub runner** agent when building the image. Because we are using a **windows container**, `'ARG'` will create a system variable **$env:RUNNER_VERSION** which will be accessible to PowerShell.
+Next we define an input argument using `'ARG'`. This is so that we can instruct the docker build command to use a very specific version of the **GitHub runner** agent when building the image. Because we are using a **windows container**, `'ARG'` will create a system variable **$env:RUNNER_VERSION** which will be accessible to PowerShell.
 
 In addition we can also label our image with some **metadata** using `'LABEL'` to add more information about the image. You can change these values as necessary.
 
