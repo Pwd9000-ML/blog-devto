@@ -401,9 +401,9 @@ jobs:
         run: az --version
 ```
 
-Notice that the workflow `'runs-on: [self-hosted]'` and that the default shell is set to PowerShell Core, `'shell: pwsh'`, because we loaded PowerShell core into our image we created.
+Notice that the workflow `'runs-on: [self-hosted]'` and that the default shell is set to PowerShell Core, `'shell: pwsh'`, because we loaded PowerShell core into our docker image we created earlier.  
 
-We can now use the following step to install **Terraform** using **Chocolatey** we loaded into and is a part of our docker image and running container:
+We can now use the following step to install **Terraform** using **Chocolatey** which we also loaded into our docker image when we built it earlier:
 
 ```yml
 steps:
@@ -413,11 +413,9 @@ steps:
     run: terraform --version
 ```
 
-We will then also display out the version of terraform the action installs:
-
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/terra.png)
 
-To spin up additional docker runners we just simply re-run the docker command we ran earlier (Each run will create an additional runner):
+To spin up additional docker runners (containers), we just simply re-run the docker command we ran earlier (Each run will create an additional runner instance/container):
 
 ```powershell
 #Run container from image:
