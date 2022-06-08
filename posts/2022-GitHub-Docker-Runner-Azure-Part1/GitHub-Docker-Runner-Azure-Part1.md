@@ -321,7 +321,7 @@ ADD scripts/Cleanup-Runners.ps1 .
 ENTRYPOINT ["pwsh.exe", ".\\start.ps1"]
 ```
 
-The last section will `'ADD'` the **Cleanup-Runners.ps1** as well as an `'ENTRYPOINT'` script named **start.ps1** into the working directory. The entrypoint script will run each time a new container is created. It acts as a bootstrapper that will, based on specific environment variables we pass into the **Docker Run** command, such as, **$env:GH_OWNER**, **$env:GH_REPOSITORY** and **$env:GH_TOKEN** to register the containers self hosted runner agent against a specific **repository** in our **GitHub organisation** we specify.
+The last section will `'ADD'` the **Cleanup-Runners.ps1** as well as an `'ENTRYPOINT'` script named **start.ps1** into the working directory. The entrypoint script will run each time a new container is created. It acts as a bootstrapper that will, based on specific environment variables we pass into the **Docker Run** command, such as, **$env:GH_OWNER**, **$env:GH_REPOSITORY** and **$env:GH_TOKEN** to register the containers self hosted runner agent against a specific **repository** in the **GitHub organisation** we specify.
 
 Note that the `'ENTRYPOINT'` script will be run using **PowerShell Core** with `"pwsh.exe"`. Remember we used Chocolatey to install **PowerShell Core** as part of the image creation.
 
