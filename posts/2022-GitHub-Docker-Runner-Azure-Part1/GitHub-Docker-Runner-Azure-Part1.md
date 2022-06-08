@@ -452,7 +452,7 @@ Next we will look how we can build the image and also run our image at scale usi
 
 ### Building the Docker Image - Docker Compose (Windows)
 
-As we saw earlier, it is pretty easy to build our image using docker commands, but we can also use **docker-compose** with a configuration file to make things a bit easier. So following on, navigate to the root folder again that contains the **dockerfile** we created earlier, and create a new `'YAML'` file called **docker-compose.yml**:  
+As we saw earlier, it is pretty easy to build our image using docker commands, but we can also use **docker-compose** with a configuration file to make things a bit easier. So following on, navigate to the root folder again that contains the **dockerfile** we created earlier, and create a new `'YAML'` file called **docker-compose.yml**:
 
 ```yml
 ---
@@ -471,9 +471,9 @@ services:
       GH_REPOSITORY: ${GH_REPOSITORY}
 ```
 
-In the docker compose configuration file we can set out the parameters for our docker image by specifying things like the image name, GitHub runner version, as well as our environment variables.  
+In the docker compose configuration file we can set out the parameters for our docker image by specifying things like the image name, GitHub runner version, as well as our environment variables.
 
-Note that we have to set these environment variables on our **host**, windows 11 machine in order for **docker compose** to be able to interpret the values specified on the `'YAML'` file inside of the `'${}'` symbols. This can easily be dne by running th following PowerShell commands:  
+Note that we have to set these environment variables on our **host**, windows 11 machine in order for **docker compose** to be able to interpret the values specified on the `'YAML'` file inside of the `'${}'` symbols. This can easily be dne by running th following PowerShell commands:
 
 ```powershell
 #set system environment with $env: (or use .env file to pass GH_TOKEN, GH_OWNER, GH_REPOSITORY)
@@ -482,7 +482,7 @@ $env:GH_REPOSITORY='Repository'
 $env:GH_TOKEN='myPatToken'
 ```
 
-**NOTE:** You can also use an environment file instead to pass environment variables onto the docker compose build process using a [docker-compose.yml](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/Docker-Compose-Examples/docker-compose-ExampleEnvFile.yml) file like this instead:  
+**NOTE:** You can also use an environment file instead to pass environment variables onto the docker compose build process using a [docker-compose.yml](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/Docker-Compose-Examples/docker-compose-ExampleEnvFile.yml) file like this instead:
 
 ```yml
 ---
@@ -499,7 +499,7 @@ services:
       - ./variables.env
 ```
 
-This method however requires us to create another file in the root of our working folder called **./variables.env** and populating this file with our environment variables like so:  
+This method however requires us to create another file in the root of our working folder called **./variables.env** and populating this file with our environment variables like so:
 
 ```txt
 GH_OWNER=orgName
@@ -507,15 +507,15 @@ GH_REPOSITORY=repoName
 GH_TOKEN=myPatToken
 ```
 
-**IMPORTANT:** Don't use this method, and don't commit this file to source control if you are using **sensitive values** and storing your in a remote source control. Add this file to your `'.gitignore'` file so that it is not pushed into source control.  
+**IMPORTANT:** Don't use this method, and don't commit this file to source control if you are using **sensitive values** and storing your in a remote source control. Add this file to your `'.gitignore'` file so that it is not pushed into source control.
 
-Which ever method you decide to use, you can kick off the build process after creating this **docker-compose.yml** file by running the following PowerShell command:  
+Which ever method you decide to use, you can kick off the build process after creating this **docker-compose.yml** file by running the following PowerShell command:
 
 ```powershell
 docker-compose build
 ```
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/compose-build.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/compose-build.png)
 
 Once the process is complete, you will see the new image in **Docker Desktop for Windows** under **images**:
 
@@ -523,24 +523,24 @@ Once the process is complete, you will see the new image in **Docker Desktop for
 
 ### Run and scale the Docker Image - Docker Compose (Windows)
 
-What's really nice about using **docker-compose** instead is that we can now scale the amount of runners we want to start simply by running the following command:  
+What's really nice about using **docker-compose** instead is that we can now scale the amount of runners we want to start simply by running the following command:
 
 ```powershell
 docker-compose up --scale runner=3 -d
 ```
 
-Because all of our configuration and details are kept in **environment variables** and the **docker-compose** `'YAML'` file, we don't really have to run long docker commands as we did earlier, and we simply scale the amount of runners we want by specifying the `'--scale'` parameter.  
+Because all of our configuration and details are kept in **environment variables** and the **docker-compose** `'YAML'` file, we don't really have to run long docker commands as we did earlier, and we simply scale the amount of runners we want by specifying the `'--scale'` parameter.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/gh-runners.png)
 
-**NOTE:** The `'--scale runner=3 -d'` parameter is based on the docker compose file, `'services:'` setting, which in our case is called `'runner'`:  
+**NOTE:** The `'--scale runner=3 -d'` parameter is based on the docker compose file, `'services:'` setting, which in our case is called `'runner'`:
 
 ```yml
 services:
   runner:
 ```
 
-To scale down to one runner, we can simply rerun the command as follow:  
+To scale down to one runner, we can simply rerun the command as follow:
 
 ```powershell
 docker-compose up --scale runner=1 -d
