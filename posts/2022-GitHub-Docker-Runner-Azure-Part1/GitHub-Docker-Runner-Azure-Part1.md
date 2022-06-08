@@ -312,7 +312,7 @@ RUN Invoke-WebRequest -Uri "https://github.com/actions/runner/releases/download/
     Remove-Item ".\\actions-runner.zip" -Force
 ```
 
-The next `'RUN'` instruction will run a series of PowerShell commands to download and extract a specific version of the GitHub runner binaries based on the `ARG` value passed into the container build process, that sets the environment variable: **$env:RUNNER_VERSION** as described earlier.
+The next `'RUN'` instruction will run a series of PowerShell commands to download and extract a specific version of the GitHub runner binaries based on the build argument `'ARG'` value passed into the container build process that sets the environment variable: **$env:RUNNER_VERSION** as described earlier.
 
 ```dockerfile
 #Add GitHub runner configuration startup script
