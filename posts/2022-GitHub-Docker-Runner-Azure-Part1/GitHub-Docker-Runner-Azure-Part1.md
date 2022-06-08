@@ -401,7 +401,7 @@ jobs:
         run: az --version
 ```
 
-Notice that the workflow `'runs-on: [self-hosted]'` and that the default shell is set to PowerShell Core, `'shell: pwsh'`, because we loaded PowerShell core into our docker image we created earlier.  
+Notice that the workflow `'runs-on: [self-hosted]'` and that the default shell is set to PowerShell Core, `'shell: pwsh'`, because we loaded PowerShell core into our docker image we created earlier.
 
 We can now use the following step to install **Terraform** using **Chocolatey** which we also loaded into our docker image when we built it earlier:
 
