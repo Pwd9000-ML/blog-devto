@@ -124,7 +124,7 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://com
 
 ### [start.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/scripts/start.ps1)
 
-This script will be used as our `ENTRYPOINT` script and will be used to bootstrap our docker container when we start/run a container from the image we will be creating. The main purpose of this script is to register a new self hosted GitHub runner instance on the repo we pass into the docker environment each time a new container is spun up from the image.
+This script will be used as our `ENTRYPOINT` script and will be used to bootstrap our docker container when we start/run a container from the image we will be creating. The main purpose of this script is to register a new self hosted GitHub runner instance on the repo we pass into the docker environment each time a new container is spun up or scaled up from the image.
 
 ```powershell
 #This script invokes GitHub-CLI (Already installed on container image)
@@ -236,7 +236,7 @@ ADD scripts/Cleanup-Runners.ps1 .
 ENTRYPOINT ["pwsh.exe", ".\\start.ps1"]
 ```
 
-Let's break down and see what this docker build file will actually do step by step:
+Let's take a closer look and see what this docker build file will actually do, step by step:
 
 ```dockerfile
 #Win11
