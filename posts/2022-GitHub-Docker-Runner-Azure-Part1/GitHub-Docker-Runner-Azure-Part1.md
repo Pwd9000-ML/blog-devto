@@ -243,13 +243,13 @@ Let's take a closer look and see what this docker build file will actually do, s
 FROM mcr.microsoft.com/windows/servercore/insider:10.0.20348.1
 ```
 
-The `FROM` instruction will tell our docker build to fetch and use a windows OS **base image**. Because windows base images can be fairly large we are using servercore **insider** edition, because the size is very compact and optimized.
+The `'FROM'` instruction will tell our docker build to fetch and use a windows OS **base image**. Because windows base images can be fairly large we are using servercore **insider** edition, because the size is very compact and optimized.
 
 For compatibility on "your" host/VM running docker you may need to use a different tag, `mcr.microsoft.com/windows/servercore/insider:10.0.{build}.{revision}`  
 
 The **host** OS version must be higher than the **base image** OS version. You can use Hyper-V isolation to run older containers on new host builds also.  
 
-Because docker is running on my Windows 11 host build version: `10.0.22000.0`. I'm using a container OS version of: "mcr.microsoft.com/windows/servercore/insider:**10.0.20348.1**". Just make sure that your host build version is **higher** than the **base image** build version you are using in the dockerfile when building the image.  
+Because docker is running on my Windows 11 host build version: `10.0.22000.0`. I'm using a container OS version of: _mcr.microsoft.com/windows/servercore/insider:**10.0.20348.1**_. Just make sure that your host build version is **higher** than the **base image** build version you are using in the dockerfile when building the image.  
 
 You can use the following **Servercore insider** tag reference: https://mcr.microsoft.com/en-us/product/windows/servercore/insider/tags  
 
@@ -268,9 +268,9 @@ LABEL BaseImage="servercore/insider:10.0.19035.1"
 LABEL RunnerVersion=${RUNNER_VERSION}
 ```
 
-The next section we define an input argument using `ARG`. This is so that we can instruct the docker build command to use a very specific version of the **GitHub runner** agent when building the image. Because we are using a **windows container**, `ARG` will create a system variable **$env:RUNNER_VERSION** which will be accessible to PowerShell.
+The next section we define an input argument using `'ARG'`. This is so that we can instruct the docker build command to use a very specific version of the **GitHub runner** agent when building the image. Because we are using a **windows container**, `'ARG'` will create a system variable **$env:RUNNER_VERSION** which will be accessible to PowerShell.
 
-In addition we can also label our image with some **metadata** using `LABEL` to add more information about the image. You can change these values as necessary.
+In addition we can also label our image with some **metadata** using `'LABEL'` to add more information about the image. You can change these values as necessary.
 
 ```dockerfile
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
@@ -295,9 +295,9 @@ RUN choco install -y \
     azure-cli
 ```
 
-The `ADD` instruction will copy our **Install-Choco.ps1** script into the working directory called **actions-runner**, then `RUN` the script which will install **Chocolatey** into the image, and then cleanup/remove the script.
+The `'ADD'` instruction will copy our **Install-Choco.ps1** script into the working directory called **actions-runner**, then `'RUN'` the script which will install **Chocolatey** into the image, and then cleanup/remove the script.
 
-The second `RUN` will then use **Chocolatey** to install **Git**, **GitHub-CLI**, **Azure-CLI** and **PowerShell Core** into the image. You can add any additional tooling you which to add to the image at build time here.
+The second `'RUN'` will then use **Chocolatey** to install **Git**, **GitHub-CLI**, **Azure-CLI** and **PowerShell Core** into the image. You can add any additional tooling you which to add to the image at build time here.
 
 **NOTE:** Try not to install too many packages at build time to keep the image as lean, compact and re-usable as possible. You can always use a **GitHub Action** in a workflow when running the container and use **Chocolatey** which is baked into the image/container to install more software. I will be showing how we can add more software e.g. **Terraform** later on when we run our container, using a GitHub Action.
 
@@ -308,7 +308,7 @@ RUN Invoke-WebRequest -Uri "https://github.com/actions/runner/releases/download/
     Remove-Item ".\\actions-runner.zip" -Force
 ```
 
-The next `RUN` instruction will run a series of PowerShell commands to download and extract a specific version of the GitHub runner binaries based on the `ARG` value passed into the container build process, that sets the environment variable: **$env:RUNNER_VERSION** as described earlier.
+The next `'RUN'` instruction will run a series of PowerShell commands to download and extract a specific version of the GitHub runner binaries based on the `ARG` value passed into the container build process, that sets the environment variable: **$env:RUNNER_VERSION** as described earlier.
 
 ```dockerfile
 #Add GitHub runner configuration startup script
@@ -317,7 +317,7 @@ ADD scripts/Cleanup-Runners.ps1 .
 ENTRYPOINT ["pwsh.exe", ".\\start.ps1"]
 ```
 
-The last section will copy our **Cleanup-Runners.ps1** as well as an `ENTRYPOINT` script named **start.ps1** into the working directory **actions-runner**. This entrypoint script is set to run each time a new container is run/created. It acts as a bootstrapper that will look for specific environment variables we can pass into the **Docker Run** command later on such as, **$env:GH_OWNER**, **env:GH_REPOSITORY** and **$env:GH_TOKEN** in order to register our self hosted runner against a specific **repository** in our **GitHub organisation**.
+The last section will copy our **Cleanup-Runners.ps1** as well as an `'ENTRYPOINT'` script named **start.ps1** into the working directory **actions-runner**. This entrypoint script is set to run each time a new container is run/created. It acts as a bootstrapper that will look for specific environment variables we can pass into the **Docker Run** command later on such as, **$env:GH_OWNER**, **env:GH_REPOSITORY** and **$env:GH_TOKEN** in order to register our self hosted runner against a specific **repository** in our **GitHub organisation**.
 
 !?!
 
