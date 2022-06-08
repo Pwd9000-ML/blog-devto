@@ -172,7 +172,7 @@ finally {
 }
 ```
 
-### Building the Docker Image (Windows)
+### Prepare dockerfile to build image (Windows)
 
 Now with our scripts ready, we can get to the fun part... Building the **windows docker image**. Navigate back to the root folder and create a file called: `dockerfile`:
 
@@ -321,8 +321,34 @@ ADD scripts/Cleanup-Runners.ps1 .
 ENTRYPOINT ["pwsh.exe", ".\\start.ps1"]
 ```
 
-The last section will copy our **Cleanup-Runners.ps1** as well as an `'ENTRYPOINT'` script named **start.ps1** into the working directory. This entrypoint script will run each time a new container is created. It acts as a bootstrapper that will, based on specific environment variables we pass into the **Docker Run** command, such as, **$env:GH_OWNER**, **env:GH_REPOSITORY** and **$env:GH_TOKEN** to register our self hosted runner against a specific **repository** in our **GitHub organisation**.
+The last section will `'ADD'` the **Cleanup-Runners.ps1** as well as an `'ENTRYPOINT'` script named **start.ps1** into the working directory. This entrypoint script will run each time a new container is created. It acts as a bootstrapper that will, based on specific environment variables we pass into the **Docker Run** command, such as, **$env:GH_OWNER**, **env:GH_REPOSITORY** and **$env:GH_TOKEN** to register the container self hosted runner against a specific **repository** in our **GitHub organisation**.  
 
+Note that the `'ENTRYPOINT'` script is run using **PowerShell Core** with `"pwsh.exe"`. Remember we used Chocolatey to install **PowerShell Core** as part of the image creation.  
+
+Now that we have our scripts as well as our dockerfile ready we can build our image. We can build the windows container image using **docker-desktop** or **docker-compose**, I will show both methods next.  
+
+### Building the Docker Image - Docker Desktop (Windows)
+
+In VSCode terminal or a PowerShell session, navigate to the root folder containing the docker file and run the following command. Remember we need to pass in a build argument to tell docker what version of the GitHub runner agent to use in the image creation. [GitHub Runner Releases](https://github.com/actions/runner/releases)  
+
+```powershell
+#Build container: docker build [OPTIONS] PATH
+docker build --build-arg RUNNER_VERSION=2.292.0 --tag docker-github-runner-win .
+```
+
+The build process can take a little while to complete:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/docker-build.png)  
+
+Once the process is complete, you will see the new image in **Docker Desktop for Windows** under **images**:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/docker-image.png)
+
+### Run the Docker Image - Docker Desktop (Windows)
+
+### Building the Docker Image - Docker Compose (Windows)
+
+### Run and scale the Docker Image - Docker Compose (Windows)
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-windows) page. :heart:
 
