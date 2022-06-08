@@ -436,7 +436,7 @@ You will notice that all the running containers under **Docker Desktop for Windo
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/runners-offline.png)
 
-To unregister or clean-up these stale registrations just run the script we created earlier under the **./scripts** folder called **Cleanup-Runners.ps1**:
+To unregister or cleanup these stale registrations just run the script we created earlier under the **./scripts** folder called **Cleanup-Runners.ps1**:
 
 ```powershell
 .\scripts\Cleanup-Runners.ps1 -owner "orgName" -repo "repoName" -pat "myPatToken"
@@ -446,13 +446,122 @@ To unregister or clean-up these stale registrations just run the script we creat
 
 **NOTE:** for convenience, the same cleanup script is also copied to each container under the working directory `'C:\actions-runner\Cleanup-Runners.ps1'`
 
-Will notice that the stale registrations are now gone.
+After running the cleanup script you will notice that the stale `'offline'` registrations against our repository are now removed.
 
 Next we will look how we can build the image and also run our image at scale using **docker-compose**.
 
 ### Building the Docker Image - Docker Compose (Windows)
 
+As we saw earlier, it is pretty easy to build our image using docker commands, but we can also use **docker-compose** with a configuration file to make things a bit easier. So following on, navigate to the root folder again that contains the **dockerfile** we created earlier, and create a new `'YAML'` file called **docker-compose.yml**:  
+
+```yml
+---
+version: '3.8'
+
+services:
+  runner:
+    image: pwd9000-github-runner-win:latest
+    build:
+      context: .
+      args:
+        RUNNER_VERSION: '2.292.0'
+    environment:
+      GH_TOKEN: ${GH_TOKEN}
+      GH_OWNER: ${GH_OWNER}
+      GH_REPOSITORY: ${GH_REPOSITORY}
+```
+
+In the docker compose configuration file we can set out the parameters for our docker image by specifying things like the image name, GitHub runner version, as well as our environment variables.  
+
+Note that we have to set these environment variables on our **host**, windows 11 machine in order for **docker compose** to be able to interpret the values specified on the `'YAML'` file inside of the `'${}'` symbols. This can easily be dne by running th following PowerShell commands:  
+
+```powershell
+#set system environment with $env: (or use .env file to pass GH_TOKEN, GH_OWNER, GH_REPOSITORY)
+$env:GH_OWNER='Org/Owner'
+$env:GH_REPOSITORY='Repository'
+$env:GH_TOKEN='myPatToken'
+```
+
+**NOTE:** You can also use an environment file instead to pass environment variables onto the docker compose build process using a [docker-compose.yml](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/Docker-Compose-Examples/docker-compose-ExampleEnvFile.yml) file like this instead:  
+
+```yml
+---
+version: '3.8'
+
+services:
+  runner:
+    image: pwd9000-github-runner-win:latest
+    build:
+      context: .
+      args:
+        RUNNER_VERSION: '2.292.0'
+    env_file:
+      - ./variables.env
+```
+
+This method however requires us to create another file in the root of our working folder called **./variables.env** and populating this file with our environment variables like so:  
+
+```txt
+GH_OWNER=orgName
+GH_REPOSITORY=repoName
+GH_TOKEN=myPatToken
+```
+
+**IMPORTANT:** Don't use this method, and don't commit this file to source control if you are using **sensitive values** and storing your in a remote source control. Add this file to your `'.gitignore'` file so that it is not pushed into source control.  
+
+Which ever method you decide to use, you can kick off the build process after creating this **docker-compose.yml** file by running the following PowerShell command:  
+
+```powershell
+docker-compose build
+```
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/compose-build.png)  
+
+Once the process is complete, you will see the new image in **Docker Desktop for Windows** under **images**:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/compose-image.png)
+
 ### Run and scale the Docker Image - Docker Compose (Windows)
+
+What's really nice about using **docker-compose** instead is that we can now scale the amount of runners we want to start simply by running the following command:  
+
+```powershell
+docker-compose up --scale runner=3 -d
+```
+
+Because all of our configuration and details are kept in **environment variables** and the **docker-compose** `'YAML'` file, we don't really have to run long docker commands as we did earlier, and we simply scale the amount of runners we want by specifying the `'--scale'` parameter.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/gh-runners.png)
+
+**NOTE:** The `'--scale runner=3 -d'` parameter is based on the docker compose file, `'services:'` setting, which in our case is called `'runner'`:  
+
+```yml
+services:
+  runner:
+```
+
+To scale down to one runner, we can simply rerun the command as follow:  
+
+```powershell
+docker-compose up --scale runner=1 -d
+```
+
+To stop and remove all running containers simply run:
+
+```powershell
+docker-compose stop
+docker rm $(docker ps -aq)
+```
+
+As described earlier, you will notice that all the running containers under **Docker Desktop for Windows** are no longer there, but still have the registrations against our GitHub repository which now shows as `'Offline'`:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/runners-offline.png)
+
+Simply re-run the cleanup script we ran earlier under the **./scripts** folder called **Cleanup-Runners.ps1**:
+
+```powershell
+.\scripts\Cleanup-Runners.ps1 -owner "orgName" -repo "repoName" -pat "myPatToken"
+```
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-windows) page. :heart:
 
