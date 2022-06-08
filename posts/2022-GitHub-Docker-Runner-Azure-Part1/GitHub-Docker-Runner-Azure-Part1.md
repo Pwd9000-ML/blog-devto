@@ -346,7 +346,12 @@ Once the process is complete, you will see the new image in **Docker Desktop for
 
 ### Run the Docker Image - Docker Desktop (Windows)
 
-To run and provision a new self hosted GitHub runner windows container from the image we just created, run the following command. We have to pass in some **environment variables** using the `'-e'` option to specify the **PAT (Personal Access Token)**, **GitHub Organisation** and **Repository** to register the runner against.
+To run and provision a new self hosted GitHub runner windows container from the image we just created, run the following command. We have to pass in some **environment variables** using the `'-e'` option to specify the **PAT (Personal Access Token)**, **GitHub Organisation** and **Repository** to register the runner against.  
+
+```powershell
+#Run container from image:
+docker run -e GH_TOKEN='myPatToken' -e GH_OWNER='orgName' -e GH_REPOSITORY='repoName' -d image-name
+```
 
 See [creating a personal access token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) on how to create a GitHub PAT token. PAT tokens are only displayed once and are sensitive, so ensure they are kept safe.
 
@@ -355,11 +360,6 @@ The minimum permission scopes required on the PAT token to register a self hoste
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/PAT.png)
 
 **Tip:** I recommend only using short lived PAT tokens and generating new tokens whenever new agent runner registrations are required.
-
-```powershell
-#Run container from image:
-docker run -e GH_TOKEN='myPatToken' -e GH_OWNER='orgName' -e GH_REPOSITORY='repoName' -d image-name
-```
 
 After running this command, under the GitHub repository settings, you will see a new self hosted GitHub runner. (This is our docker container):
 
