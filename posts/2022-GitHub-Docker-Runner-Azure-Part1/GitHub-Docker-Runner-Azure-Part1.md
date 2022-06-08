@@ -249,7 +249,7 @@ For compatibility on _"your"_ host/VM running docker you may need to use a diffe
 
 The **host** OS version must be higher than the **base image** OS version. You can use Hyper-V isolation to run older containers on new host builds also.
 
-Because docker is running on my Windows 11 host build version: `10.0.22000.0`. I'm using a container OS version of: _mcr.microsoft.com/windows/servercore/insider:**10.0.20348.1**_. Just make sure that your host build version is **higher** than the **base image** build version you are using in the dockerfile when building the image.
+Because docker is running on my Windows 11 host build version: **10.0.22000.0**. I'm using a container OS version of: _mcr.microsoft.com/windows/servercore/insider:**10.0.20348.1**_. Just make sure that your host build version is **higher** than the **base image** build version you are using in the dockerfile when building the image.
 
 You can use the following **Servercore insider** tag reference: https://mcr.microsoft.com/en-us/product/windows/servercore/insider/tags
 
