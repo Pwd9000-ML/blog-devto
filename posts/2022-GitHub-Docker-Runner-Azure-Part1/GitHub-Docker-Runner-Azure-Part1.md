@@ -523,7 +523,7 @@ Once the process is complete, you will see the new image in **Docker Desktop for
 
 ### Run and scale the Docker Image - Docker Compose (Windows)
 
-What's really nice about using **docker-compose** is that we can easily scale the amount of runners we want to start simply by running the following command:
+What's really nice about using **docker-compose** is that we can easily scale the amount of runners we want to use simply by running the following command:
 
 ```powershell
 docker-compose up --scale runner=3 -d
