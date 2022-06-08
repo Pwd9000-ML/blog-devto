@@ -281,7 +281,7 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 WORKDIR /actions-runner
 ```
 
-We then configure **PowerShell** as our default `'SHELL'` for running scripts or commands and also set a working directory named **actions-runner** with `'WORKDIR'`. This directory will contain our GitHub runner binaries and scripts, under the path: `C:\actions-runner` inside of teh windows container.
+We then configure **PowerShell** as our default `'SHELL'` for running scripts or commands and also set a working directory named **actions-runner** with `'WORKDIR'`. This directory will contain our GitHub runner binaries and scripts, under the path: `C:\actions-runner` inside of the windows container.
 
 ```dockerfile
 #Install chocolatey
@@ -297,11 +297,13 @@ RUN choco install -y \
     azure-cli
 ```
 
-The `'ADD'` instruction will copy our **Install-Choco.ps1** script into the working directory called **actions-runner**, then `'RUN'` the script which will install **Chocolatey** into the image, and then cleanup/remove the script.
+The `'ADD'` instruction will copy our **Install-Choco.ps1** script into the working directory and `'RUN'` the script which will install **Chocolatey** into the image, and then cleanup/remove the script.
 
-The second `'RUN'` will then use **Chocolatey** to install **Git**, **GitHub-CLI**, **Azure-CLI** and **PowerShell Core** into the image. You can add any additional tooling you which to add to the image at build time here.
+The second `'RUN'` will then use **Chocolatey** to install **Git**, **GitHub-CLI**, **Azure-CLI** and **PowerShell Core** into the image. You can add any additional tooling you want to add to the image at build time here.
 
-**NOTE:** Try not to install too many packages at build time to keep the image as lean, compact and re-usable as possible. You can always use a **GitHub Action** in a workflow when running the container and use **Chocolatey** which is baked into the image/container to install more software. I will be showing how we can add more software e.g. **Terraform** later on when we run our container, using a GitHub Action.
+**NOTE:** Try not to install too many packages at build time to keep the image as lean, compact and re-usable as possible. You can always use a **GitHub Action** later in a workflow when running the container and use **Chocolatey** which is now loaded into the image/container to install more software.  
+
+I also will be showing how we can add more software and tooling e.g. **Terraform** later on when we run our container, using a GitHub Action.
 
 ```dockerfile
 #Download GitHub Runner based on RUNNER_VERSION argument (Can use: Docker build --build-arg RUNNER_VERSION=x.y.z)
