@@ -245,7 +245,7 @@ FROM mcr.microsoft.com/windows/servercore/insider:10.0.20348.1
 
 The `'FROM'` instruction will tell our docker build to fetch and use a windows OS **base image**. Because windows base images can be fairly large we are using servercore **insider** edition, because the size is very compact and optimized.
 
-For compatibility on "your" host/VM running docker you may need to use a different tag, `mcr.microsoft.com/windows/servercore/insider:10.0.{build}.{revision}`
+For compatibility on _"your"_ host/VM running docker you may need to use a different tag, _`mcr.microsoft.com/windows/servercore/insider:10.0.{build}.{revision}`_
 
 The **host** OS version must be higher than the **base image** OS version. You can use Hyper-V isolation to run older containers on new host builds also.
 
