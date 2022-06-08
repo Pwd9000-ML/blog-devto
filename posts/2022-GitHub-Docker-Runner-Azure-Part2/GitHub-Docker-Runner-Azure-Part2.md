@@ -1,5 +1,5 @@
 ---
-title: Create a Docker based Linux Self Hosted GitHub runner container
+title: Create a Docker based Self Hosted GitHub runner Linux container
 published: false
 description: Create a Linux based Github Self Hosted runner container image and run using docker and docker-compose
 tags: 'github, azure, docker, containers'
