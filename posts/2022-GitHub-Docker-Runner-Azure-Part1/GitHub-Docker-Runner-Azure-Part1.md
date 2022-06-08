@@ -323,7 +323,6 @@ ENTRYPOINT ["pwsh.exe", ".\\start.ps1"]
 
 The last section will copy our **Cleanup-Runners.ps1** as well as an `'ENTRYPOINT'` script named **start.ps1** into the working directory. This entrypoint script will run each time a new container is created. It acts as a bootstrapper that will, based on specific environment variables we pass into the **Docker Run** command, such as, **$env:GH_OWNER**, **env:GH_REPOSITORY** and **$env:GH_TOKEN** to register our self hosted runner against a specific **repository** in our **GitHub organisation**.
 
-
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-windows) page. :heart:
 
 ### _Author_
