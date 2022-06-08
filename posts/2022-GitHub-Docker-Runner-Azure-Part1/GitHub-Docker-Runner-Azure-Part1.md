@@ -253,7 +253,7 @@ Because docker is running on my Windows 11 host build version: **10.0.22000.0**.
 
 Just make sure that your **host** build version running docker is **higher** than the **base image** build version you are using in the dockerfile when building the image. You can use the following **Servercore insider** tag reference: https://mcr.microsoft.com/en-us/product/windows/servercore/insider/tags
 
-**NOTE:** To check your host OS build version you can run the following powershell command: `[System.Environment]::OSVersion.Version`
+**NOTE:** To check your **host** OS build version you can run the following powershell command: `[System.Environment]::OSVersion.Version`
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/buildversion.png)
 
