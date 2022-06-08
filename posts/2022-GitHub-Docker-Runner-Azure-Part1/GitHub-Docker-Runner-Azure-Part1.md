@@ -205,7 +205,7 @@ ARG RUNNER_VERSION
 LABEL Author="Marcel L"
 LABEL Email="pwd9000@hotmail.co.uk"
 LABEL GitHub="https://github.com/Pwd9000-ML"
-LABEL BaseImage="servercore/insider:10.0.19035.1"
+LABEL BaseImage="servercore/insider:10.0.20348.1"
 LABEL RunnerVersion=${RUNNER_VERSION}
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
@@ -264,7 +264,7 @@ ARG RUNNER_VERSION
 LABEL Author="Marcel L"
 LABEL Email="pwd9000@hotmail.co.uk"
 LABEL GitHub="https://github.com/Pwd9000-ML"
-LABEL BaseImage="servercore/insider:10.0.19035.1"
+LABEL BaseImage="servercore/insider:10.0.20348.1"
 LABEL RunnerVersion=${RUNNER_VERSION}
 ```
 
@@ -279,7 +279,7 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 WORKDIR /actions-runner
 ```
 
-We then configure **PowerShell** as our default `'SHELL'` for running scripts or commands and also set a working directory named **actions-runner** with `'WORKDIR'`. This directory will contain our GitHub runner binaries and scripts, uner the path: `C:\actions-runner` inside of teh windows container.
+We then configure **PowerShell** as our default `'SHELL'` for running scripts or commands and also set a working directory named **actions-runner** with `'WORKDIR'`. This directory will contain our GitHub runner binaries and scripts, under the path: `C:\actions-runner` inside of teh windows container.  
 
 ```dockerfile
 #Install chocolatey
