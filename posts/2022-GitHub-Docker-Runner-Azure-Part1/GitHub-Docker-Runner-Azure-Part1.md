@@ -301,7 +301,7 @@ The `'ADD'` instruction will copy our **Install-Choco.ps1** script into the work
 
 The second `'RUN'` will then use **Chocolatey** to install **Git**, **GitHub-CLI**, **Azure-CLI** and **PowerShell Core** into the image. You can add any additional tooling you want to add to the image at build time here.
 
-**NOTE:** Try not to install too many packages at build time to keep the image as lean, compact and re-usable as possible. You can always use a **GitHub Action** later in a workflow when running the container and use **Chocolatey** which is now loaded into the image/container to install more software.  
+**NOTE:** Try not to install too many packages at build time to keep the image as lean, compact and re-usable as possible. You can always use a **GitHub Action** later in a workflow when running the container and use **Chocolatey** which is now loaded into the image/container to install more software.
 
 I also will be showing how we can add more software and tooling e.g. **Terraform** later on when we run our container, using a GitHub Action.
 
