@@ -246,8 +246,16 @@ FROM mcr.microsoft.com/windows/servercore/insider:10.0.20348.1
 The `FROM` instruction will tell our docker build to fetch and use a windows OS base image. Because windows base images can be fairly large we are using servercore **insider** edition, because the size is very compact and optimized.
 
 **NOTE:** For compatibility on "your" host/VM running docker you may need to use a specific tag. The host OS version must match the container OS version. If you want to run a container based on a newer Windows build, make sure you have an equivalent host build. Otherwise, you can use Hyper-V isolation to run older containers on new host builds. `mcr.microsoft.com/windows/servercore/insider:10.0.{build}.{revision}`  
-Because docker is running for me on my Windows 11 host (10.0.20348.1) I will be using container OS version of (10.0.20348.1) also. Just make sure that your host build version matches the **base image** build version you use in the image when building the image.  
-Servercore tag reference: https://mcr.microsoft.com/en-us/product/windows/servercore/insider/tags
+Because docker is running for me on my Windows 11 host `10.0.22000.0` I will be using container OS version of `10.0.20348.1`. Just make sure that your host build version is **higher** than the **base image** build version you use in the dockerfile when building the image.  
+Servercore tag reference: https://mcr.microsoft.com/en-us/product/windows/servercore/insider/tags  
+
+**NOTE:** To check your host OS build version you can run the following powershell command: `[System.Environment]::OSVersion.Version`
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/buildversion.png)
+
+```powershell
+
+```
 
 ```dockerfile
 #input GitHub runner version argument
