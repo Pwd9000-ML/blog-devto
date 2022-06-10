@@ -142,14 +142,14 @@ USER docker
 ENTRYPOINT ["./start.sh"]
 ```
 
-Let's take a closer look and see what this docker build file will actually do, step by step:  
+Let's take a closer look and see what this docker build file will actually do, step by step:
 
 ```dockerfile
 # base image
 FROM ubuntu:20.04
 ```
 
-The `'FROM'` instruction will tell our docker build to fetch and use an Ubuntu 20.04 OS **base image**. We will add additional configuration to this base image next.  
+The `'FROM'` instruction will tell our docker build to fetch and use an Ubuntu 20.04 OS **base image**. We will add additional configuration to this base image next.
 
 ```dockerfile
 # base image
@@ -163,11 +163,11 @@ LABEL BaseImage="ubuntu:20.04"
 LABEL RunnerVersion=${RUNNER_VERSION}
 ```
 
-We define an input argument using `'ARG'`. This is so that we can instruct the docker build command to load a specific version of the **GitHub runner** agent into the image when building the image. Because we are using a **linux container**, `'ARG'` will create a system variable **$RUNNER_VERSION** which will be accessible to Bash inside the container.  
+We define an input argument using `'ARG'`. This is so that we can instruct the docker build command to load a specific version of the **GitHub runner** agent into the image when building the image. Because we are using a **linux container**, `'ARG'` will create a system variable **$RUNNER_VERSION** which will be accessible to Bash inside the container.
 
 In addition we can also label our image with some **metadata** using `'LABEL'` to add more information about the image. You can change these values as necessary.
 
-**NOTE:** `'LABEL RunnerVersion=${RUNNER_VERSION}'`, this label is dynamically updated from the build argument we will be passing into the docker build command later.  
+**NOTE:** `'LABEL RunnerVersion=${RUNNER_VERSION}'`, this label is dynamically updated from the build argument we will be passing into the docker build command later.
 
 ```dockerfile
 # update the base packages and add a non-sudo user
@@ -179,7 +179,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     curl git azure-cli jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip
 ```
 
-The first `'RUN'` instruction will update the base packages on the Ubuntu 20.04 image and add a non-sudo user called **docker**.  
+The first `'RUN'` instruction will update the base packages on the Ubuntu 20.04 image and add a non-sudo user called **docker**.
 
 The second `'RUN'` will install **git**, **Azure-CLI**, **python** and the packages the code depends on along with **jq** so we can parse JSON.
 
