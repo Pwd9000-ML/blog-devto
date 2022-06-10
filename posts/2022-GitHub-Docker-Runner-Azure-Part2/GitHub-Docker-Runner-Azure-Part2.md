@@ -59,7 +59,7 @@ Create a `root` folder called `docker-github-runner-linux` and then another sub 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/scripts.png)
 
-### [start.sh](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/scripts/start.sh)  
+### [start.sh](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/scripts/start.sh)  
 
 This script will be used as our `ENTRYPOINT` script and will be used to bootstrap our docker container when we start/run a container from the image we will be creating. The main purpose of this script is to register a new self hosted GitHub runner instance on the repo we pass into the docker environment each time a new container is spun up or scaled up from the image.
 
