@@ -114,13 +114,12 @@ LABEL GitHub="https://github.com/Pwd9000-ML"
 LABEL BaseImage="ubuntu:20.04"
 LABEL RunnerVersion=${RUNNER_VERSION}
 
-# update the base packages and add a non-sudo user
+# update the base packages + add a non-sudo user
 RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
 
-# install python and the packages the code depends on along with jq so we can parse JSON
-# add additional packages as necessary
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    curl git azure-cli jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip
+# install the packages and dependencies along with jq so we can parse JSON (add additional packages as necessary)
+RUN apt-get install -y --no-install-recommends \
+    curl nodejs wget unzip vim git azure-cli jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip
 
 # cd into the user directory, download and unzip the github actions runner
 RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
@@ -153,7 +152,6 @@ FROM ubuntu:20.04
 The `'FROM'` instruction will tell our docker build to fetch and use an Ubuntu 20.04 OS **base image**. We will add additional configuration to this base image next.
 
 ```dockerfile
-# base image
 #input GitHub runner version argument
 ARG RUNNER_VERSION
 ENV DEBIAN_FRONTEND=noninteractive
@@ -174,20 +172,19 @@ In addition we can also label our image with some **metadata** using `'LABEL'` t
 **NOTE:** `'LABEL RunnerVersion=${RUNNER_VERSION}'`, this label is dynamically updated from the build argument we will be passing into the docker build command later.
 
 ```dockerfile
-# update the base packages and add a non-sudo user
+# update the base packages + add a non-sudo user
 RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
 
-# install python and the packages the code depends on along with jq so we can parse JSON
-# add additional packages as necessary
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    curl git azure-cli jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip
+# install the packages and dependencies along with jq so we can parse JSON (add additional packages as necessary)
+RUN apt-get install -y --no-install-recommends \
+    curl nodejs wget unzip vim git azure-cli jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip
 ```
 
 The first `'RUN'` instruction will update the base packages on the Ubuntu 20.04 image and add a non-sudo user called **docker**.
 
-The second `'RUN'` will install **git**, **Azure-CLI**, **python** and the packages the code depends on along with **jq** so we can parse JSON.
+The second `'RUN'` will install **git**, **Azure-CLI**, **python** and the packages and dependencies along with **jq** so we can parse JSON.
 
-**NOTE:** Try not to install too many packages at build time to keep the image as lean, compact and re-usable as possible. You can always use a **GitHub Action** later in a workflow when running the container and use **a shell script** action to install more tooling.
+**NOTE:** Try not to install too many packages at build time to keep the image as lean, compact and re-usable as possible. You can always use a **GitHub Action** later in a workflow when running the container and use actions to install more tooling.
 
 I will also be showing how we can add more software and tooling e.g. **Terraform** later on when we run our container, using a GitHub Action.
 
@@ -263,4 +260,78 @@ After running this command, under the GitHub repository settings, you will see a
 
 You will also be able to see the running container under **Docker Desktop for Windows** under **Containers**:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/container-run.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/container-run.png)  
+
+Lets test our new docker container self hosted GitHub runner by creating a **GitHub workflow** to run a few **GitHub Actions** by installing **Terraform** on the running container.
+
+You can also use this [test workflow](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/.github/workflows/testRunner.yml) from my GitHub project: [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux).
+
+Create a new workflow under the GitHub repository where you deployed the self hosted runner where it is running:
+
+```yml
+name: Local runner test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  testRunner:
+    runs-on: [self-hosted]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v2
+    - name: Display Terraform Version
+      run: terraform --version
+    - name: Display Azure-CLI Version
+      run: az --version
+```
+
+Notice that the workflow `'runs-on: [self-hosted]'`. We can now use the following step to install **Terraform**:  
+
+```yml
+steps:
+- name: Install Terraform
+    uses: hashicorp/setup-terraform@v2
+- name: Display Terraform Version
+    run: terraform --version
+```
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/terra.png)
+
+To spin up additional docker runners (containers), we just simply re-run the docker command we ran earlier (Each run will create an additional runner instance/container):
+
+```powershell
+#Run container from image:
+docker run -e GH_TOKEN='myPatToken' -e GH_OWNER='orgName' -e GH_REPOSITORY='repoName' -d image-name
+```
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/runners.png)
+
+Next we will look at stopping/destroying our running docker instances and cleaning up the registrations for all the self hosted runners registered against our GitHub repository.  
+
+To stop and remove all running containers simply run:  
+
+```powershell
+docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
+```
+
+You will notice that all the running containers under **Docker Desktop for Windows** are no longer there, as well as the docker node registrations against our GitHub repository has also been cleaned up and removed:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/runners-decom.png)
+
+The reason our GitHub runner registrations are also removed is because of the cleanup code inside of our `'ENTRYPOINT'` script **start.sh**, that will automatically trigger a cleanup of the runner registration when the docker container is stopped and destroyed:  
+
+```bash
+cleanup() {
+    echo "Removing runner..."
+    ./config.sh remove --unattended --token ${REG_TOKEN}
+}
+
+trap 'cleanup; exit 130' INT
+trap 'cleanup; exit 143' TERM
+```
+
+Next we will look how we can build the image and also run our image at scale using **docker-compose**.  
+
+### Building the Docker Image - Docker Compose (Linux)
