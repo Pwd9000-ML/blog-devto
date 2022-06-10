@@ -165,11 +165,11 @@ LABEL BaseImage="ubuntu:20.04"
 LABEL RunnerVersion=${RUNNER_VERSION}
 ```
 
-We define an input argument using `'ARG'`. This is so that we can instruct the docker build command to load a specific version of the **GitHub runner** agent into the image when building the image. Because we are using a **linux container**, `'ARG'` will create a system variable **$RUNNER_VERSION** which will be accessible to Bash inside the container.  
+We define an input argument using `'ARG'`. This is so that we can instruct the docker build command to load a specific version of the **GitHub runner** agent into the image when building the image. Because we are using a **linux container**, `'ARG'` will create a system variable **$RUNNER_VERSION** which will be accessible to Bash inside the container.
 
-We also set an **Enviornment Variable** called **DEBIAN_FRONTEND** to **noninteractive** with `'ENV'`, this is so that we can run commands later on in unattended mode.  
+We also set an **Enviornment Variable** called **DEBIAN_FRONTEND** to **noninteractive** with `'ENV'`, this is so that we can run commands later on in unattended mode.
 
-In addition we can also label our image with some **metadata** using `'LABEL'` to add more information about the image. You can change these values as necessary.  
+In addition we can also label our image with some **metadata** using `'LABEL'` to add more information about the image. You can change these values as necessary.
 
 **NOTE:** `'LABEL RunnerVersion=${RUNNER_VERSION}'`, this label is dynamically updated from the build argument we will be passing into the docker build command later.
 
@@ -221,7 +221,7 @@ The last section will `'ADD'` the `'ENTRYPOINT'` script named **start.sh** into 
 
 Now that we have our scripts as well as our dockerfile ready we can build our image.
 
-**NOTE:** We can build and run the linux container images using **docker-desktop** or **docker-compose**, I will show both methods next.  
+**NOTE:** We can build and run the linux container images using **docker-desktop** or **docker-compose**, I will show both methods next.
 
 ### Building the Docker Image - Docker Desktop (Linux)
 
@@ -232,13 +232,13 @@ In VSCode terminal or a PowerShell session, navigate to the root folder containi
 docker build --build-arg RUNNER_VERSION=2.292.0 --tag docker-github-runner-lin .
 ```
 
-The build process can take a little while to complete:  
+The build process can take a little while to complete:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/docker-build.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/docker-build.png)
 
-Once the process is complete, you will see the new image in **Docker Desktop for Windows** under **images**:  
+Once the process is complete, you will see the new image in **Docker Desktop for Windows** under **images**:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/docker-image.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/docker-image.png)
 
 ### Run the Docker Image - Docker Desktop (Linux)
 
@@ -257,7 +257,7 @@ The minimum permission scopes required on the PAT token to register a self hoste
 
 **Tip:** I recommend only using short lived PAT tokens and generating new tokens whenever new agent runner registrations are required.
 
-After running this command, under the GitHub repository settings, you will see a new self hosted GitHub runner. (This is our docker container):  
+After running this command, under the GitHub repository settings, you will see a new self hosted GitHub runner. (This is our docker container):
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/nodes.png)
 
