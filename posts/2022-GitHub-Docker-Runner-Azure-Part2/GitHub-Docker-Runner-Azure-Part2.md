@@ -260,7 +260,7 @@ After running this command, under the GitHub repository settings, you will see a
 
 You will also be able to see the running container under **Docker Desktop for Windows** under **Containers**:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/container-run.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/container-run.png)
 
 Lets test our new docker container self hosted GitHub runner by creating a **GitHub workflow** to run a few **GitHub Actions** by installing **Terraform** on the running container.
 
@@ -278,16 +278,16 @@ jobs:
   testRunner:
     runs-on: [self-hosted]
     steps:
-    - uses: actions/checkout@v2
-    - name: Install Terraform
-      uses: hashicorp/setup-terraform@v2
-    - name: Display Terraform Version
-      run: terraform --version
-    - name: Display Azure-CLI Version
-      run: az --version
+      - uses: actions/checkout@v2
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v2
+      - name: Display Terraform Version
+        run: terraform --version
+      - name: Display Azure-CLI Version
+        run: az --version
 ```
 
-Notice that the workflow `'runs-on: [self-hosted]'`. We can now use the following step to install **Terraform**:  
+Notice that the workflow `'runs-on: [self-hosted]'`. We can now use the following step to install **Terraform**:
 
 ```yml
 steps:
@@ -308,19 +308,19 @@ docker run -e GH_TOKEN='myPatToken' -e GH_OWNER='orgName' -e GH_REPOSITORY='repo
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/runners.png)
 
-Next we will look at stopping/destroying our running docker instances and cleaning up the registrations for all the self hosted runners registered against our GitHub repository.  
+Next we will look at stopping/destroying our running docker instances and cleaning up the registrations for all the self hosted runners registered against our GitHub repository.
 
-To stop and remove all running containers simply run:  
+To stop and remove all running containers simply run:
 
 ```powershell
 docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
 ```
 
-You will notice that all the running containers under **Docker Desktop for Windows** are no longer there, as well as the docker node registrations against our GitHub repository has also been cleaned up and removed:  
+You will notice that all the running containers under **Docker Desktop for Windows** are no longer there, as well as the docker node registrations against our GitHub repository has also been cleaned up and removed:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/runners-decom.png)
 
-The reason our GitHub runner registrations are also removed is because of the cleanup code inside of our `'ENTRYPOINT'` script **start.sh**, that will automatically trigger a cleanup of the runner registration when the docker container is stopped and destroyed:  
+The reason our GitHub runner registrations are also removed is because of the cleanup code inside of our `'ENTRYPOINT'` script **start.sh**, that will automatically trigger a cleanup of the runner registration when the docker container is stopped and destroyed:
 
 ```bash
 cleanup() {
@@ -332,6 +332,6 @@ trap 'cleanup; exit 130' INT
 trap 'cleanup; exit 143' TERM
 ```
 
-Next we will look how we can build the image and also run our image at scale using **docker-compose**.  
+Next we will look how we can build the image and also run our image at scale using **docker-compose**.
 
 ### Building the Docker Image - Docker Compose (Linux)
