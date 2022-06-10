@@ -106,6 +106,7 @@ FROM ubuntu:20.04
 
 #input GitHub runner version argument
 ARG RUNNER_VERSION
+ENV DEBIAN_FRONTEND=noninteractive
 
 LABEL Author="Marcel L"
 LABEL Email="pwd9000@hotmail.co.uk"
@@ -119,7 +120,7 @@ RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
 # install python and the packages the code depends on along with jq so we can parse JSON
 # add additional packages as necessary
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    curl jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip
+    curl git azure-cli jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip
 
 # cd into the user directory, download and unzip the github actions runner
 RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
@@ -155,6 +156,7 @@ The `'FROM'` instruction will tell our docker build to fetch and use an Ubuntu 2
 # base image
 #input GitHub runner version argument
 ARG RUNNER_VERSION
+ENV DEBIAN_FRONTEND=noninteractive
 
 LABEL Author="Marcel L"
 LABEL Email="pwd9000@hotmail.co.uk"
@@ -163,9 +165,11 @@ LABEL BaseImage="ubuntu:20.04"
 LABEL RunnerVersion=${RUNNER_VERSION}
 ```
 
-We define an input argument using `'ARG'`. This is so that we can instruct the docker build command to load a specific version of the **GitHub runner** agent into the image when building the image. Because we are using a **linux container**, `'ARG'` will create a system variable **$RUNNER_VERSION** which will be accessible to Bash inside the container.
+We define an input argument using `'ARG'`. This is so that we can instruct the docker build command to load a specific version of the **GitHub runner** agent into the image when building the image. Because we are using a **linux container**, `'ARG'` will create a system variable **$RUNNER_VERSION** which will be accessible to Bash inside the container.  
 
-In addition we can also label our image with some **metadata** using `'LABEL'` to add more information about the image. You can change these values as necessary.
+We also set an **Enviornment Variable** called **DEBIAN_FRONTEND** to **noninteractive** with `'ENV'`, this is so that we can run commands later on in unattended mode.  
+
+In addition we can also label our image with some **metadata** using `'LABEL'` to add more information about the image. You can change these values as necessary.  
 
 **NOTE:** `'LABEL RunnerVersion=${RUNNER_VERSION}'`, this label is dynamically updated from the build argument we will be passing into the docker build command later.
 
@@ -217,4 +221,21 @@ The last section will `'ADD'` the `'ENTRYPOINT'` script named **start.sh** into 
 
 Now that we have our scripts as well as our dockerfile ready we can build our image.
 
-**NOTE:** We can build and run the linux container images using **docker-desktop** or **docker-compose**, I will show both methods next.
+**NOTE:** We can build and run the linux container images using **docker-desktop** or **docker-compose**, I will show both methods next.  
+
+### Building the Docker Image - Docker Desktop (Linux)
+
+In VSCode terminal or a PowerShell session, navigate to the root folder containing the docker file and run the following command. Remember we need to pass in a build argument to tell docker what version of the GitHub runner agent to use in the image creation. [GitHub Runner Releases](https://github.com/actions/runner/releases)
+
+```powershell
+#Build container: docker build [OPTIONS] PATH
+docker build --build-arg RUNNER_VERSION=2.292.0 --tag docker-github-runner-lin .
+```
+
+The build process can take a little while to complete:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/docker-build.png)
+
+Once the process is complete, you will see the new image in **Docker Desktop for Windows** under **images**:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/docker-image.png)
