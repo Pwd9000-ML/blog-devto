@@ -303,7 +303,7 @@ The second `'RUN'` will then uses **Chocolatey** to install **Git**, **GitHub-CL
 
 **NOTE:** Try not to install too many packages at build time to keep the image as lean, compact and re-usable as possible. You can always use a **GitHub Action** later in a workflow when running the container and use **Chocolatey** which is now loaded into the image/container to install more software.
 
-I also will be showing how we can add more software and tooling e.g. **Terraform** later on when we run our container, using a GitHub Action.
+I will also be showing how we can add more software and tooling e.g. **Terraform** later on when we run our container, using a GitHub Action.
 
 ```dockerfile
 #Download GitHub Runner based on RUNNER_VERSION argument (Can use: Docker build --build-arg RUNNER_VERSION=x.y.z)
