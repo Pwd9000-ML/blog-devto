@@ -232,10 +232,35 @@ In VSCode terminal or a PowerShell session, navigate to the root folder containi
 docker build --build-arg RUNNER_VERSION=2.292.0 --tag docker-github-runner-lin .
 ```
 
-The build process can take a little while to complete:
+The build process can take a little while to complete:  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/docker-build.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/docker-build.png)  
 
-Once the process is complete, you will see the new image in **Docker Desktop for Windows** under **images**:
+Once the process is complete, you will see the new image in **Docker Desktop for Windows** under **images**:  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/docker-image.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/docker-image.png)  
+
+### Run the Docker Image - Docker Desktop (Linux)
+
+To run and provision a new self hosted GitHub runner linux container from the image we just created, run the following command. We have to pass in some **environment variables** using the `'-e'` option to specify the **PAT (Personal Access Token)**, **GitHub Organisation** and **Repository** to register the runner against.
+
+```powershell
+#Run container from image:
+docker run -e GH_TOKEN='myPatToken' -e GH_OWNER='orgName' -e GH_REPOSITORY='repoName' -d image-name
+```
+
+See [creating a personal access token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) on how to create a GitHub PAT token. PAT tokens are only displayed once and are sensitive, so ensure they are kept safe.
+
+The minimum permission scopes required on the PAT token to register a self hosted runner are: `"repo"`, `"read:org"`:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/PAT.png)
+
+**Tip:** I recommend only using short lived PAT tokens and generating new tokens whenever new agent runner registrations are required.
+
+After running this command, under the GitHub repository settings, you will see a new self hosted GitHub runner. (This is our docker container):  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/nodes.png)
+
+You will also be able to see the running container under **Docker Desktop for Windows** under **Containers**:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/container-run.png)
