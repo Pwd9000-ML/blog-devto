@@ -47,7 +47,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Conta
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/linc.png)
 
-**NOTE:** Linux containers is the default setting, so if you skipped part one of this series **Docker Desktop For Windows** will already be set to use **Linux Containers** by default.  
+**NOTE:** Linux containers is the default setting, so if you skipped part one of this series **Docker Desktop For Windows** will already be set to use **Linux Containers** by default.
 
 ### Prepare Bash Scripts used in image creation
 
@@ -55,11 +55,11 @@ Now that we have **Docker-Desktop** as well as **Docker-Compose** installed and 
 
 Open VSCode, you can clone the repo found on my GitHub project [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux) which contains all the files or simply follow along with the following steps. We will prepare a few scripts that will be needed as part of our docker image creation.
 
-Create a `root` folder called `docker-github-runner-linux` and then another sub folder called `scripts`. Inside of the [scripts](https://github.com/Pwd9000-ML/docker-github-runner-linux/tree/master/scripts) folder you can create the following script:  
+Create a `root` folder called `docker-github-runner-linux` and then another sub folder called `scripts`. Inside of the [scripts](https://github.com/Pwd9000-ML/docker-github-runner-linux/tree/master/scripts) folder you can create the following script:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/scripts.png)
 
-### [start.sh](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/scripts/start.sh)  
+### [start.sh](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/scripts/start.sh)
 
 This script will be used as our `ENTRYPOINT` script and will be used to bootstrap our docker container when we start/run a container from the image we will be creating. The main purpose of this script is to register a new self hosted GitHub runner instance on the repo we pass into the docker environment each time a new container is spun up or scaled up from the image.
 
