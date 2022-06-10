@@ -142,5 +142,4 @@ USER docker
 ENTRYPOINT ["./start.sh"]
 ```
 
-Let's take a closer look and see what this docker build file will actually do, step by step:  
-
+Let's take a closer look and see what this docker build file will actually do, step by step:
