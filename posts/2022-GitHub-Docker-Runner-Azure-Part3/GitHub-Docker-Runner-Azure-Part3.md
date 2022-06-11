@@ -133,11 +133,11 @@ We also have `'AcrPush'` permissions on our **Service Principal** which will all
 
 Next we will copy that JSON object Service Principal credentials, as well as a few other **GitHub Secrets** to our **GitHub repository**:
 
-1. In the GitHub UI, navigate to your repository and select **Settings** > **Secrets** > **Actions**:
+- In the GitHub UI, navigate to your repository and select **Settings** > **Secrets** > **Actions**:
 
-   ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/ghsec01.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/ghsec01.png)
 
-2. Select **New repository secret** to add the following secrets:
+- Select **New repository secret** to add the following secrets:
 
 |**Secret**|**Value**|
 |---|---|
