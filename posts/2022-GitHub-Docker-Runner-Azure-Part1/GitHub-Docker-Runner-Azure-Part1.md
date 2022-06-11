@@ -173,7 +173,7 @@ finally {
 }
 ```
 
-**NOTE:** This PowerShell script uses [GitHub-CLI](https://cli.github.com/) to register new agents onto the GitHub Repository we specify. Thus we will load **GitHub-CLI** into our container when we build the image later on, so it is part of the container image.  
+**NOTE:** This PowerShell script uses [GitHub-CLI](https://cli.github.com/) to register new agents onto the GitHub Repository we specify. Thus we will load **GitHub-CLI** into our container when we build the image later on, so it is part of the container image.
 
 ### Prepare dockerfile to build image (Windows)
 
