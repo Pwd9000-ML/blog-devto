@@ -139,14 +139,14 @@ Next we will copy that JSON object Service Principal credentials, as well as a f
 
 2. Select **New repository secret** to add the following secrets:
 
-|**Secret**|**Value**|
-|---|---|
+| **Secret** | **Value** |
+| --- | --- |
 | `AZURE_CREDENTIALS` | The entire JSON output from the service principal creation step |
 | `REGISTRY_LOGIN_SERVER` | The login server name of the ACR (all lowercase). Example: _myregistry.azurecr.io_ |
 | `REGISTRY_USERNAME` | The `clientId` from the JSON output from the service principal creation |
 | `REGISTRY_PASSWORD` | The `clientSecret` from the JSON output from the service principal creation |
 | `RESOURCE_GROUP` | The name of the resource group we created to deploy our ACIs into |
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/ghsec02.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/ghsec02.png)
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/ghsec02.png)
