@@ -1,6 +1,6 @@
 ---
 title: Create a Docker based Self Hosted GitHub runner Windows container
-published: false
+published: true
 description: Create a Windows based Github Self Hosted runner container image and run using docker and docker-compose
 tags: 'github, azure, docker, containers'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/main.png'
