@@ -439,7 +439,7 @@ You will notice that all the running containers under **Docker Desktop for Windo
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/runners-offline.png)
 
-To unregister or cleanup these stale registrations just run the script we created earlier under the **./scripts** folder called **Cleanup-Runners.ps1** (If you are running this script locally ensure you have [GitHub-CLI](https://cli.github.com/) installed as the script invokes GitHub-CLI to remove the registration):
+To unregister or cleanup these stale registrations just run the script we created earlier under the **./scripts** folder called **Cleanup-Runners.ps1** (If you are running this script locally ensure you have [GitHub-CLI](https://cli.github.com/) installed as the script invokes GitHub-CLI to remove the stale `'Offline'` runner registrations):
 
 ```powershell
 .\scripts\Cleanup-Runners.ps1 -owner "orgName" -repo "repoName" -pat "myPatToken"
