@@ -60,7 +60,7 @@ Create a `root` folder called `docker-github-runner-windows` and then another su
 
 ### [Cleanup-Runners.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/scripts/Cleanup-Runners.ps1)
 
-Because we will run and scale self hosted runners using docker/docker-compose dynamically using our image, this script will be used to remove and unregister any old/offline GitHub runner registrations against our GitHub repository when we scale containers up and down based on our needs.
+Because we will run and scale self hosted runners using docker/docker-compose dynamically using our image, this script will be used to remove and unregister any old/offline GitHub runner registrations against our GitHub repository when we scale containers up and down based on our needs. This PowerShell script uses [GitHub-CLI](https://cli.github.com/). If you are running this script locally ensure you have [GitHub-CLI](https://cli.github.com/) installed.  
 
 ```powershell
 #This script invokes GitHub-CLI (Pre-installed on container image)
@@ -172,6 +172,8 @@ finally {
     ./config.cmd remove --unattended --token $regToken
 }
 ```
+
+**NOTE:** This PowerShell script uses [GitHub-CLI](https://cli.github.com/). Thus we will lod **GitHub-CLI** into our container when we build the container later.  
 
 ### Prepare dockerfile to build image (Windows)
 
@@ -437,7 +439,7 @@ You will notice that all the running containers under **Docker Desktop for Windo
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/runners-offline.png)
 
-To unregister or cleanup these stale registrations just run the script we created earlier under the **./scripts** folder called **Cleanup-Runners.ps1**:
+To unregister or cleanup these stale registrations just run the script we created earlier under the **./scripts** folder called **Cleanup-Runners.ps1** (If you are running this script locally ensure you have [GitHub-CLI](https://cli.github.com/) installed as the script invokes GitHub-CLI to remove the registration):
 
 ```powershell
 .\scripts\Cleanup-Runners.ps1 -owner "orgName" -repo "repoName" -pat "myPatToken"
