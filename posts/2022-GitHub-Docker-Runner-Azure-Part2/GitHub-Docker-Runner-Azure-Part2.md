@@ -53,7 +53,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Conta
 
 Now that we have **Docker-Desktop** as well as **Docker-Compose** installed and set to use **Linux Containers** we can start to build out our self hosted GitHub runner docker image.
 
-Open VSCode, you can clone the repo found on my GitHub project [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux) which contains all the files or simply follow along with the following steps. We will prepare a few scripts that will be needed as part of our docker image creation.
+Open VSCode, you can clone the repo found on my GitHub project [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux) which contains all the files or simply follow along with the following steps. We will prepare a script that will be needed as part of our docker image creation.
 
 Create a `root` folder called `docker-github-runner-linux` and then another sub folder called `scripts`. Inside of the [scripts](https://github.com/Pwd9000-ML/docker-github-runner-linux/tree/master/scripts) folder you can create the following script:
 
