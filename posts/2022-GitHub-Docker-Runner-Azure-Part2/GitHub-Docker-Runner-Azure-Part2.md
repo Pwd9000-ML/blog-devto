@@ -260,7 +260,7 @@ After running this command, under the GitHub repository settings, you will see a
 
 You will also be able to see the running container under **Docker Desktop for Windows** under **Containers**:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/container-run.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/container-run.png)
 
 Lets test our new docker container self hosted GitHub runner by creating a **GitHub workflow** to run a few **GitHub Actions** by installing **Terraform** on the running container.
 
