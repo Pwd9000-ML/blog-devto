@@ -17,7 +17,7 @@ Welcome to Part 1 of my series: **Self Hosted Docker GitHub Runners on Azure**.
 
 In part one of this series, we will focus and look at how we can create a **windows container** image using docker that will essentially be a packaged up image we can use to deploy and run self hosted **GitHub runners** as containers. We will focus more on the docker image itself and how we can build our image and run our image on a local server or VM running **docker for windows** and also scaling out multiple instances of our image using **docker-compose**.
 
-Part two will focus on building a **Linux based Ubuntu image** and in parts three and four, we will look at how we can utilize Azure to store and run our containers in the cloud using technologies such as **Azure Container Registry (ACR)** to store images, and **Azure Container Instances (ACI)** and **Azure Container Apps (ACA)** to run and scale our self hosted GitHub runners, instead of using a VM based approach with docker running inside of a VM.
+Part two will focus on building a **Linux based Ubuntu image** and in parts three and four, we will look at how we can utilize **Azure** to store and run our containers in the cloud using technologies such as **Azure Container Registry (ACR)**, **Azure Container Instances (ACI)** and **Azure Container Apps (ACA)** to run and scale our self hosted GitHub runners, instead of using a VM based approach with docker running inside of a VM.
 
 ### Setup environment
 
@@ -243,7 +243,7 @@ Let's take a closer look and see what this docker build file will actually do, s
 FROM mcr.microsoft.com/windows/servercore/insider:10.0.20348.1
 ```
 
-The `'FROM'` instruction will tell our docker build to fetch and use a windows OS **base image**. Because windows base images can be fairly large we are using servercore **insider** edition, because the size is very compact and optimized.
+The `'FROM'` instruction will tell our docker build to fetch and use a windows OS **base image**. Because windows base images can be fairly large we are using servercore **insider** edition, because the size is compact and optimized.
 
 For compatibility on _"your"_ host/VM running docker you may need to use a different tag, _`mcr.microsoft.com/windows/servercore/insider:10.0.{build}.{revision}`_
 
