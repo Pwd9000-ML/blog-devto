@@ -17,7 +17,7 @@ Welcome to Part 2 of my series: **Self Hosted Docker GitHub Runners on Azure**.
 
 In part one of this series, we looked at how we can create a **windows container** image using docker and then running our self hosted **GitHub runners** as containers. In this part we will focus on building a **Linux based Ubuntu image** instead.
 
-In parts three and four, we will look at how we can utilize Azure to store and run our containers in the cloud using **Azure Container Registry (ACR)** to store images, and **Azure Container Instances (ACI)** and **Azure Container Apps (ACA)** to run and scale our self hosted GitHub runners, instead of using a VM based approach with docker running inside of a VM.
+In parts three and four, we will look at how we can utilize **Azure** to store and run our containers in the cloud using **Azure Container Registry (ACR)**, **Azure Container Instances (ACI)** and **Azure Container Apps (ACA)** to run and scale our self hosted GitHub runners, instead of using a VM based approach with docker running inside of a VM.
 
 ### Setup environment
 
