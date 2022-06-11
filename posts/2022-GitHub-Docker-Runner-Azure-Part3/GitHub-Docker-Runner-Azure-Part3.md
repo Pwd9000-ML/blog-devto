@@ -19,7 +19,7 @@ In part one and two of this series, we looked at how we can create **windows** a
 
 In this part, we will look at how we can utilize **Azure** to store and run our containers in the cloud using **Azure Container Registry (ACR)** to store images and **Azure Container Instances (ACI)** to run our self hosted GitHub runners, without the need of a Virtual Machine running docker.
 
-Part four will cover how we can use **Azure Container Apps (ACA)** instead of **Azure Container Instances (ACI)**.  
+Part four will cover how we can use **Azure Container Apps (ACA)** instead of **Azure Container Instances (ACI)**.
 
 As in the first two parts of this series, instead of preparing a Virtual Machine with docker, we are going to use automation and CI/CD in **GitHub** using **GitHub Actions** to **build** our docker containers and then **push** the docker images to a **registry** we will create and host in **Azure** called [Azure Container Registry (ACR)](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro).
 
@@ -66,13 +66,13 @@ Make a note of the **Login Server FQDN** from the newly created ACR as we will u
 
 ### Configure GitHub repository and link with Azure
 
-Next we will configure a **Service Principal** to link our **GitHub repository** and **workflows** with **Azure**.  
+Next we will configure a **Service Principal** to link our **GitHub repository** and **workflows** with **Azure**.
 
-We will grant the principal access to the **Azure Container Registry** to allow us to build and push images to the ACR and also grant permissions to be able to deploy **Azure Container Instances (ACIs)** from the container images hosted on our ACR.  
+We will grant the principal access to the **Azure Container Registry** to allow us to build and push images to the ACR and also grant permissions to be able to deploy **Azure Container Instances (ACIs)** from the container images hosted on our ACR.
 
-For this step I will use a PowerShell script, [Prepare-RBAC-ACI.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/Azure-Pre-Reqs/Deploy-ACR.ps1) running **Azure-CLI**.  
+For this step I will use a PowerShell script, [Prepare-RBAC-ACI.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/Azure-Pre-Reqs/Deploy-ACR.ps1) running **Azure-CLI**.
 
-This script will:  
+This script will:
 
 - Create a **Service Principal** which we can link with our **GitHub repository**
 - Create an **Azure Container Instance (ACI)** deployment **Resource Group**, where we can deploy ACIs to later on
@@ -99,7 +99,7 @@ az ad sp create-for-rbac --name $appName `
     --scopes "$aciRGId" `
     --sdk-auth
 
-# Assign additional RBAC role to Service Principal to push and pull images from ACR 
+# Assign additional RBAC role to Service Principal to push and pull images from ACR
 $acrId = az acr show --name "$acrName" --query id --output tsv
 az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
     az role assignment create --assignee "$_" `
@@ -108,11 +108,11 @@ az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
     }
 ```
 
-In the script above, the `'az ad sp create-for-rbac'` command will create an AAD app & service principal and will output a JSON object containing the credentials of the service principal:  
+In the script above, the `'az ad sp create-for-rbac'` command will create an AAD app & service principal and will output a JSON object containing the credentials of the service principal:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/rbac.png)
 
-Copy this JSON object as we will add this as a **GitHub Secret**. You will only need the sections with the `clientId`, `clientSecret`, `subscriptionId`, and `tenantId` values:  
+Copy this JSON object as we will add this as a **GitHub Secret**. You will only need the sections with the `clientId`, `clientSecret`, `subscriptionId`, and `tenantId` values:
 
 ```JSON
 {
@@ -123,21 +123,21 @@ Copy this JSON object as we will add this as a **GitHub Secret**. You will only 
 }
 ```
 
-As you can see we now have an empty resource group where we will deploy **container instances** into later using **GitHub Actions** (I named my Service principal App **GitHub-ACI-Deploy**):  
+As you can see we now have an empty resource group where we will deploy **container instances** into later using **GitHub Actions** (I named my Service principal App **GitHub-ACI-Deploy**):
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/rbac02.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/rbac02.png)
 
-We also have `'AcrPush'` permissions on our **Service Principal** which will allow us to **Pull** and **Push** images to the ACR:  
+We also have `'AcrPush'` permissions on our **Service Principal** which will allow us to **Pull** and **Push** images to the ACR:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/rbac03.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/rbac03.png)
 
-Next we will copy that JSON object Service Principal credentials, as well as a few other **GitHub Secrets** to our **GitHub repository**:  
+Next we will copy that JSON object Service Principal credentials, as well as a few other **GitHub Secrets** to our **GitHub repository**:
 
-1. In the GitHub UI, navigate to your repository and select **Settings** > **Secrets** > **Actions**:  
+1. In the GitHub UI, navigate to your repository and select **Settings** > **Secrets** > **Actions**:
 
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/ghsec01.png)  
+   ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/ghsec01.png)
 
-2. Select **New repository secret** to add the following secrets:  
+2. Select **New repository secret** to add the following secrets:
 
 |**Secret**|**Value**|
 |---|---|
@@ -149,3 +149,4 @@ Next we will copy that JSON object Service Principal credentials, as well as a f
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/ghsec02.png)  
 
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/ghsec02.png)
