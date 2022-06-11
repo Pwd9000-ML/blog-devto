@@ -148,5 +148,3 @@ Next we will copy that JSON object Service Principal credentials, as well as a f
 | `RESOURCE_GROUP` | The name of the resource group we created to deploy our ACIs into |
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/ghsec02.png)
-
-
