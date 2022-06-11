@@ -335,3 +335,120 @@ trap 'cleanup; exit 143' TERM
 Next we will look how we can build the image and also run our image at scale using **docker-compose**.
 
 ### Building the Docker Image - Docker Compose (Linux)
+
+As we saw earlier, it is pretty easy to build our image using docker commands, but we can also use **docker-compose** with a configuration file to make things a bit easier. So following on, navigate to the root folder again that contains the **dockerfile** we created earlier, and create a new `'YAML'` file called **docker-compose.yml**:
+
+```yml
+---
+version: '3.8'
+
+services:
+  runner:
+    image: pwd9000-github-runner-lin:latest
+    build:
+      context: .
+      args:
+        RUNNER_VERSION: '2.292.0'
+    environment:
+      GH_TOKEN: ${GH_TOKEN}
+      GH_OWNER: ${GH_OWNER}
+      GH_REPOSITORY: ${GH_REPOSITORY}
+```
+
+In the docker compose configuration file we can set out the parameters for our docker image by specifying things like the image name, GitHub runner version, as well as our environment variables.
+
+Note that we have to set these environment variables on our **host**, windows 11 machine in order for **docker compose** to be able to interpret the values specified on the `'YAML'` file inside of the `'${}'` symbols. This can easily be done by running the following PowerShell commands on the windows 11 host:
+
+```powershell
+#set system environment with $env: (or use .env file to pass GH_TOKEN, GH_OWNER, GH_REPOSITORY)
+$env:GH_OWNER='Org/Owner'
+$env:GH_REPOSITORY='Repository'
+$env:GH_TOKEN='myPatToken'
+```
+
+**NOTE:** You can also use an environment file instead to pass environment variables onto the docker compose build process using a [docker-compose.yml](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/Docker-Compose-Examples/docker-compose-ExampleEnvFile.yml) file like this instead:
+
+```yml
+---
+version: '3.8'
+
+services:
+  runner:
+    image: pwd9000-github-runner-lin:latest
+    build:
+      context: .
+      args:
+        RUNNER_VERSION: '2.292.0'
+    env_file:
+      - ./variables.env
+```
+
+This method however requires us to create another file in the root of our working folder called **./variables.env** and populating this file with our environment variables like so:
+
+```txt
+GH_OWNER=orgName
+GH_REPOSITORY=repoName
+GH_TOKEN=myPatToken
+```
+
+**IMPORTANT:** Don't use this method, and don't commit this file to source control if you are using **sensitive values** and storing your code in a remote source control repository. Add this environment file to your `'.gitignore'` file if needed, so that it is not pushed into source control.
+
+Which ever method you decide to use, you can kick off the build process after creating this **docker-compose.yml** file by running the following PowerShell command:
+
+```powershell
+docker-compose build
+```
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/compose-build.png)
+
+Once the process is complete, you will see the new image in **Docker Desktop for Windows** under **images**:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/compose-image.png)
+
+### Run and scale the Docker Image - Docker Compose (Windows)
+
+What's really nice about using **docker-compose** is that we can easily scale the amount of runners we want to use simply by running the following command:
+
+```powershell
+docker-compose up --scale runner=3 -d
+```
+
+Because all of our configuration and details are kept in **environment variables** and the **docker-compose** `'YAML'` file, we don't really have to run long docker commands as we did earlier, and we simply scale the amount of runners we want by specifying the `'--scale'` parameter.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/gh-runners.png)
+
+**NOTE:** The `'--scale runner=3 -d'` parameter is based on the docker compose file, `'services:'` setting, which in our case is called `'runner'`:
+
+```yml
+services:
+  runner:
+```
+
+To scale down to one runner, we can simply rerun the command as follow:
+
+```powershell
+docker-compose up --scale runner=1 -d
+```
+
+To stop and remove all running containers simply run:
+
+```powershell
+docker-compose stop
+docker rm $(docker ps -aq)
+```
+
+As described earlier, you will notice that all the running containers under **Docker Desktop for Windows** are no longer there, as well as the registrations against our GitHub repository have been cleaned up:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/runners-decom.png)
+
+In this part of the blog series we have covered how you can build and run self hosted **Github runners** as **linux containers** using **docker-desktop** and **docker-compose**. In part three of this blog series we will take a look at hosting and running our **GitHub runner** containers in **Azure**.  
+
+I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-linux) page. :heart:
+
+### _Author_
+
+Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [Twitter](https://twitter.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+
+{% user pwd9000 %}
+
+<a href="https://www.buymeacoffee.com/pwd9000"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=pwd9000&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
