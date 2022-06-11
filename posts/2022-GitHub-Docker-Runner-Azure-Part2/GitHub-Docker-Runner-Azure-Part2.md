@@ -437,11 +437,11 @@ docker-compose stop
 docker rm $(docker ps -aq)
 ```
 
-As described earlier, you will notice that all the running containers under **Docker Desktop for Windows** are no longer there, as well as the registrations against our GitHub repository have been cleaned up:  
+As described earlier, you will notice that all the running containers under **Docker Desktop for Windows** are no longer there, as well as the registrations against our GitHub repository have been cleaned up:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/runners-decom.png)
 
-In this part of the blog series we have covered how you can build and run self hosted **Github runners** as **linux containers** using **docker-desktop** and **docker-compose**. In part three of this blog series we will take a look at hosting and running our **GitHub runner** containers in **Azure**.  
+In this part of the blog series we have covered how you can build and run self hosted **Github runners** as **linux containers** using **docker-desktop** and **docker-compose**. In part three of this blog series we will take a look at hosting and running our **GitHub runner** containers in **Azure**.
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-linux) page. :heart:
 
