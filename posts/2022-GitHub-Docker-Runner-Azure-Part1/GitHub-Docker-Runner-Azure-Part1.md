@@ -18,7 +18,7 @@ Welcome to Part 1 of my series: **Self Hosted Docker GitHub Runners on Azure**.
 
 In part one of this series, we will focus and look at how we can create a **windows container** image using docker that will essentially be a packaged up image we can use to deploy and run self hosted **GitHub runners** as containers. We will focus more on the docker image itself and how we can build our image and run our image on a local server or VM running **docker for windows** and also scaling out multiple instances of our image using **docker-compose**.
 
-Part two will focus on building a **Linux based Ubuntu image** and in parts three and four, we will look at how we can utilize **Azure** to store and run our containers in the cloud using technologies such as **Azure Container Registry (ACR)**, **Azure Container Instances (ACI)** and **Azure Container Apps (ACA)** to run and scale our self hosted GitHub runners, instead of using a VM based approach with docker running inside of a VM.
+Part two will focus on building a **Linux based Ubuntu image** and in subsequent parts, we will look at how we can utilize **Azure** to store and run our containers in the cloud using technologies such as **Azure Container Registry (ACR)**, **Azure Container Instances (ACI)** and **Azure Container Apps (ACA)** to run and scale our self hosted GitHub runners, instead of using a VM based approach with docker running inside of a VM.
 
 ### Setup environment
 
@@ -566,7 +566,7 @@ Simply re-run the cleanup script we ran earlier under the **./scripts** folder c
 .\scripts\Cleanup-Runners.ps1 -owner "orgName" -repo "repoName" -pat "myPatToken"
 ```
 
-In this part of the blog series we have covered how you can build and run self hosted **Github runners** as **windows containers** using **docker-desktop** and **docker-compose**. In part two of this blog series we will focus on building a **Linux based Ubuntu image** container instead, for our self hosted GitHub runners.
+In this part of the blog series we have covered how you can build and run self hosted **Github runners** as **windows containers** using **docker-desktop** and **docker-compose**. In the next part of this blog series we will focus on building a **Linux based Ubuntu image** container instead, for our self hosted GitHub runners.
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-windows) page. :heart:
 
