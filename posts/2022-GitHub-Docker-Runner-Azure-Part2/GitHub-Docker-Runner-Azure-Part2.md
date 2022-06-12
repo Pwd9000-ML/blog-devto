@@ -6,14 +6,14 @@ tags: 'github, azure, docker, containers'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/main.png'
 canonical_url: null
 id: 1107071
-series: Self Hosted Docker GitHub Runners on Azure
+series: Self Hosted GitHub Runner containers on Azure
 ---
 
 ### Overview
 
 All the code used in this tutorial can be found on my GitHub project: [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux).
 
-Welcome to Part 2 of my series: **Self Hosted Docker GitHub Runners on Azure**.
+Welcome to Part 2 of my series: **Self Hosted GitHub Runner containers on Azure**.
 
 In part one of this series, we looked at how we can create a **windows container** image using docker and then running our self hosted **GitHub runners** as containers. In this part we will focus on building a **Linux based Ubuntu image** instead.
 

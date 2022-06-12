@@ -6,7 +6,7 @@ tags: 'github, azure, docker, containers'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/main.png'
 canonical_url: null
 id: 1107070
-series: Self Hosted Docker GitHub Runners on Azure
+series: Self Hosted GitHub Runner containers on Azure
 date: '2022-06-11T08:24:34Z'
 ---
 
@@ -14,7 +14,7 @@ date: '2022-06-11T08:24:34Z'
 
 All the code used in this tutorial can be found on my GitHub project: [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows).
 
-Welcome to Part 1 of my series: **Self Hosted Docker GitHub Runners on Azure**.
+Welcome to Part 1 of my series: **Self Hosted GitHub Runner containers on Azure**.
 
 In part one of this series, we will focus and look at how we can create a **windows container** image using docker that will essentially be a packaged up image we can use to deploy and run self hosted **GitHub runners** as containers. We will focus more on the docker image itself and how we can build our image and run our image on a local server or VM running **docker for windows** and also scaling out multiple instances of our image using **docker-compose**.
 

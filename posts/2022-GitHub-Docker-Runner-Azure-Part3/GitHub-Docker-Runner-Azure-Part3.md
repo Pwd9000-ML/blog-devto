@@ -6,14 +6,14 @@ tags: 'github, azure, acr, containers'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/main.png'
 canonical_url: null
 id: 1107072
-series: Self Hosted Docker GitHub Runners on Azure
+series: Self Hosted GitHub Runner containers on Azure
 ---
 
 ### Overview
 
 All the code used in this tutorial can be found on my GitHub project: [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows) or [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux).
 
-Welcome to Part 3 of my series: **Self Hosted Docker GitHub Runners on Azure**.
+Welcome to Part 3 of my series: **Self Hosted GitHub Runner containers on Azure**.
 
 In part one and two of this series, we looked at how we can create **windows** and **linux** container images using docker and then running our self hosted **GitHub runners** as containers on a Virtual Machine running docker.
 
