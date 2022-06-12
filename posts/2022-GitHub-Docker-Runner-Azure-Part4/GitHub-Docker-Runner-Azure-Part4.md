@@ -123,7 +123,7 @@ Because we have our repository already set up with the relevant **Service Princi
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part4/assets/ghsec03.png)
 
-We can create a **GitHub Workflow** to deploy our **Azure Container Instances**. [deployACI-Lin.yml](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/.github/workflows/deployACI-Lin.yml)
+We can create a **GitHub Workflow** to deploy our **Azure Container Instances**.  [deployACI-Lin.yml](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/.github/workflows/deployACI-Lin.yml)  
 
 ```yaml
 name: Deploy_GHRunner_Linux_ACI
@@ -133,21 +133,21 @@ on:
 
 env:
   RUNNER_VERSION: 2.293.0
-  ACI_RESOURCE_GROUP: 'Demo-ACI-GitHub-Runners-RG'
-  ACI_NAME: 'gh-runner-linux-01'
-  DNS_NAME_LABEL: 'gh-lin-01'
-  GH_OWNER: 'Pwd9000-ML'
-  GH_REPOSITORY: 'docker-github-runner-linux' #Change here to deploy self hosted runner ACI to another repo.
+  ACI_RESOURCE_GROUP: "Demo-ACI-GitHub-Runners-RG"
+  ACI_NAME: "gh-runner-linux-01"
+  DNS_NAME_LABEL: "gh-lin-01"
+  GH_OWNER: "Pwd9000-ML"
+  GH_REPOSITORY: "docker-github-runner-linux" #Change here to deploy self hosted runner ACI to another repo.
 
 jobs:
   deploy-gh-runner-aci:
     runs-on: ubuntu-latest
     steps:
       # checkout the repo
-      - name: 'Checkout GitHub Action'
+      - name: "Checkout GitHub Action"
         uses: actions/checkout@main
 
-      - name: 'Login via Azure CLI'
+      - name: "Login via Azure CLI"
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
@@ -168,27 +168,27 @@ jobs:
 
 **NOTE:** I have added the custom PAT token as a GitHub Secret on the repository: `'GH_TOKEN=${{ secrets.PAT_TOKEN }}'`:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part4/assets/PAT02.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part4/assets/PAT02.png)  
 
-We can manually trigger and run the workflow:
+We can manually trigger and run the workflow:  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part4/assets/aci02.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part4/assets/aci02.png)  
 
-After the workflow has run you should see the self hosted GitHub runner against the repository you specified in the workflow environment variables:
+After the workflow has run you should see the self hosted GitHub runner against the repository you specified in the workflow environment variables:  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part4/assets/node.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part4/assets/node.png)  
 
-You will also be able to see the ACI created under the resource group we created earlier:
+You will also be able to see the ACI created under the resource group we created earlier:  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part4/assets/aci-rg.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part4/assets/aci-rg.png)  
 
-To stop and remove the ACI container you can run the following **Azure-CLI** command:
+To stop and remove the ACI container you can run the following **Azure-CLI** command:  
 
 ```powershell
 az container delete --resource-group $aciResourceGroupName --name $aciName
 ```
 
-We have successfully deployed self hosted GitHub runners using **Azure Container Instances**. In the next part of this series we will look at how we can run and auto scale our self hosted GitHub runners on **Azure Container Apps (ACA)** instead of **Azure Container Instances (ACI)**.
+We have successfully deployed self hosted GitHub runners using **Azure Container Instances**. In the next part of this series we will look at how we can run and auto scale our self hosted GitHub runners on **Azure Container Apps (ACA)** instead of **Azure Container Instances (ACI)**.  
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my GitHub project: [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows) or [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux). :heart:
 
