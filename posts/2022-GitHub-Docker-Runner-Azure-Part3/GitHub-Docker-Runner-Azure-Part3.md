@@ -128,7 +128,7 @@ Next we will copy that JSON object Service Principal credentials, as well as a f
 
 With all the repository secrets now set up, we will be creating a **GitHub workflow** to build our docker image and also push our image to the **Azure Container Registry** using a few **GitHub Actions**.
 
-In parts one and two of this blog series we created some scripts and a dockerfile inside of a folder and then built the docker images on our windows 11 machine using **Docker-Desktop** and **Docker-Compose**.
+In parts one and two of this blog series we created some scripts and a **dockerfile** inside of a folder and then built the docker images on our windows 11 machine using **Docker-Desktop** and **Docker-Compose**.
 
 But now with these scripts and docker files in source control inside of a **GitHub repository** ([windows repo](https://github.com/Pwd9000-ML/docker-github-runner-windows) / [linux repo](https://github.com/Pwd9000-ML/docker-github-runner-linux)), we can use **GitHub Actions** to build the images instead using CI/CD.
 
@@ -228,7 +228,7 @@ or on the linux workflow:
 
 You can see the latest runner agent versions here: [GitHub Runner Releases](https://github.com/actions/runner/releases)
 
-After triggering the workflow, the build can take a few minutes to complete. After completion you will see docker image in the **Azure Container Registry**:
+After triggering the workflow, the build can take a few minutes to complete. After completion you will see the docker image was pushed in to the **Azure Container Registry**:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/acr-win01.png)
 
