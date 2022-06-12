@@ -302,7 +302,7 @@ RUN choco install -y \
 
 The `'ADD'` instruction will copy our **Install-Choco.ps1** script into the working directory and `'RUN'` the script which will install **Chocolatey** into the image, and then cleanup/remove the script.
 
-The second `'RUN'` will then uses **Chocolatey** to install **Git**, **GitHub-CLI**, **Azure-CLI** and **PowerShell Core** into the image. You can add any additional tooling you want to add to the image at build time here.
+The second `'RUN'` will then use **Chocolatey** to install **Git**, **GitHub-CLI**, **Azure-CLI** and **PowerShell Core** into the image. You can add any additional tooling you want to add to the image at build time here.
 
 **NOTE:** Try not to install too many packages at build time to keep the image as lean, compact and re-usable as possible. You can always use a **GitHub Action** later in a workflow when running the container and use **Chocolatey** which is now loaded into the image/container to install more software.
 
@@ -404,9 +404,9 @@ jobs:
         run: az --version
 ```
 
-Notice that the workflow `'runs-on: [self-hosted]'` and that the default shell is set to PowerShell Core, `'shell: pwsh'`, because we loaded PowerShell core into our docker image we created earlier.
+Notice that the workflow `'runs-on: [self-hosted]'` and that the default shell is set to PowerShell Core, `'shell: pwsh'`.  
 
-We can now use the following step to install **Terraform** using **Chocolatey** which we also loaded into our docker image when we built it earlier:
+Because **Chocolatey** is part of the image we built earlier, we can use the following step to install **Terraform** using **Chocolatey**:  
 
 ```yml
 steps:
@@ -418,7 +418,7 @@ steps:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part1/assets/terra.png)
 
-To spin up additional docker runners (containers), we just simply re-run the docker command we ran earlier (Each run will create an additional runner instance/container):
+To add additional docker runners (containers), we simply re-run the docker command we ran earlier (Each run will create an additional runner instance/container):
 
 ```powershell
 #Run container from image:
