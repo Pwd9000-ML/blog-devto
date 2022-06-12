@@ -1,8 +1,8 @@
 ---
-title: Running Docker based GitHub runner containers on Azure Container Instances (ACI)
+title: Storing Docker based GitHub runner containers on Azure Container Registry (ACR)
 published: false
-description: Running Docker based GitHub runner containers on Azure Container Instances (ACI)
-tags: 'github, azure, docker, containers'
+description: Storing Docker based GitHub runner containers on Azure Container Registry (ACR)
+tags: 'github, azure, acr, containers'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/main.png'
 canonical_url: null
 id: 1107072
@@ -13,13 +13,13 @@ series: Self Hosted Docker GitHub Runners on Azure
 
 All the code used in this tutorial can be found on my GitHub project: [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows) or [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux).
 
-Welcome to Part 3 of my series: **Self Hosted Docker GitHub Runners on Azure**.
+Welcome to Part 3 of my series: **Self Hosted Docker GitHub Runners on Azure**.  
 
-In part one and two of this series, we looked at how we can create **windows** and **linux** container images using docker and then running our self hosted **GitHub runners** as containers on a Virtual Machine running docker.
+In part one and two of this series, we looked at how we can create **windows** and **linux** container images using docker and then running our self hosted **GitHub runners** as containers on a Virtual Machine running docker.  
 
-In this part, we will look at how we can utilize **Azure** to store and run our containers in the cloud using **Azure Container Registry (ACR)** to store images and **Azure Container Instances (ACI)** to run our self hosted GitHub runners, without the need of a Virtual Machine running docker.
+In this part, we will look at how we can utilize **Azure** to build and store our GitHub runner containers in the cloud using **Azure Container Registry (ACR)** without the need of a Virtual Machine running docker.  
 
-Part four will cover how we can use **Azure Container Apps (ACA)** instead of **Azure Container Instances (ACI)**.
+The next part we will cover how we can use **Azure Container Instances (ACI)** to run images from the ACR in **Azure**.  
 
 As in the first two parts of this series, instead of preparing a Virtual Machine with docker, we are going to use automation and CI/CD in **GitHub** using **GitHub Actions** to **build** our docker containers and then **push** the docker images to a **registry** we will create and host in **Azure** called [Azure Container Registry (ACR)](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro).
 
@@ -264,3 +264,15 @@ You can also see more information on how to use the image:
 ### Linux runner
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/acr-lin02.png)
+
+
+
+I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-windows) page. :heart:
+
+### _Author_
+
+Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [Twitter](https://twitter.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+
+{% user pwd9000 %}
+
+<a href="https://www.buymeacoffee.com/pwd9000"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=pwd9000&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
