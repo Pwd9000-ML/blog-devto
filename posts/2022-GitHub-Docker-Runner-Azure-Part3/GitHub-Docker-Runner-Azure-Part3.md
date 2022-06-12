@@ -17,11 +17,9 @@ Welcome to Part 3 of my series: **Self Hosted Docker GitHub Runners on Azure**.
 
 In part one and two of this series, we looked at how we can create **windows** and **linux** container images using docker and then running our self hosted **GitHub runners** as containers on a Virtual Machine running docker.
 
-In this part, we will look at how we can utilize **GitHub Actions** to build and **Azure** to store our GitHub runner containers in the cloud using a remote registry: **Azure Container Registry (ACR)** without the need of a Virtual Machine running docker.
+As in the first two parts of this series, instead of preparing a Virtual Machine with docker, we are going to use CI/CD in **GitHub** using **GitHub Actions** to **build** our docker containers and then **push** the docker images to a **registry** we will create and host in **Azure** called [Azure Container Registry (ACR)](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro).
 
 In the next part of the series we will cover how we can use **Azure Container Instances (ACI)** to run images from the remote ACR in **Azure**.
-
-As in the first two parts of this series, instead of preparing a Virtual Machine with docker, we are going to use automation and CI/CD in **GitHub** using **GitHub Actions** to **build** our docker containers and then **push** the docker images to a **registry** we will create and host in **Azure** called [Azure Container Registry (ACR)](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro).
 
 ### Pre-Requisites
 
