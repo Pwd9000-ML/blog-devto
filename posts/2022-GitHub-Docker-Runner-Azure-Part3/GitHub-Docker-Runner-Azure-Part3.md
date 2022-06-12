@@ -17,9 +17,9 @@ Welcome to Part 3 of my series: **Self Hosted Docker GitHub Runners on Azure**.
 
 In part one and two of this series, we looked at how we can create **windows** and **linux** container images using docker and then running our self hosted **GitHub runners** as containers on a Virtual Machine running docker.
 
-In this part, we will look at how we can utilize **GitHub Actions** to build and **Azure** to store our GitHub runner containers in the cloud using a remote registry: **Azure Container Registry (ACR)** without the need of a Virtual Machine running docker.
+In this part, we will look at how we can utilize **GitHub Actions** to build and **Azure** to store our GitHub runner containers in the cloud using a remote registry: **Azure Container Registry (ACR)** without the need of a Virtual Machine running docker.  
 
-In the next part of the series we will cover how we can use **Azure Container Instances (ACI)** to run images from the remote ACR in **Azure**.
+In the next part of the series we will cover how we can use **Azure Container Instances (ACI)** to run images from the remote ACR in **Azure**.  
 
 As in the first two parts of this series, instead of preparing a Virtual Machine with docker, we are going to use automation and CI/CD in **GitHub** using **GitHub Actions** to **build** our docker containers and then **push** the docker images to a **registry** we will create and host in **Azure** called [Azure Container Registry (ACR)](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro).
 
@@ -66,9 +66,9 @@ Make a note of the **Login Server FQDN** from the newly created ACR as we will u
 
 Next we will configure a **Service Principal** to link our **GitHub repository** and **workflows** with **Azure**.
 
-We will grant the principal access to the **Azure Container Registry** to allow us to build and push images to the ACR.
+We will grant the principal access to the **Azure Container Registry** to allow us to build and push images to the ACR.  
 
-For this step I will use a PowerShell script, [Prepare-RBAC-ACR.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/Azure-Pre-Reqs/Prepare-RBAC-ACR.ps1) running **Azure-CLI**. This script will:
+For this step I will use a PowerShell script, [Prepare-RBAC-ACR.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/Azure-Pre-Reqs/Prepare-RBAC-ACR.ps1) running **Azure-CLI**. This script will:  
 
 - Create a **Service Principal** which we can link with our **GitHub repository**
 - Grant Pull/Push access over the **Azure Container Registry (ACR)** we created earlier
@@ -105,7 +105,7 @@ Copy this JSON object as we will add this as a **GitHub Secret**. You will only 
 }
 ```
 
-**NOTE:** I named my Service principal App **GitHub-ACI-Deploy**. We have `'AcrPush'` permissions on our **Service Principal** which will allow us to **Pull** and **Push** images to the ACR:
+**NOTE:** I named my Service principal App **GitHub-ACI-Deploy**. We have `'AcrPush'` permissions on our **Service Principal** which will allow us to **Pull** and **Push** images to the ACR:  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/rbac03.png)
 
@@ -131,7 +131,7 @@ Next we will copy that JSON object Service Principal credentials, as well as a f
 
 With all the repository secrets now set up, we will be creating a **GitHub workflow** to build our docker image and also push our image to the **Azure Container Registry** using a few **GitHub Actions**.
 
-In part one and two of this blog series we created some scripts and a dockerfile inside of a folder and then built the docker images on our windows 11 machine. But now with these scripts and docker files in source control inside of a **GitHub repository** ([windows repo](https://github.com/Pwd9000-ML/docker-github-runner-windows) / [linux repo](https://github.com/Pwd9000-ML/docker-github-runner-linux)), we can use **GitHub Actions** to build the images instead using CI/CD.
+In parts one and two of this blog series we created some scripts and a dockerfile inside of a folder and then built the docker images on our windows 11 machine. But now with these scripts and docker files in source control inside of a **GitHub repository** ([windows repo](https://github.com/Pwd9000-ML/docker-github-runner-windows) / [linux repo](https://github.com/Pwd9000-ML/docker-github-runner-linux)), we can use **GitHub Actions** to build the images instead using CI/CD.
 
 Create a new workflow under the GitHub repository that contains the dockerfile:
 
@@ -241,7 +241,9 @@ You can also see more information on how to use the image:
 
 ### Linux runner
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/acr-lin02.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/acr-lin02.png)  
+
+With our images now on a remote registry hosted in **Azure**, we will in the next part of this series look at how we can pull GitHub runner images from the registry and run our containers on **Azure Container Instances (ACI)**.  
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my GitHub project: [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows) or [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux). :heart:
 
