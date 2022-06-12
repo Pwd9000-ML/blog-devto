@@ -56,7 +56,7 @@ az acr create --resource-group "$resourceGroupName" `
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/acr01.png)
 
-Make a note of the **Login Server FQDN** from the newly created ACR as we will use this value later in a **GitHub Secret** for pushing images to the ACR:  
+Make a note of the **Login Server FQDN** from the newly created ACR as we will use this value later in a **GitHub Secret** for pushing images to the ACR:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/acr02.png)
 
