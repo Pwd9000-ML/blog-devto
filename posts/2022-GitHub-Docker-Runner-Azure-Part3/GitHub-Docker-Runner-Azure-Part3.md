@@ -147,4 +147,121 @@ Next we will copy that JSON object Service Principal credentials, as well as a f
 | `REGISTRY_PASSWORD` | The `clientSecret` from the JSON output from the service principal creation |
 | `RESOURCE_GROUP` | The name of the resource group we created to deploy our ACIs into |
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/ghsec02.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/ghsec02.png)  
+
+### Build and Push docker image to ACR
+
+With all the repository secrets now set up, we will be creating a **GitHub workflow** to build our docker image and also push our image to the **Azure Container Registry** using a few **GitHub Actions**.  
+
+In part one and two of this blog series we created some scripts and a dockerfile inside of a folder and then built the docker images on our windows 11 machine. But now with these scripts and docker files in source control inside of a **GitHub repository** ([windows repo](https://github.com/Pwd9000-ML/docker-github-runner-windows) / [linux repo](https://github.com/Pwd9000-ML/docker-github-runner-linux)), we can use **GitHub Actions** to build the images instead using CI/CD.  
+
+Create a new workflow under the GitHub repository that contains the dockerfile:
+
+You can use this: [Windows_Container_Workflow](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/.github/workflows/dockerBuildAcr-Win.yml) for **Windows containers**.  
+
+```yml
+name: Windows_Container_Workflow
+
+on:
+  workflow_dispatch:
+
+env:
+  RUNNER_VERSION: 2.293.0
+
+jobs:
+  build-and-push:
+    runs-on: windows-latest
+    steps:
+      # checkout the repo
+      - name: "Checkout GitHub Action"
+        uses: actions/checkout@main
+
+      - name: "Login via Azure CLI"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: "Build and push image"
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - run: |
+          docker build --build-arg RUNNER_VERSION=${{ env.RUNNER_VERSION }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwd9000-github-runner-win:${{ env.RUNNER_VERSION }} .
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwd9000-github-runner-win:${{ env.RUNNER_VERSION }}
+```
+
+Or you can use this: [Linux_Container_Workflow](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/.github/workflows/dockerBuildAcr-Lin.yml) for **Linux containers**.  
+
+```yml
+name: Linux_Container_Workflow
+
+on:
+  workflow_dispatch:
+
+env:
+  RUNNER_VERSION: 2.293.0
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout the repo
+      - name: "Checkout GitHub Action"
+        uses: actions/checkout@main
+
+      - name: "Login via Azure CLI"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: "Build and push image"
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - run: |
+          docker build --build-arg RUNNER_VERSION=${{ env.RUNNER_VERSION }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwd9000-github-runner-lin:${{ env.RUNNER_VERSION }} .
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwd9000-github-runner-lin:${{ env.RUNNER_VERSION }}
+```
+
+Notice that our trigger is set to `on: workflow_dispatch:`. This allows us to trigger the build manually.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/run.png)  
+
+**NOTE:** This workflow will build a self hosted GitHub runner container image using a runner version specified with an environment variable `env: RUNNER_VERSION: 2.293.0`. The image will also be tagged with the runner version when created and pushed to the ACR in the following step:  
+
+```yml
+#Windows
+- run: |
+    docker build --build-arg RUNNER_VERSION=${{ env.RUNNER_VERSION }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwd9000-github-runner-win:${{ env.RUNNER_VERSION }} .
+    docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwd9000-github-runner-win:${{ env.RUNNER_VERSION }}
+```
+
+or on the linux workflow:
+
+```yml
+#Linux
+- run: |
+    docker build --build-arg RUNNER_VERSION=${{ env.RUNNER_VERSION }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwd9000-github-runner-lin:${{ env.RUNNER_VERSION }} .
+    docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwd9000-github-runner-lin:${{ env.RUNNER_VERSION }}
+```
+
+You can see the latest runner agent versions here: [GitHub Runner Releases](https://github.com/actions/runner/releases)  
+
+After triggering the workflow, the build can take a few minutes to complete. After completion you will see docker image in the **Azure Container Registry**:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/acr-win01.png)  
+
+You can also see more information on how to use the image:  
+
+### Windows runner
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/acr-win02.png)  
+
+### Linux runner
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/acr-lin02.png)  
+
