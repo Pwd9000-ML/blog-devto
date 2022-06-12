@@ -9,13 +9,11 @@ id: 1107073
 series: Self Hosted Docker GitHub Runners on Azure
 ---
 
-
 notes::
 
 We will then use **GitHub Actions** to deploy a running instance of our self hosted **GitHub runner** as as an [Azure Container Instances (ACI)](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview).
 
-Previous script: 
-
+Previous script:
 
 ```powershell
 #Log into Azure
@@ -37,7 +35,7 @@ az ad sp create-for-rbac --name $appName `
     --scopes "$aciRGId" `
     --sdk-auth
 
-# Assign additional RBAC role to Service Principal to push and pull images from ACR 
+# Assign additional RBAC role to Service Principal to push and pull images from ACR
 $acrId = az acr show --name "$acrName" --query id --output tsv
 az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
     az role assignment create --assignee "$_" `
