@@ -242,7 +242,7 @@ You can also see more information on how to use the image:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/acr-lin02.png)
 
-With our images now hosted on a remote registry in **Azure**, in the next part of this series we will look at how we can pull the GitHub runner images from the registry and run the containers on **Azure Container Instances (ACI)**.  
+With our images now hosted on a remote registry in **Azure**, in the next part of this series we will look at how we can pull the GitHub runner images from the registry and run the containers on **Azure Container Instances (ACI)**.
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my GitHub project: [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows) or [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux). :heart:
 
