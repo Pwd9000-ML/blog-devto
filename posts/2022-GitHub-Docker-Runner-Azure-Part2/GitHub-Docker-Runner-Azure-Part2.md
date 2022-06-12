@@ -182,9 +182,9 @@ RUN apt-get install -y --no-install-recommends \
 
 The first `'RUN'` instruction will update the base packages on the Ubuntu 20.04 image and add a non-sudo user called **docker**.
 
-The second `'RUN'` will install packages and dependencies such as **git**, **Azure-CLI**, **python** along with **jq** so we can parse JSON for the token in our **ENTRYPOINT** script.  
+The second `'RUN'` will install packages and dependencies such as **git**, **Azure-CLI**, **python** along with **jq** so we can parse JSON for the token in our **ENTRYPOINT** script.
 
-**NOTE:** You can add additional packages as necessary at this stage, but try not to install too many packages at build time to keep the image as lean, compact and re-usable as possible. You can always use a **GitHub Action** later in a workflow when running the container and use actions to install more tooling.  
+**NOTE:** You can add additional packages as necessary at this stage, but try not to install too many packages at build time to keep the image as lean, compact and re-usable as possible. You can always use a **GitHub Action** later in a workflow when running the container and use actions to install more tooling.
 
 I will be showing how we can add more software and tooling e.g. **Terraform** later on when we run our container, using a GitHub Action.
 
