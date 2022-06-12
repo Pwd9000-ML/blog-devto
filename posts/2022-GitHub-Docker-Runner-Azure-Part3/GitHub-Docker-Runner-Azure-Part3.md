@@ -122,7 +122,9 @@ Next we will copy that JSON object Service Principal credentials, as well as a f
 | `REGISTRY_USERNAME` | The `clientId` from the JSON output from the service principal creation |
 | `REGISTRY_PASSWORD` | The `clientSecret` from the JSON output from the service principal creation |
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/ghsec03.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/ghsec03.png)  
+
+**NOTE:** Make sure to also save these **GitHub Secrets** inside of a key vault for later use as we will be using the same values to deploy **Azure Container Instances** in the next blog post in this series.  
 
 ### Build and Push docker image to ACR
 
