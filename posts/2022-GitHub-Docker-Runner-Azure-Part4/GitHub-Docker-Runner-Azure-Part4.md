@@ -28,7 +28,7 @@ Things we will need are:
 - Create an ACI deployment Resource Group
 - Grant access to our **Service Principal** we created in the previous step to create ACIs
 
-For this step I will use a PowerShell script, [Prepare-RBAC-ACI.ps1](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/Azure-Pre-Reqs/Prepare-RBAC-ACI.ps1) running **Azure-CLI**, to create a **Resource Group** and grant access to our **GitHub Service Principal App**.
+For this step I will use a PowerShell script, [Prepare-RBAC-ACI.ps1](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/Azure-Pre-Reqs/Prepare-RBAC-ACI.ps1) running **Azure-CLI**, to create a **Resource Group** and grant access to our **GitHub Service Principal App** we created in the previous post.
 
 ```powershell
 #Log into Azure
