@@ -17,7 +17,7 @@ Welcome to Part 2 of my series: **Self Hosted Docker GitHub Runners on Azure**.
 
 In part one of this series, we looked at how we can create a **windows container** image using docker and then running our self hosted **GitHub runners** as containers. In this part we will focus on building a **Linux based Ubuntu image** instead.
 
-In parts three and four, we will look at how we can utilize **Azure** to store and run our containers in the cloud using **Azure Container Registry (ACR)**, **Azure Container Instances (ACI)** and **Azure Container Apps (ACA)** to run and scale our self hosted GitHub runners, instead of using a VM based approach with docker running inside of a VM.
+In subsequent parts, we will look at how we can utilize **Azure** to store and run our containers in the cloud using **Azure Container Registry (ACR)**, **Azure Container Instances (ACI)** and **Azure Container Apps (ACA)** to run and scale our self hosted GitHub runners, instead of using a VM based approach with docker running inside of a VM.
 
 ### Setup environment
 
@@ -441,7 +441,7 @@ As described earlier, you will notice that all the running containers under **Do
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/runners-decom.png)
 
-In this part of the blog series we have covered how you can build and run self hosted **Github runners** as **linux containers** using **docker-desktop** and **docker-compose**. In part three of this blog series we will take a look at hosting and running our **GitHub runner** containers in **Azure**.
+In this part of the blog series we have covered how you can build and run self hosted **Github runners** as **linux containers** using **docker-desktop** and **docker-compose**. In the next part of this blog series we will take a look at hosting our **GitHub runner** containers in a remote registry in Azure using **Azure Container Registry (ACR)**.  
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-linux) page. :heart:
 
