@@ -404,9 +404,9 @@ jobs:
         run: az --version
 ```
 
-Notice that the workflow `'runs-on: [self-hosted]'` and that the default shell is set to PowerShell Core, `'shell: pwsh'`.  
+Notice that the workflow `'runs-on: [self-hosted]'` and that the default shell is set to PowerShell Core, `'shell: pwsh'`.
 
-Because **Chocolatey** is part of the image we built earlier, we can use the following step to install **Terraform** using **Chocolatey**:  
+Because **Chocolatey** is part of the image we built earlier, we can use the following step to install **Terraform** using **Chocolatey**:
 
 ```yml
 steps:
