@@ -21,7 +21,7 @@ In parts three and four, we will look at how we can utilize **Azure** to store a
 
 ### Setup environment
 
-Similarly as described in part one, before building and running docker images we need to set a few things up first. For my environment I will be using a **Windows 11** virtual machine running **WSL2**. Here is more information on running docker on [Windows Server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-Server#install-docker). Things that we will need on our VM are:
+As also described in part one, before building and running docker images we need to set a few things up first. For my environment I will be using a **Windows 11** virtual machine running **WSL2**. Here is more information on running docker on [Windows Server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-Server#install-docker). Things that we will need on our VM are:
 
 - Install a code editor such as [VSCode](https://code.visualstudio.com/download)
 
@@ -61,7 +61,7 @@ Create a `root` folder called `docker-github-runner-linux` and then another sub 
 
 ### [start.sh](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/scripts/start.sh)
 
-This script will be used as our `ENTRYPOINT` script and will be used to bootstrap our docker container when we start/run a container from the image we will be creating. The main purpose of this script is to register a new self hosted GitHub runner instance on the repo we pass into the docker environment each time a new container is spun up or scaled up from the image.
+This script will be used as our `'ENTRYPOINT'` script and will be used to bootstrap our docker container when we start/run a container from the image we will be creating. The main purpose of this script is to register a new self hosted GitHub runner instance on the repo we pass into the docker environment each time a new container is spun up or scaled up from the image.
 
 ```bash
 #!/bin/bash
@@ -165,7 +165,7 @@ LABEL RunnerVersion=${RUNNER_VERSION}
 
 We define an input argument using `'ARG'`. This is so that we can instruct the docker build command to load a specific version of the **GitHub runner** agent into the image when building the image. Because we are using a **linux container**, `'ARG'` will create a system variable **$RUNNER_VERSION** which will be accessible to Bash inside the container.
 
-We also set an **Enviornment Variable** called **DEBIAN_FRONTEND** to **noninteractive** with `'ENV'`, this is so that we can run commands later on in unattended mode.
+We also set an **Environment Variable** called **DEBIAN_FRONTEND** to **noninteractive** with `'ENV'`, this is so that we can run commands later on in unattended mode.
 
 In addition we can also label our image with some **metadata** using `'LABEL'` to add more information about the image. You can change these values as necessary.
 
@@ -182,11 +182,11 @@ RUN apt-get install -y --no-install-recommends \
 
 The first `'RUN'` instruction will update the base packages on the Ubuntu 20.04 image and add a non-sudo user called **docker**.
 
-The second `'RUN'` will install **git**, **Azure-CLI**, **python** and the packages and dependencies along with **jq** so we can parse JSON.
+The second `'RUN'` will install packages and dependencies such as **git**, **Azure-CLI**, **python** along with **jq** so we can parse JSON for the token in our **ENTRYPOINT** script.  
 
-**NOTE:** Try not to install too many packages at build time to keep the image as lean, compact and re-usable as possible. You can always use a **GitHub Action** later in a workflow when running the container and use actions to install more tooling.
+**NOTE:** You can add additional packages as necessary at this stage, but try not to install too many packages at build time to keep the image as lean, compact and re-usable as possible. You can always use a **GitHub Action** later in a workflow when running the container and use actions to install more tooling.  
 
-I will also be showing how we can add more software and tooling e.g. **Terraform** later on when we run our container, using a GitHub Action.
+I will be showing how we can add more software and tooling e.g. **Terraform** later on when we run our container, using a GitHub Action.
 
 ```dockerfile
 # cd into the user directory, download and unzip the github actions runner
@@ -198,7 +198,7 @@ RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
 RUN chown -R docker ~docker && /home/docker/actions-runner/bin/installdependencies.sh
 ```
 
-The next `'RUN'` instruction will create a new folder called **actions-runner** and then download and extract a specific version of the GitHub runner binaries based on the build argument `'ARG'` value passed into the container build process that sets the environment variable: **$RUNNER_VERSION** as described earlier. A few more additional dependencies are also installed from the extracted GitHub runner.
+The next `'RUN'` instruction will create a new folder called **actions-runner** and download and extract a specific version of the GitHub runner binaries based on the build argument `'ARG'` value passed into the container build process that sets the environment variable: **$RUNNER_VERSION** as described earlier. A few more additional dependencies are also installed from the extracted GitHub runner files.
 
 ```dockerfile
 # add over the start.sh script
@@ -214,7 +214,7 @@ USER docker
 ENTRYPOINT ["./start.sh"]
 ```
 
-The last section will `'ADD'` the `'ENTRYPOINT'` script named **start.sh** into the directory **actions-runner**. The entrypoint script will run each time a new container is created. It acts as a bootstrapper that will, based on specific environment variables we pass into the **Docker Run** command, such as, **$GH_OWNER**, **$GH_REPOSITORY** and **$GH_TOKEN** to register the containers self hosted runner agent against a specific **repository** in the **GitHub organisation** we specify.
+The last section will `'ADD'` the `'ENTRYPOINT'` script named **start.sh** to the image. The entrypoint script will run each time a new container is created. It acts as a bootstrapper that will, based on specific environment variables we pass into the **Docker Run** command, such as, **$GH_OWNER**, **$GH_REPOSITORY** and **$GH_TOKEN** to register the containers self hosted runner agent against a specific **repository** in the **GitHub organisation** we specify.
 
 Now that we have our scripts as well as our dockerfile ready we can build our image.
 
@@ -264,9 +264,9 @@ You will also be able to see the running container under **Docker Desktop for Wi
 
 Lets test our new docker container self hosted GitHub runner by creating a **GitHub workflow** to run a few **GitHub Actions** by installing **Terraform** on the running container.
 
-You can also use this [test workflow](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/.github/workflows/testRunner.yml) from my GitHub project: [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux).
+You can use this [test workflow](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/.github/workflows/testRunner.yml) from my GitHub project: [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux).
 
-Create a new workflow under the GitHub repository where you deployed the self hosted runner where it is running:
+Create a new workflow under the GitHub repository where you deployed the self hosted runner where it's running:
 
 ```yml
 name: Local runner test
@@ -299,7 +299,7 @@ steps:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part2/assets/terra.png)
 
-To spin up additional docker runners (containers), we just simply re-run the docker command we ran earlier (Each run will create an additional runner instance/container):
+To add additional docker runners (containers), we just simply re-run the docker command we ran earlier (Each run will create an additional runner instance/container):
 
 ```powershell
 #Run container from image:
@@ -407,7 +407,7 @@ Once the process is complete, you will see the new image in **Docker Desktop for
 
 ### Run and scale the Docker Image - Docker Compose (Windows)
 
-What's really nice about using **docker-compose** is that we can easily scale the amount of runners we want to use simply by running the following command:
+What's nice about using **docker-compose** is that we can easily scale the amount of runners we want to use simply by running the following command:
 
 ```powershell
 docker-compose up --scale runner=3 -d

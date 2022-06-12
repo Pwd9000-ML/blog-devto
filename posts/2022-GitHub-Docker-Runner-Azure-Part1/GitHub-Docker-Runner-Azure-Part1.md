@@ -125,7 +125,7 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://com
 
 ### [start.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/scripts/start.ps1)
 
-This script will be used as our `ENTRYPOINT` script and will be used to bootstrap our docker container when we start/run a container from the image we will be creating. The main purpose of this script is to register a new self hosted GitHub runner instance on the repo we pass into the docker environment each time a new container is spun up or scaled up from the image.
+This script will be used as our `'ENTRYPOINT'` script and will be used to bootstrap our docker container when we start/run a container from the image we will be creating. The main purpose of this script is to register a new self hosted GitHub runner instance on the repo we pass into the docker environment each time a new container is spun up or scaled up from the image.
 
 ```powershell
 #This script invokes GitHub-CLI (Already installed on container image)
@@ -376,9 +376,9 @@ You will also be able to see the running container under **Docker Desktop for Wi
 
 Lets test our new docker container self hosted GitHub runner by creating a **GitHub workflow** to run a few **GitHub Actions** by installing **Terraform** on the running container.
 
-You can also use this [test workflow](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/.github/workflows/testRunner.yml) from my GitHub project: [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows).
+You can use this [test workflow](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/.github/workflows/testRunner.yml) from my GitHub project: [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows).
 
-Create a new workflow under the GitHub repository where you deployed the self hosted runner where it is running:
+Create a new workflow under the GitHub repository where you deployed the self hosted runner where it's running:
 
 ```yml
 name: Local runner test
