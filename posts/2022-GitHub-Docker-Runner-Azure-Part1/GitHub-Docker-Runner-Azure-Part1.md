@@ -566,7 +566,7 @@ Simply re-run the cleanup script we ran earlier under the **./scripts** folder c
 .\scripts\Cleanup-Runners.ps1 -owner "orgName" -repo "repoName" -pat "myPatToken"
 ```
 
-In this part of the blog series we have covered how you can build and run self hosted **Github runners** as **windows containers** using **docker-desktop** and **docker-compose**. In the next part of this blog series we will focus on building a **Linux based Ubuntu image** container instead, for our self hosted GitHub runners.
+In this part of the series we have covered how you can build and run self hosted **Github runners** as **windows containers** using **docker-desktop** and **docker-compose**. In the next part of this blog series we will look at building a **Linux based Ubuntu image** container instead, for our self hosted GitHub runners.
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-windows) page. :heart:
 
