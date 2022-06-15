@@ -1,6 +1,6 @@
 ---
 title: Storing Docker based GitHub runner containers on Azure Container Registry (ACR)
-published: false
+published: true
 description: Storing Docker based GitHub runner containers on Azure Container Registry (ACR)
 tags: 'github, azure, acr, containers'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/main.png'
@@ -19,7 +19,7 @@ In part one and two of this series, we looked at how we can create **windows** a
 
 As in the first two parts of this series, instead of preparing a Virtual Machine with docker, we are going to use CI/CD in **GitHub** using **GitHub Actions** to **build** our docker containers and then **push** the docker images to a **registry** we will create and host in **Azure** called [Azure Container Registry (ACR)](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro).
 
-In the next part of the series we will cover how we can use **Azure Container Instances (ACI)** to run images from the remote registry hosted in **Azure**.
+In part 4 of this blog series we will cover how we can use **Azure Container Instances (ACI)** to run images from the remote registry hosted in **Azure**.
 
 ### Pre-Requisites
 
