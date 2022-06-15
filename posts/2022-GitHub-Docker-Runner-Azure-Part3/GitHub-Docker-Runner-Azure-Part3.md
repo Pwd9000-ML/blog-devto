@@ -18,7 +18,7 @@ Welcome to Part 3 of my series: **Self Hosted GitHub Runner containers on Azure*
 
 In part one and two of this series, we looked at how we can create **windows** and **linux** container images using docker and then running our self hosted **GitHub runners** as containers on a Virtual Machine running docker.
 
-As in the first two parts of this series, instead of preparing a Virtual Machine with docker, we are going to use CI/CD in **GitHub** using **GitHub Actions** to **build** our docker containers and then **push** the docker images to a **registry** we will create and host in **Azure** called [Azure Container Registry (ACR)](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro).
+As in the first two parts of this series, instead of preparing a Virtual Machine with docker, we are going to use CI/CD in **GitHub** using **GitHub Actions** to **build** our docker containers, as well as scanning the container for any **vulnerabilities** using **Trivy** before **pushing** the docker images to a **registry** we will create and host in **Azure** called [Azure Container Registry (ACR)](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro).
 
 In part 4 of this blog series we will cover how we can use **Azure Container Instances (ACI)** to run images from the remote registry hosted in **Azure**.
 
@@ -129,7 +129,9 @@ Next we will copy that JSON object Service Principal credentials, as well as a f
 
 ### Build and Push docker image to ACR
 
-With all the repository secrets now set up, we will be creating a **GitHub workflow** to build our docker image and also push our image to the **Azure Container Registry** using a few **GitHub Actions**.
+With all the repository secrets now set up, we will be creating a **GitHub workflow** to build our docker image, scan the image for any vulnerabilities and also push our image to the **Azure Container Registry** using a few **GitHub Actions**.  
+
+**NOTE:** Vulnerability scanning using trivy is only available on **Linux** containers at the moment.  
 
 In parts one and two of this blog series we created some scripts and a **dockerfile** inside of a folder and then built the docker images on our windows 11 machine using **Docker-Desktop** and **Docker-Compose**.
 
@@ -153,15 +155,15 @@ jobs:
     runs-on: windows-latest
     steps:
       # checkout the repo
-      - name: 'Checkout GitHub Action'
+      - name: "Checkout GitHub Action"
         uses: actions/checkout@main
 
-      - name: 'Login via Azure CLI'
+      - name: "Login via Azure CLI"
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: 'Build and push image'
+      - name: "Build and push image"
         uses: azure/docker-login@v1
         with:
           login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
@@ -172,7 +174,7 @@ jobs:
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwd9000-github-runner-win:${{ env.RUNNER_VERSION }}
 ```
 
-Or you can use this: [Linux_Container_Workflow](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/.github/workflows/dockerBuildAcr-Lin.yml) for **Linux containers**.
+Or you can use this: [Linux_Container_Workflow](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/.github/workflows/dockerBuildAcr-Lin.yml) for **Linux containers** that includes vulnerability scanning.
 
 ```yml
 name: Linux_Container_Workflow
@@ -188,15 +190,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # checkout the repo
-      - name: 'Checkout GitHub Action'
+      - name: "Checkout GitHub Action"
         uses: actions/checkout@main
 
-      - name: 'Login via Azure CLI'
+      - name: "Login via Azure CLI"
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: 'Build and push image'
+      - name: "Build GitHub Runner container image"
         uses: azure/docker-login@v1
         with:
           login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
@@ -204,6 +206,26 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
           docker build --build-arg RUNNER_VERSION=${{ env.RUNNER_VERSION }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwd9000-github-runner-lin:${{ env.RUNNER_VERSION }} .
+
+      - name: "Vulnerability scan container image with Trivy"
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwd9000-github-runner-lin:${{ env.RUNNER_VERSION }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+      - name: "Push container image to ACR"
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - run: |
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwd9000-github-runner-lin:${{ env.RUNNER_VERSION }}
 ```
 
@@ -246,6 +268,45 @@ You can also see more information on how to use the image:
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/acr-lin02.png)
 
 With our images now hosted on a remote registry in **Azure** (ACR), in the next part of this series we will look at how we can pull the images from the registry and run our self hosted GitHub runners on **Azure Container Instances (ACI)**.
+
+### Container security - Vulnerability Scan
+
+You may have noticed that the CI/CD workflow used to **build** and **push** the **Linux** container image to the **Azure Container Registry** also scans the image for any vulnerabilities using a open source tool by **AquaSecurity** called [Trivy](https://github.com/aquasecurity/trivy) using these steps:
+
+```yml
+- name: "Vulnerability scan container image with Trivy"
+  uses: aquasecurity/trivy-action@master
+  with:
+    image-ref: ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwd9000-github-runner-lin:${{ env.RUNNER_VERSION }}
+    format: 'sarif'
+    output: 'trivy-results.sarif'
+
+- name: Upload Trivy scan results to GitHub Security tab
+  uses: github/codeql-action/upload-sarif@v2
+  with:
+    sarif_file: 'trivy-results.sarif'
+```
+
+Notice that the scan results are published on the GitHub repository **Security** tab:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/vuln.png)
+
+You have to have Code Scanning enabled on your Repository to use this functionality and is free with GitHub **public** repositories.
+You can however still use **Trivy** to scan containers without Code Scanning enabled, by using a workflow like in this example:  
+
+```yml
+- name: Run Trivy vulnerability scanner
+  uses: aquasecurity/trivy-action@master
+  with:
+    image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+    format: 'table'
+    exit-code: '1'
+    ignore-unfixed: true
+    vuln-type: 'os,library'
+    severity: 'CRITICAL,HIGH'
+```
+
+For more information on using **Trivy** to scan your container images for public/private and with/without Code Scanning enabled on the GitHub repository, you can see the documentation here: [Trivy Usage](https://github.com/aquasecurity/trivy-action#trivy-action)  
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my GitHub project: [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows) or [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux). :heart:
 
