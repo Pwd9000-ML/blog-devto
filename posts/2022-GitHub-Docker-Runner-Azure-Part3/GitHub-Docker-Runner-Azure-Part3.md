@@ -1,7 +1,7 @@
 ---
-title: Storing Docker based GitHub runner containers on Azure Container Registry (ACR)
+title: Build Docker based GitHub runner containers on Azure Container Registry (ACR)
 published: true
-description: Storing Docker based GitHub runner containers on Azure Container Registry (ACR)
+description: Build Docker based GitHub runner containers on Azure Container Registry (ACR)
 tags: 'github, azure, acr, containers'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/main.png'
 canonical_url: null
