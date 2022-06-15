@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 1107072
 series: Self Hosted GitHub Runner containers on Azure
+date: '2022-06-15T08:21:55Z'
 ---
 
 ### Overview
