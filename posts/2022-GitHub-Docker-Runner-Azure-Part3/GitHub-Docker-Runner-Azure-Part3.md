@@ -213,6 +213,7 @@ jobs:
           image-ref: ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwd9000-github-runner-lin:${{ env.RUNNER_VERSION }}
           format: 'sarif'
           output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
@@ -280,6 +281,7 @@ You may have noticed that the CI/CD workflow used to **build** and **push** the 
     image-ref: ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwd9000-github-runner-lin:${{ env.RUNNER_VERSION }}
     format: 'sarif'
     output: 'trivy-results.sarif'
+    severity: 'CRITICAL,HIGH'
 
 - name: Upload Trivy scan results to GitHub Security tab
   uses: github/codeql-action/upload-sarif@v2
