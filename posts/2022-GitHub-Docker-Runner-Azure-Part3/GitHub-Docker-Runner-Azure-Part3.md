@@ -291,7 +291,7 @@ Notice that the scan results are published on the GitHub repository **Security**
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/vuln.png)
 
-You have to have [GitHub code scanning](https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/about-code-scanning) enabled on your Repository to use this functionality and is free with GitHub **public** repositories. You can however still use **Trivy** to scan containers without Code Scanning enabled, by using a workflow like in this example:
+You have to have [GitHub code scanning](https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/about-code-scanning) enabled on your repository to use this functionality and is free with GitHub **public** repositories. You can however still use **Trivy** to scan containers without GitHub code scanning enabled, by using a workflow like in this example:
 
 ```yml
 - name: Run Trivy vulnerability scanner
@@ -304,6 +304,8 @@ You have to have [GitHub code scanning](https://docs.github.com/en/code-security
     vuln-type: 'os,library'
     severity: 'CRITICAL,HIGH'
 ```
+
+**NOTE:** The above example will display the results on the workflow run logs in **table format**, and can also output the results to a file if needed. This method can also be used to stop the workflow and interrupt the push of the image to the ACR based on the `'exit-code'` parameter.  
 
 For more information on using **Trivy** to scan your container images for public/private and with/without Code Scanning enabled on the GitHub repository, you can see the documentation here: [Trivy Usage](https://github.com/aquasecurity/trivy-action#trivy-action)
 
