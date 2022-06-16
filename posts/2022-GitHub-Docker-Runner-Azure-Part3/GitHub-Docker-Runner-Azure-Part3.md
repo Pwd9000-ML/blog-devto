@@ -270,7 +270,7 @@ You can also see more information on how to use the image:
 
 ### Container security - Vulnerability Scan
 
-You may have noticed that the CI/CD workflow used to **build** and **push** the **Linux** container image to the **Azure Container Registry** also scans the image for any vulnerabilities using a open source tool by **AquaSecurity** called [Trivy](https://github.com/aquasecurity/trivy) using these steps:
+You may have noticed that the CI/CD workflow used to **build** and **push** the **Linux** container image to the **Azure Container Registry** also scans the image for any vulnerabilities using a open source tool by **AquaSecurity** called [Trivy](https://aquasecurity.github.io/trivy/v0.28.1/) using these steps:
 
 ```yml
 - name: 'Vulnerability scan container image with Trivy'
