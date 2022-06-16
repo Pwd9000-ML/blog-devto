@@ -305,7 +305,7 @@ You have to have [GitHub code scanning](https://docs.github.com/en/code-security
     severity: 'CRITICAL,HIGH'
 ```
 
-**NOTE:** The above example will display the results on the workflow run logs in **table format**, and can also output the results to a file if needed. This method can also be used to stop the workflow and interrupt the push of the image to the ACR based on the `'exit-code'` parameter.  
+**NOTE:** The above example will display the results on the workflow run logs in **table format**, and can also output the results to a file if needed. This method can also be used to stop the workflow and interrupt the push of the image to the ACR based on the `'exit-code'` parameter.
 
 For more information on using **Trivy** to scan your container images for public/private and with/without Code Scanning enabled on the GitHub repository, you can see the documentation here: [Trivy Usage](https://github.com/aquasecurity/trivy-action#trivy-action)
 
