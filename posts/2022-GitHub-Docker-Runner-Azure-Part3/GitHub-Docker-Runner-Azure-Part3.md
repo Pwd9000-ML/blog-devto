@@ -268,8 +268,6 @@ You can also see more information on how to use the image:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part3/assets/acr-lin02.png)
 
-With our images now hosted on a remote registry in **Azure** (ACR), in the next part of this series we will look at how we can pull the images from the registry and run our self hosted GitHub runners on **Azure Container Instances (ACI)**.
-
 ### Container security - Vulnerability Scan
 
 You may have noticed that the CI/CD workflow used to **build** and **push** the **Linux** container image to the **Azure Container Registry** also scans the image for any vulnerabilities using a open source tool by **AquaSecurity** called [Trivy](https://github.com/aquasecurity/trivy) using these steps:
@@ -307,7 +305,9 @@ You have to have Code Scanning enabled on your Repository to use this functional
     severity: 'CRITICAL,HIGH'
 ```
 
-For more information on using **Trivy** to scan your container images for public/private and with/without Code Scanning enabled on the GitHub repository, you can see the documentation here: [Trivy Usage](https://github.com/aquasecurity/trivy-action#trivy-action)
+For more information on using **Trivy** to scan your container images for public/private and with/without Code Scanning enabled on the GitHub repository, you can see the documentation here: [Trivy Usage](https://github.com/aquasecurity/trivy-action#trivy-action)  
+
+With our images now hosted on a remote registry in **Azure** (ACR), in the next part of this series we will look at how we can pull the images from the registry and run our self hosted GitHub runners on **Azure Container Instances (ACI)**.  
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my GitHub project: [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows) or [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux). :heart:
 
