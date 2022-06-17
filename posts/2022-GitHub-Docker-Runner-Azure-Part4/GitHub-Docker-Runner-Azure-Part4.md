@@ -191,7 +191,7 @@ To stop and remove the ACI container you can run the following **Azure-CLI** com
 az container delete --resource-group $aciResourceGroupName --name $aciName
 ```
 
-We have successfully deployed self hosted GitHub runners using **Azure Container Instances**. In the next part of this series we will look at how we can run and auto scale our self hosted GitHub runners on **Azure Container Apps (ACA)** with **KEDA**.
+We have successfully deployed self hosted GitHub runners using **Azure Container Instances**. In the next part of this series we will look at how we can run and automatically scale our self hosted GitHub runners up and down based on load/demand, using **Azure Container Apps (ACA)** utilizing **Kubernetes Event-driven Autoscaling (KEDA)**.
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my GitHub project: [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows) or [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux). :heart:
 
