@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 1107073
 series: Self Hosted GitHub Runner containers on Azure
+date: '2022-06-17T08:00:45Z'
 ---
 
 ### Overview
@@ -166,7 +167,7 @@ jobs:
           location: 'uksouth'
 ```
 
-The workflow above mainly uses the `'azure/aci-deploy@v1'` **GitHub** Action. You can also set parameters such as `'cpu: 1'` and `'memory: 0.1'` to spec out the container instance. Check out the documentation of this extension here: [ACI deploy GitHub Action](https://github.com/Azure/aci-deploy#github-action-for-deploying-to-azure-container-instances).  
+The workflow above mainly uses the `'azure/aci-deploy@v1'` **GitHub** Action. You can also set parameters such as `'cpu: 1'` and `'memory: 0.1'` to spec out the container instance. Check out the documentation of this extension here: [ACI deploy GitHub Action](https://github.com/Azure/aci-deploy#github-action-for-deploying-to-azure-container-instances).
 
 **NOTE:** I have added the custom PAT token as a GitHub Secret on the repository: `'GH_TOKEN=${{ secrets.PAT_TOKEN }}'`:
 
@@ -190,7 +191,7 @@ To stop and remove the ACI container you can run the following **Azure-CLI** com
 az container delete --resource-group $aciResourceGroupName --name $aciName
 ```
 
-We have successfully deployed self hosted GitHub runners using **Azure Container Instances**. In the next part of this series we will look at how we can run and auto scale our self hosted GitHub runners on **Azure Container Apps (ACA)** with **KEDA**.  
+We have successfully deployed self hosted GitHub runners using **Azure Container Instances**. In the next part of this series we will look at how we can run and auto scale our self hosted GitHub runners on **Azure Container Apps (ACA)** with **KEDA**.
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my GitHub project: [docker-github-runner-windows](https://github.com/Pwd9000-ML/docker-github-runner-windows) or [docker-github-runner-linux](https://github.com/Pwd9000-ML/docker-github-runner-linux). :heart:
 
