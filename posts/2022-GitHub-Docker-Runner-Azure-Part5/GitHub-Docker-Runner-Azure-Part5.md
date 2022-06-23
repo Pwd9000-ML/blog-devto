@@ -24,7 +24,7 @@ Following on from the previous part we will now look at how we can use [Azure Co
 Things we will need before we can deploy container apps:
 
 - Azure Container Apps deployment Resource Group (Optional)
-- Grant access to our GitHub **Service Principal** created in Part 3 of this blog series on the Resource Group to create ACAs (Optional)
+- Grant access to our GitHub **Service Principal** created in [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of this blog series on the Resource Group to create ACAs (Optional)
 - Log Analytics Workspace to link with Azure Container Apps (Optional)
 - An Azure Container Apps environment
 
