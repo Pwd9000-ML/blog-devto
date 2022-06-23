@@ -69,7 +69,7 @@ az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
     }
 ```
 
-As you can see the script has created a resource group called: **Demo-ACA-GitHub-Runners-RG**, containing the **Azure Container Apps Environment** linked with a **Log Analytics Workspace**.
+As you can see the script has created a resource group called: **Demo-ACA-GitHub-Runners-RG**, containing the **Azure Container Apps Environment** linked with a **Log Analytics Workspace**. In addition the GitHub **service principal** created in [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of this series also has access on the Resource Group we just created as **Contributor**.  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/rg.png)
 
