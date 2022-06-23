@@ -71,9 +71,9 @@ az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
 
 As you can see the script has created a resource group called: **Demo-ACA-GitHub-Runners-RG**, containing the **Azure Container Apps Environment** linked with a **Log Analytics Workspace**.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/rg.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/rg.png)
 
-**NOTE**: Ensure that the GitHub **Service Principal** also has **AcrPush** permissions on the **Azure Container Registry (ACR)**. See [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of this series, or you can use the following PowerShell snippet:  
+**NOTE**: Ensure that the GitHub **Service Principal** also has **AcrPush** permissions on the **Azure Container Registry (ACR)**. See [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of this series, or you can use the following PowerShell snippet:
 
 ```powershell
 #Log into Azure
@@ -92,7 +92,7 @@ az ad sp create-for-rbac --name $appName `
     --sdk-auth
 ```
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/rbac03.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/rbac03.png)
 
 ### Deploy self hosted GitHub Runner Container Apps
 
@@ -100,7 +100,7 @@ With the pre-requirements complete, we will do the following to run and scale ou
 
 - Create a self hosted GitHub runner container app inside of the container app environment
 - Create an ACA auto scaling rule
-- Test out our runners and dynamic scaling capabilities  
+- Test out our runners and dynamic scaling capabilities
 
 I have prepared the following PowerShell script using **Azure-CLI** to deploy the **Container App**: [Deploy-ACA.ps1](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/Azure-Pre-Reqs/Deploy-ACA.ps1).
 
