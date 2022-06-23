@@ -24,6 +24,7 @@ Following on from the previous part we will now look at how we can use [Azure Co
 Things we will need before we can deploy container apps:
 
 - Azure Container Apps deployment Resource Group (Optional)
+- Grant access to our GitHub **Service Principal** created in Part 3 of this blog series on the Resource Group to create ACAs (Optional)
 - Log Analytics Workspace to link with Azure Container Apps (Optional)
 - An Azure Container Apps environment
 
@@ -42,6 +43,7 @@ $region = "uksouth"
 $acaResourceGroupName = "Demo-ACA-GitHub-Runners-RG"
 $acaEnvironment = "gh-runner-aca-env-$randomInt"
 $acaLaws = "$acaEnvironment-laws"
+$appName = "GitHub-ACI-Deploy" #Previously created Service Principal (See part 3 of blog series)
 
 # Create a resource group to deploy ACA
 az group create --name "$acaResourceGroupName" --location "$region"
@@ -58,20 +60,79 @@ az containerapp env create --name "$acaEnvironment" `
     --logs-workspace-id "$acaLawsId" `
     --logs-workspace-key "$acaLawsKey" `
     --location "$region"
+
+# Grant AAD App and Service Principal Contributor to ACI deployment RG
+az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
+    az role assignment create --assignee "$_" `
+        --role "Contributor" `
+        --scope "$acaRGId"
+    }
 ```
 
 As you can see the script has created a resource group called: **Demo-ACA-GitHub-Runners-RG**, containing the **Azure Container Apps Environment** linked with a **Log Analytics Workspace**.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/rg.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/rg.png)  
 
-### Deploy Container App
+**NOTE**: Ensure that the GitHub **Service Principal** also has **AcrPush** permissions on the **Azure Container Registry (ACR)**. See [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of this series, or you can use the following PowerShell snippet:  
 
-Now that our deployment environment is set up, we will do the following to run and scale our self hosted GitHub runners:
+```powershell
+#Log into Azure
+#az login
 
-- Grant access to the **Azure Container Registry** so that ACA can pull and create containers from runner images hosted on the ACR
+# Setup Variables. (provide your ACR name)
+$appName="GitHub-ACI-Deploy"
+$acrName="<ACRName>"
+$region = "uksouth"
+
+# Create AAD App and Service Principal and assign to RBAC Role to push and pull images from ACR
+$acrId = az acr show --name "$acrName" --query id --output tsv
+az ad sp create-for-rbac --name $appName `
+    --role "AcrPush" `
+    --scopes "$acrId" `
+    --sdk-auth
+```
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/rbac03.png)  
+
+### Deploy self hosted GitHub Runner Container Apps
+
+With the pre-requirements complete, we will do the following to run and scale our self hosted GitHub runners inside of the **Container Apps Environment**:
+
 - Create a self hosted GitHub runner container app inside of the container app environment
 - Create an ACA auto scaling rule
-- Test out our runners and dynamic scaling capabilities
+- Test out our runners and dynamic scaling capabilities  
+
+I have prepared the following PowerShell script using **Azure-CLI** to deploy the **Container App**: [Deploy-ACA.ps1](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/Azure-Pre-Reqs/Deploy-ACA.ps1).
+
+```powershell
+#Log into Azure
+#az login
+
+#Add container app extension to Azure-CLI
+az extension add --name containerapp
+
+# Setup Variables.
+$randomInt = Get-Random -Maximum 9999
+$region = "uksouth"
+$acaResourceGroupName = "Demo-ACA-GitHub-Runners-RG"
+$acaEnvironment = "gh-runner-aca-env-$randomInt"
+$acaLaws = "$acaEnvironment-laws"
+
+# Create a resource group to deploy ACA
+az group create --name "$acaResourceGroupName" --location "$region"
+
+#Create Log Analytics Workspace for ACA
+az monitor log-analytics workspace create --resource-group "$acaResourceGroupName" --workspace-name "$acaLaws"
+$acaLawsId = az monitor log-analytics workspace show -g $acaResourceGroupName -n $acaLaws --query customerId --output tsv
+$acaLawsKey = az monitor log-analytics workspace get-shared-keys -g $acaResourceGroupName -n $acaLaws --query primarySharedKey --output tsv
+
+#Create ACA Environment
+az containerapp env create --name "$acaEnvironment" `
+    --resource-group "$acaResourceGroupName" `
+    --logs-workspace-id "$acaLawsId" `
+    --logs-workspace-key "$acaLawsKey" `
+    --location "$region"
+```
 
 That concludes this five part series where we took a deep dive in detail on how to implement **Self Hosted GitHub Runner containers on Azure**.
 

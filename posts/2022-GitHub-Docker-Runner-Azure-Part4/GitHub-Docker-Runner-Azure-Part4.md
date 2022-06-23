@@ -27,7 +27,7 @@ I will cover two scenarios, first how we can run self hosted **GitHub runner** a
 Things we will need are:
 
 - Create an ACI deployment Resource Group
-- Grant access to our **Service Principal** we created in the previous blog post to create ACIs
+- Grant access to our GitHub **Service Principal** created in Part3 of this blog series on the **Resource Group** to create ACIs
 
 For this step I will use a PowerShell script, [Prepare-RBAC-ACI.ps1](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/Azure-Pre-Reqs/Prepare-RBAC-ACI.ps1) running **Azure-CLI**, to create a **Resource Group** and grant access to our **GitHub Service Principal App** we created in the previous blog post (Part 3).
 
@@ -54,7 +54,28 @@ az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
 
 As you can see the script has created an empty resource group called: **Demo-ACI-GitHub-Runners-RG**, and gave our GitHub service principal **Contributor** access over the resource group.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part4/assets/rg.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part4/assets/rg.png)  
+
+**NOTE**: Ensure that the GitHub **Service Principal** also has **AcrPush** permissions on the **Azure Container Registry (ACR)**. See [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of this series, or you can use the following PowerShell snippet:  
+
+```powershell
+#Log into Azure
+#az login
+
+# Setup Variables. (provide your ACR name)
+$appName="GitHub-ACI-Deploy"
+$acrName="<ACRName>"
+$region = "uksouth"
+
+# Create AAD App and Service Principal and assign to RBAC Role to push and pull images from ACR
+$acrId = az acr show --name "$acrName" --query id --output tsv
+az ad sp create-for-rbac --name $appName `
+    --role "AcrPush" `
+    --scopes "$acrId" `
+    --sdk-auth
+```
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part4/assets/rbac03.png)  
 
 ### Deploy ACI - Azure-CLI
 
