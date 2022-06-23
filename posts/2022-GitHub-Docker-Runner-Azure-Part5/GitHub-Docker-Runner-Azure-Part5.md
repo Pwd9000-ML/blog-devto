@@ -17,7 +17,7 @@ Welcome to Part 5 of my series: **Self Hosted GitHub Runner containers on Azure*
 
 In the previous part of this series, we looked at how we can use **Azure-CLI** or CI/CD workflows in **GitHub** using **GitHub Actions** to **run** self hosted **GitHub runner** docker containers as **Azure Container instances (ACI)** in **Azure** from a remote **container registry** also hosted in Azure (ACR).  
 
-Following on from the previous part we will now look at how we can use [Azure Container Apps (ACA)](https://docs.microsoft.com/en-gb/azure/container-apps/overview) to run images from the remote registry instead and also demonstrate how we can automatically scale our self hosted GitHub runners up and down based on load/demand, using utilising **Kubernetes Event-driven Autoscaling (KEDA)**.  
+Following on from the previous part we will now look at how we can use [Azure Container Apps (ACA)](https://docs.microsoft.com/en-gb/azure/container-apps/overview) to run images from the remote registry instead and also demonstrate how we can automatically scale our self hosted GitHub runners up and down based on load/demand, using **Kubernetes Event-driven Autoscaling (KEDA)**.  
 
 ### Pre-Requisites
 
