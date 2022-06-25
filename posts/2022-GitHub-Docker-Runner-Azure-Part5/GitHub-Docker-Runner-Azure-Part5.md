@@ -162,7 +162,7 @@ See [creating a personal access token](https://docs.github.com/en/enterprise-ser
 
 The minimum permission scopes required on the PAT token to register a self hosted runner are: `"repo"`, `"read:org"`:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part4/assets/PAT.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/PAT.png)
 
 **Tip:** I recommend only using short lived PAT tokens and generating new tokens whenever new agent runner registrations are required.
 
