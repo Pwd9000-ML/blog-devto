@@ -19,7 +19,7 @@ In the previous part of this series, we looked at how we can use **Azure-CLI** o
 
 Following on from the previous part we will now look at how we can use [Azure Container Apps (ACA)](https://docs.microsoft.com/en-gb/azure/container-apps/overview) to run images from the remote registry instead and also demonstrate how we can automatically scale our self hosted GitHub runners up and down based on load/demand, using **Kubernetes Event-driven Autoscaling (KEDA)**.
 
-**NOTE**: At the time of this writing Azure Container Apps supports:  
+**NOTE**: At the time of this writing Azure Container Apps supports:
 
 - Any **_Linux-based_** x86-64 (linux/amd64) container image
 - Containers from any public or private container registry
