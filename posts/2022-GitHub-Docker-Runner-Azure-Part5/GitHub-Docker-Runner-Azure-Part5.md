@@ -184,9 +184,7 @@ It also created an empty queue for us **(gh-runner-scaler)**, that we will use t
 
 ### Container App
 
-Lets take a deeper look into the container app itself.  
-
-
+Lets take a deeper look into the container app itself.
 
 ### Running and Scaling Workflows
 
