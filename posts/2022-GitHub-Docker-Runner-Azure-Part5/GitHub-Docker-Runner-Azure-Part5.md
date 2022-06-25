@@ -152,7 +152,7 @@ $acrImage = "$acrLoginServer/pwd9000-github-runner-lin:2.293.0" #Image reference
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/acr-admin.png)
 
-You will also need to provide variables for the **GitHub Service Principal** we created in [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of the blog series, that is linked with Azure, a **GitHub PAT token** and specify the **Owner** and **Repository** to link with the **Container App**:
+You will also need to provide variables for the **GitHub Service Principal/AppName** we created in [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of the blog series, that is linked with Azure, a **GitHub PAT token** and specify the **Owner** and **Repository** to link with the **Container App**:
 
 ```powershell
 #Variables (GitHub)
