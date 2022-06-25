@@ -176,7 +176,7 @@ It created a resource group called: **Demo-ACA-GitHub-Runners-RG**, containing t
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/rg1.png)
 
-In addition the GitHub **service principal** created in [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of this series also has access on the Resource Group we just created as **Contributor** as well as **Storage Queue Data Contributor** on the storage account.
+In addition the GitHub **service principal** created in [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of this series has also been granted access on the Resource Group as **Contributor** and **Storage Queue Data Contributor** on the storage account.
 
 It also created an empty queue for us, as we will be associating **GitHub Workflows** as queue messages once we start running and scaling **GitHub Action Workflows**.
 
