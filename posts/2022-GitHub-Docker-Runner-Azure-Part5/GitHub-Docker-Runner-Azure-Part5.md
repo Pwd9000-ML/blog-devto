@@ -170,7 +170,7 @@ The minimum permission scopes required on the PAT token to register a self hoste
 
 **Tip:** I recommend only using short lived PAT tokens and generating new tokens whenever new agent runner registrations are required.
 
-Let's look at what this script created step-by-step:
+**Let's look at what this script created step-by-step:**
 
 As you can see the script has created a resource group called: **Demo-ACA-GitHub-Runners-RG**, containing the **Azure Container Apps Environment** linked with a **Log Analytics Workspace**, an **Azure Storage account** and a **Container App** based of a **GitHub runner** image, hosted on our **Azure Container Registry**.
 
