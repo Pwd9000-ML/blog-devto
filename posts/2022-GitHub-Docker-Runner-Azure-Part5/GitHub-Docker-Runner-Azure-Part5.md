@@ -17,11 +17,11 @@ Welcome to Part 5 of my series: **Self Hosted GitHub Runner containers on Azure*
 
 In the previous part of this series, we looked at how we can use **Azure-CLI** or CI/CD workflows in **GitHub** using **GitHub Actions** to **run** self hosted **GitHub runner** docker containers as **Azure Container Instances (ACI)** in **Azure** from a remote **container registry** also hosted in Azure (ACR).
 
-One of the drawbacks of having a self hosted agent runners are if no **GitHub Action Workflows** or **Jobs** are running, the GitHub runner will just sit there idle consuming cost, whether that self hosted **GitHub runner** be an ACI or a VM.  
+One of the drawbacks of having a self hosted agent runners are if no **GitHub Action Workflows** or **Jobs** are running, the GitHub runner will just sit there idle consuming cost, whether that self hosted **GitHub runner** be an ACI or a VM.
 
-So following on from the previous part we will look at how we can use [Azure Container Apps (ACA)](https://docs.microsoft.com/en-gb/azure/container-apps/overview) to run images from the remote registry instead and also demonstrate how we can automatically scale our self hosted GitHub runners from **no runners** or **0** up and down based on load/demand, using **Kubernetes Event-driven Autoscaling (KEDA)**.  
+So following on from the previous part we will look at how we can use [Azure Container Apps (ACA)](https://docs.microsoft.com/en-gb/azure/container-apps/overview) to run images from the remote registry instead and also demonstrate how we can automatically scale our self hosted GitHub runners from **no runners** or **0** up and down based on load/demand, using **Kubernetes Event-driven Autoscaling (KEDA)**.
 
-This will allow us to save costs and only provision **self hosted GitHub runners** only when needed.  
+This will allow us to save costs and only provision **self hosted GitHub runners** only when needed.
 
 **NOTE**: At the time of this writing Azure Container Apps supports:
 
