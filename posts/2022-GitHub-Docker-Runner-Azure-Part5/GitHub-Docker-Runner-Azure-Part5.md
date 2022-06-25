@@ -15,25 +15,39 @@ All the code used in this tutorial can be found on my GitHub project: [docker-gi
 
 Welcome to Part 5 of my series: **Self Hosted GitHub Runner containers on Azure**.
 
-In the previous part of this series, we looked at how we can use **Azure-CLI** or CI/CD workflows in **GitHub** using **GitHub Actions** to **run** self hosted **GitHub runner** docker containers as **Azure Container instances (ACI)** in **Azure** from a remote **container registry** also hosted in Azure (ACR).
+In the previous part of this series, we looked at how we can use **Azure-CLI** or CI/CD workflows in **GitHub** using **GitHub Actions** to **run** self hosted **GitHub runner** docker containers as **Azure Container Instances (ACI)** in **Azure** from a remote **container registry** also hosted in Azure (ACR).
 
 Following on from the previous part we will now look at how we can use [Azure Container Apps (ACA)](https://docs.microsoft.com/en-gb/azure/container-apps/overview) to run images from the remote registry instead and also demonstrate how we can automatically scale our self hosted GitHub runners up and down based on load/demand, using **Kubernetes Event-driven Autoscaling (KEDA)**.
 
 **NOTE**: At the time of this writing Azure Container Apps supports:
 
-- Any **_Linux-based_** x86-64 (linux/amd64) container image
-- Containers from any public or private container registry
+- Any **_Linux-based_** x86-64 (linux/amd64) container image.
+- Containers from any public or private container registry.
+- There are no available [KEDA scalers for GitHub runners](https://keda.sh/docs/2.7/scalers/) at the time of this writing.  
+
+### Proof of Concept
+
+Because there are no available [KEDA scalers for GitHub runners](https://keda.sh/docs/2.7/scalers/) at the time of this writing, we will use an **Azure Storage Queue** to control the scaling and provisioning of our self hosted **GitHub runners**.  
+
+We will create the **Container App Environment** and **Azure Queue**, then create a [Azure Queue KEDA Scale Rule](https://docs.microsoft.com/en-us/azure/container-apps/scale-app#keda-scalers-conversion) that will have a minimum of **0** and maximum of **3** self hosted runner containers.  
+
+We will use the **Azure Storage Queue** and link it with our **GitHub workflows** to provision/scale self hosted runners using an external **GitHub workflow Job** by sending a queue message associated with our workflow for KEDA to be signalled to provision a self hosted runner on the fly for us to use in any subsequent **Workflow Jobs**.  
+
+After all subsequent **Workflow Jobs** have finished running the queue message associated with the workflow will be evicted from teh queue and KEDA will scale down/destroy the self hosted runner container, essentially scaling back down to **0** if there are no other **GitHub workflows** running.  
 
 ### Pre-Requisites
 
-Things we will need before we can deploy container apps:
+Things we will need to implement this container app proof of concept:
 
-- Azure Container Apps deployment Resource Group (Optional)
-- Grant access to our GitHub **Service Principal** created in [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of this blog series on the Resource Group to create ACAs (Optional)
-- Log Analytics Workspace to link with Azure Container Apps (Optional)
-- An Azure Container Apps environment
+- Azure Container Apps deployment **Resource Group** (Optional).
+- Azure **Container Registry** (ACR) - See [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of this blog series. (Admin account needs to be enabled).
+- **GitHub Service Principal** linked with **Azure** - See [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of this blog series.
+- **Log Analytics Workspace** to link with Azure Container Apps.
+- **Azure storage account** and **queue** to be used for scaling with KEDA.
+- Azure Container Apps **environment**.
+- **Container App** from docker image (self hosted GitHub runner) stored in ACR.
 
-For this step I will use a PowerShell script, [Prepare-ACA.ps1](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/Azure-Pre-Reqs/Prepare-ACA.ps1) running **Azure-CLI**, to create a **Resource Group**, **Log Analytics Workspace** and an **Azure Container Apps Environment**.
+For this step I will use a PowerShell script, [Deploy-ACA.ps1](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/Azure-Pre-Reqs/AzureContainerApps-Queue-Scaler/Deploy-ACA.ps1) running **Azure-CLI**, to create the entire **environment** and **Container App** linked with a target **GitHub Repo** where we will scale runners using KEDA.  
 
 ```powershell
 #Log into Azure
@@ -42,17 +56,47 @@ For this step I will use a PowerShell script, [Prepare-ACA.ps1](https://github.c
 #Add container app extension to Azure-CLI
 az extension add --name containerapp
 
-# Setup Variables.
+#Variables (ACA)
 $randomInt = Get-Random -Maximum 9999
 $region = "uksouth"
-$acaResourceGroupName = "Demo-ACA-GitHub-Runners-RG"
-$acaEnvironment = "gh-runner-aca-env-$randomInt"
-$acaLaws = "$acaEnvironment-laws"
-$appName = "GitHub-ACI-Deploy" #Previously created Service Principal (See part 3 of blog series)
+$acaResourceGroupName = "Demo-ACA-GitHub-Runners-RG" #Resource group created to deploy ACAs
+$acaStorageName = "aca2keda2scaler$randomInt" #Storage account that will be used to scale runners/KEDA queue scaling
+$acaEnvironment = "gh-runner-aca-env-$randomInt" #Azure Container Apps Environment Name
+$acaLaws = "$acaEnvironment-laws" #Log Analytics Workspace to link to Container App Environment
+$acaName = "myghprojectpool" #Azure Container App Name
+
+#Variables (ACR) - ACR Admin account needs to be enabled
+$acrLoginServer = "registryname.azurecr.io" #The login server name of the ACR (all lowercase). Example: _myregistry.azurecr.io_
+$acrUsername = "acrAdminUser" #The Admin Account `Username` on the ACR
+$acrPassword = "acrAdminPassword" #The Admin Account `Password` on the ACR
+$acrImage = "$acrLoginServer/pwd9000-github-runner-lin:2.293.0" #Image reference to pull
+
+#Variables (GitHub)
+$pat = "ghPatToken" #GitHub PAT token
+$githubOrg = "Pwd9000-ML" #GitHub Owner/Org
+$githubRepo = "docker-github-runner-linux" #Target GitHub repository to register self hosted runners against
+$appName = "GitHub-ACI-Deploy" #Previously created Service Principal linked to GitHub Repo (See part 3 of blog series)
 
 # Create a resource group to deploy ACA
 az group create --name "$acaResourceGroupName" --location "$region"
 $acaRGId = az group show --name "$acaResourceGroupName" --query id --output tsv
+
+# Create an azure storage account and queue to be used for scaling with KEDA
+az storage account create `
+    --name "$acaStorageName" `
+    --location "$region" `
+    --resource-group "$acaResourceGroupName" `
+    --sku "Standard_LRS" `
+    --kind "StorageV2" `
+    --https-only true `
+    --min-tls-version "TLS1_2"
+$storageConnection = az storage account show-connection-string --resource-group "$acaResourceGroupName" --name "$acaStorageName" --output tsv
+$storageId = az storage account show --name "$acaStorageName" --query id --output tsv
+
+az storage queue create `
+    --name "gh-runner-scaler" `
+    --account-name "$acaStorageName" `
+    --connection-string "$storageConnection"
 
 #Create Log Analytics Workspace for ACA
 az monitor log-analytics workspace create --resource-group "$acaResourceGroupName" --workspace-name "$acaLaws"
@@ -66,83 +110,89 @@ az containerapp env create --name "$acaEnvironment" `
     --logs-workspace-key "$acaLawsKey" `
     --location "$region"
 
-# Grant AAD App and Service Principal Contributor to ACI deployment RG
+# Grant AAD App and Service Principal Contributor to ACA deployment RG + `Storage Queue Data Contributor` on Storage account
 az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
     az role assignment create --assignee "$_" `
         --role "Contributor" `
         --scope "$acaRGId"
-    }
-```
 
-As you can see the script has created a resource group called: **Demo-ACA-GitHub-Runners-RG**, containing the **Azure Container Apps Environment** linked with a **Log Analytics Workspace**. In addition the GitHub **service principal** created in [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of this series also has access on the Resource Group we just created as **Contributor**.
+    az role assignment create --assignee "$_" `
+        --role "Storage Queue Data Contributor" `
+        --scope "$storageId"
+}
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/rg.png)
-
-**NOTE**: Ensure that the GitHub **Service Principal** also has **AcrPush** permissions on the **Azure Container Registry (ACR)**. See [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of this series, or you can use the following PowerShell snippet:
-
-```powershell
-#Log into Azure
-#az login
-
-# Setup Variables. (provide your ACR name)
-$appName="GitHub-ACI-Deploy"
-$acrName="<ACRName>"
-$region = "uksouth"
-
-# Create AAD App and Service Principal and assign to RBAC Role to push and pull images from ACR
-$acrId = az acr show --name "$acrName" --query id --output tsv
-az ad sp create-for-rbac --name $appName `
-    --role "AcrPush" `
-    --scopes "$acrId" `
-    --sdk-auth
-```
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/rbac03.png)
-
-### Deploy self hosted GitHub Runner Container Apps
-
-With the pre-requisites complete, we will do the following to run and scale our self hosted GitHub runners inside of the **Container Apps Environment**:
-
-- Create a self hosted GitHub runner container app inside of the container app environment
-- Create a scale rule
-- Test out our GitHub runners and dynamic scaling capabilities
-
-I have prepared the following PowerShell script using **Azure-CLI** to deploy the **Container App**: [Deploy-ACA.ps1](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/Azure-Pre-Reqs/Deploy-ACA.ps1).
-
-```powershell
-#Log into Azure
-#az login
-
-#Add container app extension to Azure-CLI
-az extension add --name containerapp
-
-#Variables (ACR)
-$acrLoginServer = "registryName.azurecr.io" #The login server name of the ACR (all lowercase). Example: _myregistry.azurecr.io_
-$acrUsername = "servicePrincipalClientId" #The `clientId` from the JSON output from the service principal creation (See part 3 of blog series)
-$acrPassword = "servicePrincipalClientSecret" #The `clientSecret` from the JSON output from the service principal creation (See part 3 of blog series)
-$acrImage = "$acrLoginServer/pwd9000-github-runner-lin:2.293.0" #image reference to pull
-$tenantId = az account show --query tenantId --output tsv
-
-#Variables (ACA)
-$acaResourceGroupName = "Demo-ACA-GitHub-Runners-RG" #Resource group created to deploy ACAs
-$acaEnvironment = "gh-runner-aca-env-3771" #Azure Container Apps Environment Name
-$acaName = "ghproject-pool01" #Azure Container App Name
-
-#Variables (GitHub)
-$pat = "githubPAT" #GitHub PAT token
-$githubOrg = "Pwd9000-ML" #GitHub Owner
-$githubRepo = "docker-github-runner-linux" #GitHub repository to register self hosted runner against
-
+#Create Container App from docker image (self hosted GitHub runner) stored in ACR
 az containerapp create --resource-group "$acaResourceGroupName" `
     --name "$acaName" `
     --image "$acrImage" `
     --environment "$acaEnvironment" `
     --registry-server "$acrLoginServer" `
-    --service-principal-client-id "$acrUsername" `
-    --service-principal-client-secret "$acrPassword" `
-    --service-principal-tenant-id "$tenantId" `
-    --env-vars GH_TOKEN="$pat" GH_OWNER="$githubOrg" GH_REPOSITORY="$githubRepo"
+    --registry-username "$acrUsername" `
+    --registry-password "$acrPassword" `
+    --secrets gh-token="$pat" storage-connection-string="$storageConnection" `
+    --env-vars GH_OWNER="$githubOrg" GH_REPOSITORY="$githubRepo" GH_TOKEN=secretref:gh-token `
+    --cpu "1.75" --memory "3.5Gi" `
+    --min-replicas 0 `
+    --max-replicas 3
+```  
+
+**NOTES:** Before running the above PowerShell script you will need to enable the **Admin Account** on the **Azure Container Registry** and make a note of the `Username` and `Password` as well as the `LoginSever` and `Image reference` as these needs to be passed as variables in the script:  
+
+```powershell
+#Variables (ACR) - ACR Admin account needs to be enabled
+$acrLoginServer = "registryname.azurecr.io" #The login server name of the ACR (all lowercase). Example: _myregistry.azurecr.io_
+$acrUsername = "acrAdminUser" #The Admin Account `Username` on the ACR
+$acrPassword = "acrAdminPassword" #The Admin Account `Password` on the ACR
+$acrImage = "$acrLoginServer/pwd9000-github-runner-lin:2.293.0" #Image reference to pull
 ```
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/acr-admin.png)  
+
+You will also need to provide variables for the **GitHub Service Principal** we created earlier that is linked with Azure, a **GitHub PAT token** and specify the **Owner** and **Repository** to link with the **Container App**:  
+
+```powershell
+#Variables (GitHub)
+$pat = "ghPatToken" #GitHub PAT token
+$githubOrg = "Pwd9000-ML" #GitHub Owner/Org
+$githubRepo = "docker-github-runner-linux" #Target GitHub repository to register self hosted runners against
+$appName = "GitHub-ACI-Deploy" #Previously created Service Principal linked to GitHub Repo (See part 3 of blog series)
+```
+
+See [creating a personal access token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) on how to create a GitHub PAT token. PAT tokens are only displayed once and are sensitive, so ensure they are kept safe.
+
+The minimum permission scopes required on the PAT token to register a self hosted runner are: `"repo"`, `"read:org"`:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part4/assets/PAT.png)
+
+**Tip:** I recommend only using short lived PAT tokens and generating new tokens whenever new agent runner registrations are required.
+
+Let's look at what this script created step-by-step:  
+
+As you can see the script has created a resource group called: **Demo-ACA-GitHub-Runners-RG**, containing the **Azure Container Apps Environment** linked with a **Log Analytics Workspace**, an **Azure Storage account** and a **Container App** based of a **GitHub runner** image, hosted on our **Azure Container Registry**.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/rg1.png)  
+
+In addition the GitHub **service principal** created in [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of this series also has access on the Resource Group we just created as **Contributor** as well as **Storage Queue Data Contributor** on the storage account.  
+
+It also created an empty queue for us, as we will be associating **GitHub Workflows** as queue messages once we start running and scaling **GitHub Action Workflows**.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/queue.png)
+
+xxxxxxxxxxxxx
+
+### Conclusion
+
+As you can see it was pretty easy to provision an **Azure Container Apps** environment and create a **Container App** and **KEDA** scale rule using **azure queues** to automatically provision self hosted **GitHub runners** onto a repository of our choice that has **0** or **no** runners at all.  
+
+There are a few caveats and pain points I would like to highlight in this proof of concept implementation, and hopefully these will be remediated soon. Once they are, I will create another part to this blog series once the following pain points have been fixed or improved.  
+
+**Issue 1**: Azure Container Apps doesn't fully yet allow us to use the **Container Apps system assigned managed identity** to pull images from **Azure Container Registry**. This means that we have to enable the ACRs **Admin Account** in order to provision images from the Azure Container Registry. You can follow this [GitHub issue](https://github.com/microsoft/azure-container-apps/issues/268) regarding this bug.  
+
+**Issue 2**: As mentioned earlier, there are no available [KEDA scalers for GitHub runners](https://keda.sh/docs/2.7/scalers/) at the time of this writing. This means that we have to utilise an **Azure Storage Queue** linked with our **GitHub workflow** to provision/scale runners with KEDA using an external **GitHub workflow Job** by sending a queue message with our workflow for KEDA to be signalled to provision a self hosted runner on the fly for us to use in any subsequent **GitHub Workflow Jobs**.  
+
+One benefit of this method however is that we can have a minimum container count of **0**, which means we won't ever have any idle runners doing nothing consuming unnecessary costs, thus essentially only paying for self hosted runners when they are actually **running**. This method will only create self hosted GitHub runners based on the **Azure Queue length** essentially associating our workflow run with a queue item.  
+
+Once the **GitHub Workflow** finishes it will remove the queue item and KEDA will scale back down to **0** if there are no **GitHub workflows** running.  
 
 That concludes this five part series where we took a deep dive in detail on how to implement **Self Hosted GitHub Runner containers on Azure**.
 
