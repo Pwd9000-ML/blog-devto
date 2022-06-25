@@ -35,9 +35,9 @@ Because there are no available [KEDA scalers for GitHub runners](https://keda.sh
 
 We will create the **Container App Environment** and **Azure Queue**, then create a [Azure Queue KEDA Scale Rule](https://docs.microsoft.com/en-us/azure/container-apps/scale-app#keda-scalers-conversion) that will have a minimum of **0** and maximum of **3** self hosted runner containers.
 
-We will use the **Azure Storage Queue** and link it with our **GitHub workflows** to provision/scale self hosted runners using an external **GitHub workflow Job** by sending a queue message associated with our workflow for KEDA to be signalled to provision a self hosted runner on the fly for us to use in any subsequent **Workflow Jobs**.
+We will use the **Azure Storage Queue** to associate **GitHub workflows** as queue messages, to provision/scale self hosted runners using an external **GitHub workflow Job** that will signal KEDA to provision a self hosted runner on the fly for us to use on any subsequent **Workflow Jobs** inside of the **Workflow**.
 
-After all subsequent **Workflow Jobs** have finished running the queue message associated with the workflow will be evicted from teh queue and KEDA will scale down/destroy the self hosted runner container, essentially scaling back down to **0** if there are no other **GitHub workflows** running.
+After all subsequent **Workflow Jobs** have finished running the queue message associated with the workflow will be evicted from the queue and KEDA will scale down/destroy the self hosted runner container, essentially scaling back down to **0** if there are no other **GitHub workflows** running.
 
 ### Pre-Requisites
 
