@@ -178,7 +178,7 @@ It also created an empty queue for us, as we will be associating **GitHub Workfl
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/queue.png)
 
-xxxxxxxxxxxxx
+xxxxxxxxxxx
 
 ### Conclusion
 
