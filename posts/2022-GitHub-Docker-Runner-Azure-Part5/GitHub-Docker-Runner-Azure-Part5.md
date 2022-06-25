@@ -37,7 +37,7 @@ We will create the **Container App Environment** and **Azure Queue**, then creat
 
 We will use the **Azure Storage Queue** to associate **GitHub workflows** as queue messages, to provision/scale self hosted runners using an external **GitHub workflow Job** that will signal KEDA to provision a self hosted runner on the fly for us to use on any subsequent **Workflow Jobs** inside of the **Workflow**.
 
-After all subsequent **Workflow Jobs** have finished running the queue message associated with the workflow will be evicted from the queue and KEDA will scale down/destroy the self hosted runner container, essentially scaling back down to **0** if there are no other **GitHub workflows** running.
+After all subsequent **Workflow Jobs** have finished running, the queue message associated with the workflow will be evicted from the queue and KEDA will scale back down/destroy the self hosted runner container, essentially scaling back down to **0** if there are no other **GitHub workflows** running.
 
 ### Pre-Requisites
 
@@ -152,7 +152,7 @@ $acrImage = "$acrLoginServer/pwd9000-github-runner-lin:2.293.0" #Image reference
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/acr-admin.png)
 
-You will also need to provide variables for the **GitHub Service Principal** we created earlier that is linked with Azure, a **GitHub PAT token** and specify the **Owner** and **Repository** to link with the **Container App**:
+You will also need to provide variables for the **GitHub Service Principal** we created in [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of the blog series, that is linked with Azure, a **GitHub PAT token** and specify the **Owner** and **Repository** to link with the **Container App**:
 
 ```powershell
 #Variables (GitHub)
