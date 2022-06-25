@@ -29,7 +29,7 @@ Things we will need are:
 - Create an ACI deployment Resource Group
 - Grant access to our GitHub **Service Principal** created in [Part3](https://dev.to/pwd9000/storing-docker-based-github-runner-containers-on-azure-container-registry-acr-4om3) of this blog series on the **Resource Group** to create ACIs
 
-For this step I will use a PowerShell script, [Prepare-RBAC-ACI.ps1](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/Azure-Pre-Reqs/Prepare-RBAC-ACI.ps1) running **Azure-CLI**, to create a **Resource Group** and grant access to our **GitHub Service Principal App** we created in the previous blog post (Part 3).
+For this step I will use a PowerShell script, [Prepare-RBAC-ACI.ps1](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/Azure-Pre-Reqs/AzureContainerInstance/Prepare-RBAC-ACI.ps1) running **Azure-CLI**, to create a **Resource Group** and grant access to our **GitHub Service Principal App** we created in the previous blog post (Part 3).
 
 ```powershell
 #Log into Azure
@@ -37,7 +37,7 @@ For this step I will use a PowerShell script, [Prepare-RBAC-ACI.ps1](https://git
 
 # Setup Variables.
 $aciResourceGroupName = "Demo-ACI-GitHub-Runners-RG"
-$appName="GitHub-ACI-Deploy" #Previously created Service Principal (See part 3 of blog series)
+$appName = "GitHub-ACI-Deploy" #Previously created Service Principal (See part 3 of blog series)
 $region = "uksouth"
 
 # Create a resource group to deploy ACIs to
@@ -49,7 +49,7 @@ az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
     az role assignment create --assignee "$_" `
         --role "Contributor" `
         --scope "$aciRGId"
-    }
+}
 ```
 
 As you can see the script has created an empty resource group called: **Demo-ACI-GitHub-Runners-RG**, and gave our GitHub service principal **Contributor** access over the resource group.
@@ -85,7 +85,7 @@ Get the relevant image details from the **Azure Container Registry**:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part4/assets/acr-lin02.png)
 
-For this step I will use a PowerShell script, [Deploy-ACI.ps1](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/Azure-Pre-Reqs/Deploy-ACI.ps1)
+For this step I will use a PowerShell script, [Deploy-ACI.ps1](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/Azure-Pre-Reqs/AzureContainerInstance/Deploy-ACI.ps1)
 
 ```powershell
 #az login
@@ -94,7 +94,7 @@ For this step I will use a PowerShell script, [Deploy-ACI.ps1](https://github.co
 $randomInt = Get-Random -Maximum 9999
 $aciResourceGroupName = "Demo-ACI-GitHub-Runners-RG" #Resource group created to deploy ACIs
 $aciName = "gh-runner-linux-$randomInt" #ACI name (unique)
-$acrLoginServer = "registryName.azurecr.io" #The login server name of the ACR (all lowercase). Example: _myregistry.azurecr.io_
+$acrLoginServer = "registryname.azurecr.io" #The login server name of the ACR (all lowercase). Example: _myregistry.azurecr.io_
 $acrUsername = "servicePrincipalClientId" #The `clientId` from the JSON output from the service principal creation (See part 3 of blog series)
 $acrPassword = "servicePrincipalClientSecret" #The `clientSecret` from the JSON output from the service principal creation (See part 3 of blog series)
 $image = "$acrLoginServer/pwd9000-github-runner-lin:2.293.0" #image reference to pull

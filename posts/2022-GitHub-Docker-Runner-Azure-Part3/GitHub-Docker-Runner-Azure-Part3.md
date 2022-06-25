@@ -33,7 +33,7 @@ Things we will need are:
 
 ### Set up an Azure Container Registry (ACR)
 
-For this step I will use a PowerShell script, [Deploy-ACR.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/Azure-Pre-Reqs/Deploy-ACR.ps1) running **Azure-CLI**, to create a **Resource Group** and an **Azure Container Registry** where we can push docker images to:
+For this step I will use a PowerShell script, [Deploy-ACR.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/Azure-Pre-Reqs/AzureContainerRegistry/Deploy-ACR.ps1) running **Azure-CLI**, to create a **Resource Group** and an **Azure Container Registry** where we can push docker images to:
 
 ```powershell
 #Log into Azure
@@ -67,7 +67,7 @@ Next we will configure a **Service Principal** to link our **GitHub repository**
 
 We will grant the principal access to the **Azure Container Registry** to allow us to build and push images to the ACR.
 
-For this step I will use a PowerShell script, [Prepare-RBAC-ACR.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/Azure-Pre-Reqs/Prepare-RBAC-ACR.ps1) running **Azure-CLI**. This script will:
+For this step I will use a PowerShell script, [Prepare-RBAC-ACR.ps1](https://github.com/Pwd9000-ML/docker-github-runner-windows/blob/master/Azure-Pre-Reqs/AzureContainerRegistry/Prepare-RBAC-ACR.ps1) running **Azure-CLI**. This script will:
 
 - Create a **Service Principal** which we can link with our **GitHub repository**
 - Grant Pull/Push access over the **Azure Container Registry (ACR)** we created earlier
@@ -77,9 +77,8 @@ For this step I will use a PowerShell script, [Prepare-RBAC-ACR.ps1](https://git
 #az login
 
 # Setup Variables. (provide your ACR name)
-$appName="GitHub-ACI-Deploy"
-$acrName="<ACRName>"
-$region = "uksouth"
+$appName = "GitHub-ACI-Deploy"
+$acrName = "<ACRName>"
 
 # Create AAD App and Service Principal and assign to RBAC Role to push and pull images from ACR
 $acrId = az acr show --name "$acrName" --query id --output tsv
