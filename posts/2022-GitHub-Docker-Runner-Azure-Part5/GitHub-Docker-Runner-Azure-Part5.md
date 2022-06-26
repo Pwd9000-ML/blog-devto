@@ -374,7 +374,7 @@ These queue messages which represents our workflows will automatically cause KED
 
 ### Job 2 <-> Job n
 
-Any subsequent jobs on the workflow can use the self hosted runner as we can see from the following Job on the workflow as it i set to `'runs-on: [self-hosted]'`:
+Any subsequent jobs on the workflow can use the self hosted runner as we can see from the following Job on the workflow as it is set to `'runs-on: [self-hosted]'`:
 
 ```yml
 #Subsequent Jobs runs-on [self-hosted]. Job1, Job2, JobN etc etc
