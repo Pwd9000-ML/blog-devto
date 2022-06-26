@@ -133,7 +133,7 @@ az containerapp create --resource-group "$acaResourceGroupName" `
     --registry-server "$acrLoginServer" `
     --registry-username "$acrUsername" `
     --registry-password "$acrPassword" `
-    --secrets gh-token="$pat" `
+    --secrets gh-token="$pat" storage-connection-string="$storageConnection" `
     --env-vars GH_OWNER="$githubOrg" GH_REPOSITORY="$githubRepo" GH_TOKEN=secretref:gh-token `
     --cpu "1.75" --memory "3.5Gi" `
     --min-replicas 0 `
@@ -195,7 +195,7 @@ az containerapp create --resource-group "$acaResourceGroupName" `
     --registry-server "$acrLoginServer" `
     --registry-username "$acrUsername" `
     --registry-password "$acrPassword" `
-    --secrets gh-token="$pat" `
+    --secrets gh-token="$pat" storage-connection-string="$storageConnection" `
     --env-vars GH_OWNER="$githubOrg" GH_REPOSITORY="$githubRepo" GH_TOKEN=secretref:gh-token `
     --cpu "1.75" --memory "3.5Gi" `
     --min-replicas 0 `
@@ -220,7 +220,13 @@ You'll notice that these variables are stored inside of the **Container App** co
 
 Notice that the **GH_TOKEN** is actually referenced by a **secret**:  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/secenv1.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/secenv2.png)  
+
+We also created a secret for the **Queue storage account** as we will need this to set up our KEDA scale rule next.  
+
+### Create a scale rule
+
+Next we will create a KEDA Scaling rule. In the Azure portal navigate to the **Container App**
 
 ### Running and Scaling Workflows
 
