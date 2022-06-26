@@ -404,7 +404,7 @@ testRunner:
         az storage message delete --id "${{needs.scaleJob.outputs.scaleJobId}}" --pop-receipt "${{needs.scaleJob.outputs.scaleJobPop}}" --queue-name "${{ env.AZ_QUEUE_NAME }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}"
 ```
 
-This second **Job** in our workflow will run on the self hosted **GitHub runner** that KEDA scaled up on the **Azure Container Apps** and installs **Terraform** as well as display the version of **Terraform** and **Azure-CLI**.  
+This second **Job** in our workflow will run on the self hosted **GitHub runner** that KEDA scaled up on the **Azure Container Apps** and installs **Terraform** as well as display the version of **Terraform** and **Azure-CLI**.
 
 The last step on the workflow called **scale down self hosted**, will remove the queue message on the **azure queue** to signal that the workflow has completed and remove the unique **queue** message. This will cause KEDA to scale back down to **0** if there are no more workflows running (All messages are cleared on the **azure queue**):
 
