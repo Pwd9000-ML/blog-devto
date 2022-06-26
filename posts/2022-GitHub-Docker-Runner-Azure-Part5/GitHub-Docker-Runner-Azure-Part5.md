@@ -403,9 +403,9 @@ testRunner:
         az storage message delete --id "${{needs.scaleJob.outputs.scaleJobId}}" --pop-receipt "${{needs.scaleJob.outputs.scaleJobPop}}" --queue-name "${{ env.AZ_QUEUE_NAME }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}"
 ```
 
-This second **Job** in our workflow will run on the self hosted **GitHub runner** that KEDA scaled up on the **Azure Container Apps** and installs **Terraform** as well as display the version of **Terraform** and **Azure-CLI**.
+This second **Job** (or any subsequent jobs) in our workflow run (associated with a unique queue message), can now use and run on the self hosted **GitHub runner** that KEDA scaled up on the **Azure Container Apps** and installs **Terraform** as well as display the version of **Terraform** and **Azure-CLI**.
 
-The last step on the workflow called **scale down self hosted**, will remove the queue message on the **azure queue** to signal that the workflow has completed and remove the unique **queue** message. This will cause KEDA to scale back down to **0** if there are no more workflows running (All messages are cleared on the **azure queue**):
+The last step on the final workflow **Job** called **scale down self hosted**, is simply used to remove the unique queue message associated with the workflow run on the **azure queue** to signal that the workflow is completed. This will cause KEDA to scale back down and if there are no more workflows running KEDA can scale back down to **0**:  
 
 ```yml
 - name: scale down self hosted
@@ -415,7 +415,7 @@ The last step on the workflow called **scale down self hosted**, will remove the
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/q05.png)
 
-Once the workflow is finished and the **Azure Queue** is cleared, you'll notice that KEDA has scaled back down and our self hosted runners have also been cleaned up and removed from the repo:
+Once all workflow runs are finished and the **Azure Queue** is cleared, you'll notice that KEDA has scaled back down and our self hosted runners have also been cleaned up and removed from the repo:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/gh01.png)
 
