@@ -234,12 +234,12 @@ Then click on the `'Scale'` tab and select `'+ Add'`:
 
 This will bring up the scaling rule configuration pane. Fill out the following:
 
-| Key            | Value            | Description                  |
-| -------------- | ---------------- | ---------------------------- |
-| `Rule Name`    | queue-scaling    | Name for rule                |
-| `Type`         | Azure queue      | Type of scaler               |
-| `Queue name`   | gh-runner-scaler | Queue name created by script |
-| `Queue length` | 1                | Trigger                      |
+| Key            | Value                | Description                                |
+| -------------- | -------------------- | ------------------------------------------ |
+| `Rule Name`    | `'queue-scaling'`    | Name for scale rule                        |
+| `Type`         | `'Azure queue'`      | Type of scaler to use                      |
+| `Queue name`   | `'gh-runner-scaler'` | Azure storage queue name created by script |
+| `Queue length` | `'1'`                | Trigger threshold (Each workflow run)      |
 
 Then click on `'+ Add'` on the **Authentication** section.
 
@@ -255,13 +255,162 @@ Then click on `'Add'` and `'Create'`. After a minute you will see the new scale 
 
 ### Running and Scaling Workflows
 
-Next we will create a **GitHub workflow** that will use an external **Job** to associate our **workflow run** with an **Azure Queue message**, that will automatically trigger KEDA to provision a self hosted runner inside of our repo for any subsequent workflow **Jobs**.
+Next we will create a **GitHub workflow** that will use an external **Job** to associate our **workflow run** with an **Azure Queue message**, that will automatically trigger KEDA to provision a self hosted runner inside of our repo for any subsequent workflow **Jobs**.  
+
+As you can see, we currently have no self hosted runners on our GitHub repository:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/gh01.png)
 
 You can use the following example workflow: [kedaScaleTest.yml](https://github.com/Pwd9000-ML/docker-github-runner-linux/blob/master/.github/workflows/kedaScaleTest.yml)
 
 ```yml
-c
+name: KEDA Scale self hosted
+
+on:
+  workflow_dispatch:
+
+env:
+  AZ_STORAGE_ACCOUNT: aca2keda2scaler126
+  AZ_QUEUE_NAME: gh-runner-scaler
+
+jobs:
+  #External Job to create and associate workflow with a unique QueueId on Azure queue to scale up KEDA
+  scale-keda-queue-up:
+    runs-on: ubuntu-latest 
+    steps:
+    - name: "Login via Azure CLI"
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: scale up self hosted
+      id: scaleJob
+      run: |
+        OUTPUT=$(az storage message put --queue-name "${{ env.AZ_QUEUE_NAME }}" --content "${{ github.run_id }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}")
+        echo "::set-output name=scaleJobId::$(echo "$OUTPUT" | grep "id" | sed 's/^.*: //' | sed 's/,*$//g')"
+        echo "::set-output name=scaleJobPop::$(echo "$OUTPUT" | grep "popReceipt" | sed 's/^.*: //' | sed 's/,*$//g')"
+    outputs:
+      scaleJobId: ${{ steps.scaleJob.outputs.scaleJobId }}
+      scaleJobPop: ${{ steps.scaleJob.outputs.scaleJobPop }}
+
+  #Subsequent Jobs runs-on [self-hosted]. Job1, Job2, JobN etc etc
+  testRunner:
+    needs: scale-keda-queue-up
+    runs-on: [self-hosted]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v2
+    - name: Display Terraform Version
+      run: terraform --version
+    - name: Display Azure-CLI Version
+      run: az --version
+    - name: Delay runner finish (5min)
+      run: sleep 5m
+    
+    #Remove unique QueueId on Azure queue associated with workflow as final step to scale down KEDA
+    - name: "Login via Azure CLI"
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: scale down self hosted
+      run: |
+        az storage message delete --id "${{needs.scaleJob.outputs.scaleJobId}}" --pop-receipt "${{needs.scaleJob.outputs.scaleJobPop}}" --queue-name "${{ env.AZ_QUEUE_NAME }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}"
 ```
+
+**NOTE:** On the above **GitHub workflow**, replace the environment variables with your **Azure Storage Account** and **Queue** name:  
+
+```yml
+env:
+  AZ_STORAGE_ACCOUNT: aca2keda2scaler126
+  AZ_QUEUE_NAME: gh-runner-scaler
+```
+
+### Let's take a look at what this workflow does step-by-step  
+
+### Job 1
+
+```yml
+jobs:
+  #External Job to create and associate workflow with a unique QueueId on Azure queue to scale up KEDA
+  scale-keda-queue-up:
+    runs-on: ubuntu-latest 
+    steps:
+    - name: "Login via Azure CLI"
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: scale up self hosted
+      id: scaleJob
+      run: |
+        OUTPUT=$(az storage message put --queue-name "${{ env.AZ_QUEUE_NAME }}" --content "${{ github.run_id }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}")
+        echo "::set-output name=scaleJobId::$(echo "$OUTPUT" | grep "id" | sed 's/^.*: //' | sed 's/,*$//g')"
+        echo "::set-output name=scaleJobPop::$(echo "$OUTPUT" | grep "popReceipt" | sed 's/^.*: //' | sed 's/,*$//g')"
+    outputs:
+      scaleJobId: ${{ steps.scaleJob.outputs.scaleJobId }}
+      scaleJobPop: ${{ steps.scaleJob.outputs.scaleJobPop }}
+```
+
+The first **Job** called **scale-keda-queue-up:**, will use an external runner to send a queue message to the **Azure Queue** and then save the unique **Queue Id** and **Queue popReceipt** as an output that we can later reference in other **Jobs**. This unique queue message will represent the workflow run:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/q01.png)
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/q02.png)
+
+KEDA will see this queue message based on the scale rule we created earlier and then automatically provision a **GitHub self hosted runner** for this repo whilst the queue has messages:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/runner01.png)  
+
+Notice if we run a few more workflows, whilst the current workflow is running using th same technique, more messages will appear on the **azure queue**:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/q03.png)
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/q04.png)
+
+These queue messages which represents our workflows will automatically cause KEDA to scale up and create more self hosted runners on our repo:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/runner02.png)  
+
+### Job 2 <-> Job n
+
+Any subsequent jobs on the workflow can use the self hosted runner as we can see from the following Job on the workflow as it i set to `'runs-on: [self-hosted]'`:  
+
+```yml
+  #Subsequent Jobs runs-on [self-hosted]. Job1, Job2, JobN etc etc
+  testRunner:
+    needs: scale-keda-queue-up
+    runs-on: [self-hosted]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v2
+    - name: Display Terraform Version
+      run: terraform --version
+    - name: Display Azure-CLI Version
+      run: az --version
+    - name: Delay runner finish (5min)
+      run: sleep 5m
+    
+    #Remove unique QueueId on Azure queue associated with workflow as final step to scale down KEDA
+    - name: "Login via Azure CLI"
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: scale down self hosted
+      run: |
+        az storage message delete --id "${{needs.scaleJob.outputs.scaleJobId}}" --pop-receipt "${{needs.scaleJob.outputs.scaleJobPop}}" --queue-name "${{ env.AZ_QUEUE_NAME }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}"
+```
+
+The last step on the workflow called **scale down self hosted**, will remove the queue message on the **azure queue** to signal that the workflow has completed and remove the unique **queue** message. This will cause KEDA to scale back down to **0** if there are no more workflows running (All messages are cleared on the **azure queue**):
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/q05.png)
+
+Once the **Azure Queue** is cleared, it will take about roughly 5 minutes for KEDA to destroy the containers and you'll notice that our self hosted runners have also been cleaned up and removed from the repo:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/gh01.png)  
 
 ### Conclusion
 
