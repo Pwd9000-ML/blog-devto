@@ -184,7 +184,7 @@ It also created an empty queue for us **(gh-runner-scaler)**, that we will use t
 
 ### Container App
 
-Lets take a deeper look at the created container app itself:
+Lets take a deeper look at the created container app itself:  
 
 ```powershell
 #Create Container App from docker image (self hosted GitHub runner) stored in ACR
@@ -202,35 +202,35 @@ az containerapp create --resource-group "$acaResourceGroupName" `
     --max-replicas 3
 ```
 
-As you can see the **Container App** created is scaled at **0-3**, and we do not yet have a scale rule configured:
+As you can see the **Container App** created is scaled at **0-3**, and we do not yet have a scale rule configured:  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/capp.png)
 
-You'll also notice that the **GitHub** repository we configured as the target to deploy runners to, also has no runners yet, because our scaling is set to **0**:
+You'll also notice that the **GitHub** repository we configured as the target to deploy runners to, also has no runners yet, because our scaling is set to **0**:  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/gh01.png)
 
-**NOTE:** When you run the provided script above to deploy **Azure Container Apps** for the first time, when the container app is being provisioned, you will notice there will be a short lived runner that will appear on the GitHub repo. The reason for this is that the provisioning process will provision at least 1x instance momentarily and then scale down to **0** after about 5 minutes.
+**NOTE:** When you run the provided script above to deploy **Azure Container Apps** for the first time, when the container app is being provisioned, you will notice there will be a short lived runner that will appear on the GitHub repo. The reason for this is that the provisioning process will provision at least 1x instance momentarily and then scale down to **0** after about 5 minutes.  
 
-If you have been following along this blog series you should know that when we want to provision a self hosted **GitHub runner** using the image we created, through docker or as an ACI, we had to pass in some environment variables such as: **GH_OWNER**, **GH_REPOSITORY** and **GH_TOKEN**.
+If you have been following along this blog series you should know that when we want to provision a self hosted **GitHub runner** using the image we created, through docker or as an ACI, we had to pass in some environment variables such as: **GH_OWNER**, **GH_REPOSITORY** and **GH_TOKEN** to specify which repo the runners needs to be registered on.  
 
-You'll notice that these variables are stored inside of the **Container App** configuration:
+You'll notice that these variables are stored inside of the **Container App** configuration:  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/env.png)
 
-Notice that the **GH_TOKEN** is actually referenced by a **secret**:
+Notice that the **GH_TOKEN** is actually referenced by a **secret**:  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/secenv.png)
 
-Next make a note and copy the **storage-connection-string** onto the **GitHub project** as a secret. We will use this connection string to signal KEDA from GitHub to scale out our runners:
+Next make a note and copy the **storage-connection-string** onto the **GitHub project** as a secret. We will use this connection string to signal KEDA from GitHub to scale out our runners:  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/secrets.png)
 
 ### Running and Scaling Workflows
 
-Next we will create a **GitHub workflow** that will use an external **Job** to associate our **workflow run** with a **Azure Queue message**, this will automatically trigger KEDA to provision us a self hosted runner inside of our repo for any subsequent workflow **Jobs**.
+Next we will create a **GitHub workflow** that will use an external **Job** to associate our **workflow run** with a **Azure Queue message**, this will automatically trigger KEDA to provision us a self hosted runner inside of our repo for any subsequent workflow **Jobs**.  
 
-You can use the following
+You can use the following 
 
 ### Conclusion
 
