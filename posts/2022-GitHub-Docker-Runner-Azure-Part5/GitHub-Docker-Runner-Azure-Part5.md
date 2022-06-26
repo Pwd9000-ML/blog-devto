@@ -423,7 +423,7 @@ Once all workflow runs are finished and the **Azure Queue** is cleared, you'll n
 
 As you can see it was pretty easy to provision an **Azure Container Apps** environment and create a **Container App** and **KEDA** scale rule using **azure queues** to automatically provision self hosted **GitHub runners** onto a repository of our choice that has **0** or **no** runners at all.
 
-There are a few caveats and pain points I would like to highlight in this proof of concept implementation, and hopefully these will be remediated soon. Once they are, I will create another part to this blog series once the following pain points have been fixed or improved.
+There are a few caveats and pain points I would like to highlight in this proof of concept implementation, and hopefully these will be improved as the product matures. Once they are, I will create another part to this blog series with these improvements.
 
 **Issue 1**: Azure Container Apps doesn't fully yet allow us to use the **Container Apps system assigned managed identity** to pull images from **Azure Container Registry**. This means that we have to enable the ACRs **Admin Account** in order to provision images from the Azure Container Registry. You can follow this [GitHub issue](https://github.com/microsoft/azure-container-apps/issues/268) regarding this bug.
 
