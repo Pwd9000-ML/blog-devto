@@ -220,9 +220,9 @@ You'll notice that these variables are stored inside of the **Container App** co
 
 Notice that the **GH_TOKEN** is actually referenced by a **secret**:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/secenv2.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/secenv2.png)
 
-We also created a secret for the **Queue storage account** as we will need this to set up our KEDA scale rule next.  
+We also created a secret for the **Queue storage account** as we will need this to set up our KEDA scale rule next.
 
 ### Create a scale rule
 
