@@ -368,7 +368,7 @@ Notice if we run a few more workflows, whilst the current workflow is running us
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/q04.png)
 
-These queue messages which represents our workflows will automatically cause KEDA to scale up and create more self hosted runners on our repository based on the demand/load of workflows running. Essentially KEDA is dynamically scaling up our self hosted runners as more workflows runs simultaneously based on demand:  
+These queue messages which represents our workflows will automatically cause KEDA to scale up and create more self hosted runners on our repository based on the demand/load of workflows running. Essentially KEDA is dynamically scaling up our self hosted runners as more workflows runs simultaneously based on demand:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/runner02.png)
 
