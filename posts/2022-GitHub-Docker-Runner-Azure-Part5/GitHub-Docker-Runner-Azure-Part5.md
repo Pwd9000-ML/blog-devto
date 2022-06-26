@@ -405,7 +405,7 @@ testRunner:
 
 This second **Job** (or any subsequent jobs) in our workflow run (associated with a unique queue message), can now use and run on the self hosted **GitHub runner** that KEDA scaled up on the **Azure Container Apps** and installs **Terraform** as well as display the version of **Terraform** and **Azure-CLI**.
 
-The last step on the final workflow **Job** called **scale down self hosted**, is simply used to remove the unique queue message associated with the workflow run on the **azure queue** to signal that the workflow is completed. This will cause KEDA to scale back down and if there are no more workflows running KEDA can scale back down to **0**:  
+The last step on the final workflow **Job** called **scale down self hosted**, is simply used to remove the unique queue message associated with the workflow run on the **azure queue** to signal that the workflow is completed. This will cause KEDA to scale back down and if there are no more workflows running KEDA can scale back down to **0**:
 
 ```yml
 - name: scale down self hosted
