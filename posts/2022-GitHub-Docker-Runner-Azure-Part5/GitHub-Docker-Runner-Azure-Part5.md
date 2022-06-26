@@ -404,11 +404,19 @@ testRunner:
         az storage message delete --id "${{needs.scaleJob.outputs.scaleJobId}}" --pop-receipt "${{needs.scaleJob.outputs.scaleJobPop}}" --queue-name "${{ env.AZ_QUEUE_NAME }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}"
 ```
 
+This second **Job** in our workflow will run on the self hosted **GitHub runner** that KEDA scaled up on the **Azure Container Apps** and installs **Terraform** as well as display the version of **Terraform** and **Azure-CLI**.  
+
 The last step on the workflow called **scale down self hosted**, will remove the queue message on the **azure queue** to signal that the workflow has completed and remove the unique **queue** message. This will cause KEDA to scale back down to **0** if there are no more workflows running (All messages are cleared on the **azure queue**):
+
+```yml
+- name: scale down self hosted
+    run: |
+    az storage message delete --id "${{needs.scaleJob.outputs.scaleJobId}}" --pop-receipt "${{needs.scaleJob.outputs.scaleJobPop}}" --queue-name "${{ env.AZ_QUEUE_NAME }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}"
+```
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/q05.png)
 
-Once the **Azure Queue** is cleared, it will take about roughly 5 minutes for KEDA to destroy the containers and you'll notice that our self hosted runners have also been cleaned up and removed from the repo:
+Once the workflow is finished and the **Azure Queue** is cleared, you'll notice that KEDA has scaled back down and our self hosted runners have also been cleaned up and removed from the repo:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/gh01.png)
 
