@@ -210,8 +210,6 @@ You'll also notice that the **GitHub** repository we configured as the target to
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/gh01.png)
 
-**NOTE:** When you run the provided script above to deploy **Azure Container Apps** for the first time, when the container app is being provisioned, you will notice there will be a short lived runner that will appear on the GitHub repo. The reason for this is that the provisioning process will provision at least 1x instance momentarily and then scale down to **0** after about 5 minutes.
-
 If you have been following along this blog series you should know that when we want to provision a self hosted **GitHub runner** using the image we created, through docker or as an ACI, we had to pass in some environment variables such as: **GH_OWNER**, **GH_REPOSITORY** and **GH_TOKEN** to specify which repo the runners needs to be registered on.
 
 You'll notice that these variables are stored inside of the **Container App** configuration:
@@ -222,15 +220,15 @@ Notice that the **GH_TOKEN** is actually referenced by a **secret**:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/secenv2.png)
 
-The script also sets the **Azure Queue Storage Account Connection String** as a secret, because we will need this to set up our KEDA scale rule next.
+The script also sets the **Azure Queue Storage Account Connection String** as a secret, because we will need this to set up our KEDA scale rule next.  
 
 ### Create a scale rule
 
-Next we will create a KEDA scaling rule. In the Azure portal navigate to the **Container App**. Go to `Scale` and click on `Edit and deploy`:
+Next we will create a KEDA scaling rule. In the Azure portal navigate to the **Container App**. Go to `Scale` and click on `Edit and deploy`:  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/scale01.png)
 
-Then click on the `Scale` tab and select `+ Add`:
+Then click on the `Scale` tab and select `+ Add`:  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/scale02.png)
 
@@ -243,15 +241,17 @@ This will bring up the scaling rule configuration pane. Fill out the following:
 | `Queue name`   | gh-runner-scaler | Queue name created by script |
 | `Queue length` | 1                | Trigger                      |
 
-Then click on `+ Add` on the **Authentication** section.
+Then click on `+ Add` on the **Authentication** section.  
 
-Under `Secret reference` you will see a drop down to select the `storage-connection-string` secret we created earlier. For the `Trigger parameter` type `connection`.
+Under `Secret reference` you will see a drop down to select the `storage-connection-string` secret we created earlier. For the `Trigger parameter` type `connection`.  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/scale03.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/scale03.png)  
 
-Then click on `Add` and `Create`. After a minute you will see the new scale rule have been created:
+Then click on `Add` and `Create`. After a minute you will see the new scale rule have been created:  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/scale04.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part5/assets/scale04.png)  
+
+**NOTE:** When you create the scale rule for the first time, when the container app is being provisioned, you will notice there will be a short lived runner that will appear on the GitHub repo. The reason for this is that the provisioning process will provision at least 1x instance momentarily and then scale down to **0** after about 5 minutes.
 
 ### Running and Scaling Workflows
 
