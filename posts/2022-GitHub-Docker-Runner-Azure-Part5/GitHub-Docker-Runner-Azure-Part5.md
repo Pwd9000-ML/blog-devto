@@ -275,19 +275,19 @@ env:
 jobs:
   #External Job to create and associate workflow with a unique QueueId on Azure queue to scale up KEDA
   scale-keda-queue-up:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
     steps:
-    - name: "Login via Azure CLI"
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: scale up self hosted
-      id: scaleJob
-      run: |
-        OUTPUT=$(az storage message put --queue-name "${{ env.AZ_QUEUE_NAME }}" --content "${{ github.run_id }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}")
-        echo "::set-output name=scaleJobId::$(echo "$OUTPUT" | grep "id" | sed 's/^.*: //' | sed 's/,*$//g')"
-        echo "::set-output name=scaleJobPop::$(echo "$OUTPUT" | grep "popReceipt" | sed 's/^.*: //' | sed 's/,*$//g')"
+      - name: scale up self hosted
+        id: scaleJob
+        run: |
+          OUTPUT=$(az storage message put --queue-name "${{ env.AZ_QUEUE_NAME }}" --content "${{ github.run_id }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}")
+          echo "::set-output name=scaleJobId::$(echo "$OUTPUT" | grep "id" | sed 's/^.*: //' | sed 's/,*$//g')"
+          echo "::set-output name=scaleJobPop::$(echo "$OUTPUT" | grep "popReceipt" | sed 's/^.*: //' | sed 's/,*$//g')"
     outputs:
       scaleJobId: ${{ steps.scaleJob.outputs.scaleJobId }}
       scaleJobPop: ${{ steps.scaleJob.outputs.scaleJobPop }}
@@ -297,25 +297,25 @@ jobs:
     needs: scale-keda-queue-up
     runs-on: [self-hosted]
     steps:
-    - uses: actions/checkout@v3
-    - name: Install Terraform
-      uses: hashicorp/setup-terraform@v2
-    - name: Display Terraform Version
-      run: terraform --version
-    - name: Display Azure-CLI Version
-      run: az --version
-    - name: Delay runner finish (2min)
-      run: sleep 2m
-    
-    #Remove unique QueueId on Azure queue associated with workflow as final step to scale down KEDA
-    - name: "Login via Azure CLI"
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: actions/checkout@v3
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v2
+      - name: Display Terraform Version
+        run: terraform --version
+      - name: Display Azure-CLI Version
+        run: az --version
+      - name: Delay runner finish (2min)
+        run: sleep 2m
 
-    - name: scale down self hosted
-      run: |
-        az storage message delete --id ${{needs.scale-keda-queue-up.outputs.scaleJobId}} --pop-receipt ${{needs.scale-keda-queue-up.outputs.scaleJobPop}} --queue-name "${{ env.AZ_QUEUE_NAME }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}"
+      #Remove unique QueueId on Azure queue associated with workflow as final step to scale down KEDA
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: scale down self hosted
+        run: |
+          az storage message delete --id ${{needs.scale-keda-queue-up.outputs.scaleJobId}} --pop-receipt ${{needs.scale-keda-queue-up.outputs.scaleJobPop}} --queue-name "${{ env.AZ_QUEUE_NAME }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}"
 ```
 
 **NOTE:** On the above **GitHub workflow**, replace the environment variables with your **Azure Storage Account** and **Queue** name:
@@ -334,19 +334,19 @@ env:
 jobs:
   #External Job to create and associate workflow with a unique QueueId on Azure queue to scale up KEDA
   scale-keda-queue-up:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
     steps:
-    - name: "Login via Azure CLI"
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: scale up self hosted
-      id: scaleJob
-      run: |
-        OUTPUT=$(az storage message put --queue-name "${{ env.AZ_QUEUE_NAME }}" --content "${{ github.run_id }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}")
-        echo "::set-output name=scaleJobId::$(echo "$OUTPUT" | grep "id" | sed 's/^.*: //' | sed 's/,*$//g')"
-        echo "::set-output name=scaleJobPop::$(echo "$OUTPUT" | grep "popReceipt" | sed 's/^.*: //' | sed 's/,*$//g')"
+      - name: scale up self hosted
+        id: scaleJob
+        run: |
+          OUTPUT=$(az storage message put --queue-name "${{ env.AZ_QUEUE_NAME }}" --content "${{ github.run_id }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}")
+          echo "::set-output name=scaleJobId::$(echo "$OUTPUT" | grep "id" | sed 's/^.*: //' | sed 's/,*$//g')"
+          echo "::set-output name=scaleJobPop::$(echo "$OUTPUT" | grep "popReceipt" | sed 's/^.*: //' | sed 's/,*$//g')"
     outputs:
       scaleJobId: ${{ steps.scaleJob.outputs.scaleJobId }}
       scaleJobPop: ${{ steps.scaleJob.outputs.scaleJobPop }}
@@ -382,25 +382,25 @@ testRunner:
   needs: scale-keda-queue-up
   runs-on: [self-hosted]
   steps:
-  - uses: actions/checkout@v3
-  - name: Install Terraform
-    uses: hashicorp/setup-terraform@v2
-  - name: Display Terraform Version
-    run: terraform --version
-  - name: Display Azure-CLI Version
-    run: az --version
-  - name: Delay runner finish (2min)
-    run: sleep 2m
-  
-  #Remove unique QueueId on Azure queue associated with workflow as final step to scale down KEDA
-  - name: "Login via Azure CLI"
-    uses: azure/login@v1
-    with:
-      creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - uses: actions/checkout@v3
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v2
+    - name: Display Terraform Version
+      run: terraform --version
+    - name: Display Azure-CLI Version
+      run: az --version
+    - name: Delay runner finish (2min)
+      run: sleep 2m
 
-  - name: scale down self hosted
-    run: |
-      az storage message delete --id ${{needs.scale-keda-queue-up.outputs.scaleJobId}} --pop-receipt ${{needs.scale-keda-queue-up.outputs.scaleJobPop}} --queue-name "${{ env.AZ_QUEUE_NAME }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}"
+    #Remove unique QueueId on Azure queue associated with workflow as final step to scale down KEDA
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: scale down self hosted
+      run: |
+        az storage message delete --id ${{needs.scale-keda-queue-up.outputs.scaleJobId}} --pop-receipt ${{needs.scale-keda-queue-up.outputs.scaleJobPop}} --queue-name "${{ env.AZ_QUEUE_NAME }}" --account-name "${{ env.AZ_STORAGE_ACCOUNT }}"
 ```
 
 This second **Job** (or any subsequent jobs) in our workflow run (associated with a unique queue message), can now use and run on the self hosted **GitHub runner** that KEDA scaled up on the **Azure Container Apps** and installs **Terraform** as well as display the version of **Terraform** and **Azure-CLI**.
