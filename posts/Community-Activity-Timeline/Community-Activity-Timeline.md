@@ -31,6 +31,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **14/07/2022** | [OSS maintainer - Terraform Module: sonarqube-aci (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/sonarqube-aci/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
 | **26/06/2022** | [Run Docker based GitHub runner containers on Azure Container Apps (ACA)](https://dev.to/pwd9000/run-docker-based-github-runner-containers-on-azure-container-apps-aca-1n13) | Blog/Website Post | Azure, GitHub | Containers, CICD , DevOps, Tutorial |
 | **17/06/2022** | [Top Stores from the Microsoft DevOps Community – 17.06.2022](https://devblogs.microsoft.com/devops/top-stores-from-the-microsoft-devops-community-17-06-2022/?WT.mc_id=modinfra-69610-apedward) | Article | GitHub, Azure | Containers, CICD , DevOps, Tutorial |
 | **17/06/2022** | [Run Docker based GitHub runner containers on Azure Container Instances (ACI)](https://dev.to/pwd9000/running-docker-based-github-runner-containers-on-azure-container-instances-aci-4odf) | Blog/Website Post | Azure, GitHub | Containers, CICD , DevOps, Tutorial |
