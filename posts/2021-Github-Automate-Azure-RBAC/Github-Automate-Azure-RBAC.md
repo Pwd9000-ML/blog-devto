@@ -29,31 +29,25 @@ For this step I will be using Azure CLI using a powershell console. First we wil
 az login
 ```
 
-Next we will create our `'Azure AD App'` by running the following in a powershell console window:
+Next we will create our `Azure AD App & Service Principal` by running the following in a powershell console window:
 
 ```powershell
-# a name for our azure ad app
+# variables
+$subscriptionId=$(az account show --query id -o tsv)
 $appName="Github-RBAC-Admin"
 
-# create Azure AD app
-az ad app create --display-name $appName --homepage "http://localhost/$appName" --identifier-uris "http://localhost/$appName"
-```
-
-Next we will retrieve the App ID and set it to a powershell variable `$appId`
-
-```powershell
-# get the app id
-$appId=$(az ad app list --display-name $appName --query [].appId -o tsv)
-```
-
-Now that we have our `'appId'` we can create our service principal and also give our principal the correct `Role Based Access Control (RBAC)` permissions on our subscription or management group where we want to maintain RBAC. We will give our principal the RBAC/IAM roles: `'Management Group Reader'` and `'User Access Administrator'`, because we want our actions workflow script to be able to look at management groups and be able to change context as well as be able to create or amend role definitions at the scope we want to maintain. In my case I only want to maintain RBAC for a single subscription. You can change the below `--scopes` to also set the relevant permissions of the service principal to a `management group` instead if you want to use the actions workflow to maintain RBAC over multiple subscriptions.
-
-```powershell
-$subscriptionId="<MySubscriptionId>" # You can change this value to the subscription ID in your environment
-az ad sp create-for-rbac --name $appId `
+# Create AAD App and Service Principal and assign Management Group Reader Role on Subscription
+az ad sp create-for-rbac --name $appName `
     --role "Management Group Reader" `
     --scopes /subscriptions/$subscriptionId `
     --sdk-auth
+
+# Assign additional RBAC role to Service Principal Subscription to manage Virtual machines
+az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
+    az role assignment create --assignee "$_" `
+        --role "User Access Administrator" `
+        --subscription $subscriptionId
+    }
 ```
 
 The above command will output a JSON object with the role assignment credentials. Copy this JSON object for later when we configure our github repository. You will only need the sections with the `clientId`, `clientSecret`, `subscriptionId`, and `tenantId` values:
@@ -67,13 +61,7 @@ The above command will output a JSON object with the role assignment credentials
 }
 ```
 
-We also want to give our `clientId` `'User Access Administrator'` permissions on our subscription in order to manage RBAC. We will grant our service principal identity the following RBAC role: [User Access Administrator](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator). Run the following command:
-
-```powershell
-az role assignment create --assignee "<clientID>" `
-    --role "User Access Administrator" `
-    --subscription $subscriptionId
-```
+**NOTE:** The service principal we created has the RBAC/IAM roles: `'Management Group Reader'` and `'User Access Administrator'`, because we want our actions workflow script to be able to look at management groups and be able to change context as well as be able to create or amend role definitions at the scope/Subscription we want to maintain. In my case I only want to maintain RBAC for a single subscription. You can change the `--scopes` parameter to change the permission scope of the service principal to a `management group` instead if you want to use the actions workflow to maintain RBAC over multiple subscriptions.
 
 ### Configure our Github repository
 
