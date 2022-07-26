@@ -23,7 +23,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **Coming soon** | N/A | Public Speaking | FunctionApps | Serverless, Tutorial |
+| **25/08/2021** | [Cloud with Chris - Automate Azure Role Based Access Control (RBAC) using Github](https://www.linkedin.com/video/event/urn:li:ugcPost:6957635112553324544/) | Public Speaking | GitHub, PowerShell | Security, DevSecOps, RBAC, Automation, Tutorial |
 
 ---
 
