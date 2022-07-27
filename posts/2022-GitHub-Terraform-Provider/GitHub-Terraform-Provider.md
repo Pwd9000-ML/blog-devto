@@ -3,7 +3,7 @@ title: Manage and maintain GitHub with Terraform
 published: false
 description: Manage and maintain GitHub with Terraform using the GitHub Provider
 tags: 'githubactions, github, terraform, devops'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Provider/assets/main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Provider/assets/main01.png'
 canonical_url: null
 id: 1152676
 ---
