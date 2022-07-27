@@ -3,7 +3,7 @@ title: Manage and maintain GitHub with Terraform
 published: false
 description: Manage and maintain GitHub with Terraform using the GitHub Provider
 tags: 'githubactions, github, terraform, devops'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Provider/assets/main01.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Provider/assets/main02.png'
 canonical_url: null
 id: 1152676
 ---
@@ -16,7 +16,7 @@ In todays tutorial we will take a look at one of the core building blocks of Ter
 
 Some [popular providers](https://registry.terraform.io/browse/providers) you may already know about or even already be using are cloud based terraform providers such as the [AzureRM Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs).
 
-However as mentioned, in this post we will be looking at a terraform provider you may have not known about, the [GitHub Provider](https://registry.terraform.io/providers/integrations/github/latest/docs). We will create a basic terraform configuration and use this provider to manage **GitHub resources**, by creating a GitHub repository set a default branch and configure a branch protection policy, all through IaC(Infrastructure as Code), pretty awesome!
+However as mentioned, in this post we will be looking at a terraform provider you may have not known about, the [GitHub Provider](https://registry.terraform.io/providers/integrations/github/latest/docs). We will create a basic terraform configuration and use this provider to manage **GitHub resources**, by creating a GitHub repository set a default branch and configure a branch protection policy, all through IaC (Infrastructure as Code), pretty awesome!
 
 ## Conclusion
 
