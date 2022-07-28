@@ -22,16 +22,16 @@ However, in this post we will be looking at a specific terraform provider you ma
 
 To get started you'll need:
 
-- A GitHub account / Organisation  
-- A Personal Access Token (PAT) - See [creating a personal access token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).  
-- A Code editor such as **[VSCode](https://code.visualstudio.com/download)**  
+- A GitHub account / Organisation
+- A Personal Access Token (PAT) - See [creating a personal access token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+- A Code editor such as **[VSCode](https://code.visualstudio.com/download)**
 - **[Terraform](https://www.terraform.io/downloads)**
 
 The minimum permission scopes required on the PAT token for this demo are: `"repo"`, `"read:repo_hook"`, `"read:org"`, `"read:discussion"` and `"delete_repo"`:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Provider/assets/PAT.png)
 
-**NOTE:** PAT tokens are only displayed once and are sensitive, so ensure they are kept safe.  
+**NOTE:** PAT tokens are only displayed once and are sensitive, so ensure they are kept safe.
 
 ## Terraform Configuration
 
@@ -104,28 +104,28 @@ resource "github_branch_protection" "default" {
 3. Log into azure using CLI "az login".
 4. **BUILD:**
 
-    ```HCL
-    terraform init
-    terraform plan -out deploy.tfplan
-    terraform apply deploy.tfplan
-    ```
+   ```HCL
+   terraform init
+   terraform plan -out deploy.tfplan
+   terraform apply deploy.tfplan
+   ```
 
 5. **DESTROY:**
 
-    ```HCL
-    terraform plan -destroy -out destroy.tfplan
-    terraform apply destroy.tfplan
-    ```
+   ```HCL
+   terraform plan -destroy -out destroy.tfplan
+   terraform apply destroy.tfplan
+   ```
 
 As you can see the terraform configuration we just ran using the [GitHub Provider](https://registry.terraform.io/providers/integrations/github/latest/docs) created a repository and also configured our **branch protection rule** on teh specified **default branch:**
 
 ### Repository
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Provider/assets/repo.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Provider/assets/repo.png)
 
 ### Branch protection rule
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Provider/assets/branch.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Provider/assets/branch.png)
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Provider/assets/rule.png)
 
