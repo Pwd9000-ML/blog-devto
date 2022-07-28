@@ -13,7 +13,7 @@ date: '2021-07-19T16:34:17Z'
 
 **Ping** is a computer network administration software utility used to test the reachability of a host on an Internet Protocol (IP) network using Internet Control Message Protocol (ICMP).
 
-There can be instances where a remote host, has blocked ICMP traffic, which in turn means we cannot test/check to connectivity to the remote host. In this kind of a situation, what you can do to check the host's presence is to telnet to a known port or to try making a TCP connection to the host.
+There can be instances where a remote host, has blocked ICMP traffic, which in turn means we cannot test/check the connectivity to the remote host. In this kind of a situation, what you can do to check the host's presence is to telnet to a known port or to try making a TCP connection to the host.
 
 This is where **tcpping** comes in and is a TCP oriented **ping** alternative. It is used to test the reachability of a service on a host using TCP/IP and measure the time it takes to connect to the specified port. It is a very useful tool to help with diagnosing network related issues on Azure App Service.
 
