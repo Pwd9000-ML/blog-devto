@@ -121,11 +121,11 @@ terraform apply destroy.tfplan
 
 As you can see the terraform configuration we just ran using the [GitHub Provider](https://registry.terraform.io/providers/integrations/github/latest/docs) created a repository and also configured our **branch protection rule** on the specified **default branch:**
 
-### Repository
+### Repository created with Terraform:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Provider/assets/repo.png)
 
-### Branch protection rule
+### Branch protection rule created with Terraform:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Provider/assets/branch.png)
 
