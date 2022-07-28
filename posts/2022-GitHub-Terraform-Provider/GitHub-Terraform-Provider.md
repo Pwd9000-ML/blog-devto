@@ -24,8 +24,8 @@ To get started you'll need:
 
 - A GitHub account / Organisation
 - A Personal Access Token (PAT) - See [creating a personal access token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
-- A Code editor such as **[VSCode](https://code.visualstudio.com/download)**
-- **[Terraform](https://www.terraform.io/downloads)**
+- A Code editor such as [VSCode](https://code.visualstudio.com/download)
+- [Terraform](https://www.terraform.io/downloads)
 
 The minimum permission scopes required on the PAT token for this demo are: `"repo"`, `"read:repo_hook"`, `"read:org"`, `"read:discussion"` and `"delete_repo"`:
 
@@ -35,7 +35,7 @@ The minimum permission scopes required on the PAT token for this demo are: `"rep
 
 ## Terraform Configuration
 
-The following terraform config files can also be found on the following [github repository](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Terraform-Provider/code).
+These terraform config files can also be found on the following [github repository](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Terraform-Provider/code).
 
 ### Variables
 
@@ -52,6 +52,8 @@ variable "token" {
 ### Main
 
 ```hcl
+### Main.tf ###
+
 terraform {
   required_version = "~> 1.2.0"
   required_providers {
@@ -101,21 +103,22 @@ resource "github_branch_protection" "default" {
 
 1. Clone or copy the files in [this path](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Terraform-Provider/code) to a local directory and open a command prompt.
 2. Amend the .tfvars file with desired variables or token (Keep your tokens safe).
-3. Log into azure using CLI "az login".
-4. **BUILD:**
+3. Log into azure using CLI "az login".  
 
-   ```HCL
-   terraform init
-   terraform plan -out deploy.tfplan
-   terraform apply deploy.tfplan
-   ```
+**BUILD:**
 
-5. **DESTROY:**
+```hcl
+terraform init
+terraform plan -out deploy.tfplan
+terraform apply deploy.tfplan
+```
 
-   ```HCL
-   terraform plan -destroy -out destroy.tfplan
-   terraform apply destroy.tfplan
-   ```
+**DESTROY:**
+
+```hcl
+terraform plan -destroy -out destroy.tfplan
+terraform apply destroy.tfplan
+```
 
 As you can see the terraform configuration we just ran using the [GitHub Provider](https://registry.terraform.io/providers/integrations/github/latest/docs) created a repository and also configured our **branch protection rule** on teh specified **default branch:**
 
