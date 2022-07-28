@@ -35,7 +35,7 @@ The minimum permission scopes required on the PAT token for this demo are: `"rep
 
 ## Terraform Configuration
 
-The following terraform config files can also be found on the following [github repository]().
+The following terraform config files can also be found on the following [github repository](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Terraform-Provider/code).
 
 ### Variables
 
@@ -99,7 +99,7 @@ resource "github_branch_protection" "default" {
 
 ## Usage
 
-1. Clone or copy the files in [this path]() to a local directory and open a command prompt.
+1. Clone or copy the files in [this path](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Terraform-Provider/code) to a local directory and open a command prompt.
 2. Amend the .tfvars file with desired variables or token (Keep your tokens safe).
 3. Log into azure using CLI "az login".
 4. **BUILD:**
