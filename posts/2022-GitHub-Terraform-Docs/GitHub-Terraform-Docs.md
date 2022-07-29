@@ -73,7 +73,7 @@ Read all about [configuration](https://terraform-docs.io/user-guide/configuratio
 
 ## Automated Usage using GitHub Actions
 
-The examples this next section can also be found on my GitHub project [Azure-Terraform-Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).  
+The examples this section can also be found on my GitHub project [Azure-Terraform-Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).  
 
 So far we have only looked at how to use the tool locally. In this next section we will look at how the tool can be completely automated with CI/CD using a **GitHub Action**.  
 
