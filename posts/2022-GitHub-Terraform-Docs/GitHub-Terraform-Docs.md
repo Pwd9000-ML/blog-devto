@@ -31,7 +31,7 @@ Open an **Administrative shell** and run:
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
-**NOTE:** After chocolatey is installed you'll need to restart your shell session.  
+**NOTE:** After chocolatey is installed you'll need to restart your shell session.
 
 - Next install **'terraform-docs'**:
 
