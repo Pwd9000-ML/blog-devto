@@ -71,7 +71,7 @@ Once you've set up a **configuration** file, every time you or your teammates wa
 
 ## Automated Usage using GitHub Actions
 
-The examples this section can also be found on my GitHub repository: [Azure-Terraform-Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).
+The examples in this section can also be found on my GitHub repository: [Azure-Terraform-Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).
 
 So far we have looked at how to use the tool locally. In this section we will look at how our documentation can be automated through CI/CD using the tool as a **GitHub Action** inside of a workflow.
 
