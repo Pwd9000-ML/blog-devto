@@ -73,7 +73,7 @@ Once you've set up a **configuration** file, every time you or your teammates wa
 
 The examples this section can also be found on my GitHub repository: [Azure-Terraform-Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).
 
-So far we have only looked at how to use the tool locally. In this next section we will look at how the tool can be completely automated with CI/CD using a **GitHub Action**.
+So far we have looked at how to use the tool locally. In this section we will look at how our documentation can be automated through CI/CD using the tool as a **GitHub Action** inside of a workflow.
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Terraform-Docs/code) page. :heart:
 
