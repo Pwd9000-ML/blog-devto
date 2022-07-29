@@ -25,7 +25,7 @@ If you want to use this tool locally there are a few ways that you can install i
 
 In my case I am using a **Windows** machine and will use **Chocolatey** to install the tool:
 
-### Install Chocolatey [Online instructions](https://chocolatey.org/install)
+- Install 'Chocolatey' [Online instructions](https://chocolatey.org/install)
 
 Open an **Administrative shell** and run:
 
@@ -33,15 +33,15 @@ Open an **Administrative shell** and run:
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
-### Install 'terraform-docs'
+- Install 'terraform-docs'
 
-After chocolatey is installed you may need to restart your shell session. Open an **Administrative shell** again and run:
+After chocolatey is installed you'll need to restart your shell session. Open a new **Administrative shell** and run:
 
 ```powershell
 choco install terraform-docs
 ```
 
-### Usage
+### Example
 
 Now with the tool installed I can simply run the following command to generate a [markdown document](https://terraform-docs.io/reference/markdown-document/):
 
@@ -49,9 +49,7 @@ Now with the tool installed I can simply run the following command to generate a
 terraform-docs markdown document [/path/to/module] [flags]
 ```
 
-You can also add additional [flags](https://terraform-docs.io/reference/markdown-document/) to the command if needed.
-
-### Example
+You can also add additional [flags](https://terraform-docs.io/reference/markdown-document/) to the command if needed.  
 
 There's a terraform module I have written on my local development machine under the folder path `C:\temp\sonarcube-aci`:
 
