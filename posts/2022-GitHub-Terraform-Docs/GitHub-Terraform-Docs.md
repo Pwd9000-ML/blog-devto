@@ -39,7 +39,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 choco install terraform-docs
 ```
 
-### Example Usage
+### Example
 
 Now with the tool installed locally I can simply run the following command to generate a [markdown table](https://terraform-docs.io/reference/markdown-table/):
 
