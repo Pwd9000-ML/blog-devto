@@ -11,6 +11,66 @@ series: Using Terraform on GitHub
 
 ## Overview
 
+As we all know, the importance of documentation in software development becomes visibly apparent when knowledge or information needs to be shared about the project or code.  
+
+Even if you write IaC (Infrastructure as Code) using terraform, working in a team or sharing your terraform modules with others, you're most likely going to want to create some sort of documentation about your terraform code/modules so that others may understand the code better, or to give more information on how to use your modules.  
+
+Today we are going to look at a cool tool that can be used to automatically generate your Terraform module documentation called [terraform-docs](https://terraform-docs.io/).  
+
+If you want a quick autonomous way to document your terraform module you're going to love this tool. We will look at how the tool can be used manually first and then also how ot can be automated in CI/CD using GitHub Actions.  
+
+## Manual Usage
+
+If you want to use this tool locally there are a few ways that you can install it on your development machine which is documented here: [terraform-docs Installation](https://terraform-docs.io/user-guide/installation/).  
+
+In my case I am using **Windows** and will use **Chocolatey** to install the tool:  
+
+### Install Chocolatey [Online instructions](https://chocolatey.org/install)
+
+Open an **Administrative shell** and run:
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+
+### Install 'terraform-docs'
+
+After chocolatey is installed you may need to restart your shell session. Open an **Administrative shell** again and run:
+
+```powershell
+choco install terraform-docs
+```
+
+### Usage
+
+Now with the tool installed I can simply run the following command to generate a [markdown document](https://terraform-docs.io/reference/markdown-document/):  
+
+```powershell
+terraform-docs markdown document [/path/to/module] [flags]
+```
+
+You can also add additional [flags](https://terraform-docs.io/reference/markdown-document/) to the command if needed.  
+
+### Example
+
+There's a terraform module I have written on my local development machine under the folder path `C:\temp\sonarcube-aci`:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Docs/assets/local.png)
+
+After running the following command:  
+
+```powershell
+terraform-docs markdown document "C:\temp\sonarcube-aci" --output-file "README.md"
+```
+
+We can now see a **README.md** file has been created:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Docs/assets/local02.png)
+
+## Automated Usage using GitHub Actions
+
+
+
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Terraform-Docs/code) page. :heart:
 
 ### _Author_
