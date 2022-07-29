@@ -49,7 +49,7 @@ Now with the tool installed I can simply run the following command to generate a
 terraform-docs markdown document [/path/to/module] [flags]
 ```
 
-You can also add additional [flags](https://terraform-docs.io/reference/markdown-document/) to the command if needed.  
+You can also add additional [flags](https://terraform-docs.io/reference/markdown-document/) to the command if needed.
 
 There's a terraform module I have written on my local development machine under the folder path `C:\temp\sonarcube-aci`:
 
