@@ -25,7 +25,7 @@ If you want to use this tool locally there are a few ways that you can install i
 
 In my case I am using a **Windows** machine and will use **Chocolatey** to install the tool:
 
-- First install **'Chocolatey'** [(Online instructions)](https://chocolatey.org/install):  
+- First install **'Chocolatey'** [(Online instructions)](https://chocolatey.org/install):
 
 Open an **Administrative shell** and run:
 
