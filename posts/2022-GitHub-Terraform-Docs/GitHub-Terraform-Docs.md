@@ -65,6 +65,12 @@ We can now see a **README.md** file has been created:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Docs/assets/local02.png)
 
+You can even have consistent execution through a `.terraform-docs.yml` file.  
+
+Once you set it up and configured it, every time you or your teammates want to regenerate documentation (manually, through a pre-commit hook, or as part of a CI pipeline) all you need to do is run `terraform-docs /module/path`.  
+
+Read all about [configuration](https://terraform-docs.io/user-guide/configuration/).
+
 ## Automated Usage using GitHub Actions
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Terraform-Docs/code) page. :heart:
