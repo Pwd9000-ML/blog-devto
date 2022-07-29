@@ -25,7 +25,7 @@ If you want to use this tool locally there are a few ways that you can install i
 
 In my case I am using a **Windows** machine and will use **Chocolatey** to install the tool:
 
-- Install 'Chocolatey' [Online instructions](https://chocolatey.org/install)
+- First install **'Chocolatey'** [(Online instructions)](https://chocolatey.org/install):  
 
 Open an **Administrative shell** and run:
 
@@ -33,7 +33,7 @@ Open an **Administrative shell** and run:
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
-- Install 'terraform-docs'
+- Next install **'terraform-docs'**:
 
 After chocolatey is installed you'll need to restart your shell session. Open a new **Administrative shell** and run:
 
