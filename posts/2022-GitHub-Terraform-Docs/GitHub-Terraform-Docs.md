@@ -31,15 +31,15 @@ Open an **Administrative shell** and run:
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
-- Next install **'terraform-docs'**:
+**NOTE:** After chocolatey is installed you'll need to restart your shell session.  
 
-After chocolatey is installed you'll need to restart your shell session. Open a new **Administrative shell** and run:
+- Next install **'terraform-docs'**:
 
 ```powershell
 choco install terraform-docs
 ```
 
-### Example
+### Example Usage
 
 Now with the tool installed I can simply run the following command to generate a [markdown document](https://terraform-docs.io/reference/markdown-document/):
 
