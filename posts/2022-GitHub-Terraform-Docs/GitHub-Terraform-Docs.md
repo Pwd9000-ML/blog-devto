@@ -41,27 +41,29 @@ choco install terraform-docs
 
 ### Example Usage
 
-Now with the tool installed I can simply run the following command to generate a [markdown document](https://terraform-docs.io/reference/markdown-document/):
+Now with the tool installed locally I can simply run the following command to generate a [markdown table](https://terraform-docs.io/reference/markdown-table/):
 
 ```powershell
-terraform-docs markdown document [/path/to/module] [flags]
+terraform-docs markdown table [/path/to/module] [flags]
 ```
 
-You can also add additional [flags](https://terraform-docs.io/reference/markdown-document/) to the command if needed.
+You can also add additional [flags](https://terraform-docs.io/reference/markdown-table/) to the command if needed.
 
-There's a terraform module I have written on my local development machine under the folder path `C:\temp\sonarcube-aci`:
+Here I have a terraform module I have written on my local development machine under the folder path `C:\temp\sonarcube-aci`:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Docs/assets/local.png)
 
 After running the following command:
 
 ```powershell
-terraform-docs markdown document "C:\temp\sonarcube-aci" --output-file "README.md"
+terraform-docs markdown table "C:\temp\sonarcube-aci" --output-file "README.md"
 ```
 
 We can now see a **README.md** file has been created:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Docs/assets/local02.png)
+
+Take a look here to see what the **README.md** document looks like: [example README.md]()
 
 You can even have consistent execution through a `.terraform-docs.yml` file.
 
