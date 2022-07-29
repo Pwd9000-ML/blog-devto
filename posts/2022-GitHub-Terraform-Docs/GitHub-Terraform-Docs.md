@@ -65,9 +65,9 @@ We can now see a **README.md** file has been created:
 
 Take a look here to see what the **README.md** document looks like: [example_README.md](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2022-GitHub-Terraform-Docs/code/example_README.md)
 
-You can also create a **[configuration yaml](https://terraform-docs.io/user-guide/configuration/)** file with additional options and have consistent execution through the `.terraform-docs.yml` file.  
+You can also create a **[configuration yaml](https://terraform-docs.io/user-guide/configuration/)** file with additional options and have consistent execution through the `.terraform-docs.yml` file.
 
-Once you've set up a **configuration** file, every time you or your teammates want to regenerate documentation (manually, through a pre-commit hook, or as part of a CI pipeline) all you need to do is run `terraform-docs /module/path`.  
+Once you've set up a **configuration** file, every time you or your teammates want to regenerate documentation (manually, through a pre-commit hook, or as part of a CI pipeline) all you need to do is run `terraform-docs /module/path`.
 
 ## Automated Usage using GitHub Actions
 
