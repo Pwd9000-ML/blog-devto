@@ -48,7 +48,7 @@ Now with the tool installed locally I can simply run the following command to ge
 terraform-docs markdown table [/path/to/module] [flags]
 ```
 
-You can also add additional [flags](https://terraform-docs.io/reference/markdown-table/) to the command if needed.
+You can also add additional [flags](https://terraform-docs.io/reference/markdown-table/) to the command if needed. There are also other [output formats](https://terraform-docs.io/reference/terraform-docs/) available other than **markdown**, such as **JSON**, **XML** etc.
 
 Here I have a terraform module I have written on my local development machine under the folder path `'C:\temp\sonarcube-aci'`:
 
