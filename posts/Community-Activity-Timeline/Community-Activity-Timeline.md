@@ -31,6 +31,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **01/08/2022** | [Auto generate documentation from Terraform modules](https://dev.to/pwd9000/auto-generate-documentation-from-terraform-modules-42bl) | Blog/Website Post | GitHub, Terraform | DevOps, Automation, IaC, Tutorial |
 | **28/07/2022** | [Manage and maintain GitHub with Terraform](https://dev.to/pwd9000/manage-and-maintain-github-with-terraform-2k86) | Blog/Website Post | GitHub, Terraform | DevOps, Automation, IaC, Tutorial |
 | **14/07/2022** | [OSS maintainer - Terraform Module: sonarqube-aci (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/sonarqube-aci/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
 | **26/06/2022** | [Run Docker based GitHub runner containers on Azure Container Apps (ACA)](https://dev.to/pwd9000/run-docker-based-github-runner-containers-on-azure-container-apps-aca-1n13) | Blog/Website Post | Azure, GitHub | Containers, CICD , DevOps, Tutorial |
