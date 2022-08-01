@@ -1,6 +1,6 @@
 ---
 title: Auto generate documentation from Terraform modules
-published: false
+published: true
 description: Automatically generate documentation from Terraform modules - GitHub Action
 tags: 'githubactions, github, terraform, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Docs/assets/main05.png'
