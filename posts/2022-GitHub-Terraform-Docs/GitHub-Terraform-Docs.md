@@ -73,19 +73,19 @@ Once you've set up a **configuration** file, every time you or your teammates wa
 
 The examples in this section can also be found on my GitHub repository: [Azure-Terraform-Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).
 
-So far we have looked at how to use the tool locally. In this section we will look at how our documentation can be automated through CI/CD using the tool as a **GitHub Action** inside of a workflow.  
+So far we have looked at how to use the tool locally. In this section we will look at how our documentation can be automated through CI/CD using the tool as a **GitHub Action** inside of a workflow.
 
-In my GitHub repository called: [Azure-Terraform-Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments), notice that I have structured my terraform module code with folders using a numbering system e.g: `'01_Foundation'`, `'02_Storage'`, etc.  
+In my GitHub repository called: [Azure-Terraform-Deployments](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments), notice that I have structured my terraform module code with folders using a numbering system e.g: `'01_Foundation'`, `'02_Storage'`, etc.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Docs/assets/repo01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Docs/assets/repo01.png)
 
-In each terraform module folder there is no documentation or 'README.md' file:  
+In each terraform module folder there is no documentation or 'README.md' file:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Docs/assets/repo02.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Docs/assets/repo02.png)
 
 ### Create GitHub Actions workflow
 
-Under the `'.github/workflows'` folder I created the following GitHub workflow: [Auto_Generate_Module_Documentation.yml](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/blob/master/.github/workflows/Auto_Generate_Module_Documentation.yml):  
+Under the `'.github/workflows'` folder I created the following GitHub workflow: [Auto_Generate_Module_Documentation.yml](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/blob/master/.github/workflows/Auto_Generate_Module_Documentation.yml):
 
 ```yaml
 name: Generate terraform docs
@@ -99,20 +99,20 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
-    - name: Render terraform docs inside the README.md and push changes back to PR branch
-      uses: terraform-docs/gh-actions@v1.0.0
-      with:
-        find-dir: .
-        output-file: README.md
-        output-method: inject
-        git-push: "true"
+      - name: Render terraform docs inside the README.md and push changes back to PR branch
+        uses: terraform-docs/gh-actions@v1.0.0
+        with:
+          find-dir: .
+          output-file: README.md
+          output-method: inject
+          git-push: 'true'
 ```
 
-Notice in the above workflow the GitHub Action under `'steps:'` for terraform-docs:  
+Notice in the above workflow the GitHub Action under `'steps:'` for terraform-docs:
 
 ```yml
 - name: Render terraform docs inside the README.md and push changes back to PR branch
@@ -124,17 +124,17 @@ Notice in the above workflow the GitHub Action under `'steps:'` for terraform-do
         git-push: "true"
 ```
 
-The parameters passed into the **GitHub Action** is done using `'with:'`. You can look at all the available **input parameters** on the official [terraform-docs GitHub Actions page](https://github.com/terraform-docs/gh-actions#configuration).  
+The parameters passed into the **GitHub Action** is done using `'with:'`. You can look at all the available **input parameters** on the official [terraform-docs GitHub Actions page](https://github.com/terraform-docs/gh-actions#configuration).
 
-I am using a parameter called `'find-dir'` and pointing it to the root of my repository using dot: `'.'`. The `'find-dir'` parameter is a setting that will extract a list of directories by running `'find ./find\_dir -name \*.tf'` to automatically find the directories containing my module `'.tf'` files, so I do not have to specify each directory.  
+I am using a parameter called `'find-dir'` and pointing it to the root of my repository using dot: `'.'`. The `'find-dir'` parameter is a setting that will extract a list of directories by running `'find ./find\_dir -name \*.tf'` to automatically find the directories containing my module `'.tf'` files, so I do not have to specify each directory.
 
-You can also specify a comma separated list of directories to generate docs for each directory manually by using the `'working-dir'` parameter instead.  
+You can also specify a comma separated list of directories to generate docs for each directory manually by using the `'working-dir'` parameter instead.
 
-You should now see the **GitHub Action** under the repository **Actions pane** and be able to run the workflow manually as we specified the `'workflow_dispatch:'` trigger:  
+You should now see the **GitHub Action** under the repository **Actions pane** and be able to run the workflow manually as we specified the `'workflow_dispatch:'` trigger:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Docs/assets/run.png)
 
-After running the **workflow** you will now notice that each of my module folders have a `'README.md'` file:  
+After running the **workflow** you will now notice that each of my module folders have a `'README.md'` file:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Terraform-Docs/assets/workflow01.png)
 
@@ -144,7 +144,7 @@ You can take a look at the **README.md** file that was created here: [README.md]
 
 ## Conclusion
 
-As you can see, this tool can be a valuable asset to easily maintain and have terraform documentation for your modules without much effort.  
+As you can see, this tool can be a valuable asset to easily maintain and have terraform documentation for your modules without much effort.
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Terraform-Docs/code) page. :heart:
 
