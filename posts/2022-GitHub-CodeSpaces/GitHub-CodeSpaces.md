@@ -13,7 +13,7 @@ series: GitHub CodeSpaces Pro Tips
 
 Have you ever had to build and look after 100s of development virtual machines and environments for your organisations developers to work in? Or maybe you are a developer or IT specialist working with code and starting in a new project and you have to configure your own development environment before you can start working on your code.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/pain.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/pain02.png)
 
 If you are, you are probably well aware of the PAIN points when it comes to maintaining **developer workstations** such as:
 
