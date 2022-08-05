@@ -55,11 +55,11 @@ At the time of this writing the VM size options for **codespaces** are as follow
 
 ## Creating your first CodeSpace
 
+All the examples are available on my [GitHub CodeSpaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab).  
+
 In this tutorial we will look at how easy it is to create a basic **CodeSpace** to get started.
 
 Afterwards, we will take a deeper look into how to **customise** the **codespace** image **dockerfile**, and lastly how to use a **custom docker image** hosted on a remote registry such as an **Azure Container Registry (ACR)**. Let's get started.
-
-All the examples are available on my [GitHub CodeSpaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab).
 
 On your GitHub Account navigate to `'Your codespaces'`:
 
