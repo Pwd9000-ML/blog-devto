@@ -21,9 +21,9 @@ If you are, you are probably well aware of the PAIN points when it comes to main
 - Setup and maintenance of a dev workstation or set of workstations for a project.
 - The time that is wasted before a 'first commit' can take place.
 - Inconsistency between dev workstations for configurations/tooling/settings.
-- Maintaining Tools/Extensions, Debuggers, Dependencies and versioning.
+- Versioning Tools/Extensions, Debuggers and Dependencies.
 - Personal or Team based settings and customisations.
-- Dev workstation security and vulnerabilities.
+- Security and vulnerabilities.
 - Hardware spec requirements.
 
 The list goes on, and these are all factors that can cause a lot of pain, frustration and time wasting before actual development can start.
