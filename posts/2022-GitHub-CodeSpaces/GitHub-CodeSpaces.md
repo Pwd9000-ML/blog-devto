@@ -55,7 +55,7 @@ At the time of this writing the VM size options for **codespaces** are as follow
 
 ## Creating your first CodeSpace
 
-All the examples are available on my [GitHub CodeSpaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab).  
+All the examples are available on my [GitHub CodeSpaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab).
 
 In this tutorial we will look at how easy it is to create a basic **CodeSpace** to get started.
 
