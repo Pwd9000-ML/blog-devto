@@ -51,7 +51,7 @@ At the time of this writing the VM size options for **codespaces** are as follow
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/faq01.png)
 
-**Tip:** Press `'.'` on any repo to make quick edits powered by Visual Studio Code from a **web browser**.
+**Tip:** Press (dot) `'.'` on any repo to make quick edits powered by Visual Studio Code from a **web browser**.
 
 ## Creating your first CodeSpace
 
