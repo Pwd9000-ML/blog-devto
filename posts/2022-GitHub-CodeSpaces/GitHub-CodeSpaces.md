@@ -55,23 +55,21 @@ At the time of this writing the VM size options for **codespaces** are as follow
 
 ## Creating your first CodeSpace
 
-In this tutorial we will look at how easy it is to create a basic **CodeSpace** to get started.  
+In this tutorial we will look at how easy it is to create a basic **CodeSpace** to get started.
 
-Afterwards, we will take a deeper look into how to **customise** the **codespace** image **dockerfile**, and lastly how to use a **custom docker image** hosted on a remote registry such as an **Azure Container Registry (ACR)**. Let's get started.  
+Afterwards, we will take a deeper look into how to **customise** the **codespace** image **dockerfile**, and lastly how to use a **custom docker image** hosted on a remote registry such as an **Azure Container Registry (ACR)**. Let's get started.
 
-All the examples are available on my [GitHub CodeSpaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab).  
+All the examples are available on my [GitHub CodeSpaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab).
 
-On your GitHub Account navigate to `'Your codespaces'`:  
+On your GitHub Account navigate to `'Your codespaces'`:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start01.png)
 
 Select `'New Codespace'`:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start02.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start02.png)
 
 Select the **repository** and **branch** that you want to have cloned onto your **codespace**, as well as the **region** and **machine type** to run your **codespace** and then select `'Create codespace'`.
-
-
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-CodeSpaces/code) page. :heart:
 
