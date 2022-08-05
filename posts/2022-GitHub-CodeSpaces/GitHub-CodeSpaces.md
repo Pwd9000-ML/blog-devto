@@ -31,11 +31,11 @@ So today we are going to take a look at a great service available in **GitHub** 
 
 {% youtube _W9B7qc9lVc %}
 
-In a nutshell a **GitHub codespace** is a development environment running inside of a **container** that's remotely hosted on a cloud based **Virtual Machine**.  
+In a nutshell a **GitHub codespace** is a development environment running inside of a **container** that's remotely hosted on a cloud based **Virtual Machine**.
 
-You can almost classify a **CodeSpace** as a **development environment as a service.**  
+You can almost classify a **CodeSpace** as a **development environment as a service.**
 
-You can customise or even have a bespoke **docker** image as a **GitHub codespace**, by using configuration files along with your projects **source code**, which creates a **repeatable** and **versioned** codespace configuration for all users of the project/repository.  
+You can customise or even have a bespoke **docker** image as a **GitHub codespace**, by using configuration files along with your projects **source code**, which creates a **repeatable** and **versioned** codespace configuration for all users of the project/repository.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/diag.png)
 
