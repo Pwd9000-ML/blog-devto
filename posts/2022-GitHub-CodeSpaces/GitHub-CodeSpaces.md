@@ -71,17 +71,17 @@ Select `'New Codespace'`:
 
 Select the **repository** and **branch** that you want to have cloned onto your **codespace**, as well as the **region** and **machine type** to run your **codespace** and then select `'Create codespace'`.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start03.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start03.png)
 
-Shortly after the **codespace** container is provisioned, **VS Code** will open inside of your **web browser**, already linked up with your code and a terminal to the remote **codespace**. If you have **VS Code** locally installed, it will even detect what extensions you have locally and provision them on the remote **dev container codespace** for you. (We will look how we can modify this behavior and set specific extensions later on):  
+Shortly after the **codespace** container is provisioned, **VS Code** will open inside of your **web browser**, already linked up with your code and a terminal to the remote **codespace**. If you have **VS Code** locally installed, it will even detect what extensions you have locally and provision them on the remote **dev container codespace** for you. (We will look how we can modify this behavior and set specific extensions later on):
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start04.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start04.png)
 
-On the bottom left side you will see a green square that says **Codespaces**, you can click on this for additional options. We will take a closer look at some of these options later:  
+On the bottom left side you will see a green square that says **Codespaces**, you can click on this for additional options. We will take a closer look at some of these options later:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start05.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start05.png)
 
-With the **codespace** now up and running, you can simply start to work on your code. But what if you want to make some customisations?  
+With the **codespace** now up and running, you can simply start to work on your code. But what if you want to make some customisations?
 
 ## Customising your CodeSpace
 
