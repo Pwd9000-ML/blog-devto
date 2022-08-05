@@ -25,17 +25,21 @@ If you are, you are probably well aware of the PAIN points when it comes to main
 - Security and vulnerabilities.
 - Hardware spec requirements.
 
-The list goes on, and these are all factors that can cause a lot of pain, frustration and time wasting before actual development can start.
+The list goes on, and these are all factors that can cause a lot of pain, frustration and time wasted before actual development can start.
 
 So today we are going to take a look at a great service available in **GitHub** called **[CodeSpaces](https://docs.github.com/en/codespaces)**.
 
 {% youtube _W9B7qc9lVc %}
 
-In a nutshell a **GitHub codespace** is a development environment running inside of a **container** that's remotely hosted on a cloud based **Virtual Machine**. You can also customise or even have a bespoke **docker** image as a **GitHub codespace**, by using configuration files in the **source code** of your repository, which creates a **repeatable** and **versioned** codespace configuration for all users of the project.
+In a nutshell a **GitHub codespace** is a development environment running inside of a **container** that's remotely hosted on a cloud based **Virtual Machine**.  
+
+You can almost classify a **CodeSpace** as a **development environment as a service.**  
+
+You can customise or even have a bespoke **docker** image as a **GitHub codespace**, by using configuration files along with your projects **source code**, which creates a **repeatable** and **versioned** codespace configuration for all users of the project/repository.  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/diag.png)
 
-**GitHub codespaces** run on a variety of VM-based compute options hosted by GitHub.com, which you can configure from 2 core machines up to 32 core machines. You can connect to your codespaces from a **web browser** or locally using **Visual Studio Code**.
+**Codespaces** run on a variety of VM-based compute options hosted by GitHub, which you can configure from 2 core machines up to 32 core machines. You can connect to your codespaces from a **web browser** or locally using **Visual Studio Code**.
 
 At the time of this writing the VM size options for **codespaces** are as follow:
 
