@@ -37,7 +37,7 @@ In a nutshell a **GitHub codespace** is a development environment running inside
 
 At the time of this writing the VM size options for **codespaces** are as follow:  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/pricing.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/pricing01.png)  
 
 ## Who can use CodeSpaces?
 
