@@ -27,8 +27,6 @@ The list goes on, and these are all factors that can cause a lot of pain, frustr
 
 So today we are going to take a look at a great service available in **GitHub** called **[CodeSpaces](https://docs.github.com/en/codespaces)**.  
 
-{% youtube _W9B7qc9lVc}  
-
 In a nutshell a **GitHub codespace** is a development environment running inside of a **container** that's remotely hosted on a cloud based **Virtual Machine**. You can also customise or even have a bespoke **docker** image as a **GitHub codespace**, by using configuration files in the **source code** of your repository, which creates a **repeatable** and **versioned** codespace configuration for all users of the project.  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/diag.png)  
