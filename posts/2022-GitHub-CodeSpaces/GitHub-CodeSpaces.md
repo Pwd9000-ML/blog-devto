@@ -55,7 +55,7 @@ At the time of this writing the VM size options for **codespaces** are as follow
 
 ## Creating your first CodeSpace
 
-In today's tutorial we will look at how easy it is to create a basic **CodeSpace** to get started. Afterwards, we will take a deeper look into how to create a **custom image** that can be maintained using a **dockerfile**, and lastly how to use an image hosted on a remote registry such as an **Azure Container Registry (ACR)**. Let's get started.
+In this tutorial we will look at how easy it is to create a basic **CodeSpace** to get started. Afterwards, we will take a deeper look into how to create a **custom image** that can be maintained using a **dockerfile**, and lastly how to use an image hosted on a remote registry such as an **Azure Container Registry (ACR)**. Let's get started.
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-CodeSpaces/code) page. :heart:
 
