@@ -11,7 +11,21 @@ series: GitHub CodeSpaces Pro Tips
 
 ## Overview
 
-Today we are going to take a look at a great service in **GitHub** called **[CodeSpaces](https://docs.github.com/en/codespaces)**.  
+Have you ever had to build and look after 100s of development virtual machines and environments for your organisations developers to work in?  
+Or maybe you are a developer or IT specialist working with code and starting in a new project and you have to configure your own development environment before you can start working.  
+
+If you are, you are probably aware of the PAIN-ful problems when it comes to maintaining **developer workstations** such as:  
+
+- Setting up and maintaining a developer workstation or set of workstations for a project.
+- Setup time which is wasted before 'first commit'.
+- Inconsistency between developer workstations and inconsistent configuration/tooling/settings.
+- Maintaining developer Tools/Extensions, Debuggers, Dependencies and versioning.
+- Personal or Team based settings and customisations.
+- Hardware spec requirements.
+
+The list goes on, and these are all factors that can cause a lot of pain, frustration and time wasting before actual development can start.  
+
+So today we are going to take a look at a great service available in **GitHub** called **[CodeSpaces](https://docs.github.com/en/codespaces)**.  
 
 {% youtube _W9B7qc9lVc}  
 
@@ -35,7 +49,7 @@ At the time of this writing the VM size options for **codespaces** are as follow
 
 ## Creating your first CodeSpace
 
-In today's tutorial we will look at how easy it is to create a **CodeSpace** and get started. We will also take a deeper look into how to create a custom image that you can be maintained using a **dockerfile**. Let's get started.  
+In today's tutorial we will look at how easy it is to create a basic **CodeSpace** to get started. Afterwards, we will take a deeper look into how to create a **custom image** that can be maintained using a **dockerfile**, and lastly how to use an image hosted on a remote registry such as an **Azure Container Registry (ACR)**. Let's get started.  
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-CodeSpaces/code) page. :heart:
 
