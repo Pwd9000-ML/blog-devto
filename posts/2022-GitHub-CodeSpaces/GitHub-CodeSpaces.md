@@ -31,7 +31,7 @@ So today we are going to take a look at a great service available in **GitHub** 
 
 In a nutshell a **GitHub codespace** is a development environment running inside of a **container** that's remotely hosted on a cloud based **Virtual Machine**. You can also customise or even have a bespoke **docker** image as a **GitHub codespace**, by using configuration files in the **source code** of your repository, which creates a **repeatable** and **versioned** codespace configuration for all users of the project.  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/csdiagram.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/csdiagram01.png)  
 
 **GitHub codespaces** run on a variety of VM-based compute options hosted by GitHub.com, which you can configure from 2 core machines up to 32 core machines. You can connect to your codespaces from a **web browser** or locally using **Visual Studio Code**.  
 
