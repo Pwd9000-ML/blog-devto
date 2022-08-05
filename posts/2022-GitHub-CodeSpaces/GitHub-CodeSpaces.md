@@ -11,21 +11,26 @@ series: GitHub CodeSpaces Pro Tips
 
 ## Overview
 
-Have you ever had to build and look after 100s of development virtual machines and environments for your organisations developers to work in?  
-Or maybe you are a developer or IT specialist working with code and starting in a new project and you have to configure your own development environment before you can start working.  
+Have you ever had to build and look after 100s of development virtual machines and environments for your organisations developers to work in?
+Or maybe you are a developer or IT specialist working with code and starting in a new project and you have to configure your own development environment before you can start working on your code.  
 
-If you are, you are probably aware of the PAIN-ful problems when it comes to maintaining **developer workstations** such as:  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/pain.png)
 
-- Setting up and maintaining a developer workstation or set of workstations for a project.
-- Setup time which is wasted before 'first commit'.
-- Inconsistency between developer workstations and inconsistent configuration/tooling/settings.
-- Maintaining developer Tools/Extensions, Debuggers, Dependencies and versioning.
+If you are, you are probably well aware of the PAIN points when it comes to maintaining **developer workstations** such as:  
+
+- Setup and maintenance of a dev workstation or set of workstations for a project.
+- The time that is wasted before a 'first commit' can take place.
+- Inconsistency between dev workstations for configurations/tooling/settings.
+- Maintaining Tools/Extensions, Debuggers, Dependencies and versioning.
 - Personal or Team based settings and customisations.
+- Dev workstation security and vulnerabilities.
 - Hardware spec requirements.
 
 The list goes on, and these are all factors that can cause a lot of pain, frustration and time wasting before actual development can start.  
 
 So today we are going to take a look at a great service available in **GitHub** called **[CodeSpaces](https://docs.github.com/en/codespaces)**.  
+
+{% youtube _W9B7qc9lVc %}  
 
 In a nutshell a **GitHub codespace** is a development environment running inside of a **container** that's remotely hosted on a cloud based **Virtual Machine**. You can also customise or even have a bespoke **docker** image as a **GitHub codespace**, by using configuration files in the **source code** of your repository, which creates a **repeatable** and **versioned** codespace configuration for all users of the project.  
 
