@@ -97,7 +97,7 @@ Let's take a closer look at these files.
 
 This **dockerfile** contains the base image and (optionally added) OS packages that will be used as the **dev container/codespace**. You can amend this file as needed to suit your requirements.
 
-You can even use images you maintain yourself hosted on your own remote registry such as an **Azure Container Regsitry (ACR)**.
+You can even use images you maintain yourself hosted on your own remote registry such as an **Azure Container Regsitry (ACR)**. Have a look at [codespace access to private registry](https://docs.github.com/en/codespaces/codespaces-reference/allowing-your-codespace-to-access-a-private-image-registry).
 
 ```dockerfile
 # See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.238.1/containers/ubuntu/.devcontainer/base.Dockerfile
