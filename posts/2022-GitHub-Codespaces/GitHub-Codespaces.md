@@ -1,6 +1,6 @@
 ---
 title: Introduction to GitHub Codespaces - Building your first Dev Container
-published: false
+published: true
 description: A beginners guide to building GitHub Codespaces and getting started
 tags: 'github, codespaces, devops, development'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/main01.png'
@@ -66,7 +66,7 @@ In this tutorial we will look at how easy it is to create a basic **CodeSpace** 
 
 On the bottom left side you will see a green square that says **Codespaces**, you can click on this for additional options. If you prefer working on a locally installed copy of **VS Code** you can select the option `'Open in VS Code'`.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/start05.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/start005.png)
 
 **Note:** When using a locally installed copy of VS Code instead of the web browser, you will still be working on the remote **codespace** instance, thus utilising the remote instance compute power which may be a much higher spec than your local machine and fitting your applications requirements. Pretty neat!!!
 
@@ -80,7 +80,7 @@ Let's take a look at how you can customise your **codepsace** next.
 
 As mentioned, the **codespace** we created is using GitHubs **default docker image**. So what we will do next is create a few configuration files so that we can customise the **default image**.
 
-1. Remember that green square at the bottom left corner I talked about earlier that says **Codespaces**, click on this for additional options and select the option `'Add Development Container Configuration Files'`: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/config01.png)
+1. Remember that green square at the bottom left corner I talked about earlier that says **Codespaces**, click on this for additional options and select the option `'Add Development Container Configuration Files'`: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/config001.png)
 2. Select a predefined container definition. In my case I will select `'Ubuntu'`. **NOTE:** There is a growing variety of predefined images that can be selected from, maintained on GitHubs [vscode-dev-containers repository](https://github.com/microsoft/vscode-dev-containers/tree/main/containers): ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/config02.png)
 3. Select the Ubuntu version to use: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/config03.png)
 4. Select the additional features to install inside of the **dev container**: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/config04.png)
@@ -224,7 +224,7 @@ The configuration file should now contain our VS Code extensions as well:
 
 **NOTE:** To get the ID of a VS Code extension you can search the following [VS Code extensions page](https://marketplace.visualstudio.com/vscode) or you can right click on existing extensions inside of **VS Code** and select `'Copy Extension ID'`.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/ext.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/ext01.png)
 
 After amending these dev container configuration files, we need to commit and push these changes to our repository.
 
@@ -236,7 +236,7 @@ Next we need to reload our **codespace** to realise the configuration changes we
 
 After the new container is built, notice that we now have additional tooling available on the remote codespace as well as customised VS Code extensions.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/post.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/post01.png)
 
 **NOTE:** The custom dev container configurations for **Codespaces** will now be available to anyone else who works on the code in this repository, and will have a **consistent** and **versioned** codespace configuration for all users of the project.
 
