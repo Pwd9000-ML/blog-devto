@@ -227,7 +227,7 @@ The configuration file now contains custom VS Code extensions that we want to lo
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/ext01.png)
 
-After amending these dev container configuration files, we need to commit and push these changes to our repository.
+After creating and amending the **dev container configuration files**, we need to commit and push the files and changes to our project repository.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/commit.png)
 
