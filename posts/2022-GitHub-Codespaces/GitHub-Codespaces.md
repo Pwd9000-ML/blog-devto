@@ -3,7 +3,7 @@ title: Introduction to GitHub Codespaces - Building your first Dev Container
 published: false
 description: A beginners guide to building GitHub Codespaces and getting started
 tags: 'github, codespaces, devops, development'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/main01.png'
 canonical_url: null
 id: 1160283
 series: GitHub Codespaces Pro Tips
