@@ -172,7 +172,7 @@ You can even specify which **VS Code extensions** to install and load on the rem
     },
 ```
 
-The configuration file should now contain our VS Code extensions:
+The configuration file should now contain our VS Code extensions as well:
 
 ```JSON
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
