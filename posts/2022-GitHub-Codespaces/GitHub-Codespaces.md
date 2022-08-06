@@ -152,7 +152,7 @@ Note that the contents of this file can be amended to suit your needs and also d
 }
 ```
 
-You can even specify which **VS Code extensions** to install and load on the remote codespace. Let's add the following code into the **devconainer.json** file, above `"forwardPorts"`:
+You can even specify which **VS Code extensions** to install and load on the remote codespace. Let's add some specific custom **VS Code Extensions** to be installed on our remote codespace by adding the following code into the **devconainer.json** file:  
 
 ```JSON
 // Configure tool-specific properties.
@@ -173,7 +173,7 @@ You can even specify which **VS Code extensions** to install and load on the rem
     },
 ```
 
-The configuration file should now contain our VS Code extensions as well:
+The configuration file now contains custom VS Code extensions that we want to load for anyone who spins up a new codespace from our project, so that everyone has the same extensions:
 
 ```JSON
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
