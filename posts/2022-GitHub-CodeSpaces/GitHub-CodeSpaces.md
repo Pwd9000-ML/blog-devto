@@ -97,7 +97,127 @@ As mentioned, the **codespace** we created will be using GitHubs **default docke
 
 After the above process you will notice a new folder has been created inside of the root of our repository called `'.devcontainer'` that contains a `'devcontainer.json'` file and a `'dockerfile'`:  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config07.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config07.png)  
+
+Let's take a closer look at these files.  
+
+**[Dockerfile]()**
+
+This **dockerfile** contains the base image and (optionally added) OS packages that will be used as the **dev container/codespace**. You can amend this file as needed to suit your requirements.  
+
+```dockerfile
+# See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.238.1/containers/ubuntu/.devcontainer/base.Dockerfile
+
+# [Choice] Ubuntu version (use ubuntu-22.04 or ubuntu-18.04 on local arm64/Apple Silicon): ubuntu-22.04, ubuntu-20.04, ubuntu-18.04
+ARG VARIANT="jammy"
+FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
+
+# [Optional] Uncomment this section to install additional OS packages.
+# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+#     && apt-get -y install --no-install-recommends <your-package-list-here>
+```
+
+**NOTE:** Codespaces also supports **docker compose** instead of using a **dockerfile**. See this template ['Using docker compose in Codespaces'](https://github.com/microsoft/vscode-dev-containers/tree/main/container-templates/docker-compose/.devcontainer).  
+
+**[devcontainer.json]()**
+
+The **devcontainer.json** file tells Visual Studio Code (and other services and tools that support the format) how to access (or create) a **development container** with a well-defined tool and runtime stack.  
+
+See the [official reference documentation](https://code.visualstudio.com/docs/remote/devcontainerjson-reference) for more details on how this file can be modified.  
+
+Note that the contents of this file can be amended to suit your needs and also determines if you are using a **dockerfile** or **docker compose**, what tooling is available and the version of that tooling:  
+
+```JSON
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.238.1/containers/ubuntu
+{
+	"name": "Ubuntu",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick an Ubuntu version: jammy / ubuntu-22.04, focal / ubuntu-20.04, bionic /ubuntu-18.04
+		// Use ubuntu-22.04 or ubuntu-18.04 on local arm64/Apple Silicon.
+		"args": { "VARIANT": "ubuntu-22.04" }
+	},
+	
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
+
+	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode",
+	"features": {
+		"kubectl-helm-minikube": "latest",
+		"terraform": "latest",
+		"git-lfs": "latest",
+		"github-cli": "latest",
+		"azure-cli": "latest",
+		"powershell": "7.1"
+	}
+}
+```
+
+We can even specify which **VS Code extensions** to install and load on the remote codespace. Let's add the following code into the **devconainer.json** file, above `"forwardPorts"`:  
+
+```JSON
+// Specify which VS Code extensions to install (List of IDs) 
+"extensions": [
+  "ms-vscode.powershell",
+  "ms-dotnettools.csharp",
+  "hashicorp.terraform",
+  "esbenp.prettier-vscode",
+  "tfsec.tfsec"
+]
+```
+
+The configuration file should now contain our VS Code extensions:
+
+```JSON
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.238.1/containers/ubuntu
+{
+	"name": "Ubuntu",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick an Ubuntu version: jammy / ubuntu-22.04, focal / ubuntu-20.04, bionic /ubuntu-18.04
+		// Use ubuntu-22.04 or ubuntu-18.04 on local arm64/Apple Silicon.
+		"args": { "VARIANT": "ubuntu-22.04" }
+	},
+	
+  // Specify which VS Code extensions to install (List of IDs) 
+  "extensions": [
+    "ms-vscode.powershell",
+    "ms-dotnettools.csharp",
+    "hashicorp.terraform",
+    "esbenp.prettier-vscode",
+    "tfsec.tfsec"
+  ]
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
+
+	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode",
+	"features": {
+		"kubectl-helm-minikube": "latest",
+		"terraform": "latest",
+		"git-lfs": "latest",
+		"github-cli": "latest",
+		"azure-cli": "latest",
+		"powershell": "7.1"
+	}
+}
+```
+
+**NOTE:** To get the ID of a VS Code extension you can search the following [VS Code extensions page](https://marketplace.visualstudio.com/vscode) or you can right click on existing extensions inside of **VS Code** and select `'Copy Extension ID'`.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/ext.png)
+
+
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-CodeSpaces/code) page. :heart:
 
