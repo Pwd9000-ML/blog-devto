@@ -57,7 +57,7 @@ At the time of this writing the VM size options for **codespaces** are as follow
 
 All the examples are available on my [GitHub CodeSpaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab).
 
-In this tutorial we will look at how easy it is to create a basic **CodeSpace** to get started and also take a deeper look into how to **customise** the **codespace**.
+In this tutorial we will look at how easy it is to create a basic **CodeSpace** to get started and also take a deeper look into how to **customise** the **codespace**.  
 
 1. On your GitHub account navigate to `'Your codespaces'` and select `'New Codespace'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start01.png)
 2. Select the **repository** and **branch** that you want to have cloned onto your **codespace**, as well as the **region** and **machine type** to run your **codespace** and then select `'Create codespace'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start02.png)
@@ -93,11 +93,11 @@ After the above process you will notice a new folder has been created inside of 
 
 Let's take a closer look at these files.
 
-- **[Dockerfile]()**
+- **[Dockerfile](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/Dockerfile)**
 
-This **dockerfile** contains the base image and (optionally added) OS packages that will be used as the **dev container/codespace**. You can amend this file as needed to suit your requirements.
+This **dockerfile** contains the base image and (optionally added) OS packages that will be used as the **dev container/codespace**. You can amend this file as needed to suit your requirements.  
 
-You can even use images you maintain yourself hosted on your own remote registry such as an **Azure Container Regsitry (ACR)**.
+You can even use images you maintain yourself hosted on your own remote registry such as an **Azure Container Regsitry (ACR)**.  
 
 ```dockerfile
 # See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.238.1/containers/ubuntu/.devcontainer/base.Dockerfile
@@ -113,7 +113,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
 **NOTE:** Codespaces also supports **docker compose** instead of using a **dockerfile**. See this template ['Using docker compose in Codespaces'](https://github.com/microsoft/vscode-dev-containers/tree/main/container-templates/docker-compose/.devcontainer).
 
-- **[devcontainer.json]()**
+- **[devcontainer.json](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/devcontainer.json)**
 
 The **devcontainer.json** file tells Visual Studio Code (and other services and tools that support the format) how to access (or create) a **development container** with a well-defined tool and runtime stack.
 
@@ -155,14 +155,22 @@ Note that the contents of this file can be amended to suit your needs and also d
 We can even specify which **VS Code extensions** to install and load on the remote codespace. Let's add the following code into the **devconainer.json** file, above `"forwardPorts"`:
 
 ```JSON
-// Specify which VS Code extensions to install (List of IDs)
-"extensions": [
-  "ms-vscode.powershell",
-  "ms-dotnettools.csharp",
-  "hashicorp.terraform",
-  "esbenp.prettier-vscode",
-  "tfsec.tfsec"
-]
+// Configure tool-specific properties.
+"customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+        //"settings": {},
+		//"devPort": {},
+        // Specify which VS Code extensions to install (List of IDs)
+		"extensions": [
+			"ms-vscode.powershell",
+			"ms-dotnettools.csharp",
+			"hashicorp.terraform",
+			"esbenp.prettier-vscode",
+			"tfsec.tfsec"
+			]
+        }
+    },
 ```
 
 The configuration file should now contain our VS Code extensions:
@@ -179,16 +187,24 @@ The configuration file should now contain our VS Code extensions:
 		"args": { "VARIANT": "ubuntu-22.04" }
 	},
 
-  // Specify which VS Code extensions to install (List of IDs)
-  "extensions": [
-    "ms-vscode.powershell",
-    "ms-dotnettools.csharp",
-    "hashicorp.terraform",
-    "esbenp.prettier-vscode",
-    "tfsec.tfsec"
-  ]
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			//"settings": {},
+			//"devPort": {},
+			// Specify which VS Code extensions to install (List of IDs)
+			"extensions": [
+				"ms-vscode.powershell",
+				"ms-dotnettools.csharp",
+				"hashicorp.terraform",
+				"esbenp.prettier-vscode",
+				"tfsec.tfsec"
+				]
+			}
+		},
 
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
@@ -209,7 +225,24 @@ The configuration file should now contain our VS Code extensions:
 
 **NOTE:** To get the ID of a VS Code extension you can search the following [VS Code extensions page](https://marketplace.visualstudio.com/vscode) or you can right click on existing extensions inside of **VS Code** and select `'Copy Extension ID'`.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/ext.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/ext.png)  
+
+After amending these dev container configuration files, we need to commit and push these changes to our repository.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/commit.png)  
+
+Next we need to reload our **codespace** to realise the configuration changes we made.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/build.png)  
+
+After the new container is built, notice that we now have additional tooling available on the remote codespace as well as customised VS Code extensions.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/post.png)  
+
+**NOTE:** The custom dev container configurations for **CodeSpaces** will now be available to anyone else who works on the code in this repository, and will have a **consistent** and **versioned** codespace configuration for all users of the project.  
+
+Say a new user starts on the project they can now simply go to the repository and 
+
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-CodeSpaces/code) page. :heart:
 
