@@ -118,7 +118,7 @@ The **devcontainer.json** file tells Visual Studio Code (and other services and 
 
 See the [official reference documentation](https://code.visualstudio.com/docs/remote/devcontainerjson-reference) for more details on how this file can be modified.
 
-Note that the contents of this file can be amended to suit your needs and also determines if you are using a **dockerfile** or **docker compose**, what tooling is available and the version of that tooling. It can almost be seen as a configuration input file for the **dockerfile** that will configure additional features:  
+Note that the contents of this file can be amended to suit your needs and also determines if you are using a **dockerfile** or **docker compose**, what tooling is available and the version of that tooling. It can almost be seen as a configuration input file for the **dockerfile** that will configure additional features:
 
 ```JSON
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
