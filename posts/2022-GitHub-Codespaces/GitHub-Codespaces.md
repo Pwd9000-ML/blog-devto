@@ -152,7 +152,7 @@ Note that the contents of this file can be amended to suit your needs and also d
 }
 ```
 
-You can even specify which **VS Code extensions** to install and load on the remote codespace. Let's add some specific custom **VS Code Extensions** to be installed on our remote codespace by adding the following code into the **devconainer.json** file:  
+You can even specify which **VS Code extensions** to install and load on the remote codespace. Let's add some specific custom **VS Code Extensions** to be installed on our remote codespace by adding the following code into the **devconainer.json** file:
 
 ```JSON
 // Configure tool-specific properties.
