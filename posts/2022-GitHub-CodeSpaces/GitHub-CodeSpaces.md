@@ -93,7 +93,7 @@ After the above process you will notice a new folder has been created inside of 
 
 Let's take a closer look at these files.
 
-- **[Dockerfile](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/Dockerfile)**
+- **[Dockerfile](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/config01/Dockerfile)**
 
 This **dockerfile** contains the base image and (optionally added) OS packages that will be used as the **dev container/codespace**. You can amend this file as needed to suit your requirements.  
 
@@ -113,7 +113,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
 **NOTE:** Codespaces also supports **docker compose** instead of using a **dockerfile**. See this template ['Using docker compose in Codespaces'](https://github.com/microsoft/vscode-dev-containers/tree/main/container-templates/docker-compose/.devcontainer).
 
-- **[devcontainer.json](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/devcontainer.json)**
+- **[devcontainer.json](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/config01/devcontainer.json)**
 
 The **devcontainer.json** file tells Visual Studio Code (and other services and tools that support the format) how to access (or create) a **development container** with a well-defined tool and runtime stack.
 
@@ -241,10 +241,42 @@ After the new container is built, notice that we now have additional tooling ava
 
 **NOTE:** The custom dev container configurations for **CodeSpaces** will now be available to anyone else who works on the code in this repository, and will have a **consistent** and **versioned** codespace configuration for all users of the project.  
 
-Say a new user starts on the project they can now simply go to the repository and 
+## Examples
 
+Say a new user starts on the same project, they can now simply go to the repository and create a new **codespace** that will use the exact same configuration across the team.  
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-CodeSpaces/code) page. :heart:
+1. Go to the code repository and select `'Code'`, navigate to the `'Codespaces'` tab and select the option for `'Advanced Configuration'`.
+  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/team01.png)  
+2. Notice that there is now an option to select `'Dev container configuration'`, select the relevant settings and then `'Create codespace'`.
+  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/team02.png)
+
+Each **codespace** is uniquely identified.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/codespaces.png)  
+
+**NOTE:** By default any **Active** codespaces that becomes **idle** will go into a hibernation mode after **30 minutes** to save on compute costs. This default behavior is also configurable. See [Codespaces timeouts](https://docs.github.com/en/codespaces/developing-in-codespaces/codespaces-lifecycle#codespaces-timeouts) for more info.
+
+One last topic I want to cover is the ability to have more than one **dev container configuration** on a single/mono repository.  
+
+**Codespaces** supports multiple `'devcontainer.json'` files inside of your `'.devcontainer'` directory.  
+
+If you want to have a choice of dev container configurations in your repository, any alternatives to the `'.devcontainer/devcontainer.json'` (or `'.devcontainer.json'`) file must be located in their own subdirectory at the path `'.devcontainer/SUBDIRECTORY/devcontainer.json'`. For example, you could have a choice of two configurations:
+
+- `'.devcontainer/database-dev/devcontainer.json'`
+- `'.devcontainer/gui-dev/devcontainer.json'`  
+
+When you have multiple `'devcontainer.json'` files in your repository, each codespace is created from only one of the configurations. Settings cannot be imported or inherited between `'devcontainer.json'` files. If a `'devcontainer.json'` file in a custom subdirectory has dependent files, such as the Dockerfile or scripts that are run by commands in the `'devcontainer.json'` file, it's recommended that you co-locate these files in the same subdirectory.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/team03.png)
+
+In the following example when a new user starts they can pick which configuration would suit their needs best.
+
+1. Go to the code repository and select `'Code'`, navigate to the `'Codespaces'` tab and select the option for `'Advanced Configuration'`.
+  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/team01.png)  
+2. You will now be able to select multiple `'Dev container configurations'`, select the relevant settings and then `'Create codespace'`.
+  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/team04.png)  
+
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
 
 ### _Author_
 
