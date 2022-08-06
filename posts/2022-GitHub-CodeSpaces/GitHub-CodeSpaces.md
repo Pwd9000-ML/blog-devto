@@ -57,7 +57,7 @@ At the time of this writing the VM size options for **codespaces** are as follow
 
 All the examples are available on my [GitHub CodeSpaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab).
 
-In this tutorial we will look at how easy it is to create a basic **CodeSpace** to get started and also take a deeper look into how to **customise** the **codespace**.  
+In this tutorial we will look at how easy it is to create a basic **CodeSpace** to get started and also take a deeper look into how to **customise** the **codespace**.
 
 1. On your GitHub account navigate to `'Your codespaces'` and select `'New Codespace'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start01.png)
 2. Select the **repository** and **branch** that you want to have cloned onto your **codespace**, as well as the **region** and **machine type** to run your **codespace** and then select `'Create codespace'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start02.png)
@@ -95,9 +95,9 @@ Let's take a closer look at these files.
 
 - **[Dockerfile]()**
 
-This **dockerfile** contains the base image and (optionally added) OS packages that will be used as the **dev container/codespace**. You can amend this file as needed to suit your requirements.  
+This **dockerfile** contains the base image and (optionally added) OS packages that will be used as the **dev container/codespace**. You can amend this file as needed to suit your requirements.
 
-You can even use images you maintain yourself hosted on your own remote registry such as an **Azure Container Regsitry (ACR)**.  
+You can even use images you maintain yourself hosted on your own remote registry such as an **Azure Container Regsitry (ACR)**.
 
 ```dockerfile
 # See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.238.1/containers/ubuntu/.devcontainer/base.Dockerfile
