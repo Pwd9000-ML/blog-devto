@@ -59,23 +59,16 @@ All the examples are available on my [GitHub CodeSpaces Demo Repository](https:/
 
 In this tutorial we will look at how easy it is to create a basic **CodeSpace** to get started.
 
-Afterwards, we will take a deeper look into how to **customise** your **codespace**, and lastly how to use a **custom docker image** hosted on a remote registry such as an **Azure Container Registry (ACR)**.
+Afterwards, we will take a deeper look into how to **customise** your **codespace**, and lastly how to use a **custom docker image** hosted on a remote registry such as an **Azure Container Registry (ACR)**.  
 
 1. On your GitHub Account navigate to `'Your codespaces'` and select `'New Codespace'`.
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start01.png)
-
+  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start01.png)
 2. Select the **repository** and **branch** that you want to have cloned onto your **codespace**, as well as the **region** and **machine type** to run your **codespace** and then select `'Create codespace'`.
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start02.png)
-
+  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start02.png)
 3. You will then see the **codespace container** being provisioned. (**Note:** GitHubs default image will be used, but we will look at how you can use custom images later on in this tutorial).
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start03.png)
-
+  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start03.png)
 4. Shortly after the **codespace** container is provisioned, **VS Code** will open inside of your **web browser**, already linked up with your code and a terminal to the remote **codespace**. If you have **VS Code** locally installed, it will even detect what extensions you have locally and provision them on the remote **dev container codespace** for you.
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start04.png)
+  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start04.png)
 
 On the bottom left side you will see a green square that says **Codespaces**, you can click on this for additional options. We will take a closer look at some of these options later.
 
