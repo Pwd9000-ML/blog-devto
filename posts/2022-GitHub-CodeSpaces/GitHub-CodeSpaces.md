@@ -31,15 +31,15 @@ So today we are going to take a look at a great service available in **GitHub** 
 
 {% youtube _W9B7qc9lVc %}
 
-In a nutshell a **GitHub codespace** is a development environment running inside of a **container** that's remotely hosted on a cloud based **Virtual Machine**.
+In a nutshell a **GitHub codespace** is a development environment running inside of a **container** that's remotely hosted on a cloud based **Virtual Machine** linked to your code repository.
 
 You can almost classify a **CodeSpace** as a **development environment as a service.**
 
-You can customise or even have a bespoke **docker** image as a **GitHub codespace** tailored to meet the needs of your project and developers, by using configuration files along with your projects **source code**, which creates a **repeatable** and **versioned** codespace configuration for all users of the project.
+You can customise or even have a bespoke **docker** image as a **GitHub codespace** tailored to meet the needs of your project and developers, by using configuration files along with your projects **source code**, which creates a **repeatable**, **consistent** and **versioned** codespace configuration for all users of the project.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/diag.png)
 
-**Codespaces** run on a variety of VM-based compute options hosted by GitHub, which you can configure from 2 core machines up to 32 core machines. You can connect to your codespaces from a **web browser** or locally using **Visual Studio Code**.
+**Codespaces** run on a variety of VM-based compute options hosted by GitHub, from 2 core machines up to 32 core machines. You can connect to your **codespaces** from a **web browser** or locally using **Visual Studio Code**.
 
 At the time of this writing the VM size options for **codespaces** are as follow:
 
@@ -59,21 +59,21 @@ All the examples are available on my [GitHub CodeSpaces Demo Repository](https:/
 
 In this tutorial we will look at how easy it is to create a basic **CodeSpace** to get started.
 
-Afterwards, we will take a deeper look into how to **customise** the **codespace** image **dockerfile**, and lastly how to use a **custom docker image** hosted on a remote registry such as an **Azure Container Registry (ACR)**. Let's get started.
+Afterwards, we will take a deeper look into how to **customise** your **codespace**, and lastly how to use a **custom docker image** hosted on a remote registry such as an **Azure Container Registry (ACR)**.  
 
-On your GitHub Account navigate to `'Your codespaces'` and select `'New Codespace'`.
+1. On your GitHub Account navigate to `'Your codespaces'` and select `'New Codespace'`.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start01.png)
 
-Select the **repository** and **branch** that you want to have cloned onto your **codespace**, as well as the **region** and **machine type** to run your **codespace** and then select `'Create codespace'`.
+2. Select the **repository** and **branch** that you want to have cloned onto your **codespace**, as well as the **region** and **machine type** to run your **codespace** and then select `'Create codespace'`.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start02.png)
 
-You will then see the **codespace container** being provisioned. (**Note:** GitHubs default image will be used, but we will look at how you can use custom images later on in this tutorial).
+3. You will then see the **codespace container** being provisioned. (**Note:** GitHubs default image will be used, but we will look at how you can use custom images later on in this tutorial).
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start03.png)
 
-Shortly after the **codespace** container is provisioned, **VS Code** will open inside of your **web browser**, already linked up with your code and a terminal to the remote **codespace**. If you have **VS Code** locally installed, it will even detect what extensions you have locally and provision them on the remote **dev container codespace** for you.
+4. Shortly after the **codespace** container is provisioned, **VS Code** will open inside of your **web browser**, already linked up with your code and a terminal to the remote **codespace**. If you have **VS Code** locally installed, it will even detect what extensions you have locally and provision them on the remote **dev container codespace** for you.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start04.png)
 
