@@ -74,15 +74,15 @@ With the **codespace** now up and running, you can simply start to work on your 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/resume01.png)
 
-Let's take a look next at how you can customise your **codepsace** next.
+Let's take a look at how you can customise your **codepsace** next.
 
 ## Customising your CodeSpace
 
-As mentioned, the **codespace** we created will be using GitHubs **default docker image**. So what we will do next is create a few configuration files so that we can customise the **default image**.
+As mentioned, the **codespace** we created is using GitHubs **default docker image**. So what we will do next is create a few configuration files so that we can customise the **default image**.
 
 1. Remember that green square at the bottom left corner I talked about earlier that says **Codespaces**, click on this for additional options and select the option `'Add Development Container Configuration Files'`: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config01.png)
 2. Select a predefined container definition. In my case I will select `'Ubuntu'`: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config02.png)  
-   **NOTE:** There are growing variety of predefined images that can be selected from on GitHubs maintained [vscode-dev-containers repository](https://github.com/microsoft/vscode-dev-containers/tree/main/containers)
+   **NOTE:** There is a growing variety of predefined images that can be selected from, maintained on GitHubs [vscode-dev-containers repository](https://github.com/microsoft/vscode-dev-containers/tree/main/containers).  
 3. Select the Ubuntu version to use: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config03.png)
 4. Select the additional features to install inside of the **dev container**: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config04.png)
 5. You may also be asked to select what version of the tooling you selected to use. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config05.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config06.png)
