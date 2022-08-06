@@ -269,7 +269,7 @@ When you have multiple `'devcontainer.json'` files in your repository, each code
 In the following example when a new user starts they can pick which configuration would suit their needs best.
 
 1. Go to the code repository and select `'Code'`, navigate to the `'Codespaces'` tab and select the option for `'Advanced Configuration'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/team01.png)
-2. You will now be able to select multiple `'Dev container configurations'`, select the relevant settings and then `'Create codespace'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/team04.png)  
+2. You will now be able to select multiple `'Dev container configurations'`, select the relevant settings and then `'Create codespace'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/team04.png)
 
 ## Conclusion
 
