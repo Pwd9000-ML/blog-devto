@@ -59,7 +59,7 @@ All the examples are available on my [GitHub CodeSpaces Demo Repository](https:/
 
 In this tutorial we will look at how easy it is to create a basic **CodeSpace** to get started.
 
-Afterwards, we will take a deeper look into how to **customise** your **codespace**, and lastly how to use a **custom docker image** hosted on a remote registry such as an **Azure Container Registry (ACR)**.  
+Afterwards, we will take a deeper look into how to **customise** your **codespace**, and lastly how to use a **custom docker image** hosted on a remote registry such as an **Azure Container Registry (ACR)**.
 
 1. On your GitHub Account navigate to `'Your codespaces'` and select `'New Codespace'`.
 
