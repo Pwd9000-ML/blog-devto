@@ -57,7 +57,7 @@ At the time of this writing the VM size options for **codespaces** are as follow
 
 All the examples are available on my [GitHub CodeSpaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab).
 
-In this tutorial we will look at how easy it is to create a basic **CodeSpace** to get started and also take a deeper look into how to **customise** the **codespace**.  
+In this tutorial we will look at how easy it is to create a basic **CodeSpace** to get started and also take a deeper look into how to **customise** the **codespace**.
 
 1. On your GitHub account navigate to `'Your codespaces'` and select `'New Codespace'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start01.png)
 2. Select the **repository** and **branch** that you want to have cloned onto your **codespace**, as well as the **region** and **machine type** to run your **codespace** and then select `'Create codespace'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start02.png)
@@ -95,9 +95,9 @@ Let's take a closer look at these files.
 
 - **[Dockerfile](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/config01/Dockerfile)**
 
-This **dockerfile** contains the base image and (optionally added) OS packages that will be used as the **dev container/codespace**. You can amend this file as needed to suit your requirements.  
+This **dockerfile** contains the base image and (optionally added) OS packages that will be used as the **dev container/codespace**. You can amend this file as needed to suit your requirements.
 
-You can even use images you maintain yourself hosted on your own remote registry such as an **Azure Container Regsitry (ACR)**.  
+You can even use images you maintain yourself hosted on your own remote registry such as an **Azure Container Regsitry (ACR)**.
 
 ```dockerfile
 # See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.238.1/containers/ubuntu/.devcontainer/base.Dockerfile
@@ -225,56 +225,52 @@ The configuration file should now contain our VS Code extensions:
 
 **NOTE:** To get the ID of a VS Code extension you can search the following [VS Code extensions page](https://marketplace.visualstudio.com/vscode) or you can right click on existing extensions inside of **VS Code** and select `'Copy Extension ID'`.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/ext.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/ext.png)
 
-After amending these dev container configuration files, we need to commit and push these changes to our repository.  
+After amending these dev container configuration files, we need to commit and push these changes to our repository.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/commit.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/commit.png)
 
-Next we need to reload our **codespace** to realise the configuration changes we made.  
+Next we need to reload our **codespace** to realise the configuration changes we made.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/build.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/build.png)
 
 After the new container is built, notice that we now have additional tooling available on the remote codespace as well as customised VS Code extensions.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/post.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/post.png)
 
-**NOTE:** The custom dev container configurations for **CodeSpaces** will now be available to anyone else who works on the code in this repository, and will have a **consistent** and **versioned** codespace configuration for all users of the project.  
+**NOTE:** The custom dev container configurations for **CodeSpaces** will now be available to anyone else who works on the code in this repository, and will have a **consistent** and **versioned** codespace configuration for all users of the project.
 
 ## Examples
 
-Say a new user starts on the same project, they can now simply go to the repository and create a new **codespace** that will use the exact same configuration across the team.  
+Say a new user starts on the same project, they can now simply go to the repository and create a new **codespace** that will use the exact same configuration across the team.
 
-1. Go to the code repository and select `'Code'`, navigate to the `'Codespaces'` tab and select the option for `'Advanced Configuration'`.
-  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/team01.png)  
-2. Notice that there is now an option to select `'Dev container configuration'`, select the relevant settings and then `'Create codespace'`.
-  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/team02.png)
+1. Go to the code repository and select `'Code'`, navigate to the `'Codespaces'` tab and select the option for `'Advanced Configuration'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/team01.png)
+2. Notice that there is now an option to select `'Dev container configuration'`, select the relevant settings and then `'Create codespace'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/team02.png)
 
 Each **codespace** is uniquely identified.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/codespaces.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/codespaces.png)
 
 **NOTE:** By default any **Active** codespaces that becomes **idle** will go into a hibernation mode after **30 minutes** to save on compute costs. This default behavior is also configurable. See [Codespaces timeouts](https://docs.github.com/en/codespaces/developing-in-codespaces/codespaces-lifecycle#codespaces-timeouts) for more info.
 
-One last topic I want to cover is the ability to have more than one **dev container configuration** on a single/mono repository.  
+One last topic I want to cover is the ability to have more than one **dev container configuration** on a single/mono repository.
 
-**Codespaces** supports multiple `'devcontainer.json'` files inside of your `'.devcontainer'` directory.  
+**Codespaces** supports multiple `'devcontainer.json'` files inside of your `'.devcontainer'` directory.
 
 If you want to have a choice of dev container configurations in your repository, any alternatives to the `'.devcontainer/devcontainer.json'` (or `'.devcontainer.json'`) file must be located in their own subdirectory at the path `'.devcontainer/SUBDIRECTORY/devcontainer.json'`. For example, you could have a choice of two configurations:
 
 - `'.devcontainer/database-dev/devcontainer.json'`
-- `'.devcontainer/gui-dev/devcontainer.json'`  
+- `'.devcontainer/gui-dev/devcontainer.json'`
 
-When you have multiple `'devcontainer.json'` files in your repository, each codespace is created from only one of the configurations. Settings cannot be imported or inherited between `'devcontainer.json'` files. If a `'devcontainer.json'` file in a custom subdirectory has dependent files, such as the Dockerfile or scripts that are run by commands in the `'devcontainer.json'` file, it's recommended that you co-locate these files in the same subdirectory.  
+When you have multiple `'devcontainer.json'` files in your repository, each codespace is created from only one of the configurations. Settings cannot be imported or inherited between `'devcontainer.json'` files. If a `'devcontainer.json'` file in a custom subdirectory has dependent files, such as the Dockerfile or scripts that are run by commands in the `'devcontainer.json'` file, it's recommended that you co-locate these files in the same subdirectory.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/team03.png)
 
 In the following example when a new user starts they can pick which configuration would suit their needs best.
 
-1. Go to the code repository and select `'Code'`, navigate to the `'Codespaces'` tab and select the option for `'Advanced Configuration'`.
-  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/team01.png)  
-2. You will now be able to select multiple `'Dev container configurations'`, select the relevant settings and then `'Create codespace'`.
-  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/team04.png)  
+1. Go to the code repository and select `'Code'`, navigate to the `'Codespaces'` tab and select the option for `'Advanced Configuration'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/team01.png)
+2. You will now be able to select multiple `'Dev container configurations'`, select the relevant settings and then `'Create codespace'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/team04.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
 
