@@ -68,7 +68,7 @@ On the bottom left side you will see a green square that says **Codespaces**, yo
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start05.png)
 
-**Note:** When using a locally installed copy of VS Code instead of the web browser, you will still be working on the remote **codespace** instance, thus utilising the remote instance compute power which may be a much higher spec than your local machine and fitting your applications requirements. Pretty neat!!!  
+**Note:** When using a locally installed copy of VS Code instead of the web browser, you will still be working on the remote **codespace** instance, thus utilising the remote instance compute power which may be a much higher spec than your local machine and fitting your applications requirements. Pretty neat!!!
 
 With the **codespace** now up and running, you can simply start to work on your code. If you leave your repository and come back later you can always resume your **codespace** experience by navigating to your repository `'Code'` and selecting the `'Codespaces'` tab.
 
