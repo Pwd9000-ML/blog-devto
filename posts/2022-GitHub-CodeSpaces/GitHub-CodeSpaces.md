@@ -84,9 +84,9 @@ As mentioned, the **codespace** we created is using GitHubs **default docker ima
 2. Select a predefined container definition. In my case I will select `'Ubuntu'`. **NOTE:** There is a growing variety of predefined images that can be selected from, maintained on GitHubs [vscode-dev-containers repository](https://github.com/microsoft/vscode-dev-containers/tree/main/containers): ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config02.png)
 3. Select the Ubuntu version to use: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config03.png)
 4. Select the additional features to install inside of the **dev container**: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config04.png)
-5. You may also be asked to select what version of the tooling you selected to use. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config05.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config06.png)
+5. You may also be asked to select what version of the tooling you selected to use: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config05.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config06.png)
 
-After the above process you will notice a new folder has been created inside of the root of our repository called `'.devcontainer'` that contains a `'devcontainer.json'` file and a `'dockerfile'`:
+After the above process you will notice a new folder has been created inside of the root of your repository called `'.devcontainer'` that contains a `'devcontainer.json'` file and a `'dockerfile'`:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config07.png)
 
@@ -118,7 +118,7 @@ The **devcontainer.json** file tells Visual Studio Code (and other services and 
 
 See the [official reference documentation](https://code.visualstudio.com/docs/remote/devcontainerjson-reference) for more details on how this file can be modified.
 
-Note that the contents of this file can be amended to suit your needs and also determines if you are using a **dockerfile** or **docker compose**, what tooling is available and the version of that tooling:
+Note that the contents of this file can be amended to suit your needs and also determines if you are using a **dockerfile** or **docker compose**, what tooling is available and the version of that tooling. It can almost be seen as a configuration input file for the **dockerfile** that will configure additional features:  
 
 ```JSON
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
