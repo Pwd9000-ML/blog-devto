@@ -235,7 +235,7 @@ Next we need to reload our **codespace** to realise the configuration changes we
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/build.png)
 
-After the new container is built, notice that we now have additional tooling available on the remote codespace as well as customised VS Code extensions.
+After the new container is built based on our config files, notice that we now have the additional tooling available on the remote codespace/dev container as well as the custom VS Code extensions we specified.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces/assets/post01.png)
 
