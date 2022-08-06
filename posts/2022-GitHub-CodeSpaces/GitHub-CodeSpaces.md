@@ -27,7 +27,7 @@ If you are, you are probably well aware of the PAIN points when it comes to main
 
 The list goes on, and these are all factors that can cause a lot of pain, frustration and time wasted before actual development can start.
 
-So today we are going to take a look at a great service available in **GitHub** called **[CodeSpaces](https://docs.github.com/en/codespaces)**.
+So today we are going to take a look at a great service available on **GitHub** called **[CodeSpaces](https://docs.github.com/en/codespaces)**.
 
 {% youtube _W9B7qc9lVc %}
 
@@ -59,7 +59,7 @@ All the examples are available on my [GitHub CodeSpaces Demo Repository](https:/
 
 In this tutorial we will look at how easy it is to create a basic **CodeSpace** to get started.
 
-Afterwards, we will take a deeper look into how to **customise** your **codespace**, and lastly how to use a **custom docker image** hosted on a remote registry such as an **Azure Container Registry (ACR)**.
+Afterwards, we will take a deeper look into how to **customise** the **codespace**, and lastly how to use a **custom docker image** hosted on a remote registry.
 
 1. On your GitHub account navigate to `'Your codespaces'` and select `'New Codespace'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start01.png)
 2. Select the **repository** and **branch** that you want to have cloned onto your **codespace**, as well as the **region** and **machine type** to run your **codespace** and then select `'Create codespace'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/start02.png)
@@ -74,11 +74,30 @@ On the bottom left side you will see a green square that says **Codespaces**, yo
 
 With the **codespace** now up and running, you can simply start to work on your code. If you leave your repository and come back later you can always resume your **codespace** experience by navigating to your repository `'Code'` and selecting the `'Codespaces'` tab.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/resume.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/resume01.png)
 
-Let's take a look next at how you can customise your **codepsace**
+Let's take a look next at how you can customise your **codepsace** next.
 
 ## Customising your CodeSpace
+
+As mentioned, the **codespace** we created will be using GitHubs **default docker image**. So what we will do next is create a few configuration files so that we can customise the **default image**.  
+
+1. Remember that green square at the bottom left corner I talked about earlier that says **Codespaces**, click on this for additional options and select the option `'Add Development Container Configuration Files'`:
+  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config01.png)  
+2. Select a predefined container definition. In my case I will select `'Ubuntu'`:
+  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config02.png)  
+  **NOTE:** There are growing variety of predefined images that can be selected from on GitHubs maintained [vscode-dev-containers repository](https://github.com/microsoft/vscode-dev-containers/tree/main/containers)
+3. Select the Ubuntu version to use:
+  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config03.png)
+4. Select the additional features to install inside of the **dev container**:
+  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config04.png)
+5. You may also be asked to select what version of the tooling you selected to use.
+  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config05.png)
+  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config06.png)
+
+After the above process you will notice a new folder has been created inside of the root of our repository called `'.devcontainer'` that contains a `'devcontainer.json'` file and a `'dockerfile'`:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-CodeSpaces/assets/config07.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-CodeSpaces/code) page. :heart:
 
