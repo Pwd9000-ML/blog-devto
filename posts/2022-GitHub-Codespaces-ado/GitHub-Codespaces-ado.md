@@ -45,26 +45,23 @@ Next we will [connect and link](https://docs.microsoft.com/en-us/azure/devops/bo
 
 5. Review the selected repositories you want to link to **Azure Boards** and click on **'Approve, Install, & Authorize'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj07.png)
 
-6. You'll see the new **GitHub connection** under the project settings. You also have the ability to add/remove additional repositories or remove the GitHub connection entirely. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj08.png)  
+6. You'll see the new **GitHub connection** under the project settings. You also have the ability to add/remove additional repositories or remove the GitHub connection entirely. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj08.png)
 
-**NOTE:** You can also review the **Azure Boards** application directly from your **GitHub account/org** by navigating to **'Settings' -> 'Integrations' -> 'Alications'**  
+**NOTE:** You can also review the **Azure Boards** application directly from your **GitHub account/org** by navigating to **'Settings' -> 'Integrations' -> 'Alications'**
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj09.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj09.png)
 
 ## Example - Using DevOps Boards with GitHub
 
-Since we connected **Azure boards** with our GitHub repository, let's take a look at how we can link GitHub **commits, pull requests, and issues** to **work items** in Azure Boards using **Codespaces**.  
+Since we connected **Azure boards** with our GitHub repository, let's take a look at how we can link GitHub **commits, pull requests, and issues** to **work items** in Azure Boards using **Codespaces**.
 
-Interacting with **Azure boards** from GitHub uses a special syntax called **AB#{ID}**.  
+Interacting with **Azure boards** from GitHub uses a special syntax called **AB#{ID}**.
 
-What this means is from any GitHub **commit, pull request or issue**, you can use the **AB#{ID} syntax** to create a link to your **Azure Boards work item** by entering the **AB#ID** within the text of a **commit message**. Or, for a **pull request or issue**, enter the **AB#ID** within the **title or description** (not a comment).  
+What this means is from any GitHub **commit, pull request or issue**, you can use the **AB#{ID} syntax** to create a link to your **Azure Boards work item** by entering the **AB#ID** within the text of a **commit message**. Or, for a **pull request or issue**, enter the **AB#ID** within the **title or description** (not a comment).
 
-Let's look at an example:  
+Let's look at an example:
 
-
-
-As described in the [previous blog post](), connect to your **GitHub** code repository using a **Codespace**. In my case 
-
+As described in the [previous blog post](), connect to your **GitHub** code repository using a **Codespace**. In my case
 
 ## Integrating Azure DevOps Pipelines with GitHub
 
