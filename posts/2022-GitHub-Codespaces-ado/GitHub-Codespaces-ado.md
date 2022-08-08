@@ -15,7 +15,7 @@ Welcome to the next part of my series **GitHub Codespaces Pro Tips**, in the las
 
 Since **Codespaces** is a service on **GitHub**, you might be wondering or thinking that the service is limited to **GitHub** customers only. The fact is that **Codespaces** is a service that is linked to a **GitHub** repository, but that is not a limiting factor to be able to use the service in other development platforms such as **Azure DevOps**.  
 
-**Azure DevOps** as well as most other popular cloud development platforms allows you to use **GitHub** repositories for your source code.  
+**Azure DevOps** as well as most other popular cloud development platforms allows you to use **Git** repositories hosted on **GitHub** for your source code.  
 
 In todays tutorial I will be showing you how you can create an **Azure DevOps** project using a **GitHub** repository and building your first pipeline in **Azure DevOps** using**GItHub Codespaces**.  
 
