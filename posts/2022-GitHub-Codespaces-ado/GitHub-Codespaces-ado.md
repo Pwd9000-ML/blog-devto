@@ -13,7 +13,7 @@ series: GitHub Codespaces Pro Tips
 
 Welcome to the next part of my series **GitHub Codespaces Pro Tips**, in the last part we spoke a lot about what a **Codespace** is and how to get started with your first **Dev container**.
 
-Since **Codespaces** is a service on **GitHub**, you might be wondering or thinking that the service is limited to **GitHub** customers only. The fact is that **Codespaces** is a service that is linked to a **GitHub** repository, but that is not a limiting factor to be able to use the service in other development platforms such as **Azure DevOps**.
+Since **Codespaces** is a service on **GitHub**, you might be wondering or thinking that the service is limited to **GitHub** customers only. The fact is that **Codespaces** is a service that is linked to a **Git** repository hosted on **GitHub**, but that is not a limiting factor to be able to use the service in other development platforms such as **Azure DevOps**.
 
 **Azure DevOps** as well as most other popular cloud development platforms allows you to use **Git** repositories hosted on **GitHub** for your source code.
 
