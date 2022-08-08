@@ -11,15 +11,15 @@ series: GitHub Codespaces Pro Tips
 
 ## Overview
 
-Welcome to the next part of my series **GitHub Codespaces Pro Tips**, in the last part we spoke a lot about what a **Codespace** is and how to get started with your first **Dev container**.  
+Welcome to the next part of my series **GitHub Codespaces Pro Tips**, in the last part we spoke a lot about what a **Codespace** is and how to get started with your first **Dev container**.
 
-Since **Codespaces** is a service on **GitHub**, you might be wondering or thinking that the service is limited to **GitHub** customers only. The fact is that **Codespaces** is a service that is linked to a **GitHub** repository, but that is not a limiting factor to be able to use the service in other development platforms such as **Azure DevOps**.  
+Since **Codespaces** is a service on **GitHub**, you might be wondering or thinking that the service is limited to **GitHub** customers only. The fact is that **Codespaces** is a service that is linked to a **GitHub** repository, but that is not a limiting factor to be able to use the service in other development platforms such as **Azure DevOps**.
 
-**Azure DevOps** as well as most other popular cloud development platforms allows you to use **GitHub** repositories for your source code.  
+**Azure DevOps** as well as most other popular cloud development platforms allows you to use **GitHub** repositories for your source code.
 
-In todays tutorial I will be showing you how you can create an **Azure DevOps** project using a **GitHub** repository and building your first pipeline in **Azure DevOps** using**GItHub Codespaces**.  
+In todays tutorial I will be showing you how you can create an **Azure DevOps** project using a **GitHub** repository and building your first pipeline in **Azure DevOps** using**GItHub Codespaces**.
 
-We will also look at how you can migrate an existing **Git** repository hosted on **Azure DevOps**, to **GitHub**, keeping everything else such as your pipelines, boards and artifacts in **Azure DevOps** but working with the code and repository using **GitHub Codespaces**. Imagine it as a hybrid scenario where you can use the best of both worlds by combining your existing **Azure DevOps** projects and environments to make use of GitHub Codespaces.  
+We will also look at how you can migrate an existing **Git** repository hosted on **Azure DevOps**, to **GitHub**, keeping everything else such as your pipelines, boards and artifacts in **Azure DevOps** but working with the code and repository using **GitHub Codespaces**. Imagine it as a hybrid scenario where you can use the best of both worlds by combining your existing **Azure DevOps** projects and environments to make use of GitHub Codespaces.
 
 ## Who can use Codespaces?
 
