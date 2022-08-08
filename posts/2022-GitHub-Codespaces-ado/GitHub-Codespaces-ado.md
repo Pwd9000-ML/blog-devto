@@ -21,7 +21,7 @@ In todays tutorial I will be showing you how you can create an **Azure DevOps** 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/diag.png)
 
-We will also look at how you can migrate an existing **Git** repository hosted on **Azure DevOps**, to **GitHub**, keeping everything else such as your pipelines, boards and artifacts in **Azure DevOps** but working with the code and repository using **GitHub Codespaces**. Imagine it as a hybrid scenario where you can use the best of both worlds by combining your existing **Azure DevOps** projects and environments to make use of GitHub Codespaces.
+We will also look at how you can migrate an existing **Git** repository hosted on **Azure DevOps** to **GitHub**, keeping everything else such as your **pipelines**, **boards**, **test plans** and **artifacts** in **Azure DevOps** but working with a **git** code repository hosted on **GitHub** using **codespaces**. Imagine it as a hybrid scenario where you can combine **codespaces** wih existing **Azure DevOps** projects and environments to make use of this wonderful service.
 
 ## Who can use Codespaces?
 
