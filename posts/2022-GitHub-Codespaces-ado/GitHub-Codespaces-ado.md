@@ -19,7 +19,7 @@ Since **Codespaces** is a service on **GitHub**, you might be wondering or think
 
 So in todays tutorial I will be showing you how you can create a hybrid environment with **GitHub combined with Azure DevOps**, by linking your DevOps **Boards** and **Pipelines** to **GitHub**, allowing you to ultimately make use of **Codespaces** as well.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/diag.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/diag01.png)
 
 Imagine it as a hybrid scenario where you can combine features of **GitHub** such as **Codespaces**, along with existing **Azure DevOps** services you may already be using.  
 
