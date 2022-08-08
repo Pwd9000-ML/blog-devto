@@ -13,17 +13,19 @@ series: GitHub Codespaces Pro Tips
 
 Welcome to the next part of my series **GitHub Codespaces Pro Tips**, in the last part we spoke a lot about what a **Codespace** is and how to get started with your first **Dev container**.
 
-Since **Codespaces** is a service on **GitHub**, you might be wondering or thinking that the service is limited to **GitHub** customers only. The fact is that **Codespaces** is a service that is linked to a **Git** repository hosted on **GitHub**, but that is not a limiting factor to be able to use the service in other development platforms such as **Azure DevOps**.
+Since **Codespaces** is a service on **GitHub**, you might be wondering or thinking that the service is limited to **GitHub** only. The fact is that **Codespaces** is a service that is linked to a **Git** repository hosted on **GitHub**, but that is not a limiting factor to be able to link and use other great services such as **Azure DevOps Boards** or **Azure DevOps Pipelines** as well.  
 
-**Azure DevOps** as well as most other popular cloud development platforms allows you to use **Git** repositories hosted on **GitHub** for your source code.
+**Azure DevOps** allows you to closely integrate services such as **Boards** and **Pipelines** with **GitHub**.
 
-In todays tutorial I will be showing you how you can create an **Azure DevOps** project using a **Git** repository hosted on **GitHub** and making your first commit using **GitHub Codespaces**.
+So in todays tutorial I will be showing you how you can create a hybrid environment with **GitHub combined with Azure DevOps**, by linking your DevOps **Boards** and **Pipelines** to **GitHub**, allowing you to ultimately make use of **Codespaces** as well.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/diag.png)
 
-We will also look at how you can migrate an existing **Git** repository hosted on **Azure DevOps** to **GitHub**, keeping everything else such as your **pipelines**, **boards**, **test plans** and **artifacts** in **Azure DevOps** but working with a **git** code repository hosted on **GitHub** using **codespaces**. Imagine it as a hybrid scenario where you can combine **codespaces** with existing **Azure DevOps** projects and environments to make use of this great service.
+Imagine it as a hybrid scenario where you can combine features of **GitHub** such as **Codespaces**, along with existing **Azure DevOps** services you may already be using.  
 
-## Greenfield Azure DevOps Project
+## Getting started
+
+### Creating GitHub repository
 
 Let's start by creating a new [GitHub repository](https://docs.github.com/en/get-started/quickstart/create-a-repo).  
 
@@ -38,6 +40,16 @@ Let's start by creating a new [GitHub repository](https://docs.github.com/en/get
 5. Select **Initialize this repository with a README**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/ghrepo05.png)  
 
 6. Click **Create repository**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/ghrepo06.png)  
+
+### Creating an Azure DevOps project  
+
+Now that your **GitHub repository** is created, we will create the **Azure DevOps** project.  
+
+1. Log into your Azure DevOps organisation and select **New project**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj01.png)  
+
+2. Enter information into the form provided. Provide a name for your project. Your project name can't contain special characters, such as `/ : \ ~ & % ; @ ' " ? < > | # $ * } { , + = [ ]`, can't begin with an underscore, can't begin or end with a period, and must be 64 or fewer characters. Enter an optional description. Choose the [visibility](https://docs.microsoft.com/en-us/azure/devops/repos/tfvc/comparison-git-tfvc?view=azure-devops), initial source control type, and work item [process](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/choose-process?view=azure-devops&tabs=agile-process).  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj02.png)  
+
+
 
 ## Existing Azure DevOps Project
 
