@@ -93,7 +93,7 @@ I can also click and review the linked commit, which will take me straight into 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi06.png)
 
-Next I want to create a **Pull Request** to merge the new changes into my **master** branch, remove my **branch** called `'ML-updateDocs'`, and as part of the pull request close the **Azure boards work item**.
+Next I want to create a **Pull Request** to merge the new changes into the projects **master/main** branch, and remove my personal **branch** called `'ML-updateDocs'`, and as part of the pull request also close the **Azure boards work item**.
 
 To close or transition work items from **Github** the system will recognize `'fix'`, `'fixes'`, `'fixed'` applied to the **AB#{Id}** mention item that follows.
 
