@@ -61,12 +61,12 @@ Next we will [connect and link](https://docs.microsoft.com/en-us/azure/devops/bo
 
 ## Example - Using DevOps Boards with GitHub
 
-With **Azure boards** now connected to your GitHub repository, let's take a look at how we can link GitHub **commits, pull requests, and issues** to **work items** in Azure Boards using **Codespaces**.
+With **Azure boards** now connected to your GitHub repository, let's take a look at how you can link GitHub **commits, pull requests, and issues** to **work items** in Azure Boards using **Codespaces**.
 
-Interacting with **Azure boards** from GitHub uses a special commit syntax called **AB#{Id}** mention.
+Interacting with **Azure boards** from GitHub uses a special commit syntax called `'AB#{Id}'` mention.
 
 What does this mean?  
-When you **commit** and **push** code changes to you source code, for any GitHub **commit, pull request or issue**, you can add the **AB#{Id} mention** to create a link to your existing **Azure Boards work items** by entering the **AB#{work item id}** within the text of a **commit message**. Or, for a **pull request or issue**, enter the **AB#{Id}** within the **title or description** of the PR or issue. (not a comment).
+When you **commit** and **push** code changes to you source code, for any GitHub **commit, pull request or issue**, you can add the `'AB#{Id}'` **mention** to create a link to your existing **Azure Boards work items** by entering the `'AB#{work item id}'` within the text of a **commit message**. Or, for a **pull request or issue**, enter the **AB#{Id}** within the **title or description** of the PR or issue. (not a comment).
 
 Let's look at an example:
 
@@ -76,7 +76,7 @@ Create a new **work item** inside of your **Azure Boards**. In my case, my work 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi02.png)
 
-Note down the work item **'Id'**. In my case it is `'3'`:
+Note down the work item `'ID'`. In my case it is `'3'`:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi03.png)
 
