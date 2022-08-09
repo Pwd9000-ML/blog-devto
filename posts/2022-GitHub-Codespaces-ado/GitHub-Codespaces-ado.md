@@ -1,7 +1,7 @@
 ---
-title: Migrating your development environments to GitHub Codespaces on Azure DevOps
+title: Integrating Azure DevOps with GitHub - Hybrid Model
 published: false
-description: Migrating your development environments to GitHub Codespaces in Azure DevOps
+description: Integrating Azure DevOps with GitHub - Hybrid Model
 tags: 'github, codespaces, azuredevops, development'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/main01.png'
 canonical_url: null
@@ -13,15 +13,13 @@ series: GitHub Codespaces Pro Tips
 
 Welcome to the next part of my series **GitHub Codespaces Pro Tips**, in the last part we spoke about what a **Codespace** is and how to get started with your first **Dev container**.
 
-Since **Codespaces** is a service on **GitHub**, you might be wondering or thinking that the service is limited to **GitHub users** only. The fact is that **Codespaces** is a service that is linked to a **Git** repository hosted on **GitHub**, but that is not a limiting factor to be able to link and use other great services such as **Azure DevOps Boards** and **Azure DevOps Pipelines**.
+Since **Codespaces** is a service on **GitHub**, you might be wondering or thinking that the service is limited to **GitHub users** only. The fact is that **Codespaces** is a service that is linked to a **Git** repository hosted on **GitHub**, but that is not a limiting factor to be able to use this great service along with other great services such as **Azure DevOps Boards** and **Azure DevOps Pipelines**.  
 
 **Azure DevOps** allows you to closely integrate services such as **Boards** and **Pipelines** with your **GitHub** account/Org.
 
-So in todays tutorial I will be showing you how you can create a hybrid environment with **GitHub and Azure DevOps**, by linking your DevOps **boards** and **pipelines** to **GitHub**, allowing you to ultimately make use of features such as **Codespaces** as well.
+So in todays tutorial I will be showing you how you can create a hybrid environment with **GitHub and Azure DevOps**, by linking your DevOps **boards** and **pipelines** to **GitHub**. Allowing you to use the best of both worlds where you can combine services and features of **GitHub**, such as **[Codespaces](https://docs.github.com/en/codespaces)**, **[Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuring-dependabot-version-updates)** and baked in **[code scanning](https://docs.github.com/en/enterprise-server@3.3/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/about-code-scanning-with-codeql)** capabilities, along with existing **Azure DevOps** services you may already be using.  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/diag01.png)
-
-Imagine it as a hybrid scenario where you can combine services and features of **GitHub** along with existing **Azure DevOps** services you may already be using.
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/diag02.png)
 
 ## Creating an Azure DevOps project
 
@@ -47,7 +45,7 @@ Next we will [connect and link](https://docs.microsoft.com/en-us/azure/devops/bo
 
 6. You'll see the new **GitHub connection** under the project settings. You also have the ability to add/remove additional repositories or remove the GitHub connection entirely. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj08.png)
 
-**NOTE:** You can also review the **Azure Boards** application directly from your **GitHub account/org** by navigating to **'Settings' -> 'Integrations' -> 'Alications'**
+**NOTE:** You can also review the **Azure Boards** application directly from your **GitHub account/org** by navigating to **'Settings' -> 'Integrations' -> 'Applications'**
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj09.png)
 
@@ -61,9 +59,13 @@ What this means is from any GitHub **commit, pull request or issue**, you can us
 
 Let's look at an example:
 
-As described in the [previous blog post](), connect to your **GitHub** code repository using a **Codespace**. In my case
+As described in the [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l), connect to your **GitHub** code repository using a **Codespace**. In my case
 
 ## Integrating Azure DevOps Pipelines with GitHub
+
+GitHub offers it's very own automation platform, very similar to **Azure DevOps Pipelines**, called **GitHub Actions**, it even shares an almost identical **YAML** syntax and structure for building state of the art automation workflows. I won't be going into **GitHub Actions** in this post, but I highly recommend migrating **Azure DevOps pipelines** to **[GitHub actions](https://docs.github.com/en/actions)** where suitable.  
+
+But for the purpose of this tutorial I will be showing you how you can integrate and continue using your existing **Azure DevOps pipelines** and automation with GitHub.  
 
 ## Conclusion
 
