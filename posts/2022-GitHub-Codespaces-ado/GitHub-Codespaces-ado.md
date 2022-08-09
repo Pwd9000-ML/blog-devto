@@ -19,9 +19,9 @@ Since **Codespaces** is a service on **GitHub**, you might be wondering or think
 
 So in todays tutorial I will be showing you how you can create a hybrid environment with **GitHub and Azure DevOps**, by linking your DevOps **boards** and **pipelines** to **GitHub**. Allowing you to use the best of both worlds where you can combine services and features of **GitHub**, such as **[Codespaces](https://docs.github.com/en/codespaces)**, **[Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuring-dependabot-version-updates)** and baked in **[code scanning](https://docs.github.com/en/enterprise-server@3.3/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/about-code-scanning-with-codeql)** capabilities, along with existing **Azure DevOps** services you may already be using.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/diag02.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/diag02.png)
 
-To follow along this tutorial you will need an **Azure DevOps Org** as well as a **GitHub account/Org**.  
+To follow along this tutorial you will need an **Azure DevOps Org** as well as a **GitHub account/Org**.
 
 ## Creating a Git repository on GitHub
 
