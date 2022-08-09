@@ -61,15 +61,27 @@ Next we will [connect and link](https://docs.microsoft.com/en-us/azure/devops/bo
 
 ## Example - Using DevOps Boards with GitHub
 
-Since we connected **Azure boards** with our GitHub repository, let's take a look at how we can link GitHub **commits, pull requests, and issues** to **work items** in Azure Boards using **Codespaces**.
+With **Azure boards** now connected to your GitHub repository, let's take a look at how we can link GitHub **commits, pull requests, and issues** to **work items** in Azure Boards using **Codespaces**.  
 
 Interacting with **Azure boards** from GitHub uses a special commit syntax called **AB#{Id}**.
 
-What does this mean? It means that from any GitHub **commit, pull request or issue**, you can add the **AB#{Id} syntax** to create a link to your **Azure Boards work item** by entering the **AB#Id** within the text of a **commit message** when you **commit** and **push** code changes to you source code. Or, for a **pull request or issue**, enter the **AB#Id** within the **title or description** of the PR or issue. (not a comment).  
+What does this mean? It means that when you **commit** and **push** code changes to you source code for any GitHub **commit, pull request or issue**, you can add the **AB#{Id} syntax** to create a link to your existing **Azure Boards work items** by entering the **AB#{work item id}** within the text of a **commit message**. Or, for a **pull request or issue**, enter the **AB#{Id}** within the **title or description** of the PR or issue. (not a comment).  
 
 Let's look at an example:  
 
-As described in the [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l), connect to your **GitHub** code repository using a **Codespace**. In my case
+Create a new **work item** inside of your **Azure Boards**. In my case, my work item specifies that I need to update the **README.md** file on my repository to give my team more details on an awesome feature I developed for my project:  
+
+##Image
+
+Grab the **'Id'** of the work item:  
+
+##Image
+
+Now connect to your **GitHub** code repository. Since my repository is hosted on **GitHub** I can now make use of a **Codespace**, awesome! Check my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how to set up your **Codepsaces**.  
+
+Make some changes
+
+
 
 ## Integrating Azure DevOps Pipelines with GitHub
 
