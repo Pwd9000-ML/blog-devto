@@ -72,57 +72,57 @@ Let's look at an example:
 
 Create a new **work item** inside of your **Azure Boards**. In my case, my work item/user story specifies that I need to update the **README.md** file on my repository to give my team more details on an awesome feature I developed for my project:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi01.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi02.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi02.png)
 
-Note down the work item **'Id'**. In my case it is `'3'`:  
+Note down the work item **'Id'**. In my case it is `'3'`:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi03.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi03.png)
 
-Now connect to your **GitHub** code repository. Since my repository is hosted on **GitHub** I can now make use of a **Codespace**, awesome! Check my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how to set up your **Codepsaces**.  
+Now connect to your **GitHub** code repository. Since my repository is hosted on **GitHub** I can now make use of a **Codespace**, awesome! Check my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how to set up your **Codepsaces**.
 
 Using my **GitHub Codespace** I can update my `'README.md'` file, using my own **branch** called `'ML-updateDocs'`, and as a **commit message** for pushing the changes to source control I said: `Update README.md - board work item AB#3`
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi04.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi04.png)
 
-Notice that my changes have now been linked with the **Azure boards** work item, and the work item is still in an `'Active'` state:  
+Notice that my changes have now been linked with the **Azure boards** work item, and the work item is still in an `'Active'` state:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi05.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi05.png)
 
-I can also click and review the linked commit, which will take me straight into **GitHub** to show me exactly what changes were made to the file. (As you can se I only removed an empty 'space'):  
+I can also click and review the linked commit, which will take me straight into **GitHub** to show me exactly what changes were made to the file. (As you can se I only removed an empty 'space'):
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi06.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi06.png)
 
-Next I want to create a **Pull Request** to merge the new changes into my **master** branch, remove my **branch** called `'ML-updateDocs'`, and as part of the pull request close the **Azure boards work item**.  
+Next I want to create a **Pull Request** to merge the new changes into my **master** branch, remove my **branch** called `'ML-updateDocs'`, and as part of the pull request close the **Azure boards work item**.
 
-To close or transition work items from **Github** the system will recognize `'fix'`, `'fixes'`, `'fixed'` applied to the **AB#{Id}** mention item that follows.  
+To close or transition work items from **Github** the system will recognize `'fix'`, `'fixes'`, `'fixed'` applied to the **AB#{Id}** mention item that follows.
 
-I can create a pull request directly from my **Codespace**:  
+I can create a pull request directly from my **Codespace**:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi07.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi07.png)
 
-Notice that I append the word `'fixed'` before my work item mention `'AB#3'`:  
+Notice that I append the word `'fixed'` before my work item mention `'AB#3'`:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi08.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi08.png)
 
 Select `'Merge Pull Request'` using your preferred method, `'Squash and Merge'`:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi09.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi09.png)
 
-After the **Squash Merge**, you will have an option to delete/retain your **local** and **remote branch**, and optionally **suspend Codespace**:  
+After the **Squash Merge**, you will have an option to delete/retain your **local** and **remote branch**, and optionally **suspend Codespace**:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi10.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi10.png)
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi11.png)
 
-Notice that my Azure board work item is now `'Closed'`, with a link to the **Pull Request**:  
+Notice that my Azure board work item is now `'Closed'`, with a link to the **Pull Request**:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi12.png)
 
-Here are some more examples on how to transition board work items to a closed state:  
+Here are some more examples on how to transition board work items to a closed state:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/examples.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/examples.png)
 
 ## Integrating DevOps Pipelines with GitHub
 
