@@ -97,7 +97,7 @@ Next I want to create a **Pull Request** to merge the new changes into the proje
 
 To close or transition work items from **Github** the system will recognize `'fix'`, `'fixes'`, `'fixed'` applied to the `'AB#{Id}'` **mention** item that follows.
 
-I can create a pull request directly from my **Codespace**:
+You can create a pull request directly from your **Codespace**:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi07.png)
 
