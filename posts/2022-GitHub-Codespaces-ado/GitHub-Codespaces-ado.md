@@ -65,7 +65,7 @@ With **Azure boards** now connected to your GitHub repository, let's take a look
 
 Interacting with **Azure boards** from GitHub uses a special commit syntax called `'AB#{Id}'` mention. What does this mean?
 
-When you **commit** and **push** code changes to you source code, for any GitHub **commit, pull request or issue**, you can add the `'AB#{Id}'` **mention** to create a link to your existing **Azure Boards work items** by entering the `'AB#{work item id}'` mention within the text of a **commit message**. Or, for a **pull request or issue**, enter the `'AB#{Id}'` mention within the **title or description** of the PR or issue. (not a comment).
+When you **commit** and **push** code changes to you source code, for any GitHub **commit, pull request or issue**, you can add the `'AB#{Id}'` **mention** to create a link to your existing **Azure Boards work items** by entering the `'AB#{work item id}'` mention within the text of a **commit message**. Or, for a **pull request or issue**, enter the `'AB#{Id}'` mention within the **title or description** of the PR or issue. (not a comment).  
 
 Let's look at an example:
 
@@ -79,13 +79,13 @@ Note down the work item `'ID'`. In my case it is `'3'`:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi03.png)
 
-Now connect to your **GitHub** code repository. Since my repository is hosted on **GitHub** I can now make use of a **Codespace**, awesome! Check my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how to set up your **Codepsaces**.
+Now connect to your **GitHub** repository. Since my repository is hosted on **GitHub** I can make use of a **Codespace**, awesome! Check my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how to set up your **Codepsaces**.
 
-Using my **GitHub Codespace** I can update my `'README.md'` file, using my own **branch** called `'ML-updateDocs'`, and as a **commit message** for pushing the changes to source control I said: `Update README.md - board work item AB#3`
+Using my **GitHub Codespace** I can update my `'README.md'` file, using my own **branch** I created called `'ML-updateDocs'`, and as a **commit message** for pushing the changes to source control I said: `'Update README.md - board work item AB#3'`
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi04.png)
 
-Notice that my changes have now been linked with the **Azure boards** work item, and the work item is still in an `'Active'` state:
+After pushing my commit mentioning `'AB#3'` in the commit message, notice that my committed code changes have now been linked with the **Azure boards work item**, and the work item is still in an `'Active'` state:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi05.png)
 
