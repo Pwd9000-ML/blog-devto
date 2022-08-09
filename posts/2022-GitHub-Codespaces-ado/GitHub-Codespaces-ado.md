@@ -125,13 +125,11 @@ Here are some more examples on how to transition board work items to a closed st
 
 ## Integrating DevOps Pipelines with GitHub
 
-Next let's look at how you can integrate and even trigger your **Azure DevOps Pipelines** from your GitHub repository.  
+Next let's look at how you can integrate and even trigger your **Azure DevOps Pipelines** from your GitHub repository.
 
-GitHub does also offers it's very own automation platform, very similar to **Azure DevOps Pipelines**, called **GitHub Actions**, it even shares an almost identical **YAML** syntax and structure for building state of the art automation workflows. I won't be going into **GitHub Actions** in this post, but I highly recommend migrating your **Azure DevOps pipelines** to **[GitHub actions](https://docs.github.com/en/actions)** where applicable.  
+GitHub does also offers it's very own automation platform, very similar to **Azure DevOps Pipelines**, called **GitHub Actions**, it even shares an almost identical **YAML** syntax and structure for building state of the art automation workflows. I won't be going into **GitHub Actions** in this post, but I highly recommend migrating your **Azure DevOps pipelines** to **[GitHub actions](https://docs.github.com/en/actions)** where applicable.
 
-But for the purpose of this tutorial I will be showing you how you can integrate and continue using your existing **Azure DevOps pipelines** and automation with GitHub.  
-
-
+But for the purpose of this tutorial I will be showing you how you can integrate and continue using your existing **Azure DevOps pipelines** and automation with GitHub.
 
 ## Conclusion
 
