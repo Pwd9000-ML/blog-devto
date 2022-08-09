@@ -65,7 +65,7 @@ With **Azure boards** now connected to your GitHub repository, let's take a look
 
 Interacting with **Azure boards** from GitHub uses a special commit syntax called `'AB#{Id}'` mention. What does this mean?  
 
-When you **commit** and **push** code changes to you source code, for any GitHub **commit, pull request or issue**, you can add the `'AB#{Id}'` **mention** to create a link to your existing **Azure Boards work items** by entering the `'AB#{work item id}'` within the text of a **commit message**. Or, for a **pull request or issue**, enter the **AB#{Id}** within the **title or description** of the PR or issue. (not a comment).  
+When you **commit** and **push** code changes to you source code, for any GitHub **commit, pull request or issue**, you can add the `'AB#{Id}'` **mention** to create a link to your existing **Azure Boards work items** by entering the `'AB#{work item id}'` mention within the text of a **commit message**. Or, for a **pull request or issue**, enter the `'AB#{Id}'` mention within the **title or description** of the PR or issue. (not a comment).  
 
 Let's look at an example:
 
