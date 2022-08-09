@@ -124,7 +124,7 @@ Here are some more examples on how to transition board work items to a closed st
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/examples.png)  
 
-## Integrating Azure DevOps Pipelines with GitHub
+## Integrating DevOps Pipelines with GitHub
 
 GitHub offers it's very own automation platform, very similar to **Azure DevOps Pipelines**, called **GitHub Actions**, it even shares an almost identical **YAML** syntax and structure for building state of the art automation workflows. I won't be going into **GitHub Actions** in this post, but I highly recommend migrating **Azure DevOps pipelines** to **[GitHub actions](https://docs.github.com/en/actions)** where suitable.
 
