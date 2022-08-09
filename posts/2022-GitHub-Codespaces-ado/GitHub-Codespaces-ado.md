@@ -95,7 +95,7 @@ I can also click and review the linked commit, which will take me straight into 
 
 Next I want to create a **Pull Request** to merge the new changes into the projects **master/main** branch, and remove my personal **branch** called `'ML-updateDocs'`, and as part of the pull request also close the **Azure boards work item**.
 
-To close or transition work items from **Github** the system will recognize `'fix'`, `'fixes'`, `'fixed'` applied to the **AB#{Id}** mention item that follows.
+To close or transition work items from **Github** the system will recognize `'fix'`, `'fixes'`, `'fixed'` applied to the `'AB#{Id}'` **mention** item that follows.
 
 I can create a pull request directly from my **Codespace**:
 
