@@ -65,9 +65,9 @@ Since we connected **Azure boards** with our GitHub repository, let's take a loo
 
 Interacting with **Azure boards** from GitHub uses a special commit syntax called **AB#{Id}**.
 
-What does this mean? It means that from any GitHub **commit, pull request or issue**, you can add the **AB#{Id} syntax** to create a link to your **Azure Boards work item** by entering the **AB#Id** within the text of a **commit message** when you **commit** and **push** code changes to you source code. Or, for a **pull request or issue**, enter the **AB#Id** within the **title or description** of the PR or issue. (not a comment).  
+What does this mean? It means that from any GitHub **commit, pull request or issue**, you can add the **AB#{Id} syntax** to create a link to your **Azure Boards work item** by entering the **AB#Id** within the text of a **commit message** when you **commit** and **push** code changes to you source code. Or, for a **pull request or issue**, enter the **AB#Id** within the **title or description** of the PR or issue. (not a comment).
 
-Let's look at an example:  
+Let's look at an example:
 
 As described in the [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l), connect to your **GitHub** code repository using a **Codespace**. In my case
 
