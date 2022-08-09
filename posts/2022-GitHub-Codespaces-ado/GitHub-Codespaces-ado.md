@@ -89,7 +89,7 @@ After pushing my commit mentioning `'AB#3'` in the commit message, notice that m
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi05.png)
 
-I can also click and review the linked commit, which will take me straight into **GitHub** to show me exactly what changes were made to the file. (As you can se I only removed an empty 'space'):
+I can also click and review the linked commit, which will take me straight into **GitHub** to show me exactly what changes were made to the file. (As you can see, I only removed an "empty space"):
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi06.png)
 
