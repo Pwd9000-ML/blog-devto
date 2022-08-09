@@ -63,9 +63,9 @@ Next we will [connect and link](https://docs.microsoft.com/en-us/azure/devops/bo
 
 With **Azure boards** now connected to your GitHub repository, let's take a look at how you can link GitHub **commits, pull requests, and issues** to **work items** in Azure Boards using **Codespaces**.
 
-Interacting with **Azure boards** from GitHub uses a special commit syntax called `'AB#{Id}'` mention. What does this mean?  
+Interacting with **Azure boards** from GitHub uses a special commit syntax called `'AB#{Id}'` mention. What does this mean?
 
-When you **commit** and **push** code changes to you source code, for any GitHub **commit, pull request or issue**, you can add the `'AB#{Id}'` **mention** to create a link to your existing **Azure Boards work items** by entering the `'AB#{work item id}'` within the text of a **commit message**. Or, for a **pull request or issue**, enter the **AB#{Id}** within the **title or description** of the PR or issue. (not a comment).  
+When you **commit** and **push** code changes to you source code, for any GitHub **commit, pull request or issue**, you can add the `'AB#{Id}'` **mention** to create a link to your existing **Azure Boards work items** by entering the `'AB#{work item id}'` within the text of a **commit message**. Or, for a **pull request or issue**, enter the **AB#{Id}** within the **title or description** of the PR or issue. (not a comment).
 
 Let's look at an example:
 
