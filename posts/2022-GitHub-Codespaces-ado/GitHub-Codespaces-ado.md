@@ -101,7 +101,7 @@ You can create a pull request directly from your **Codespace**:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi07.png)
 
-Notice that I prepend the word `'fixed'` before my work item mention `'AB#3'` in the description of the pull request:  
+Notice that I prepend the word `'fixed'` before my work item mention `'AB#3'` in the description of the pull request:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi08.png)
 
