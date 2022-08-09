@@ -67,7 +67,7 @@ Interacting with **Azure boards** from GitHub uses a special commit syntax calle
 
 What does this mean? It means that when you **commit** and **push** code changes to you source code for any GitHub **commit, pull request or issue**, you can add the **AB#{Id} syntax** to create a link to your existing **Azure Boards work items** by entering the **AB#{work item id}** within the text of a **commit message**. Or, for a **pull request or issue**, enter the **AB#{Id}** within the **title or description** of the PR or issue. (not a comment).  
 
-Let's look at an example:  
+Let's look at an example:
 
 Create a new **work item** inside of your **Azure Boards**. In my case, my work item specifies that I need to update the **README.md** file on my repository to give my team more details on an awesome feature I developed for my project:  
 
