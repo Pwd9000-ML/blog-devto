@@ -63,23 +63,66 @@ Next we will [connect and link](https://docs.microsoft.com/en-us/azure/devops/bo
 
 With **Azure boards** now connected to your GitHub repository, let's take a look at how we can link GitHub **commits, pull requests, and issues** to **work items** in Azure Boards using **Codespaces**.
 
-Interacting with **Azure boards** from GitHub uses a special commit syntax called **AB#{Id}**.
+Interacting with **Azure boards** from GitHub uses a special commit syntax called **AB#{Id}** mention.
 
-What does this mean? It means that when you **commit** and **push** code changes to you source code for any GitHub **commit, pull request or issue**, you can add the **AB#{Id} syntax** to create a link to your existing **Azure Boards work items** by entering the **AB#{work item id}** within the text of a **commit message**. Or, for a **pull request or issue**, enter the **AB#{Id}** within the **title or description** of the PR or issue. (not a comment).
+What does this mean?  
+When you **commit** and **push** code changes to you source code, for any GitHub **commit, pull request or issue**, you can add the **AB#{Id} mention** to create a link to your existing **Azure Boards work items** by entering the **AB#{work item id}** within the text of a **commit message**. Or, for a **pull request or issue**, enter the **AB#{Id}** within the **title or description** of the PR or issue. (not a comment).
 
 Let's look at an example:
 
-Create a new **work item** inside of your **Azure Boards**. In my case, my work item specifies that I need to update the **README.md** file on my repository to give my team more details on an awesome feature I developed for my project:
+Create a new **work item** inside of your **Azure Boards**. In my case, my work item/user story specifies that I need to update the **README.md** file on my repository to give my team more details on an awesome feature I developed for my project:
 
-##Image
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi01.png)  
 
-Grab the **'Id'** of the work item:
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi02.png)  
 
-##Image
+Note down the work item **'Id'**. In my case it is `'3'`:  
 
-Now connect to your **GitHub** code repository. Since my repository is hosted on **GitHub** I can now make use of a **Codespace**, awesome! Check my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how to set up your **Codepsaces**.
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi03.png)  
 
-Make some changes
+Now connect to your **GitHub** code repository. Since my repository is hosted on **GitHub** I can now make use of a **Codespace**, awesome! Check my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how to set up your **Codepsaces**.  
+
+Using my **GitHub Codespace** I can update my `'README.md'` file, using my own **branch** called `'ML-updateDocs'`, and as a **commit message** for pushing the changes to source control I said: `Update README.md - board work item AB#3`
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi04.png)  
+
+Notice that my changes have now been linked with the **Azure boards** work item, and the work item is still in an `'Active'` state:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi05.png)  
+
+I can also click and review the linked commit, which will take me straight into **GitHub** to show me exactly what changes were made to the file. (As you can se I only removed an empty 'space'):  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi06.png)  
+
+Next I want to create a **Pull Request** to merge the new changes into my **master** branch, remove my **branch** called `'ML-updateDocs'`, and as part of the pull request close the **Azure boards work item**.  
+
+To close or transition work items from **Github** the system will recognize `'fix'`, `'fixes'`, `'fixed'` applied to the **AB#{Id}** mention item that follows.  
+
+I can create a pull request directly from my **Codespace**:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi07.png)  
+
+Notice that I append the word `'fixed'` before my work item mention `'AB#3'`:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi08.png)  
+
+Select `'Merge Pull Request'` using your preferred method, `'Squash and Merge'`:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi09.png)  
+
+After the **Squash Merge**, you will have an option to delete/retain your **local** and **remote branch**, and optionally **suspend Codespace**:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi10.png)  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi11png)
+
+Notice that my Azure board work item is now `'Closed'`, with a link to the **Pull Request**:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi12png)
+
+Here are some more examples on how to transition board work items to a closed state:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/examples.png)  
 
 ## Integrating Azure DevOps Pipelines with GitHub
 
