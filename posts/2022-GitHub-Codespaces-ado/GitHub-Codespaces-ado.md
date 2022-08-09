@@ -29,7 +29,7 @@ Start by creating a new [GitHub repository](https://docs.github.com/en/get-start
 
 1. On your **GitHub account**, in the upper-right corner of any page, use the `'+'` drop-down menu, and select **New repository**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/ghrepo001.png)
 
-2. Type a **name** for your repository, add a **description**, select the **[repository visibility](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories#about-repository-visibility)**, select **Initialize this repository with a README** and click **Create repository**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/ghrepo002.png)
+2. Type a **name** for your repository, add a **description**, select the **[repository visibility](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories#about-repository-visibility)**, select **Initialize this repository with a README** and click **Create repository**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/ghrepo002.png)
 
 ## Creating an Azure DevOps project
 
