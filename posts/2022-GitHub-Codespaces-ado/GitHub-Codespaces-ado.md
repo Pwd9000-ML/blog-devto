@@ -59,7 +59,7 @@ Next we will [connect and link](https://docs.microsoft.com/en-us/azure/devops/bo
 
 6. You'll see the new **GitHub connection** under the project settings. You also have the ability to add/remove additional repositories or remove the GitHub connection entirely. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj08.png)
 
-**NOTE:** You can also review the **Azure Boards** application directly from your **GitHub account/org** by navigating to **'Settings' -> 'Integrations' -> 'Applications'**
+You can also review the **Azure Boards** application directly from your **GitHub account/org** by navigating to **'Settings' -> 'Integrations' -> 'Applications'**
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj09.png)
 
@@ -83,7 +83,7 @@ Note down the work item `'ID'`. In my case it is `'3'`:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi03.png)
 
-Now connect to your **GitHub** repository. Since my repository is hosted on **GitHub** I can make use of a **Codespace**, awesome! Check my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how to set up your **Codepsaces**.
+Since my repository is hosted on **GitHub** I can make use of a **Codespace**, awesome! Check my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how to set up **Codepsaces**.
 
 Using my **GitHub Codespace** I can update my `'README.md'` file, using my own **branch** I created called `'ML-updateDocs'`, and as a **commit message** for pushing the changes to source control I said: `'Update README.md - board work item AB#3'`
 
