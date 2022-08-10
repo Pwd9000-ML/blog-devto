@@ -39,9 +39,9 @@ Next we will create an **Azure DevOps** project.
 
 1. Log into your Azure DevOps organisation and select **New project**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj01.png)
 
-2. Enter information into the form provided. Provide a name for your project, an optional description, choose the [visibility](https://docs.microsoft.com/en-us/azure/devops/repos/tfvc/comparison-git-tfvc?view=azure-devops), and select `'Git'` as the source control type. Also select the work item [process](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/choose-process?view=azure-devops&tabs=agile-process). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj02.png)  
+2. Enter information into the form provided. Provide a name for your project, an optional description, choose the [visibility](https://docs.microsoft.com/en-us/azure/devops/repos/tfvc/comparison-git-tfvc?view=azure-devops), and select `'Git'` as the source control type. Also select the work item [process](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/choose-process?view=azure-devops&tabs=agile-process). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj02.png)
 
-**IMPORTANT:** For the purposes of this tutorial I have created a **'public'** GitHub repository and a **'private'** Azure DevOps project. Depending on your project and requirements, ensure you select the right **'visibility'** settings for your repository a well as your project.  
+**IMPORTANT:** For the purposes of this tutorial I have created a **'public'** GitHub repository and a **'private'** Azure DevOps project. Depending on your project and requirements, ensure you select the right **'visibility'** settings for your repository a well as your project.
 
 ## Integrating Azure DevOps Boards with GitHub
 
