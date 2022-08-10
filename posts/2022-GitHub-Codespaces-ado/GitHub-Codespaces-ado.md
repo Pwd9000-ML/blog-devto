@@ -167,17 +167,17 @@ You can even edit the **Azure Pipeline YAML** file stored on your **GitHub repos
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe12.png)
 
-Additionally, the Azure Pipelines App we installed on GitHub also integrates [GitHub Checks](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#github-checks) which allows for sending detailed information about the **Azure DevOps pipeline** status and test, code coverage, and errors.  
+Additionally, the Azure Pipelines App we installed on GitHub also integrates [GitHub Checks](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#github-checks) which allows for sending detailed information about the **Azure DevOps pipeline** status and test, code coverage, and errors.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe13.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe13.png)
 
-Now you can fully manage your **Azure DevOps Pipelines** using **Codespaces** as they are hosted on your **GitHub repository**. Pretty neat!  
+Now you can fully manage your **Azure DevOps Pipelines** using **Codespaces** as they are hosted on your **GitHub repository**. Pretty neat!
 
-**NOTE:** Learn all about pipeline triggers as well by looking at [CI triggers](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#ci-triggers) and [PR triggers](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#pr-triggers) to automatically trigger pipeline runs.  
+**NOTE:** Learn all about pipeline triggers as well by looking at [CI triggers](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#ci-triggers) and [PR triggers](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#pr-triggers) to automatically trigger pipeline runs.
 
 ## Conclusion
 
-Now that you have integrated **Azure DevOps Pipelines and Boards** with your **GitHub repository** you can make full use of **Codespaces** (and other great services on GitHub) to work on your applications and code without the need for a dedicated "developer workstation", and have the added benefit of being able to still use features such as **Azure Boards** and **Azure Pipelines** tightly integrated with your project.  
+Now that you have integrated **Azure DevOps Pipelines and Boards** with your **GitHub repository** you can make full use of **Codespaces** (and other great services on GitHub) to work on your applications and code without the need for a dedicated "developer workstation", and have the added benefit of being able to still use features such as **Azure Boards** and **Azure Pipelines** tightly integrated with your project.
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
 
