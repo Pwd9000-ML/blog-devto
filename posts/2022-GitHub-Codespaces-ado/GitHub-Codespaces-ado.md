@@ -167,7 +167,6 @@ You can even edit the **Azure Pipeline YAML** file stored on your **GitHub repos
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe12.png)  
 
-
 ## Conclusion
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
