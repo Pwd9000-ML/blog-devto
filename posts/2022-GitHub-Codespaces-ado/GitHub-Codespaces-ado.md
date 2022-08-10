@@ -139,33 +139,33 @@ Next let's look at how you can integrate and even trigger your **Azure DevOps Pi
 
 GitHub does also offers it's very own automation platform, very similar to **Azure DevOps Pipelines**, called **GitHub Actions**, it even shares an almost identical **YAML** syntax and structure for building state of the art automation workflows. I won't be going into **GitHub Actions** in this post, but I highly recommend migrating your **Azure DevOps pipelines** to **[GitHub actions](https://docs.github.com/en/actions)** where applicable.
 
-But for the purpose of this tutorial I will be showing you how you can integrate **Azure DevOps pipelines** with GitHub.  
+But for the purpose of this tutorial I will be showing you how you can integrate **Azure DevOps pipelines** with GitHub.
 
-1. In your DevOps project, navigate to **Pipelines** and select **Create Pipeline**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe01.png)  
+1. In your DevOps project, navigate to **Pipelines** and select **Create Pipeline**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe01.png)
 
-2. Next click on **GitHub**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe02.png)  
+2. Next click on **GitHub**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe02.png)
 
-3. Next click **'Autorize AzurePipelines'** (Requires authentication).  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe03.png)  
+3. Next click **'Autorize AzurePipelines'** (Requires authentication). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe03.png)
 
-4. Select the **GitHub repository** where you want to link your **Azure Pipelines**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe04.png)  
+4. Select the **GitHub repository** where you want to link your **Azure Pipelines**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe04.png)
 
-5. Review the selected repository you want to link to and click on **'Approve & Install'**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe05.png)  
+5. Review the selected repository you want to link to and click on **'Approve & Install'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe05.png)
 
-6. After the **AzurePipelines** application is installed on your GitHub account, select a pipeline template.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe06.png)  **NOTE:** My Azure DevOps project is 'Private' whilst my GitHub repository is 'Public', visibility of both Project and repositories can be amended accordingly.  
+6. After the **AzurePipelines** application is installed on your GitHub account, select a pipeline template. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe06.png) **NOTE:** My Azure DevOps project is 'Private' whilst my GitHub repository is 'Public', visibility of both Project and repositories can be amended accordingly.
 
-7. Amend the **path** and **filename** for your pipeline. In my case I used `'AzurePipelines/hello-world.yml'`, and select **'Save and run'**  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe07.png)  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe08.png)  
+7. Amend the **path** and **filename** for your pipeline. In my case I used `'AzurePipelines/hello-world.yml'`, and select **'Save and run'** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe07.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe08.png)
 
-Notice that the pipeline run completed successfully and can be checked from Azure DevOps, but the **YAML** file is stored on your **GitHub repository**.  
+Notice that the pipeline run completed successfully and can be checked from Azure DevOps, but the **YAML** file is stored on your **GitHub repository**.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe09.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe09.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe10.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe10.png)
 
-You can even edit the **Azure Pipeline YAML** file stored on your **GitHub repository** directly from Azure Devops. (Requires authorisation).  
+You can even edit the **Azure Pipeline YAML** file stored on your **GitHub repository** directly from Azure Devops. (Requires authorisation).
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe11.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe11.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe12.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe12.png)
 
 Additionally, the Azure Pipelines App we installed on GitHub also integrates [GitHub Checks](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#github-checks) which allows for sending detailed information about the **Azure DevOps pipeline** status and test, code coverage, and errors.  
 
