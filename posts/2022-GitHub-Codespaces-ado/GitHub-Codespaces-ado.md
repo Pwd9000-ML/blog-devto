@@ -45,11 +45,11 @@ Next we will create an **Azure DevOps** project.
 
 ## Integrating Azure DevOps Boards with GitHub
 
-Next we will [connect and link](https://docs.microsoft.com/en-us/azure/devops/boards/github/connect-to-github?view=azure-devops) our **DevOps boards** to **GitHub**.
+Next we will [connect and link](https://docs.microsoft.com/en-us/azure/devops/boards/github/connect-to-github?view=azure-devops) **DevOps boards** to **GitHub**.
 
 1. Choose **'Project Settings'** and under the **Boards** section select **'GitHub connections'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj03.png)
 
-2. Choose **Connect your GitHub account** to use your GitHub account credentials. (**NOTE:** Alternatively you can also connect to your GitHub account using a [Personal Access Token (PAT)](https://docs.microsoft.com/en-us/azure/devops/boards/github/connect-to-github?view=azure-devops#github-pat) instead.) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj04.png)
+2. Choose **Connect your GitHub account** to use your GitHub account credentials.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj04.png)  **NOTE:** Alternatively you can also connect to your GitHub account using a [Personal Access Token (PAT)](https://docs.microsoft.com/en-us/azure/devops/boards/github/connect-to-github?view=azure-devops#github-pat) instead.
 
 3. Next click **'Autorize AzureBoards'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/proj05.png)
 
