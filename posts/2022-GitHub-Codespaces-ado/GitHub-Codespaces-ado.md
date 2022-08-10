@@ -139,7 +139,7 @@ Next let's look at how you can integrate and even trigger your **Azure DevOps Pi
 
 GitHub does also offers it's very own automation platform, very similar to **Azure DevOps Pipelines**, called **GitHub Actions**, it even shares an almost identical **YAML** syntax and structure for building state of the art automation workflows. I won't be going into **GitHub Actions** in this post, but I highly recommend migrating your **Azure DevOps pipelines** to **[GitHub actions](https://docs.github.com/en/actions)** where applicable.
 
-But for the purpose of this tutorial I will be showing you how you can integrate and continue using your existing **Azure DevOps pipelines** and automation with GitHub.  
+But for the purpose of this tutorial I will be showing you how you can integrate **Azure DevOps pipelines** with GitHub.  
 
 1. In your DevOps project, navigate to **Pipelines** and select **Create Pipeline**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe01.png)  
 
