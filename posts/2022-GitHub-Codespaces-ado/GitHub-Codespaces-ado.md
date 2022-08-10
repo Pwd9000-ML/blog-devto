@@ -121,7 +121,17 @@ Notice that my Azure board work item is now `'Closed'`, with a link to the **Pul
 
 Here are some more examples on how to transition board work items to a closed state:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/examples.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/examples.png)  
+
+## Create a DevOps badge
+
+You can also very easily create a status badges for your GitHub repo **'README.md'** to show what work items are pending for example.  
+
+1. Navigate to your Azure DevOps Boards tab and select the configuration cog:  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/badge01.png)  
+
+2. Copy the **Azure boards** status badge markdown sample. (Optional: Allow anonymous users to access the status badge and include all columns):  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/badge02.png)  
+
+3. Paste the status badge markdown inside of the **README.md** file inside of your **GitHub repository**:  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/badge03.png)  
 
 ## Integrating DevOps Pipelines with GitHub
 
