@@ -159,13 +159,13 @@ But for the purpose of this tutorial I will be showing you how you can integrate
 
 7. Amend the **path** and **filename** for your pipeline. In my case I used `'AzurePipelines/hello-world.yml'`, and select **'Save and run'** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe07.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe08.png)
 
-Notice that the pipeline run completed successfully and can be checked from Azure DevOps, but the **YAML** file is stored on your **GitHub repository**.
+Notice that the pipeline run completed successfully and can be checked from Azure DevOps, but the **YAML** file is stored on the **GitHub repository** you selected.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe09.png)
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe10.png)
 
-You can even edit the **Azure Pipeline YAML** file stored on your **GitHub repository** directly from Azure Devops. (Requires authorisation).
+You can also edit the **Azure Pipeline YAML** file stored on your **GitHub repository** directly from Azure Devops by selecting **'Edit pipeline'** (Requires authorisation).
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/pipe11.png)
 
