@@ -1,6 +1,6 @@
 ---
 title: Integrating Azure DevOps with GitHub - Hybrid Model
-published: false
+published: true
 description: Integrating Azure DevOps with GitHub - Hybrid Model
 tags: 'github, codespaces, azuredevops, development'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/main01.png'
@@ -11,7 +11,7 @@ series: GitHub Codespaces Pro Tips
 
 ## Overview
 
-Welcome to the next part of my series **GitHub Codespaces Pro Tips**, in the last part we spoke about what a **Codespace** is and how to get started with your first **Dev container**.
+Welcome to another part of my series **['GitHub Codespaces Pro Tips'](https://dev.to/pwd9000/series/19195)**. In the last part we spoke about what a **Codespace** is and how to get started with your first **Dev container**.
 
 Since **Codespaces** is a service on **GitHub**, you might be wondering or thinking that the service is limited to **GitHub users** only. The fact is that **Codespaces** is a service that is linked to a **Git** repository hosted on **GitHub**, but that is not a limiting factor to be able to use this great service along with other great services such as **Azure DevOps Boards** and **Azure DevOps Pipelines**.
 
