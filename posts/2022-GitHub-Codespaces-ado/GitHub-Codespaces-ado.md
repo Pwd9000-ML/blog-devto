@@ -83,7 +83,7 @@ Note down the work item `'ID'`. In my case it is `'3'`:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi03.png)
 
-Since my repository is hosted on **GitHub** I can make use of a **Codespace**, awesome! Check my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how to set up **Codepsaces**.
+Since my repository is hosted on **GitHub**, I can make use of a **Codespace**, awesome! Check my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how to set up **Codepsaces**.
 
 Using my **GitHub Codespace** I can update my `'README.md'` file, using my own **branch** I created called `'ML-updateDocs'`, and as a **commit message** for pushing the changes to source control I said: `'Update README.md - board work item AB#3'`
 
@@ -123,9 +123,14 @@ Notice that my Azure board work item is now `'Closed'`, with a link to the **Pul
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/wi12.png)
 
-Here are some more examples on how to transition board work items to a closed state:
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/examples.png)
+Here are more examples on how to transition board work items to a closed state:
+|--------------------|------------|
+| **Commit message** | **Action** |
+| `Fixed AB#123`                                           | Links and transitions the work item to the "done" state. |
+| `Adds a new feature, fixes AB#123`                       | Links and transitions the work item to the "done" state. |
+| `Fixes AB#123, AB#124, and AB#126`                       | Links to Azure Boards work items 123, 124, and 126. Transitions only the first item, 123 to the "done" state. |
+| `Fixes AB#123, Fixes AB#124, Fixes AB#125`               | Links to Azure Boards work items 123, 124, and 126. Transitions all items to the "done" state. |
+| `Fixing multiple bugs: issue #123 and user story AB#234` | Links to GitHub issue 123 and Azure Boards work item 234. No transitions. |
 
 ## Create a DevOps badge
 
@@ -136,6 +141,15 @@ You can also very easily create a status badges for your GitHub repo **'README.m
 2. Copy the **Azure boards** status badge markdown sample. (Optional: Allow anonymous users to access the status badge and include all columns): ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/badge02.png)
 
 3. Paste the status badge markdown inside of the **README.md** file inside of your **GitHub repository**: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-ado/assets/badge03.png)
+
+To summarise, Azure Boards-GitHub integration supports the following operational tasks:
+
+- Create links between work items and GitHub commit, pull requests, and issues based on GitHub mentions.
+- Support state transition of work items to a **"Done"** or **"Completed"** state when using GitHub mention by using `fix`, `fixes`, or `fixed`.
+- Support full traceability by posting a discussion comment to GitHub when linking from a work item to a GitHub commit, pull requests, or issue.
+- Show linked to GitHub code artifacts within the work item Development section.
+- Show linked to GitHub artifacts as annotations on Kanban board cards.
+- Support status badges of Kanban board columns added to GitHub repositories.
 
 ## Integrating DevOps Pipelines with GitHub
 
