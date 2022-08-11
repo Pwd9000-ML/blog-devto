@@ -31,6 +31,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **11/08/2022** | [Integrating Azure DevOps with GitHub - Hybrid Model](https://dev.to/pwd9000/integrating-azure-devops-with-github-hybrid-model-3pkg) | Blog/Website Post | GitHub | DevOps, Automation, Codespaces, Tutorial |
 | **06/08/2022** | [Introduction to GitHub Codespaces - Building your first Dev Container](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) | Blog/Website Post | GitHub | DevOps, Automation, Codespaces, Tutorial |
 | **01/08/2022** | [Auto generate documentation from Terraform modules](https://dev.to/pwd9000/auto-generate-documentation-from-terraform-modules-42bl) | Blog/Website Post | GitHub, Terraform | DevOps, Automation, IaC, Tutorial |
 | **28/07/2022** | [Manage and maintain GitHub with Terraform](https://dev.to/pwd9000/manage-and-maintain-github-with-terraform-2k86) | Blog/Website Post | GitHub, Terraform | DevOps, Automation, IaC, Tutorial |
