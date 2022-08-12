@@ -19,19 +19,19 @@ We will be using a custom **docker image** that will automatically provision a *
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/diag01.png)
 
-We will also look at the **Codespace/Runner** lifecycle. By default any **Active** codespaces that becomes **idle** will go into a hibernation mode after **30 minutes** to save on compute costs, so we will look at how this timeout can be configured and also ensure that the **self hosted runner** will be removed cleanly and unregistered once the codespace is no longer 'active' or 'in-use', so that the self hosted runner is only available when the Codespace is.  
+We will also look at the **Codespace/Runner** lifecycle. By default any **Active** codespaces that becomes **idle** will go into a hibernation mode after **30 minutes** to save on compute costs, so we will look at how this timeout can be configured and also ensure that the **self hosted runner** will be removed cleanly and unregistered once the codespace is no longer 'active' or 'in-use', so that the self hosted runner is only available when the Codespace is.
 
-We will actually be using the same **docker** configuration from a post on another blog series of mine called, **['Self Hosted GitHub Runner containers on Azure'](https://dev.to/pwd9000/series/18434)**. So do take a look at that series as well to get a better understanding on how to build and host your self hosted GitHub runners.  
+We will actually be using the same **docker** configuration from a post on another blog series of mine called, **['Self Hosted GitHub Runner containers on Azure'](https://dev.to/pwd9000/series/18434)**. So do take a look at that series as well to get a better understanding on how to build and host your self hosted GitHub runners.
 
 ## Getting started
 
-All of the code samples and examples are also available on my [GitHub Codespaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/tree/master/.devcontainer/codespaceRunner).  
+All of the code samples and examples are also available on my [GitHub Codespaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/tree/master/.devcontainer/codespaceRunner).
 
-Since **Codespaces/Dev containers** are based on **docker images**, we will create a **custom linux docker image** that will start and bootstrap a runner agent as the codespace starts up.  
+Since **Codespaces/Dev containers** are based on **docker images**, we will create a **custom linux docker image** that will start and bootstrap a runner agent as the codespace starts up.
 
-We will actually use the same example docker image from my previous blog post, ['Create a Docker based Self Hosted GitHub runner Linux container'](https://dev.to/pwd9000/create-a-docker-based-self-hosted-github-runner-linux-container-48dh).  So do check out that post for detailed info on how the container works.  
+We will actually use the same example docker image from my previous blog post, ['Create a Docker based Self Hosted GitHub runner Linux container'](https://dev.to/pwd9000/create-a-docker-based-self-hosted-github-runner-linux-container-48dh). So do check out that post for detailed info on how the container works.
 
-In your **GitHub repository** create a sub folder under `'.devcontainer'`, in my case I have called my codespace configuration folder `'codepsaceRunner'`.  
+In your **GitHub repository** create a sub folder under `'.devcontainer'`, in my case I have called my codespace configuration folder `'codepsaceRunner'`.
 
 Next create the following [dockerfile](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/dockerfile). (Amend the file if needed for your own `tooling` and `LABELS`):
 
@@ -77,7 +77,7 @@ USER docker
 ENTRYPOINT ["./start.sh"]
 ```
 
-Create another folder called `'scripts'` and place the following script inside: ['start.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/scripts/start.sh)  
+Create another folder called `'scripts'` and place the following script inside: ['start.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/scripts/start.sh)
 
 ```bash
 #!/bin/bash
@@ -106,7 +106,7 @@ trap 'cleanup; exit 143' TERM
 ./run.sh & wait $!
 ```
 
-This script will start up with the **Codespace/Dev container** and bootstrap the **GitHub runner** when the Codespace starts. But you will notice that we need to provide the script some parameters:  
+This script will start up with the **Codespace/Dev container** and bootstrap the **GitHub runner** when the Codespace starts. But you will notice that we need to provide the script some parameters:
 
 ```bash
 GH_OWNER=$GH_OWNER
@@ -114,9 +114,13 @@ GH_REPOSITORY=$GH_REPOSITORY
 GH_TOKEN=$GH_TOKEN
 ```
 
+<<<<<<< HEAD
 These parameters (environment variables) are used to configure and **register** the self hosted github runner against the correct repository.  
+=======
+These parameters (environment variables) are used to configure the and **register** the self hosted github runner against the correct repository.
+>>>>>>> 87f63abcfbdb60886f850634ab35e52ddc2a0dc4
 
-We need to provide the GitHub account/org name via the `'GH_OWNER'` environment variable, repository name via `GH_REPOSITORY` and a PAT token with `GH_TOKEN`.  
+We need to provide the GitHub account/org name via the `'GH_OWNER'` environment variable, repository name via `GH_REPOSITORY` and a PAT token with `GH_TOKEN`.
 
 You can store sensitive information, like tokens, that you want to access in your codespaces via environment variables. Let's configure these parameters as encrypted [secrets for codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces):  
 
