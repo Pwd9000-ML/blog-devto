@@ -19,9 +19,118 @@ We will be using a custom **docker image** that will automatically provision a *
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/diag01.png)
 
-We will also look at the **Codespace/Runner** lifecycle. By default any **Active** codespaces that becomes **idle** will go into a hibernation mode after **30 minutes** to save on compute costs, so we will look at how this timeout can be configured and also ensure that the **self hosted runner** will be removed cleanly and unregistered once the codespace is no longer 'active' or 'in-use', so that the self hosted runner is only available when the Codespace is.
+We will also look at the **Codespace/Runner** lifecycle. By default any **Active** codespaces that becomes **idle** will go into a hibernation mode after **30 minutes** to save on compute costs, so we will look at how this timeout can be configured and also ensure that the **self hosted runner** will be removed cleanly and unregistered once the codespace is no longer 'active' or 'in-use', so that the self hosted runner is only available when the Codespace is.  
 
-We will actually be using the same **docker** configuration from a post on another blog series of mine called, **['Self Hosted GitHub Runner containers on Azure'](https://dev.to/pwd9000/series/18434)**. So do take a look at that series as well to get a better understanding on how to build and host your self hosted GitHub runners.
+We will actually be using the same **docker** configuration from a post on another blog series of mine called, **['Self Hosted GitHub Runner containers on Azure'](https://dev.to/pwd9000/series/18434)**. So do take a look at that series as well to get a better understanding on how to build and host your self hosted GitHub runners.  
+
+## Getting started
+
+All of the code samples and examples are also available on my [GitHub Codespaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/tree/master/.devcontainer/codespaceRunner).  
+
+Since **Codespaces/Dev containers** are based on **docker images**, we will create a **custom linux docker image** that will start and bootstrap a runner agent as the codespace starts up.  
+
+We will actually use the same example docker image from my previous blog post, ['Create a Docker based Self Hosted GitHub runner Linux container'](https://dev.to/pwd9000/create-a-docker-based-self-hosted-github-runner-linux-container-48dh).  So do check out that post for detailed info on how the container works.  
+
+In your **GitHub repository** create a sub folder under `'.devcontainer'`, in my case I have called my codespace configuration folder `'codepsaceRunner'`.  
+
+Next create the following [dockerfile](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/dockerfile). (Amend the file if needed for your own `tooling` and `LABELS`):
+
+```dockerfile
+# base image
+FROM ubuntu:20.04
+
+#input GitHub runner version argument
+ARG RUNNER_VERSION
+ENV DEBIAN_FRONTEND=noninteractive
+
+LABEL Author="Marcel L"
+LABEL Email="pwd9000@hotmail.co.uk"
+LABEL GitHub="https://github.com/Pwd9000-ML"
+LABEL BaseImage="ubuntu:20.04"
+LABEL RunnerVersion=${RUNNER_VERSION}
+
+# update the base packages + add a non-sudo user
+RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
+
+# install the packages and dependencies along with jq so we can parse JSON (add additional packages as necessary)
+RUN apt-get install -y --no-install-recommends \
+    curl nodejs wget unzip vim git azure-cli jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip terraform
+
+# cd into the user directory, download and unzip the github actions runner
+RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
+    && curl -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
+    && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
+
+# install some additional dependencies
+RUN chown -R docker ~docker && /home/docker/actions-runner/bin/installdependencies.sh
+
+# add over the start.sh script
+ADD scripts/start.sh start.sh
+
+# make the script executable
+RUN chmod +x start.sh
+
+# set the user to "docker" so all subsequent commands are run as the docker user
+USER docker
+
+# set the entrypoint to the start.sh script
+ENTRYPOINT ["./start.sh"]
+```
+
+Create another folder called `'scripts'` and place the following script inside: ['start.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/scripts/start.sh)  
+
+```bash
+#!/bin/bash
+
+GH_OWNER=$GH_OWNER
+GH_REPOSITORY=$GH_REPOSITORY
+GH_TOKEN=$GH_TOKEN
+
+RUNNER_SUFFIX=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 5 | head -n 1)
+RUNNER_NAME="dockerNode-${RUNNER_SUFFIX}"
+
+REG_TOKEN=$(curl -sX POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${GH_TOKEN}" https://api.github.com/repos/${GH_OWNER}/${GH_REPOSITORY}/actions/runners/registration-token | jq .token --raw-output)
+
+cd /home/docker/actions-runner
+
+./config.sh --unattended --url https://github.com/${GH_OWNER}/${GH_REPOSITORY} --token ${REG_TOKEN} --name ${RUNNER_NAME}
+
+cleanup() {
+    echo "Removing runner..."
+    ./config.sh remove --unattended --token ${REG_TOKEN}
+}
+
+trap 'cleanup; exit 130' INT
+trap 'cleanup; exit 143' TERM
+
+./run.sh & wait $!
+```
+
+This script will start up with the **Codespace/Dev container** and bootstrap the **GitHub runner** when the Codespace starts. But you will notice that we need to provide the script some parameters:  
+
+```bash
+GH_OWNER=$GH_OWNER
+GH_REPOSITORY=$GH_REPOSITORY
+GH_TOKEN=$GH_TOKEN
+```
+
+These parameters (environment variables) are used to configure the and **register** the self hosted github runner against the correct repository.  
+
+We need to provide the GitHub account/org name via the `'GH_OWNER'` environment variable, repository name via `GH_REPOSITORY` and a PAT token with `GH_TOKEN`.  
+
+Luckily we can use xxxx
+
+## Note on Personal Access Token (PAT)
+
+See [creating a personal access token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) on how to create a GitHub PAT token. PAT tokens are only displayed once and are sensitive, so ensure they are kept safe.
+
+The minimum permission scopes required on the PAT token to register a self hosted runner are: `"repo"`, `"read:org"`:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/PAT.png)
+
+**Tip:** I recommend only using short lived PAT tokens and generating new tokens whenever new agent runner registrations are required.
+
+## Deploying the Codespace GitHub runner
 
 ## Conclusion
 
