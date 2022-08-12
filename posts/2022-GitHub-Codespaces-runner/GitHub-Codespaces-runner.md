@@ -114,19 +114,18 @@ GH_REPOSITORY=$GH_REPOSITORY
 GH_TOKEN=$GH_TOKEN
 ```
 
-<<<<<<< HEAD
-These parameters (environment variables) are used to configure and **register** the self hosted github runner against the correct repository.  
-=======
-These parameters (environment variables) are used to configure the and **register** the self hosted github runner against the correct repository.
->>>>>>> 87f63abcfbdb60886f850634ab35e52ddc2a0dc4
+<<<<<<< HEAD These parameters (environment variables) are used to configure and **register** the self hosted github runner against the correct repository.  
+======= These parameters (environment variables) are used to configure the and **register** the self hosted github runner against the correct repository.
+
+> > > > > > > 87f63abcfbdb60886f850634ab35e52ddc2a0dc4
 
 We need to provide the GitHub account/org name via the `'GH_OWNER'` environment variable, repository name via `GH_REPOSITORY` and a PAT token with `GH_TOKEN`.
 
-You can store sensitive information, like tokens, that you want to access in your codespaces via environment variables. Let's configure these parameters as encrypted [secrets for codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces):  
+You can store sensitive information, like tokens, that you want to access in your codespaces via environment variables. Let's configure these parameters as encrypted [secrets for codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces):
 
-1. Navigate to the repository `'Settings'` page and select `'Secrets -> Codespaces'`, click on `'New repository secret'`.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/sec01.png)  
+1. Navigate to the repository `'Settings'` page and select `'Secrets -> Codespaces'`, click on `'New repository secret'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/sec01.png)
 
-2. Create each **Codespace secret** with the values for your environment.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/sec02.png)  
+2. Create each **Codespace secret** with the values for your environment. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/sec02.png)
 
 ## Note on Personal Access Token (PAT)
 
@@ -140,11 +139,11 @@ The minimum permission scopes required on the PAT token to register a self hoste
 
 ## Deploying the Codespace GitHub runner
 
-As you can see in my example screenshot below, my repository does not have any runners configured.  
+As you can see in my example screenshot below, my repository does not have any runners configured.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run01.png)
 
-1. Navigate to your repository, click on the `'<> Code'` dropdown and select the `'Codespaces'` tab, select the `'Advanced'` option to **Configure and create codespace**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run02.png)  
+1. Navigate to your repository, click on the `'<> Code'` dropdown and select the `'Codespaces'` tab, select the `'Advanced'` option to **Configure and create codespace**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run02.png)
 
 ## Conclusion
 
