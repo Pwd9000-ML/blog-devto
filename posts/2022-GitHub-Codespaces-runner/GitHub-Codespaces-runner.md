@@ -19,7 +19,7 @@ We will be using a custom **docker image** that will automatically provision a *
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/diag01.png)
 
-We will also look at the **Codespace/Runner** lifecycle. By default any **Active** codespaces that becomes **idle** will go into a hibernation mode after **30 minutes** to save on compute costs, so we will look at how this timeout can be configured and also ensure that the **self hosted runner** will be removed cleanly and unregistered once the codespace is no longer 'active' or 'in-use'.  
+We will also look at the **Codespace/Runner** lifecycle. By default any **Active** codespaces that becomes **idle** will go into a hibernation mode after **30 minutes** to save on compute costs, so we will look at how this timeout can be configured and also ensure that the **self hosted runner** will be removed cleanly and unregistered once the codespace is no longer 'active' or 'in-use', so that the self hosted runner is only available when the Codespace is.  
 
 We will actually be using the same **docker** configuration from a post on another blog series of mine called, **['Self Hosted GitHub Runner containers on Azure'](https://dev.to/pwd9000/series/18434)**. So do take a look at that series as well to get a better understanding on how to build and host your self hosted GitHub runners.  
 
