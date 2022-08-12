@@ -1,5 +1,5 @@
 ---
-title: Run Docker based GitHub runner containers on Azure Container Apps (ACA)
+title: Autoscaling self hosted GitHub runner containers with Azure Container Apps (ACA)
 published: true
 description: Running Docker based GitHub runner containers on Azure Container Apps (ACA)
 tags: 'github, azure, docker, containers'
