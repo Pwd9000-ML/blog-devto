@@ -173,7 +173,7 @@ trap 'cleanup' SIGINT SIGTERM
 /home/vscode/actions-runner/run.sh & wait $!
 ```
 
-The second script will start up with the **Codespace/Dev container** and bootstraps the **GitHub runner** when the Codespace starts. But you will notice that we need to provide the script some parameters:
+The second script will start up with the **Codespace/Dev container** and bootstraps the **GitHub runner** when the Codespace starts. But you will notice that we need to provide the script with some parameters:
 
 ```bash
 GH_OWNER=$GH_OWNER
