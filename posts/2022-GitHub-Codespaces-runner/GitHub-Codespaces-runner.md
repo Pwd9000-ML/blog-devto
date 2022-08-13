@@ -123,7 +123,7 @@ Then create a `'devcontainer.json'` file. (See my [previous blog post](https://d
 }
 ```
 
-**NOTE:** You can amend the [GitHub runner version](https://github.com/actions/runner/releases) by amending the **build args** attribute **RUNNER_VERSION**.  
+**NOTE:** You can amend the [GitHub runner version](https://github.com/actions/runner/releases) by amending the **build args** attribute **RUNNER_VERSION**.
 
 ```JSON
 "build": {
