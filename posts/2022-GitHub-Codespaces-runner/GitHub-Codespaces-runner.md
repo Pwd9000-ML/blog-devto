@@ -133,7 +133,7 @@ Then create a `'devcontainer.json'` file. (See my [previous blog post](https://d
     }
 ```
 
-Next we will create a folder with a few scripts that will be used by our **docker image**.   
+Next we will create a folder with a few scripts that will be used by our **docker image**.
 
 Create a folder called `'library-scripts'` and place the following two script inside: ['start.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/scripts/start.sh) and ['common-debian.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/library-scripts/common-debian.sh)
 
