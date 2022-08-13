@@ -123,6 +123,16 @@ Then create a `'devcontainer.json'` file. (See my [previous blog post](https://d
 }
 ```
 
+**NOTE:** You can amend the [GitHub runner version](https://github.com/actions/runner/releases) by amending the **build args** attribute **RUNNER_VERSION**.  
+
+```JSON
+"build": {
+    "args": {
+        "UPGRADE_PACKAGES": "true",
+        "RUNNER_VERSION": "2.295.0"
+    }
+```
+
 Next we will create a few scripts that will be used by our **docker image**. Create a folder called `'library-scripts'` and place the following two script inside: ['start.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/scripts/start.sh) and ['common-debian.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/library-scripts/common-debian.sh)
 
 Let's take a closer look at each of the scripts.
