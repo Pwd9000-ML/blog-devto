@@ -155,7 +155,7 @@ HOSTNAME=$(hostname)
 RUNNER_SUFFIX="runner"
 RUNNER_NAME="${HOSTNAME}-${RUNNER_SUFFIX}"
 USER_NAME_LABEL=$(git config --get user.name)
-REPO_NAME_LABEL=$(basename `git rev-parse --show-toplevel`)
+REPO_NAME_LABEL="$GH_REPOSITORY"
 
 REG_TOKEN=$(curl -sX POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${GH_TOKEN}" https://api.github.com/repos/${GH_OWNER}/${GH_REPOSITORY}/actions/runners/registration-token | jq .token --raw-output)
 
@@ -173,7 +173,7 @@ trap 'cleanup' SIGINT SIGTERM
 /home/vscode/actions-runner/run.sh & wait $!
 ```
 
-The second script will start up with the **Codespace/Dev container** and bootstraps the **GitHub runner** when the Codespace starts. But you will notice that we need to provide the script with some parameters:
+The second script will start up with the **Codespace/Dev container** and bootstraps the **GitHub runner** when the Codespace starts. Notice that we need to provide the script with some parameters:
 
 ```bash
 GH_OWNER=$GH_OWNER
@@ -185,17 +185,17 @@ These parameters (environment variables) are used to configure and **register** 
 
 We need to provide the GitHub account/org name via the `'GH_OWNER'` environment variable, repository name via `GH_REPOSITORY` and a PAT token with `GH_TOKEN`.
 
-You can store sensitive information, like tokens, that you want to access in your codespaces via environment variables. Let's configure these parameters as encrypted [secrets for codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces):
+You can store sensitive information, such as tokens, that you want to access in your codespaces via environment variables. Let's configure these parameters as encrypted [secrets for codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces):
 
 1. Navigate to the repository `'Settings'` page and select `'Secrets -> Codespaces'`, click on `'New repository secret'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/sec01.png)
 
 2. Create each **Codespace secret** with the values for your environment. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/sec02.png)
 
-**NOTE:** When the **self hosted runner** is started up and registered, it will also be labeled with the **user name** and **repository name**, from the following lines. (These labels can be amended if necessary):
+**NOTE:** When the **self hosted runner** is started up and registered, it will also be labeled with the **'user name'** and **'repository name'**, from the following lines. (These labels can be amended if necessary):
 
 ```bash
 USER_NAME_LABEL=$(git config --get user.name)
-REPO_NAME_LABEL=$(basename `git rev-parse --show-toplevel`)
+REPO_NAME_LABEL="$GH_REPOSITORY"
 ```
 
 ## Note on Personal Access Token (PAT)
@@ -210,13 +210,51 @@ The minimum permission scopes required on the PAT token to register a self hoste
 
 ## Deploying the Codespace GitHub runner
 
-As you can see in my example screenshot below, my repository does not have any runners configured.
+As you can see in the screenshot below, my repository does not have any runners configured.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run01.png)
 
-1. Navigate to your repository, click on the `'<> Code'` dropdown and select the `'Codespaces'` tab, select the `'Advanced'` option to **Configure and create codespace**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run02.png)
+1. Navigate to your repository, click on the `'<> Code'` dropdown and select the `'Codespaces'` tab, select the `'Advanced'` option to **Configure and create codespace**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run02.png)  
+
+2. Select the relevant `'Branch'`, `'Region'`, `'Machine type'` and for the `'Dev container configuration'`, select the `'codespaceRunner'` config we created and click on `'Createcodespace'`.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run03.png)  
+
+It takes a few minutes to build and start the container, but you can view the logs whilst the codespace is provisioning in real time.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run04.png)  
+
+To speed up codespace creation, repository administrators can enable **Codespaces prebuilds** for a repository. For more information, see "[About GitHub Codespaces prebuilds](https://docs.github.com/en/codespaces/prebuilding-your-codespaces/about-github-codespaces-prebuilds)."  
+
+Once the **codespace** is provisioned, you can see the **hostname** of the underlying compute by typing in the terminal: `'hostname'`  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run05.png)  
+
+Navigate to your repository **settings** page, and notice that there is now a **self hosted GitHub runner** registered with **labels** of your **user name** and **repo name**. The **runner name** matches with the **Codepsace hostname**.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run06.png)  
+
+## Managing Codespace/Runner lifecycle
+
+When you **stop** your **codepsace** the self hosted runner will not be removed but will only go into an `'Offline'` state, and when you start the codespace up again the **runner** will be available again.  
+
+Also, as mentioned, by default any **Active** codespaces that are not **stopped** manually, will be **idle** and go into a hibernation mode after **30 minutes** to save on compute costs. Let's take a look at how we can amend [codespaces lifecycle](https://docs.github.com/en/codespaces/developing-in-codespaces/codespaces-lifecycle).  
+
+1. In the upper-right corner of any page, click your profile photo, then click **Settings** and in the "Code, planning, and automation" section of the sidebar, click  **Codespaces**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/time01.png)  
+
+2. Under "Default idle timeout", enter the time that you want, then click Save. The time must be between 5 minutes and 240 minutes (4 hours).  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/time02.png)  
 
 ## Conclusion
+
+As you can see, it is pretty easy to run **self hosted action runners** inside of your **Codespace** and utilize the compute power of the **dev container** itself.  
+
+By doing this we can solve a few problems with one solution.
+
+1. Cost - Not wasting cost and compute power by needing to add **self hosted runners** along with our **Codespaces**.
+2. Administration - Having both services running on the same compute and sharing the same configuration and tooling saves time on administration and maintenance.  
+3. Availability - Having **self hosted runners** available as part of the running **codespace**.  
+
+**IMPORTANT:** Do note that making use of **runner labels** is very important when **triggring/running actions** against runners or runner groups provisioned on a **Codespace**.  Hence each runner is labeled with the **user name** and **repo name**.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/label01.png)  
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
 
