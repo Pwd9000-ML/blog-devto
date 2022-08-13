@@ -257,15 +257,15 @@ By doing this we can solve a few problems with one solution.
 
 **IMPORTANT:** Do note that making use of **runner labels** is very important when **triggring/running actions** against runners or runner groups provisioned on a **Codespace**. Hence each runner is labeled with the **user name** and **repo name**.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/label01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/label01.png)
 
-## Example  
+## Example
 
 A self-hosted runner automatically receives certain labels when it is added to GitHub Actions. These are used to indicate its operating system and hardware platform:
 
 - `self-hosted`: Default label applied to all self-hosted runners.
 - `linux`, `windows`, or `macOS`: Applied depending on operating system.
-- `x64`, `ARM`, or `ARM64`: Applied depending on hardware architecture.  
+- `x64`, `ARM`, or `ARM64`: Applied depending on hardware architecture.
 
 You can use your workflow's YAML to send jobs to a combination of these labels. In this example, a self-hosted runner that matches all three labels will be eligible to run the job:
 
@@ -275,11 +275,11 @@ runs-on: [self-hosted, linux, ARM64]
 
 - `self-hosted` - Run this job on a self-hosted runner.
 - `linux` - Only use a Linux-based runner.
-- `ARM64` - Only use a runner based on ARM64 hardware.  
+- `ARM64` - Only use a runner based on ARM64 hardware.
 
 The default labels are fixed and cannot be changed or removed. Consider using custom labels if you need more control over job routing.
 
-As you can see from this [example workflow](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.github/workflows/testCodespaceRunner.yml) in my repository, I am routing my **GitHub Action** jobs, specifically to my own **self hosted runner** using my **user name** and **repo name** labels with `'runs-on'`:  
+As you can see from this [example workflow](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.github/workflows/testCodespaceRunner.yml) in my repository, I am routing my **GitHub Action** jobs, specifically to my own **self hosted runner** using my **user name** and **repo name** labels with `'runs-on'`:
 
 ```yml
 name: Runner on Codespace test
@@ -291,11 +291,11 @@ jobs:
   testRunner:
     runs-on: [self-hosted, Pwd9000, GitHub-Codespaces-Lab]
     steps:
-    - uses: actions/checkout@v3.0.2
-    - name: Display Terraform Version
-      run: terraform --version
-    - name: Display Azure-CLI Version
-      run: az --version
+      - uses: actions/checkout@v3.0.2
+      - name: Display Terraform Version
+        run: terraform --version
+      - name: Display Azure-CLI Version
+        run: az --version
 ```
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
