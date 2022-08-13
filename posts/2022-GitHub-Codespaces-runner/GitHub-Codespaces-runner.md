@@ -21,7 +21,7 @@ We will be using a custom **docker image** that will automatically provision a *
 
 We will also look at the **Codespace/Runner** lifecycle. By default any **Active** codespaces that becomes **idle** will go into a hibernation mode after **30 minutes** to save on compute costs, so we will look at how this timeout can be configured and also ensure that the **self hosted runner** will be removed cleanly and unregistered once the codespace is no longer 'active' or 'in-use', so that the self hosted runner is only available when the Codespace is.
 
-We will actually be using the same **docker** configuration from a post on another blog series of mine called, **['Self Hosted GitHub Runner containers on Azure'](https://dev.to/pwd9000/series/18434)**. So do take a look at that series as well to get a better understanding on how to build and host your self hosted GitHub runners.
+We will actually be using a very similar approach and docker image configuration from my previous blog post, ['Create a Docker based Self Hosted GitHub runner Linux container'](https://dev.to/pwd9000/create-a-docker-based-self-hosted-github-runner-linux-container-48dh). So do check out that post for detailed info on how the container works.  
 
 ## Getting started
 
@@ -29,32 +29,32 @@ All of the code samples and examples are also available on my [GitHub Codespaces
 
 Since **Codespaces/Dev containers** are based on **docker images**, we will create a **custom linux docker image** that will start and bootstrap a runner agent as the codespace starts up.
 
-We will actually use the same example docker image from my previous blog post, ['Create a Docker based Self Hosted GitHub runner Linux container'](https://dev.to/pwd9000/create-a-docker-based-self-hosted-github-runner-linux-container-48dh). So do check out that post for detailed info on how the container works.
-
 In your **GitHub repository** create a sub folder under `'.devcontainer'`, in my case I have called my codespace configuration folder `'codepsaceRunner'`.
 
-Next create the following [dockerfile](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/dockerfile). (Amend the file if needed for your own `tooling` and `LABELS`):
+Next create the following [Dockerfile](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/dockerfile). (Amend the file if needed for your own `tooling` and `LABELS`):
 
 ```dockerfile
+ARG RUNNER_VERSION
+ARG VARIANT
+
 # base image
-FROM ubuntu:20.04
+FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
 #input GitHub runner version argument
-ARG RUNNER_VERSION
 ENV DEBIAN_FRONTEND=noninteractive
 
 LABEL Author="Marcel L"
 LABEL Email="pwd9000@hotmail.co.uk"
 LABEL GitHub="https://github.com/Pwd9000-ML"
-LABEL BaseImage="ubuntu:20.04"
+LABEL BaseImage=${VARIANT}
 LABEL RunnerVersion=${RUNNER_VERSION}
 
 # update the base packages + add a non-sudo user
 RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
 
-# install the packages and dependencies along with jq so we can parse JSON (add additional packages as necessary)
+# [Optional] Uncomment this section to install additional OS packages.
 RUN apt-get install -y --no-install-recommends \
-    curl nodejs wget unzip vim git azure-cli jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip terraform
+    curl nodejs wget unzip vim git jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip
 
 # cd into the user directory, download and unzip the github actions runner
 RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
@@ -75,6 +75,59 @@ USER docker
 
 # set the entrypoint to the start.sh script
 ENTRYPOINT ["./start.sh"]
+```
+
+Next, create a `'devcontainer.json'` file. 
+
+```JSON
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.238.1/containers/ubuntu
+{
+	"name": "Ubuntu",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick an Ubuntu version: jammy / ubuntu-22.04, focal / ubuntu-20.04, bionic /ubuntu-18.04
+		// Use ubuntu-22.04 or ubuntu-18.04 on local arm64/Apple Silicon.
+		"args": { 
+			"VARIANT": "ubuntu-22.04",
+			"RUNNER_VERSION": "2.295.0"
+		 }
+	},
+
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			//"settings": {},
+			//"devPort": {},
+			// Specify which VS Code extensions to install (List of IDs)
+			"extensions": [
+				"ms-vscode.powershell",
+				"ms-dotnettools.csharp",
+				"hashicorp.terraform",
+				"esbenp.prettier-vscode",
+				"tfsec.tfsec"
+				]
+			}
+		},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
+
+	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode",
+	"features": {
+		"kubectl-helm-minikube": "latest",
+		"terraform": "latest",
+		"git-lfs": "latest",
+		"github-cli": "latest",
+		"azure-cli": "latest",
+		"powershell": "7.1"
+	}
+}
 ```
 
 Create another folder called `'scripts'` and place the following script inside: ['start.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/scripts/start.sh)
@@ -114,13 +167,9 @@ GH_REPOSITORY=$GH_REPOSITORY
 GH_TOKEN=$GH_TOKEN
 ```
 
-<<<<<<< HEAD
 These parameters (environment variables) are used to configure and **register** the self hosted github runner against the correct repository.  
-=======
-These parameters (environment variables) are used to configure the and **register** the self hosted github runner against the correct repository.
->>>>>>> 87f63abcfbdb60886f850634ab35e52ddc2a0dc4
 
-We need to provide the GitHub account/org name via the `'GH_OWNER'` environment variable, repository name via `GH_REPOSITORY` and a PAT token with `GH_TOKEN`.
+We need to provide the GitHub account/org name via the `'GH_OWNER'` environment variable, repository name via `GH_REPOSITORY` and a PAT token with `GH_TOKEN`.  
 
 You can store sensitive information, like tokens, that you want to access in your codespaces via environment variables. Let's configure these parameters as encrypted [secrets for codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces):  
 
@@ -145,6 +194,8 @@ As you can see in my example screenshot below, my repository does not have any r
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run01.png)  
 
 1. Navigate to your repository, click on the `'<> Code'` dropdown and select the `'Codespaces'` tab, select the `'Advanced'` option to **Configure and create codespace**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run02.png)  
+
+
 
 ## Conclusion
 
