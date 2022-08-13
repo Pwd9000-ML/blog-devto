@@ -108,6 +108,7 @@ Then create a `'devcontainer.json'` file. (See my [previous blog post](https://d
 
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode",
+    // Amend GitHub runner version with 'RUNNER_VERSION'. https://github.com/actions/runner/releases.
 	"build": {
 		"args": {
 			"UPGRADE_PACKAGES": "true",
@@ -127,6 +128,7 @@ Then create a `'devcontainer.json'` file. (See my [previous blog post](https://d
 **NOTE:** You can amend the [GitHub runner version](https://github.com/actions/runner/releases) by amending the **build args** attribute **RUNNER_VERSION**.
 
 ```JSON
+// Amend GitHub runner version with 'RUNNER_VERSION'. https://github.com/actions/runner/releases.
 "build": {
     "args": {
         "UPGRADE_PACKAGES": "true",
