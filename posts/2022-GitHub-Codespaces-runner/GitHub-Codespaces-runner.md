@@ -21,7 +21,11 @@ We will be using a custom **docker image** that will automatically provision a *
 
 We will also look at the **Codespace/Runner** lifecycle. By default any **Active** codespaces that becomes **idle** will go into a hibernation mode after **30 minutes** to save on compute costs, so we will look at how this timeout can be configured and extended (if needed).  
 
+<<<<<<< HEAD
 We will actually be using a very similar approach for the docker image configuration based on one of my previous blog posts, ['Create a Docker based Self Hosted GitHub runner Linux container'](https://dev.to/pwd9000/create-a-docker-based-self-hosted-github-runner-linux-container-48dh). So do check out that post also if you wanted more info on how **self hosted GitHub runner** containers work.  
+=======
+We will actually be using a very similar approach and docker image configuration from my previous blog post, ['Create a Docker based Self Hosted GitHub runner Linux container'](https://dev.to/pwd9000/create-a-docker-based-self-hosted-github-runner-linux-container-48dh). So do check out that post for detailed info on how the container works.
+>>>>>>> b0bcc27db46c8d155e0847d74bc5ebb060213ff7
 
 ## Getting started
 
@@ -77,13 +81,31 @@ RUN chmod +x /home/vscode/actions-runner/start.sh
 RUN rm -rf /var/lib/apt/lists/* /tmp/library-scripts
 ```
 
+<<<<<<< HEAD
 Then create a `'devcontainer.json'` file. (See my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how this file can be amended with additional features and extensions):  
+=======
+Next, create a `'devcontainer.json'` file.
+>>>>>>> b0bcc27db46c8d155e0847d74bc5ebb060213ff7
 
 ```JSON
 {
+<<<<<<< HEAD
 	"name": "CodespaceRunner",
 	"dockerFile": "Dockerfile",
 	
+=======
+	"name": "Ubuntu",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick an Ubuntu version: jammy / ubuntu-22.04, focal / ubuntu-20.04, bionic /ubuntu-18.04
+		// Use ubuntu-22.04 or ubuntu-18.04 on local arm64/Apple Silicon.
+		"args": {
+			"VARIANT": "ubuntu-22.04",
+			"RUNNER_VERSION": "2.295.0"
+		 }
+	},
+
+>>>>>>> b0bcc27db46c8d155e0847d74bc5ebb060213ff7
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
@@ -167,9 +189,9 @@ GH_REPOSITORY=$GH_REPOSITORY
 GH_TOKEN=$GH_TOKEN
 ```
 
-These parameters (environment variables) are used to configure and **register** the self hosted github runner against the correct repository.  
+These parameters (environment variables) are used to configure and **register** the self hosted github runner against the correct repository.
 
-We need to provide the GitHub account/org name via the `'GH_OWNER'` environment variable, repository name via `GH_REPOSITORY` and a PAT token with `GH_TOKEN`.  
+We need to provide the GitHub account/org name via the `'GH_OWNER'` environment variable, repository name via `GH_REPOSITORY` and a PAT token with `GH_TOKEN`.
 
 You can store sensitive information, like tokens, that you want to access in your codespaces via environment variables. Let's configure these parameters as encrypted [secrets for codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces):
 
@@ -661,7 +683,7 @@ As you can see in my example screenshot below, my repository does not have any r
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run01.png)
 
-1. Navigate to your repository, click on the `'<> Code'` dropdown and select the `'Codespaces'` tab, select the `'Advanced'` option to **Configure and create codespace**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run02.png)  
+1. Navigate to your repository, click on the `'<> Code'` dropdown and select the `'Codespaces'` tab, select the `'Advanced'` option to **Configure and create codespace**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run02.png)
 
 ## Conclusion
 
