@@ -21,14 +21,11 @@ We will be using a custom **docker image** that will automatically provision a *
 
 We will also look at the **Codespace/Runner** lifecycle. By default any **Active** codespaces that becomes **idle** will go into a hibernation mode after **30 minutes** to save on compute costs, so we will look at how this timeout can be configured and extended (if needed).
 
-<<<<<<< HEAD
-We will actually be using a very similar approach for the docker image configuration based on one of my previous blog posts, ['Create a Docker based Self Hosted GitHub runner Linux container'](https://dev.to/pwd9000/create-a-docker-based-self-hosted-github-runner-linux-container-48dh). So do check out that post also if you wanted more info on how **self hosted GitHub runner** containers work.  
-=======
 <<<<<<< HEAD We will actually be using a very similar approach for the docker image configuration based on one of my previous blog posts, ['Create a Docker based Self Hosted GitHub runner Linux container'](https://dev.to/pwd9000/create-a-docker-based-self-hosted-github-runner-linux-container-48dh). So do check out that post also if you wanted more info on how **self hosted GitHub runner** containers work.  
+======= <<<<<<< HEAD We will actually be using a very similar approach for the docker image configuration based on one of my previous blog posts, ['Create a Docker based Self Hosted GitHub runner Linux container'](https://dev.to/pwd9000/create-a-docker-based-self-hosted-github-runner-linux-container-48dh). So do check out that post also if you wanted more info on how **self hosted GitHub runner** containers work.  
 ======= We will actually be using a very similar approach and docker image configuration from my previous blog post, ['Create a Docker based Self Hosted GitHub runner Linux container'](https://dev.to/pwd9000/create-a-docker-based-self-hosted-github-runner-linux-container-48dh). So do check out that post for detailed info on how the container works.
 
-> > > > > > > b0bcc27db46c8d155e0847d74bc5ebb060213ff7
->>>>>>> e6f8db6d2f6a49544f7742982b2041fa32aab33e
+> > > > > > > b0bcc27db46c8d155e0847d74bc5ebb060213ff7 e6f8db6d2f6a49544f7742982b2041fa32aab33e
 
 ## Getting started
 
@@ -84,21 +81,18 @@ RUN chmod +x /home/vscode/actions-runner/start.sh
 RUN rm -rf /var/lib/apt/lists/* /tmp/library-scripts
 ```
 
-<<<<<<< HEAD
-Then create a `'devcontainer.json'` file. (See my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how this file can be amended with additional features and extensions):  
-=======
 <<<<<<< HEAD Then create a `'devcontainer.json'` file. (See my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how this file can be amended with additional features and extensions):  
+======= <<<<<<< HEAD Then create a `'devcontainer.json'` file. (See my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how this file can be amended with additional features and extensions):  
 ======= Next, create a `'devcontainer.json'` file.
 
-> > > > > > > b0bcc27db46c8d155e0847d74bc5ebb060213ff7
->>>>>>> e6f8db6d2f6a49544f7742982b2041fa32aab33e
+> > > > > > > b0bcc27db46c8d155e0847d74bc5ebb060213ff7 e6f8db6d2f6a49544f7742982b2041fa32aab33e
 
 ```JSON
 {
 	"name": "CodespaceRunner",
 	"dockerFile": "Dockerfile",
 <<<<<<< HEAD
-	
+
 =======
 
 =======
@@ -158,9 +152,9 @@ Next we will create a few scripts that will be used by our **docker image**. Cre
 
 Let's take a closer look at each of the scripts.
 
-1. **[common-debian.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/library-scripts/common-debian.sh)**  This script will install additional **debian** based tooling onto the **dev container**.  
+1. **[common-debian.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/library-scripts/common-debian.sh)** This script will install additional **debian** based tooling onto the **dev container**.
 
-2. **[start.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/scripts/start.sh)**  
+2. **[start.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/scripts/start.sh)**
 
 ```bash
 #start.sh
@@ -227,8 +221,8 @@ The minimum permission scopes required on the PAT token to register a self hoste
 
 **Tip:** I recommend only using short lived PAT tokens and generating new tokens whenever new agent runner registrations are required.
 
-<<<<<<< HEAD
-=======
+# <<<<<<< HEAD
+
 ### [common-debian.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/library-scripts/common-debian.sh)
 
 The second script will install additional **debian** based tooling onto the **dev container**:
@@ -690,7 +684,8 @@ echo -e "\
 echo "Done!"
 ```
 
->>>>>>> e6f8db6d2f6a49544f7742982b2041fa32aab33e
+> > > > > > > e6f8db6d2f6a49544f7742982b2041fa32aab33e
+
 ## Deploying the Codespace GitHub runner
 
 As you can see in my example screenshot below, my repository does not have any runners configured.
