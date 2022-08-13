@@ -36,7 +36,7 @@ We will create the following folder structure tree in the [root](https://github.
 
 In your **GitHub repository** create a sub folder under `'.devcontainer'`, in my case I have called my codespace configuration folder `'codespaceRunner'`.
 
-Next create the following [Dockerfile](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/Dockerfile):
+Next, create the following [Dockerfile](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/Dockerfile):
 
 ```dockerfile
 # You can pick any Debian/Ubuntu-based image. 😊
@@ -65,10 +65,10 @@ RUN cd /home/vscode/actions-runner \
     && tar xzf /home/vscode/actions-runner/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
     && /home/vscode/actions-runner/bin/installdependencies.sh
 
-# add over the start.sh script
+# copy over the start.sh script
 COPY library-scripts/start.sh /home/vscode/actions-runner/start.sh
 
-# Aply ownership of home folder
+# Apply ownership of home folder
 RUN chown -R vscode ~vscode
 
 # make the script executable
@@ -186,7 +186,7 @@ These parameters (environment variables) are used to configure and **register** 
 
 We need to provide the GitHub account/org name via the `'GH_OWNER'` environment variable, repository name via `GH_REPOSITORY` and a PAT token with `GH_TOKEN`.
 
-You can store sensitive information, such as tokens, that you want to access in your codespaces via environment variables. Let's configure these parameters as encrypted [secrets for codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces):
+You can store sensitive information, such as tokens, that you want to access in your codespaces via environment variables. Let's configure these parameters as encrypted [secrets for codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces).
 
 1. Navigate to the repository `'Settings'` page and select `'Secrets -> Codespaces'`, click on `'New repository secret'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/sec01.png)
 
@@ -229,7 +229,7 @@ Once the **codespace** is provisioned, you can see the **hostname** of the under
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run05.png)
 
-Navigate to your repository **settings** page, and notice that there is now a **self hosted GitHub runner** registered with **labels** of your **user name** and **repo name**. The **runner name** matches with the **Codepsace hostname**.
+Navigate to your repository **settings** page, notice that there is now a **self hosted GitHub runner** registered and **labeled** with your **user name** and **repo name**. The **runner name** matches the **Codepsace hostname**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run06.png)
 
@@ -249,7 +249,7 @@ As you can see, it is pretty easy to run **self hosted action runners** inside o
 
 By doing this we can solve a few problems with one solution.
 
-1. Cost - Not wasting cost and compute power by needing to add **self hosted runners** along with our **Codespaces**.
+1. Cost - Not wasting cost and compute power by adding compute separately for **self hosted runners** alongside **Codespaces**.
 2. Administration - Having both services running on the same compute and sharing the same configuration and tooling saves time on administration and maintenance.
 3. Availability - Having **self hosted runners** available as part of the running **codespace**.
 
