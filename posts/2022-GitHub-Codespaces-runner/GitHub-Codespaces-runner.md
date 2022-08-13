@@ -19,17 +19,17 @@ We will be using a custom **docker image** that will automatically provision a *
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/diag01.png)
 
-We will also look at the **Codespace/Runner** lifecycle. By default any **Active** codespaces that becomes **idle** will go into a hibernation mode after **30 minutes** to save on compute costs, so we will look at how this timeout can be configured and extended (if needed).  
+We will also look at the **Codespace/Runner** lifecycle. By default any **Active** codespaces that becomes **idle** will go into a hibernation mode after **30 minutes** to save on compute costs, so we will look at how this timeout can be configured and extended (if needed).
 
-We will actually be using a very similar approach for the docker image configuration based on one of my previous blog posts, ['Create a Docker based Self Hosted GitHub runner Linux container'](https://dev.to/pwd9000/create-a-docker-based-self-hosted-github-runner-linux-container-48dh). So do check out that post also if you wanted more info on how **self hosted GitHub runner** containers work.  
+We will actually be using a very similar approach for the docker image configuration based on one of my previous blog posts, ['Create a Docker based Self Hosted GitHub runner Linux container'](https://dev.to/pwd9000/create-a-docker-based-self-hosted-github-runner-linux-container-48dh). So do check out that post also if you wanted more info on how **self hosted GitHub runner** containers work.
 
 ## Getting started
 
 All of the code samples and examples are also available on my [GitHub Codespaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/tree/master/.devcontainer/codespaceRunner).
 
-Since **Codespaces/Dev containers** are based on **docker images**, we will create a **custom linux docker image** that will start and bootstrap a runner agent as the codespace starts up.  
+Since **Codespaces/Dev containers** are based on **docker images**, we will create a **custom linux docker image** that will start and bootstrap a runner agent as the codespace starts up.
 
-We will create the following folder structure tree in the [root](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/tree/master/.devcontainer/codespaceRunner) of our **GitHub repository:**  
+We will create the following folder structure tree in the [root](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/tree/master/.devcontainer/codespaceRunner) of our **GitHub repository:**
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/root01.png)
 
@@ -77,17 +77,17 @@ RUN chmod +x /home/vscode/actions-runner/start.sh
 RUN rm -rf /var/lib/apt/lists/* /tmp/library-scripts
 ```
 
-Then create a `'devcontainer.json'` file. (See my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how this file can be amended with additional features and extensions):  
+Then create a `'devcontainer.json'` file. (See my [previous blog post](https://dev.to/pwd9000/introduction-to-github-codespaces-building-your-first-dev-container-69l) on how this file can be amended with additional features and extensions):
 
 ```JSON
 {
 	"name": "CodespaceRunner",
 	"dockerFile": "Dockerfile",
-	
+
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
-		"vscode": {		
+		"vscode": {
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"ms-vscode.azurecli",
@@ -98,7 +98,7 @@ Then create a `'devcontainer.json'` file. (See my [previous blog post](https://d
 			]
 		}
 	},
-	
+
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
@@ -123,13 +123,13 @@ Then create a `'devcontainer.json'` file. (See my [previous blog post](https://d
 }
 ```
 
-Next we will create a few scripts that will be used by our **docker image**. Create a folder called `'library-scripts'` and place the following two script inside: ['start.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/scripts/start.sh) and ['common-debian.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/library-scripts/common-debian.sh)  
+Next we will create a few scripts that will be used by our **docker image**. Create a folder called `'library-scripts'` and place the following two script inside: ['start.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/scripts/start.sh) and ['common-debian.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/library-scripts/common-debian.sh)
 
-Let's take a closer look at each of the scripts.  
+Let's take a closer look at each of the scripts.
 
-1. **[common-debian.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/library-scripts/common-debian.sh)**  This script will install additional **debian** based tooling onto the **dev container**.  
+1. **[common-debian.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/library-scripts/common-debian.sh)** This script will install additional **debian** based tooling onto the **dev container**.
 
-2. **[start.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/scripts/start.sh)**  
+2. **[start.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/scripts/start.sh)**
 
 ```bash
 #start.sh
@@ -177,7 +177,7 @@ You can store sensitive information, like tokens, that you want to access in you
 
 1. Navigate to the repository `'Settings'` page and select `'Secrets -> Codespaces'`, click on `'New repository secret'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/sec01.png)
 
-2. Create each **Codespace secret** with the values for your environment. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/sec02.png)  
+2. Create each **Codespace secret** with the values for your environment. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/sec02.png)
 
 **NOTE:** When the **self hosted runner** is started up and registered, it will also be labeled with the **user name** and **repository name**, from the following lines. (These labels can be amended if necessary):
 
@@ -194,7 +194,7 @@ The minimum permission scopes required on the PAT token to register a self hoste
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/PAT.png)
 
-**Tip:** I recommend only using short lived PAT tokens and generating new tokens whenever new agent runner registrations are required.  
+**Tip:** I recommend only using short lived PAT tokens and generating new tokens whenever new agent runner registrations are required.
 
 ## Deploying the Codespace GitHub runner
 
