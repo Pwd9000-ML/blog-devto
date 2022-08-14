@@ -163,17 +163,7 @@ REPO_NAME_LABEL="$GH_REPOSITORY"
 REG_TOKEN=$(curl -sX POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${GH_TOKEN}" https://api.github.com/repos/${GH_OWNER}/${GH_REPOSITORY}/actions/runners/registration-token | jq .token --raw-output)
 
 /home/vscode/actions-runner/config.sh --unattended --url https://github.com/${GH_OWNER}/${GH_REPOSITORY} --token ${REG_TOKEN} --name ${RUNNER_NAME}  --labels ${USER_NAME_LABEL},${REPO_NAME_LABEL}
-
-cleanup() {
-    echo "Removing runner..."
-    /home/vscode/actions-runner/config.sh remove --unattended --token ${REG_TOKEN}
-}
-
-trap 'cleanup; exit 130' INT
-trap 'cleanup; exit 143' TERM
-trap 'cleanup' SIGINT SIGTERM
-
-/home/vscode/actions-runner/run.sh & wait $!
+/home/vscode/actions-runner/run.sh
 ```
 
 The second script will start up with the **Codespace/Dev container** and bootstraps the **GitHub runner** when the Codespace starts. Notice that we need to provide the script with some parameters:
