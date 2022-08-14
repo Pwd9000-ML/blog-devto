@@ -144,7 +144,7 @@ Let's take a closer look at each of the scripts.
 
 1. **[common-debian.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/library-scripts/common-debian.sh)**: This script will install additional **debian** based tooling onto the **dev container**.
 
-2. **[start.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/scripts/start.sh)**:
+2. **[start.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/library-scripts/start.sh)**:
 
 ```bash
 #start.sh
