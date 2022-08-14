@@ -14,7 +14,7 @@ date: '2022-08-14T14:21:27Z'
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Docker-Runner-Azure-Part6/assets/diag01.png)
 
-This blog post has moved to another series, Check it out here:
+This post has moved, Check it out here:
 
 {% link <https://dev.to/pwd9000/hosting-your-self-hosted-runners-on-github-codespaces-2elc> %}
 
