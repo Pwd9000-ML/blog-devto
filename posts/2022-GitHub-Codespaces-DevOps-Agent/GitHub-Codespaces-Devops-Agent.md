@@ -16,7 +16,7 @@ Welcome to another part of my series **['GitHub Codespaces Pro Tips'](https://de
 
 Similarly to the last post, we will cover how you can utilise your **GitHub Codespace** compute power, by running an **Azure Pipelines agent** inside of the Codespace at the same time.
 
-We will be using a custom **docker image** that will automatically provision a **self hosted Azure Pipelines agent** and register it against your Azure DevOps projects agent pool, at the same time as provisioning the **Codespace** as part of spinning up a development environment/workspace.
+We will be using a custom **docker image** that will automatically provision a **self hosted Azure Pipelines agent** and register it against your Azure DevOps projects **agent pool**, at the same time as provisioning the **Codespace** as part of spinning up a development environment/workspace.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/diag01.png)
 
