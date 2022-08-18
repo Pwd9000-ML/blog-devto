@@ -264,9 +264,9 @@ Navigate to your Azure Devops agent pool and under the **Agents** tab, notice th
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/run06.png)
 
-## Managing Codespace/Runner lifecycle
+## Managing Codespace/Azure Pipelines lifecycle
 
-When you **stop** your **codepsace** the self hosted runner will not be removed but will only go into an `'Offline'` state, and when you start the codespace up again the **runner** will be available again.
+When you **stop** your **codepsace** the self hosted agent will not be removed but will only go into an `'Offline'` state, and when you start the codespace up again the **Azure Pipeline agent** will be available again.  
 
 Also, as mentioned, by default any **Active** codespaces that are not **stopped** manually, will be **idle** and go into a hibernation mode after **30 minutes** to save on compute costs. Let's take a look at how we can amend [codespaces lifecycle](https://docs.github.com/en/codespaces/developing-in-codespaces/codespaces-lifecycle).
 
@@ -276,56 +276,39 @@ Also, as mentioned, by default any **Active** codespaces that are not **stopped*
 
 ## Conclusion
 
-As you can see, it is pretty easy to run **self hosted action runners** inside of your **Codespace** and utilize the compute power of the **dev container** itself.
+As you can see, it is pretty easy to run **self hosted Azure Pipeline agents** inside of your **Codespace** and utilize the compute power of the **dev container** itself.
 
 By doing this we can solve a few problems with one solution.
 
-1. Cost - Not wasting cost and compute power by adding compute separately for **self hosted runners** alongside **Codespaces**.
+1. Cost - Not wasting cost and compute power by adding compute separately for **self hosted DevOps agents** alongside **Codespaces**.
 2. Administration - Having both services running on the same compute and sharing the same configuration and tooling saves time on administration and maintenance.
-3. Availability - Having **self hosted runners** available as part of the running **codespace**.
+3. Availability - Having **self hosted DevOps agents** available as part of the running **codespace**.
 
-**IMPORTANT:** Do note that making use of **runner labels** is very important when **triggring/running actions** against runners or runner groups provisioned on a **Codespace**. Hence each runner is labeled with the **user name** and **repo name**.
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/label01.png)
+**IMPORTANT:** Do note that making use of **['Demands'](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/demands?view=azure-devops&tabs=yaml#task-demands)** is very important when **triggring/running pipelines** against DevOps Pipeline agents on a **Codespace**, to make sure you are running your pipelines against the correct codespace agent.  
 
 ## Example
 
-A self-hosted runner automatically receives certain labels when it is added to GitHub Actions. These are used to indicate its operating system and hardware platform:
+**Demands** and **capabilities** are designed for use with self-hosted agents so that jobs can be matched with an agent that meets the requirements of the job.  
 
-- `self-hosted`: Default label applied to all self-hosted runners.
-- `linux`, `windows`, or `macOS`: Applied depending on operating system.
-- `x64`, `ARM`, or `ARM64`: Applied depending on hardware architecture.
-
-You can use your workflow's YAML to send jobs to a combination of these labels. In this example, a self-hosted runner that matches all three labels will be eligible to run the job:
+If you have multiple agents with different **users** and **Codespaces** in the same pool, you may want to run your pipelines against specified **codespaces** using **demands**, for example:
 
 ```yml
-runs-on: [self-hosted, linux, ARM64]
+pool:
+  name: MyPool
+  demands:
+  - GITHUB_USER -equals Pwd9000-ML   # equals check for GitHub user
+  - HOSTNAME -equals codespaces-d066ef # equals check for hostname matching my Codespace
 ```
 
-- `self-hosted` - Run this job on a self-hosted runner.
-- `linux` - Only use a Linux-based runner.
-- `ARM64` - Only use a runner based on ARM64 hardware.
+By using **Demands** you can ensure that your pipelines will run against the intended **Codespace**.  
 
-The default labels are fixed and cannot be changed or removed. Consider using custom labels if you need more control over job routing.
+You can check your **agent capabilities** to use in **demands** by navigating and click on your **DevOps agent**.  
 
-As you can see from this [example workflow](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.github/workflows/testCodespaceRunner.yml) in my repository, I am routing my **GitHub Action** jobs, specifically to my own **self hosted runner** on my **Codespace** using my **user name** and **repo name** labels with `'runs-on'`:
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/run06.png)  
 
-```yml
-name: Runner on Codespace test
+Then select the **Capabilities** tab.  
 
-on:
-  workflow_dispatch:
-
-jobs:
-  testRunner:
-    runs-on: [self-hosted, Pwd9000, GitHub-Codespaces-Lab]
-    steps:
-      - uses: actions/checkout@v3.0.2
-      - name: Display Terraform Version
-        run: terraform --version
-      - name: Display Azure-CLI Version
-        run: az --version
-```
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/cap01.png)  
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
 
