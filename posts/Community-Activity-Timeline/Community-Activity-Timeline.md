@@ -24,7 +24,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
 | **02/11/2022** | [London Microsoft DevOps Meetup - Event Organiser](https://www.meetup.com/london-microsoft-devops/events/287854448/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=linkedin) | Event Organiser | GitHub, DevOps | Security, DevSecOps, Meetup, Automation |
-| **02/11/2022** | [The return of the London Microsoft DevOps Meetup!](https://www.meetup.com/london-microsoft-devops/events/287854448/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=linkedin) |  Public Speaking | GitHub, DevOps | Security, DevSecOps, Meetup, Automation |
+| **02/11/2022** | [The return of the London Microsoft DevOps Meetup!](https://www.meetup.com/london-microsoft-devops/events/287854448/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=linkedin) | Public Speaking | GitHub, DevOps | Security, DevSecOps, Meetup, Automation |
 | **25/08/2022** | [Cloud with Chris - Automate Azure Role Based Access Control (RBAC) using Github](https://www.linkedin.com/video/event/urn:li:ugcPost:6957635112553324544/) | Public Speaking | GitHub, PowerShell | Security, DevSecOps, RBAC, Automation, Tutorial |
 
 ---
