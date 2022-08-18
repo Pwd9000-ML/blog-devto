@@ -26,7 +26,7 @@ We will also look at the **Codespace** lifecycle. By default any **Active** code
 
 All of the code samples and examples are also available on my [GitHub Codespaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/tree/master/.devcontainer/codespaceADOagent).
 
-Also have a look at this blog post, [Integrating Azure DevOps with GitHub - Hybrid Model](https://dev.to/pwd9000/integrating-azure-devops-with-github-hybrid-model-3pkg), where I show how to use **GitHub Codespaces** with **Azure DevOps** as we will be building this solution upon the **hybrid model** described in that post.
+Also have a look at this blog post, [Integrating Azure DevOps with GitHub - Hybrid Model](https://dev.to/pwd9000/integrating-azure-devops-with-github-hybrid-model-3pkg), where I show how to use **GitHub Codespaces** with **Azure DevOps** as we will be building this solution based on the **hybrid model** described in that post.
 
 Since **Codespaces/Dev containers** are based on **docker images**, we will create a **custom linux docker image** that will start and bootstrap an Azure DevOps Pipelines agent as the codespace starts up.
 
