@@ -1,6 +1,6 @@
 ---
 title: Hosting Azure DevOps Pipelines agents on GitHub Codespaces
-published: false
+published: true
 description: How to use your GitHub Codespace as an Azure Pipelines agent
 tags: 'github, codespaces, githubactions, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/main01.png'
