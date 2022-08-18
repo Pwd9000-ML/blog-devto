@@ -81,9 +81,9 @@ Next, we will create the following folder structure tree in the [root](https://g
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/root01.png)
 
-In your **GitHub repository** create a sub folder under `'.devcontainer'`, in my case I have called my codespace configuration folder `'codespaceRunner'`.
+In your **GitHub repository** create a sub folder under `'.devcontainer'`, in my case I have called my codespace configuration folder `'codespaceADOagent'`.
 
-Next, create the following [Dockerfile](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/Dockerfile):
+Create the following [Dockerfile](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/Dockerfile):
 
 ```dockerfile
 # You can pick any Debian/Ubuntu-based image. 😊
@@ -101,25 +101,26 @@ ARG USER_GID=$USER_UID
 COPY library-scripts/*.sh /tmp/library-scripts/
 RUN bash /tmp/library-scripts/common-debian.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" "${UPGRADE_PACKAGES}" "true" "true"
 
-# cd into the user directory, download and unzip the github actions runner
-RUN cd /home/vscode && mkdir actions-runner && cd actions-runner
+# cd into the user directory, download and unzip the Azure DevOps agent
+RUN cd /home/vscode && mkdir azure-pipelines && cd azure-pipelines
 
-#input GitHub runner version argument
-ARG RUNNER_VERSION="2.292.0"
+# input Azure DevOps agent arguments
+ARG ARCH="x64"
+ARG AGENT_VERSION="2.206.1"
 
-RUN cd /home/vscode/actions-runner \
-    && curl -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
-    && tar xzf /home/vscode/actions-runner/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
-    && /home/vscode/actions-runner/bin/installdependencies.sh
+RUN cd /home/vscode/azure-pipelines \
+    && curl -O -L https://vstsagentpackage.azureedge.net/agent/${AGENT_VERSION}/vsts-agent-linux-${ARCH}-${AGENT_VERSION}.tar.gz \
+    && tar xzf /home/vscode/azure-pipelines/vsts-agent-linux-${ARCH}-${AGENT_VERSION}.tar.gz \
+    && /home/vscode/azure-pipelines/bin/installdependencies.sh
 
 # copy over the start.sh script
-COPY library-scripts/start.sh /home/vscode/actions-runner/start.sh
+COPY library-scripts/start.sh /home/vscode/azure-pipelines/start.sh
 
 # Apply ownership of home folder
 RUN chown -R vscode ~vscode
 
 # make the script executable
-RUN chmod +x /home/vscode/actions-runner/start.sh
+RUN chmod +x /home/vscode/azure-pipelines/start.sh
 
 # Clean up
 RUN rm -rf /var/lib/apt/lists/* /tmp/library-scripts
@@ -129,13 +130,13 @@ Then create a `'devcontainer.json'` file. (See my [previous blog post](https://d
 
 ```JSON
 {
-	"name": "CodespaceRunner",
+	"name": "AzurePipelines",
 	"dockerFile": "Dockerfile",
-
+	
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
-		"vscode": {
+		"vscode": {		
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"ms-vscode.azurecli",
@@ -146,20 +147,21 @@ Then create a `'devcontainer.json'` file. (See my [previous blog post](https://d
 			]
 		}
 	},
-
+	
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postStartCommand' to run commands each time the container is successfully started..
-    "postStartCommand": "/home/vscode/actions-runner/start.sh",
+    "postStartCommand": "/home/vscode/azure-pipelines/start.sh",
 
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode",
-    // Amend GitHub runner version with 'RUNNER_VERSION'. https://github.com/actions/runner/releases.
+	// Amend Azure Pipelines agent version and arch type with 'ARCH' and 'AGENT_VERSION'. https://github.com/microsoft/azure-pipelines-agent/releases.
 	"build": {
 		"args": {
 			"UPGRADE_PACKAGES": "true",
-			"RUNNER_VERSION": "2.295.0"
+			"ARCH": "x64",
+			"AGENT_VERSION": "2.206.1"
 		}
 	},
 	"features": {
@@ -170,107 +172,97 @@ Then create a `'devcontainer.json'` file. (See my [previous blog post](https://d
 		"powershell": "latest"
 	}
 }
+
 ```
 
-**NOTE:** You can amend the [GitHub runner version](https://github.com/actions/runner/releases) by amending the **build args** attribute **RUNNER_VERSION**.
+**NOTE:** You can amend the [ADO Pipelines agent version and architecture](https://github.com/microsoft/azure-pipelines-agent/releases) by amending the **build args** attributes **ARCH** and **AGENT_VERSION**.
 
 ```JSON
-// Amend GitHub runner version with 'RUNNER_VERSION'. https://github.com/actions/runner/releases.
+// Amend Azure Pipelines agent version and arch type with 'ARCH' and 'AGENT_VERSION'. https://github.com/microsoft/azure-pipelines-agent/releases.
 "build": {
-    "args": {
-        "UPGRADE_PACKAGES": "true",
-        "RUNNER_VERSION": "2.295.0"
-    }
+	"args": {
+		"UPGRADE_PACKAGES": "true",
+		"ARCH": "x64",
+		"AGENT_VERSION": "2.206.1"
+	}
 ```
 
 Next we will create a folder with a few scripts that will be used by our **docker image**.
 
-Create a folder called `'library-scripts'` and place the following two script inside: ['start.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/library-scripts/start.sh) and ['common-debian.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/library-scripts/common-debian.sh)
+Create a folder called `'library-scripts'` and place the following two script inside: ['start.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceADOagent/library-scripts/start.sh) and ['common-debian.sh'](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceADOagent/library-scripts/common-debian.sh)
 
 Let's take a closer look at each of the scripts.
 
-1. **[common-debian.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/library-scripts/common-debian.sh)**: This script will install additional **debian** based tooling onto the **dev container**.
+1. **[common-debian.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceADOagent/library-scripts/common-debian.sh)**: This script will install additional **debian** based tooling onto the **dev container**.
 
-2. **[start.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceRunner/library-scripts/start.sh)**:
+2. **[start.sh](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/blob/master/.devcontainer/codespaceADOagent/library-scripts/start.sh)**:
 
 ```bash
 #start.sh
 #!/bin/bash
+# Pulled from GitHub Codespace secrets
+ADO_ORG=$ADO_ORG
+ADO_PAT=$ADO_PAT
+ADO_POOL_NAME=$ADO_POOL_NAME
 
-GH_OWNER=$GH_OWNER
-GH_REPOSITORY=$GH_REPOSITORY
-GH_TOKEN=$GH_TOKEN
-
+# Derived environment variables
 HOSTNAME=$(hostname)
-RUNNER_SUFFIX="runner"
-RUNNER_NAME="${HOSTNAME}-${RUNNER_SUFFIX}"
-USER_NAME_LABEL=$(git config --get user.name)
-REPO_NAME_LABEL="$GH_REPOSITORY"
+AGENT_SUFFIX="ADO-agent"
+AGENT_NAME="${HOSTNAME}-${AGENT_SUFFIX}"
+ADO_URL="https://dev.azure.com/${ADO_ORG}"
 
-REG_TOKEN=$(curl -sX POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${GH_TOKEN}" https://api.github.com/repos/${GH_OWNER}/${GH_REPOSITORY}/actions/runners/registration-token | jq .token --raw-output)
+# !!!Ignore sensitive tokens from capabilities!!!
+export VSO_AGENT_IGNORE=ADO_PAT,GH_TOKEN,GITHUB_CODESPACE_TOKEN,GITHUB_TOKEN
 
-/home/vscode/actions-runner/config.sh --unattended --url https://github.com/${GH_OWNER}/${GH_REPOSITORY} --token ${REG_TOKEN} --name ${RUNNER_NAME}  --labels ${USER_NAME_LABEL},${REPO_NAME_LABEL}
-/home/vscode/actions-runner/run.sh
+/home/vscode/azure-pipelines/config.sh --unattended \
+--agent "${AGENT_NAME}" \
+--url "${ADO_URL}" \
+--auth PAT \
+--token "${ADO_PAT}" \
+--pool "${ADO_POOL_NAME}" \
+--acceptTeeEula
+
+/home/vscode/azure-pipelines/run.sh
 ```
 
-The second script will start up with the **Codespace/Dev container** and bootstraps the **GitHub runner** when the Codespace starts. Notice that we need to provide the script with some parameters:
+The second script will start up with the **Codespace/Dev container** and bootstraps the **ADO Pipeline agent** when the Codespace starts. Notice that we need to provide the script with some parameters:
 
 ```bash
-GH_OWNER=$GH_OWNER
-GH_REPOSITORY=$GH_REPOSITORY
-GH_TOKEN=$GH_TOKEN
+# Pulled from GitHub Codespace secrets
+ADO_ORG=$ADO_ORG
+ADO_PAT=$ADO_PAT
+ADO_POOL_NAME=$ADO_POOL_NAME
 ```
 
-These parameters (environment variables) are used to configure and **register** the self hosted github runner against the correct repository.
+These parameters (environment variables) are used to configure and **register** the self hosted agent against the Azure DevOps Project **agent pool** we created earlier.  
 
-We need to provide the GitHub account/org name via the `'GH_OWNER'` environment variable, repository name via `GH_REPOSITORY` and a PAT token with `GH_TOKEN`.
+**NOTE:** You can store sensitive information, such as tokens, that you want to access in your codespaces via environment variables. We already configured this earlier, but for more information see, [secrets for codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces).  
 
-You can store sensitive information, such as tokens, that you want to access in your codespaces via environment variables. Let's configure these parameters as encrypted [secrets for codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces).
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/sec02.png)  
 
-1. Navigate to the repository `'Settings'` page and select `'Secrets -> Codespaces'`, click on `'New repository secret'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/sec01.png)
+## Deploying the Codespace  
 
-2. Create each **Codespace secret** with the values for your environment. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/sec02.png)
+As you can see in the screenshot below, my Azure DevOps project does not have any self hosted agents configured on the agent pool.
 
-**NOTE:** When the **self hosted runner** is started up and registered, it will also be labeled with the **'user name'** and **'repository name'**, from the following lines. (These labels can be amended if necessary):
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/run01.png)
 
-```bash
-USER_NAME_LABEL=$(git config --get user.name)
-REPO_NAME_LABEL="$GH_REPOSITORY"
-```
+1. Navigate to your repository, click on the `'<> Code'` dropdown and select the `'Codespaces'` tab, select the `'Advanced'` option to **Configure and create codespace**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/run02.png)
 
-## Note on Personal Access Token (PAT)
-
-See [creating a personal access token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) on how to create a GitHub PAT token. PAT tokens are only displayed once and are sensitive, so ensure they are kept safe.
-
-The minimum permission scopes required on the PAT token to register a self hosted runner are: `"repo"`, `"read:org"`:
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/PAT.png)
-
-**Tip:** I recommend only using short lived PAT tokens and generating new tokens whenever new agent runner registrations are required.
-
-## Deploying the Codespace GitHub runner
-
-As you can see in the screenshot below, my repository does not have any runners configured.
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run01.png)
-
-1. Navigate to your repository, click on the `'<> Code'` dropdown and select the `'Codespaces'` tab, select the `'Advanced'` option to **Configure and create codespace**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run02.png)
-
-2. Select the relevant `'Branch'`, `'Region'`, `'Machine type'` and for the `'Dev container configuration'`, select the `'codespaceRunner'` config we created and click on `'Createcodespace'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run03.png)
+2. Select the relevant `'Branch'`, `'Region'`, `'Machine type'` and for the `'Dev container configuration'`, select the `'codespaceADOagent'` config we created and click on `'Createcodespace'`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/run03.png)
 
 It takes a few minutes to build and start the container, but you can view the logs whilst the codespace is provisioning in real time.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run04.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/run04.png)
 
 To speed up codespace creation, repository administrators can enable **Codespaces prebuilds** for a repository. For more information, see "[About GitHub Codespaces prebuilds](https://docs.github.com/en/codespaces/prebuilding-your-codespaces/about-github-codespaces-prebuilds)."
 
 Once the **codespace** is provisioned, you can see the **hostname** of the underlying compute by typing in the terminal: `'hostname'`
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run05.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/run05.png)
 
-Navigate to your repository **settings** page, notice that there is now a **self hosted GitHub runner** registered and **labeled** with your **user name** and **repo name**. The **runner name** matches the **Codepsace hostname**.
+Navigate to your Azure Devops agent pool and under the **Agents** tab, notice that there is now a **self hosted Azure Pipelines agent** registered that matches the **Codepsace hostname**.  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/run06.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/run06.png)
 
 ## Managing Codespace/Runner lifecycle
 
@@ -278,9 +270,9 @@ When you **stop** your **codepsace** the self hosted runner will not be removed 
 
 Also, as mentioned, by default any **Active** codespaces that are not **stopped** manually, will be **idle** and go into a hibernation mode after **30 minutes** to save on compute costs. Let's take a look at how we can amend [codespaces lifecycle](https://docs.github.com/en/codespaces/developing-in-codespaces/codespaces-lifecycle).
 
-1. In the upper-right corner of any page, click your profile photo, then click **Settings** and in the "Code, planning, and automation" section of the sidebar, click **Codespaces**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/time01.png)
+1. In the upper-right corner of any page, click your profile photo, then click **Settings** and in the "Code, planning, and automation" section of the sidebar, click **Codespaces**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/time01.png)
 
-2. Under "Default idle timeout", enter the time that you want, then click Save. The time must be between 5 minutes and 240 minutes (4 hours). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/time02.png)
+2. Under "Default idle timeout", enter the time that you want, then click Save. The time must be between 5 minutes and 240 minutes (4 hours). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/time02.png)
 
 ## Conclusion
 
@@ -294,7 +286,7 @@ By doing this we can solve a few problems with one solution.
 
 **IMPORTANT:** Do note that making use of **runner labels** is very important when **triggring/running actions** against runners or runner groups provisioned on a **Codespace**. Hence each runner is labeled with the **user name** and **repo name**.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-runner/assets/label01.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/label01.png)
 
 ## Example
 
