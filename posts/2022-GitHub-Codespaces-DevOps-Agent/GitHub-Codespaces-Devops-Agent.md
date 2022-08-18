@@ -34,17 +34,17 @@ Since **Codespaces/Dev containers** are based on **docker images**, we will crea
 
 First we will create an **'agent pool'** inside of our Azure DevOps project so that we can register self hosted **Azure Pipeline agents**.
 
-1. Navigate to your Azure DevOps **'Organization settings'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool01.png)
+1. Navigate to your Azure DevOps **Organization settings**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool01.png)
 
-2. Select **'Agent pools'** under **'Pipelines'**, on the left hand side tab. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool02.png)
+2. Select **Agent pools** under **Pipelines**, on the left hand side tab. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool02.png)
 
-3. Click on **'Add pool'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool03.png)
+3. Click on **Add pool**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool03.png)
 
-4. Select `'Self-hosted'` as the **'pool type'**, give the pool a **'Name'**, **'Description'** and set the relevant **'Pipeline permissions'**. Click on **'Create'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool04.png)
+4. Select `'Self-hosted'` as the **pool type**, give the pool a **Name**, **Description** and set the relevant **Pipeline permissions**. Click on **'Create'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool04.png)
 
 5. Add the agent pool to any of your projects by navigating to the **'Project settings' -> 'Agent pools' -> 'Add pool'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool05.png)
 
-6. Select `'Existing'` under **'Pool to link'**, and select the pool we created with the relevant **'Pipeline permissions'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool06.png)
+6. Select `'Existing'` under **Pool to link**, and select the pool we created with the relevant **Pipeline permissions**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool06.png)
 
 Next we will create a **Personal Access Token (PAT)** which we will use to register the pipelines agents against the agent pool.
 
