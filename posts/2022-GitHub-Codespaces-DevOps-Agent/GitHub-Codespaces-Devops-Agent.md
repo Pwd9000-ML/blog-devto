@@ -52,7 +52,7 @@ See [creating a personal access token](https://docs.microsoft.com/en-us/azure/de
 
 The minimum permission scopes required on the PAT token to register a self hosted Azure Pipelines agent are `"Agent Pools (read, manage)"`, make sure all the other boxes are cleared. If it's a **'deployment group agent'**, for the scope select `"Deployment group (read, manage)"` instead, and make sure all the other boxes are cleared.
 
-Select `"Show all scopes"` at the bottom of the **'Create a new personal access token'** window to see the complete list of scopes.
+Select `"Show all scopes"` at the bottom of the **Create a new personal access token** window to see the complete list of scopes.
 
 Copy the token. You'll use this token when you configure the agent.
 
