@@ -291,7 +291,7 @@ By doing this we can solve a few problems with one solution.
 
 **Demands** and **capabilities** are designed for use with self-hosted agents so that jobs can be matched with an agent that meets the requirements of the job.
 
-If you have multiple agents with different **users** and **Codespaces** in the same pool, you may want to run your pipelines against specified **codespaces** using **demands**, for example:
+If you have multiple agents with different **users** and **Codespaces** in the same pool, you may want to run your pipelines against specific **codespaces** using **demands**, for example:
 
 ```yml
 pool:
