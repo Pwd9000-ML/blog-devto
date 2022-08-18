@@ -11,69 +11,69 @@ series: GitHub Codespaces Pro Tips
 
 ## Overview
 
-Welcome to another part of my series **['GitHub Codespaces Pro Tips'](https://dev.to/pwd9000/series/19195)**. In the last part we spoke about hosting your **GitHub self hosted action runners** on **Codespaces**.  
+Welcome to another part of my series **['GitHub Codespaces Pro Tips'](https://dev.to/pwd9000/series/19195)**. In the last part we spoke about hosting your **GitHub self hosted action runners** on **Codespaces**.
 
-Similarly to the last post, today we will cover how you can also utilise your **GitHub Codespace** compute power, by running an **Azure Pipelines agent** inside of the Codespace at the same time.  
+Similarly to the last post, today we will cover how you can also utilise your **GitHub Codespace** compute power, by running an **Azure Pipelines agent** inside of the Codespace at the same time.
 
 We will be using a custom **docker image** that will automatically provision a **self hosted Azure Pipelines agent** and register it against your Azure DevOps projects agent pool, at the same time as provisioning the **Codespace** as part of spinning up a development environment/workspace.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/diag01.png)
 
-We will also look at the **Codespace** lifecycle. By default any **Active** codespaces that becomes **idle** will go into a hibernation mode after **30 minutes** to save on compute costs, so we will look at how this timeout can be configured and extended (if needed).  
+We will also look at the **Codespace** lifecycle. By default any **Active** codespaces that becomes **idle** will go into a hibernation mode after **30 minutes** to save on compute costs, so we will look at how this timeout can be configured and extended (if needed).
 
 ## Getting started
 
-All of the code samples and examples are also available on my [GitHub Codespaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/tree/master/.devcontainer/codespaceADOagent).  
+All of the code samples and examples are also available on my [GitHub Codespaces Demo Repository](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab/tree/master/.devcontainer/codespaceADOagent).
 
-Also have a look at this blog post, [Integrating Azure DevOps with GitHub - Hybrid Model](https://dev.to/pwd9000/integrating-azure-devops-with-github-hybrid-model-3pkg), where I show how to use **GitHub Codespaces** with **Azure DevOps** as we will be building this solution upon the **hybrid model** described in that post.  
+Also have a look at this blog post, [Integrating Azure DevOps with GitHub - Hybrid Model](https://dev.to/pwd9000/integrating-azure-devops-with-github-hybrid-model-3pkg), where I show how to use **GitHub Codespaces** with **Azure DevOps** as we will be building this solution upon the **hybrid model** described in that post.
 
-Since **Codespaces/Dev containers** are based on **docker images**, we will create a **custom linux docker image** that will start and bootstrap an Azure DevOps Pipelines agent as the codespace starts up.  
+Since **Codespaces/Dev containers** are based on **docker images**, we will create a **custom linux docker image** that will start and bootstrap an Azure DevOps Pipelines agent as the codespace starts up.
 
 ## Azure DevOps Pre-requirements
 
-First we will create an **agent pool** inside of our Azure DevOps project to register **Azure Pipeline agents**.  
+First we will create an **agent pool** inside of our Azure DevOps project to register **Azure Pipeline agents**.
 
-1. Navigate to your Azure DevOps **'Organization settings'**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool01.png)  
+1. Navigate to your Azure DevOps **'Organization settings'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool01.png)
 
-2. Select **'Agent pools'** under **'Pipelines'**, on the left hand side tab.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool02.png)  
+2. Select **'Agent pools'** under **'Pipelines'**, on the left hand side tab. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool02.png)
 
-3. Click on **'Add pool'**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool03.png)  
+3. Click on **'Add pool'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool03.png)
 
-4. Select `'Self-hosted'` as the **'pool type'**, give the pool a **'Name'**, **'Description'** and set the relevant **'Pipeline permissions'**. Click on **'Create'**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool04.png)  
+4. Select `'Self-hosted'` as the **'pool type'**, give the pool a **'Name'**, **'Description'** and set the relevant **'Pipeline permissions'**. Click on **'Create'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool04.png)
 
-5. Add the agent pool to any of your projects by navigating to the **'Project settings' -> 'Agent pools' -> 'Add pool'**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool05.png)  
+5. Add the agent pool to any of your projects by navigating to the **'Project settings' -> 'Agent pools' -> 'Add pool'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool05.png)
 
-6. Select `'Existing'` under **'Pool to link'**, and select the pool we created with the relevant **'Pipeline permissions'**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool06.png)  
+6. Select `'Existing'` under **'Pool to link'**, and select the pool we created with the relevant **'Pipeline permissions'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool06.png)
 
-Next we will create a **Personal Access Token (PAT)** which we will use to register the pipelines agents against the agent pool.  
+Next we will create a **Personal Access Token (PAT)** which we will use to register the pipelines agents against the agent pool.
 
 See [creating a personal access token](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-linux?view=azure-devops#authenticate-with-a-personal-access-token-pat) on how to create an Azure DevOps PAT token. PAT tokens are only displayed once and are sensitive, so ensure they are kept safe.
 
-The minimum permission scopes required on the PAT token to register a self hosted Azure Pipelines agent are `"Agent Pools (read, manage)"`, make sure all the other boxes are cleared. If it's a **'deployment group agent'**, for the scope select `"Deployment group (read, manage)"` instead, and make sure all the other boxes are cleared.  
+The minimum permission scopes required on the PAT token to register a self hosted Azure Pipelines agent are `"Agent Pools (read, manage)"`, make sure all the other boxes are cleared. If it's a **'deployment group agent'**, for the scope select `"Deployment group (read, manage)"` instead, and make sure all the other boxes are cleared.
 
-Select `"Show all scopes"` at the bottom of the **'Create a new personal access token'** window to see the complete list of scopes.  
+Select `"Show all scopes"` at the bottom of the **'Create a new personal access token'** window to see the complete list of scopes.
 
-Copy the token. You'll use this token when you configure the agent.  
+Copy the token. You'll use this token when you configure the agent.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/PAT.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/PAT.png)
 
-**Tip:** I recommend only using short lived PAT tokens and generating new tokens whenever new agent registrations are required.  
+**Tip:** I recommend only using short lived PAT tokens and generating new tokens whenever new agent registrations are required.
 
-## Create GitHub Codespaces secrets  
+## Create GitHub Codespaces secrets
 
-Next we will navigate to our **GitHub repository** where we will use **Codespaces** and create a few **[codespace secrets](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces)**, these secrets are environment variables that will be used in our codespaces when we spin them up later.  
+Next we will navigate to our **GitHub repository** where we will use **Codespaces** and create a few **[codespace secrets](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces)**, these secrets are environment variables that will be used in our codespaces when we spin them up later.
 
-1. Navigate to the GitHub repository **'Settings'** and select **'Secrets' -> 'Codespaces'**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/sec01.png)  
+1. Navigate to the GitHub repository **'Settings'** and select **'Secrets' -> 'Codespaces'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/sec01.png)
 
-2. Create the following secrets:  
+2. Create the following secrets:
 
-| **Secret**    | **Value**              | **Description** |
-|---------------|------------------------|-----------------|
-| ADO_ORG       | `Your org name`        | Name of your Azure DevOps Organization |
-| ADO_PAT       | `Your PAT token`       | Azure DevOps Personal Access Token created to register agent against agent pool |
+| **Secret** | **Value** | **Description** |
+| --- | --- | --- |
+| ADO_ORG | `Your org name` | Name of your Azure DevOps Organization |
+| ADO_PAT | `Your PAT token` | Azure DevOps Personal Access Token created to register agent against agent pool |
 | ADO_POOL_NAME | `Your Agent pool name` | The name of the Azure DevOps agent pool to register agents against |
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/sec02.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/sec02.png)
 
 ## Codespace Dev Container Configuration
 
@@ -132,11 +132,11 @@ Then create a `'devcontainer.json'` file. (See my [previous blog post](https://d
 {
 	"name": "AzurePipelines",
 	"dockerFile": "Dockerfile",
-	
+
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
-		"vscode": {		
+		"vscode": {
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"ms-vscode.azurecli",
@@ -147,7 +147,7 @@ Then create a `'devcontainer.json'` file. (See my [previous blog post](https://d
 			]
 		}
 	},
-	
+
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
@@ -234,13 +234,13 @@ ADO_PAT=$ADO_PAT
 ADO_POOL_NAME=$ADO_POOL_NAME
 ```
 
-These parameters (environment variables) are used to configure and **register** the self hosted agent against the Azure DevOps Project **agent pool** we created earlier.  
+These parameters (environment variables) are used to configure and **register** the self hosted agent against the Azure DevOps Project **agent pool** we created earlier.
 
-**NOTE:** You can store sensitive information, such as tokens, that you want to access in your codespaces via environment variables. We already configured this earlier, but for more information see, [secrets for codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces).  
+**NOTE:** You can store sensitive information, such as tokens, that you want to access in your codespaces via environment variables. We already configured this earlier, but for more information see, [secrets for codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces).
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/sec02.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/sec02.png)
 
-## Deploying the Codespace  
+## Deploying the Codespace
 
 As you can see in the screenshot below, my Azure DevOps project does not have any self hosted agents configured on the agent pool.
 
@@ -260,13 +260,13 @@ Once the **codespace** is provisioned, you can see the **hostname** of the under
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/run05.png)
 
-Navigate to your Azure Devops agent pool and under the **Agents** tab, notice that there is now a **self hosted Azure Pipelines agent** registered that matches the **Codepsace hostname**.  
+Navigate to your Azure Devops agent pool and under the **Agents** tab, notice that there is now a **self hosted Azure Pipelines agent** registered that matches the **Codepsace hostname**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/run06.png)
 
 ## Managing Codespace/Azure Pipelines lifecycle
 
-When you **stop** your **codepsace** the self hosted agent will not be removed but will only go into an `'Offline'` state, and when you start the codespace up again the **Azure Pipeline agent** will be available again.  
+When you **stop** your **codepsace** the self hosted agent will not be removed but will only go into an `'Offline'` state, and when you start the codespace up again the **Azure Pipeline agent** will be available again.
 
 Also, as mentioned, by default any **Active** codespaces that are not **stopped** manually, will be **idle** and go into a hibernation mode after **30 minutes** to save on compute costs. Let's take a look at how we can amend [codespaces lifecycle](https://docs.github.com/en/codespaces/developing-in-codespaces/codespaces-lifecycle).
 
@@ -284,11 +284,11 @@ By doing this we can solve a few problems with one solution.
 2. Administration - Having both services running on the same compute and sharing the same configuration and tooling saves time on administration and maintenance.
 3. Availability - Having **self hosted DevOps agents** available as part of the running **codespace**.
 
-**IMPORTANT:** Do note that making use of **['Demands'](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/demands?view=azure-devops&tabs=yaml#task-demands)** is very important when **triggring/running pipelines** against DevOps Pipeline agents on a **Codespace**, to make sure you are running your pipelines against the correct codespace agent.  
+**IMPORTANT:** Do note that making use of **['Demands'](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/demands?view=azure-devops&tabs=yaml#task-demands)** is very important when **triggring/running pipelines** against DevOps Pipeline agents on a **Codespace**, to make sure you are running your pipelines against the correct codespace agent.
 
 ## Example
 
-**Demands** and **capabilities** are designed for use with self-hosted agents so that jobs can be matched with an agent that meets the requirements of the job.  
+**Demands** and **capabilities** are designed for use with self-hosted agents so that jobs can be matched with an agent that meets the requirements of the job.
 
 If you have multiple agents with different **users** and **Codespaces** in the same pool, you may want to run your pipelines against specified **codespaces** using **demands**, for example:
 
@@ -296,19 +296,19 @@ If you have multiple agents with different **users** and **Codespaces** in the s
 pool:
   name: MyPool
   demands:
-  - GITHUB_USER -equals Pwd9000-ML   # equals check for GitHub user
-  - HOSTNAME -equals codespaces-d066ef # equals check for hostname matching my Codespace
+    - GITHUB_USER -equals Pwd9000-ML # equals check for GitHub user
+    - HOSTNAME -equals codespaces-d066ef # equals check for hostname matching my Codespace
 ```
 
-By using **Demands** you can ensure that your pipelines will run against the intended **Codespace**.  
+By using **Demands** you can ensure that your pipelines will run against the intended **Codespace**.
 
-You can check your **agent capabilities** to use in **demands** by navigating and click on your **DevOps agent**.  
+You can check your **agent capabilities** to use in **demands** by navigating and click on your **DevOps agent**.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/run06.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/run06.png)
 
-Then select the **Capabilities** tab.  
+Then select the **Capabilities** tab.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/cap01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/cap01.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
 
