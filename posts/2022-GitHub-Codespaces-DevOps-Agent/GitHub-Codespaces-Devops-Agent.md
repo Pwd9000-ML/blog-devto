@@ -32,7 +32,7 @@ Since **Codespaces/Dev containers** are based on **docker images**, we will crea
 
 ## Azure DevOps Pre-requirements
 
-First we will create an **agent pool** inside of our Azure DevOps project to register **Azure Pipeline agents**.
+First we will create an **'agent pool'** inside of our Azure DevOps project so that we can register self hosted **Azure Pipeline agents**.
 
 1. Navigate to your Azure DevOps **'Organization settings'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Codespaces-DevOps-Agent/assets/pool01.png)
 
