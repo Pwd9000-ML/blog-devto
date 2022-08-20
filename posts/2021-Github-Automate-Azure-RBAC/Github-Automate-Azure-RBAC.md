@@ -42,7 +42,7 @@ az ad sp create-for-rbac --name $appName `
     --scopes /subscriptions/$subscriptionId `
     --sdk-auth
 
-# Assign additional RBAC role to Service Principal Subscription to manage Virtual machines
+# Assign additional RBAC role to Service Principal - User Access Administrator on Subscription
 az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
     az role assignment create --assignee "$_" `
         --role "User Access Administrator" `
