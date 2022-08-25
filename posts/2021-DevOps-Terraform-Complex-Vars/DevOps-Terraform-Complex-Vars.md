@@ -130,7 +130,6 @@ resource "azurerm_storage_account" "sas" {
 ### Example using FOR_EACH
 
 ```hcl
-#// code/resources.tf#L6-L32
 resource "azurerm_resource_group" "demo_rg" {
   count    = var.rg_config.create_rg ? 1 : 0
   name     = var.rg_config.name
