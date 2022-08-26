@@ -86,7 +86,7 @@ az functionapp config appsettings set `
     --settings @settings
 
 # Authorize the operation to create the container - Signed in User (Storage Blob Data Contributor Role)
-az ad signed-in-user show --query objectId -o tsv | foreach-object {
+az ad signed-in-user show --query id -o tsv | foreach-object {
     az role assignment create `
         --role "Storage Blob Data Contributor" `
         --assignee "$_" `
