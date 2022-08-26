@@ -9,6 +9,8 @@ id: 707024
 date: '2021-05-24T16:04:03Z'
 ---
 
+{% youtube Li9lSbZJCzo %}
+
 ## What are Azure Roles and Custom Definitions?
 
 When you start working more and more with Azure permissions you will undoubtedly have used Azure RBAC (also known as IAM) and have most likely used some of the great [built-in roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) that have been created and provided by Microsoft, but sometimes you may come across a requirement or a need to have a very specific role tailored with a set of permissions that are more granular than what comes out of the box in a standard Azure (RBAC) built-in role.
