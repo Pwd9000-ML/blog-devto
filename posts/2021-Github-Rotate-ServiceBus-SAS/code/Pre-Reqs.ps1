@@ -9,7 +9,7 @@ $keyVaultName = "secrets-vault$randomInt"
 $nameSpaceName = "githubactions"
 $queueName = "queue01"
 $policyName = "myauthrule"
-$currentUser = $(az ad signed-in-user show --query "objectId" --output tsv)
+$currentUser = $(az ad signed-in-user show --query "id" --output tsv)
 
 #Create ResourceGroup and Key Vault
 az group create --name $resourceGroupName -l $location

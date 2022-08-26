@@ -51,7 +51,7 @@ $settings | foreach-object {
 }
 
 # Authorize the operation to create the tracker table - Signed in User
-az ad signed-in-user show --query objectId -o tsv | foreach-object {
+az ad signed-in-user show --query id -o tsv | foreach-object {
     az role assignment create `
         --role "Reader and Data Access" `
         --assignee "$_" `

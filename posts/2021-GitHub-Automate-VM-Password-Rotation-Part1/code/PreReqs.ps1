@@ -26,7 +26,7 @@ az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
     }
 
 # Authorize the operation to create a few secrets - Signed in User (Key Vault Secrets Officer)
-az ad signed-in-user show --query objectId -o tsv | foreach-object {
+az ad signed-in-user show --query id -o tsv | foreach-object {
     az role assignment create `
         --role "Key Vault Secrets Officer" `
         --assignee "$_" `
