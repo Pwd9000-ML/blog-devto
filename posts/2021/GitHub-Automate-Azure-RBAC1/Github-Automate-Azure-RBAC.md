@@ -3,7 +3,7 @@ title: Automate Azure Role Based Access Control (RBAC) using GitHub
 published: true
 description: GitHub - Automate Azure RBAC
 tags: 'automation, azure, DevSecOps, githubactions'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Github-Automate-Azure-RBAC/assets/github-azure.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/GitHub-Automate-Azure-RBAC1/assets/github-azure.png'
 canonical_url: null
 id: 707024
 date: '2021-05-24T16:04:03Z'
@@ -69,7 +69,7 @@ The above command will output a JSON object with the role assignment credentials
 
 Firstly we will need to have a GitHub repository where we can store our custom role definition JSON files. If you need more information on how to set up a new GitHub repository, have a look [here](https://docs.github.com/en/github/getting-started-with-github/quickstart/create-a-repo).
 
-I called my repository `[Azure-Role-Definitions]`. In my repository I have created 3 main folder paths: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Github-Automate-Azure-RBAC/assets/rbac-repo-structure.png)
+I called my repository `[Azure-Role-Definitions]`. In my repository I have created 3 main folder paths: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/GitHub-Automate-Azure-RBAC1/assets/rbac-repo-structure.png)
 
 1. **.github/workflows:** Here we will define and create our GitHub actions yaml file.
 
@@ -87,7 +87,7 @@ Remember in an earlier step we created an azure AD app & service principal and g
 
 3. Paste the JSON object output from the Azure CLI command we ran earlier into the secret's value field. Give the secret the name `AZURE_CREDENTIALS`.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Github-Automate-Azure-RBAC/assets/githubAzureCredentials.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/GitHub-Automate-Azure-RBAC1/assets/githubAzureCredentials.png)
 
 ### Configure our first Custom Role Definition
 
@@ -285,13 +285,13 @@ Foreach ($file in $RoleDefinitions) {
 
 That's it, now each time a new JSON definition is added or an existing definition is amended on our repository under the path `./roleDefinitions/` the changes when pushed to our repo will trigger our github actions workflow and will auto-magically create or update any existing RBAC roles in Azure and we can now use proper version control and automation around governing our Azure RBAC custom role definitions using GitHub Actions.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Github-Automate-Azure-RBAC/assets/run-output.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/GitHub-Automate-Azure-RBAC1/assets/run-output.png)
 
 We can also confirm that our role is now published and usable in Azure. :smile:
 
-![Azure-Role-Published](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Github-Automate-Azure-RBAC/assets/Azure-Role-Published.gif)
+![Azure-Role-Published](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/GitHub-Automate-Azure-RBAC1/assets/Azure-Role-Published.gif)
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Github-Automate-Azure-RBAC/code) page or you can even use my repo as a template [HERE](https://github.com/Pwd9000-ML/Azure-Role-Definitions) :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/GitHub-Automate-Azure-RBAC1/code) page or you can even use my repo as a template [HERE](https://github.com/Pwd9000-ML/Azure-Role-Definitions) :heart:
 
 If you wanted to see how to do this using DevOps yaml pipelines instead have a look at one of my other posts below: {% link <https://dev.to/pwd9000/automate-azure-role-based-access-control-rbac-with-devops-2ehf> %}
 
