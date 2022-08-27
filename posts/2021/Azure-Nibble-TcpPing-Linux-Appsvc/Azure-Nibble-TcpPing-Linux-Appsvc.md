@@ -23,7 +23,7 @@ Windows based app services in Azure automatically have **tcpping** enabled, howe
 
 Go to your app service Kudu site: **<https://[sitename].scm.azurewebsites.net/webssh/host>** to establish a SSH web session. Or use the azure portal to navigate to the kudu site as follow:
 
-![aznav](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Nibble-TcpPing-Linux-Appsvc/assets/aznav.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Nibble-TcpPing-Linux-Appsvc/assets/aznav.png)
 
 ![kudu2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Nibble-TcpPing-Linux-Appsvc/assets/kudu2.png)
 
