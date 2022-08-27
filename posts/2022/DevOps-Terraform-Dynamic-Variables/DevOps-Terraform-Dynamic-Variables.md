@@ -3,7 +3,7 @@ title: Terraform - Creating dynamic variables using locals
 published: true
 description: DevOps - Terraform - Dynamic Variables
 tags: 'terraform, azure, iac, azuredevops'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Dynamic-Variables/assets/main-tf-tips.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Dynamic-Variables/assets/main-tf-tips.png'
 canonical_url: null
 id: 1030720
 series: Terraform Pro Tips
@@ -83,7 +83,7 @@ resource "azurerm_app_service_virtual_network_swift_connection" "azure_vnet_conn
 }
 ```
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Dynamic-Variables/assets/vint.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Dynamic-Variables/assets/vint.png)
 
 ### Azure Container Registry (ACR) resource ([acr.tf](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/blob/master/04_App_Acr/acr.tf))
 
@@ -253,9 +253,9 @@ ip_rule = [for each in local.acr_ip_rules :
 
 This loop will **dynamically** create an **"Allow"** entry on our ACR firewall for each outbound IP of our **App service**, as well as the custom IPs/ranges we added via our custom variable called **var.acr_custom_fw_rules**.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Dynamic-Variables/assets/fw.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Dynamic-Variables/assets/fw.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Dynamic-Variables/assets/fw2.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Dynamic-Variables/assets/fw2.png)
 
 As you can see from this tutorial, we can secure our public ACR using **Firewall rules** that are dynamically created by only allowing our **App services** and **On premise IPs/ranges** to connect into our ACR.
 

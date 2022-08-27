@@ -3,7 +3,7 @@ title: Upload files to Azure Virtual Machines with Azure Bastion in tunnel mode
 published: true
 description: Upload files to an Azure Linux VM using Azure Bastion on Windows using the SSH native Client
 tags: 'azure, bastion, cloudnetworking, tunnel'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/main1.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/main1.png'
 canonical_url: null
 id: 1093908
 date: '2022-06-02T09:06:55Z'
@@ -46,9 +46,9 @@ To get started you'll need a few things, firstly:
 
 **Note:** Before we can set up an Azure Bastion host we need an Azure Virtual Network with a **/26** subnet called **AzureBastionSubnet**. I already have a VNET and subnet set up in my environment:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/vnet.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/vnet.png)
 
-Next I will be using **Azure CLI** in a PowerShell script below called: [Bastion_Setup.ps1](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-Azure-Bastion-File-Transfers/code/Bastion_Setup.ps1) to set up the Bastion Host:
+Next I will be using **Azure CLI** in a PowerShell script below called: [Bastion_Setup.ps1](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/Azure-Bastion-File-Transfers/code/Bastion_Setup.ps1) to set up the Bastion Host:
 
 ```powershell
 #### Ensure VNET and AzureBastionSubnet with /26 CIDR is available before creation of Bastion Host ####
@@ -80,11 +80,11 @@ az network bastion create --name $bastionName `
 
 The script created a Public IP and Bastion host as follow:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/resources.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/resources.png)
 
 Next we will enable native client support. Navigate to the **Bastion Configuration** as shown below and enable `Native client support`:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/config.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/config.png)
 
 **Note:** If you are running the **Basic SKU** of Azure Bastion, you can also use this area to upgrade the SKU to **Standard**. Once you upgrade, you can't revert back to the Basic SKU without deleting and reconfiguring Bastion. Currently, this setting can be configured in the Azure portal only.
 
@@ -94,9 +94,9 @@ Now with our Azure Bastion set up and configured we will open a secure tunnel th
 
 Navigate to the Linux VM in the Azure portal, go to **Properties** and make a note of the **Resource ID** as we will need this value when we open the Bastion tunnel.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/rid.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/rid.png)
 
-Next, open PowerShell and run the below [Open_Tunnel.ps1](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-Azure-Bastion-File-Transfers/code/Open_Tunnel.ps1) script using your environments variables to open a tunnel on port `50022`:
+Next, open PowerShell and run the below [Open_Tunnel.ps1](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/Azure-Bastion-File-Transfers/code/Open_Tunnel.ps1) script using your environments variables to open a tunnel on port `50022`:
 
 ```powershell
 #Login to Azure
@@ -117,7 +117,7 @@ az network bastion tunnel --name $bastionName `
 
 As you can see we now have a tunnel open on port: `50022` on our local Windows machine (127.0.0.1).
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/tunnel.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/tunnel.png)
 
 **Note:** Do not close this shell window as it will close the tunnel, leave the session open.
 
@@ -125,39 +125,39 @@ As you can see we now have a tunnel open on port: `50022` on our local Windows m
 
 Next we will open WinSCP and connect to our localhost (127.0.0.1) to the open port: `50022` on the tunnel that is running:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/winscp1.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/winscp1.png)
 
 **Note:** The file protocol is `SCP` and the **UserName** and **Password** is that of our target VM.
 
 However in my case I will connect with a private key instead of a Password. To do so, in WinSCP on the screen above click on **Advanced** and select the private key you want to use under the SSH -> Authentication section.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/winscp3.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/winscp3.png)
 
 **Note:** If you are using a `PEM` private key, WinSCP will automatically create a converted copy of the `PEM` in `PPK` format. If you select **OK** in the following screen it will ask you where to save the converted `PPK` formatted key:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/winscp2.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/winscp2.png)
 
 Now with the private key configured in WinSCP, blank out the password and select **Login**. You will then see a warning about connecting to an unknown server, click **Yes** to continue:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/winscp6.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/winscp6.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/winscp4.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/winscp4.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/winscp5.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/winscp5.png)
 
 And that is it, you can now simply drag and drop files from the left pane (local Windows machine) into the Azure Hosted Linux VM on the right pane:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/winscp7.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/winscp7.png)
 
 We can also still use the Azure portal to connect to our VM via the Bastion Host and inspect the files we have uploaded:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/port1.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/port1.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/port2.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/port2.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-Azure-Bastion-File-Transfers/assets/port3.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-Bastion-File-Transfers/assets/port3.png)
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-Azure-Bastion-File-Transfers/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/Azure-Bastion-File-Transfers/code) page. :heart:
 
 ### _Author_
 

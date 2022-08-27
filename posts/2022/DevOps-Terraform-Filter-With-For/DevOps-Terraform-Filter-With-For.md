@@ -3,7 +3,7 @@ title: Terraform - Filter results using 'for' loops
 published: true
 description: DevOps - Terraform - Filter with 'for'
 tags: 'terraform, azure, iac, azuredevops'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Filter-With-For/assets/main-tf-tips.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Filter-With-For/assets/main-tf-tips.png'
 canonical_url: null
 id: 1044248
 series: Terraform Pro Tips
@@ -224,11 +224,11 @@ This `for` loop will filter and return a set of storage account names that we ca
 
 So in the example above, all four storage accounts will be created:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Filter-With-For/assets/storage.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Filter-With-For/assets/storage.png)
 
 But only one storage account was configured to have private endpoints enabled, namely storage account: `pwd9000adls2sa001`
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Filter-With-For/assets/pe.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Filter-With-For/assets/pe.png)
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
