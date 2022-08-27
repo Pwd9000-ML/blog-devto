@@ -249,7 +249,7 @@ env:
 $accessPolicyKey="${{ steps.sbPrimaryKey.outputs.myauthrulePrimaryKey }}"
 ```
 
-Note that our **reusable** github workflow will save the temporary Service Bus SAS token in Azure keyvault under the `secret` key name: **[ServiceBusPolicyName-SAS-TOKEN]**. This SAS token will only be valid for 10 minutes.
+Note that our **reusable** github workflow will save the temporary Service Bus SAS token in Azure Key Vault under the `secret` key name: **[ServiceBusPolicyName-SAS-TOKEN]**. This SAS token will only be valid for 10 minutes.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Github-Rotate-ServiceBus-SAS/assets/sastoken.png)
 
