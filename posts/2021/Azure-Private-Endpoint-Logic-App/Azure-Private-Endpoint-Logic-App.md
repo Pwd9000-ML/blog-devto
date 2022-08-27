@@ -17,7 +17,7 @@ date: '2021-06-19T15:11:43Z'
 
 [Azure Private Link](https://docs.microsoft.com/en-us/azure/private-link/private-link-overview) (Private Endpoint) allows you to access Azure PaaS services over a Private IP address within the VNet. The PaaS resource gets a new private IP via a virtual network interface (NIC) on your Virtual Network (VNET) attached to the PaaS resource or service, making the resource truly an internal **private** resource to your virtual network. When you send traffic to the resource that has been private endpointed, it will always ensure traffic stays within your VNet boundary.
 
-![private-link](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Private-Endpoint-Logic-App/assets/private-link.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Private-Endpoint-Logic-App/assets/private-link.png)
 
 ## What's new in Azure Logic apps?
 
