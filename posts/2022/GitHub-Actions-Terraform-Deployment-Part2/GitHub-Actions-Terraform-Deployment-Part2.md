@@ -226,7 +226,7 @@ The terraform apply action will download and apply the plan inside of the artifa
 
 That's all there is to it. So following the same pattern shown in this series you can now further expand your **Terraform** deployments in a modular, structured, non-monolithic way, by making more modules in separate paths e.g `./03_ect_ect` and for each deployment you can use my public **marketplace Actions** to plan and also apply your configuration. Or if you prefer using **re-usable workflows** you can also see how to do that in [part 1](https://dev.to/pwd9000/multi-environment-azure-deployments-with-terraform-and-github-2450) of this series.
 
-I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page. You can also look at the demo project or even create your own projects and workflows from the demo project [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments). :heart:
+I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/code) page. You can also look at the demo project or even create your own projects and workflows from the demo project [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments). :heart:
 
 ### _Author_
 
