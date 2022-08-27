@@ -1,7 +1,7 @@
 ---
-title: Automate Azure Service Bus SAS tokens with Github
+title: Automate Azure Service Bus SAS tokens with GitHub
 published: true
-description: Github - Actions - Automate Service Bus SAS tokens
+description: GitHub - Actions - Automate Service Bus SAS tokens
 tags: 'githubactions, DevSecOps, azure, github'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Github-Rotate-ServiceBus-SAS/assets/main-sb.png'
 canonical_url: null
@@ -13,7 +13,7 @@ date: '2021-11-14T10:04:58Z'
 
 ## Overview
 
-In todays tutorial I will demonstrate how to use powerShell in Github Actions to automate Azure Service Bus SAS tokens to generate short lived usable tokens with a validity period of 10 minutes and securely store the newly generated SAS tokens inside of an Azure Key Vault ready for consumption.
+In todays tutorial I will demonstrate how to use powerShell in GitHub Actions to automate Azure Service Bus SAS tokens to generate short lived usable tokens with a validity period of 10 minutes and securely store the newly generated SAS tokens inside of an Azure Key Vault ready for consumption.
 
 We will create an [Azure Service Bus](https://docs.microsoft.com/en-gb/azure/service-bus-messaging/service-bus-messaging-overview) and [Key Vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview) and a single **reusable** github workflow to handle our SAS token requests as well as a service principal / Azure identity to fully automate everything. For the purpose of this demonstration we will also have a main workflow that is triggered manually. Our main workflow, when triggered, will first call our **reusable** github workflow that will generate our temporary SAS token that will only be valid for 10 minutes and store the SAS token inside of the key vault (The token validity period can be adjusted based on your needs or requirement). Our main workflow will then retrieve the SAS token from the key vault and send the message through to our service bus queue.
 
@@ -23,13 +23,13 @@ Lets take a look at a sample use case flow diagram of how this would look like.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Github-Rotate-ServiceBus-SAS/assets/flowdiag001.png)
 
-**Note:** Maintaining Service Bus SAS tokens using an Azure key vault is particularly useful for teams who maintain secrets management and need to ensure that only relevant users, principals and processes can access secrets from a secure managed location and also be rotated on a regular basis. Azure key vaults are also particularly useful for security or ops teams who maintain secrets management, instead of giving other teams access to your deployment repositories in Github, teams who look after deployments no longer have to worry about giving access to other teams in order to manage secrets as secrets management will be done from an Azure key vault which nicely separates roles of responsibility when spread across different teams.
+**Note:** Maintaining Service Bus SAS tokens using an Azure key vault is particularly useful for teams who maintain secrets management and need to ensure that only relevant users, principals and processes can access secrets from a secure managed location and also be rotated on a regular basis. Azure key vaults are also particularly useful for security or ops teams who maintain secrets management, instead of giving other teams access to your deployment repositories in GitHub, teams who look after deployments no longer have to worry about giving access to other teams in order to manage secrets as secrets management will be done from an Azure key vault which nicely separates roles of responsibility when spread across different teams.
 
 ### Protecting secrets in github
 
-[Github Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets) is a great way that will allow us to store sensitive information in our organization, repository, or repository environments. In fact we will set up a github secret later in this tutorial that will allow us to authenticate to Azure.
+[GitHub Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets) is a great way that will allow us to store sensitive information in our organization, repository, or repository environments. In fact we will set up a github secret later in this tutorial that will allow us to authenticate to Azure.
 
-Even though this is a great feature to be able to have secrets management in Github, you may be looking after many repositories all with different secrets, this can become an administrative overhead when secrets or keys need to be rotated on a regular basis for best security practice, that's where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview) can also be utilized as a central source for all your secret management in your GitHub workflows.
+Even though this is a great feature to be able to have secrets management in GitHub, you may be looking after many repositories all with different secrets, this can become an administrative overhead when secrets or keys need to be rotated on a regular basis for best security practice, that's where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview) can also be utilized as a central source for all your secret management in your GitHub workflows.
 
 ### What do we need to start generating Service Bus SAS tokens?
 
@@ -38,7 +38,7 @@ For the purpose of this demo and so you can follow along, I will set up the Azur
 1. **Azure key vault:** This will be where we centrally store, access and manage all our Service Bus SAS tokens.
 2. **Service Bus Namespace:** We will create a service Bus Namespace and Queue.
 3. **Azure AD App & Service Principal:** This is what we will use to authenticate to Azure from our github workflows.
-4. **Github repository:** This is where we will keep all our source code and workflows.
+4. **GitHub repository:** This is where we will keep all our source code and workflows.
 
 ### Create an Azure key vault
 
@@ -134,9 +134,9 @@ The above command will output a JSON object with the role assignment credentials
 
 ### Configure our GitHub repository
 
-Next we will configure our Github repository and Github workflow. My Github repository is called `Azure-Service-Bus-SAS-Management`. You can also take a look or even use my github repository as a template [HERE](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management).
+Next we will configure our GitHub repository and GitHub workflow. My GitHub repository is called `Azure-Service-Bus-SAS-Management`. You can also take a look or even use my github repository as a template [HERE](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management).
 
-Remember at the beginning of this post I mentioned that we will create a github secret, we will now create this secret on our repository which will be used to authenticate our Github workflow to Azure when it's triggered.
+Remember at the beginning of this post I mentioned that we will create a github secret, we will now create this secret on our repository which will be used to authenticate our GitHub workflow to Azure when it's triggered.
 
 1. In [GitHub](https://github.com), browse your repository.
 

@@ -23,7 +23,7 @@ Please donate or share to this just giving page:
 
 ## Have a look at the talk
 
-See the video link of my talk - How to rotate VM passwords using Github Actions with Azure Key Vault: {% youtube nSSQtOvwVzA %}
+See the video link of my talk - How to rotate VM passwords using GitHub Actions with Azure Key Vault: {% youtube nSSQtOvwVzA %}
 
 ## Have a look at the blog
 

@@ -57,8 +57,8 @@ az login
 Next we will create a `resource group` and `key vault` by running:
 
 ```powershell
-az group create --name "Github-Assets" -l "UKSouth"
-az keyvault create --name "github-secrets-vault3" --resource-group "Github-Assets" --location "UKSouth" --enable-rbac-authorization
+az group create --name "GitHub-Assets" -l "UKSouth"
+az keyvault create --name "github-secrets-vault3" --resource-group "GitHub-Assets" --location "UKSouth" --enable-rbac-authorization
 ```
 
 As you see above we use the option `--enable-rbac-authorization`. The reason for this is because our service principal we will create in the next step will access this key vault using the RBAC permission model. You can also create an Azure key vault by using the Azure portal. For information on using the portal see this [link](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).
@@ -73,7 +73,7 @@ Next we will create our `Azure AD App & Service Principal` by running the follow
 # variables
 $subscriptionId=$(az account show --query id -o tsv)
 $appName="GitHubSecretsUser"
-$resourceGroup="Github-Assets"
+$resourceGroup="GitHub-Assets"
 $keyVaultName="github-secrets-vault3"
 
 # Create AAD App and Service Principal and assign to RBAC Role on Key Vault
@@ -217,7 +217,7 @@ jobs:
                   $secretPassword = ConvertTo-SecureString -String $passwordGen -AsPlainText -Force
                   Write-Output "Updating key vault: [$keyVaultName] with new random secure password for virtual machine: [$vmName]"
                   $Date = (Get-Date).tostring("dd-MM-yyyy")
-                  $Tags = @{ "Automation" = "Github-Workflow";  "Password-Rotated" = "true"; "Password-Rotated-On" = "$Date"}
+                  $Tags = @{ "Automation" = "GitHub-Workflow";  "Password-Rotated" = "true"; "Password-Rotated-On" = "$Date"}
                   $null = Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "$vmName" -SecretValue $secretPassword -Tags $Tags
                   Write-Output "Updating VM with new password..."
                   $adminUser = (Get-AzVm -Name $vmName | Select-Object -ExpandProperty OSProfile).AdminUsername
