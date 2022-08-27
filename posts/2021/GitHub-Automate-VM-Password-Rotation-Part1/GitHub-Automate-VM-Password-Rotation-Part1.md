@@ -1,7 +1,7 @@
 ---
-title: Automate password rotation with Github and Azure (Part 1)
+title: Automate password rotation with GitHub and Azure (Part 1)
 published: true
-description: Automate VM password rotation using Github and Azure key vault
+description: Automate VM password rotation using GitHub and Azure key vault
 tags: 'githubactions, devsecops, github, azure'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/GitHub-Automate-VM-Password-Rotation-Part1/assets/maincover1.png'
 canonical_url: null
@@ -10,13 +10,13 @@ series: Automate password rotation
 date: '2021-05-17T16:13:19Z'
 ---
 
-## :bulb: How to rotate VM passwords using Github workflows with Azure Key Vault
+## :bulb: How to rotate VM passwords using GitHub workflows with Azure Key Vault
 
 {% youtube nSSQtOvwVzA %}
 
 ### Overview
 
-Today we are going to look at how we can implement a zero-touch fully automated solution under 15 minutes to rotate all our virtual machines local administrator passwords on a schedule by using a single Github workflow and a centrally managed Azure key vault. (The technique/concept used in this tutorial is not limited to only Virtual machines. The same concept can be used and applied to almost anything that requires secret rotation)
+Today we are going to look at how we can implement a zero-touch fully automated solution under 15 minutes to rotate all our virtual machines local administrator passwords on a schedule by using a single GitHub workflow and a centrally managed Azure key vault. (The technique/concept used in this tutorial is not limited to only Virtual machines. The same concept can be used and applied to almost anything that requires secret rotation)
 
 In our use case we want to be able to rotate the local administrator password of all virtual machines hosted in an Azure subscription, trigger the rotation manually or on a schedule, ensure each VM has a randomized unique password, and access/store the rotated admin password for each virtual machine inside of the key vault we have hosted in Azure.
 
@@ -30,19 +30,19 @@ This means that whenever we need to connect to a VM in our subscription using th
 
 ### Protecting secrets in github
 
-Before we start, a quick word on secrets management in Github. When using Github workflows you need the ability to authenticate to Azure, you may also need to sometimes use passwords, secrets, API keys or connection strings in your source code in order to pass through some configuration of a deployment which needs to be set during the deployment. So how do we protect these sensitive pieces of information that our deployment needs and ensure that they are not in our source control when we start our deployment?
+Before we start, a quick word on secrets management in GitHub. When using GitHub workflows you need the ability to authenticate to Azure, you may also need to sometimes use passwords, secrets, API keys or connection strings in your source code in order to pass through some configuration of a deployment which needs to be set during the deployment. So how do we protect these sensitive pieces of information that our deployment needs and ensure that they are not in our source control when we start our deployment?
 
-There are a few ways to handle this. One way is to use [Github Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets). This is a great way that will allow you to store sensitive information in your organization, repository, or repository environments. In fact we will set up a github secret later in this tutorial to authenticate to Azure to connect to our key vault, retrieve server names and set/change passwords. Even though this is a great feature to be able to have secrets management in Github, you may be looking after many repositories all with different secrets, this can become an administrative overhead when secrets or keys need to be rotated on a regular basis for best security practice.
+There are a few ways to handle this. One way is to use [GitHub Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets). This is a great way that will allow you to store sensitive information in your organization, repository, or repository environments. In fact we will set up a github secret later in this tutorial to authenticate to Azure to connect to our key vault, retrieve server names and set/change passwords. Even though this is a great feature to be able to have secrets management in GitHub, you may be looking after many repositories all with different secrets, this can become an administrative overhead when secrets or keys need to be rotated on a regular basis for best security practice.
 
 This is where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview) can be utilized as a central source for all our secret management in our GitHub workflows.
 
-**Note:** Azure key vaults are also particularly useful for security or ops teams who maintain secrets management, instead of giving other teams access to our deployment repositories in Github, teams who look after deployments no longer have to worry about giving access to other teams in order to manage secrets as secrets management will be done from an Azure key vault which nicely separates roles of responsibility when spread across different teams.
+**Note:** Azure key vaults are also particularly useful for security or ops teams who maintain secrets management, instead of giving other teams access to our deployment repositories in GitHub, teams who look after deployments no longer have to worry about giving access to other teams in order to manage secrets as secrets management will be done from an Azure key vault which nicely separates roles of responsibility when spread across different teams.
 
 ### Let's get started. What do we need to start rotating our virtual machine local admin passwords?
 
 1. **Azure key vault:** This will be where we centrally store, access and manage all our virtual machine local admin passwords.
 2. **Azure AD App & Service Principal:** This is what we will use to authenticate to Azure from our github workflow.
-3. **Github repository:** This is where we will keep our source control and Github workflow / automation.
+3. **GitHub repository:** This is where we will keep our source control and GitHub workflow / automation.
 
 **Note:** For Steps 1 and 2 above, you can also run the [PreReqs.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2021/GitHub-Automate-VM-Password-Rotation-Part1/code/PreReqs.ps1) script, but lets take a look at what that script does in detail below.
 
@@ -121,9 +121,9 @@ az ad signed-in-user show --query id -o tsv | foreach-object {
 
 ### Configure our GitHub repository
 
-Next we will configure our Github repository and Github workflow. My Github repository is called `Azure-VM-Password-Management`. You can also take a look or even use my github repository as a template [HERE](https://github.com/Pwd9000-ML/Azure-VM-Password-Management).
+Next we will configure our GitHub repository and GitHub workflow. My GitHub repository is called `Azure-VM-Password-Management`. You can also take a look or even use my github repository as a template [HERE](https://github.com/Pwd9000-ML/Azure-VM-Password-Management).
 
-Remember at the beginning of this post I mentioned that we will create a github secret, we will now create this secret on our repository which will be used to authenticate our Github workflow to Azure when it's triggered.
+Remember at the beginning of this post I mentioned that we will create a github secret, we will now create this secret on our repository which will be used to authenticate our GitHub workflow to Azure when it's triggered.
 
 1. In [GitHub](https://github.com), browse your repository.
 

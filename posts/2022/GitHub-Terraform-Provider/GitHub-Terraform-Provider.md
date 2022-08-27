@@ -134,7 +134,7 @@ As you can see the terraform configuration we just ran using the [GitHub Provide
 
 We have only scratched the surface of what this **terraform provider** can do and if you are interested to see what other resources can be built and managed in GitHub using this provider head over to the official [GitHub Provider](https://registry.terraform.io/providers/integrations/github/latest/docs) documentation.
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Terraform-Provider/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Terraform-Provider/code) page. :heart:
 
 ### _Author_
 

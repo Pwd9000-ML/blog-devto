@@ -24,7 +24,7 @@ In the previous tutorial on this blog series **Terraform Registry**, we looked a
 
 ### Public Marketplace GitHub Actions
 
-I actually wrote a public GitHub action which I will use in this tutorial to demonstrate the automated tests. The Github action we will be using is called: [Terraform Tests for AZURE](https://github.com/marketplace/actions/terraform-tests-for-azure).
+I actually wrote a public GitHub action which I will use in this tutorial to demonstrate the automated tests. The GitHub action we will be using is called: [Terraform Tests for AZURE](https://github.com/marketplace/actions/terraform-tests-for-azure).
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Automated-Tests-Terraform/assets/action.png)
 
