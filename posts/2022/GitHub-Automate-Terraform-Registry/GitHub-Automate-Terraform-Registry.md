@@ -161,10 +161,10 @@ I hope you have enjoyed this post and have learned something new. You can find t
 
 If you are interested in checking out my public terraform modules on the registry here they are:
 
-- [AZURE - Dynamic Subnets](https://registry.terraform.io/modules/Pwd9000-ML/dynamic-subnets/azurerm/latest)
-- [AZURE - Secure Backend](https://registry.terraform.io/modules/Pwd9000-ML/secure-backend/azurerm/latest)
-- [AZURE - Custom Role Definitions](https://registry.terraform.io/modules/Pwd9000-ML/custom-role-definitions/azurerm/latest)
-- [AZURE - Sonarqube ACI](https://registry.terraform.io/modules/Pwd9000-ML/sonarqube-aci/azurerm/latest)
+- [AZURE - Dynamic Subnets.](https://registry.terraform.io/modules/Pwd9000-ML/dynamic-subnets/azurerm/latest)
+- [AZURE - Secure Backend.](https://registry.terraform.io/modules/Pwd9000-ML/secure-backend/azurerm/latest)
+- [AZURE - Custom Role Definitions.](https://registry.terraform.io/modules/Pwd9000-ML/custom-role-definitions/azurerm/latest)
+- [AZURE - Sonarqube ACI.](https://registry.terraform.io/modules/Pwd9000-ML/sonarqube-aci/azurerm/latest)
 
 I will be adding a few more cool modules on the public registry in due course.
 
