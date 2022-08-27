@@ -3,7 +3,7 @@ title: Azure Nibble - How to get TcpPing on Linux Azure App Service
 published: true
 description: Azure - Nibble - How to get TcpPing on Linux Azure App Service
 tags: 'azureappservice, azure, appservices, webapps'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Nibble-TcpPing-Linux-Appsvc/assets/main-azure-nibble.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Nibble-TcpPing-Linux-Appsvc/assets/main-azure-nibble.png'
 canonical_url: null
 id: 763498
 date: '2021-07-19T16:34:17Z'
@@ -23,9 +23,9 @@ Windows based app services in Azure automatically have **tcpping** enabled, howe
 
 Go to your app service Kudu site: **<https://[sitename].scm.azurewebsites.net/webssh/host>** to establish a SSH web session. Or use the azure portal to navigate to the kudu site as follow:
 
-![aznav](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Nibble-TcpPing-Linux-Appsvc/assets/aznav.png)
+![aznav](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Nibble-TcpPing-Linux-Appsvc/assets/aznav.png)
 
-![kudu2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Nibble-TcpPing-Linux-Appsvc/assets/kudu2.png)
+![kudu2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Nibble-TcpPing-Linux-Appsvc/assets/kudu2.png)
 
 Run the following:
 
@@ -45,7 +45,7 @@ Run the following:
 - [-x]: repeat n times (unlimited by default).
 - [port]: target port (80 by default).
 
-![tcpping1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Nibble-TcpPing-Linux-Appsvc/assets/tcpping1.png)
+![tcpping1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Nibble-TcpPing-Linux-Appsvc/assets/tcpping1.png)
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
