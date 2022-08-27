@@ -3,7 +3,7 @@ title: Multi environment AZURE deployments with Terraform and GitHub (Part 1)
 published: true
 description: Enterprise scale multi environment Azure deployments using Terraform and Github reusable workflows.
 tags: 'terraform, iac, github, azuredevops'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/main.png'
 canonical_url: null
 id: 963996
 series: Using Terraform on GitHub
@@ -28,7 +28,7 @@ There's also many blogs and tutorials out there on how to integrate **Terraform*
 
 In this tutorial we will use **GitHub reusable workflows** and **GitHub environments** to build enterprise scale multi environment infrastructure deployments in **Azure** using a **non-monolithic** approach, to construct and simplify complex terraform deployments into simpler manageable work streams, that can be updated independently, increase build time, and reduce duplicate workflow code by utilizing **reusable GitHub workflows**.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/mainwf.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/mainwf.png)
 
 Things you will get out of this 2 part tutorial:
 
@@ -41,7 +41,7 @@ Things you will get out of this 2 part tutorial:
 
 As an added bonus I have also added IaC security scanning with **TFSEC** to demonstrate IaC security scans and code quality checks as part of the CI/CD process to highlight any Terraform/Azure vulnerabilities or misconfigurations inside of the terraform code. Scan results are published on the GitHub Projects `Security` tab.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/tfsec.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/tfsec.png)
 
 Hopefully you can utilize these concepts in your own organization to build **AZURE** Infrastructure at scale and succeed in your own awesome cloud projects.
 
@@ -58,7 +58,7 @@ We are going to perform the following steps:
 
 ## 1. Create Azure resources (Terraform Backend)
 
-To set up the resources that will act as our Terraform backend, I wrote a PowerShell script using AZ CLI that will build and configure everything and store the relevant details/secrets we need to link our GitHub project in a key vault. You can find the script on my github code page: [AZ-GH-TF-Pre-Reqs.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code/AZ-GH-TF-Pre-Reqs.ps1).
+To set up the resources that will act as our Terraform backend, I wrote a PowerShell script using AZ CLI that will build and configure everything and store the relevant details/secrets we need to link our GitHub project in a key vault. You can find the script on my github code page: [AZ-GH-TF-Pre-Reqs.ps1](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/code/AZ-GH-TF-Pre-Reqs.ps1).
 
 First we will log into Azure by running:
 
@@ -161,29 +161,29 @@ az ad sp list --display-name $appName --query [].appId -o tsv | ForEach-Object {
 
 Lets take a closer look, step-by-step what the above script does as part of setting up the Terraform backend environment.
 
-1. Create a resource group called `Demo-Terraform-Core-Backend-RG`, containing an Azure key vault and storage account. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/prereqs1.png)
-2. Create an **AAD App and Service Principal** that has access to the key vault, backend storage account, container and the subscription. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/spn.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/rbac.png)
-3. The **AAD App and Service Principal** details are saved inside the key vault. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/secrets.png)
+1. Create a resource group called `Demo-Terraform-Core-Backend-RG`, containing an Azure key vault and storage account. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/prereqs1.png)
+2. Create an **AAD App and Service Principal** that has access to the key vault, backend storage account, container and the subscription. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/spn.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/rbac.png)
+3. The **AAD App and Service Principal** details are saved inside the key vault. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/secrets.png)
 
 ## 2. Create a GitHub Repository
 
 For this step I actually created a [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments) that contains everything to get started. Feel free to create your repository from my template by selecting `Use this template`. (Optional)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghtemplate1.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/ghtemplate1.png)
 
 After creating the GitHub repository there are a few things we do need to set on the repository before we can start using it.
 
 1. Add the secrets that was created in the `Key Vault` step above, into the newly created GitHub repository as **[Repository Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)**  
-   ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghsecrets.png)
+   ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/ghsecrets.png)
 2. This step is **Optional**. Create the following **[GitHub Environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment)**, or environments that matches your own requirements. In my case these are: `Development`, `UserAcceptanceTesting`, `Production`. You do not have to set up and use **GitHub Environments**, this is optional and is used in this tutorial to demonstrate deployment approvals via **Protection Rules**.
 
 **NOTE:** GitHub environments and Protection Rules are available on public repos, but for private repos you will need GitHub Enterprise.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghenv.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/ghenv.png)
 
 Note that on the **Production** environment I have configured a **Required Reviewer**. This will basically allow me to set explicit reviewers that have to physically approve deployments to the **Production** environment. To learn more about approvals see [Environment Protection Rules](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#environment-protection-rules).
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/ghprotect.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/ghprotect.png)
 
 **NOTE:** You can also configure **GitHub Secrets** at the **Environment** scope if you have separate Service Principals or even separate Subscriptions in Azure for each **Environment**. (Example: Your Development resources are in subscription A and your Production resources are in Subscription B). See [Creating encrypted secrets for an environment](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-an-environment) for details.
 
@@ -191,7 +191,7 @@ Note that on the **Production** environment I have configured a **Required Revie
 
 Now that our repository is all configured and ready to go, we can start to create some modular terraform configurations, or in other words separate independent deployment configurations based on ROOT terraform modules. If you look at the [Demo Repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments) you will see that on the root of the repository I have paths/folders that are numbered e.g. **./01_Foundation** and **./02_Storage**.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/tfmods.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/tfmods.png)
 
 These paths each contain a terraform ROOT module, which consists of a **collection** of items that can **independently** be configured and deployed. You do not have to use the same naming/numbering as I have chosen, but the idea is to understand that these paths/folders each represent a unique independent modular terraform configuration that consists of a collection of resources that we want to deploy independently.
 
@@ -204,7 +204,7 @@ So in this example:
 
 Example: The **Development** resource group name will be called `Demo-Infra-Dev-Rg`, whereas the **Production** resource group will be called `Demo-Infra-Prod-Rg`.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/tffoundation.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/tffoundation.png)
 
 ## 4. Create GitHub Workflows
 
@@ -400,7 +400,7 @@ In addition IaC scanning using TFSEC has also been applied to the `PLAN` **reusa
 
 Each terraform configuration, when calling the `PLAN` **reusable workflow** will be scanned for any Terraform IaC vulnerabilities and misconfigurations and the results will be published on the GitHub Projects `Security` tab e.g:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/tfsec.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/tfsec.png)
 
 The IaC security scan will not stop or FAIL any terraform plan or deployment, but is meant to highlight issues in code that can be looked at and corrected or improved upon.
 
@@ -647,7 +647,7 @@ You will see that each plan job uses the different TFVARS files: `config-dev.tfv
 
 Each plan job is also linked to a `tf_key` which represents the name of the backend state file as well as the name given to the compressed uploaded workflow artifact containing the terraform plan:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/artifact.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/artifact.png)
 
 Each reusable workflows **inputs** are specified on the **caller** workflows `jobs:` using `with:`, and **Secrets** using `secret:`.
 
@@ -657,7 +657,7 @@ If you don't use **GitHub Environments** or don't have any set up, you can leave
 
 Each **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:` are also linked with the relevant `needs:` setting of it's corresponding plan. This means that the plan job must be successful before the deploy job can initialize and run. Deploy jobs are also linked with earlier deploy jobs using `needs:` so that **Dev** gets built first and if successful be followed by **Uat**, and if successful followed by **Prod**. However if you remember, we configured a **GitHub Protection Rule** on our Production environment which needs to be approved before it can run.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/mainwf.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/mainwf.png)
 
 **NOTE:** if you have been following this tutorial step by step, and used a cloned copy of the [Demo Repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments) you will need to update the **caller** workflows: `./.github/workflows/01_Foundation.yml` and `./.github/workflows/02_Storage.yml` with the **inputs** specified under `with:` using the values of your environment.
 
@@ -665,33 +665,33 @@ Each **Deploy** jobs: `Deploy_Dev:`, `Deploy_Uat:`, `Deploy_Prod:` are also link
 
 Let's run the workflow: **01_Foundation** and see what happens.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/run.png)
 
 After the run you will see that each plan was created and DEV as well as UAT terraform configurations have been deployed to Azure as per the terraform configuration under `path: ./01_Foundation`:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run2.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/run2.png)
 
 After approving **Production** we can see that approval has triggered the production deployment and now we also have a production resource group.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run3.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/run3.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run4.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/run4.png)
 
 You will notice that each resource group contains a key vault as per our foundation terraform configuration under `path: ./01_Foundation`.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run5.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/run5.png)
 
 Let's run the workflow: **02_Storage** and after deploying DEV and UAT, also approve PRODUCTION to run.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run6.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/run6.png)
 
 Now you will notice that each of our environments resource groups also contains storage accounts as per the terraform configuration under `path: ./02_Storage`.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/run7.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/run7.png)
 
 Lastly, if we navigate to the terraform backend storage account, you will see that based on the `tf_key` inputs we gave each of our **caller** workflow `jobs:`, each terraform deployment has its own state file per ROOT module/collection, per environment, which nicely segregates the terraform configuration state files independently from each other.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/assets/state.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/state.png)
 
 ## Conclusion
 
@@ -699,7 +699,7 @@ Following the same pattern shown in this tutorial you can now further expand you
 
 You can structure your **Terraform** modules/collections in such a way such as grouping certain resources together that forms a function such as **Foundation** or **Networking** for example, or a certain service such as **Storage** or **Apps**, so that when changes to IaC are needed for a certain function or service in a large scale architecture the changes can be implemented safely and independently.
 
-I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part1/code) page. You can also look at the demo project or even create your own projects and workflows from the demo project [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments). :heart:
+I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/code) page. You can also look at the demo project or even create your own projects and workflows from the demo project [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments). :heart:
 
 ### _Author_
 

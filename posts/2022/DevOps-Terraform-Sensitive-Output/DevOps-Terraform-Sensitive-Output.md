@@ -3,7 +3,7 @@ title: Terraform - Sensitive Output
 published: true
 description: DevOps - Terraform - Sensitive Output
 tags: 'terraform, azure, iac, azuredevops'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Sensitive-Output/assets/main-tf-tips.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Sensitive-Output/assets/main-tf-tips.png'
 canonical_url: null
 id: 1016375
 series: Terraform Pro Tips
@@ -81,7 +81,7 @@ appsvc_settings = {
 
 Notice that when the terraform plan is being run, terraform will actually output the variable into the terraform plan and log to the CI/CD tooling as output:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Sensitive-Output/assets/var01.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Sensitive-Output/assets/var01.png)
 
 This can be an issue because the data will be leaked to anyone who has access to the CI/CD logs/output. Especially dangerous if the repository or project is public.
 
@@ -99,7 +99,7 @@ variable "appsvc_settings" {
 
 Notice now that when the terraform plan is being run, terraform will mask the output of the variable:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Sensitive-Output/assets/var02.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Sensitive-Output/assets/var02.png)
 
 ## Sensitive Output Type
 
@@ -176,7 +176,7 @@ resource "azurerm_linux_web_app" "APPSVC" {
 
 Since our app insights instrumentation key output is already marked as a sensitive output, it is all good and well for that value to be hidden from the output:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Sensitive-Output/assets/lookup01.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Sensitive-Output/assets/lookup01.png)
 
 But what about if we want the entire `app_settings` config block to be hidden?  
 This is where the `sensitive()` function comes in, as you can see by just wrapping the relevant locals variables in the `sensitive()` function will instruct terraform to hide the entire block from output:
@@ -201,9 +201,9 @@ locals {
 }
 ```
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Sensitive-Output/assets/lookup02.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Sensitive-Output/assets/lookup02.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Sensitive-Output/assets/appsvc.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Sensitive-Output/assets/appsvc.png)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/tree/master/04_App_Acr) page. :heart:
 

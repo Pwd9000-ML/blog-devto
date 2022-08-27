@@ -2,7 +2,8 @@ name: publish to Dev.to
 on:   
   push:
     paths:
-      - 'posts/**/**.md'
+      - 'posts/**/**.md' # Path for community timeline
+      - 'posts/**/**/**.md' # Path for all posts (yearly)
 
 jobs:
   publish:

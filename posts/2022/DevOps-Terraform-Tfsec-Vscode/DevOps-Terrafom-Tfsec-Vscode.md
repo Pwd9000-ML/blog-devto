@@ -3,7 +3,7 @@ title: Terraform - IaC Scanning with TFSEC for VsCode (Extension)
 published: true
 description: DevOps - Terraform - IaC Scanning with TFSEC for VsCode
 tags: 'terraform, azuredevops, iac, DevSecOps'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/assets/main-tfsec.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Tfsec-Vscode/assets/main-tfsec.png'
 canonical_url: null
 id: 970626
 series: Terraform IaC security
@@ -60,7 +60,7 @@ Please note that using `go install` will install directly from the `master` bran
 
 The next step is to just open up VsCode and under extensions you can search for the extension called **TFSEC** and hit the `install` button.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/assets/install.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Tfsec-Vscode/assets/install.png)
 
 You should now see the **TFSEC** logo on your **VsCode** side bar to the left.
 
@@ -68,21 +68,21 @@ You should now see the **TFSEC** logo on your **VsCode** side bar to the left.
 
 Next we will create a simple **Terraform** configuration and use the extension to inspect for any issues before committing the code to source control.
 
-I created a very basic terraform configuration that will build a resource group and key vault. You can take a look at the configuration [here](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/code/TF_Module).
+I created a very basic terraform configuration that will build a resource group and key vault. You can take a look at the configuration [here](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Tfsec-Vscode/code/TF_Module).
 
 After writing you terraform configuration navigate to the **TFSEC** extension on the left of the screen:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/assets/nav.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Tfsec-Vscode/assets/nav.png)
 
 Click on the button that says **Run tfsec now**:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/assets/run.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Tfsec-Vscode/assets/run.png)
 
 As you can see my Terraform configurations have been scanned and notified me of what issues are in my configuration, the severity rating of the issues detected, as well as guidance on remediating the issues.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/assets/result.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Tfsec-Vscode/assets/result.png)
 
-I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022-DevOps-Terraform-Tfsec-Vscode/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/DevOps-Terraform-Tfsec-Vscode/code) page. :heart:
 
 ### _Author_
 

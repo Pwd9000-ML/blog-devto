@@ -3,7 +3,7 @@ title: Terraform - Selective configuration with 'lookup()'
 published: true
 description: DevOps - Terraform - Selective configuration with 'lookup()'
 tags: 'terraform, azure, iac, azuredevops'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/main-tf-tips.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Lookup-Function/assets/main-tf-tips.png'
 canonical_url: null
 id: 1050533
 series: Terraform Pro Tips
@@ -94,7 +94,7 @@ Notice that we are using a `for_each` loop using the list we created earlier wit
 
 As you can see each Azure resource group was created for each site in the locations we defined in our `local` variable for _UK South_ and _UK West_:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/rgs.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Lookup-Function/assets/rgs.png)
 
 Next we will create a few storage accounts for each of our sites. We have a variable called `storage_config` which is a list of objects where each object represents a storage account configuration. But notice that one of the keys of each storage config/object has a `key` called `site_name`.
 
@@ -193,11 +193,11 @@ resource "random_integer" "sa_num" {
 
 As you can see **Site A** storage accounts are set with allowed IPs of `allowed_ips = ["8.8.8.8", "8.8.8.9"]`.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/sa_sitea.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/ip_sitea.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Lookup-Function/assets/sa_sitea.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Lookup-Function/assets/ip_sitea.png)
 
 And **Site B** storage accounts are set with allowed IPs of `allowed_ips = ["7.7.7.7", "7.7.7.8"]`
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/sa_siteb.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-DevOps-Terraform-Lookup-Function/assets/ip_siteb.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Lookup-Function/assets/sa_siteb.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Lookup-Function/assets/ip_siteb.png)
 
 As you can see the Terraform `lookup()` function can be quite useful in cases where we have multiple sites or different configs and having the ability match and correlate different configurations for different scenarios.
 

@@ -3,7 +3,7 @@ title: Multi environment AZURE deployments with Terraform and GitHub (Part 2)
 published: true
 description: Enterprise scale multi environment Azure deployments using Terraform and Github Actions.
 tags: 'terraform, iac, github, azuredevops'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part2/assets/main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part2/assets/main.png'
 canonical_url: null
 id: 969349
 series: Using Terraform on GitHub
@@ -187,19 +187,19 @@ This action will connect to a remote Terraform backend in Azure, creates a terra
 
 In the example: **[Marketplace_Example.yml](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments/blob/master/.github/workflows/Marketplace_Example.yml)** the terraform plans will be created and is compressed and published to the workflow as artifacts using the same name of the inputs `[plan_mode]-[tf_key]`:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part2/assets/artifact1.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part2/assets/artifact1.png)
 
 As mentioned earlier, the artifacts will either contain a deployment plan called `deploy_plan.tfplan` if `plan_mode: "deploy"` is used, or a destroy plan called `destroy_plan.tfplan` if `plan_mode: "destroy"` is used.
 
 **NOTE:** If `enable_TFSEC` is set to `true` on plan stage, Terraform IaC will be scanned using TFSEC and results are published to the GitHub Project `Security` tab:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part2/assets/tfsec.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part2/assets/tfsec.png)
 
 If using a private repository, GitHub enterprise is needed when enabling TFSEC. However if a public repository is used, code analysis is included and TFSEC can be enabled on public repositories without the need for a GitHub enterprise account.
 
 Also note that if the `PLAN` action is used in the context of a Pull Request (PR) the output will be added as a comment on the PR. (Requires a valid GITHUB TOKEN as input with `github_token`) Additionally failures on `fmt`, `init` and `validate` will also added to the PR. e.g.:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022-GitHub-Actions-Terraform-Deployment-Part2/assets/pr.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part2/assets/pr.png)
 
 ## APPLY Action Inputs
 
