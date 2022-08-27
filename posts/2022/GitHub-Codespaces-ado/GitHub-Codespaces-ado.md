@@ -100,7 +100,7 @@ I can also click and review the linked commit, which will take me straight into 
 
 Next I want to create a **Pull Request** to merge the new changes into the projects **master/main** branch, and remove my personal **branch** called `'ML-updateDocs'`, and as part of the pull request also close the **Azure boards work item**.
 
-To close or transition work items from **Github** the system will recognize `'fix'`, `'fixes'`, `'fixed'` applied to the `'AB#{Id}'` **mention** item that follows.
+To close or transition work items from **GitHub** the system will recognize `'fix'`, `'fixes'`, `'fixed'` applied to the `'AB#{Id}'` **mention** item that follows.
 
 You can create a pull request directly from your **Codespace**:
 
@@ -199,7 +199,7 @@ Now you can fully manage your **Azure DevOps Pipelines** using **Codespaces** as
 
 Now that you have integrated **Azure DevOps Pipelines and Boards** with your **GitHub repository** you can make full use of **Codespaces** (and other great services on GitHub) to work on your applications and code without the need for a dedicated "developer workstation", and have the added benefit of being able to still use features such as **Azure Boards** and **Azure Pipelines** tightly integrated with your project.
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [GitHub](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
 
 ### _Author_
 

@@ -147,7 +147,7 @@ You can take a look at the **README.md** file that was created here: [README.md]
 
 As you can see, this tool can be a valuable asset to easily maintain and have terraform documentation for your modules without much effort.
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Terraform-Docs/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Terraform-Docs/code) page. :heart:
 
 ### _Author_
 

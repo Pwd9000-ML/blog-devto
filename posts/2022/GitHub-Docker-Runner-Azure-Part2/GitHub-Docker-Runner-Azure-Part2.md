@@ -442,9 +442,9 @@ As described earlier, you will notice that all the running containers under **Do
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Docker-Runner-Azure-Part2/assets/runners-decom.png)
 
-In this part of the series we have covered how you can build and run self hosted **Github runners** as **linux containers** using **docker-desktop** and **docker-compose**. In the next part of this blog series we will take a look at hosting/storing our **GitHub runner** container images in a remote registry in Azure using **Azure Container Registry (ACR)**.
+In this part of the series we have covered how you can build and run self hosted **GitHub runners** as **linux containers** using **docker-desktop** and **docker-compose**. In the next part of this blog series we will take a look at hosting/storing our **GitHub runner** container images in a remote registry in Azure using **Azure Container Registry (ACR)**.
 
-I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-linux) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/docker-github-runner-linux) page. :heart:
 
 ### _Author_
 
