@@ -3,7 +3,7 @@ title: Upload Files to Azure Storage using a PowerShell Function App
 published: true
 description: Azure - Function App file uploader
 tags: 'azurefunctions, azure, serverless, powershell'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/main-cover.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/main-cover.png'
 canonical_url: null
 id: 874213
 date: '2021-10-24T13:31:36Z'
@@ -17,7 +17,7 @@ The HTTP request would be a JSON body and only requires the file name and the fi
 
 ## Set environment up automatically
 
-To stage and setup the entire environment for my API automatically I wrote a PowerShell script using AZ CLI, that would build and configure all the things I would need to start work on my function. There was one manual step however I will cover a bit later on. But for now you can find the script I used on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-Azure-Upload-File-PoSH-Function-App/code) page called `setup_environment.ps1`.
+To stage and setup the entire environment for my API automatically I wrote a PowerShell script using AZ CLI, that would build and configure all the things I would need to start work on my function. There was one manual step however I will cover a bit later on. But for now you can find the script I used on my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Azure-Upload-File-PoSH-Function-App/code) page called `setup_environment.ps1`.
 
 First we will log into Azure by running:
 
@@ -116,24 +116,24 @@ $functionMI = $(az resource list --name $functionAppName --query [*].identity.pr
 
 Lets take a closer look, step-by-step what the above script does as part of setting up the environment.
 
-1. Create a resource group called `Function-App-Storage`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/rg.png)
-2. Create an azure storage account, `secure store` where file uploads will be kept. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/secsa.png)
-3. Create an azure storage account for the function app. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/funcsa.png)
-4. Create a PowerShell Function App with `SystemAssigned` managed identity, `consumption` app service plan and `insights`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/func.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/funcmi1.png)
-5. Configure Function App environment variables. (Will be consumed inside of function app later). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/funcappsettings1.png)
-6. Create `fileuploads` container in secure store storage account. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/sacontainer1.png)
-7. Assign Function App `SystemAssigned` managed identity permissions to Storage account(Read) and container(Write). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/sarbac1.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/conrbac.png)
-8. Remember I mentioned earlier there is one manual step. In the next step we will change the `requirements.psd1` file on our function to allow the `AZ` module inside of our function by uncommenting the following: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/manual1.png)
+1. Create a resource group called `Function-App-Storage`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/rg.png)
+2. Create an azure storage account, `secure store` where file uploads will be kept. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/secsa.png)
+3. Create an azure storage account for the function app. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/funcsa.png)
+4. Create a PowerShell Function App with `SystemAssigned` managed identity, `consumption` app service plan and `insights`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/func.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/funcmi1.png)
+5. Configure Function App environment variables. (Will be consumed inside of function app later). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/funcappsettings1.png)
+6. Create `fileuploads` container in secure store storage account. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/sacontainer1.png)
+7. Assign Function App `SystemAssigned` managed identity permissions to Storage account(Read) and container(Write). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/sarbac1.png) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/conrbac.png)
+8. Remember I mentioned earlier there is one manual step. In the next step we will change the `requirements.psd1` file on our function to allow the `AZ` module inside of our function by uncommenting the following: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/manual1.png)
 
 **NOTE:** Remember to save the manual change we made on `requirements.psd1` above. That is it, our environment is set up and in the next section we will configure the file uploader function API powershell code.
 
 ## File Uploader Function
 
-The following function app code can also be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-Azure-Upload-File-PoSH-Function-App/code) page called `run.ps1`.
+The following function app code can also be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Azure-Upload-File-PoSH-Function-App/code) page called `run.ps1`.
 
-1. Navigate to the function app we created in the previous section and select `+ Create` under `Functions`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/createfunc.png)
-2. Select `Develop in portal` and for the template select `HTTP trigger`, name the function `uploadfile` and hit `Create`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/createfunc2.png)
-3. Navigate to `Code + Test` and replace all the code under `run.ps1` with the following powershell code and hit `save`: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/createfunc3.png)
+1. Navigate to the function app we created in the previous section and select `+ Create` under `Functions`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/createfunc.png)
+2. Select `Develop in portal` and for the template select `HTTP trigger`, name the function `uploadfile` and hit `Create`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/createfunc2.png)
+3. Navigate to `Code + Test` and replace all the code under `run.ps1` with the following powershell code and hit `save`: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/createfunc3.png)
 
 ```powershell
 using namespace System.Net
@@ -301,13 +301,13 @@ Lets test our function app and see if it does what it says on the tin.
 
 Before we test the function lets create a new temporary function key to test with. Navigate to the function app function and select `Function Keys`. Create a `+ New function key` and call the key `temp_token` (Make a note of the token as we will use it in the test script):
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/token.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/token.png)
 
 Also make a note of the Function App URL. If you followed this tutorial it would be: `https://<FunctionAppName>.azurewebsites.net/api/uploadfile`. Or you can also get this under `Code + Test` and selecting `Get function URL` and drop down using the key: `temp_token`:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/funcurl.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/funcurl.png)
 
-I have created the following powershell script to test the file uploader API. The following test script can be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-Azure-Upload-File-PoSH-Function-App/code) page called `test_upload.ps1`.
+I have created the following powershell script to test the file uploader API. The following test script can be found under my [github code](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Azure-Upload-File-PoSH-Function-App/code) page called `test_upload.ps1`.
 
 ```powershell
 #File and path to upload
@@ -339,15 +339,15 @@ Invoke-RestMethod -Uri $functionUri -Method 'POST' -Body $body -Headers $header
 
 Lets try it out with a txt file:
 
-![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/txtupload01.gif)
+![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/txtupload01.gif)
 
 Lets do another test but with an image file this time:
 
-![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-Upload-File-PoSH-Function-App/assets/pngupload04.gif)
+![image.gif](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Upload-File-PoSH-Function-App/assets/pngupload04.gif)
 
 **NOTE:** Ensure to keep your function app tokens safe. (You can delete your `temp_token` after testing).
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-Azure-Upload-File-PoSH-Function-App/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Azure-Upload-File-PoSH-Function-App/code) page. :heart:
 
 ### _Author_
 

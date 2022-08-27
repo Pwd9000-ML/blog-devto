@@ -3,7 +3,7 @@ title: Power virtual machines ON or OFF using Azure functions
 published: true
 description: Azure - Function App to control VM power states
 tags: 'azurefunctions, azure, serverless, powershell'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-VM-Power-States-Function-App/assets/main-cover.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/main-cover.png'
 canonical_url: null
 id: 724451
 date: '2021-06-10T17:57:09Z'
@@ -64,23 +64,23 @@ az functionapp create `
 
 Next we will enable the function app with a `system assigned` [`managed identity`](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) so that we can permission our function app against the virtual machines we will be maintaining. Under the function app `settings` pane select `Identity` and enable the `system assigned` setting to be `ON` and save the setting:
 
-![managedIdentity](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-VM-Power-States-Function-App/assets/managedIdentity.png)
+![managedIdentity](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/managedIdentity.png)
 
 With the Managed Identity now created, we can add a Role assignment and permissions (IAM) to the Subscription or Resource Group where our Vms reside. We will also give the function app the role `Virtual Machine Contributor` because we only want the app to be able to check the status of a VM and the ability to either stop or start a VM. On the same `settings` pane where we set the `identity` you will now see a new setting called `Permissions`. Click on `Azure Role Assignments` and add the relevant permissions at the resource group scope where the Vms resides.  
 **Note:** You can also add the role assignment permissions via `IAM` at a desired scope such as at a management group or subscription scope.
 
-![managedIdentity2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-VM-Power-States-Function-App/assets/managedIdentity2.png)
+![managedIdentity2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/managedIdentity2.png)
 
-![managedIdentity3](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-VM-Power-States-Function-App/assets/managedIdentity3.png)
+![managedIdentity3](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/managedIdentity3.png)
 
 If you check the `IAM` permissions now under the scope we added the role assignment, you should see the `IAM` permission for our function app:
 
-![managedIdentity4](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-VM-Power-States-Function-App/assets/managedIdentity4.png)
+![managedIdentity4](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/managedIdentity4.png)
 
 Now we will configure our function app with the powershell code and triggers to finalize the solution.  
 Under the `Functions` pane click `Add` with the following settings:
 
-![functionadd](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-VM-Power-States-Function-App/assets/functionadd.png)
+![functionadd](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/functionadd.png)
 
 **Development Environment:** `Develop in portal`  
 **Select a template:** `HTTP trigger`  
@@ -166,24 +166,24 @@ Push-OutputBinding -Name Response -Value (
 )
 ```
 
-Here is also a [Link](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-Azure-VM-Power-States-Function-App/code) to the function code.  
+Here is also a [Link](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Azure-VM-Power-States-Function-App/code) to the function code.  
 By default our function app will not have the AZ module enabled, so next we will enable this by navigating to the function apps `diagnostic console` and enabling the AZ module. Go to the `Development Tools` pane and select `Advanced Tools`.
 
-![kudu](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-VM-Power-States-Function-App/assets/kudu.png)
+![kudu](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/kudu.png)
 
 Then we will navigate to `site -> wwwroot` and edit the `requirements.psd1` file to enable the AZ module:
 
-![azModuleEnable](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-VM-Power-States-Function-App/assets/azModuleEnable.gif)
+![azModuleEnable](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/azModuleEnable.gif)
 
 **Note:** After this change we have to restart our function app.
 
 Next we will create a proxy URL, copy the `Get function URL`:
 
-![funcUrl](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-VM-Power-States-Function-App/assets/funcUrl.png)
+![funcUrl](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/funcUrl.png)
 
 Navigate back to the `Functions` pane and select `Proxies`, then select `Add` with the following settings:
 
-![funcProxy2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-VM-Power-States-Function-App/assets/funcProxy2.png)
+![funcProxy2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/funcProxy2.png)
 
 **Name:** `PowerAction`  
 **Route template:** `/{Action}/{Context}/{ResourceGroupName}/{VMName}`  
@@ -217,7 +217,7 @@ To stop and de-allocate the VM `MyWevServer01` you could change the `{Action}` p
 
 Similarly you could also start a VM by changing the `{Action}` to `Start`.
 
-![testFunc](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-VM-Power-States-Function-App/assets/testFunc.gif)
+![testFunc](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/testFunc.gif)
 
 ## Securing function apps
 
@@ -226,17 +226,17 @@ For the purposes of this tutorial be aware that the proxy URL we created to chec
 A very quick and effective way as well to limit access to our URL is to only allow a specific IP or range of IPs to access our URL.  
 Navigate to the function app `settings` pane and select `Networking`:
 
-![funcSec1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-VM-Power-States-Function-App/assets/funcSec1.png)
+![funcSec1](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/funcSec1.png)
 
 Next select `Access Restrictions` and add a rule to allow your IP:
 
-![funcSec02](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-VM-Power-States-Function-App/assets/funcSec02.png)
+![funcSec02](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/funcSec02.png)
 
 By default this will block all inbound connections to our Proxy URL with the exception to our excluded IP. Now if anyone else tries to access the function they will be unable to.
 
-![funcSec3](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-Azure-VM-Power-States-Function-App/assets/funcSec3.png)
+![funcSec3](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/funcSec3.png)
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-Azure-VM-Power-States-Function-App/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Azure-VM-Power-States-Function-App/code) page. :heart:
 
 ### _Author_
 
