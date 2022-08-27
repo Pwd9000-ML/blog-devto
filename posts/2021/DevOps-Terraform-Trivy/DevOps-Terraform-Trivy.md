@@ -3,7 +3,7 @@ title: Terraform - IaC Scanning with Trivy (Azure DevOps)
 published: true
 description: DevOps - Terraform - IaC Scanning with Trivy (Azure DevOps)
 tags: 'terraform, azuredevops, iac, DevSecOps'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-DevOps-Terraform-Trivy/assets/main-trivy.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/DevOps-Terraform-Trivy/assets/main-trivy.png'
 canonical_url: null
 id: 864896
 series: Terraform IaC security
@@ -20,9 +20,9 @@ Today we will look at how you can utilise `Trivy` as part of your DevOps CI/CD p
 
 ## How to Scan IaC
 
-This tutorial is based on the following [Azure DevOps Repository](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-DevOps-Terraform-Trivy/code) blueprint, which will use a CI/CD YAML pipeline to deploy an Azure Virtual Network using terraform IaC configuration files.
+This tutorial is based on the following [Azure DevOps Repository](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/DevOps-Terraform-Trivy/code) blueprint, which will use a CI/CD YAML pipeline to deploy an Azure Virtual Network using terraform IaC configuration files.
 
-There are terraform configuration files under the path [/Terraform/networking](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-DevOps-Terraform-Trivy/code/Terraform/networking). There is also a YAML pipeline `network.yml` under [/pipelines/](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-DevOps-Terraform-Trivy/code/pipelines) which is used to deploy the terraform code. The pipeline will trigger a `build.yml` template which essentially creates our Terraform artifact and if successful the pipeline will trigger the `deploy.yml` template which will apply our terraform configuration artifact. The pipeline templates are kept under the path [/task_groups/](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-DevOps-Terraform-Trivy/code/task_groups).
+There are terraform configuration files under the path [/Terraform/networking](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/DevOps-Terraform-Trivy/code/Terraform/networking). There is also a YAML pipeline `network.yml` under [/pipelines/](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/DevOps-Terraform-Trivy/code/pipelines) which is used to deploy the terraform code. The pipeline will trigger a `build.yml` template which essentially creates our Terraform artifact and if successful the pipeline will trigger the `deploy.yml` template which will apply our terraform configuration artifact. The pipeline templates are kept under the path [/task_groups/](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/DevOps-Terraform-Trivy/code/task_groups).
 
 We will utilise `Trivy` during our build phase, so lets take a look at the `build.yml` file:
 
@@ -141,7 +141,7 @@ That is it as far as configuring and integrating `Trivy` into your CI/CD process
 
 **NOTE:** Please note that this example does not protect secrets being committed into source control and is meant as a guide. If you find any secrets in source code or terraform configurations after they have been committed please remove and rotate them as soon as possible.
 
-As you can see in my Terraform configuration [main.tf](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-DevOps-Terraform-Trivy/code/Terraform/networking/main.tf). I have configured a second provider using an alias, but I configured my provider with a `client_secret` value in plain text:
+As you can see in my Terraform configuration [main.tf](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/DevOps-Terraform-Trivy/code/Terraform/networking/main.tf). I have configured a second provider using an alias, but I configured my provider with a `client_secret` value in plain text:
 
 ```hcl
 # Terraform/networking/main.tf#L18-L25
@@ -158,13 +158,13 @@ provider "azurerm" {
 
 When `Trivy` runs a scan against my Terraform configuration you will see that my `build` process fails due to a **CRITICAL** security risk that it identified.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-DevOps-Terraform-Trivy/assets/detect.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/DevOps-Terraform-Trivy/assets/detect.png)
 
 ## What is checked?
 
 `Trivy` checks Terraform IaC using [TFSEC](https://github.com/aquasecurity/tfsec). You can take a look at all the checks that `Trivy` performs under the [included checks](https://github.com/aquasecurity/tfsec#included-checks) documentation. In the previous example above `Trivy` detected a risk called: [Potentially sensitive data stored in block attribute](https://tfsec.dev/docs/general/secrets/sensitive-in-attribute/), which notified us that our code was potentially exposing sensitive information.
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-DevOps-Terraform-Trivy/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/DevOps-Terraform-Trivy/code) page. :heart:
 
 ### _Author_
 

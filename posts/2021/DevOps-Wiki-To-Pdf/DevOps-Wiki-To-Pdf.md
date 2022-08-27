@@ -3,7 +3,7 @@ title: Create a PDF document from an Azure DevOps Wiki
 published: true
 description: DevOps - Convert Devops Wiki to PDF
 tags: 'automation, azure, devops, azuredevops'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-DevOps-Wiki-To-Pdf/assets/main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/DevOps-Wiki-To-Pdf/assets/main.png'
 canonical_url: null
 id: 824638
 date: '2021-09-15T09:20:57Z'
@@ -31,11 +31,11 @@ The extension is based on a tool called [**AzureDevOps.WikiPDFExport**](https://
 After installing [WIKI PDF Export Tasks](https://marketplace.visualstudio.com/items?itemName=richardfennellBM.BM-VSTS-WikiPDFExport-Tasks) in your Devops Organisation. Navigate to your Wiki repository.  
 In this tutorial I am using a repo on my project called: **Devops.Wiki** published as my project wiki.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-DevOps-Wiki-To-Pdf/assets/wiki.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/DevOps-Wiki-To-Pdf/assets/wiki.png)
 
 Under my repo I then created a new folder/path called: `.pipelines`
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-DevOps-Wiki-To-Pdf/assets/paths.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/DevOps-Wiki-To-Pdf/assets/paths.png)
 
 In this path we will create our YAML pipeline called `wiki-to-pdf.yml` with the following code:
 
@@ -83,11 +83,11 @@ stages:
 
 We can then set up this pipeline and trigger it manually, once the pipeline has completed it will generate an artifact that contains the PDF document.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-DevOps-Wiki-To-Pdf/assets/run.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/DevOps-Wiki-To-Pdf/assets/run.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021-DevOps-Wiki-To-Pdf/assets/artifact.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/DevOps-Wiki-To-Pdf/assets/artifact.png)
 
-[Here](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2021-DevOps-Wiki-To-Pdf/code/DevOpsWiki.pdf) is an example PDF export.
+[Here](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2021/DevOps-Wiki-To-Pdf/code/DevOpsWiki.pdf) is an example PDF export.
 
 ## Other Examples
 
@@ -145,7 +145,7 @@ This can easily be done by using the following build pipeline task as shown on t
     includePreviewVersions: true
 ```
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021-DevOps-Wiki-To-Pdf/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/DevOps-Wiki-To-Pdf/code) page. :heart:
 
 ### _Author_
 
