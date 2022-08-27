@@ -188,7 +188,7 @@ Let's test our function app by triggering the code manually using **Test/Run** t
 
 ![log-01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-KeyVault-Function-Integrate/assets/log-01.png)
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Azure-KeyVault-Function-Integrate/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Azure-KeyVault-Function-Integrate/code) page. :heart:
 
 ### _Author_
 

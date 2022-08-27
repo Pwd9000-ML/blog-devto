@@ -1,5 +1,5 @@
 ---
-title: DevOps/Github service notifications using Azure Logic Apps
+title: DevOps/GitHub service notifications using Azure Logic Apps
 published: true
 description: Using Azure Logic App to send notifications from RSS feeds
 tags: 'cloudmonitoring, azure, automation, devops'
@@ -9,11 +9,11 @@ id: 807719
 date: '2021-08-30T19:28:52Z'
 ---
 
-## Github/DevOps service status
+## GitHub/DevOps service status
 
-As described in one of my previous post, you can easily check the health status of services like Github and DevOps by going to each services status page. Below is a link to my previous post: {% link <https://dev.to/pwd9000/github-devops-status-2eji> %}
+As described in one of my previous post, you can easily check the health status of services like GitHub and DevOps by going to each services status page. Below is a link to my previous post: {% link <https://dev.to/pwd9000/github-devops-status-2eji> %}
 
-Additionally, both Github and DevOps status pages have RSS feeds we can subscribe to. The Azure platform itself also has its own health status page at the following URL: [https://status.azure.com/en-us/status/](https://status.azure.com/en-us/status/).
+Additionally, both GitHub and DevOps status pages have RSS feeds we can subscribe to. The Azure platform itself also has its own health status page at the following URL: [https://status.azure.com/en-us/status/](https://status.azure.com/en-us/status/).
 
 In todays tutorial we will create and configure an **Azure Logic App** that will connect to each of these services RSS feeds and send us email notifications when services become degraded, health issues occur or get remediated.
 
@@ -125,7 +125,7 @@ Now every time a new health status is posted to any of our configured RSS feeds,
 
 ![mail02](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Logic-App-RSS/assets/mail02.png)
 
-I hope you have enjoyed this post and have learned something new. You can also find the JSON code sample and template of the Logic App we built in this tutorial on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Azure-Logic-App-RSS/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the JSON code sample and template of the Logic App we built in this tutorial on my [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Azure-Logic-App-RSS/code) page. :heart:
 
 ### _Author_
 
