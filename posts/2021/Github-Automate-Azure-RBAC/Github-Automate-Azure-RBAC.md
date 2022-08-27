@@ -69,7 +69,7 @@ The above command will output a JSON object with the role assignment credentials
 
 Firstly we will need to have a GitHub repository where we can store our custom role definition JSON files. If you need more information on how to set up a new GitHub repository, have a look [here](https://docs.github.com/en/github/getting-started-with-github/quickstart/create-a-repo).
 
-I called my repository `[Azure-Role-Definitions]`. In my repository I have created 3 main folder paths: ![rbac-repo-structure](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Github-Automate-Azure-RBAC/assets/rbac-repo-structure.png)
+I called my repository `[Azure-Role-Definitions]`. In my repository I have created 3 main folder paths: ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Github-Automate-Azure-RBAC/assets/rbac-repo-structure.png)
 
 1. **.github/workflows:** Here we will define and create our GitHub actions yaml file.
 
@@ -87,7 +87,7 @@ Remember in an earlier step we created an azure AD app & service principal and g
 
 3. Paste the JSON object output from the Azure CLI command we ran earlier into the secret's value field. Give the secret the name `AZURE_CREDENTIALS`.
 
-![githubAzureCredentials](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Github-Automate-Azure-RBAC/assets/githubAzureCredentials.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Github-Automate-Azure-RBAC/assets/githubAzureCredentials.png)
 
 ### Configure our first Custom Role Definition
 
@@ -285,7 +285,7 @@ Foreach ($file in $RoleDefinitions) {
 
 That's it, now each time a new JSON definition is added or an existing definition is amended on our repository under the path `./roleDefinitions/` the changes when pushed to our repo will trigger our github actions workflow and will auto-magically create or update any existing RBAC roles in Azure and we can now use proper version control and automation around governing our Azure RBAC custom role definitions using GitHub Actions.
 
-![run-output](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Github-Automate-Azure-RBAC/assets/run-output.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Github-Automate-Azure-RBAC/assets/run-output.png)
 
 We can also confirm that our role is now published and usable in Azure. :smile:
 
