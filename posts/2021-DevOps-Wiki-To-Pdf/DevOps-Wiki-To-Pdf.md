@@ -46,37 +46,39 @@ name: Wiki-To-PDF-$(Rev:rr)
 trigger: none
 
 stages:
-  - stage: wiki_export
-    displayName: Wiki Export
+- stage: wiki_export
+  displayName: Wiki Export
 
-    jobs:
-      - job: wiki_to_pdf
-        displayName: Wiki To PDF
-        pool:
-          vmImage: windows-latest
+  jobs:
+  - job: wiki_to_pdf
+    displayName: Wiki To PDF
+    pool:
+      vmImage: windows-latest
+    
+    steps:
+    - task: UseDotNet@2
+      displayName: 'Use .NET Core sdk'
+      inputs:
+        packageType: 'sdk'
+        version: '6.0.x'
+        includePreviewVersions: true
 
-        steps:
-          - task: UseDotNet@2
-            displayName: 'Use .NET Core sdk'
-            inputs:
-              packageType: 'sdk'
-              version: '6.0.x'
-              includePreviewVersions: true
+    - task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@2
+      displayName: 'Export a private Azure DevOps WIKI'
+      inputs:
+        cloneRepo: true
+        repo: 'https://dev.azure.com/magiconionM/Devto_Blog_Demos/_git/DevOps.Wiki'
+        useAgentToken: true
+        localpath: '$(System.DefaultWorkingDirectory)/DevOpsWiki' 
+        outputFile: '$(Build.ArtifactStagingDirectory)/PDF/DevOpsWiki.pdf'
+    
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish wiki export to Azure Pipeline'
+      inputs:
+        targetPath: '$(Build.ArtifactStagingDirectory)/PDF'
+        artifactName: DevOpsWiki
 
-          - task: richardfennellBM.BM-VSTS-WikiPDFExport-Tasks.WikiPDFExportTask.WikiPdfExportTask@2
-            displayName: 'Export a private Azure DevOps WIKI'
-            inputs:
-              cloneRepo: true
-              repo: 'https://dev.azure.com/magiconionM/Devto_Blog_Demos/_git/DevOps.Wiki'
-              useAgentToken: true
-              localpath: '$(System.DefaultWorkingDirectory)/DevOpsWiki'
-              outputFile: '$(Build.ArtifactStagingDirectory)/PDF/DevOpsWiki.pdf'
 
-          - task: PublishPipelineArtifact@1
-            displayName: 'Publish wiki export to Azure Pipeline'
-            inputs:
-              targetPath: '$(Build.ArtifactStagingDirectory)/PDF'
-              artifactName: DevOpsWiki
 ```
 
 We can then set up this pipeline and trigger it manually, once the pipeline has completed it will generate an artifact that contains the PDF document.
