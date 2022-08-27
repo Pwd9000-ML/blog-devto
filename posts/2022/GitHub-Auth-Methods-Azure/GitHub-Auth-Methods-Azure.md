@@ -6,6 +6,7 @@ tags: 'github, azure, authentication, devsecops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/main.png'
 canonical_url: null
 id: 1177675
+date: '2022-08-27T15:37:53Z'
 ---
 
 ### Overview
