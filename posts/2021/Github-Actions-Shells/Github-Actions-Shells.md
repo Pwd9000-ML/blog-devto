@@ -177,7 +177,7 @@ jobs:
           write-output "Hello World"
 ```
 
-I hope you have enjoyed this post and have learned something new. :heart: You can find more information on action shells on the [Github actions syntax page](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsshell)
+I hope you have enjoyed this post and have learned something new. :heart: You can find more information on action shells on the [GitHub actions syntax page](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsshell)
 
 ### _Author_
 

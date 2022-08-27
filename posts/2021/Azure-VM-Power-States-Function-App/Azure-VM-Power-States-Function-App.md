@@ -236,7 +236,7 @@ By default this will block all inbound connections to our Proxy URL with the exc
 
 ![funcSec3](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/funcSec3.png)
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Azure-VM-Power-States-Function-App/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Azure-VM-Power-States-Function-App/code) page. :heart:
 
 ### _Author_
 

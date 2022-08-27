@@ -89,7 +89,7 @@ module "mymodule" {
 }
 ```
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Devops-Terraform-Git-Ssh/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Devops-Terraform-Git-Ssh/code) page. :heart:
 
 ### _Author_
 

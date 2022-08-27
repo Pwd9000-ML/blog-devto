@@ -56,7 +56,7 @@ We will set this trigger to run every 3 minutes:
 
 Next we will add each of our RSS feeds as parallel **branches** after our schedule. Click on `+ New step` underneath the `recurrence` schedule trigger and search for `rss`. We will add the action **"List all RSS feed items"** 3x times as we want to check three RSS feeds, one for each of the following service:
 
-1. [https://www.githubstatus.com/history.rss](https://www.githubstatus.com/history.rss) - Github RSS status feed.
+1. [https://www.githubstatus.com/history.rss](https://www.githubstatus.com/history.rss) - GitHub RSS status feed.
 2. [https://status.dev.azure.com/\_rss](https://status.dev.azure.com/_rss) - Azure Devops RSS status feed.
 3. [https://azurestatuscdn.azureedge.net/en-gb/status/feed/](https://azurestatuscdn.azureedge.net/en-gb/status/feed/) - Azure platform RSS status feed.
 
