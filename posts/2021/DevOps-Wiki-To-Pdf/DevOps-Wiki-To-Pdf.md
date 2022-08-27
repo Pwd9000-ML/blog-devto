@@ -143,7 +143,7 @@ This can easily be done by using the following build pipeline task as shown on t
     includePreviewVersions: true
 ```
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/DevOps-Wiki-To-Pdf/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/DevOps-Wiki-To-Pdf/code) page. :heart:
 
 ### _Author_
 
