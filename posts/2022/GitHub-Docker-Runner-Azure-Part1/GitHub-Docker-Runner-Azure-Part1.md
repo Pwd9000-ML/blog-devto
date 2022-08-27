@@ -1,7 +1,7 @@
 ---
 title: Create a Docker based Self Hosted GitHub runner Windows container
 published: true
-description: Create a Windows based Github Self Hosted runner container image and run using docker and docker-compose
+description: Create a Windows based GitHub Self Hosted runner container image and run using docker and docker-compose
 tags: 'github, azure, docker, containers'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Docker-Runner-Azure-Part1/assets/main.png'
 canonical_url: null
@@ -566,9 +566,9 @@ Simply re-run the cleanup script we ran earlier under the **./scripts** folder c
 .\scripts\Cleanup-Runners.ps1 -owner "orgName" -repo "repoName" -pat "myPatToken"
 ```
 
-In this part of the series we have covered how you can build and run self hosted **Github runners** as **windows containers** using **docker-desktop** and **docker-compose**. In the next part of this blog series we will look at building a **Linux based Ubuntu image** container instead, for our self hosted GitHub runners.
+In this part of the series we have covered how you can build and run self hosted **GitHub runners** as **windows containers** using **docker-desktop** and **docker-compose**. In the next part of this blog series we will look at building a **Linux based Ubuntu image** container instead, for our self hosted GitHub runners.
 
-I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/docker-github-runner-windows) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/docker-github-runner-windows) page. :heart:
 
 ### _Author_
 

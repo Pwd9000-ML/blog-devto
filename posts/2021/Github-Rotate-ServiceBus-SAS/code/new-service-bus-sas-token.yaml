@@ -61,7 +61,7 @@ jobs:
           #Set Temp SAS token in Azure Key Vault
           Write-Output "Update SAS token in: [$keyVaultName]" 
           $secretToken = ConvertTo-SecureString -String $SASToken -AsPlainText -Force
-          $tags = @{ "Automation" = "Github-Workflow";  "Temp-SAS" = "true"; "Generated-On" = "$dateTime"}
+          $tags = @{ "Automation" = "GitHub-Workflow";  "Temp-SAS" = "true"; "Generated-On" = "$dateTime"}
           $null = Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "$accessPolicyName-SAS-TOKEN" -SecretValue $secretToken -Tags $tags
           Write-Output 'SAS Token Saved to Key Vault Secret as: [$accessPolicyName-SAS-TOKEN] '
         azPSVersion: 'latest'

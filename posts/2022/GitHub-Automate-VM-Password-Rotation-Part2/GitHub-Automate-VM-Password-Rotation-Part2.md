@@ -130,7 +130,7 @@ As of release v1.1.0; Support for linux and windows runner types now available.
 | Ubuntu 20.04                      | `ubuntu-latest` or `ubuntu-20.04`  |
 | Ubuntu 18.04                      | `ubuntu-18.04`                     |
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github Action](https://github.com/Pwd9000-ML/azure-vm-password-rotate) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [GitHub Action](https://github.com/Pwd9000-ML/azure-vm-password-rotate) page. :heart:
 
 ### _Author_
 

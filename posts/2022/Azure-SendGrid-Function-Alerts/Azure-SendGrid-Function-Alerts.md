@@ -396,7 +396,7 @@ A few seconds later you should see the email notification that was triggered by 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/Azure-SendGrid-Function-Alerts/assets/result.png)
 
 That concludes this tutorial and I hope that you can utilize this great service in other use cases and functions that you may be running inside of your environment.  
-I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/Azure-SendGrid-Function-Alerts/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/Azure-SendGrid-Function-Alerts/code) page. :heart:
 
 ### _Author_
 

@@ -1,5 +1,5 @@
 ---
-title: Github/DevOps status
+title: GitHub/DevOps status
 published: true
 description: Useful links for checking GitHub and DevOps status
 tags: 'cloudmonitoring, devops, github'

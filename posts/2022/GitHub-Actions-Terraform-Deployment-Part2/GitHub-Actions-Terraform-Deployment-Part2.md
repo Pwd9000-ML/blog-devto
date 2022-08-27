@@ -1,7 +1,7 @@
 ---
 title: Multi environment AZURE deployments with Terraform and GitHub (Part 2)
 published: true
-description: Enterprise scale multi environment Azure deployments using Terraform and Github Actions.
+description: Enterprise scale multi environment Azure deployments using Terraform and GitHub Actions.
 tags: 'terraform, iac, github, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part2/assets/main.png'
 canonical_url: null
@@ -20,7 +20,7 @@ Recently I decided to create two public **GitHub Actions** on the GitHub Actions
 
 ### Pre-Requisites
 
-The pre-requisites we need to start using terraform on Github is exactly the same as in [part 1](https://dev.to/pwd9000/multi-environment-azure-deployments-with-terraform-and-github-2450) of this series. I would recommend going through [part 1](https://dev.to/pwd9000/multi-environment-azure-deployments-with-terraform-and-github-2450) first, and follow the same steps for 1-3.
+The pre-requisites we need to start using terraform on GitHub is exactly the same as in [part 1](https://dev.to/pwd9000/multi-environment-azure-deployments-with-terraform-and-github-2450) of this series. I would recommend going through [part 1](https://dev.to/pwd9000/multi-environment-azure-deployments-with-terraform-and-github-2450) first, and follow the same steps for 1-3.
 
 We are going to perform the following steps:
 
@@ -226,7 +226,7 @@ The terraform apply action will download and apply the plan inside of the artifa
 
 That's all there is to it. So following the same pattern shown in this series you can now further expand your **Terraform** deployments in a modular, structured, non-monolithic way, by making more modules in separate paths e.g `./03_ect_ect` and for each deployment you can use my public **marketplace Actions** to plan and also apply your configuration. Or if you prefer using **re-usable workflows** you can also see how to do that in [part 1](https://dev.to/pwd9000/multi-environment-azure-deployments-with-terraform-and-github-2450) of this series.
 
-I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/code) page. You can also look at the demo project or even create your own projects and workflows from the demo project [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments). :heart:
+I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/code) page. You can also look at the demo project or even create your own projects and workflows from the demo project [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments). :heart:
 
 ### _Author_
 

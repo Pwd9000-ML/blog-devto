@@ -217,7 +217,7 @@ jobs:
             #Set Temp SAS token in Azure Key Vault
             Write-Output "Update SAS token in: [$keyVaultName]" 
             $secretToken = ConvertTo-SecureString -String $SASToken -AsPlainText -Force
-            $tags = @{ "Automation" = "Github-Workflow";  "Temp-SAS" = "true"; "Generated-On" = "$dateTime"}
+            $tags = @{ "Automation" = "GitHub-Workflow";  "Temp-SAS" = "true"; "Generated-On" = "$dateTime"}
             $null = Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "$accessPolicyName-SAS-TOKEN" -SecretValue $secretToken -Tags $tags
             Write-Output 'SAS Token Saved to Key Vault Secret as: [$accessPolicyName-SAS-TOKEN] '
           azPSVersion: 'latest'
@@ -363,7 +363,7 @@ As you can see our message was sent to our Service Bus Queue using the temporary
 
 The main take away of this tutorial is to know that we can create **reusable** GitHub Action workflows that can be called as separate jobs in other workflows. By carving up large workflows and referencing reusable workflows we can cut down on duplication and also make our workflows much more dynamic. Additionally we did something cool by creating a security process in which we generate short lived secure Service Bus SAS tokens that are stored in an Azure Key Vault and can be permissioned and consumed by other services in a controlled manner.
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Github-Rotate-ServiceBus-SAS/code) page.
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Github-Rotate-ServiceBus-SAS/code) page.
 
 Additionally you can use this [github repository](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management) used in this tutorial as a template in your own github account and start to generate and automate your Service Bus SAS tokens today. :heart:
 
