@@ -1,7 +1,7 @@
 ---
-title: Automate password rotation with Github and Azure (Part 2)
+title: Automate password rotation with GitHub and Azure (Part 2)
 published: true
-description: Automate VM password rotation using Github and Azure key vault
+description: Automate VM password rotation using GitHub and Azure key vault
 tags: 'githubactions, DevSecOps, github, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Automate-VM-Password-Rotation-Part2/assets/main.png'
 canonical_url: null

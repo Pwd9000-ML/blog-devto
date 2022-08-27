@@ -82,7 +82,7 @@ As you can see my Terraform configurations have been scanned and notified me of 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Terraform-Tfsec-Vscode/assets/result.png)
 
-I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [Github](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/DevOps-Terraform-Tfsec-Vscode/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/DevOps-Terraform-Tfsec-Vscode/code) page. :heart:
 
 ### _Author_
 

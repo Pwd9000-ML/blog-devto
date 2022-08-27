@@ -276,7 +276,7 @@ In the following example when a new user starts they can pick which configuratio
 
 As you can see, **GitHub Codespaces** is really a mind blowing service that can solve so many problems when it comes to provisioning development workstations. We have only scratched the surface of what **Codespaces** can offer in this post and I will be creating an entire blog series dedicated to this amazing service, so stay tuned for the next post on **GitHub Codespaces**.
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [GitHub](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
 
 ### _Author_
 

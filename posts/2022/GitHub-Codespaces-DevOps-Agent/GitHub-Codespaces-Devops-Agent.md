@@ -311,7 +311,7 @@ Then select the **Capabilities** tab.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-DevOps-Agent/assets/cap01.png)
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [Github](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [GitHub](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
 
 ### _Author_
 
