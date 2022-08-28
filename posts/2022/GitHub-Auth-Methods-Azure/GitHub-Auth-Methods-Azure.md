@@ -19,7 +19,7 @@ In both methods we will create what is known as an [app registration/service pri
 
 **NOTE:** If you are familiar with using **Azure DevOps** and **Azure pipelines**, this is synonymous to creating a [service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml) for your pipelines.
 
-## Method 1 - Client and Secret
+## Method 1 - Client and Secret (Legacy)
 
 The first method we will look at is an older legacy method that uses a `'Client'` and `'Secret'` approach to authenticate.
 
@@ -91,9 +91,45 @@ Select **New repository secret** to add the following secrets:
 
 ### 3. Authenticate GitHub Actions workflows with Azure
 
-xxxxx
+Now that we have a **GitHub Secret** called `'AZURE_CREDENTIALS'` that contains our **Azure Service Principal credentials**, we can consume this secret inside of our **workflows** to authenticate and log into **Azure**.  
 
-## Method 2 - Open ID Connect (OIDC)
+Here is an example workflow that will authenticate to Azure and show all resource groups on the subscription as part of th workflow run: [authenticate-azure.yml](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/authenticate-azure.yml).  
+
+```yml
+name: Authenticate Azure
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Log into Azure using github secret AZURE_CREDENTIALS
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
+
+      - name: 'Run az commands'
+        run: |
+          az account show
+          az group list
+```
+
+Notice the **GitHub Actions** step we are using to log into Azure:  
+
+```yml
+- name: Log into Azure using github secret AZURE_CREDENTIALS
+uses: Azure/login@v1
+with:
+    creds: ${{ secrets.AZURE_CREDENTIALS }}
+    enable-AzPSSession: true
+```
+
+## Method 2 - Open ID Connect(OIDC) (Modern)
 
 ## Conclusion
 

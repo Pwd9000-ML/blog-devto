@@ -1,0 +1,21 @@
+name: Authenticate Azure
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Log into Azure using github secret AZURE_CREDENTIALS
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
+
+      - name: 'Run az commands'
+        run: |
+          az account show
+          az group list
