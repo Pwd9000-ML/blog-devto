@@ -107,7 +107,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Log into Azure using github secret AZURE_CREDENTIALS
+      - name: 'Log into Azure using github secret AZURE_CREDENTIALS'
         uses: Azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
@@ -122,12 +122,14 @@ jobs:
 Notice the **GitHub Actions** step we are using to log into Azure:  
 
 ```yml
-- name: Log into Azure using github secret AZURE_CREDENTIALS
+- name: 'Log into Azure using github secret AZURE_CREDENTIALS'
 uses: Azure/login@v1
 with:
     creds: ${{ secrets.AZURE_CREDENTIALS }}
     enable-AzPSSession: true
 ```
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/test01.png)
 
 ## Method 2 - Open ID Connect(OIDC) (Modern)
 
