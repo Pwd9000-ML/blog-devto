@@ -63,15 +63,15 @@ Copy this JSON object as we will add this as a **GitHub Secret**. You will only 
 }
 ```
 
-The main drawback of using this legacy method to create a service principal for **GitHub** is that the principals **client secret** is only valid for **1 year**, and has to be managed and rotated frequently for security reasons, and will also have to be updated in your **GitHub** account manually, which can become a cumbersome administration task.  
+The main drawback of using this legacy method to create a service principal for **GitHub** is that the principals **client secret** is only valid for **1 year**, and has to be managed and rotated frequently for security reasons, and will also have to be updated in your **GitHub** account manually, which can become a cumbersome administration task.
 
-You can rotate the secret of the service principal by navigating to **'App registrations'** in **'Azure Active Directory (AAD)'**.  
+You can rotate the secret of the service principal by navigating to **'App registrations'** in **'Azure Active Directory (AAD)'**.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad01.png)
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad02.png)
 
-We will discuss in the second method why using Open ID Connect (OIDC) is a much better option.  
+We will discuss in the second method why using Open ID Connect (OIDC) is a much better option.
 
 ### 2. Creating a GitHub Actions Secret
 
