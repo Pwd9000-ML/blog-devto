@@ -21,7 +21,7 @@ In both methods we will create what is known as an [app registration/service pri
 
 ## Method 1 - Client and Secret  
 
-The first method we will look at is an older legacy method that uses a `'Client'` and `'Secret'` approach to authenticate.  
+The first method we will look at is an older legacy method that uses a `'Client'` and `'Secret'` approach to authenticate.
 
 ### 1. Creating an Azure AD App & Service Principal
 
@@ -48,9 +48,9 @@ az ad sp create-for-rbac --name $appName `
 
 In the script above, the `'az ad sp create-for-rbac'` command will create an AAD app & service principal and will output a JSON object containing the credentials of the service principal:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/rbac.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/rbac.png)
 
-**NOTE:** The service principal will provide your GitHub workflow, **Contributor** access to the **Subscription**. Feel free to change the RBAC `'role'` and `'scopes'` as necessary.  
+**NOTE:** The service principal will provide your GitHub workflow, **Contributor** access to the **Subscription**. Feel free to change the RBAC `'role'` and `'scopes'` as necessary.
 
 Copy this JSON object as we will add this as a **GitHub Secret**. You will only need the sections with the `"clientId"`, `"clientSecret"`, `"subscriptionId"`, and `"tenantId"` values:
 
@@ -69,7 +69,7 @@ Next create a **GitHub Secret** on your **GitHub repository** using the JSON obj
 
 - In the GitHub UI, navigate to your repository and select **Settings** > **Secrets** > **Actions**:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/ghsec01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/ghsec01.png)
 
 - Select **New repository secret** to add the following secrets:
 
@@ -77,7 +77,7 @@ Next create a **GitHub Secret** on your **GitHub repository** using the JSON obj
 | --- | --- |
 | `AZURE_CREDENTIALS` | The entire JSON output from the service principal creation step |
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/ghsec02.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/ghsec02.png)
 
 ### 3. Authenticating your GitHub Actions workflow with Azure
 
