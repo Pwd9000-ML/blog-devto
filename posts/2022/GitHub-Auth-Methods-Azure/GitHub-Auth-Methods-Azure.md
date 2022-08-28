@@ -73,7 +73,7 @@ Next create a **GitHub Secret** on your **GitHub repository** using the JSON obj
 | --- | --- |
 | `AZURE_CREDENTIALS` | The entire JSON output from the service principal creation step |
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Docker-Runner-Azure-Part3/assets/ghsec02.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/ghsec02.png)  
 
 ## Method 2 - Open ID Connect (OIDC)
 
