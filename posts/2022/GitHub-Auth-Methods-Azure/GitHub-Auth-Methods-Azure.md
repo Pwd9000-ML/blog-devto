@@ -11,13 +11,13 @@ date: '2022-08-27T15:37:53Z'
 
 ## Overview
 
-When you're working with **GitHub Actions** and start to write and develop automation **workflows** you will sometimes need to connect your **workflow** to different platforms, such as a **cloud provider** for example, to allow your **workflows** access and permissions to perform actions on the cloud provider. Thus you will need to **connect** and **authenticate** your **workflows** with the cloud provider.
+When you're working with **GitHub Actions** and start to write and develop automation **workflows** you will sometimes need to connect your **workflow** to different platforms, such as a **cloud provider** for example, to allow your **workflows** access and permissions to perform actions on the cloud provider. Thus you will need to **connect** and **authenticate** your **workflows** with the cloud provider.  
 
-Today we will look at two ways you can link and authenticate your **GitHub Action workflows** with **Azure**, a popular Microsoft cloud provider.
+Today we will look at two ways you can do this with **Azure**, a popular Microsoft cloud provider.  
 
-In both methods we will create what is known as an [app registration/service principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals), assigning permissions to the principal and link the principal with GitHub to allow our **workflows** to authenticate and perform relevant tasks.
+In both methods we will create what is known as an [app registration/service principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals), assigning permissions to the principal and link the principal with GitHub to allow your **workflows** to authenticate and perform relevant tasks.  
 
-**NOTE:** If you are familiar with using **Azure DevOps** and **Azure pipelines**, this is very similar to [service connections](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml).
+**NOTE:** If you are familiar with using **Azure DevOps** and **Azure pipelines**, this is synonymous to creating a [service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml) for your pipelines.  
 
 ## Method 1 - Client and Secret
 
