@@ -91,9 +91,9 @@ Select **New repository secret** to add the following secrets:
 
 ### 3. Authenticate GitHub Actions workflows with Azure
 
-Now that we have a **GitHub Secret** called `'AZURE_CREDENTIALS'` that contains our **Azure Service Principal credentials**, we can consume this secret inside of our **workflows** to authenticate and log into **Azure**.  
+Now that we have a **GitHub Secret** called `'AZURE_CREDENTIALS'` that contains our **Azure Service Principal credentials**, we can consume this secret inside of our **workflows** to authenticate and log into **Azure**.
 
-Here is an example workflow that will authenticate to Azure and show all resource groups on the subscription as part of th workflow run: [authenticate-azure.yml](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/authenticate-azure.yml).  
+Here is an example workflow that will authenticate to Azure and show all resource groups on the subscription as part of th workflow run: [authenticate-azure.yml](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/authenticate-azure.yml).
 
 ```yml
 name: Authenticate Azure
@@ -119,7 +119,7 @@ jobs:
           az group list
 ```
 
-Notice the **GitHub Actions** step we are using to log into Azure:  
+Notice the **GitHub Actions** step we are using to log into Azure:
 
 ```yml
 - name: 'Log into Azure using github secret AZURE_CREDENTIALS'
