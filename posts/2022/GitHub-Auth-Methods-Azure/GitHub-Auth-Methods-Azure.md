@@ -23,7 +23,7 @@ In both methods we will create what is known as an [app registration/service pri
 
 The first method we will look at is an older legacy method that uses a `'Client'` and `'Secret'` approach to authenticate.
 
-### 1. Creating an Azure AD App & Service Principal
+### 1. Create Service Principal credentials
 
 For this method I will use the following [PowerShell script](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/Create-SP.ps1) to create an **Azure AD App & Service Principal**.
 
@@ -73,7 +73,7 @@ You can rotate the secret of the service principal by navigating to **'App regis
 
 We will discuss later why using Open ID Connect (OIDC) is a much better option.
 
-### 2. Creating a GitHub Actions Secret
+### 2. Create a GitHub Actions Secret
 
 Next create a **GitHub Secret** on your **GitHub repository** using the JSON object Service Principal credentials:
 
@@ -89,7 +89,7 @@ Select **New repository secret** to add the following secrets:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/ghsec02.png)
 
-### 3. Authenticating your GitHub Actions workflow with Azure
+### 3. Authenticate GitHub Actions workflows with Azure
 
 xxxxx
 
