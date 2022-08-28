@@ -21,6 +21,40 @@ In both methods we will create what is known as an [app registration/service pri
 
 ## Method 1 - Client and Secret
 
+For the first method I will using the following [PowerShell script](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/Create-SP.ps1) to create an **Azure AD App & Service Principal**.  
+
+```powershell
+# Log into Azure
+Az login
+
+# Show current subscription (use 'Az account set' to change subscription)
+Az account show
+
+# variables
+$subscriptionId=$(az account show --query id -o tsv)
+$appName="GitHub-projectName-Actions"
+$RBACRole="Contributor"
+
+# Create AAD App and Service Principal and assign RBAC Role
+az ad sp create-for-rbac --name $appName `
+    --role $RBACRole `
+    --scopes /subscriptions/$subscriptionId `
+    --sdk-auth
+```
+
+The above script will create an AAD app & service principal and set the `Role Based Access Control (RBAC)` role for `Contributor` on the Azure subscription you are logged into.  
+
+It will also output a JSON object containing the credentials of the service principal that will provide your GitHub workflow, contributor access to the subscription. Copy this JSON object for later as we will create a [GitHub Actions Secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets) using the details. You will only need the sections with the `clientId`, `clientSecret`, `subscriptionId`, and `tenantId` values:
+
+```JSON
+{
+  "clientId": "<GUID>",
+  "clientSecret": "<PrincipalSecret>",
+  "subscriptionId": "<GUID>",
+  "tenantId": "<GUID>"
+}
+```
+
 ## Method 2 - Open ID Connect (OIDC)
 
 ## Conclusion
