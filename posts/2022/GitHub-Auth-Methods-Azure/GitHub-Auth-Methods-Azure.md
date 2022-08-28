@@ -21,7 +21,9 @@ In both methods we will create what is known as an [app registration/service pri
 
 ## Method 1 - Client and Secret
 
-For the first method I will using the following [PowerShell script](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/Create-SP.ps1) to create an **Azure AD App & Service Principal**.
+The first method we will look at is an older legacy method that uses a `'Client'` and `'Secret'` approach to authenticate.  
+
+For this method I will use the following [PowerShell script](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/Create-SP.ps1) to create an **Azure AD App & Service Principal**.
 
 ```powershell
 # Log into Azure
@@ -42,9 +44,13 @@ az ad sp create-for-rbac --name $appName `
     --sdk-auth
 ```
 
-The above script will create an AAD app & service principal and set the `Role Based Access Control (RBAC)` role for `Contributor` on the Azure subscription you are logged into.
+In the script above, the `'az ad sp create-for-rbac'` command will create an AAD app & service principal and will output a JSON object containing the credentials of the service principal:
 
-It will also output a JSON object containing the credentials of the service principal that will provide your GitHub workflow, contributor access to the subscription. Copy this JSON object for later as we will create a [GitHub Actions Secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets) using the details. You will only need the sections with the `clientId`, `clientSecret`, `subscriptionId`, and `tenantId` values:
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/rbac.png)  
+
+**NOTE:** The service principal will provide your GitHub workflow, **Contributor** access to the **Subscription**. Feel free to change the RBAC `'role'` and `'scopes'` as necessary.  
+
+Copy this JSON object as we will add this as a **GitHub Secret**. You will only need the sections with the `clientId`, `clientSecret`, `subscriptionId`, and `tenantId` values:
 
 ```JSON
 {
@@ -54,6 +60,20 @@ It will also output a JSON object containing the credentials of the service prin
   "tenantId": "<GUID>"
 }
 ```
+
+Next create a **GitHub Secret** on your **GitHub repository** using the JSON object Service Principal credentials:
+
+- In the GitHub UI, navigate to your repository and select **Settings** > **Secrets** > **Actions**:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/ghsec01.png)  
+
+- Select **New repository secret** to add the following secrets:
+
+| **Secret** | **Value** |
+| --- | --- |
+| `AZURE_CREDENTIALS` | The entire JSON output from the service principal creation step |
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Docker-Runner-Azure-Part3/assets/ghsec02.png)
 
 ## Method 2 - Open ID Connect (OIDC)
 
