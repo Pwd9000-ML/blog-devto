@@ -129,7 +129,9 @@ with:
     enable-AzPSSession: true
 ```
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/test01.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/test01.png)  
+
+**NOTE:** The `'Run az commands'` step will display the Azure account as well as a list of all resource groups.  
 
 ## Method 2 - Open ID Connect(OIDC) (Modern)
 
