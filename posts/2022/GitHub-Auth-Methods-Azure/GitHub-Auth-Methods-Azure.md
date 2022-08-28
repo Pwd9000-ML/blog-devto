@@ -19,7 +19,7 @@ In both methods we will create what is known as an [app registration/service pri
 
 **NOTE:** If you are familiar with using **Azure DevOps** and **Azure pipelines**, this is synonymous to creating a [service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml) for your pipelines.
 
-## Method 1 - Client and Secret  
+## Method 1 - Client and Secret
 
 The first method we will look at is an older legacy method that uses a `'Client'` and `'Secret'` approach to authenticate.
 
