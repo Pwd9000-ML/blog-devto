@@ -19,9 +19,11 @@ In both methods we will create what is known as an [app registration/service pri
 
 **NOTE:** If you are familiar with using **Azure DevOps** and **Azure pipelines**, this is synonymous to creating a [service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml) for your pipelines.
 
-## Method 1 - Client and Secret
+## Method 1 - Client and Secret  
 
 The first method we will look at is an older legacy method that uses a `'Client'` and `'Secret'` approach to authenticate.  
+
+### 1. Creating an Azure AD App & Service Principal
 
 For this method I will use the following [PowerShell script](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/Create-SP.ps1) to create an **Azure AD App & Service Principal**.
 
@@ -50,7 +52,7 @@ In the script above, the `'az ad sp create-for-rbac'` command will create an AAD
 
 **NOTE:** The service principal will provide your GitHub workflow, **Contributor** access to the **Subscription**. Feel free to change the RBAC `'role'` and `'scopes'` as necessary.  
 
-Copy this JSON object as we will add this as a **GitHub Secret**. You will only need the sections with the `clientId`, `clientSecret`, `subscriptionId`, and `tenantId` values:
+Copy this JSON object as we will add this as a **GitHub Secret**. You will only need the sections with the `"clientId"`, `"clientSecret"`, `"subscriptionId"`, and `"tenantId"` values:
 
 ```JSON
 {
@@ -60,6 +62,8 @@ Copy this JSON object as we will add this as a **GitHub Secret**. You will only 
   "tenantId": "<GUID>"
 }
 ```
+
+### 2. Creating a GitHub Actions Secret
 
 Next create a **GitHub Secret** on your **GitHub repository** using the JSON object Service Principal credentials:
 
@@ -74,6 +78,10 @@ Next create a **GitHub Secret** on your **GitHub repository** using the JSON obj
 | `AZURE_CREDENTIALS` | The entire JSON output from the service principal creation step |
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/ghsec02.png)  
+
+### 3. Authenticating your GitHub Actions workflow with Azure
+
+xxxxx
 
 ## Method 2 - Open ID Connect (OIDC)
 
