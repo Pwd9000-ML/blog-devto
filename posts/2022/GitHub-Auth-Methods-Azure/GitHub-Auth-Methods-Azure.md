@@ -100,10 +100,13 @@ Here is an example workflow that will authenticate to Azure and show all resourc
 name: Authenticate Azure
 on:
   workflow_dispatch:
+  pull_request:
+    branches:
+      - master
 
 jobs:
   publish:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -236,7 +239,108 @@ When the GitHub Actions workflow requests the Microsoft identity platform to exc
 - For Jobs not tied to an environment, include the **ref path** of the **branch/tag** based on the **ref path** used for triggering the workflow: `repo:<Organization/Repository>:ref:<ref path>`. For example, `repo:myOrg/myRepo:ref:refs/heads/myBranch` or `repo:myOrg/myRepo:ref:refs/tags/myTag`.
 - For workflows triggered by a **pull request** event use: `repo:<Organization/Repository>:pull-request`.
 
-You can see more examples on the official [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azcli#github-actions-example).
+You can see more examples on the official [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azcli#github-actions-example).  
+
+Grab the `'CLIENT_ID'` of the AAD application as we will need it in the next step.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad08.png)
+
+### 2. Create GitHub Actions Secrets
+
+Next create the following **GitHub Secrets** on your **GitHub repository**.  
+
+In the GitHub UI, navigate to your repository and select **Settings** > **Secrets** > **Actions**:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/ghsec01.png)
+
+Select **New repository secret** to add the following secrets:
+
+| **Secret** | **Value** |
+| --- | --- |
+| `AZURE_CLIENT_ID` | The AAD Application (client) ID created in the previous step |
+| `AZURE_TENANT_ID` | The Azure Directory (tenant) ID |
+| `AZURE_SUBSCRIPTION_ID` | The Azure subscription ID |  
+
+**NOTE:** There is no password/secret required.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/ghsec03.png)  
+
+### 3. Authenticate GitHub Actions workflows with Azure (OIDC)
+
+Now that you have **federated credentials** as well as **GitHub Secrets** configured, you can now configure your workflows to use **OIDC tokens** to authenticate and log into **Azure**.  
+
+To update your workflows for OIDC, you will need to make two changes to your YAML:  
+
+- Add a `permissions` setting with [id-token: write](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token) for the token.
+- Use the [azure/login](https://github.com/Azure/login) action to exchange the OIDC token (JWT) for a cloud access token.
+
+Here is an example workflow that will authenticate to Azure and show all resource groups on the subscription as part of the workflow run: [authenticate-azure-oidc.yml](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/authenticate-azure-oidc.yml).
+
+```yml
+name: Run Azure Login with OIDC
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+
+permissions:
+      id-token: write
+      contents: read
+
+jobs: 
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Az CLI login using OIDC'
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  
+      - name: 'Run az commands'
+        run: |
+          az account show
+          az group list
+```
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/test02.png)
+
+**NOTE:** The `'Run az commands'` step will display the Azure account as well as a list of all resource groups.  
+
+Notice the **GitHub Actions** step we are using to log into Azure:
+
+```yml
+- name: 'Az CLI login'
+uses: azure/login@v1
+with:
+    client-id: ${{ secrets.AZURE_CLIENT_ID }}
+    tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+    subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+```
+
+Also notice that the `'permissions'` on workflow uses `'id-token: write'`. You won't be able to request the OIDC JWT ID token if the permissions setting for id-token is set to `'read'` or `'none'`.  
+
+```yml
+permissions:
+      id-token: write
+      contents: read
+```
+
+If you only need to fetch an OIDC token for a single job, then this permission can also be set within a job. For example:  
+
+```yml
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+
+    steps:
+      - uses: actions/stale@v5
+```
 
 ## Conclusion
 

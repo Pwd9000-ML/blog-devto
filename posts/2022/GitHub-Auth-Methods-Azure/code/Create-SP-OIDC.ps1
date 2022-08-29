@@ -21,7 +21,7 @@ az ad sp create --id $appId
 # Create federated GitHub credentials (Entity type 'Branch')
 $githubBranchConfig = [PSCustomObject]@{
     name        = "GH-[$githubOrgName-$githubRepoName]-Branch-[$githubBranch]"
-    issuer      = "https://token.actions.githubusercontent.com/"
+    issuer      = "https://token.actions.githubusercontent.com"
     subject     = "repo:" + "$githubOrgName/$githubRepoName" + ":ref:refs/heads/$githubBranch"
     description = "Federated credential linked to GitHub [$githubBranch] branch @: [$githubOrgName/$githubRepoName]"
     audiences   = @("api://AzureADTokenExchange")
@@ -32,7 +32,7 @@ $githubBranchConfigJson | az ad app federated-credential create --id $appId --pa
 # Create federated GitHub credentials (Entity type 'Pull Request')
 $githubPRConfig = [PSCustomObject]@{
     name        = "GH-[$githubOrgName-$githubRepoName]-PR"
-    issuer      = "https://token.actions.githubusercontent.com/"
+    issuer      = "https://token.actions.githubusercontent.com"
     subject     = "repo:" + "$githubOrgName/$githubRepoName" + ":pull_request"
     description = "Federated credential linked to GitHub Pull Requests @: [$githubOrgName/$githubRepoName]"
     audiences   = @("api://AzureADTokenExchange")
