@@ -76,7 +76,7 @@ We will discuss later why using Open ID Connect (OIDC) is a much better option.
 
 ### 2. Create a GitHub Actions Secret
 
-Next create a **GitHub Secret** on your **GitHub repository** using the JSON object Service Principal credentials:
+Next create a **GitHub Secret** on your **GitHub repository** using the copied JSON object Service Principal credentials from the previous step:
 
 In the GitHub UI, navigate to your repository and select **Settings** > **Secrets** > **Actions**:
 
