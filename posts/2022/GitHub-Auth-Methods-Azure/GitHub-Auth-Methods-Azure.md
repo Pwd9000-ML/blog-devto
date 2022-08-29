@@ -249,7 +249,7 @@ Grab the `'CLIENT_ID'` of the AAD application as we will need it in the next ste
 
 Next create the following **GitHub Secrets** on your **GitHub repository**.
 
-In the GitHub UI, navigate to your repository and select **Settings** > **Secrets** > **Actions**:
+In the GitHub UI, navigate to your repository and select **'Settings'** -> **'Secrets'** -> **'Actions'**:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/ghsec01.png)
 
