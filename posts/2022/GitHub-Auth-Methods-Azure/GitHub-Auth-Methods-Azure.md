@@ -51,7 +51,7 @@ In the script above, the `'az ad sp create-for-rbac'` command will create an AAD
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/rbac.png)
 
-**NOTE:** The service principal will provide your GitHub workflow, **Contributor** access to the **Subscription**. Feel free to change the RBAC `'role'` and `'scopes'` as necessary.
+**NOTE:** The service principal will provide your GitHub workflow, **Contributor** access to the **Subscription**. Feel free to change the RBAC `'role'` and `'scopes'` as necessary in the provided script.
 
 Copy this JSON object as we will add this as a **GitHub Secret**. You will only need the sections with the `"clientId"`, `"clientSecret"`, `"subscriptionId"`, and `"tenantId"` values:
 
