@@ -344,9 +344,9 @@ jobs:
 
 ## Conclusion
 
-As you can see, it is pretty easy to set up authentication between your **GitHub Actions** and **Azure**. I would highly recommend adopting the newer, **Open ID Connect (OIDC)** method if you aren't using that already as it a lot more convenient not having to manage and maintain passwords/secrets of your Azure service principals and GitHub secrets manually.  
+As you can see, it is pretty easy to set up authentication between your **GitHub Actions** and **Azure**. I would highly recommend adopting the newer, **Open ID Connect (OIDC)** method if you aren't using that already as it a lot more convenient not having to manage and maintain passwords/secrets of your Azure service principals and GitHub secrets manually.
 
-OIDC is a better security option as it is an identity driven, passwordless authentication method that doesn't require frequent rotation or expiration of Azure service principal passwords/secrets.  
+OIDC is a better security option as it is an identity driven, passwordless authentication method that doesn't require frequent rotation or expiration of Azure service principal passwords/secrets.
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code) page. :heart:
 
