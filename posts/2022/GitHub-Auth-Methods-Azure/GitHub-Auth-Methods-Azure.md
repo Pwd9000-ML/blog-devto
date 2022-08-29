@@ -224,17 +224,17 @@ Select `'GitHub Actions deploying Azure resources'` for the federated credential
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad06.png)
 
-At the time of this writing there are four entity types for **Github acton federated credentials**. They are `'Environment'`, `'Branch'`, `'Pull Request'` and `'Tag'`.
+At the time of this writing there are four entity types for **Github action federated credentials**. They are `'Environment'`, `'Branch'`, `'Pull Request'` and `'Tag'`.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad07.png)
 
-Depending on what entity type you select automatically construct the `'Subject identifier'`, this value is used to establish a connection between your **GitHub Actions workflow** and **Azure Active Directory**. The value is generated from the GitHub details entered.
+Depending on what entity type you select, will automatically construct the `'Subject identifier'`, this value is used to establish a connection between your **GitHub Actions workflow** and **Azure Active Directory**. The value is generated from the GitHub details entered.
 
-When the GitHub Actions workflow requests Microsoft identity platform to exchange a GitHub token for an access token, the values in the federated identity credential are checked against the provided GitHub token. Before Azure will grant an access token, the request must match the conditions defined `'Subject identifier'`.
+When the GitHub Actions workflow requests the Microsoft identity platform to exchange a GitHub token for an access token, the values in the federated identity credential are checked against the provided GitHub token. Before Azure will grant an access token, the request must match the conditions defined in the `'Subject identifier'`.
 
-- For Jobs tied to an **environment**: `repo:<Organization/Repository>:environment:<Name>`.
-- For Jobs not tied to an environment, include the **ref** path for **branch/tag** based on the ref path used for triggering the workflow: `repo:<Organization/Repository>:ref:<ref path>`. For example, `repo:myOrg/myRepo:ref:refs/heads/myBranch` or `repo:myOrg/myRepo:ref:refs/tags/myTag`.
-- For workflows triggered by a **pull request** event: `repo:<Organization/Repository>:pull-request`.
+- For Jobs tied to an **environment** use: `repo:<Organization/Repository>:environment:<Name>`.
+- For Jobs not tied to an environment, include the **ref path** of the **branch/tag** based on the **ref path** used for triggering the workflow: `repo:<Organization/Repository>:ref:<ref path>`. For example, `repo:myOrg/myRepo:ref:refs/heads/myBranch` or `repo:myOrg/myRepo:ref:refs/tags/myTag`.
+- For workflows triggered by a **pull request** event use: `repo:<Organization/Repository>:pull-request`.
 
 You can see more examples on the official [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azcli#github-actions-example).
 
