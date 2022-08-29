@@ -1,8 +1,8 @@
 ---
-title: GitHub authentication methods for Azure
+title: GitHub Actions authentication methods for Azure
 published: false
-description: GitHub authentication methods for Azure
-tags: 'github, azure, authentication, devsecops'
+description: GitHub Actions authentication methods for Azure
+tags: 'github, azure, devops, githubactions'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/main0.png'
 canonical_url: null
 id: 1177675
@@ -11,9 +11,9 @@ date: '2022-08-27T15:37:53Z'
 
 ## Overview
 
-When you're working with **GitHub Actions** and start to write and develop automation **workflows** you will sometimes need to connect your **workflow** to different platforms, such as a **cloud provider** for example, to allow your **workflows** access and permissions to perform actions on the cloud provider. Thus you will need to **connect** and **authenticate** your **workflows** with the cloud provider.
+When you work with **GitHub Actions** and start to write and develop automation **workflows** you will sometimes need to connect your **workflows** to different platforms, such as a **cloud provider** for example, to allow your **workflows** access and permissions to perform actions on the cloud provider. Thus you will need to **connect** and **authenticate** your **workflows** with the cloud provider somehow.
 
-Today we will look at two ways you can do this with **Azure**, a popular Microsoft cloud provider.
+Today we will look at two ways you can do this with **Azure**.
 
 In both methods we will create what is known as an [app registration/service principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals), assigning permissions to the principal and link the principal with GitHub to allow your **workflows** to authenticate and perform relevant tasks in **Azure**.
 
@@ -25,9 +25,10 @@ The first method we will look at is an older legacy method that uses a `'Client'
 
 ### 1. Create Service Principal credentials
 
-For this method I will use the following [PowerShell script](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/Create-SP.ps1) to create an **Azure AD App & Service Principal**.
+For this method I will use the following PowerShell script; ['Create-SP.ps1'](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/Create-SP.ps1) to create an **Azure AD App & Service Principal**.
 
 ```powershell
+### Create-SP.ps1 ###
 # Log into Azure
 Az login
 
@@ -65,7 +66,7 @@ Copy this JSON object as we will add this as a **GitHub Secret**. You will only 
 
 The main drawback of using this legacy method to create a service principal for **GitHub** is that the principals **client secret** is only valid for **1 year**, and has to be managed and rotated frequently for security reasons, and will also have to be updated in your **GitHub** account manually, which can become a cumbersome administration task.
 
-You can rotate the secret of the service principal by navigating to **'App registrations'** in **'Azure Active Directory (AAD)'**.
+You can rotate the secret of the service principal by navigating to **'App registrations'** in **'Azure Active Directory (AAD)'** and finding the App we just created.  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad01.png)
 
@@ -93,7 +94,7 @@ Select **New repository secret** to add the following secrets:
 
 Now that we have a **GitHub Secret** called `'AZURE_CREDENTIALS'` that contains our **Azure Service Principal credentials**, we can consume this secret inside of our **workflows** to authenticate and log into **Azure**.
 
-Here is an example workflow that will authenticate to Azure and show all resource groups on the subscription as part of th workflow run: [authenticate-azure.yml](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/authenticate-azure.yml).
+Here is an example workflow that will authenticate to Azure and show all resource groups on the subscription as part of the workflow run: [authenticate-azure.yml](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/authenticate-azure.yml).
 
 ```yml
 name: Authenticate Azure
@@ -134,6 +135,108 @@ with:
 **NOTE:** The `'Run az commands'` step will display the Azure account as well as a list of all resource groups.
 
 ## Method 2 - Open ID Connect(OIDC) (Modern)
+
+In this section we will look at a newer, more modern way to link **GitHub Actions** to **Azure**, whereby no client secrets are needed.  
+
+We will be using **federated credentials** with **Open ID connect (OIDC)**. One of the main benefits of using **OIDC** is that there are no passwords or client secrets to manage or maintain and uses an `'identity'` driven approach to authenticate.  
+
+### 1. Create Service Principal
+
+As before we will require an AAD App and Service Principal.  
+
+You can use the following PowerShell script; ['Create-SP-OIDC.ps1'](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/Create-SP-OIDC.ps1) to create an **Azure AD App & Service Principal** with **federated GitHub Action credentials**.
+
+```powershell
+### Create-SP-OIDC.ps1 ###
+# Log into Azure
+Az login
+
+# Show current subscription (use 'Az account set' to change subscription)
+Az account show
+
+# variables
+$subscriptionId = $(az account show --query id -o tsv)
+$appName = "GitHub-projectName-Actions-OIDC"
+$RBACRole = "Contributor"
+
+$githubOrgName = "Pwd9000-ML"
+$githubRepoName = "RandomStuff"
+$githubBranch = "master"
+
+# Create AAD App and Principal
+$appId = $(az ad app create --display-name $appName --query appId -o tsv)
+az ad sp create --id $appId
+
+# Create federated GitHub credentials (Entity type 'Branch')
+$githubBranchConfig = [PSCustomObject]@{
+    name        = "GH-[$githubOrgName-$githubRepoName]-Branch-[$githubBranch]"
+    issuer      = "https://token.actions.githubusercontent.com/"
+    subject     = "repo:" + "$githubOrgName/$githubRepoName" + ":ref:refs/heads/$githubBranch"
+    description = "Federated credential linked to GitHub [$githubBranch] branch @: [$githubOrgName/$githubRepoName]"
+    audiences   = @("api://AzureADTokenExchange")
+}
+$githubBranchConfigJson = $githubBranchConfig | ConvertTo-Json
+$githubBranchConfigJson | az ad app federated-credential create --id $appId --parameters "@-"
+
+# Create federated GitHub credentials (Entity type 'Pull Request')
+$githubPRConfig = [PSCustomObject]@{
+    name        = "GH-[$githubOrgName-$githubRepoName]-PR"
+    issuer      = "https://token.actions.githubusercontent.com/"
+    subject     = "repo:" + "$githubOrgName/$githubRepoName" + ":pull_request"
+    description = "Federated credential linked to GitHub Pull Requests @: [$githubOrgName/$githubRepoName]"
+    audiences   = @("api://AzureADTokenExchange")
+}
+$githubPRConfigJson = $githubPRConfig | ConvertTo-Json
+$githubPRConfigJson | az ad app federated-credential create --id $appId --parameters "@-"
+
+### Additional federated GitHub credential entity types are 'Tag' and 'Environment' (see: https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azcli#github-actions-example) ###
+
+# Assign RBAC permissions to Service Principal (Change as necessary)
+$appId | foreach-object {
+
+    # Permission 1 (Example)
+    az role assignment create `
+        --role $RBACRole `
+        --assignee $_ `
+        --subscription $subscriptionId
+
+    # Permission 2 (Example)
+    #az role assignment create `
+    #    --role "Reader and Data Access" `
+    #    --assignee "$_" `
+    #    --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageName"
+}
+```
+
+Notice that the script creates **federated GitHub Action credentials** on the **AAD App**, you can view them or add more by navigating to **'App registrations'** in **'Azure Active Directory (AAD)'** and finding the App we just created.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad03.png)  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad04.png)
+
+As you can see the script created two federated GitHub Action credentials, one using entity type of `'Branch'` linked to my repositories `'master;` branch, and one entity type of `'pull request'` linked to my repository for any actions triggered by a **'Pull Request (PR)'**  
+
+You can add more by clicking on `'+ Add credential'`.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad05.png)  
+
+Select `'GitHub Actions deploying Azure resources'` for the federated credential scenario.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad06.png)  
+
+At the time of this writing there are four entity types for **Github acton federated credentials**. They are `'Environment'`, `'Branch'`, `'Pull Request'` and `'Tag'`.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad07.png)
+
+Depending on what entity type you select automatically construct the `'Subject identifier'`, this value is used to establish a connection between your **GitHub Actions workflow** and **Azure Active Directory**. The value is generated from the GitHub details entered.  
+
+When the GitHub Actions workflow requests Microsoft identity platform to exchange a GitHub token for an access token, the values in the federated identity credential are checked against the provided GitHub token. Before Azure will grant an access token, the request must match the conditions defined `'Subject identifier'`.  
+
+- For Jobs tied to an **environment**: `repo:<Organization/Repository>:environment:<Name>`.  
+- For Jobs not tied to an environment, include the **ref** path for **branch/tag** based on the ref path used for triggering the workflow: `repo:<Organization/Repository>:ref:<ref path>`. For example, `repo:myOrg/myRepo:ref:refs/heads/myBranch` or `repo:myOrg/myRepo:ref:refs/tags/myTag`.  
+- For workflows triggered by a **pull request** event: `repo:<Organization/Repository>:pull-request`.  
+
+You can see more examples on the official [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azcli#github-actions-example).  
 
 ## Conclusion
 
