@@ -78,7 +78,7 @@ We will discuss later why using Open ID Connect (OIDC) is a much better option.
 
 Next create a **GitHub Secret** on your **GitHub repository** using the copied JSON object Service Principal credentials from the previous step:
 
-In the GitHub UI, navigate to your repository and select **Settings** > **Secrets** > **Actions**:
+In the GitHub UI, navigate to your repository and select **'Settings'** -> **'Secrets'** -> **'Actions'**:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/ghsec01.png)
 
