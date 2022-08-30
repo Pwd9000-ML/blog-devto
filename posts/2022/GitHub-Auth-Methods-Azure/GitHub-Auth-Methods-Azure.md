@@ -11,13 +11,13 @@ date: '2022-08-27T15:37:53Z'
 
 ## Overview
 
-When you work with **GitHub Actions** and start to write and develop automation **workflows** you will sometimes need to connect your **workflows** to different platforms, such as a **cloud provider** for example, to allow your **workflows** access and permissions to perform actions on the cloud provider. Thus you will need to **connect** and **authenticate** your **workflows** with the cloud provider somehow.
+When you work with **GitHub Actions** and start to write and develop automation **workflows** you will sometimes need to connect your **workflows** to different platforms, such as a **cloud provider** for example, to allow your **workflows** access and permissions to perform actions on the cloud provider. Thus you will need to **connect** and **authenticate** your GitHub Actions **workflows** with the cloud provider somehow.  
 
 Today we will look at two ways you can do this with **Azure**.
 
-In both methods we will create what is known as an [app registration/service principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals), assigning permissions to the principal and link the principal with GitHub to allow your **workflows** to authenticate and perform relevant tasks in **Azure**.
+In both methods we will create what is known as an [app registration/service principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals), assigning permissions to the principal and link the principal with GitHub to allow your action **workflows** to authenticate and perform relevant tasks in **Azure**.
 
-**NOTE:** If you are familiar with using **Azure DevOps** and **Azure pipelines**, this is synonymous to creating a [service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml) for your pipelines.
+**NOTE:** If you are familiar with using **Azure DevOps** and **Azure pipelines**, this is synonymous to creating a [service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml) for your pipelines. **GitHub Actions workflows** are synonymous to **Azure multi-stage YAML Pipelines**.  
 
 ## Method 1 - Client and Secret (Legacy)
 
@@ -51,7 +51,7 @@ In the script above, the `'az ad sp create-for-rbac'` command will create an AAD
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/rbac.png)
 
-**NOTE:** The service principal will provide your GitHub workflow, **Contributor** access to the **Subscription**. Feel free to change the RBAC `'role'` and `'scopes'` as necessary in the provided script.
+**NOTE:** The service principal will provide your GitHub Actions workflow, **Contributor** access to the **Subscription**. Feel free to change the RBAC `'role'` and `'scopes'` as necessary in the provided script.
 
 Copy the JSON object as we will add this as a **GitHub Secret**. You will only need the sections with the `"clientId"`, `"clientSecret"`, `"subscriptionId"`, and `"tenantId"` values:
 
