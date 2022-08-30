@@ -72,7 +72,7 @@ You can rotate the secret of the service principal by navigating to **'App regis
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad02.png)
 
-We will discuss later why using Open ID Connect (OIDC) is a much better option.
+We will discuss later why using a passwordless approach with Open ID Connect (OIDC) is a much better option.
 
 ### 2. Create a GitHub Actions Secret
 
