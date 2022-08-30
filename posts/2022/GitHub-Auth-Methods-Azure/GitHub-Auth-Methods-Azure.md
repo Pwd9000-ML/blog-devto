@@ -64,7 +64,7 @@ Copy the JSON object as we will add this as a **GitHub Secret**. You will only n
 }
 ```
 
-The main drawback of using this method to create a service principal for **GitHub** is that the principals **client secret** is only valid for **1 year**, and has to be managed and rotated frequently for security reasons, and will also have to be updated in your **GitHub** account manually, which can become a cumbersome administration task and pose a security risk if not rotated frequently.  
+The main drawback of using this method to create a service principal for **GitHub** is that the principals **client secret** is only valid for **1 year**, and has to be managed and rotated frequently for security reasons, and will also have to be updated in your **GitHub** account manually, which can become a cumbersome administration task.
 
 You can rotate the secret of the service principal by navigating to **'App registrations'** in **'Azure Active Directory (AAD)'** and finding the App we just created.
 
