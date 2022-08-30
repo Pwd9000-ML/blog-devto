@@ -1,6 +1,6 @@
 ---
 title: GitHub Actions authentication methods for Azure
-published: false
+published: true
 description: GitHub Actions authentication methods for Azure
 tags: 'github, azure, devops, githubactions'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/main0.png'
