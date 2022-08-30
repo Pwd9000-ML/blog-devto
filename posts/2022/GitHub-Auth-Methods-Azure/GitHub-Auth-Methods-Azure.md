@@ -215,9 +215,11 @@ Notice that the script creates **federated GitHub Action credentials** on the **
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad03.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad04.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad04.png)  
 
-As you can see the script created two federated GitHub Action credentials, one using entity type of `'Branch'` linked to my repositories `'master;` branch, and one entity type of `'pull request'` linked to my repository for any actions triggered by a **'Pull Request (PR)'**
+Notice that there are no client secrets on the AAD App.  
+
+Instead, the script created two federated GitHub Action credentials, one using entity type of `'Branch'` linked to my repositories `'master;` branch, and one entity type of `'pull request'` linked to my repository for any actions triggered by a **'Pull Request (PR)'**
 
 You can add more by clicking on `'+ Add credential'`.
 
