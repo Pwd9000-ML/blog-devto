@@ -229,7 +229,7 @@ Select `'GitHub Actions deploying Azure resources'` for the federated credential
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad06.png)
 
-At the time of this writing there are four entity types for **Github action federated credentials**. They are `'Environment'`, `'Branch'`, `'Pull Request'` and `'Tag'`.
+There are four entity types for **Github action federated credentials**. They are `'Environment'`, `'Branch'`, `'Pull Request'` and `'Tag'`.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Auth-Methods-Azure/assets/aad07.png)
 
