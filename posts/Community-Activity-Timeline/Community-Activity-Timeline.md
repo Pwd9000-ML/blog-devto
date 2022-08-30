@@ -32,6 +32,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **30/08/2022** | [GitHub Actions authentication methods for Azure](https://dev.to/pwd9000/bk-1iij) | Blog/Website Post | GitHub, Azure | GitHubActions, DevOps, Automation, Tutorial |
 | **25/08/2022** | [Cloud with Chris - Automate Azure Role Based Access Control (RBAC) using GitHub](https://youtu.be/Li9lSbZJCzo) | Public Speaking | GitHub, PowerShell | Security, DevSecOps, RBAC, Automation, Tutorial |
 | **18/08/2022** | [Hosting Azure DevOps Pipelines agents on GitHub Codespaces](https://dev.to/pwd9000/hosting-azure-devops-pipelines-agents-on-github-codespaces-4jm2) | Blog/Website Post | GitHub, DevOps | GitHub, Automation, Codespaces, AzureDevOps |
 | **13/08/2022** | [Hosting your self hosted runners on GitHub Codespaces](https://dev.to/pwd9000/hosting-your-self-hosted-runners-on-github-codespaces-2elc) | Blog/Website Post | GitHub | GitHubActions, Automation, Codespaces, Tutorial |
