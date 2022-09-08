@@ -14,7 +14,7 @@
     "embedme:write": "yarn run embedme"
   },
   "dependencies": {
-    "embedme": "1.22.0",
+    "embedme": "1.22.1",
     "prettier": "2.7.1"
   }
 }
