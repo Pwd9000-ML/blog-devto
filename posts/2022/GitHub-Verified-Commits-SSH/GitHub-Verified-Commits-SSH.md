@@ -128,7 +128,7 @@ git config --global commit.gpgsign true
 git config --global gpg.format ssh
 ```
 
-That's it, now when you make any changes to your code and commit those changes they will be signed using the SSH public key and be displayed as **'Verfied'** on your **git commit history** on your GitHub repo.  
+That's it, now when you make any changes to your code and commit those changes they will be signed using the SSH public key and be displayed as **'Verfied'** on your **git commit history** on your GitHub repo.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/veri01.png)
 
