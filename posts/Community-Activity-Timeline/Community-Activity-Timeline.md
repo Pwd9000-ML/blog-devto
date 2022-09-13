@@ -32,7 +32,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **13/09/2022** | [GitHub commit verification using SSH](https://dev.to/pwd9000/github-commit-verification-using-ssh-2pim) | Blog/Website Post | GitHub | DevSecOps, DevOps, git, Tutorial |
+| **13/09/2022** | [GitHub commit verification using SSH keys](https://dev.to/pwd9000/github-commit-verification-using-ssh-2pim) | Blog/Website Post | GitHub | DevSecOps, DevOps, git, Tutorial |
 | **07/09/2022** | [Microsoft TechNet - MVP Spotlight: Learning DevOps with Marcel Lupo](https://bit.ly/3ASGmxv) | Article | GitHub, Azure | Biography, DevOps, Automation, Article |
 | **30/08/2022** | [GitHub Actions authentication methods for Azure](https://dev.to/pwd9000/bk-1iij) | Blog/Website Post | GitHub, Azure | GitHubActions, DevOps, Automation, Tutorial |
 | **25/08/2022** | [Cloud with Chris - Automate Azure Role Based Access Control (RBAC) using GitHub](https://youtu.be/Li9lSbZJCzo) | Public Speaking | GitHub, PowerShell | Security, DevSecOps, RBAC, Automation, Tutorial |
