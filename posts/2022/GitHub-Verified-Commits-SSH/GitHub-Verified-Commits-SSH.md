@@ -80,9 +80,9 @@ We are only interested in the `'.pub'` file as that contains the **Public Key**.
 
 2. Navigate to **'SSH and GPG keys'** and select **'New SSH key'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/veri03.png)
 
-3. Give the SSH key a **'Title'**, select the **'Key type'** as `'Signing Key'` and copy the entire contents of the `'.pub'` file into the **'Key'** field. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/veri04.png)
+3. Give the SSH key a **Title**, select the **Key type** as `'Signing Key'` and copy the entire contents of the `'.pub'` file into the **Key** field. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/veri04.png)
 
-Next we will run a few git commands so that will configure **'git'** to sign all commits using the SSH key. Make sure that the minimum version of **git** is at least **'2.34'** or above.
+Next we will run a few git commands so that will configure **git** to sign all commits using the SSH key. Make sure that the minimum version of **git** is at least **v2.34** or above.
 
 To configure **git commit signing** on an individual repository, open a command prompt and navigate to the **path** of your **cloned GitHub repository** and run the following commands:
 
