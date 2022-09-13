@@ -1,5 +1,5 @@
 ---
-title: GitHub commit verification using SSH
+title: GitHub commit verification using SSH keys
 published: true
 description: GitHub commit verification using SSH
 tags: 'github, git, devops, devsecops'
