@@ -10,7 +10,7 @@ id: 1192184
 
 ## Overview
 
-Today we will discuss a very important security question that may not be as obvious at first glance.  
+Today we will discuss a very important security question that may not be as obvious at first glance.
 
 **Verifying** commits by **signing** each commit with an **SSH key**. Implementing **commit verification** gives assurance about the **authenticity** of the author of commits made to your code.
 
