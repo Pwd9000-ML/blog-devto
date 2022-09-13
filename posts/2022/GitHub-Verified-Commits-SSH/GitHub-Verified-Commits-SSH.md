@@ -38,11 +38,11 @@ $ git config user.email "fake.email@spoofed.com"
 $ git commit -m "Added awesome new feature"
 ```
 
-This poses a big security question. Hpw can you **verify** who is pushing code to your repository?
+This poses a big security question. How can you **verify** who is pushing code to your repository?
 
 ## Solution
 
-Thankfully **GitHub** has made it so easy for us to secure our codebase even further by making the following easy to implement features available.
+Thankfully **GitHub** has made it so easy for us to secure our codebase even further by making the following easy to implement features available us.
 
 ### 1.) Enable vigilant mode
 
