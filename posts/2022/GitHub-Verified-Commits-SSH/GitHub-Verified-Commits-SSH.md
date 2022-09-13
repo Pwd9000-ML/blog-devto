@@ -146,7 +146,7 @@ We can easily achieve this by configuring a **[Branch protection rule](https://d
 
 ## Conclusion
 
-As you can see it is vey easy to configure **commit signing** in **GitHub** using SSH keys which will protect your codebase and also verify the authors and contributors to your code by following the easy steps shown above.
+As you can see it is very easy to configure **commit signing and verification** features in **GitHub** using SSH keys which will ensure the authenticity of authors and collaborators on your codebase, by following the easy steps shown above.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/final.png)
 
