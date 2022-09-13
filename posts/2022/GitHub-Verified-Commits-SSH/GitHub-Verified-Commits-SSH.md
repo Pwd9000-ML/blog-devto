@@ -42,7 +42,7 @@ This poses a big security question. Hpw can you **verify** who is pushing code t
 
 ## Solution
 
-Thankfully **GitHub** has made this so easy.
+Thankfully **GitHub** has made this so easy for us.
 
 ### 1.) Enable vigilant mode
 
