@@ -1,6 +1,6 @@
 ---
 title: GitHub commit verification using SSH
-published: false
+published: true
 description: GitHub commit verification using SSH
 tags: 'github, git, devops, devsecops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/main.png'
@@ -41,7 +41,7 @@ This poses a big security question. If you can't **verify** who is pushing code 
 
 Thankfully **GitHub** has made this so easy.
 
-### Enable vigilant mode
+### 1.) Enable vigilant mode
 
 First let's turn on something called **[vigilant mode](https://docs.github.com/en/authentication/managing-commit-signature-verification/displaying-verification-statuses-for-all-of-your-commits)**, where we enable displaying verification statuses for all git commits.
 
@@ -55,17 +55,93 @@ To enable vigilant mode:
 
 2. Navigate to **'SSH and GPG keys'** and tick **'Flag unsigned commits as unverified'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/vig02.png)
 
-### Create a SSH signing key
+### 2.) Create a SSH signing key
 
-Secondly we will enable **SSH commit verification** so that any future commits will be signed and shown as **"Verified"**.
+Next we will enable **SSH commit verification** so that any future commits will be signed and shown as **"Verified"**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/veri01.png)
 
-To enable SSH commit verification:
+To enable SSH commit verification you can either use an [existing SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys) or [generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent):  
 
-1.
+Open a command terminal and run:
+
+```txt
+$ ssh-keygen -t ed25519 -C "your_email@example.com"  
+```
+
+If you use the defaults for the above command in `Windows` it will save your SSH key in the path: `/c/Users/you/.ssh/id_algorithm`  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/veri02.png)  
+
+We are only interested in the `'.pub'` file as that contains the **Public Key**. Open the `'.pub'` file and copy the entire contents of the file to your clipboard.  
+
+1. Next navigate to your GitHub account **'Settings'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/vig01.png)  
+
+2. Navigate to **'SSH and GPG keys'** and select **'New SSH key'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/veri03.png)
+
+3. Give the SSH key a **'Title'**, select the **'Key type'** as `'Signing Key'` and copy the entire contents of the `'.pub'` file into the **'Key'** field. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/veri04.png)  
+
+Next we will run a few git commands so that will configure **'git'** to sign all commits using the SSH key. Make sure that the minimum version of **git** is at least **'2.34'** or above.  
+
+To configure **git commit signing** on an individual repository, open a command prompt and navigate to the **path** of your **cloned GitHub repository** and run the following commands:  
+
+```powershell
+### Navigate to cloned repo root for individual repos ###
+### Configure name ###
+git config user.name "Your_User_Name"
+
+### Configure email (same as what was specified in SSH key gen) ###
+git config user.email "your_email@example.com"
+
+### Specify the location of the SSH public key, default path is: /c/Users/you/.ssh/id_algorithm ###
+git config user.signingkey "C:\Users\Monkey/.ssh/id_ed25519.pub"
+
+### Enable/Enforce commit signing ###
+git config commit.gpgsign true
+
+### Configure commit signing format ###
+git config gpg.format ssh
+```
+
+To configure **git commit signing** on all repositories, open a command prompt run the following **'global'** commands:  
+
+```powershell
+### Global signing on all repos ###
+### Configure name ###
+git config --global user.name "Your_User_Name"
+
+### Configure email (same as what was specified in SSH key gen) ###
+git config --global user.email "your_email@example.com"
+
+### Specify the location of the SSH public key, default path is: /c/Users/you/.ssh/id_algorithm ###
+git config --global user.signingkey "C:\Users\Monkey/.ssh/id_ed25519.pub"
+
+### Enable/Enforce commit signing ###
+git config --global commit.gpgsign true
+
+### Configure commit signing format ###
+git config --global gpg.format ssh
+```
+
+That's it, now when you make any changes to your code and commit those changes they will be signed using the SSH public key and be displayed as **'Verfied'** on your **git commit history** on your GitHub repo.  
+
+### 3.) Enable a branch policy  
+
+The last thing I wanted to cover was how you can actively enforce **signature verification** to prevent unsigned commits from being pushed to your repositories.  
+
+We can easily achieve this by configuring a **[Branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule)**  
+
+1. Navigate to the repository you want to protect and select **'Settings' -> 'Branches' -> 'Add branch protection rule'**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/pol01.png)  
+
+2. Configure a **'Branch name pattern'** for the branch the policy should be applied to and select **'Require signed commits'**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/pol02.png)  
+
+3. Select **'Create'**. You should now have a branch policy applied that will enforce signed commits.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/pol03.png)  
 
 ## Conclusion
+
+As you can see it is vey easy to configure **commit signing** in **GitHub** using SSH keys which will protect your codebase and also verify the authors and contributors to your code by following the easy steps shown above.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/final.png)  
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
