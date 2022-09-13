@@ -132,7 +132,7 @@ That's it, now when you make any changes to your code and commit those changes t
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/veri01.png)
 
-### 3.) Enable a branch policy
+### 3.) Enable a branch protection rule
 
 The last thing I wanted to cover was how you can actively enforce **signature verification** to prevent unsigned commits from being pushed to your repositories.
 
