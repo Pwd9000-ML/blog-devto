@@ -13,7 +13,7 @@ date: '2022-09-13T16:16:10Z'
 
 Today we will discuss a very important security question that may not be as obvious at first glance.
 
-We will take a look at **verifying** git commits by **signing** each commit with an **SSH key** and why it is important.
+We will take a look at **verifying** git commits by **signing** each commit with a **SSH key** and why it is important.
 
 Implementing **commit verification** gives assurance about the **authenticity** of the author of commits made to your code.
 
