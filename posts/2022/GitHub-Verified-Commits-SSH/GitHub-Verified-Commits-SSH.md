@@ -17,9 +17,9 @@ We will take a look at **verifying** git commits by **signing** each commit with
 
 Implementing **commit verification** gives assurance about the **authenticity** of the author of commits made to your code.
 
-GitHub always supported **commit signing** via GPG keys, but this was usually harder and a bit more tricky to implement.  
+GitHub always supported **commit signing** via GPG keys, but this was usually harder and a bit more tricky to implement.
 
-Very recently GitHub started support for **commit signing and verification** using SSH keys, which really simplifies the process and gives you the same ability to **sign** commits and tags locally using a self-generated SSH public key, which will give others confidence about the origin of a change you have made. If a commit or tag has an SSH signature that is cryptographically verifiable, GitHub makes the commit or tag **"Verified"** or **"Partially Verified"**.  
+Very recently GitHub started support for **commit signing and verification** using SSH keys, which really simplifies the process and gives you the same ability to **sign** commits and tags locally using a self-generated SSH public key, which will give others confidence about the origin of a change you have made. If a commit or tag has an SSH signature that is cryptographically verifiable, GitHub makes the commit or tag **"Verified"** or **"Partially Verified"**.
 
 Signing commits adds a layer of protection for your codebase. We will also look at how we can actively enforce **signature verification** to prevent unsigned commits from being pushed to your repositories.
 
