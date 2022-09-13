@@ -31,7 +31,7 @@ Let's take a quick look at an example first. Recently a user called **"Pwd9000-M
 
 To the untrained eye, this doesn't look like anything out of the norm.
 
-As you might have guessed, **my own** user account is called **"Pwd9000-ML"**, this change didn't actually come from me.  
+As you might have guessed, **my own** user account is called **"Pwd9000-ML"**, but this change didn't actually come from me. So how is this possible?  
 In fact, anyone can spoof a **git commit author** name with just a few terminal commands and pretend to be someone else, for example:
 
 ```txt
