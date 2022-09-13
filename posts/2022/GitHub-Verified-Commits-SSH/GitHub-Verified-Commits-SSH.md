@@ -23,7 +23,7 @@ Very recently GitHub started support for **commit signing and verification** usi
 
 Signing commits adds a layer of protection for your codebase. We will also look at how we can actively enforce **signature verification** to prevent unsigned commits from being pushed to your repositories.
 
-## Example - Security liability
+## Security liability - Example
 
 Let's take a quick look at an example first. Recently a user called **"Pwd9000-ML"** has made a code change on my repository and committed those changes to my projects codebase. Have a look at the following git commit:
 
