@@ -38,7 +38,7 @@ $ git config user.email "fake.email@spoofed.com"
 $ git commit -m "Added awesome new feature"
 ```
 
-This poses a big security question. If you can't **verify** who is pushing code to your repository, how will you know if your codebase is being hijacked by someone pretending to be someone else?
+This poses a big security question. Hpw can you **verify** who is pushing code to your repository?  
 
 ## Solution
 
