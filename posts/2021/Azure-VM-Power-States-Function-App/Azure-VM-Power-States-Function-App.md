@@ -62,7 +62,7 @@ az functionapp create `
 
 **Note:** In this tutorial we are using a [`Consumption`](https://docs.microsoft.com/en-us/azure/azure-functions/consumption-plan) app service plan and not a [`dedicated`](https://docs.microsoft.com/en-us/azure/azure-functions/dedicated-plan) or [`premium`](https://docs.microsoft.com/en-us/azure/azure-functions/functions-premium-plan?tabs=portal) plan. You can however change the plan if needed as the consumption plan may take a bit of time to start up once we start using it. But for the purposes of this tutorial and use case this plan will be sufficient enough for our function.
 
-**NOTE:** After the function app has been deployed we have to change the `requirements.psd1` file on our function to allow the `AZ` PowerShell module inside of our function by uncommenting the following.  
+**NOTE:** After the function app has been deployed we have to change the `requirements.psd1` file on our function to allow the `AZ` PowerShell module inside of our function by uncommenting the following.
 
 Navigate to the Function App's **'App files'** and select the dropdown `requirements.psd1`, uncomment the line that says `'Az' = '8.*'`:
 
@@ -71,7 +71,7 @@ Navigate to the Function App's **'App files'** and select the dropdown `requirem
 # See https://aka.ms/functionsmanageddependency for additional information.
 #
 @{
-    # For latest supported version, go to 'https://www.powershellgallery.com/packages/Az'. 
+    # For latest supported version, go to 'https://www.powershellgallery.com/packages/Az'.
     # To use the Az module in your function app, please uncomment the line below.
     'Az' = '8.*'
 }
