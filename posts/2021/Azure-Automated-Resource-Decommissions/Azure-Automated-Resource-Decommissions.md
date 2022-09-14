@@ -81,8 +81,8 @@ az functionapp create `
     --resource-group "$resourceGroupName" `
     --os-type "Windows" `
     --runtime "powershell" `
-    --runtime-version "7.0" `
-    --functions-version "3" `
+    --runtime-version "7.2" `
+    --functions-version "4" `
     --assign-identity
 
 #Configure Function App environment variables:

@@ -56,11 +56,28 @@ az functionapp create `
     --resource-group "$resourceGroupName" `
     --os-type "Windows" `
     --runtime "powershell" `
-    --runtime-version "7.0" `
-    --functions-version "3"
+    --runtime-version "7.2" `
+    --functions-version "4"
 ```
 
 **Note:** In this tutorial we are using a [`Consumption`](https://docs.microsoft.com/en-us/azure/azure-functions/consumption-plan) app service plan and not a [`dedicated`](https://docs.microsoft.com/en-us/azure/azure-functions/dedicated-plan) or [`premium`](https://docs.microsoft.com/en-us/azure/azure-functions/functions-premium-plan?tabs=portal) plan. You can however change the plan if needed as the consumption plan may take a bit of time to start up once we start using it. But for the purposes of this tutorial and use case this plan will be sufficient enough for our function.
+
+**NOTE:** After the function app has been deployed we have to change the `requirements.psd1` file on our function to allow the `AZ` PowerShell module inside of our function by uncommenting the following.  
+
+Navigate to the Function App's **'App files'** and select the dropdown `requirements.psd1`, uncomment the line that says `'Az' = '8.*'`:
+
+```powershell
+# This file enables modules to be automatically managed by the Functions service.
+# See https://aka.ms/functionsmanageddependency for additional information.
+#
+@{
+    # For latest supported version, go to 'https://www.powershellgallery.com/packages/Az'. 
+    # To use the Az module in your function app, please uncomment the line below.
+    'Az' = '8.*'
+}
+```
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/app01.png)
 
 Next we will enable the function app with a `system assigned` [`managed identity`](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) so that we can permission our function app against the virtual machines we will be maintaining. Under the function app `settings` pane select `Identity` and enable the `system assigned` setting to be `ON` and save the setting:
 
