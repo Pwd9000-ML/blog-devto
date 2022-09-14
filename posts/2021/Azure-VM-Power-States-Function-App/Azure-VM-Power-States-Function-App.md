@@ -185,7 +185,7 @@ Push-OutputBinding -Name Response -Value (
 )
 ```
 
-Here is also a [Link](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Azure-VM-Power-States-Function-App/code) to the function code.  
+Here is also a [Link](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/Azure-VM-Power-States-Function-App/code) to the function code.
 
 Next we will create a proxy URL, copy the `Get function URL`:
 
