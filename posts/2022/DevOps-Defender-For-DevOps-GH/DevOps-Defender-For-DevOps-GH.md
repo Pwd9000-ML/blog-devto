@@ -11,17 +11,17 @@ series: Defender for DevOps
 
 ### Microsoft Security DevOps (MSDO) GitHub action
 
-**Microsoft Security DevOps** (MSDO) is a command line application which integrates static analysis tools into the development cycle.  
+**Microsoft Security DevOps** (MSDO) is a command line application which integrates static analysis tools into the development cycle.
 
-Today we will take a closer look at how we can use the [MSDO GitHub action](https://learn.microsoft.com/en-us/azure/defender-for-cloud/github-action?WT.mc_id=DT-MVP-5004771) and how it integrates with [Azure Defender for DevOps](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-devops-introduction?WT.mc_id=DT-MVP-5004771).  
+Today we will take a closer look at how we can use the [MSDO GitHub action](https://learn.microsoft.com/en-us/azure/defender-for-cloud/github-action?WT.mc_id=DT-MVP-5004771) and how it integrates with [Azure Defender for DevOps](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-devops-introduction?WT.mc_id=DT-MVP-5004771).
 
-MSDO installs, configures and runs the latest versions of **static analysis tools** (including, but not limited to, SDL/security and compliance tools). It is data-driven with portable configurations that enable deterministic execution across multiple environments.  
+MSDO installs, configures and runs the latest versions of **static analysis tools** (including, but not limited to, SDL/security and compliance tools). It is data-driven with portable configurations that enable deterministic execution across multiple environments.
 
-For tools that output results, MSDO can convert the results to [Static Analysis Results Interchange Format (SARIF)](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning?WT.mc_id=DT-MVP-5004771) which can display the results in your **repository** on **GitHub**.  
+For tools that output results, MSDO can convert the results to [Static Analysis Results Interchange Format (SARIF)](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning?WT.mc_id=DT-MVP-5004771) which can display the results in your **repository** on **GitHub**.
 
-MSDO integrates with [Azure Defender for DevOps](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-devops-introduction?WT.mc_id=DT-MVP-5004771) which enables a central console as part of [Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction?WT.mc_id=DT-MVP-5004771) to provide security teams **DevOps insights** across multi-pipeline environments, such as **GitHub** and **Azure DevOps**.  
+MSDO integrates with [Azure Defender for DevOps](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-devops-introduction?WT.mc_id=DT-MVP-5004771) which enables a central console as part of [Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction?WT.mc_id=DT-MVP-5004771) to provide security teams **DevOps insights** across multi-pipeline environments, such as **GitHub** and **Azure DevOps**.
 
-These insights can then be correlated with other contextual cloud security intelligence to prioritize remediation in code and apply consistent security guardrails throughout the application lifecycle. Key capabilities starting in **Defender for DevOps**, available through **Defender for Cloud** includes:  
+These insights can then be correlated with other contextual cloud security intelligence to prioritize remediation in code and apply consistent security guardrails throughout the application lifecycle. Key capabilities starting in **Defender for DevOps**, available through **Defender for Cloud** includes:
 
 - Unified visibility into DevOps security posture.
 - Strengthen cloud resource configurations throughout the development lifecycle.
@@ -29,7 +29,7 @@ These insights can then be correlated with other contextual cloud security intel
 
 ### MSDO tools
 
-As of the time of this writing, **Microsoft Security DevOps** uses the following Open Source tools:  
+As of the time of this writing, **Microsoft Security DevOps** uses the following Open Source tools:
 
 | Name | Language | License |
 | --- | --- | --- |
