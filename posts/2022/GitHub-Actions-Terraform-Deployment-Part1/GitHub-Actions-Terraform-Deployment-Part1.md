@@ -303,7 +303,7 @@ jobs:
 
       - name: Scan IaC - tfsec
         if: ${{ inputs.ENABLE_TFSEC == 'true' }}
-        uses: tfsec/tfsec-sarif-action@v0.1.0
+        uses: aquasecurity/tfsec-sarif-action@v0.1.3
         with:
           sarif_file: tfsec.sarif
 
