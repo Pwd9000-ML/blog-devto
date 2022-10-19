@@ -1,5 +1,5 @@
 ---
-title: Defender for DevOps on GitHub
+title: Defender for DevOps on GitHub (Terrascan)
 published: false
 description: Microsoft Security DevOps (MSDO) GitHub action
 tags: 'github, DevSecOps, AzureDefender, Security'
@@ -43,7 +43,7 @@ At the time of this writing, **Microsoft Security DevOps** uses the following to
 
 ### Getting started
 
-Before we dive into the MSDO toolkit we first need to connect our GitHub Repository to [Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-github?WT.mc_id=DT-MVP-5004771).
+Before we dive into the MSDO toolkit we first need to connect our GitHub repository to [Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-github?WT.mc_id=DT-MVP-5004771).
 
 1. Log into the [Azure portal](https://portal.azure.com/).
 
@@ -63,21 +63,31 @@ Before we dive into the MSDO toolkit we first need to connect our GitHub Reposit
 
 9. Select **Next: Review and create**. Review the information and select **Create**.
 
-**NOTES:** You will see the **GitHub** connector under **Microsoft Defender for Cloud > Environment Settings**. If you only added one repository and wanted to later change and add/onboard more repositories onto teh same **Defender for DevOps** plan, you can do so by navigating to your **GitHub Settings > Applications**.
+**NOTES:** You will see the **GitHub** connector under **Microsoft Defender for Cloud > Environment Settings**. If you only added one repository and wanted to later change and add/onboard more repositories onto the same **Defender for DevOps** plan, you can do so by navigating to your **GitHub Settings > Applications**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/dfc07.png)
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/dfc08.png)
 
-After installing **Defender for DevOps** on the selected repositories, they will be integrated with **Microsoft Defender for Cloud** and insights will be accessible from the **DevOps Security** dashboard.
+After installing **Defender for DevOps** on the selected repositories you want to onboard, they will be integrated with **Microsoft Defender for Cloud** and insights will be accessible from the **DevOps Security** dashboard under **Defender for Cloud** in the **Azure portal**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/dfc09.png)
 
-Next we will look at the MSDO toolkit GitHub action and see how we can use certain tools and populate the dashboard with rich security insights about our code.
+Next we will look at the **MSDO GitHub action** and see how we can use certain tools and populate the dashboard with rich security insights about our code.
 
-### Configuring MSDO GitHub action
+### Configuring MSDO GitHub action  
 
-I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/DevOps-Defender-For-DevOps-GH/code) page. :heart:
+The following examples can also be found on my [MSDO-Lab GitHub page](https://github.com/Pwd9000-ML/MSDO-Lab).  
+
+MSDO features a few security scanning tools (I will cover some of the other tools in a future blog post), but I want to concentrate on a specific tool today called [Terrascan](https://github.com/accurics/terrascan).  
+
+**Terrascan** is a static code analyzer for Infrastructure as Code (IaC). Let's take a look at an example on how we can use **MSDO** integration with **Defender for DevOps** to get security insights and detect compliance and security violations across Infrastructure as Code to mitigate risk before provisioning cloud infrastructure.  
+
+
+
+
+
+I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/MSDO-Lab) page. :heart:
 
 ### _Author_
 
