@@ -81,9 +81,9 @@ The following examples can also be found on my [MSDO-Lab GitHub page](https://gi
 
 As mentioned MSDO features a few different tools (I will cover some of the other tools in a future blog post), but I want to concentrate on a specific tool today called [Terrascan](https://github.com/accurics/terrascan).
 
-**Terrascan** is a static code analyzer for Infrastructure as Code (IaC). Let's take a look at an example on how we can use **MSDO** integration with **Defender for DevOps** to get security insights and detect compliance and security violations in a **Terraform** configuration to mitigate risk before provisioning cloud infrastructure.  
+**Terrascan** is a static code analyzer for Infrastructure as Code (IaC). Let's take a look at an example on how we can use **MSDO** integration with **Defender for DevOps** to get security insights and detect compliance and security violations in a **Terraform** configuration to mitigate risk before provisioning cloud infrastructure.
 
-On my [GitHub repository](https://github.com/Pwd9000-ML/MSDO-Lab) under the path [01_Foundation](https://github.com/Pwd9000-ML/MSDO-Lab/tree/master/01_Foundation) I have the following terraform configuration that simply builds a **Resource Group** and a **Key Vault**.  
+On my [GitHub repository](https://github.com/Pwd9000-ML/MSDO-Lab) under the path [01_Foundation](https://github.com/Pwd9000-ML/MSDO-Lab/tree/master/01_Foundation) I have the following terraform configuration that simply builds a **Resource Group** and a **Key Vault**.
 
 ```hcl
 ### Data Sources ###
@@ -116,15 +116,15 @@ resource "random_integer" "kv_num" {
 }
 ```
 
-Let's take a look at how we can use **Terrascan** using the **[MSDO GitHub action](https://github.com/marketplace/actions/security-devops-action)** to scan our terraform code.  
+Let's take a look at how we can use **Terrascan** using the **[MSDO GitHub action](https://github.com/marketplace/actions/security-devops-action)** to scan our terraform code.
 
-1. Sign in to [GitHub](https://www.github.com/) and select a repository you added earlier to **Defender for DevOps** on which you want to configure the **MSDO GitHub action**.  
+1. Sign in to [GitHub](https://www.github.com/) and select a repository you added earlier to **Defender for DevOps** on which you want to configure the **MSDO GitHub action**.
 
-2. Select **Actions > set up a workflow yourself**  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/action01.png)
+2. Select **Actions > set up a workflow yourself** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/action01.png)
 
-3. Give the workflow file a name. For example, `msdevopssec.yml`.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/action02.png)  
+3. Give the workflow file a name. For example, `msdevopssec.yml`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/action02.png)
 
-4. Copy and paste the following [sample action workflow](https://github.com/Pwd9000-ML/MSDO-Lab/blob/master/.github/workflows/msdevopssec.yml) into the **Edit new file** tab.  
+4. Copy and paste the following [sample action workflow](https://github.com/Pwd9000-ML/MSDO-Lab/blob/master/.github/workflows/msdevopssec.yml) into the **Edit new file** tab.
 
 ```yml
 # My Microsoft Security DevOps (MSDO) Terrascan workflow
@@ -139,32 +139,32 @@ jobs:
     runs-on: windows-latest
 
     steps:
-        - name: Checkout
-          uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-        # Run MSDO analyzers
-        - name: Run Microsoft Security DevOps Analysis
-          uses: microsoft/security-devops-action@preview
-          id: msdo
-          env:
-            terrascan_scan: 'scan'
-            terrascan_outputtype: 'sarif'
-            terrascan_iacdir: '01_Foundation'
+      # Run MSDO analyzers
+      - name: Run Microsoft Security DevOps Analysis
+        uses: microsoft/security-devops-action@preview
+        id: msdo
+        env:
+          terrascan_scan: 'scan'
+          terrascan_outputtype: 'sarif'
+          terrascan_iacdir: '01_Foundation'
 
-        # Upload alerts to the Security tab
-        - name: Upload alerts to Security tab
-          uses: github/codeql-action/upload-sarif@v1
-          with:
-            sarif_file: ${{ steps.msdo.outputs.sarifFile }}
+      # Upload alerts to the Security tab
+      - name: Upload alerts to Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: ${{ steps.msdo.outputs.sarifFile }}
 ```
 
 After creating the workflow you can run it manually under the **Actions** tab:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/run01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/run01.png)
 
-After running the workflow you can review the steps and note that the MSDO toolkit is installed and runs **Terrascan** against the path we specified in the action step which was **01_Foundation** that contains the terraform IaC configurations.  
+After running the workflow you can review the steps and note that the MSDO toolkit is installed and runs **Terrascan** against the path we specified in the action step which was **01_Foundation** that contains the terraform IaC configurations.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/run02.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/run02.png)
 
 Let's take a closer look at the MSDO GitHub action being used:
 
@@ -184,23 +184,24 @@ env:
 There are a few ways configure tool inputs:
 
 1. Creating a `*.gdnconfig` file to save configurations.
-    - Great for reuse between team members and local/remote runs.
-    - Can save multiple tool configurations in a single file to run all configurations.
+
+   - Great for reuse between team members and local/remote runs.
+   - Can save multiple tool configurations in a single file to run all configurations.
 
 2. Using environment variables
-    - Great for quick configurations in build pipelines.
-    - They follow the format `[GDN_]<ToolName>_<ArgumentId>`, where `GDN_` is optional and ToolName` and `ArgumentId` are defined by the tool integration file to (*.gdntool).  
+   - Great for quick configurations in build pipelines.
+   - They follow the format `[GDN_]<ToolName>_<ArgumentId>`, where `GDN_` is optional and ToolName`and`ArgumentId` are defined by the tool integration file to (\*.gdntool).
 
 As you can see I have specified the tool/**(Terrascan)** inputs as environment variables on the action itself e.g.
 
 ```yml
 steps:
-- uses: microsoft/security-devops-action
-  env:
-    <key>: '<value>'
+  - uses: microsoft/security-devops-action
+    env:
+      <key>: '<value>'
 ```
 
-You can see all tools as part of MSDO inputs / environment variables on the following [Wiki Documentation](https://github.com/microsoft/security-devops-action/wiki#table-of-contents)  
+You can see all tools as part of MSDO inputs / environment variables on the following [Wiki Documentation](https://github.com/microsoft/security-devops-action/wiki#table-of-contents)
 
 ### Terrascan options
 
@@ -208,19 +209,19 @@ The MSDO GitHub action inputs specifically relating to **Terrascan**: https://gi
 
 ### Defender for DevOps Dashboard
 
-As mentioned before MSDO closely integrates with **Microsoft Defender for Cloud** and has its own dashboard **Defender or DevOps** to review and get security insights into the code.  
+As mentioned before MSDO closely integrates with **Microsoft Defender for Cloud** and has its own dashboard **Defender or DevOps** to review and get security insights into the code.
 
 In the Azure portal navigate to **Microsoft Defender for Cloud**, select the **DevOps Security** pane and then click on the GitHub connector:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/msdo01.png)
 
-Notice that I have some **Unhealthy** recommendations and need to resolve infrastructure as code scanning issues:  
+Notice that I have some **Unhealthy** recommendations and need to resolve infrastructure as code scanning issues:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/msdo02.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/msdo02.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/msdo05.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/msdo05.png)
 
-Let's navigate back to the **GitHub repository**, select the **security tab** and **Code Scanning**:  
+Let's navigate back to the **GitHub repository**, select the **security tab** and **Code Scanning**:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/msdo03.png)
 
@@ -230,17 +231,17 @@ Because we selected the output format to be **SARIF** and used another action in
 
 ### Code scanning severities
 
-You can also define code scanning severities which should cause a **pull request check** to **fail** to prevent security issues from being commited into your code by accident.  
+You can also define code scanning severities which should cause a **pull request check** to **fail** to prevent security issues from being commited into your code by accident.
 
-This can be configured under the **GitHub repository Settings > Code security and analysis**:  
+This can be configured under the **GitHub repository Settings > Code security and analysis**:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/sev01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/sev01.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/sev02.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/sev02.png)
 
-Once the **IaC** security findings are resolved you will notice that the status of the recommendation has changed from **Unhealthy** to **Healthy**:  
+Once the **IaC** security findings are resolved you will notice that the status of the recommendation has changed from **Unhealthy** to **Healthy**:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/sev03.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/sev03.png)
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/MSDO-Lab) page. :heart:
 
