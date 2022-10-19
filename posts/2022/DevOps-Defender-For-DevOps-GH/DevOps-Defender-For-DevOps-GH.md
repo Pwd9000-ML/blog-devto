@@ -2,7 +2,7 @@
 title: Defender for DevOps on GitHub (Terrascan edition)
 published: false
 description: Microsoft Security DevOps (MSDO) GitHub action
-tags: 'github, DevSecOps, AzureDefender, Terraform'
+tags: 'github, DevSecOps, MicrosoftDefender, Terraform'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/main.png'
 canonical_url: null
 id: 1223249
