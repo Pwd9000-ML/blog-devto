@@ -33,8 +33,8 @@ At the time of this writing, **Microsoft Security DevOps** uses the following to
 
 | Name | Language | License |
 | --- | --- | --- |
-| [Bandit](https://github.com/PyCQA/bandit) | Python | [Apache License 2.0](https://github.com/PyCQA/bandit/blob/master/LICENSE)] |
-| [Binskim](https://github.com/Microsoft/binskim) | Binary--Windows, ELF | [MIT License](https://github.com/microsoft/binskim/blob/main/LICENSE)] |
+| [Bandit](https://github.com/PyCQA/bandit) | Python | [Apache License 2.0](https://github.com/PyCQA/bandit/blob/master/LICENSE) |
+| [Binskim](https://github.com/Microsoft/binskim) | Binary--Windows, ELF | [MIT License](https://github.com/microsoft/binskim/blob/main/LICENSE) |
 | [ESlint](https://github.com/eslint/eslint) | JavaScript | [MIT License](https://github.com/eslint/eslint/blob/main/LICENSE) |
 | [Credscan](https://learn.microsoft.com/en-us/azure/defender-for-cloud/detect-credential-leaks) | Secret scanning | Free during Defender for DevOps preview |
 | [Template Analyzer](https://github.com/Azure/template-analyzer) | ARM templates, Bicep files | [MIT License](https://github.com/Azure/template-analyzer/blob/main/LICENSE.txt) |
@@ -43,7 +43,7 @@ At the time of this writing, **Microsoft Security DevOps** uses the following to
 
 ### Getting started
 
-Before we dive into the MSDO toolkit we first need to connect our GitHub Repository to [Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-github):
+Before we dive into the MSDO toolkit we first need to connect our GitHub Repository to [Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-github)
 
 1. Log into the [Azure portal](https://portal.azure.com/).
 
@@ -70,6 +70,14 @@ Before we dive into the MSDO toolkit we first need to connect our GitHub Reposit
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/dfc07.png)
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/dfc08.png)
+
+After installing **Defender for DevOps** on the selected repositories, they will be integrated with **Microsoft Defender for Cloud** and insights will be accessible from the **DevOps Security** dashboard.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/dfc09.png)
+
+Next we will look at the MSDO toolkit GitHub action and see how we can use certain tools and populate the dashboard with rich security insights about our code.
+
+### Configuring MSDO GitHub action
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/DevOps-Defender-For-DevOps-GH/code) page. :heart:
 
