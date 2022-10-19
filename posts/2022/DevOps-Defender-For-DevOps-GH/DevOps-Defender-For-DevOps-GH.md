@@ -232,7 +232,7 @@ Because we selected the output format to be **SARIF** and used another action in
 
 ### Code scanning severities
 
-You can also define code scanning severities which should cause a **pull request check** to **fail** to prevent security issues from being commited into your code by accident.
+You can also define code scanning severities which will **fail** a **pull request check** to prevent security issues from being committed and introduced into your code.
 
 This can be configured under the **GitHub repository Settings > Code security and analysis**:
 
