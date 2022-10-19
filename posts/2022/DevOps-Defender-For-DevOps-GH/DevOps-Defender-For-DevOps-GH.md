@@ -74,7 +74,9 @@ After installing **Defender for DevOps** on the selected repositories you want t
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/dfc09.png)
 
-Next we will look at the **MSDO GitHub action** and see how we can use certain tools and populate the dashboard with rich security insights about our code.
+Next we will look at the **MSDO GitHub action** and see how we can use certain tools and populate the dashboard with rich security insights about our code.  
+
+**NOTE:** **GitHub Advanced Security** features are available on **public** GitHub repositories. If you are using **private** repositories, follow [this guidance](https://docs.github.com/en/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/managing-security-and-analysis-settings-for-your-organization) to set up **GitHub Advanced Security** in your organisation/account.
 
 ### Configuring the MSDO GitHub action (with Terrascan)
 
