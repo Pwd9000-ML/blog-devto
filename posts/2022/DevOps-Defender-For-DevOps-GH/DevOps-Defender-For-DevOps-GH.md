@@ -195,7 +195,7 @@ There are a few ways to configure the various tools and their inputs:
   - Great for quick configurations in build pipelines.
   - They follow the format `[GDN_]<ToolName>_<ArgumentId>`, where `GDN_` is optional and `ToolName` and `ArgumentId` are defined by the tool integration file to (\*.gdntool).
 
-As you can see in the workflow step we specified the tool, **(Terrascan)** and some of it's supported inputs are defined as environment variables on the action itself e.g:
+As you can see in the workflow step we specified the tool, **(Terrascan)** and some of it's supported inputs are defined as environment variables on the action itself using `env:` e.g:
 
 ```yml
 steps:
