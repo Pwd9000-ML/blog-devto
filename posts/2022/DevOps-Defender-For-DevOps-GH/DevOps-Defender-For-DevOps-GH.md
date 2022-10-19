@@ -116,7 +116,7 @@ resource "random_integer" "kv_num" {
 }
 ```
 
-Let's take a look at how we can use **Terrascan** using the **[MSDO GitHub action](https://github.com/marketplace/actions/security-devops-action)** to scan our terraform code.
+Let's take a look at how we can use **Terrascan** using the **[MSDO GitHub action](https://github.com/marketplace/actions/security-devops-action)** to scan our terraform code and how the results will be displayed on the **Defender for DevOps** dashboard in the Azure portal.
 
 1. Sign in to [GitHub](https://www.github.com/) and select a repository you added earlier to **Defender for DevOps** on which you want to configure the **MSDO GitHub action**.
 
