@@ -75,7 +75,7 @@ After installing **Defender for DevOps** on the selected repositories you want t
 
 Next we will look at the **MSDO GitHub action** and see how we can use certain tools and populate the dashboard with rich security insights about our code.
 
-### Configuring the MSDO GitHub action (Terrascan)
+### Configuring the MSDO GitHub action (with Terrascan)
 
 The following examples can also be found on my [MSDO-Lab GitHub page](https://github.com/Pwd9000-ML/MSDO-Lab).
 
