@@ -210,7 +210,7 @@ The MSDO GitHub action inputs specifically relating to **Terrascan** can be foun
 
 ### Defender for DevOps Dashboard
 
-As mentioned before MSDO closely integrates with **Microsoft Defender for Cloud** and has its own dashboard **Defender or DevOps** to review and get security insights into the code.
+As mentioned MSDO closely integrates with **Microsoft Defender for Cloud** and has its own dashboard **Defender or DevOps** to review and get security insights into the code.
 
 In the Azure portal navigate to **Microsoft Defender for Cloud**, select the **DevOps Security** pane and then click on the GitHub connector:
 
