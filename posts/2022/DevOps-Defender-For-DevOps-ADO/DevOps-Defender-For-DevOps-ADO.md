@@ -9,8 +9,6 @@ id: 1223252
 series: Defender for DevOps
 ---
 
-
-
 Microsoft Security DevOps (MSDO)
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/DevOps-Defender-For-DevOps-ADO/code) page. :heart:
