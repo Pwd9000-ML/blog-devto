@@ -184,15 +184,13 @@ env:
 
 There are a few ways configure tool inputs:
 
-1. By creating a `*.gdnconfig` file to save configurations:
+- By creating a `*.gdnconfig` file to save configurations:
+  - Great for reuse between team members and local/remote runs.
+  - Can save multiple tool configurations in a single file to run all configurations.
 
-- Great for reuse between team members and local/remote runs.
-- Can save multiple tool configurations in a single file to run all configurations.
-
-2. By using environment variables:
-
-- Great for quick configurations in build pipelines.
-- They follow the format `[GDN_]<ToolName>_<ArgumentId>`, where `GDN_` is optional and ToolName`and`ArgumentId` are defined by the tool integration file to (\*.gdntool).
+- By using environment variables:
+  - Great for quick configurations in build pipelines.
+  - They follow the format `[GDN_]<ToolName>_<ArgumentId>`, where `GDN_` is optional and ToolName`and`ArgumentId` are defined by the tool integration file to (\*.gdntool).
 
 As you can see in the workflow step we have specified the tool **(Terrascan)** inputs are defined as environment variables on the action itself e.g.
 
