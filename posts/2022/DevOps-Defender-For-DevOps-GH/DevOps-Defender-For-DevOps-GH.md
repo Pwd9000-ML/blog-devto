@@ -119,7 +119,7 @@ resource "random_integer" "kv_num" {
 }
 ```
 
-Let's take a look at how we can use **Terrascan** using the **[MSDO GitHub action](https://github.com/marketplace/actions/security-devops-action)** to scan our terraform code and how the results will be displayed on the **Defender for DevOps** dashboard in the Azure portal.
+Let's take a look at how we can configure the **Terrascan** analyzer using the **[MSDO GitHub action](https://github.com/marketplace/actions/security-devops-action)** to scan our terraform code and how the results will be displayed on the **Defender for DevOps** dashboard in the Azure portal.
 
 1. Sign in to [GitHub](https://www.github.com/) and select a repository you added earlier to **Defender for DevOps** on which you want to configure the **MSDO GitHub action**.
 
@@ -161,11 +161,11 @@ jobs:
           sarif_file: ${{ steps.msdo.outputs.sarifFile }}
 ```
 
-After creating the workflow you can run it manually under the **Actions** tab:
+After creating the workflow you can run it manually under the **Actions** tab as the trigger is set to `workflow_dispatch:`:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/run01.png)
 
-After running the workflow you can review the steps. Note that the MSDO toolkit is installed and runs **Terrascan** against the repo path **01_Foundation** containing the terraform IaC configurations.
+After running the workflow you can review the steps. Note that the MSDO toolkit is installed and then runs **Terrascan** against the repo path **01_Foundation** we specified which contains the terraform IaC configuration files.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/run02.png)
 
@@ -184,7 +184,7 @@ env:
 
 ### How to configure different MSDO analyzers
 
-There are a few ways configure tool inputs:
+There are a few ways to configure the various tools and their inputs:
 
 - By creating a `*.gdnconfig` file to save configurations:
 
@@ -195,20 +195,22 @@ There are a few ways configure tool inputs:
   - Great for quick configurations in build pipelines.
   - They follow the format `[GDN_]<ToolName>_<ArgumentId>`, where `GDN_` is optional and `ToolName` and `ArgumentId` are defined by the tool integration file to (\*.gdntool).
 
-As you can see in the workflow step we have specified the tool inputs for **(Terrascan)** are defined as environment variables on the action itself e.g:
+As you can see in the workflow step we specified the tool, **(Terrascan)** and some of it's supported inputs are defined as environment variables on the action itself e.g:
 
 ```yml
 steps:
   - uses: microsoft/security-devops-action
     env:
-      <key>: '<value>'
+      <ToolName>_<ArgumentId>: '<supported value1>'
+      <ToolName>_<ArgumentId>: '<supported value2>'
+      <ToolName>_<ArgumentId>: '<supported value3>'
 ```
 
-You can see all the different tool inputs/environment variables for the MSDO toolkit on the following [Wiki Documentation](https://github.com/microsoft/security-devops-action/wiki#table-of-contents)
+You can see all the different tools and their supported inputs (environment variables) included in the MSDO toolkit on the following [Wiki Documentation page](https://github.com/microsoft/security-devops-action/wiki#table-of-contents)
 
 ### Terrascan options
 
-The MSDO GitHub action inputs specifically relating to **Terrascan** can be found here: https://github.com/microsoft/security-devops-action/wiki#terrascan-options
+MSDO GitHub action inputs specifically related to **Terrascan** can be found here: https://github.com/microsoft/security-devops-action/wiki#terrascan-options
 
 ### Defender for DevOps Dashboard
 
