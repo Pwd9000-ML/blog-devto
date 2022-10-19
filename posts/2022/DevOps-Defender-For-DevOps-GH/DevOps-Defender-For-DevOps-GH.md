@@ -244,7 +244,7 @@ Once the **IaC** security findings are resolved you will notice that the status 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/sev03.png)
 
-Stay tuned for my next blog post where we will use MSDO in **Azure DevOps repositories** instead of GitHub and use the **Azure DevOps MSDO Marketplace extension** instead of the MSDO GitHub action.
+Stay tuned for my next blog post where we will use MSDO on **Azure DevOps** instead of GitHub and also demonstrate how to use the **Azure DevOps MSDO Marketplace extension** instead of the MSDO GitHub action, integrating **Defender for DevOps** on **Azure DevOps**.
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/MSDO-Lab) page. :heart:
 
