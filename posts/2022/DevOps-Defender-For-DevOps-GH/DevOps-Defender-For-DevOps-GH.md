@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 1223249
 series: Defender for DevOps
+date: '2022-10-19T15:31:23Z'
 ---
 
 ### Microsoft Security DevOps (MSDO) GitHub action
