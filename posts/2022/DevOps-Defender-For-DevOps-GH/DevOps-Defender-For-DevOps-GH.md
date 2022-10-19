@@ -240,7 +240,7 @@ This can be configured under the **GitHub repository Settings > Code security an
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/sev02.png)
 
-Once the **IaC** security findings are resolved you will notice that the status of the recommendation has changed from **Unhealthy** to **Healthy**:
+Once the **IaC** security findings are resolved you will notice that the status of the recommendation on the **Defender for DevOps** dashboard has changed from **Unhealthy** to **Healthy**:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/sev03.png)
 
