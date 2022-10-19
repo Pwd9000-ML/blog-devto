@@ -43,7 +43,7 @@ At the time of this writing, **Microsoft Security DevOps** uses the following to
 
 ### Getting started
 
-Before we dive into the MSDO toolkit we first need to connect our GitHub Repository to [Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-github)
+Before we dive into the MSDO toolkit we first need to connect our GitHub Repository to [Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-github?WT.mc_id=DT-MVP-5004771)
 
 1. Log into the [Azure portal](https://portal.azure.com/).
 
