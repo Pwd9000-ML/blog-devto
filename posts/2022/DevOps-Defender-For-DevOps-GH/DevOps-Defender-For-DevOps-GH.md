@@ -216,7 +216,7 @@ In the Azure portal navigate to **Microsoft Defender for Cloud**, select the **D
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/msdo01.png)
 
-Notice there are some **Unhealthy** recommendations and need to resolve infrastructure as code scanning issues:
+Notice there are some **Unhealthy** recommendations to resolve detected by MSDO infrastructure as code scanning **(Terrascan)**:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/msdo02.png)
 
