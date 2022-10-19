@@ -163,7 +163,7 @@ After creating the workflow you can run it manually under the **Actions** tab:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/run01.png)
 
-After running the workflow you can review the steps, note that the MSDO toolkit is installed and runs **Terrascan** against the path **01_Foundation** we specified in the action containing the terraform IaC configurations.
+After running the workflow you can review the steps. Note that the MSDO toolkit is installed and runs **Terrascan** against the repo path **01_Foundation** containing the terraform IaC configurations.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/run02.png)
 
