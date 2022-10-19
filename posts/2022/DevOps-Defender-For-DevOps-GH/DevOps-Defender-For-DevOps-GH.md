@@ -206,7 +206,7 @@ You can see all the different tool inputs/environment variables for the MSDO too
 
 ### Terrascan options
 
-The MSDO GitHub action inputs specifically relating to **Terrascan**: https://github.com/microsoft/security-devops-action/wiki#terrascan-options
+The MSDO GitHub action inputs specifically relating to **Terrascan** can be found here: https://github.com/microsoft/security-devops-action/wiki#terrascan-options
 
 ### Defender for DevOps Dashboard
 
