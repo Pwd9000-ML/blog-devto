@@ -63,7 +63,7 @@ Before we dive into the MSDO toolkit we first need to connect our GitHub reposit
 
 9. Select **Next: Review and create**. Review the information and select **Create**.
 
-**NOTES:** You will see the **GitHub** connector under **Microsoft Defender for Cloud > Environment Settings**. If you only added one repository and wanted to later change and add/onboard more repositories onto the same **Defender for DevOps** plan, you can do so by navigating to your **GitHub Settings > Applications**.
+**NOTE:** You will see the **GitHub** connector under **Microsoft Defender for Cloud > Environment Settings**. If you only added one repository and wanted to later change and add/onboard more repositories onto the same **Defender for DevOps** plan, you can do so by navigating to your **GitHub Settings > Applications**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-GH/assets/dfc07.png)
 
