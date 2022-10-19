@@ -10,7 +10,7 @@ series: Defender for DevOps
 date: '2022-10-19T15:31:23Z'
 ---
 
-### Microsoft Security DevOps (MSDO) GitHub action
+### Microsoft Security DevOps (MSDO) Overview
 
 **Microsoft Security DevOps** (MSDO) is a command line application which integrates **static analysis tools**, for **security** and **compliance** into the development cycle.
 
