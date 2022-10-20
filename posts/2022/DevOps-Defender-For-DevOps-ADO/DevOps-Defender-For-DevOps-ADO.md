@@ -25,7 +25,7 @@ We will also look at how the scan results are published on the Azure portal unde
 
 ### Microsoft Security DevOps (MSDO) Overview
 
-**Microsoft Security DevOps** (MSDO) is a command line application which integrates **static analysis tools**, for **security** and **compliance** into the development cycle.
+Just to recap on what MSDO is, **Microsoft Security DevOps** (MSDO) is a command line application which integrates **static analysis tools**, for **security** and **compliance** into the development cycle.
 
 MSDO installs, configures and runs the latest versions of **static analysis tools**. It is data-driven with portable configurations that enable deterministic execution across multiple environments.
 
