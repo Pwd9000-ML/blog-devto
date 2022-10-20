@@ -108,19 +108,19 @@ As mentioned MSDO features a few different tools (I will cover some of the other
 
 **Terrascan** is a static code analyzer for Infrastructure as Code (IaC). Let's take a look at an example on how we can use **MSDO** integration with **Defender for DevOps** to get security insights and detect compliance and security violations in a **Terraform** configuration to mitigate risk before provisioning cloud infrastructure.
 
-Let's look at an example. On my **Azure DevOps repository** I have a the following **[Terraform IaC configuration]()**. 
+Let's look at an example. On my **Azure DevOps repository** I have a the following **[Terraform IaC configuration]()**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/ado0001.png)
 
-Next we'll configure a YAML pipeline to run the MSDO extension and using the **Terrascan** analyzer see if it can detect any issues on the **Terraform configuration** and how that will be displayed on the **SARIF SAST Scan Tab** as well as the **Microsoft Defender for Cloud** DevOps security dashboard on the Azure portal.  
+Next we'll configure a YAML pipeline to run the MSDO extension and using the **Terrascan** analyzer see if it can detect any issues on the **Terraform configuration** and how that will be displayed on the **SARIF SAST Scan Tab** as well as the **Microsoft Defender for Cloud** DevOps security dashboard on the Azure portal.
 
-1. Navigate to your Azure DevOps project and under pipelines, select **New pipeline**  *Defender for DevOps** on which you want to configure the **MSDO GitHub action**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe01.png)  
+1. Navigate to your Azure DevOps project and under pipelines, select **New pipeline** \*Defender for DevOps** on which you want to configure the **MSDO GitHub action\*\*. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe01.png)
 
-2. Select **Azure Repos Git**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe02.png)  
+2. Select **Azure Repos Git**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe02.png)
 
-3. Select the relevant repository.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe03.png)  
+3. Select the relevant repository. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe03.png)
 
-4. Select **Starter pipeline**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe04.png)  
+4. Select **Starter pipeline**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe04.png)
 
 5. Paste and commit the following YAML into the pipeline, select **Save and run**:
 
@@ -133,24 +133,24 @@ trigger: none
 pool:
   vmImage: 'windows-latest'
 steps:
-- checkout: self
-- task: UseDotNet@2
-  displayName: 'Use dotnet'
-  inputs:
-    version: 3.1.x
-- task: UseDotNet@2
-  displayName: 'Use dotnet'
-  inputs:
-    version: 5.0.x
-- task: UseDotNet@2
-  displayName: 'Use dotnet'
-  inputs:
-    version: 6.0.x
-- task: MicrosoftSecurityDevOps@1
-  displayName: 'Microsoft Security DevOps'
-  inputs:
-    categories: 'IaC,secrets'
-    tools: 'terrascan'
+  - checkout: self
+  - task: UseDotNet@2
+    displayName: 'Use dotnet'
+    inputs:
+      version: 3.1.x
+  - task: UseDotNet@2
+    displayName: 'Use dotnet'
+    inputs:
+      version: 5.0.x
+  - task: UseDotNet@2
+    displayName: 'Use dotnet'
+    inputs:
+      version: 6.0.x
+  - task: MicrosoftSecurityDevOps@1
+    displayName: 'Microsoft Security DevOps'
+    inputs:
+      categories: 'IaC,secrets'
+      tools: 'terrascan'
 ```
 
 Take a closer look at the MSDO task and notice that we supply certain `inputs:`
@@ -164,8 +164,6 @@ Take a closer look at the MSDO task and notice that we supply certain `inputs:`
 ```
 
 After running the pipeline:
-
-
 
 After running the workflow you can review the steps. Note that the MSDO toolkit is installed and then runs **Terrascan** against the repo path **01_Foundation** we specified which contains the terraform IaC configuration files.
 
