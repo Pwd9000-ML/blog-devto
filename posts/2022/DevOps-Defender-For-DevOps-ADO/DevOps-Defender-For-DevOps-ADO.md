@@ -89,7 +89,7 @@ After installing **Defender for DevOps** on the selected projects you want to on
 
 Navigate to your Azure DevOps Org and install the following two **Marketplace Extensions**:
 
-- **[(MSDO) Marketplace Extension](https://marketplace.visualstudio.com/items?itemName=ms-securitydevops.microsoft-security-devops-azdevops)**
+- **[Microsoft Security DevOps (MSDO)](https://marketplace.visualstudio.com/items?itemName=ms-securitydevops.microsoft-security-devops-azdevops)**
 - **[SARIF SAST Scans Tab](https://marketplace.visualstudio.com/items?itemName=sariftools.scans&targetId=8e02e9e3-062e-46a7-8558-c30016c43306&utm_source=vstsproduct&utm_medium=ExtHubManageList)**
 
 Next we will look at how we can use the MSDO toolkit to populate the **Defender for DevOps** dashboard with rich security insights about our code.
