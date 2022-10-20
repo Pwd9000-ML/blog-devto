@@ -84,7 +84,7 @@ With **Defender for DevOps** now connected on the selected **Azure DevOps** proj
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc10.png)
 
-Next we will install the MSDO Azure DevOps **[Marketplace Extensions](https://marketplace.visualstudio.com/)**.
+Next we will install the MSDO Azure DevOps **[Marketplace Extension](https://marketplace.visualstudio.com/)**.
 
 ### Install required Devops extensions
 
