@@ -73,15 +73,28 @@ Before we dive into the MSDO toolkit we first need to connect our Azure DevOps r
 
 8. Select **Next: Review and create**. Review the information and select **Create**.
 
-**NOTE:** You will see the **Azure DevOps** connector under **Microsoft Defender for Cloud > Environment Settings**. If you only added one repository and wanted to later change and add/onboard more repositories onto the same **Defender for DevOps** plan, you can do so by navigating to your **GitHub Settings > Applications**.
+You will see the **Azure DevOps** connector under **Microsoft Defender for Cloud > Environment Settings**.  
 
-After installing **Defender for DevOps** on the selected repositories you want to onboard, they will be integrated with **Microsoft Defender for Cloud** and insights will be accessible from the **DevOps Security** dashboard under **Defender for Cloud** in the **Azure portal**.
+[image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc08.png)
 
-Next we will look at the **MSDO GitHub action** and see how we can use certain tools and populate the dashboard with rich security insights about our code.
+You will also see newly created **service hooks** in the selected **Azure DevOps Project(s)** where **Defender for Devops** have been onboarded.  
 
-**NOTE:** **GitHub Advanced Security** features are available on **public** GitHub repositories. If you are using **private** repositories, follow [this guidance](https://docs.github.com/en/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/managing-security-and-analysis-settings-for-your-organization) to set up **GitHub Advanced Security** in your organisation/account.
+[image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc09.png)
 
-### Configuring the MSDO GitHub action (with Terrascan)
+After installing **Defender for DevOps** on the selected projects you want to onboard, they will be integrated with **Microsoft Defender for Cloud** and insights will be accessible from the **DevOps Security** dashboard under **Defender for Cloud** in the **Azure portal**.
+
+[image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc10.png)
+
+### Install required Devops extensions
+
+Navigate to your Azure DevOps Org and install the following two **Marketplace Extensions**:
+
+- **[(MSDO) Marketplace Extension](https://marketplace.visualstudio.com/items?itemName=ms-securitydevops.microsoft-security-devops-azdevops)** 
+- **[SARIF SAST Scans Tab](https://marketplace.visualstudio.com/items?itemName=sariftools.scans&targetId=8e02e9e3-062e-46a7-8558-c30016c43306&utm_source=vstsproduct&utm_medium=ExtHubManageList)**
+
+Next we will look at how we can use the MSDO toolkit to populate the **Defender for DevOps** dashboard with rich security insights about our code.  
+
+### Using the MSDO marketplace extension (with Credscan)
 
 The following examples can also be found on my [MSDO-Lab GitHub page](https://github.com/Pwd9000-ML/MSDO-Lab).
 
