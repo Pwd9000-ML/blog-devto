@@ -11,25 +11,25 @@ series: Defender for DevOps
 
 ### Overview
 
-Welcome to the second part of this blog series on [Microsoft Defender for DevOps](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-devops-introduction?WT.mc_id=DT-MVP-5004771).  
+Welcome to the second part of this blog series on [Microsoft Defender for DevOps](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-devops-introduction?WT.mc_id=DT-MVP-5004771).
 
-In my [previous post](https://dev.to/pwd9000/defender-for-devops-on-github-terrascan-edition-45bd) we looked at how you can integrate **Defender for DevOps** with **GitHub** and also how to use the **Microsoft Security DevOps** [(MSDO) GitHub action](https://github.com/marketplace/actions/security-devops-action) to configure **Terrascan** to analyze a **Terraform IaC Configuration** and how the scan results are published on the Azure portal under the **DevOps Security** dashboard inside **Microsoft Defender for Cloud**.  
+In my [previous post](https://dev.to/pwd9000/defender-for-devops-on-github-terrascan-edition-45bd) we looked at how you can integrate **Defender for DevOps** with **GitHub** and also how to use the **Microsoft Security DevOps** [(MSDO) GitHub action](https://github.com/marketplace/actions/security-devops-action) to configure **Terrascan** to analyze a **Terraform IaC Configuration** and how the scan results are published on the Azure portal under the **DevOps Security** dashboard inside **Microsoft Defender for Cloud**.
 
-Today we will look at how to integrate **Defender for DevOps** with **Azure DevOps** and also how to use the **Microsoft Security DevOps** [(MSDO) Marketplace Extension](https://marketplace.visualstudio.com/items?itemName=ms-securitydevops.microsoft-security-devops-azdevops) to configure **Credscan** to analyze and identify credential leaks in source code and configuration files.  
+Today we will look at how to integrate **Defender for DevOps** with **Azure DevOps** and also how to use the **Microsoft Security DevOps** [(MSDO) Marketplace Extension](https://marketplace.visualstudio.com/items?itemName=ms-securitydevops.microsoft-security-devops-azdevops) to configure **Credscan** to analyze and identify credential leaks in source code and configuration files.
 
-Some of the common types of credentials are **default passwords**, **SQL connection strings** and **Certificates with private keys**.  
+Some of the common types of credentials are **default passwords**, **SQL connection strings** and **Certificates with private keys**.
 
-We will also look at another DevOps Extension called **[SARIF SAST Scans Tab](https://marketplace.visualstudio.com/items?itemName=sariftools.scans&targetId=8e02e9e3-062e-46a7-8558-c30016c43306&utm_source=vstsproduct&utm_medium=ExtHubManageList)** to better view the results of MSDO analyzer scans, outside of the console output and results file. It will look for `*.sarif` files in the `CodeAnalysisLogs` build artifact directory and display them as source annotations.  
+We will also look at another DevOps Extension called **[SARIF SAST Scans Tab](https://marketplace.visualstudio.com/items?itemName=sariftools.scans&targetId=8e02e9e3-062e-46a7-8558-c30016c43306&utm_source=vstsproduct&utm_medium=ExtHubManageList)** to better view the results of MSDO analyzer scans, outside of the console output and results file. It will look for `*.sarif` files in the `CodeAnalysisLogs` build artifact directory and display them as source annotations.
 
-We will also look at how the scan results are published on the Azure portal under the **DevOps Security** dashboard inside **Microsoft Defender for Cloud**.  
+We will also look at how the scan results are published on the Azure portal under the **DevOps Security** dashboard inside **Microsoft Defender for Cloud**.
 
 ### Microsoft Security DevOps (MSDO) Overview
 
-**Microsoft Security DevOps** (MSDO) is a command line application which integrates **static analysis tools**, for **security** and **compliance** into the development cycle.  
+**Microsoft Security DevOps** (MSDO) is a command line application which integrates **static analysis tools**, for **security** and **compliance** into the development cycle.
 
-MSDO installs, configures and runs the latest versions of **static analysis tools**. It is data-driven with portable configurations that enable deterministic execution across multiple environments.  
+MSDO installs, configures and runs the latest versions of **static analysis tools**. It is data-driven with portable configurations that enable deterministic execution across multiple environments.
 
-The MSDO toolkit can output and convert results to [Static Analysis Results Interchange Format (SARIF)](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning) which can display the results in your **repository** using the **SARIF SAST Scans Tab**.  
+The MSDO toolkit can output and convert results to [Static Analysis Results Interchange Format (SARIF)](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning) which can display the results in your **repository** using the **SARIF SAST Scans Tab**.
 
 MSDO integrates with [Microsoft Defender for DevOps](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-devops-introduction?WT.mc_id=DT-MVP-5004771) which enables a central console as part of [Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction?WT.mc_id=DT-MVP-5004771) to provide security teams **DevOps insights** across multi-pipeline environments, such as **GitHub** and **Azure DevOps**.
 
