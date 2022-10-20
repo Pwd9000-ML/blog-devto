@@ -108,7 +108,7 @@ As mentioned MSDO features a few different tools (I will cover some of the other
 
 **Terrascan** is a static code analyzer for Infrastructure as Code (IaC). Let's take a look at an example on how we can use **MSDO** integration with **Defender for DevOps** to get security insights and detect compliance and security violations in a **Terraform** configuration to mitigate risk before provisioning cloud infrastructure.
 
-Let's look at an example. On my **Azure DevOps repository** I have a the following **[Terraform IaC configuration](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/DevOps-Defender-For-DevOps-ADO/code/01_Foundation)**.  
+Let's look at an example. On my **Azure DevOps repository** I have a the following **[Terraform IaC configuration](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/DevOps-Defender-For-DevOps-ADO/code/01_Foundation)**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/ado0001.png)
 
