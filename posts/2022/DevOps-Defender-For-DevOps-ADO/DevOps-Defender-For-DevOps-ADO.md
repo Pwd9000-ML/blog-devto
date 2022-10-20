@@ -121,7 +121,7 @@ Next we'll configure a YAML pipeline to run the MSDO extension using a **pipelin
 
 4. Select **Starter pipeline**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe04.png)
 
-5. Paste and commit the following YAML into the pipeline, select **Save and run**:
+5. Paste and commit the [following YAML](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2022/DevOps-Defender-For-DevOps-ADO/code/msdosecretscan.yml) into the pipeline, select **Save and run**:
 
 ```yml
 # Starter pipeline
