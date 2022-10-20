@@ -108,11 +108,11 @@ As mentioned MSDO features a few different tools (I will cover some of the other
 
 **Credscan** runs secret scanning as part of the Azure DevOps **build process** to detect **credentials**, **secrets**, **certificates**, and other sensitive content in your source code and your build output.  
 
-Let's look at an example. On my **Azure DevOps repository** I have a the following **Terraform** configuration:  
+Let's look at an example. On my **Azure DevOps repository** I have a the following **Terraform** IaC configuration.  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/ado001.png)  
 
-Notice that I have a variable to specify a database connection string for my Terraform configuration.
+Notice that I have a variable to specify a database connection string for my configuration.
 
 ```hcl
 variable "db_connection_string" {
@@ -121,7 +121,9 @@ variable "db_connection_string" {
 }
 ```
 
-Also notice that I have the connection string for my DEV SQL server saved in a `*.tfvars` file:
+Also notice that I have a `*.tfvars` file with the actual connection string for my DEV SQL server saved and commit into my source code.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/ado02.png)  
 
 
 
