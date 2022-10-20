@@ -65,7 +65,7 @@ Before we dive into the MSDO toolkit we first need to connect our Azure DevOps r
 
 5. **Select Plans**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc03.png)
 
-6. Select **Next: Authorize connection** and **Authorize** the **Azure DevOps** connection after reviewing the permission request. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc04.png) **IMPORTANT:** If your authorizing account is part of multiple **Azure DevOps Organisations**, ensure that you are logged into the correct org using (https://aex.dev.azure.com/) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc006.png) You will also be able to verify your permissions to link **Defender for DevOps** to the correct **Azure DevOps Org** by looking at the top of the permission request screen before accepting. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc07.png)
+6. Select **Next: Authorize connection** and **Authorize** the **Azure DevOps** connection after reviewing the permission request. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc04.png) **IMPORTANT:** If your authorizing account is part of multiple **Azure DevOps Organisations**, ensure that you are logged into the correct org using: https://aex.dev.azure.com/ ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc006.png) You will also be able to verify your permissions to link **Defender for DevOps** to the correct **Azure DevOps Org** by looking at the top of the permission request screen before accepting. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc07.png)
 
 7. After **Authorizing**, Select your relevant **organization(s)**, **project(s)** and **repository(s)** from the drop-down menus. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc05.png)
 
@@ -102,15 +102,15 @@ Next we will look at how we can use the MSDO toolkit to populate the **Defender 
 
 ### Using the MSDO marketplace extension
 
-As mentioned MSDO features a few different tools (I will cover some of the other tools in a future blog post), but I want to concentrate on a specific tool today called [Terrascan](https://github.com/accurics/terrascan).
+As mentioned MSDO features a few different tools (I will cover some of the other tools in a future blog post), but I want to concentrate on the same tool as on the previous post called [Terrascan](https://github.com/accurics/terrascan).
 
-**Terrascan** is a static code analyzer for Infrastructure as Code (IaC). Let's take a look at an example on how we can use **MSDO** integration with **Defender for DevOps** to get security insights and detect compliance and security violations in a **Terraform** configuration to mitigate risk before provisioning cloud infrastructure.
+**Terrascan** is a static code analyzer for **Infrastructure as Code (IaC)**. Let's take a look at an example on how we can use **MSDO** integration with **Defender for DevOps** to get security insights and detect compliance and security violations in a **Terraform** configuration to mitigate risk before provisioning cloud infrastructure.
 
 Let's look at an example. On my **Azure DevOps repository** I have a the following **[Terraform IaC configuration](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/DevOps-Defender-For-DevOps-ADO/code/01_Foundation)**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/ado0001.png)
 
-Next we'll configure a YAML pipeline to run the MSDO extension and using the **Terrascan** analyzer see if it can detect any issues on the **Terraform configuration** and how that will be displayed on the **SARIF SAST Scan Tab** as well as the **Microsoft Defender for Cloud** DevOps security dashboard on the Azure portal.
+Next we'll configure a YAML pipeline to run the MSDO extension and using the **Terrascan** analyzer see if it can detect any issues on the **Terraform configuration** and how that will be displayed on the pipeline run **SARIF SAST Scan Tab**.  
 
 1. Navigate to your Azure DevOps project and under pipelines, select **New pipeline** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe01.png)
 
@@ -128,27 +128,33 @@ Next we'll configure a YAML pipeline to run the MSDO extension and using the **T
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 trigger: none
+
 pool:
   vmImage: 'windows-latest'
+
 steps:
-  - checkout: self
-  - task: UseDotNet@2
-    displayName: 'Use dotnet'
-    inputs:
-      version: 3.1.x
-  - task: UseDotNet@2
-    displayName: 'Use dotnet'
-    inputs:
-      version: 5.0.x
-  - task: UseDotNet@2
-    displayName: 'Use dotnet'
-    inputs:
-      version: 6.0.x
-  - task: MicrosoftSecurityDevOps@1
-    displayName: 'Microsoft Security DevOps'
-    inputs:
-      categories: 'IaC,secrets'
-      tools: 'terrascan'
+- checkout: self
+
+- task: UseDotNet@2
+  displayName: 'Use dotnet 3.1.x'
+  inputs:
+    version: 3.1.x
+
+- task: UseDotNet@2
+  displayName: 'Use dotnet 5.0.x'
+  inputs:
+    version: 5.0.x
+
+- task: UseDotNet@2
+  displayName: 'Use dotnet 6.0.x'
+  inputs:
+    version: 6.0.x
+    
+- task: MicrosoftSecurityDevOps@1
+  displayName: 'Microsoft Security DevOps'
+  inputs:
+    categories: 'IaC,secrets'
+    tools: 'terrascan'
 ```
 
 Take a closer look at the MSDO task and notice that we supply certain `inputs:`
@@ -160,6 +166,19 @@ Take a closer look at the MSDO task and notice that we supply certain `inputs:`
     categories: 'IaC,secrets'
     tools: 'terrascan'
 ```
+
+At the time of writing the following inputs are supported:  
+
+| Input | Description | Default |
+| --- | --- | --- |
+| `config:` | A file path to an MSDO configuration file (`*.gdnconfig`). | - |
+| `policy:` | The name of a well known Microsoft policy. If no configuration is provided, the policy may instruct MSDO what tools to run. Allowed options: `'none'`, `'microsoft'` | `'microsoft'` |
+| `categories:` | A comma separated list of analyzer categories to run. Values: `secrets`, `code`, `artifacts`, `IaC`, `containers`. Example: `IaC,secrets`. | Defaults to all. |
+| `languages:` | A comma separated list of languages to analyze. Example: `javascript,typescript`. | Defaults to all. |
+| `tools:` | A comma separated list of analyzer tools to run. Values: `bandit`, `binskim`, `eslint`, `template-analyzer`, `terrascan`, `trivy`. | detect |
+| `break:` | Values: `true`/`false`, will fail this build step if any error level results are found. | false |
+| `publish:` | Values: `true`/`false`, will publish the output SARIF results file to the chosen pipeline artifact. | true |
+| `artifactName:` | The name of the pipeline artifact to publish the SARIF result file to. If default left as `"CodeAnalysisLogs"`, it integrates with the [SARIF Scans Tab](https://marketplace.visualstudio.com/items?itemName=sariftools.scans&targetId=8e02e9e3-062e-46a7-8558-c30016c43306&utm_source=vstsproduct&utm_medium=ExtHubManageList) viewing experience | CodeAnalysisLogs |
 
 After running the pipeline, notice that there is a new **Scans** tab next to the pipeline run **Summary** (SARIF SAST Scan Tab). This tab is from the extension we installed earlier as the MSDO toolkit exports results into a `*.sarif` file and will be picked up in this tab.
 
