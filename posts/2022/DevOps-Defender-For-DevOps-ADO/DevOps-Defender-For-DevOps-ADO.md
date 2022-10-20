@@ -69,15 +69,15 @@ Before we dive into the MSDO toolkit we first need to connect our Azure DevOps r
 
 6. Select **Next: Authorize connection** and **Authorize** the **Azure DevOps** connection after reviewing the permission request. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc04.png) **IMPORTANT:** If your authorizing account is part of multiple **Azure DevOps Organisations**, ensure that you are logged into the correct org using (https://aex.dev.azure.com/) ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc006.png) You will also be able to verify your permissions to link **Defender for DevOps** to the correct **Azure DevOps Org** by looking at the top of the permission request screen before accepting. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc07.png)
 
-7. After **Authorizing**, Select your relevant **organization(s)**, **project(s)** and **repository(s)** from the drop-down menus. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc05.png)  
+7. After **Authorizing**, Select your relevant **organization(s)**, **project(s)** and **repository(s)** from the drop-down menus. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc05.png)
 
 8. Select **Next: Review and create**. Review the information and select **Create**.
 
-You will see the **Azure DevOps** connector under **Microsoft Defender for Cloud > Environment Settings**.  
+You will see the **Azure DevOps** connector under **Microsoft Defender for Cloud > Environment Settings**.
 
 [!image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc08.png)
 
-You will also see newly created **service hooks** in the selected **Azure DevOps Project(s)** where **Defender for Devops** have been onboarded.  
+You will also see newly created **service hooks** in the selected **Azure DevOps Project(s)** where **Defender for Devops** have been onboarded.
 
 [!image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc09.png)
 
@@ -89,10 +89,10 @@ After installing **Defender for DevOps** on the selected projects you want to on
 
 Navigate to your Azure DevOps Org and install the following two **Marketplace Extensions**:
 
-- **[(MSDO) Marketplace Extension](https://marketplace.visualstudio.com/items?itemName=ms-securitydevops.microsoft-security-devops-azdevops)** 
+- **[(MSDO) Marketplace Extension](https://marketplace.visualstudio.com/items?itemName=ms-securitydevops.microsoft-security-devops-azdevops)**
 - **[SARIF SAST Scans Tab](https://marketplace.visualstudio.com/items?itemName=sariftools.scans&targetId=8e02e9e3-062e-46a7-8558-c30016c43306&utm_source=vstsproduct&utm_medium=ExtHubManageList)**
 
-Next we will look at how we can use the MSDO toolkit to populate the **Defender for DevOps** dashboard with rich security insights about our code.  
+Next we will look at how we can use the MSDO toolkit to populate the **Defender for DevOps** dashboard with rich security insights about our code.
 
 ### Using the MSDO marketplace extension (with Credscan)
 
