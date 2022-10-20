@@ -171,7 +171,7 @@ At the time of writing the following inputs are supported:
 
 | Input | Description | Default |
 | --- | --- | --- |
-| `config:` | A file path to an MSDO configuration file (`*.gdnconfig`). | - |
+| `config:` | A file path to an MSDO configuration file (`*.gdnconfig`). See [config file examples](https://github.com/microsoft/security-devops-action/wiki#table-of-contents) | - |
 | `policy:` | The name of a well known Microsoft policy. If no configuration is provided, the policy may instruct MSDO what tools to run. Allowed options: `'none'`, `'microsoft'` | `'microsoft'` |
 | `categories:` | A comma separated list of analyzer categories to run. Values: `secrets`, `code`, `artifacts`, `IaC`, `containers`. Example: `IaC,secrets`. | Defaults to all. |
 | `languages:` | A comma separated list of languages to analyze. Example: `javascript,typescript`. | Defaults to all. |
