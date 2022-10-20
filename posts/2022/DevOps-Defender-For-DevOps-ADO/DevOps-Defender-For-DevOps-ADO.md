@@ -1,6 +1,6 @@
 ---
 title: Defender for DevOps on AzureDevOps
-published: false
+published: true
 description: Microsoft Security DevOps (MSDO) Azure DevOps extension
 tags: 'azuredevops, DevSecOps, AzureDefender, Security'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/main.png'

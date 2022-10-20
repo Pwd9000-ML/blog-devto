@@ -1,5 +1,5 @@
 ---
-title: Defender for DevOps on GitHub (Terrascan edition)
+title: Defender for DevOps on GitHub
 published: true
 description: Microsoft Security DevOps (MSDO) GitHub action
 tags: 'github, DevSecOps, MicrosoftDefender, Terraform'
