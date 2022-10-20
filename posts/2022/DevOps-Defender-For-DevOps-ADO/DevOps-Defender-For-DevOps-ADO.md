@@ -110,7 +110,7 @@ Let's look at an example. On my **Azure DevOps repository** I have a the followi
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/ado0001.png)
 
-Next we'll configure a YAML pipeline to run the MSDO extension and using the **Terrascan** analyzer see if it can detect any issues on the **Terraform configuration** and how that will be displayed on the pipeline run **SARIF SAST Scan Tab**.  
+Next we'll configure a YAML pipeline to run the MSDO extension and using the **Terrascan** analyzer see if it can detect any issues on the **Terraform configuration** and how that will be displayed on the pipeline run **SARIF SAST Scan Tab**.
 
 1. Navigate to your Azure DevOps project and under pipelines, select **New pipeline** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe01.png)
 
@@ -133,28 +133,28 @@ pool:
   vmImage: 'windows-latest'
 
 steps:
-- checkout: self
+  - checkout: self
 
-- task: UseDotNet@2
-  displayName: 'Use dotnet 3.1.x'
-  inputs:
-    version: 3.1.x
+  - task: UseDotNet@2
+    displayName: 'Use dotnet 3.1.x'
+    inputs:
+      version: 3.1.x
 
-- task: UseDotNet@2
-  displayName: 'Use dotnet 5.0.x'
-  inputs:
-    version: 5.0.x
+  - task: UseDotNet@2
+    displayName: 'Use dotnet 5.0.x'
+    inputs:
+      version: 5.0.x
 
-- task: UseDotNet@2
-  displayName: 'Use dotnet 6.0.x'
-  inputs:
-    version: 6.0.x
-    
-- task: MicrosoftSecurityDevOps@1
-  displayName: 'Microsoft Security DevOps'
-  inputs:
-    categories: 'IaC,secrets'
-    tools: 'terrascan'
+  - task: UseDotNet@2
+    displayName: 'Use dotnet 6.0.x'
+    inputs:
+      version: 6.0.x
+
+  - task: MicrosoftSecurityDevOps@1
+    displayName: 'Microsoft Security DevOps'
+    inputs:
+      categories: 'IaC,secrets'
+      tools: 'terrascan'
 ```
 
 Take a closer look at the MSDO task and notice that we supply certain `inputs:`
@@ -167,7 +167,7 @@ Take a closer look at the MSDO task and notice that we supply certain `inputs:`
     tools: 'terrascan'
 ```
 
-At the time of writing the following inputs are supported:  
+At the time of writing the following inputs are supported:
 
 | Input | Description | Default |
 | --- | --- | --- |
