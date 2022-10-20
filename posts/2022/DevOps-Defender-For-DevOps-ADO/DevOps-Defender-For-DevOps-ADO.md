@@ -73,7 +73,7 @@ Before we dive into the MSDO toolkit we first need to connect our Azure DevOps r
 
 8. Select **Next: Review and create**. Review the information and select **Create**.
 
-You will see the **Azure DevOps** connector under **Microsoft Defender for Cloud > Environment Settings**.
+After creation you will see the **Azure DevOps** connector under **Microsoft Defender for Cloud > Environment Settings**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc08.png)
 
