@@ -81,59 +81,49 @@ You will also see newly created **service hooks** in the selected **Azure DevOps
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc09.png)
 
-After installing **Defender for DevOps** on the selected projects you want to onboard, they will be integrated with **Microsoft Defender for Cloud** and insights will be accessible from the **DevOps Security** dashboard under **Defender for Cloud** in the **Azure portal**.
+With **Defender for DevOps** now connected on the selected **Azure DevOps** projects you want to onboard, they will be integrated with **Microsoft Defender for Cloud** and insights will be accessible from the **DevOps Security** dashboard under **Microsoft Defender for Cloud** in the **Azure portal**.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc10.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/dfc10.png)  
+
+Next we will install the MSDO Azure DevOps **[Marketplace Extensions](https://marketplace.visualstudio.com/)**.
 
 ### Install required Devops extensions
 
 Navigate to your Azure DevOps Org and install the following two **Marketplace Extensions**:
 
 - **[Microsoft Security DevOps (MSDO)](https://marketplace.visualstudio.com/items?itemName=ms-securitydevops.microsoft-security-devops-azdevops)**
-- **[SARIF SAST Scans Tab](https://marketplace.visualstudio.com/items?itemName=sariftools.scans&targetId=8e02e9e3-062e-46a7-8558-c30016c43306&utm_source=vstsproduct&utm_medium=ExtHubManageList)**
+- **[SARIF SAST Scans Tab](https://marketplace.visualstudio.com/items?itemName=sariftools.scans&targetId=8e02e9e3-062e-46a7-8558-c30016c43306&utm_source=vstsproduct&utm_medium=ExtHubManageList)**  
+
+You can verify the installed extensions by navigating to the **Shopping Bag Logo > Manage extensions** in your DevOps Org.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/ext01.png)  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/ext02.png)  
 
 Next we will look at how we can use the MSDO toolkit to populate the **Defender for DevOps** dashboard with rich security insights about our code.
 
-### Using the MSDO marketplace extension (with Credscan)
+### Using the MSDO marketplace extension
 
-The following examples can also be found on my [MSDO-Lab GitHub page](https://github.com/Pwd9000-ML/MSDO-Lab).
+As mentioned MSDO features a few different tools (I will cover some of the other tools in a future blog post), but I want to concentrate on a specific tool today called [Credscan](https://learn.microsoft.com/en-us/azure/defender-for-cloud/detect-credential-leaks).
 
-As mentioned MSDO features a few different tools (I will cover some of the other tools in a future blog post), but I want to concentrate on a specific tool today called [Terrascan](https://github.com/accurics/terrascan) which is part of the MSDO toolkit.
+**Credscan** runs secret scanning as part of the Azure DevOps **build process** to detect **credentials**, **secrets**, **certificates**, and other sensitive content in your source code and your build output.  
 
-**Terrascan** is a static code analyzer for Infrastructure as Code (IaC). Let's take a look at an example on how we can use **MSDO** integration with **Defender for DevOps** to get security insights and detect compliance and security violations in a **Terraform** configuration to mitigate risk before provisioning cloud infrastructure.
+Let's look at an example. On my **Azure DevOps repository** I have a the following **Terraform** configuration:  
 
-On my [GitHub repository](https://github.com/Pwd9000-ML/MSDO-Lab) under the path [01_Foundation](https://github.com/Pwd9000-ML/MSDO-Lab/tree/master/01_Foundation) I have the following terraform configuration that simply builds a **Resource Group** and a **Key Vault**.
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/ado001.png)  
+
+Notice that I have a variable to specify a database connection string for my Terraform configuration.
 
 ```hcl
-### Data Sources ###
-data "azurerm_client_config" "current" {}
-
-#Create a Resource Group
-resource "azurerm_resource_group" "rg" {
-  name     = var.resource_group_name
-  location = var.location
-  tags     = var.tags
-}
-
-#Create a Key Vault for the Resource Group
-resource "azurerm_key_vault" "kv" {
-  name                        = "${lower(var.key_vault_name)}${random_integer.kv_num.result}"
-  location                    = azurerm_resource_group.rg.location
-  resource_group_name         = azurerm_resource_group.rg.name
-  enable_rbac_authorization   = var.use_rbac_mode
-  enabled_for_disk_encryption = true
-  tenant_id                   = data.azurerm_client_config.current.tenant_id
-  soft_delete_retention_days  = 7
-  purge_protection_enabled    = false
-  sku_name                    = "standard"
-  tags                        = var.tags
-}
-
-resource "random_integer" "kv_num" {
-  min = 0001
-  max = 9999
+variable "db_connection_string" {
+  type        = string
+  description = "Specify SQL database connection string"
 }
 ```
+
+Also notice that I have the connection string for my DEV SQL server saved in a `*.tfvars` file:
+
+
 
 Let's take a look at how we can configure the **Terrascan** analyzer using the **[MSDO GitHub action](https://github.com/marketplace/actions/security-devops-action)** to scan our terraform code and how the results will be displayed on the **Defender for DevOps** dashboard in the Azure portal.
 
