@@ -15,9 +15,9 @@ Welcome to the second part of this blog series on [Microsoft Defender for DevOps
 
 In my [previous post](https://dev.to/pwd9000/defender-for-devops-on-github-terrascan-edition-45bd) we looked at how you can integrate **Defender for DevOps** with **GitHub** and also how to use the **Microsoft Security DevOps** [(MSDO) GitHub action](https://github.com/marketplace/actions/security-devops-action) to configure **Terrascan** to analyze a **Terraform IaC Configuration** and how the scan results are published on the Azure portal under the **DevOps Security** dashboard inside **Microsoft Defender for Cloud**.
 
-Today we will look at how to integrate **Defender for DevOps** with **Azure DevOps** instead and using the same MSDO toolkit.  
+Today we will look at how to integrate **Defender for DevOps** with **Azure DevOps** instead and using the same MSDO toolkit.
 
-**Azure DevOps** uses a **Microsoft Security DevOps** [(MSDO) Marketplace Extension](https://marketplace.visualstudio.com/items?itemName=ms-securitydevops.microsoft-security-devops-azdevops), instead of a GitHub action. So we will be able to use the same analysis tools on **Azure DevOps** as we did on GitHub as shown on the previous post.  
+**Azure DevOps** uses a **Microsoft Security DevOps** [(MSDO) Marketplace Extension](https://marketplace.visualstudio.com/items?itemName=ms-securitydevops.microsoft-security-devops-azdevops), instead of a GitHub action. So we will be able to use the same analysis tools on **Azure DevOps** as we did on GitHub as shown on the previous post.
 
 We will also install another Azure DevOps Extension called **[SARIF SAST Scans Tab](https://marketplace.visualstudio.com/items?itemName=sariftools.scans&targetId=8e02e9e3-062e-46a7-8558-c30016c43306&utm_source=vstsproduct&utm_medium=ExtHubManageList)** to better view the results of MSDO analyzer scans on Azure DevOps pipeline runs, outside of the console output and results file. It will look for `*.sarif` files in the `CodeAnalysisLogs` build artifact directory and display them as source annotations.
 
