@@ -156,71 +156,31 @@ steps:
 Take a closer look at the MSDO task and notice that we supply certain `inputs:`
 
 ```yml
-- task: MicrosoftSecurityDevOps@1
-  displayName: 'Microsoft Security DevOps'
-  inputs:
-    categories: 'secrets'
-    scanFolder: '01_Foundation'
+  - task: MicrosoftSecurityDevOps@1
+    displayName: 'Microsoft Security DevOps'
+    inputs:
+      categories: 'IaC,secrets'
+      tools: 'terrascan'
 ```
 
-After running the pipeline:
+After running the pipeline, notice that there is a new **Scans** tab next to the pipeline run **Summary** (SARIF SAST Scan Tab). This tab is from the extension we installed earlier as the MSDO toolkit exports results into a `*.sarif` file and will be picked up in this tab.  
 
-After running the workflow you can review the steps. Note that the MSDO toolkit is installed and then runs **Terrascan** against the repo path **01_Foundation** we specified which contains the terraform IaC configuration files.
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe05.png)  
 
-Let's take a closer look at the MSDO GitHub action being used:
+Notice that the **Terrascan** results will be displayed in the **Scans** tab, based on teh `*.sarif` file artifact.  
 
-```yml
-# Run MSDO analyzers
-- name: Run Microsoft Security DevOps Analysis
-uses: microsoft/security-devops-action@preview
-id: msdo
-env:
-    terrascan_scan: 'scan'
-    terrascan_outputtype: 'sarif'
-    terrascan_iacdir: '01_Foundation'
-```
-
-### How to configure different MSDO analyzers
-
-There are a few ways to configure the various tools and their inputs:
-
-- By creating a `*.gdnconfig` file to save configurations:
-
-  - Great for reuse between team members and local/remote runs.
-  - Can save multiple tool configurations in a single file to run all configurations.
-
-- By using environment variables:
-  - Great for quick configurations in build pipelines.
-  - They follow the format `[GDN_]<ToolName>_<ArgumentId>`, where `GDN_` is optional and `ToolName` and `ArgumentId` are defined by the tool integration file to (\*.gdntool).
-
-As you can see in the workflow step we specified the tool, **(Terrascan)** and some of it's supported inputs are defined as environment variables on the action itself using `env:` e.g:
-
-```yml
-steps:
-  - uses: microsoft/security-devops-action
-    env:
-      <ToolName>_<ArgumentId>: '<supported value1>'
-      <ToolName>_<ArgumentId>: '<supported value2>'
-      <ToolName>_<ArgumentId>: '<supported value3>'
-```
-
-You can see all the different tools and their supported inputs (environment variables) included in the MSDO toolkit on the following [Wiki Documentation page](https://github.com/microsoft/security-devops-action/wiki#table-of-contents)
-
-### Terrascan options
-
-MSDO GitHub action inputs specifically related to **Terrascan** can be found here: https://github.com/microsoft/security-devops-action/wiki#terrascan-options
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe06.png)  
 
 ### Defender for DevOps Dashboard
 
 As mentioned MSDO closely integrates with **Microsoft Defender for Cloud** and has its own **'DevOps Security'** dashboard, to review and observe security insights across DevOps and your codebase.
 
-In the Azure portal navigate to **Microsoft Defender for Cloud**, select the **DevOps Security** pane and then click on the GitHub connector:
+In the Azure portal navigate to **Microsoft Defender for Cloud**, select the **DevOps Security** pane and then click on the GitHub connector:  
 
-Notice there are some **Unhealthy** recommendations to resolve detected by MSDO infrastructure as code scanning **(Terrascan)**:
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/results01.png)  
 
-Let's navigate back to the **GitHub repository**, select the **security tab** and **Code Scanning**:
+Notice there are some **Unhealthy** recommendations to resolve detected by MSDO infrastructure as code scanning **(Terrascan)**:  
 
-Because we selected the output format to be **SARIF** and used another action in our workflow; `github/codeql-action/upload-sarif@v1` to upload the **SARIF** file we can now see the MSDO Terrascan results and issues that needs to be resolved directly from the repository Security tab:
 
 ### Code scanning severities
 
