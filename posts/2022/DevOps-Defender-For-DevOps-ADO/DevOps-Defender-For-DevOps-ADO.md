@@ -1,5 +1,5 @@
 ---
-title: Defender for DevOps on AzureDevOps (Credscan edition)
+title: Defender for DevOps on AzureDevOps (Terrascan edition)
 published: false
 description: Microsoft Security DevOps (MSDO) Azure DevOps extension
 tags: 'azuredevops, DevSecOps, AzureDefender, Security'
@@ -104,69 +104,68 @@ Next we will look at how we can use the MSDO toolkit to populate the **Defender 
 
 ### Using the MSDO marketplace extension
 
-As mentioned MSDO features a few different tools (I will cover some of the other tools in a future blog post), but I want to concentrate on a specific tool today called [Credscan](https://learn.microsoft.com/en-us/azure/defender-for-cloud/detect-credential-leaks).
+As mentioned MSDO features a few different tools (I will cover some of the other tools in a future blog post), but I want to concentrate on a specific tool today called [Terrascan](https://github.com/accurics/terrascan).
 
-**Credscan** runs secret scanning as part of the Azure DevOps **build process** to detect **credentials**, **secrets**, **certificates**, and other sensitive content in your source code and your build output.
+**Terrascan** is a static code analyzer for Infrastructure as Code (IaC). Let's take a look at an example on how we can use **MSDO** integration with **Defender for DevOps** to get security insights and detect compliance and security violations in a **Terraform** configuration to mitigate risk before provisioning cloud infrastructure.
 
-Let's look at an example. On my **Azure DevOps repository** I have a the following **Terraform** IaC configuration.
+Let's look at an example. On my **Azure DevOps repository** I have a the following **[Terraform IaC configuration]()**. 
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/ado001.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/ado0001.png)
 
-Notice that I have a variable to specify a database connection string for my configuration.
+Next we'll configure a YAML pipeline to run the MSDO extension and using the **Terrascan** analyzer see if it can detect any issues on the **Terraform configuration** and how that will be displayed on the **SARIF SAST Scan Tab** as well as the **Microsoft Defender for Cloud** DevOps security dashboard on the Azure portal.  
 
-```hcl
-variable "db_connection_string" {
-  type        = string
-  description = "Specify SQL database connection string"
-}
-```
+1. Navigate to your Azure DevOps project and under pipelines, select **New pipeline**  *Defender for DevOps** on which you want to configure the **MSDO GitHub action**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe01.png)  
 
-Also notice that I have a `*.tfvars` file with the actual connection string for my DEV SQL server saved and commit into my source code.
+2. Select **Azure Repos Git**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe02.png)  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/ado02.png)
+3. Select the relevant repository.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe03.png)  
 
-Let's take a look at how we can configure the **Terrascan** analyzer using the **[MSDO GitHub action](https://github.com/marketplace/actions/security-devops-action)** to scan our terraform code and how the results will be displayed on the **Defender for DevOps** dashboard in the Azure portal.
+4. Select **Starter pipeline**.  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe04.png)  
 
-1. Sign in to [GitHub](https://www.github.com/) and select a repository you added earlier to **Defender for DevOps** on which you want to configure the **MSDO GitHub action**.
-
-2. Select **Actions > set up a workflow yourself**
-3. Give the workflow file a name. For example, `msdevopssec.yml`.
-
-4. Copy and paste the following [sample action workflow](https://github.com/Pwd9000-ML/MSDO-Lab/blob/master/.github/workflows/msdevopssec.yml) into the **Edit new file** tab.
+5. Paste and commit the following YAML into the pipeline, select **Save and run**:
 
 ```yml
-# My Microsoft Security DevOps (MSDO) Terrascan workflow
-name: MSDO windows-latest
-on:
-  workflow_dispatch:
-
-jobs:
-  MSDO:
-    # MSDO runs on windows-latest and ubuntu-latest.
-    # macos-latest supporting coming soon
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      # Run MSDO analyzers
-      - name: Run Microsoft Security DevOps Analysis
-        uses: microsoft/security-devops-action@preview
-        id: msdo
-        env:
-          terrascan_scan: 'scan'
-          terrascan_outputtype: 'sarif'
-          terrascan_iacdir: '01_Foundation'
-
-      # Upload alerts to the Security tab
-      - name: Upload alerts to Security tab
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: ${{ steps.msdo.outputs.sarifFile }}
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+trigger: none
+pool:
+  vmImage: 'windows-latest'
+steps:
+- checkout: self
+- task: UseDotNet@2
+  displayName: 'Use dotnet'
+  inputs:
+    version: 3.1.x
+- task: UseDotNet@2
+  displayName: 'Use dotnet'
+  inputs:
+    version: 5.0.x
+- task: UseDotNet@2
+  displayName: 'Use dotnet'
+  inputs:
+    version: 6.0.x
+- task: MicrosoftSecurityDevOps@1
+  displayName: 'Microsoft Security DevOps'
+  inputs:
+    categories: 'IaC,secrets'
+    tools: 'terrascan'
 ```
 
-After creating the workflow you can run it manually under the **Actions** tab as the trigger is set to `workflow_dispatch:`:
+Take a closer look at the MSDO task and notice that we supply certain `inputs:`
+
+```yml
+- task: MicrosoftSecurityDevOps@1
+  displayName: 'Microsoft Security DevOps'
+  inputs:
+    categories: 'secrets'
+    scanFolder: '01_Foundation'
+```
+
+After running the pipeline:
+
+
 
 After running the workflow you can review the steps. Note that the MSDO toolkit is installed and then runs **Terrascan** against the repo path **01_Foundation** we specified which contains the terraform IaC configuration files.
 
