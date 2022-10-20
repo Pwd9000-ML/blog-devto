@@ -114,7 +114,7 @@ Let's look at an example. On my **Azure DevOps repository** I have a the followi
 
 Next we'll configure a YAML pipeline to run the MSDO extension and using the **Terrascan** analyzer see if it can detect any issues on the **Terraform configuration** and how that will be displayed on the **SARIF SAST Scan Tab** as well as the **Microsoft Defender for Cloud** DevOps security dashboard on the Azure portal.
 
-1. Navigate to your Azure DevOps project and under pipelines, select **New pipeline**  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe01.png)
+1. Navigate to your Azure DevOps project and under pipelines, select **New pipeline** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe01.png)
 
 2. Select **Azure Repos Git**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe02.png)
 
