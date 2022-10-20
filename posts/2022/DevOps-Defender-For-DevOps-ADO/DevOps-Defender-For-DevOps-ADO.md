@@ -156,31 +156,30 @@ steps:
 Take a closer look at the MSDO task and notice that we supply certain `inputs:`
 
 ```yml
-  - task: MicrosoftSecurityDevOps@1
-    displayName: 'Microsoft Security DevOps'
-    inputs:
-      categories: 'IaC,secrets'
-      tools: 'terrascan'
+- task: MicrosoftSecurityDevOps@1
+  displayName: 'Microsoft Security DevOps'
+  inputs:
+    categories: 'IaC,secrets'
+    tools: 'terrascan'
 ```
 
-After running the pipeline, notice that there is a new **Scans** tab next to the pipeline run **Summary** (SARIF SAST Scan Tab). This tab is from the extension we installed earlier as the MSDO toolkit exports results into a `*.sarif` file and will be picked up in this tab.  
+After running the pipeline, notice that there is a new **Scans** tab next to the pipeline run **Summary** (SARIF SAST Scan Tab). This tab is from the extension we installed earlier as the MSDO toolkit exports results into a `*.sarif` file and will be picked up in this tab.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe05.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe05.png)
 
-Notice that the **Terrascan** results will be displayed in the **Scans** tab, based on teh `*.sarif` file artifact.  
+Notice that the **Terrascan** results will be displayed in the **Scans** tab, based on teh `*.sarif` file artifact.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe06.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe06.png)
 
 ### Defender for DevOps Dashboard
 
 As mentioned MSDO closely integrates with **Microsoft Defender for Cloud** and has its own **'DevOps Security'** dashboard, to review and observe security insights across DevOps and your codebase.
 
-In the Azure portal navigate to **Microsoft Defender for Cloud**, select the **DevOps Security** pane and then click on the GitHub connector:  
+In the Azure portal navigate to **Microsoft Defender for Cloud**, select the **DevOps Security** pane and then click on the GitHub connector:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/results01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/results01.png)
 
-Notice there are some **Unhealthy** recommendations to resolve detected by MSDO infrastructure as code scanning **(Terrascan)**:  
-
+Notice there are some **Unhealthy** recommendations to resolve detected by MSDO infrastructure as code scanning **(Terrascan)**:
 
 ### Code scanning severities
 
