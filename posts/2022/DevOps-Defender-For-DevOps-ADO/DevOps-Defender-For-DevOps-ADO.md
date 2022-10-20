@@ -111,7 +111,7 @@ Let's look at an example. On my **Azure DevOps repository** I have a the followi
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/ado0001.png)
 
-Next we'll configure a YAML pipeline to run the MSDO extension and using the **Terrascan** analyzer see if it can detect any issues on the **Terraform configuration** and how that will be displayed on the pipeline run **SARIF SAST Scan Tab**.
+Next we'll configure a YAML pipeline to run the MSDO extension using a **pipeline task** that will trigger the **Terrascan** and **Credscan** analyzers to see if it can detect any issues on the **Terraform configuration** and check for any **leaked secrets**. We'll also look at how the results will be displayed on the pipeline run **SARIF SAST Scan Tab**.
 
 1. Navigate to your Azure DevOps project and under pipelines, select **New pipeline** ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe01.png)
 
