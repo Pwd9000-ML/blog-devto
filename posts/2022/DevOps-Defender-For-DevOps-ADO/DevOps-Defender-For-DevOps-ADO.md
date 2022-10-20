@@ -187,7 +187,13 @@ After running the pipeline, notice that there is a new **Scans** tab next to the
 
 Notice that the **Terrascan** results will be displayed in the **Scans** tab, based on the `*.sarif` file artifact.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe06.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe06.png)  
+
+You can also find the `*.sarif` file as an artifact attached to the pipeline run.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe07.png)  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/DevOps-Defender-For-DevOps-ADO/assets/pipe08.png)  
 
 ### Defender for DevOps Dashboard
 
