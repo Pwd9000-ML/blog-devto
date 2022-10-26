@@ -23,6 +23,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **16/11/2022** | [Welsh Azure User Group - EVENT (November 2022)](https://www.meetup.com/msft-stack/events/289348809/) | Public Speaking | GitHub, Terraform | Dependabot, DevSecOps, Meetup, Automation |
 | **02/11/2022** | [London Microsoft DevOps Meetup - Event Organiser](https://www.meetup.com/london-microsoft-devops/events/287854448/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=linkedin) | Event Organiser | GitHub, DevOps | Security, DevSecOps, Meetup, Automation |
 | **02/11/2022** | [The return of the London Microsoft DevOps Meetup!](https://www.meetup.com/london-microsoft-devops/events/287854448/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=linkedin) | Public Speaking | GitHub, DevOps | Security, DevSecOps, Meetup, Automation |
 
