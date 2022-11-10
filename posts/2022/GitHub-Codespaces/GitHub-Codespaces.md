@@ -48,7 +48,7 @@ At the time of this writing the VM size options for **codespaces** are as follow
 
 ## Who can use Codespaces?
 
-In the past **Codespaces** could only be enabled in settings by **organisation owners** for **Team** and **Enterprise** Cloud plans. However GitHub since Nov 2022 GitHub announced that **Codespaces** are available for all GitHub users, and everyone will have up to 60 hours of Codespaces for free every month.  
+In the past **Codespaces** could only be enabled in settings by **organisation owners** for **Team** and **Enterprise** Cloud plans. However GitHub since Nov 2022 GitHub announced that **Codespaces** are available for all GitHub users, and everyone will have up to 60 hours of Codespaces for free every month.
 
 **Tip:** Press (dot) `'.'` on any repo to make quick edits powered by Visual Studio Code from a **web browser**.
 
