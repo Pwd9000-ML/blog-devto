@@ -24,6 +24,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
 | **02/12/2022** | [Festive Tech Calendar 2022 - Introduction to GitHub Codespaces](https://festivetechcalendar.com/) | Public Speaking | GitHub | DevOps, Codespaces, Tutorial, Conference |
+
 ---
 
 # 👉 2022 👈

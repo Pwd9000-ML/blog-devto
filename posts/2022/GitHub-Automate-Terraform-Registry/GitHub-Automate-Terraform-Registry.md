@@ -10,8 +10,8 @@ date: '2022-02-05T15:38:50Z'
 series: Terraform Registry
 ---
 
-
 {% youtube rD8aJ8Yersw?t=411 %}
+
 ### Overview
 
 This tutorial uses examples from the following GitHub project [Terraform module repository - Dynamic Subnets](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets).
@@ -144,24 +144,23 @@ As an added bonus, I also added another section onto the **Dependabot** config f
 ```yml
 version: 2
 updates:
-  - package-ecosystem: "terraform"
-    directory: "/" # Location of package manifests
+  - package-ecosystem: 'terraform'
+    directory: '/' # Location of package manifests
     schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "09:00"
-      timezone: "Europe/London"
+      interval: 'weekly'
+      day: 'sunday'
+      time: '09:00'
+      timezone: 'Europe/London'
 
-
-  - package-ecosystem: "github-actions"
+  - package-ecosystem: 'github-actions'
     # Workflow files stored in the
     # default location of `.github/workflows`
-    directory: "/" # Location of package manifests
+    directory: '/' # Location of package manifests
     schedule:
-      interval: "weekly"
-      day: "friday"
-      time: "09:00"
-      timezone: "Europe/London"
+      interval: 'weekly'
+      day: 'friday'
+      time: '09:00'
+      timezone: 'Europe/London'
 ```
 
 ### Fully Automated Testing and Release on changes to IaC
