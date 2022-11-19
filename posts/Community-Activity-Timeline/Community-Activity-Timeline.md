@@ -24,14 +24,13 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
 | **02/12/2022** | [Festive Tech Calendar 2022 - Introduction to GitHub Codespaces](https://festivetechcalendar.com/) | Public Speaking | GitHub | DevOps, Codespaces, Tutorial, Conference |
-| **16/11/2022** | [Welsh Azure User Group - EVENT (November 2022)](https://www.meetup.com/msft-stack/events/289348809/) | Public Speaking | GitHub, Terraform | Dependabot, DevSecOps, Meetup, Automation |
-
 ---
 
 # 👉 2022 👈
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **16/11/2022** | [Welsh Azure User Group - EVENT (November 2022)](https://www.meetup.com/msft-stack/events/289348809/) | Public Speaking | GitHub, Terraform | Dependabot, DevSecOps, Meetup, Automation |
 | **02/11/2022** | [London Microsoft DevOps Meetup - Event Organiser](https://www.meetup.com/london-microsoft-devops/events/287854448/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=linkedin) | Event Organiser | GitHub, DevOps | Security, DevSecOps, Meetup, Automation |
 | **02/11/2022** | [The return of the London Microsoft DevOps Meetup!](https://www.meetup.com/london-microsoft-devops/events/287854448/?utm_medium=referral&utm_campaign=share-btn_savedevents_share_modal&utm_source=linkedin) | Public Speaking | GitHub, DevOps | Security, DevSecOps, Meetup, Automation |
 | **21/10/2022** | [Defender for DevOps on AzureDevOps](https://dev.to/pwd9000/defender-for-devops-on-azuredevops-2578) | Blog/Website Post | AzureDevOps, Azure | DevSecOps, DevOps, Terraform, Tutorial |
