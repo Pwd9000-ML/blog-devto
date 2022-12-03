@@ -10,7 +10,7 @@ series: GitHub Codespaces Pro Tips
 date: '2022-08-06T12:31:36Z'
 ---
 
-% youtube sG8zyE_r9Ik %
+{% youtube sG8zyE_r9Ik %}
 
 ## Overview
 
