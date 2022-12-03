@@ -10,6 +10,8 @@ series: GitHub Codespaces Pro Tips
 date: '2022-08-06T12:31:36Z'
 ---
 
+% youtube sG8zyE_r9Ik %
+
 ## Overview
 
 Have you ever had to build and look after 100s of development virtual machines and environments for your organisations developers to work in? Or maybe you are a developer or IT specialist working with code and starting in a new project and you have to configure your own development environment before you can start working on your code.
