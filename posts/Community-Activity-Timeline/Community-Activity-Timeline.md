@@ -24,7 +24,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | Date | Activity | Type | Topic Area | Tags |
 | ---- | -------- | ---- | ---------- | ---- |
 
-New events coming soon
+| **11/01/2023** | [London Microsoft DevOps Meetup - H4ppy N3w Y34r](https://www.meetup.com/london-microsoft-devops/events/289518388/) | Event Organiser | GitHub, DevOps | Security, DevSecOps, Meetup, Automation |
 
 ---
 
