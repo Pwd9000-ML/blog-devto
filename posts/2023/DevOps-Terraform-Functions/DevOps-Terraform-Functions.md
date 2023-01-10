@@ -185,7 +185,7 @@ resource "azurerm_storage_account" "example" {
 ## Bonus example
 
 If you are used to provisioning resources in the cloud on **Azure** you'll know that each resource has a resource ID.  
-Here is a fun little function that I have used in the past to get the last element of any resource ID, usually the name of the resource, without fail:
+Here is a fun little function that I have used in the past to get the last element of any resource ID (usually the name of the resource), without fail:
 
 ```hcl
 #Basic Example
@@ -201,7 +201,12 @@ $ element(split("/", "/subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resour
 "UKS-EB-VNET"
 ```
 
-Lets take a closer look at the functions in use here and how we combine and nest them.
+Take a closer look at the functions in use here and how they are combined and nested together.  
+
+- [`element`](https://developer.hashicorp.com/terraform/language/functions/element) retrieves a single element from a list.. Usage: `element(list, index)`
+- `lower` converts all cased letters in the given string to lowercase. Usage: `lower(string)`
+
+
 
 ## Conclusion
 
