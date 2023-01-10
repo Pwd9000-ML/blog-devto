@@ -1,6 +1,6 @@
 ---
 title: Terraform - Fun with Functions
-published: false
+published: true
 description: DevOps - Terraform - Fun with Terraform Functions
 tags: 'terraform, azure, iac, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/DevOps-Terraform-Functions/assets/main-tf-tips.png'
