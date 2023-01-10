@@ -11,10 +11,7 @@ series: Terraform Pro Tips
 
 ## Overview
 
-In todays tutorial we will take a look at [Terraform Functions](https://developer.hashicorp.com/terraform/language/functions) and how we can use them in a few real world examples, and boy are there many functions to get creative and have fun with.  
-
-
-
+In todays tutorial we will take a look at [Terraform Functions](https://developer.hashicorp.com/terraform/language/functions) and how we can use them in a few real world examples, and boy are there many functions to get creative and have fun with.
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
