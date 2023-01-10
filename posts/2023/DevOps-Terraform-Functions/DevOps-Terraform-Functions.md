@@ -201,12 +201,10 @@ $ element(split("/", "/subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resour
 "UKS-EB-VNET"
 ```
 
-Take a closer look at the functions in use here and how they are combined and nested together.  
+Take a closer look at the functions in use here and how they are combined and nested together.
 
 - [`element`](https://developer.hashicorp.com/terraform/language/functions/element) retrieves a single element from a list.. Usage: `element(list, index)`
 - `lower` converts all cased letters in the given string to lowercase. Usage: `lower(string)`
-
-
 
 ## Conclusion
 
