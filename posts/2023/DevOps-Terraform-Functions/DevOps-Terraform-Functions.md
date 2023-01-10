@@ -70,7 +70,7 @@ $ substr("MySuperCoolStorageAccountName9000", 0, 24)
 "MySuperCoolStorageAccoun"
 ```
 
-The result **'MySuperCoolStorageAccoun'** has now been truncated to only **24 characters**, but this would still fail because there are still **uppercase chars**, so we will nest this inside the **'lower'** function:
+The result **'MySuperCoolStorageAccoun'** has now been truncated to only **24 characters**, but this would still fail because there are still **uppercase characters** present. Let's nest this inside the **'lower'** function:
 
 ```hcl
 $ lower(substr("MySuperCoolStorageAccountName9000", 0, 24))
