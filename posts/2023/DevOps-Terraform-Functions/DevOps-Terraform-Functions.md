@@ -124,7 +124,7 @@ $ substr(uuid(), 0, 6)
 "e807be"
 ```
 
-You may be wondering?... How can we combine the function: `lower(substr("MySuperCoolStorageAccountName9000", 0, 18))` with the function that creates the unique suffix: `substr(uuid(), 0, 6)`?  
+You may be wondering?... How can we combine the function: `'lower(substr("MySuperCoolStorageAccountName9000", 0, 18))'` with the function that creates the unique suffix: `'substr(uuid(), 0, 6)'`?  
 
 You guessed it, there is a function we can use!!!  
 
