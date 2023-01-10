@@ -201,7 +201,7 @@ $ element(split("/", "/subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resour
 "UKS-EB-VNET"
 ```
 
-Take a closer look at the functions in use above and how they are combined and nested together.  
+Take a closer look at the functions in use above and how they are combined and nested together.
 
 - [`element`](https://developer.hashicorp.com/terraform/language/functions/element) retrieves a single element from a list. Usage: `element(list, index)`
 - [`split`](https://developer.hashicorp.com/terraform/language/functions/split) produces a list by dividing a given string at all occurrences of a given separator. Usage: `split(separator, string)`
