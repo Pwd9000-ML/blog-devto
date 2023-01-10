@@ -31,7 +31,7 @@ Most **Terraform functions** follow a common syntax, for example:
 Say for example you want to provision an **Azure storage account** using **Terraform**. As you may know, storage account names in **Azure** have certain [name rules and character limitations](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules).  
 The **length** of a storage account name must be between **3-24** characters, and can only be **lowercase letters and numbers**.
 
-So take this example:
+Take this example of provisioning a storage account in **Azure**:
 
 ```hcl
 variable "storage_account_name" {
