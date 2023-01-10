@@ -77,7 +77,7 @@ $ lower(substr("MySuperCoolStorageAccountName9000", 0, 24))
 "mysupercoolstorageaccoun"
 ```
 
-This is much better! The storage account will now be provisioned by simply amending our original terraform code as follow:
+This is much better! The storage account can now be provisioned by simply amending our original terraform code as follow:
 
 ```hcl
 variable "storage_account_name" {
