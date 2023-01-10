@@ -210,7 +210,7 @@ Take a closer look at the functions in use here and how they are combined and ne
 
 ## Conclusion
 
-As mentioned there are so many cool **Terraform functions** out there to make your code even better and more robust!  
+There are so many cool **Terraform functions** out there to make your code even better and more robust!  
 Go check out the [official documentation](https://developer.hashicorp.com/terraform/language/functions) for more details.
 
 I hope you have enjoyed this post and have learned something new. :heart:
