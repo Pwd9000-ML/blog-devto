@@ -231,7 +231,7 @@ $ element(["a", "b", "c"], length(["a", "b", "c"])-1)
 
 ## Conclusion
 
-There are so many cool **Terraform functions** out there to make your code even better and more robust!  
+There are so many more cool **Terraform functions** out there to make your code even better and more robust!  
 Go check out the [official documentation](https://developer.hashicorp.com/terraform/language/functions) for more details.
 
 I hope you have enjoyed this post and have learned something new. :heart:
