@@ -103,21 +103,21 @@ Let's look at another special function called **['uuid'](https://developer.hashi
 
 - `uuid` generates a unique identifier string. Usage: `uuid()`
 
-So lets test this using terraform console:
+So lets test this using terraform console again:
 
 ```hcl
 $ uuid()
 "908b8d83-f33e-aa2e-7318-8232077dfe10"
 ```
 
-Firstly, let's shorten our storage account name down to **18 characters**:
+First, let's shorten our storage account name down to **18 characters**:
 
 ```hcl
 $ lower(substr("MySuperCoolStorageAccountName9000", 0, 18))
 "mysupercoolstorage"
 ```
 
-Then we care left with **6 characters** that we can generate a random identifier string, that would act as a **suffix**, we can combine the **'uuid'** function with the **'substr'** function to get the following result:
+Now that our storage account name is only **18 characters** long, we are left with **6 characters** to play around with, that we can generate a random identifier string that would act as a **suffix**, using the **'uuid'** function with the **'substr'** to get the following result:
 
 ```hcl
 $ substr(uuid(), 0, 6)
