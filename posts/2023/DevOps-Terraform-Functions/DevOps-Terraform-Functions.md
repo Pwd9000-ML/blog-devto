@@ -139,7 +139,7 @@ $ join("", ["StringA", "StringB"])
 "StringAStringB"
 ```
 
-Let's now apply this now to our storage account name and unique suffix:
+Let's apply **'join'** to our storage account name function and unique suffix function:
 
 ```hcl
 $ join("", [lower(substr("MySuperCoolStorageAccountName9000", 0, 18)), substr(uuid(), 0, 6)])
