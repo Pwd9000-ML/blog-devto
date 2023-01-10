@@ -61,8 +61,8 @@ So we will use two functions namely, **['substr'](https://developer.hashicorp.co
 
 Lets look at each function:
 
-- `substr` extracts a substring from a given string by offset and (maximum) length.  ***Usage:*** `substr(string, offset, length)`
-- `lower` converts all cased letters in the given string to lowercase.  ***Usage:*** `lower(string)`
+- `substr` extracts a substring from a given string by offset and (maximum) length. **_Usage:_** `substr(string, offset, length)`
+- `lower` converts all cased letters in the given string to lowercase. **_Usage:_** `lower(string)`
 
 So lets test this using terraform console:
 
@@ -102,7 +102,7 @@ As you thought, yes we can!!!
 
 Let's look at another special function called **['uuid'](https://developer.hashicorp.com/terraform/language/functions/uuid)**:
 
-- `uuid` generates a unique identifier string.  ***Usage:*** `uuid()`
+- `uuid` generates a unique identifier string. **_Usage:_** `uuid()`
 
 So lets test this using terraform console again:
 
@@ -131,7 +131,7 @@ You guessed it, there is a function we can use!!!
 
 Let's look at the function called **['join'](https://developer.hashicorp.com/terraform/language/functions/join)**:
 
-- `join` produces a string by concatenating together all elements of a given **list** of strings with the given delimiter.  ***Usage:*** `join(separator, list)`
+- `join` produces a string by concatenating together all elements of a given **list** of strings with the given delimiter. **_Usage:_** `join(separator, list)`
 
 So as a basic example join can combine two strings in the following way:
 
@@ -204,9 +204,9 @@ $ element(split("/", "/subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resour
 
 Take a closer look at the functions in use above and how they are combined and nested together.
 
-- [`element`](https://developer.hashicorp.com/terraform/language/functions/element) retrieves a single element from a list.  ***Usage:*** `element(list, index)`
-- [`split`](https://developer.hashicorp.com/terraform/language/functions/split) produces a list by dividing a given string at all occurrences of a given separator.  ***Usage:*** `split(separator, string)`
-- [`length`](https://developer.hashicorp.com/terraform/language/functions/length) determines the length of a given list, map, or string.  ***Usage:*** `length(["a", "b"])`
+- [`element`](https://developer.hashicorp.com/terraform/language/functions/element) retrieves a single element from a list. **_Usage:_** `element(list, index)`
+- [`split`](https://developer.hashicorp.com/terraform/language/functions/split) produces a list by dividing a given string at all occurrences of a given separator. **_Usage:_** `split(separator, string)`
+- [`length`](https://developer.hashicorp.com/terraform/language/functions/length) determines the length of a given list, map, or string. **_Usage:_** `length(["a", "b"])`
 
 **NOTES on 'element':**
 
