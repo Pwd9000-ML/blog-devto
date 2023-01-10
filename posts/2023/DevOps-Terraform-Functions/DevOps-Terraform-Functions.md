@@ -201,12 +201,32 @@ $ element(split("/", "/subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resour
 "UKS-EB-VNET"
 ```
 
-Take a closer look at the functions in use here and how they are combined and nested together.  
+Take a closer look at the functions in use above and how they are combined and nested together.  
 
-- [`element`](https://developer.hashicorp.com/terraform/language/functions/element) retrieves a single element from a list.. Usage: `element(list, index)`
-- `lower` converts all cased letters in the given string to lowercase. Usage: `lower(string)`
+- [`element`](https://developer.hashicorp.com/terraform/language/functions/element) retrieves a single element from a list. Usage: `element(list, index)`
+- [`split`](https://developer.hashicorp.com/terraform/language/functions/split) produces a list by dividing a given string at all occurrences of a given separator. Usage: `split(separator, string)`
+- [`length`](https://developer.hashicorp.com/terraform/language/functions/length) determines the length of a given list, map, or string. Usage: `length(["a", "b"])`
 
+**NOTES on 'element':**
 
+```hcl
+$ element(["a", "b", "c"], 1)
+"b"
+```
+
+If the given index is greater than the length of the list then the index is "wrapped around" by taking the index modulo the length of the list:
+
+```hcl
+$ element(["a", "b", "c"], 3)
+"a"
+```
+
+To get the last element from the list use [**'length'**](https://developer.hashicorp.com/terraform/language/functions/length) to find the size of the list (minus 1 as the list is zero-based) and then pick the last element:
+
+```hcl
+$ element(["a", "b", "c"], length(["a", "b", "c"])-1)
+"c"
+```
 
 ## Conclusion
 
