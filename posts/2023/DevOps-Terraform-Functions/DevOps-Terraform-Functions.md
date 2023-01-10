@@ -26,7 +26,7 @@ Most **Terraform functions** follow a common syntax, for example:
 
 ## Example
 
-**NOTE:** You can use `terraform console` in a command prompt to run any of the function examples shown later, or to test  your own function logic.
+**NOTE:** You can use `terraform console` in a command prompt to run any of the function examples shown later, or to test your own function logic.
 
 Say for example you want to provision an **Azure storage account** using **Terraform**. As you may know, storage account names in **Azure** have certain [name rules and character limitations](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules).  
 The **length** of a storage account name must be between **3-24** characters, and can only be **lowercase letters and numbers**.
