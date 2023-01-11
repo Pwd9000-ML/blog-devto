@@ -147,7 +147,7 @@ $ join("", [lower(substr("MySuperCoolStorageAccountName9000", 0, 18)), substr(uu
 "mysupercoolstoraged29fc5"
 ```
 
-Viola! We now have a randomly generated storage account name, that will always be unique and not be limited to character and case limitations for our storage account/s.
+Voila! We now have a randomly generated storage account name, that will always be unique and not be limited to character and case limitations for our storage account/s.
 
 Let's run this function a few times to see the results:
 
@@ -185,7 +185,7 @@ resource "azurerm_storage_account" "example" {
 
 ## Bonus example
 
-If you are used to provisioning resources in the cloud on **Azure** you'll know that each resource has a resource ID.  
+If you are familiar with provisioning resources in the cloud on **Azure** you'll know that each resource has a resource ID.  
 Here is a fun little function that I have used in the past to get the last element of any resource ID (usually the name of the resource), without fail:
 
 ```hcl
@@ -200,6 +200,10 @@ $ element(split("/", "/subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resour
 #VNET name based of resource ID
 $ element(split("/", "/subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resourceGroups/Pwd9000-EB-Network/providers/Microsoft.Network/virtualNetworks/UKS-EB-VNET"), length(split("/", "/subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resourceGroups/Pwd9000-EB-Network/providers/Microsoft.Network/virtualNetworks/UKS-EB-VNET"))-1)
 "UKS-EB-VNET"
+
+#Key Vault name based on Resource ID
+$ element(split("/", "/subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resourceGroups/Pwd9000-EB-Core/providers/Microsoft.KeyVault/vaults/pwd9000-core-kv"), length(split("/", "/subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resourceGroups/Pwd9000-EB-Core/providers/Microsoft.KeyVault/vaults/pwd9000-core-kv"))-1)
+"pwd9000-core-kv"
 ```
 
 Take a closer look at the functions in use above and how they are combined and nested together.
