@@ -23,7 +23,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **11/01/2023** | [London Microsoft DevOps Meetup - H4ppy N3w Y34r](https://www.meetup.com/london-microsoft-devops/events/289518388/) | Event Organiser | GitHub, DevOps | Security, DevOps, Meetup, Automation |
+| **27/03/2023** | [London Microsoft DevOps Meetup - Power Up March](https://www.meetup.com/london-microsoft-devops/events/290919846/) | Event Organiser | GitHub, DevOps | Security, DevOps, Meetup, Automation |
 
 ---
 
@@ -31,6 +31,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **11/01/2023** | [London Microsoft DevOps Meetup - H4ppy N3w Y34r](https://www.meetup.com/london-microsoft-devops/events/289518388/) | Event Organiser | GitHub, DevOps | Security, DevOps, Meetup, Automation |
 | **10/01/2023** | [Terraform - Fun with Functions](https://dev.to/pwd9000/terraform-fun-with-functions-30p4) | Blog/Website Post | Terraform | DevOps, Automation, IaC, Tutorial |
 
 # 👉 2022 👈
