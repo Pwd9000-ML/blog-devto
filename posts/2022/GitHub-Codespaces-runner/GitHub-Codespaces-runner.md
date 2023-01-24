@@ -290,7 +290,7 @@ jobs:
 
 ## 24/01/2023 Update - Now available as a public Codespace
 
-This devcontainer - GitHub Actions Runner Codespace - is now publicly available as a template for anyone to use on [Available Dev Container Templates](https://containers.dev/templates) and integrated with publicly available Codespace images.  
+This devcontainer - GitHub Actions Runner Codespace - is now publicly available as a template for anyone to use on [Available Dev Container Templates](https://containers.dev/templates) and integrated with publicly available Codespace images.
 
 Check out the repo and documentation here: https://bit.ly/3iPYXoL  
 (I will create a new blog post [here]() with detailed information on building the Codepace from the publicly available templates directly from VSCode. Stay tuned...)
