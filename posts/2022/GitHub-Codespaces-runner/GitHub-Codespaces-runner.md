@@ -157,7 +157,7 @@ GH_TOKEN=$GH_TOKEN
 HOSTNAME=$(hostname)
 RUNNER_SUFFIX="runner"
 RUNNER_NAME="${HOSTNAME}-${RUNNER_SUFFIX}"
-USER_NAME_LABEL=$(git config --get user.name)
+USER_NAME_LABEL=$( (git config --get user.name) | sed -e 's/ //g')
 REPO_NAME_LABEL="$GH_REPOSITORY"
 
 REG_TOKEN=$(curl -sX POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${GH_TOKEN}" https://api.github.com/repos/${GH_OWNER}/${GH_REPOSITORY}/actions/runners/registration-token | jq .token --raw-output)
@@ -287,6 +287,13 @@ jobs:
       - name: Display Azure-CLI Version
         run: az --version
 ```
+
+## 24/01/2023 Update - Now available as a public Codespace
+
+This devcontainer - GitHub Actions Runner Codespace - is now publicly available as a template for anyone to use on [Available Dev Container Templates](https://containers.dev/templates) and integrated with publicly available Codespace images.  
+
+Check out the repo and documentation here: https://bit.ly/3iPYXoL  
+(I will create a new blog post [here]() with detailed information on building the Codepace from the publicly available templates directly from VSCode. Stay tuned...)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [GitHub](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
 
