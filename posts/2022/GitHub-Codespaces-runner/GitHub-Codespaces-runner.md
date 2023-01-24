@@ -288,12 +288,12 @@ jobs:
         run: az --version
 ```
 
-## 24/01/2023 Update - Now available as a public Codespace
+## 24/01/2023 - Now available as a public Codespace
 
-This devcontainer - GitHub Actions Runner Codespace - is now publicly available as a template for anyone to use on [Available Dev Container Templates](https://containers.dev/templates) and integrated with publicly available Codespace images.
+This devcontainer is now publicly available as a template for anyone to use at [Dev Container Templates](https://containers.dev/templates) and integrated with publicly available Codespace images.  
 
-Check out the repo and documentation here: https://bit.ly/3iPYXoL  
-(I will create a new blog post [here]() with detailed information on building the Codepace from the publicly available templates directly from VSCode. Stay tuned...)
+Check out the [repo and documentation](https://bit.ly/3iPYXoL).  
+(I will create a [new blog post]() with detailed information on building the Codepace from the publicly available template directly in VSCode. Stay tuned...)
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [GitHub](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
 
