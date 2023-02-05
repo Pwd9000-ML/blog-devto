@@ -292,8 +292,7 @@ jobs:
 
 This devcontainer is now publicly available as a template for anyone to use at [Dev Container Templates](https://containers.dev/templates) and integrated with publicly available Codespace images.
 
-Check out the [repo and documentation](https://bit.ly/3iPYXoL).  
-(I will create a [new blog post]() with detailed information on building the Codepace from the publicly available template directly in VSCode. Stay tuned...)
+Check out the [repo and documentation](https://bit.ly/3iPYXoL). Or the video tutorial on this [new blog post](https://dev.to/pwd9000/run-self-hosted-github-runners-on-github-codespaces-video-tutorial-1ggh) with detailed information on building the Codepace from the publicly available template directly in VSCode.  
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [GitHub](https://github.com/Pwd9000-ML/GitHub-Codespaces-Lab) page. :heart:
 
