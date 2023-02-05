@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 1354453
 series: GitHub Codespaces Pro Tips
+date: '2023-02-05T14:35:57Z'
 ---
 
 ## Overview
