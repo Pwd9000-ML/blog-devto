@@ -1,6 +1,6 @@
 ---
 title: Run self-hosted GitHub runners on GitHub Codespaces (Video Tutorial)
-published: false
+published: true
 description: A quick video tutorial to get you started on running your self-hosted GitHub Action runners inside of your GitHub Codespaces.
 tags: 'github, codespaces, githubactions, development'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Codespaces-runner-video/assets/main01.png'
@@ -18,8 +18,6 @@ Check out the [repo and documentation](https://bit.ly/3iPYXoL).
 ## Video Tutorial
 
 {% youtube 4CPoHrLgO1E %}
-
-I hope you have enjoyed this post and have learned something new. :heart:
 
 ### _Author_
 
