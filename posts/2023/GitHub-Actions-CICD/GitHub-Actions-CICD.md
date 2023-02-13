@@ -10,13 +10,13 @@ id: 1363756
 
 ## Overview
 
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Actions-CICD/assets/flow2.png)
+
 Continuous integration and continuous delivery (CI/CD) is a crucial aspect of modern software development. It involves automating the process of building, testing, and deploying software, allowing teams to release high-quality code more quickly and efficiently. **GitHub Actions** is a popular CI/CD tool that can help automate and streamline these processes. In this blog post, we'll explore how **GitHub Actions** can be used to improve CI/CD, and we'll consider some of the **pros** and **cons** of using this tool as well as **compare** it with another popular CI/CD tool, **Azure DevOps Pipelines**.
 
 ## What is GitHub Actions?
 
 GitHub Actions is a powerful CI/CD tool that is built directly into the GitHub platform. It allows teams to create workflows that automate tasks like building, testing, and deploying software. Workflows are defined using a simple YAML syntax, and can leverage a variety of pre-built actions and integrations.
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Actions-CICD/assets/flow2.png)
 
 ## How Can GitHub Actions Improve CI/CD?
 
