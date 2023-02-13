@@ -14,15 +14,15 @@ Continuous integration and continuous delivery (CI/CD) is a crucial aspect of mo
 
 ## What is GitHub Actions?
 
-GitHub Actions is a powerful CI/CD tool that is built directly into the GitHub platform. It allows teams to create workflows that automate tasks like building, testing, and deploying software. Workflows are defined using a simple YAML syntax, and can leverage a variety of pre-built actions and integrations.  
+GitHub Actions is a powerful CI/CD tool that is built directly into the GitHub platform. It allows teams to create workflows that automate tasks like building, testing, and deploying software. Workflows are defined using a simple YAML syntax, and can leverage a variety of pre-built actions and integrations.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Actions-CICD/assets/flow2.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Actions-CICD/assets/flow2.png)
 
 ## How Can GitHub Actions Improve CI/CD?
 
-GitHub Actions can improve CI/CD in a variety of ways. Here are just a few examples:  
+GitHub Actions can improve CI/CD in a variety of ways. Here are just a few examples:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Actions-CICD/assets/loop.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Actions-CICD/assets/loop.png)
 
 ### Automate repetitive tasks
 
@@ -46,43 +46,43 @@ By automating common tasks and standardizing processes, GitHub Actions can help 
 
 ## Pros and Cons of Using GitHub Actions
 
-While GitHub Actions can be a powerful tool for improving CI/CD, there are some pros and cons to consider.  
+While GitHub Actions can be a powerful tool for improving CI/CD, there are some pros and cons to consider.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Actions-CICD/assets/comp.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Actions-CICD/assets/comp.png)
 
 ### Pros
 
-- **Easy to use**  
+- **Easy to use**
 
 GitHub Actions is built directly into the GitHub platform, making it easy to set up and use. Developers can create workflows using a simple YAML syntax, and can leverage a variety of pre-built actions and integrations.
 
-- **Integrations**  
+- **Integrations**
 
 GitHub Actions can be integrated with a wide variety of tools and services, including cloud platforms, build systems, and testing frameworks. This makes it easy to build workflows that fit the specific needs of your team.
 
-- **Scalability**  
+- **Scalability**
 
 GitHub Actions is designed to scale with your team and your project. Workflows can be run on a variety of platforms and environments, and can be parallelized to run multiple jobs simultaneously.
 
 ### Cons
 
-- **Limited customization**  
+- **Limited customization**
 
 While GitHub Actions offers a wide variety of pre-built actions and integrations, there may be cases where you need more customization than is available out-of-the-box. In these cases, you may need to build your own custom actions, which can be time-consuming.
 
-- **Vendor lock-in**  
+- **Vendor lock-in**
 
 While GitHub Actions is an open platform, it is still tied to the GitHub ecosystem. This can be a concern for teams who want to maintain flexibility and avoid vendor lock-in.
 
-- **Learning curve**  
+- **Learning curve**
 
-Like any new technology, there is a learning curve when it comes to using GitHub Actions. Teams may need to invest time and resources into learning the platform and how to build effective workflows.  
+Like any new technology, there is a learning curve when it comes to using GitHub Actions. Teams may need to invest time and resources into learning the platform and how to build effective workflows.
 
 ## Comparing GitHub Actions with Azure DevOps Pipelines
 
 GitHub Actions and Azure DevOps Pipelines are both popular CI/CD tools that can help automate and streamline software development processes. While both tools have similar goals, there are some key differences to consider when choosing between them.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Actions-CICD/assets/vs.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Actions-CICD/assets/vs.png)
 
 ### Integration with GitHub vs Azure DevOps
 
@@ -98,9 +98,10 @@ Azure DevOps Pipelines is known for its flexibility and customizability, allowin
 
 ### Scalability
 
-Both GitHub Actions and Azure DevOps Pipelines are designed to be scalable, with the ability to run workflows in parallel and support for a wide range of environments and platforms. However, Azure DevOps Pipelines may have a slight edge in terms of scalability, with more advanced features like multi-stage pipelines and release management.  
+Both GitHub Actions and Azure DevOps Pipelines are designed to be scalable, with the ability to run workflows in parallel and support for a wide range of environments and platforms. However, Azure DevOps Pipelines may have a slight edge in terms of scalability, with more advanced features like multi-stage pipelines and release management.
 
 ## Conclusion
+
 Both GitHub Actions and Azure DevOps Pipelines are powerful CI/CD tools that can help automate and streamline software development processes. While each has its own strengths and weaknesses, the best choice for your team will depend on a variety of factors, including your existing infrastructure, your level of experience with CI/CD tools, and your specific workflow needs. By carefully evaluating the pros and cons of each tool, teams can make an informed decision about which tool is the best fit for their needs.
 
 ### _Author_
