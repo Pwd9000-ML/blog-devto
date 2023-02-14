@@ -31,6 +31,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **14/02/2023** | [How GitHub Actions can improve CI/CD and compares with Azure Pipelines](https://dev.to/pwd9000/how-github-actions-can-improve-cicd-and-compares-with-azure-pipelines-3bh) | Blog/Website Post | GitHub, DevOps | CICD, DevOps, GitHub, AzureDevOps |
 | **05/02/2023** | [Run self-hosted GitHub runners on GitHub Codespaces (Video Tutorial)](https://www.youtube.com/watch?v=4CPoHrLgO1E) | Video | GitHub, Devcontainers | Video, Tutorial, Devcontainers, Codespaces |
 | **18/01/2023** | [OSS maintainer - GitHub Actions Runner Devcontainer](https://github.com/Pwd9000-ML/devcontainer-templates/tree/main/src/github-actions-runner-devcontainer) | Open Source Software | GitHub, Devcontainers | OSS Maintainer, Devcontainers, Codespaces |
 | **11/01/2023** | [London Microsoft DevOps Meetup - H4ppy N3w Y34r](https://www.meetup.com/london-microsoft-devops/events/289518388/) | Event Organiser | GitHub, DevOps | Security, DevOps, Meetup, Automation |
