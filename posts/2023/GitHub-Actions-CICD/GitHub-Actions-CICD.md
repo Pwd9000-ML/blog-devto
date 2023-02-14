@@ -98,7 +98,7 @@ Azure DevOps Pipelines is known for its flexibility and customizability, allowin
 
 ### Scalability
 
-Both GitHub Actions and Azure DevOps Pipelines are designed to be scalable, with the ability to run workflows in parallel and support for a wide range of environments and platforms. However, Azure DevOps Pipelines may have a slight edge in terms of scalability, with more advanced features like multi-stage pipelines and release management.
+Both GitHub Actions and Azure DevOps Pipelines are designed to be scalable, with the ability to run workflows in parallel and support for a wide range of environments and platforms. However, Azure DevOps Pipelines may have a slight edge in terms of scalability, with more advanced features and release management.
 
 ## Conclusion
 
