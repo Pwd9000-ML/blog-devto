@@ -10,6 +10,8 @@ series: Using Terraform on GitHub
 date: '2022-01-23T15:14:24Z'
 ---
 
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Actions-Terraform-Deployment-Part1/assets/springclean23.png)
+
 ### Overview
 
 This tutorial uses examples from the following GitHub demo project [template repository](https://github.com/Pwd9000-ML/Azure-Terraform-Deployments).

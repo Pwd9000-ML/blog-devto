@@ -23,6 +23,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **16/03/2023** | [Azure Spring Clean 2023 - Multi environment AZURE deployments with Terraform and GitHub](https://www.azurespringclean.com/) | Event Organiser | GitHub, Azure | GitHub, Azure, Terraform, Automation |
 | **27/03/2023** | [London Microsoft DevOps Meetup - Power Up March](https://www.meetup.com/london-microsoft-devops/events/290919846/) | Event Organiser | GitHub, DevOps | Security, DevOps, Meetup, Automation |
 
 ---
