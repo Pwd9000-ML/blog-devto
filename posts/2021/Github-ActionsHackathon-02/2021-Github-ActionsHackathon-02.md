@@ -6,6 +6,7 @@ tags: 'actionshackathon21, githubactions, DevSecOps, github'
 cover_image: ''
 canonical_url: null
 id: 897750
+series: Hackathons
 date: '2021-11-14T10:48:59Z'
 ---
 
