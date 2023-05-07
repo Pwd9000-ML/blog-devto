@@ -33,6 +33,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **07/05/2023** | [Run self-hosted Azure Pipelines Agent on GitHub Codespaces (Video Tutorial)](https://dev.to/pwd9000/run-self-hosted-azure-pipelines-agent-on-github-codespaces-video-tutorial-1eb4) | Video | GitHub, Devcontainers | Video, Tutorial, Devcontainers, Codespaces |
 | **01/05/2023** | [OSS maintainer - Azure Pipelines Agent Devcontainer](https://github.com/Pwd9000-ML/devcontainer-templates/tree/main/src/azure-pipelines-agent-devcontainer) | Open Source Software | GitHub, Devcontainers | OSS Maintainer, Devcontainers, Codespaces, Azure DevOps |
 | **27/03/2023** | [London Microsoft DevOps Meetup - Power Up March](https://www.meetup.com/london-microsoft-devops/events/290919846/) | Event Organiser | GitHub, DevOps | Security, DevOps, Meetup, Automation |
 | **16/03/2023** | [Azure Spring Clean 2023 - Multi environment AZURE deployments with Terraform and GitHub](https://www.azurespringclean.com/) | Event Organiser | GitHub, Azure | GitHub, Azure, Terraform, Automation |
