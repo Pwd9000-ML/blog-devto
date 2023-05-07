@@ -67,6 +67,10 @@ Check out the [repo and documentation](https://github.com/Pwd9000-ML/devcontaine
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-ADO-Codespace-video/assets/add11.png)
 
+Submitted as part of the **GitHub + DEV Hackathon 2023**
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/devcontainer-templates/main/assets/GitHubHack23.png)
+
 ### _Author_
 
 Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [Twitter](https://twitter.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
