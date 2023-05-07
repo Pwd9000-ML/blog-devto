@@ -32,7 +32,7 @@ Select `Create a new configuration...`:
 
 Select `Show All Definitions...`:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Codespaces-runner-video/assets/add3.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Codespaces-runner-video/assets/add03.png)
 
 Select `GitHub Actions Runner`:
 
