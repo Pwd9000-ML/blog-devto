@@ -23,7 +23,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **01/05/2023** | [GitHub Hackathon 2023 - Azure Pipelines Self Hosted Agent devcontainer/codespace](https://github.com/Pwd9000-ML/devcontainer-templates/tree/main/src/azure-pipelines-agent-devcontainer) | Hackathon | GitHub | Azure Pipelines, devcontainer, codespace |
+| **07/05/2023** | [GitHub Hackathon 2023 - Azure Pipelines Self Hosted Agent devcontainer/codespace](https://github.com/Pwd9000-ML/devcontainer-templates/tree/main/src/azure-pipelines-agent-devcontainer) | Hackathon | GitHub | Azure Pipelines, devcontainer, codespace |
 | **12/05/2023** | [Global Azure Days Bootcamp 2023 - Passwordless authentication between GitHub and Azure using OIDC](https://www.meetup.com/microsoft-reactor-london/events/293192579/) | Public Speaking | DevOps, Conference | DevOps, Meetup, GitHub, DevSecOps |
 | **18/05/2023** | [London Microsoft DevOps Meetup - DevOps Dash May](https://www.meetup.com/london-microsoft-devops/events/292656648) | Event Organiser | DevOps, Meetup | AI/ML, DevOps, Meetup, Automation |
 
@@ -33,6 +33,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **01/05/2023** | [OSS maintainer - Azure Pipelines Agent Devcontainer](https://github.com/Pwd9000-ML/devcontainer-templates/tree/main/src/azure-pipelines-agent-devcontainer) | Open Source Software | GitHub, Devcontainers | OSS Maintainer, Devcontainers, Codespaces, Azure DevOps |
 | **27/03/2023** | [London Microsoft DevOps Meetup - Power Up March](https://www.meetup.com/london-microsoft-devops/events/290919846/) | Event Organiser | GitHub, DevOps | Security, DevOps, Meetup, Automation |
 | **16/03/2023** | [Azure Spring Clean 2023 - Multi environment AZURE deployments with Terraform and GitHub](https://www.azurespringclean.com/) | Event Organiser | GitHub, Azure | GitHub, Azure, Terraform, Automation |
 | **14/02/2023** | [How GitHub Actions can improve CI/CD and compares with Azure Pipelines](https://dev.to/pwd9000/how-github-actions-can-improve-cicd-and-compares-with-azure-pipelines-3bh) | Blog/Website Post | GitHub, DevOps | CICD, DevOps, GitHub, AzureDevOps |
