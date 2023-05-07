@@ -68,6 +68,10 @@ Check out the [repo and documentation](https://github.com/Pwd9000-ML/devcontaine
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-ADO-Codespace-video/assets/add11.png)
 
+Self hosted Azure Pipelines agent registers on agent pool and runs inside Codespace at launch
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-DevOps-Agent/assets/run06.png)
+
 Submitted as part of the **GitHub + DEV Hackathon 2023**
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/devcontainer-templates/main/assets/GitHubHack23.png)

@@ -68,6 +68,10 @@ Check out the [repo and documentation](https://bit.ly/3iPYXoL).
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Codespaces-runner-video/assets/add11.png)
 
+Self hosted GitHub Actions runner registers and runs inside Codespace at launch
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-runner/assets/label01.png)
+
 ### _Author_
 
 Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [Twitter](https://twitter.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
