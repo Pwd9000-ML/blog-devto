@@ -56,11 +56,11 @@ _Use and utelise your codespace compute power to also run a self hosted azure pi
 
 ### Link to Source Code
 
-- [README](https://github.com/Pwd9000-ML/devcontainer-templates/blob/main/src/azure-pipelines-agent-devcontainer/README.md)
+<https://github.com/Pwd9000-ML/devcontainer-templates/tree/main/src/azure-pipelines-agent-devcontainer>
 
 ### Permissive License
 
-- [MIT LICENSE](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/blob/master/LICENSE)
+[MIT LICENSE](https://github.com/Pwd9000-ML/Azure-Service-Bus-SAS-Management/blob/master/LICENSE)
 
 ## Background (What made you decide to build this particular app? What inspired you?)
 
