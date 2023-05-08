@@ -1,6 +1,6 @@
 ---
 title: Self-hosted Azure Pipelines Agent Codespace/Dev Container
-published: true
+published: false
 description: GitHub + DEV Hackathon 2023 Submission - Self-hosted Azure Pipelines Agent Codespace/Dev Container
 tags: 'githubhack23, codespaces, devcontainers, cicd'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/Github-Dev-Hackathon-2023/assets/main.png'
@@ -19,7 +19,7 @@ I built and published a community **Codespace** that has an **Azure Pipelines ag
 
 ### App Link
 
-https://containers.dev/templates
+<https://containers.dev/templates>
 
 | Template Name | Maintainer |
 | --- | --- |
