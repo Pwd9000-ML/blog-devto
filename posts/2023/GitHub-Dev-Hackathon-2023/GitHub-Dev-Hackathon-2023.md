@@ -56,8 +56,6 @@ _Use and utelise your codespace compute power to also run a self hosted azure pi
 
 ### Link to Source Code
 
-{% github <https://github.com/Pwd9000-ML/devcontainer-templates/tree/main/src/azure-pipelines-agent-devcontainer> %}
-
 - [README](https://github.com/Pwd9000-ML/devcontainer-templates/blob/main/src/azure-pipelines-agent-devcontainer/README.md)
 
 ### Permissive License
