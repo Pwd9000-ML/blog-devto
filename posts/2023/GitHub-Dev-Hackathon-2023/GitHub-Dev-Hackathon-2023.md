@@ -30,7 +30,7 @@ Created a community **Codespace** that has an **Azure Pipelines agent** built in
 
 ### Screenshots
 
-- Add [Codespace secrets](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces) on the GitHub repository where the Codespace is to be pun up
+- Add [Codespace secrets](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces) on the GitHub repository where the Codespace is to be spun up
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Dev-Hackathon-2023/assets/sec02.png)
 
