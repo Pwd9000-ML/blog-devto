@@ -49,7 +49,7 @@ Self hosted Azure Pipelines agent registers on agent pool and runs inside Codesp
 
 ### Description
 
-*Use and utelise your codespace compute power to also run a self hosted azure pipelines agent. This devcontainer can be used as a codespace that will create and attach a `self-hosted azure pipelines agent` inside of the codespace and attach/register the ADO agent with an Azure DevOps agent pool by using `secrets for codespaces` as parameter values:*  
+_Use and utelise your codespace compute power to also run a self hosted azure pipelines agent. This devcontainer can be used as a codespace that will create and attach a `self-hosted azure pipelines agent` inside of the codespace and attach/register the ADO agent with an Azure DevOps agent pool by using `secrets for codespaces` as parameter values:_
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-DevOps-Agent/assets/sec02.png)
 
