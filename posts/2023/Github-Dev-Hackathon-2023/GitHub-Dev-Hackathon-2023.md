@@ -27,26 +27,6 @@ I built and published a community **Codespace** that has an **Azure Pipelines ag
 
 ### Screenshots
 
-- Select `Add Dev Container Configuration Files...`
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-ADO-Codespace-video/assets/add01.png)
-
-- Select `Create a new configuration...`
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-ADO-Codespace-video/assets/add02.png)
-
-- Select `Show All Definitions...`
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-ADO-Codespace-video/assets/add03.png)
-
-- Select `Azure Pipelines Agent`
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-ADO-Codespace-video/assets/add04.png)
-
-Self hosted Azure Pipelines agent registers on agent pool and runs inside Codespace at launch
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-DevOps-Agent/assets/run06.png)
-
 ### Description
 
 _Use and utelise your codespace compute power to also run a self hosted azure pipelines agent. This devcontainer can be used as a codespace that will create and attach a `self-hosted azure pipelines agent` inside of the codespace and attach/register the ADO agent with an Azure DevOps agent pool by using `secrets for codespaces` as parameter values:_
