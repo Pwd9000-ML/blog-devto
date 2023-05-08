@@ -3,7 +3,7 @@ title: Self-hosted Azure Pipelines Agent Codespace/Dev Container
 published: true
 description: GitHub + DEV Hackathon 2023 Submission - Self-hosted Azure Pipelines Agent Codespace/Dev Container
 tags: 'githubhack23, codespaces, devcontainers, cicd'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Dev-Hackathon-2023/assets/main1.png'
+cover_image: ''
 canonical_url: null
 id: 1461121
 series: Hackathons
@@ -19,19 +19,10 @@ I built and published a community **Codespace** that has an **Azure Pipelines ag
 
 ### App Link
 
-<https://containers.dev/templates>
-
-| Template Name | Maintainer |
-| --- | --- |
-| [Azure Pipelines Agent](https://github.com/Pwd9000-ML/devcontainer-templates/tree/main/src/azure-pipelines-agent-devcontainer) | Marcel Lupo @Pwd9000-ML |
-
 ### Screenshots
 
 ### Description
 
-_Use and utelise your codespace compute power to also run a self hosted azure pipelines agent. This devcontainer can be used as a codespace that will create and attach a `self-hosted azure pipelines agent` inside of the codespace and attach/register the ADO agent with an Azure DevOps agent pool by using `secrets for codespaces` as parameter values:_
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Dev-Hackathon-2023/assets/sec02.png)
 
 ### Link to Source Code
 
