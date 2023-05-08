@@ -3,7 +3,7 @@ title: Self-hosted Azure Pipelines Agent Codespace/Dev Container
 published: true
 description: GitHub + DEV Hackathon 2023 Submission - Self-hosted Azure Pipelines Agent Codespace/Dev Container
 tags: 'githubhack23, codespaces, devcontainers, cicd'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Dev-Hackathon-2023/assets/main1.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Dev-Hackathon-2023/assets/main01.png'
 canonical_url: null
 id: 1461121
 series: Hackathons
@@ -27,6 +27,26 @@ I built and published a community **Codespace** that has an **Azure Pipelines ag
 | [Azure Pipelines Agent](https://github.com/Pwd9000-ML/devcontainer-templates/tree/main/src/azure-pipelines-agent-devcontainer) | Marcel Lupo @Pwd9000-ML |
 
 ### Screenshots
+
+- Select `Add Dev Container Configuration Files...`
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-ADO-Codespace-video/assets/add01.png)
+
+- Select `Create a new configuration...`
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-ADO-Codespace-video/assets/add02.png)
+
+- Select `Show All Definitions...`
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-ADO-Codespace-video/assets/add03.png)
+
+- Select `Azure Pipelines Agent`
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-ADO-Codespace-video/assets/add04.png)
+
+Self hosted Azure Pipelines agent registers on agent pool and runs inside Codespace at launch
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-DevOps-Agent/assets/run06.png)
 
 ### Description
 
