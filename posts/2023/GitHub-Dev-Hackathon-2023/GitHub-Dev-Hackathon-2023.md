@@ -12,7 +12,7 @@ date: '2023-05-08T10:34:38Z'
 
 ## What I built
 
-I built and published a community **Codespace** that has an **Azure Pipelines agent** built into the Codespace. The Codespace can register itself via **Codepsace Secrets** as a self-hosted **Azure pipelines agent** into an Azure DevOps **Agent pool**, and be used to run Azure pipelines using the compute power of the Codespace.
+Created a community **Codespace** that has an **Azure Pipelines agent** built into the Codespace. The Codespace can register itself via **Codepsace Secrets** as a self-hosted **Azure pipelines agent** into an Azure DevOps **Agent pool**, and be used to run Azure pipelines using the compute power of the Codespace.
 
 ### Category Submission
 
@@ -64,11 +64,11 @@ _Use and utelise your codespace compute power to also run a self hosted azure pi
 
 ## Background (What made you decide to build this particular app? What inspired you?)
 
-I wanted a way to be able to **build** as well as **test** my Azure Pipelines (CI/CD) processes, but not have the hassle and costs of building a separate self hosted agent. I wanted to instead use the same **Codespace** I'm already working in to also use as my Azure Pipelines Agent.
+Wanted to create a way to be able to **build** as well as **test** my Azure Pipelines (CI/CD) processes, but not have the hassle and costs of building a separate self hosted agent. To instead utilise the same **Codespace** I'm already working in to also use as my Azure Pipelines agent.
 
 ### How I built it (How did you utilize GitHub Actions or GitHub Codespaces? Did you learn something new along the way? Pick up a new skill?)
 
-I learned how to make community **Codepsaces** to contribute to the wider Dev community and I hope that many others will find my Codespace useful and also contribute to making it even better.
+Learned how to create community **Codepsaces** to contribute to the wider Dev community and I hope that many others will find my Codespace useful and also contribute to making it even better.
 
 ## Video Tutorial - How to use
 
