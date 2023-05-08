@@ -7,6 +7,7 @@ cover_image: ''
 canonical_url: null
 id: 1461121
 series: Hackathons
+date: '2023-05-08T10:34:38Z'
 ---
 
 ## What I built
@@ -22,7 +23,6 @@ I built and published a community **Codespace** that has an **Azure Pipelines ag
 ### Screenshots
 
 ### Description
-
 
 ### _Author_
 
