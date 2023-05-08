@@ -28,7 +28,7 @@ Created a community **Codespace** that has an **Azure Pipelines agent** built in
 
 ### Diagram
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-ado/assets/diag02.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-DevOps-Agent/assets/diag01.png)
 
 ### Screenshots
 
