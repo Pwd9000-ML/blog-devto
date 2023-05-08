@@ -45,7 +45,7 @@ _Use and utelise your codespace compute power to also run a self hosted azure pi
 
 ## Background (What made you decide to build this particular app? What inspired you?)
 
-I wanted a way to be able to **build** as well as **test** my Azure Pipelines (CI/CD) processes, but not have the hassle and costs of building a separate self hosted agent. I wanted to instead use the same **Codespace** I am already working in to also use as my Azure Pipelines Agent.
+I wanted a way to be able to **build** as well as **test** my Azure Pipelines (CI/CD) processes, but not have the hassle and costs of building a separate self hosted agent. I wanted to instead use the same **Codespace** I'm already working in to also use as my Azure Pipelines Agent.
 
 ### How I built it (How did you utilize GitHub Actions or GitHub Codespaces? Did you learn something new along the way? Pick up a new skill?)
 
