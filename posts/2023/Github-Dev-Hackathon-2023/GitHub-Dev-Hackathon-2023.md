@@ -15,7 +15,7 @@ I built and published a community **Codespace** that has an **Azure Pipelines ag
 
 ### Category Submission
 
-DIY Deployments 👷
+👷 DIY Deployments 👷
 
 ### App Link
 
