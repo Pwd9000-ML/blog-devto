@@ -26,6 +26,10 @@ Created a community **Codespace** that has an **Azure Pipelines agent** built in
 | --- | --- |
 | [Azure Pipelines Agent](https://github.com/Pwd9000-ML/devcontainer-templates/tree/main/src/azure-pipelines-agent-devcontainer) | Marcel Lupo @Pwd9000-ML |
 
+### Diagram
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-ado/assets/diag02.png)
+
 ### Screenshots
 
 - Select `Add Dev Container Configuration Files...`
