@@ -12,7 +12,7 @@ date: '2023-05-08T10:34:38Z'
 
 ## What I built
 
-Created a community **Codespace** that has an **Azure Pipelines agent** built into the Codespace. The Codespace can register itself via **Codepsace Secrets** as a self-hosted **Azure pipelines agent** into an Azure DevOps **Agent pool**, and be used to run Azure pipelines using the compute power of the Codespace.
+Created a community **Codespace** that has an **Azure Pipelines agent** built into the Codespace. The Codespace can register itself via **[Codepsace Secrets](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces)** as a self-hosted **Azure pipelines agent** into an Azure DevOps **Agent pool**, and be used to run Azure pipelines using the compute power of the Codespace.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-DevOps-Agent/assets/diag01.png)
 
@@ -29,6 +29,10 @@ Created a community **Codespace** that has an **Azure Pipelines agent** built in
 | [Azure Pipelines Agent](https://github.com/Pwd9000-ML/devcontainer-templates/tree/main/src/azure-pipelines-agent-devcontainer) | Marcel Lupo @Pwd9000-ML |
 
 ### Screenshots
+
+- Add [Codespace secrets](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces) on the GitHub repository where the Codespace is to be pun up
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Dev-Hackathon-2023/assets/sec02.png)
 
 - Select `Add Dev Container Configuration Files...`
 

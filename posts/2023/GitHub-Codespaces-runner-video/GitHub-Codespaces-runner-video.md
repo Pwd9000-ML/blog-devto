@@ -22,6 +22,10 @@ Check out the [repo and documentation](https://bit.ly/3iPYXoL).
 
 ## How to add this community Codespace config
 
+- Add [Codespace secrets](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces) on the GitHub repository where the Codespace is to be pun up
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-runner/assets/sec02.png)
+
 - Select `Add Dev Container Configuration Files...`
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Codespaces-runner-video/assets/add01.png)
