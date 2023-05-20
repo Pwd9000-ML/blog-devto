@@ -23,7 +23,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **18/05/2023** | [London Microsoft DevOps Meetup - DevOps Dash May](https://www.meetup.com/london-microsoft-devops/events/292656648) | Event Organiser | DevOps, Meetup | AI/ML, DevOps, Meetup, Automation |
+More Coming soon!
 
 ---
 
@@ -31,6 +31,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **18/05/2023** | [London Microsoft DevOps Meetup - DevOps Dash May](https://www.meetup.com/london-microsoft-devops/events/292656648) | Event Organiser | DevOps, Meetup | AI/ML, DevOps, Meetup, Automation |
 | **12/05/2023** | [Global Azure Days Bootcamp 2023 - Passwordless authentication between GitHub and Azure using OIDC](https://www.meetup.com/microsoft-reactor-london/events/293192579/) | Public Speaking | DevOps, Conference | DevOps, Meetup, GitHub, DevSecOps |
 | **07/05/2023** | [GitHub Hackathon 2023 - Azure Pipelines Self Hosted Agent devcontainer/codespace](https://github.com/Pwd9000-ML/devcontainer-templates/tree/main/src/azure-pipelines-agent-devcontainer) | Hackathon | GitHub | Azure Pipelines, devcontainer, codespace |
 | **07/05/2023** | [Run self-hosted Azure Pipelines Agent on GitHub Codespaces (Video Tutorial)](https://dev.to/pwd9000/run-self-hosted-azure-pipelines-agent-on-github-codespaces-video-tutorial-1eb4) | Video | GitHub, Devcontainers | Video, Tutorial, Devcontainers, Codespaces |
