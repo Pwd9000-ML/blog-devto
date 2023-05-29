@@ -53,7 +53,7 @@ We will take a closer look at **preconditions and postconditions** a bit later, 
 
 ### 1. Create Before Destroy
 
-**Argument Type**: _Boolean_  
+**Argument Type**: _Boolean_
 
 In some scenarios, destroying a resource before creating a new one can lead to downtime. To circumvent this, we can set `create_before_destroy` to `true`. This can be particularly useful when working with **Azure Virtual Machines** or **App Services**, where you'd want to minimize downtime.
 
@@ -73,15 +73,15 @@ In this scenario, when an update is required that can't be performed in place, T
 
 ### 2. Prevent Destroy
 
-**Argument Type**: _Boolean_  
+**Argument Type**: _Boolean_
 
 ### 3. Ignore Changes
 
-**Argument Type**: _list of attribute names_  
+**Argument Type**: _list of attribute names_
 
 ### 4. Create Before Destroy
 
-**Argument Type**: _list of resource or attribute references_  
+**Argument Type**: _list of resource or attribute references_
 
 ## Custom Condition Checks
 
