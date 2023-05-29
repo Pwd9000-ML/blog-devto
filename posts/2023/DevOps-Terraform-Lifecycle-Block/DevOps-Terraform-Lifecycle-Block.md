@@ -11,13 +11,45 @@ series: Terraform Pro Tips
 
 ## Overview
 
-Terraform offers a range of capabilities to handle infrastructure changes in an elegant and controlled manner. One such capability is the **lifecycle** configuration block. The [lifecycle block](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle) provides several meta-arguments to manage how Terraform creates, updates, checks and deletes resources. In this post, we will dive into Terraform's **lifecycle** block and demonstrate its usage with a few examples on Microsoft Azure resources.
+Terraform offers a range of capabilities to handle infrastructure changes in an elegant and controlled manner. One such capability is the **lifecycle** configuration block.  
+
+The [lifecycle block](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle) provides several meta-arguments to manage how Terraform creates, updates, checks and deletes resources. In this post, we will dive into Terraform's **lifecycle** block and demonstrate its usage with a few examples with **Microsoft Azure resources**.
 
 ## Understanding the Lifecycle Block
 
-The **lifecycle** block in Terraform provides control over how a resource are managed. It's configured within a [resource block](https://developer.hashicorp.com/terraform/language/resources/behavior) and supports four **meta-arguments**, as well as **custom condition checks**.  
+The **lifecycle** block in Terraform provides control over how a resource is managed. It's a configuration block that is nested within a [resource block](https://developer.hashicorp.com/terraform/language/resources/behavior) and supports four **meta-arguments**:  
 
-Let's take a look at **meta-arguments**:
+```hcl
+resource "provider_resource" "block" {
+  // ... some resource configuration ...
+
+  lifecycle {
+    argument = value
+  }
+}
+```
+
+The **lifecycle** block also has an option to configure **custom condition checks** using [preconditions and postconditions](https://developer.hashicorp.com/terraform/language/v1.4.x/expressions/custom-conditions#preconditions-and-postconditions):  
+
+```hcl
+resource "provider_resource" "block" {
+  // ... some resource configuration ...
+
+  lifecycle {
+    precondition {
+      condition = expression
+      error_message = "error(string)"
+    }
+
+    postcondition {
+      condition = expression
+      error_message = "error(string)"
+    }
+  }
+}
+```
+
+We will take a closer look at **preconditions and postconditions** a bit later, but let's forst look at a few examples using **meta-arguments**:  
 
 ### 1. Create Before Destroy
 
