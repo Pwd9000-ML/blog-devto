@@ -17,7 +17,7 @@ The [lifecycle block](https://developer.hashicorp.com/terraform/language/meta-ar
 
 ## Understanding the Lifecycle Block
 
-**Note**: This post was written using ***Terraform (v1.4.x)***
+**Note**: This post was written using **_Terraform (v1.4.x)_**
 
 The **lifecycle** block in Terraform provides control over how a resource is managed. It's a configuration block that is nested within a [resource block](https://developer.hashicorp.com/terraform/language/resources/behavior) and supports four **meta-arguments**:
 
