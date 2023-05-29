@@ -82,9 +82,59 @@ In this scenario, when an update is required that can't be performed in place, T
 
 **Argument Type**: _Boolean_
 
+Setting `prevent_destroy` to `true` is a protective measure to prevent **accidental deletion** of **critical resources**. If you attempt to destroy such a resource, Terraform will return an error and stop the operation. This can be useful when working with **Azure SQL Databases**, **Storage Accounts**, or any resource that holds important data.
+
+Here is an example with an Azure SQL Database:  
+
+```hcl
+resource "azurerm_sql_database" "example" {
+  // ... other configuration ...
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+```
+
+With this configuration, Terraform will prevent the SQL database from being accidentally destroyed.
+
 ### 3. Ignore Changes
 
 **Argument Type**: _list of attribute names_
+
+The `ignore_changes` argument is useful when you want to manage certain resource attributes outside of Terraform, or when you want to avoid spurious diffs.  
+
+Here is an example with an Azure App Service:
+
+```hcl
+resource "azurerm_app_service" "example" {
+  // ... other configuration ...
+
+  lifecycle {
+    ignore_changes = [
+      app_settings,  // Ignore changes to app_settings attribute
+    ]
+  }
+}
+```
+
+Say a different team manages an **App Services** `app_settings` for example, you may be provisioning that **App Service**, but the configuration is left up to someone else, or may a different automation all together is taking care of the `app_settings`, and you do not want Terraform to revert or destroy those settings.  
+
+In this case, any changes to the app_settings of the App Service will be ignored by Terraform.  
+
+**Tip**: You can also use a special value `all` that will ignore all settings once a resource is provisioned.  
+
+```hcl
+resource "azurerm_app_service" "example" {
+  // ... other configuration ...
+
+  lifecycle {
+    ignore_changes = all
+  }
+}
+```
+
+This will provision the resource any any subsequent configuration outside of Terraform will be ignored by Terraform.
 
 ### 4. Replace Triggered By
 
@@ -96,7 +146,7 @@ ss
 
 ## Conclusion
 
-As you can see the Terraform `lookup()` function can be quite useful in cases where we have multiple sites or different configs and having the ability match and correlate different configurations for different scenarios.
+Terraform's **lifecycle block** provides a powerful way to control and manage your resources. Whether it's preventing accidental destruction of critical resources, managing zero-downtime updates, or ignoring changes to certain attributes, the lifecycle block offers you the flexibility you need. As always, be sure to test these configurations in a non-production environment before rolling out to production to ensure they work as expected. Happy Terraforming!  
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
