@@ -11,27 +11,51 @@ series: Terraform Pro Tips
 
 ## Overview
 
-This tutorial uses examples from the following GitHub
+Terraform offers a range of capabilities to handle infrastructure changes in an elegant and controlled manner. One such capability is the **lifecycle** configuration block. The [lifecycle block](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle) provides several meta-arguments to manage how Terraform creates, updates, checks and deletes resources. In this post, we will dive into Terraform's **lifecycle** block and demonstrate its usage with a few examples on Microsoft Azure resources.
 
-### Example
+## Understanding the Lifecycle Block
 
-It allows us to be mo
+The **lifecycle** block in Terraform provides control over how a resource are managed. It's configured within a [resource block](https://developer.hashicorp.com/terraform/language/resources/behavior) and supports four **meta-arguments**, as well as **custom condition checks**.  
 
-## Real world example
+Let's take a look at **meta-arguments**:
 
-The example code
+### 1. Create Before Destroy
 
-We start off by creating a list of sites in a variable for **siteA** and **siteB**:
+**Argument Type**: _Boolean_  
+
+In some scenarios, destroying a resource before creating a new one can lead to downtime. To circumvent this, we can set `create_before_destroy` to `true`. This can be particularly useful when working with **Azure Virtual Machines** or **App Services**, where you'd want to minimize downtime.
+
+Here is an example with an Azure Virtual Machine:
 
 ```hcl
-## variables.tf ##
+resource "azurerm_virtual_machine" "example" {
+  // ... other configuration ...
 
-variable "site_names" {
-  type        = list(string)
-  default     = ["siteA", "siteB"]
-  description = "Provide a list of all Contoso site names - Will be mapped to local var 'site_configs'"
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 ```
+
+In this scenario, when an update is required that can't be performed in place, Terraform will first create the replacement VM and then destroy the old one, reducing potential downtime.
+
+### 2. Prevent Destroy
+
+**Argument Type**: _Boolean_  
+
+### 3. Ignore Changes
+
+**Argument Type**: _list of attribute names_  
+
+### 4. Create Before Destroy
+
+**Argument Type**: _list of resource or attribute references_  
+
+## Custom Condition Checks
+
+ss
+
+## Conclusion
 
 As you can see the Terraform `lookup()` function can be quite useful in cases where we have multiple sites or different configs and having the ability match and correlate different configurations for different scenarios.
 
