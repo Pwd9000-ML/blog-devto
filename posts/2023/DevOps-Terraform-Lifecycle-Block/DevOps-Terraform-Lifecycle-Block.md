@@ -84,7 +84,7 @@ In this scenario, when an update is required that can't be performed in place, T
 
 Setting `prevent_destroy` to `true` is a protective measure to prevent **accidental deletion** of **critical resources**. If you attempt to destroy such a resource, Terraform will return an error and stop the operation. This can be useful when working with **Azure SQL Databases**, **Storage Accounts**, or any resource that holds important data.
 
-Here is an example with an Azure SQL Database:  
+Here is an example with an Azure SQL Database:
 
 ```hcl
 resource "azurerm_sql_database" "example" {
@@ -102,7 +102,7 @@ With this configuration, Terraform will prevent the SQL database from being acci
 
 **Argument Type**: _list of attribute names_
 
-The `ignore_changes` argument is useful when you want to manage certain resource attributes outside of Terraform, or when you want to avoid spurious diffs.  
+The `ignore_changes` argument is useful when you want to manage certain resource attributes outside of Terraform, or when you want to avoid spurious diffs.
 
 Here is an example with an Azure App Service:
 
@@ -118,11 +118,11 @@ resource "azurerm_app_service" "example" {
 }
 ```
 
-Say a different team manages an **App Services** `app_settings` for example, you may be provisioning that **App Service**, but the configuration is left up to someone else, or may a different automation all together is taking care of the `app_settings`, and you do not want Terraform to revert or destroy those settings.  
+Say a different team manages an **App Services** `app_settings` for example, you may be provisioning that **App Service**, but the configuration is left up to someone else, or may a different automation all together is taking care of the `app_settings`, and you do not want Terraform to revert or destroy those settings.
 
-In this case, any changes to the app_settings of the App Service will be ignored by Terraform.  
+In this case, any changes to the app_settings of the App Service will be ignored by Terraform.
 
-**Tip**: You can also use a special value `all` that will ignore all settings once a resource is provisioned.  
+**Tip**: You can also use a special value `all` that will ignore all settings once a resource is provisioned.
 
 ```hcl
 resource "azurerm_app_service" "example" {
@@ -146,7 +146,7 @@ ss
 
 ## Conclusion
 
-Terraform's **lifecycle block** provides a powerful way to control and manage your resources. Whether it's preventing accidental destruction of critical resources, managing zero-downtime updates, or ignoring changes to certain attributes, the lifecycle block offers you the flexibility you need. As always, be sure to test these configurations in a non-production environment before rolling out to production to ensure they work as expected. Happy Terraforming!  
+Terraform's **lifecycle block** provides a powerful way to control and manage your resources. Whether it's preventing accidental destruction of critical resources, managing zero-downtime updates, or ignoring changes to certain attributes, the lifecycle block offers you the flexibility you need. As always, be sure to test these configurations in a non-production environment before rolling out to production to ensure they work as expected. Happy Terraforming!
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
