@@ -51,12 +51,12 @@ resource "provider_resource" "block" {
 }
 ```
 
-We will take a closer look at **preconditions and postconditions** a bit later, but let's first look at a few examples using **meta-arguments**:  
+We will take a closer look at **preconditions and postconditions** a bit later, but let's first look at a few examples using **meta-arguments**:
 
-* create_before_destroy
-* prevent_destroy
-* ignore_changes
-* replace_triggered_by
+- create_before_destroy
+- prevent_destroy
+- ignore_changes
+- replace_triggered_by
 
 ### 1. Create Before Destroy
 
