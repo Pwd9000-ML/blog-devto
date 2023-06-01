@@ -188,14 +188,14 @@ resource "azurerm_mssql_database" "test" {
 }
 ```
 
-**NOTE:** The [self object](https://developer.hashicorp.com/terraform/language/expressions/custom-conditions#self-object) above in the `postcondition` block refers to attributes of the instance under evaluation (e.g. the MSSQL database).  
+**NOTE:** The [self object](https://developer.hashicorp.com/terraform/language/expressions/custom-conditions#self-object) above in the `postcondition` block refers to attributes of the instance under evaluation (e.g. the MSSQL database).
 
-You can implement a validation check as either a `postcondition` of the resource producing the data, or as a `precondition` of a resource or output value using the data. To decide which is most appropriate, consider whether the check is representing an assumption or a guarantee.  
+You can implement a validation check as either a `postcondition` of the resource producing the data, or as a `precondition` of a resource or output value using the data. To decide which is most appropriate, consider whether the check is representing an assumption or a guarantee.
 
-In our example above:  
+In our example above:
 
 - **Assumption:** Validate using `preconditions` that the database is being created, is on a **MSSQL server** that is version `12.0`.
-- **GUarantee:** Validating using `postcondition` that the **MSSQL database** being created **(SELF)**, has `transparent_data_encryption_enabled` set to `true`.  
+- **GUarantee:** Validating using `postcondition` that the **MSSQL database** being created **(SELF)**, has `transparent_data_encryption_enabled` set to `true`.
 
 ## Conclusion
 
