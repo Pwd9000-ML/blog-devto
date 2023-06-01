@@ -118,9 +118,9 @@ resource "azurerm_app_service" "example" {
 }
 ```
 
-Say a different team manages an **App Services** `app_settings` for example, you may be provisioning that **App Service**, but the configuration is left up to someone else, or may a different automation all together is taking care of the `app_settings`, and you do not want Terraform to revert or destroy those settings.  
+Say a different team manages an **App Services** `app_settings` for example, you may be provisioning that **App Service**, but the configuration is left up to someone else, or maybe even a different automation all together is taking care of the `app_settings` configuration, and you do not want Terraform to revert, interfere or potentially remove those settings.  
 
-In this case, any changes to the app_settings of the App Service will be ignored by Terraform.  
+In this case, any changes to the `app_settings` of the **App Service** will be ignored by Terraform.  
 
 **Tip**: You can also use a special value `all` that will ignore all settings once a resource is provisioned.  
 
@@ -139,6 +139,24 @@ This will provision the resource any any subsequent configuration outside of Ter
 ### 4. Replace Triggered By
 
 **Argument Type**: _list of resource or attribute references_
+
+The `replace_triggered_by` replaces the resource when any of the referenced items change, thus we can only reference **managed resources** in `replace_triggered_by` expressions. Supply a list of expressions referencing managed resources, instances, or instance attributes.  
+
+```hcl
+resource "azurerm_app_service" "example" {
+  // ... other configuration ...
+
+  lifecycle {
+    replace_triggered_by = [
+      azurerm_sql_database.example.id, //Replace `azurerm_app_service` each time `azurerm_sql_database` is replaced
+    ]
+  }
+}
+```
+
+`replace_triggered_by` allows only resource addresses because the decision is based on the planned actions for all of the given resources. Plain values such as **local values** or **input variables** do not have planned actions of their own, but you can treat them with a resource-like lifecycle by using them with the **terraform_data** resource type.  
+
+
 
 ## Custom Condition Checks
 
