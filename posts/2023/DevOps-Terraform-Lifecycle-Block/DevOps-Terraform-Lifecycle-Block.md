@@ -140,23 +140,27 @@ This will provision the resource any any subsequent configuration outside of Ter
 
 **Argument Type**: _list of resource or attribute references_
 
-The `replace_triggered_by` replaces the resource when any of the referenced items change, thus we can only reference **managed resources** in `replace_triggered_by` expressions. Supply a list of expressions referencing managed resources, instances, or instance attributes.  
+The `replace_triggered_by` argument allows you to replace a resource when another resource changes. You can only reference **managed resources** in `replace_triggered_by` expressions. Supply a list of expressions referencing managed resources, instances, or instance attributes.  
 
 ```hcl
+resource "azurerm_sql_database" "example" {
+  // ... other configuration ...
+}
+
 resource "azurerm_app_service" "example" {
   // ... other configuration ...
 
   lifecycle {
     replace_triggered_by = [
-      azurerm_sql_database.example.id, //Replace `azurerm_app_service` each time `azurerm_sql_database` is replaced
+      azurerm_sql_database.example.id, //Replace `azurerm_app_service` each time `azurerm_sql_database` id changes
     ]
   }
 }
 ```
 
-`replace_triggered_by` allows only resource addresses because the decision is based on the planned actions for all of the given resources. Plain values such as **local values** or **input variables** do not have planned actions of their own, but you can treat them with a resource-like lifecycle by using them with the **terraform_data** resource type.  
+`replace_triggered_by` allows only resource addresses because the decision is based on the planned actions for all of the given resources, meaning that variables, data sources and modules are not supported.  
 
-
+Plain values such as **local values** or **input variables** do not have planned actions of their own, but you can treat them with a resource-like lifecycle by using them with the **terraform_data** resource type.  
 
 ## Custom Condition Checks
 
