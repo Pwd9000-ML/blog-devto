@@ -118,9 +118,9 @@ resource "azurerm_app_service" "example" {
 }
 ```
 
-Say a different team manages an **App Services** `app_settings` for example, you may be provisioning that **App Service**, but the configuration is left up to someone else, or maybe even a different automation all together is taking care of the `app_settings` configuration, and you do not want Terraform to revert, interfere or potentially remove those settings.  
+Say a different team manages an **App Services** `app_settings` for example, you may be provisioning that **App Service**, but the configuration is left up to someone else, or maybe even a different automation all together is taking care of the `app_settings` configuration, and you do not want Terraform to revert, interfere or potentially remove those settings.
 
-In this case, any changes to the `app_settings` of the **App Service** will be ignored by Terraform.  
+In this case, any changes to the `app_settings` of the **App Service** will be ignored by Terraform.
 
 **Tip**: You can also use a special value `all` that will ignore all settings once a resource is provisioned.
 
