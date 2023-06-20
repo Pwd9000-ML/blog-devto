@@ -225,6 +225,12 @@ The pipeline has a single stage, **'GenerateTerraformDocumentation'**, which con
 
 5. **Commit and Push:** Finally, it commits the updated `README.md` files and pushes them back to the repository using the PAT retrieved from Azure Key Vault.
 
+## Pre-requisites
+
+There are a few pre-requisites for this solution that we need to set up before we can run the pipeline. These include the following based on the above steps/tasks performed by the pipeline:  
+
+
+
 ## Conclusion
 
 Integrating this documentation generation process into your CI/CD pipeline can keep your Terraform module documentation updated in real-time. Every time you modify your Terraform code and push to your repository, the CI/CD pipeline can automatically generate and commit the updated documentation, ensuring your documentation is always up-to-date and synced with your latest Terraform code.
