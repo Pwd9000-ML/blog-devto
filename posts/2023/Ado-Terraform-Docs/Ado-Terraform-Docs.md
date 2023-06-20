@@ -15,7 +15,6 @@ Based on a popular blog post I did last year: [Automating Terraform Documentatio
 
 ## Manual Usage
 
-
 ## Conclusion
 
 As you can see, this tool can be a valuable asset to easily maintain and have terraform documentation for your modules without much effort.
