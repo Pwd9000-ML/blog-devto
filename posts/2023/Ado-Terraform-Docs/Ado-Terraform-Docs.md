@@ -229,7 +229,71 @@ The pipeline has a single stage, **'GenerateTerraformDocumentation'**, which con
 
 There are a few pre-requisites for this solution that we need to set up before we can run the pipeline. These include the following based on the above steps/tasks performed by the pipeline:  
 
+### 1. Create a Personal Access Token (PAT) in Azure DevOps
 
+Notice the **keyvault** step above:  
+
+```yaml
+### Link to key vault.
+- task: AzureKeyVault@1
+  inputs:
+    azureSubscription: $(serviceConnectionName) #ADO service connection (Service principal)
+    KeyVaultName: $(keyvaultName)
+    SecretsFilter: 'TerraformDocsPAToken'
+    RunAsPreJob: true
+  displayName: Get PAToken from Keyvault
+```
+
+This step will retrieve a keyvault secret called **'TerraformDocsPAToken'** using the AzureKeyVault task from the keyvault specified in the pipeline **Variables**. This secret is used later to push updates back to the repository using this task:
+
+```yaml
+### Commit and push updated README.md files for TF modules.
+- powershell: |
+    git config --local user.email "terraform-docs@myOrg.com"
+    git config --local user.name "Terraform Docs"
+    git add *.md
+    git commit -m "Update README.md for each TF module"
+    git push origin HEAD:$(Build.SourceBranchName)
+  displayName: 'Commit and Push updated README.md files for TF modules'
+  env:
+    SYSTEM_ACCESSTOKEN: $(TerraformDocsPAToken)
+```
+
+Notice the `SYSTEM_ACCESSTOKEN: $(TerraformDocsPAToken)` environment variable above. This is the PAT retrieved from the keyvault and used to push updates back to the repository.  
+
+The PAT token scope of permissions required for this solution is **'Code (Read & write)'**.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/Ado-Terraform-Docs/assets/PAT.png)  
+
+For more information on how to create a PAT token, see [here](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=preview-page).  
+
+After creating the PAT token, add it to the keyvault as a secret called **'$(TerraformDocsPAToken)'** and update the pipeline variables to point to the correct keyvault name.  
+
+### 2. Add generic-contribute permissions to the service principal used by the ADO service connection
+
+The ADO service connection used by the pipeline to connect to the repository must have **'Generic Contribute'** permissions to the repository. This is required to allow the pipeline to push updates back to the repository. To do this you will need to navigate to the repository in ADO and add the service principal used by the ADO service connection to the repository with **'Generic Contribute'** permissions.  
+
+In Azure DevOps, navigate to the repository settings. You can find this under **Project settings -> Repos -> Repositories** and select the repository where you want to allow access.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/Ado-Terraform-Docs/assets/repo1.png)  
+
+Navigate to the **'Security'** tab. Find the user or group that matches your pipeline identity. If your pipeline is running at the project scope, this will be **'Project Build Service ({ProjectName})'**. If it's running at the organization scope, this will be **'Project Collection Build Service ({OrganizationName})'**. Once you've found the correct identity, check the **'Contribute'** permission.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/Ado-Terraform-Docs/assets/repo2.png)  
+
+Next, on the same page, **'Add'** the pipeline to the **'Pipeline permissions'**.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/Ado-Terraform-Docs/assets/repo3.png)  
+
+Lastly, **'Add'** the ADO service connection used by the pipeline to the **'Git refs permissions'** on the **'main'** branch with **'Bypass policies when pushing'** set to **'Allow'**.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/Ado-Terraform-Docs/assets/repo4.png)  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/Ado-Terraform-Docs/assets/repo5.png)  
+
+That is it, now once a Pull Request is merged into the **'main'** branch, the pipeline will automatically run and update the Terraform module documentation in each module directory:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/Ado-Terraform-Docs/assets/result.png)  
 
 ## Conclusion
 
