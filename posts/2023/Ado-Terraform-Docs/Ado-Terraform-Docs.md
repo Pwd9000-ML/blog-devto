@@ -292,7 +292,7 @@ Lastly, **'Add'** the ADO service connection used by the pipeline to the **'Git 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/Ado-Terraform-Docs/assets/repo5.png)
 
-That is it, now once a Pull Request is merged into the **'main'** branch, the pipeline will automatically run and update the Terraform module documentation in each module directory:
+That is it, now once a Pull Request is merged into the **'main'** branch, the pipeline will automatically run and update the Terraform module documentation in each module directory and push each updated **'README.md'** file back to the repository:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/Ado-Terraform-Docs/assets/result.png)
 
