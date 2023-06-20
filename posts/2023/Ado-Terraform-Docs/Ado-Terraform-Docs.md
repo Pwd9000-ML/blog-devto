@@ -84,7 +84,7 @@ stages:
           ### Remove all old README.md files and generate new README.md files for each TF module.
           - powershell: |
               # Set Modules Root Directory
-              Set-Location "$(Build.SourcesDirectory)\@TF_Modules"
+              Set-Location "$(Build.SourcesDirectory)\@Terraform_Modules_Root_Dir"
 
               # Get all subdirectories (Terraform module directories)
               $terraformModuleDirs = Get-ChildItem -Path (Get-Location) -Directory
@@ -170,7 +170,7 @@ stages:
           ### Remove all old README.md files and generate new README.md files for each TF module.
           - script: |
               # Set Modules Root Directory
-              root_dir="$(Build.SourcesDirectory)/@TF_Modules"
+              root_dir="$(Build.SourcesDirectory)/@Terraform_Modules_Root_Dir"
 
               # Get all subdirectories (Terraform module directories)
               terraformModuleDirs=$(find $root_dir -maxdepth 1 -type d)
