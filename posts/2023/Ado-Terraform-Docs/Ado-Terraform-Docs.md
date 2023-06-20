@@ -17,15 +17,15 @@ Documenting infrastructure code is just as important as writing the code itself.
 
 In this blog post, we will discuss how to automate the generation and update of your **Terraform** documentation with **Terraform-Docs** and **Azure DevOps Pipelines**. The process is straightforward and can be achieved with a few simple steps and I will show you a completely automated way of self-generating documentation for your **Terraform** modules on **Azure DevOps**.
 
-## What is Terraform-Docs?  
+## What is Terraform-Docs?
 
 **Terraform-Docs** is an open-source tool that generates documentation for your Terraform modules based on the metadata provided in the Terraform files. It supports multiple output formats like Markdown, JSON, YAML, and others. The tool scans your Terraform files and outputs comprehensive documentation, including inputs, outputs, providers, requirements, and more.
 
 ## The Automation Process
 
-We are using **Azure DevOps pipelines** to automate this process.  
+We are using **Azure DevOps pipelines** to automate this process.
 
-Say for example you have a **Terraform** module structure in **Git** that looks like this:  
+Say for example you have a **Terraform** module structure in **Git** that looks like this:
 
 ```txt
 ├── @Terraform_Modules_Root_Dir/
@@ -47,85 +47,85 @@ Let's take a closer look at the following [Muti-Stage pipeline](https://github.c
 
 ```yaml
 trigger:
-- main
+  - main
 
 variables:
-  terraformDocsVersion: "0.16.0"
-  serviceConnectionName: "Terraform-SPN-DevOps-MagiconionM"
-  keyvaultName: "pwd9000-core-kv"
+  terraformDocsVersion: '0.16.0'
+  serviceConnectionName: 'Terraform-SPN-DevOps-MagiconionM'
+  keyvaultName: 'pwd9000-core-kv'
 
 pool:
   vmImage: 'windows-latest'
 
 stages:
-- stage: GenerateTerraformDocumentation
-  jobs:
-  - job: Generate_Terraform_Documentation
-    steps:
-    - checkout: self
-      persistCredentials: true  # this allows the later scripts to use the system-provided git token to push changes back to the repo
+  - stage: GenerateTerraformDocumentation
+    jobs:
+      - job: Generate_Terraform_Documentation
+        steps:
+          - checkout: self
+            persistCredentials: true # this allows the later scripts to use the system-provided git token to push changes back to the repo
 
-    ### Link to key vault.
-    - task: AzureKeyVault@1
-      inputs:
-        azureSubscription: $(serviceConnectionName) #ADO service connection (Service principal)
-        KeyVaultName: $(keyvaultName)
-        SecretsFilter: "TerraformDocsPAToken"
-        RunAsPreJob: true
-      displayName: Get PAToken from Keyvault
+          ### Link to key vault.
+          - task: AzureKeyVault@1
+            inputs:
+              azureSubscription: $(serviceConnectionName) #ADO service connection (Service principal)
+              KeyVaultName: $(keyvaultName)
+              SecretsFilter: 'TerraformDocsPAToken'
+              RunAsPreJob: true
+            displayName: Get PAToken from Keyvault
 
-    ### Install Terraform-Docs.
-    - powershell: |
-        Invoke-WebRequest -Uri "https://github.com/terraform-docs/terraform-docs/releases/download/v$(terraformDocsVersion)/terraform-docs-v$(terraformDocsVersion)-windows-amd64.zip" -OutFile "terraform-docs.zip"
-        Expand-Archive -Path "terraform-docs.zip" -DestinationPath "$(System.DefaultWorkingDirectory)\terraform-docs" -Force
-        $env:Path += ";$(System.DefaultWorkingDirectory)\terraform-docs"
-      displayName: 'Install terraform-docs'
+          ### Install Terraform-Docs.
+          - powershell: |
+              Invoke-WebRequest -Uri "https://github.com/terraform-docs/terraform-docs/releases/download/v$(terraformDocsVersion)/terraform-docs-v$(terraformDocsVersion)-windows-amd64.zip" -OutFile "terraform-docs.zip"
+              Expand-Archive -Path "terraform-docs.zip" -DestinationPath "$(System.DefaultWorkingDirectory)\terraform-docs" -Force
+              $env:Path += ";$(System.DefaultWorkingDirectory)\terraform-docs"
+            displayName: 'Install terraform-docs'
 
-    ### Remove all old README.md files and generate new README.md files for each TF module.
-    - powershell: |
-        # Set Modules Root Directory
-        Set-Location "$(Build.SourcesDirectory)\@TF_Modules"
+          ### Remove all old README.md files and generate new README.md files for each TF module.
+          - powershell: |
+              # Set Modules Root Directory
+              Set-Location "$(Build.SourcesDirectory)\@TF_Modules"
 
-        # Get all subdirectories (Terraform module directories)
-        $terraformModuleDirs = Get-ChildItem -Path (Get-Location) -Directory
+              # Get all subdirectories (Terraform module directories)
+              $terraformModuleDirs = Get-ChildItem -Path (Get-Location) -Directory
 
-        # Loop through each directory to cleanup/remove old README files
-        foreach ($dir in $terraformModuleDirs) {
-            # Get all files in the directory
-            $readMeFiles = Get-ChildItem -Path $dir.FullName -Filter 'README.md'
+              # Loop through each directory to cleanup/remove old README files
+              foreach ($dir in $terraformModuleDirs) {
+                  # Get all files in the directory
+                  $readMeFiles = Get-ChildItem -Path $dir.FullName -Filter 'README.md'
 
-            # Loop through each file in each terraform module
-            foreach ($file in $readMeFiles) {
-                # Check if README file already exists and remove
-                if ($file) {
-                    # Remove the file
-                    Remove-Item $file.FullName -Confirm:$false
-                    Write-Output "Old file '$($file.Name)' removed from '$($dir.FullName)'"
-                }
-            }
+                  # Loop through each file in each terraform module
+                  foreach ($file in $readMeFiles) {
+                      # Check if README file already exists and remove
+                      if ($file) {
+                          # Remove the file
+                          Remove-Item $file.FullName -Confirm:$false
+                          Write-Output "Old file '$($file.Name)' removed from '$($dir.FullName)'"
+                      }
+                  }
 
-            #After cleanup create a new README.md file with 'terraform-docs' based on latest TF module code in current folder(terraform module)
-            $tfFiles = Get-ChildItem -Path $dir.FullName -Filter *.tf
+                  #After cleanup create a new README.md file with 'terraform-docs' based on latest TF module code in current folder(terraform module)
+                  $tfFiles = Get-ChildItem -Path $dir.FullName -Filter *.tf
 
-            if ($tfFiles.Count -gt 0) {
-                # Create new README.md file
-                $(System.DefaultWorkingDirectory)\terraform-docs\terraform-docs.exe markdown table $dir.FullName --output-file "README.md"
-            } else {
-                Write-Output "No .tf files found."
-            }
-        }
-      displayName: 'Cleanup and Generate new README for each TF module'
+                  if ($tfFiles.Count -gt 0) {
+                      # Create new README.md file
+                      $(System.DefaultWorkingDirectory)\terraform-docs\terraform-docs.exe markdown table $dir.FullName --output-file "README.md"
+                  } else {
+                      Write-Output "No .tf files found."
+                  }
+              }
+            displayName: 'Cleanup and Generate new README for each TF module'
 
-    ### Commit and push updated README.md files for TF modules.
-    - powershell: |
-        git config --local user.email "terraform-docs@myOrg.com"
-        git config --local user.name "Terraform Docs"
-        git add *.md
-        git commit -m "Update README.md for each TF module"
-        git push origin HEAD:$(Build.SourceBranchName)
-      displayName: 'Commit and Push updated README.md files for TF modules'
-      env:
-        SYSTEM_ACCESSTOKEN: $(TerraformDocsPAToken)
+          ### Commit and push updated README.md files for TF modules.
+          - powershell: |
+              git config --local user.email "terraform-docs@myOrg.com"
+              git config --local user.name "Terraform Docs"
+              git add *.md
+              git commit -m "Update README.md for each TF module"
+              git push origin HEAD:$(Build.SourceBranchName)
+            displayName: 'Commit and Push updated README.md files for TF modules'
+            env:
+              SYSTEM_ACCESSTOKEN: $(TerraformDocsPAToken)
 ```
 
 The pipeline has a single stage, GenerateTerraformDocumentation, which contains a job Generate_Terraform_Documentation. This job performs the following steps:
