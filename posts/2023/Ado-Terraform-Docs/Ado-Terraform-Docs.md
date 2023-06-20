@@ -213,17 +213,17 @@ stages:
               SYSTEM_ACCESSTOKEN: $(TerraformDocsPAToken)
 ```
 
-The pipeline has a single stage, **'GenerateTerraformDocumentation'**, which contains a job Generate_Terraform_Documentation. This job performs the following steps:
+The pipeline has a single stage, **'GenerateTerraformDocumentation'**, which contains a job **'Generate_Terraform_Documentation'**. This job performs the following steps:
 
-Checkout Code: The first step checks out your code from the repository and persists the credentials. The persisted credentials allow the pipeline to push any changes back to the repository.
+1. **Checkout Code:** The first step checks out your code from the repository and persists the credentials. The persisted credentials allow the pipeline to push any changes back to the repository.
 
-Link to Azure Key Vault: The pipeline then retrieves a personal access token (PAT) from an Azure Key Vault using the AzureKeyVault task. This PAT is used later to push updates back to the repository.
+2. **Link to Azure Key Vault:** The pipeline then retrieves a personal access token (PAT) from an Azure Key Vault using the AzureKeyVault task. This PAT is used later to push updates back to the repository.
 
-Install Terraform-Docs: Next, the pipeline downloads and installs a specific version of Terraform-Docs on the runner. The desired version is defined in the pipeline variables.
+3. **Install Terraform-Docs:** Next, the pipeline downloads and installs a specific version of Terraform-Docs on the runner. The desired version is defined in the pipeline variables.
 
-Generate Documentation: Once Terraform-Docs is installed, the pipeline cleans up any old README.md files and generates new ones for each Terraform module. It traverses the Terraform module directories, removes any existing README.md files, and generates new ones based on the current Terraform code.
+4. **Generate Documentation:** Once Terraform-Docs is installed, the pipeline cleans up any old README.md files and generates new ones for each Terraform module. It traverses the Terraform module directories, removes any existing README.md files, and generates new ones based on the current Terraform code.
 
-Commit and Push: Finally, it commits the updated README.md files and pushes them back to the repository using the PAT retrieved from Azure Key Vault.
+5. **Commit and Push:** Finally, it commits the updated README.md files and pushes them back to the repository using the PAT retrieved from Azure Key Vault.
 
 ## Conclusion
 
