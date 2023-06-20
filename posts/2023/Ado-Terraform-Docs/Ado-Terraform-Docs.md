@@ -23,9 +23,7 @@ In this blog post, we will discuss how to automate the generation and update of 
 
 ## The Automation Process
 
-We are using **Azure DevOps pipelines** to automate this process.
-
-Say for example you have a **Terraform** module structure in **Git** that looks like this:
+We are going to use **Azure DevOps pipelines** to automate this process. Say for example you have a **Terraform** module structure in **Git** that looks like this:
 
 ```txt
 ├── @Terraform_Modules_Root_Dir/
