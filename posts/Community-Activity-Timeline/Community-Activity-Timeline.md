@@ -32,6 +32,7 @@ More Coming soon!
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **20/06/2023** | [Automating Terraform Documentation with Terraform-Docs and Azure DevOps](https://dev.to/pwd9000/automating-terraform-documentation-with-terraform-docs-and-azure-devops-oan) | Blog/Website Post | Terraform | DevOps, Automation, IaC, Tutorial |
 | **01/06/2023** | [Terraform - Understanding the Lifecycle Block](https://dev.to/pwd9000/terraform-understanding-the-lifecycle-block-4f6e) | Blog/Website Post | Terraform | DevOps, Automation, IaC, Tutorial |
 | **18/05/2023** | [London Microsoft DevOps Meetup - DevOps Dash May](https://www.meetup.com/london-microsoft-devops/events/292656648) | Event Organiser | DevOps, Meetup | AI/ML, DevOps, Meetup, Automation |
 | **12/05/2023** | [Global Azure Days Bootcamp 2023 - Passwordless authentication between GitHub and Azure using OIDC](https://www.meetup.com/microsoft-reactor-london/events/293192579/) | Public Speaking | DevOps, Conference | DevOps, Meetup, GitHub, DevSecOps |
