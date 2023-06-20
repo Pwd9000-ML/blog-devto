@@ -222,7 +222,7 @@ The pipeline has a single stage, **'GenerateTerraformDocumentation'**, which con
 
 3. **Install Terraform-Docs:** Next, the pipeline downloads and installs a specific version of Terraform-Docs on the DevOps hosted agent. The desired version is defined in the pipeline variables.
 
-4. **Generate Documentation:** Once Terraform-Docs is installed, the pipeline cleans up any old `README.md` files and generates new ones for each Terraform module. It traverses the Terraform module directories, removes any existing `README.md` files, and generates new ones based on the current Terraform code.
+4. **Generate Documentation:** Once Terraform-Docs is installed, the pipeline cleans up any old `README.md` files and generates new ones for each Terraform module. It traverses the Terraform module directories under the path `$(Build.SourcesDirectory)/@Terraform_Modules_Root_Dir`, removes any existing `README.md` files, and generates new ones based on the current Terraform code. (You can update this path to match your Terraform module directory structure.)
 
 5. **Commit and Push:** Finally, it commits the updated `README.md` files and pushes them back to the repository using the PAT retrieved from Azure Key Vault.
 
