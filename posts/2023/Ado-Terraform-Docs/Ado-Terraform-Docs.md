@@ -1,6 +1,6 @@
 ---
 title: Automating Terraform Documentation with Terraform-Docs and Azure DevOps
-published: false
+published: true
 description: Automating Terraform Documentation with Terraform-Docs and Azure DevOps
 tags: 'cicd, iac, terraform, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/Ado-Terraform-Docs/assets/main-tf-tips.png'
@@ -39,7 +39,7 @@ We are going to use **Azure DevOps pipelines** to automate this process. Say for
 │   │   ├── outputs.tf
 ```
 
-To automate each sub module **'README.md'** file, we need to create an **Azure DevOps pipeline** that will run on a trigger when any changes are made and merged in our **Git** repository **'main'** branch. The pipeline will then automatically generate the documentation for each Terraform module and commit the updated **'README.md'** files back to the repository.
+To automate each sub module **'README.md'** file, we need to create an **Azure DevOps pipeline** that will run on a trigger when any changes are made to our terrafor code base and merged in our **Git** repository's **'main'** branch. The pipeline will then automatically generate the documentation for each Terraform module and commit the updated **'README.md'** files back to the repository.
 
 Let's take a closer look at the following [Multi-Stage pipeline for windows](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2023/Ado-Terraform-Docs/code/generate-terraform-docs-windows.yml). (for linux based build agents see this [Multi-Stage pipeline for linux](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2023/Ado-Terraform-Docs/code/generate-terraform-docs-linux.yml) instead).
 
