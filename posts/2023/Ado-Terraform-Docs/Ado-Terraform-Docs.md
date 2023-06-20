@@ -227,9 +227,7 @@ The pipeline has a single stage, **'GenerateTerraformDocumentation'**, which con
 
 ## Pre-requisites
 
-There are a few pre-requisites for this solution that we need to set up before we can run the pipeline. These include the following based on the above steps/tasks performed by the pipeline:  
-
-
+There are a few pre-requisites for this solution that we need to set up before we can run the pipeline. These include the following based on the above steps/tasks performed by the pipeline:
 
 ## Conclusion
 
