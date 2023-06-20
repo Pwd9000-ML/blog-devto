@@ -268,7 +268,7 @@ The PAT token scope of permissions required for this solution is **'Code (Read &
 
 For more information on how to create a PAT token, see [here](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=preview-page).
 
-After creating the PAT token, add it to the keyvault as a secret called **'$(TerraformDocsPAToken)'** and update the pipeline variables to point to the correct keyvault name.
+After creating the PAT token, add it to the keyvault as a secret called **'TerraformDocsPAToken'** and update the pipeline variables to point to the correct keyvault name.
 
 ### 2. Add generic-contribute permissions to the service principal used by the ADO service connection
 
