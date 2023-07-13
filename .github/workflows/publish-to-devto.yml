@@ -16,7 +16,7 @@ jobs:
     - name: Setup Node
       uses: actions/setup-node@v3.7.0
       with:
-        node-version: 12
+        node-version: 14
 
     - name: Install Dependencies
       uses: bahmutov/npm-install@v1.8.32
