@@ -32,8 +32,9 @@ More Coming soon!
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **13/07/2022** | [OSS maintainer - Terraform Module: rbac-administration (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/rbac-administration/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, RBAC, CICD, Maintainer |
-| **01/07/2022** | [OSS maintainer - Terraform Module: sonarqube-aci-internal (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/sonarqube-aci-internal/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
+| **02/08/2023** | [OSS maintainer - Terraform Module: private-dns-administration (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/private-dns-administration/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
+| **13/07/2023** | [OSS maintainer - Terraform Module: rbac-administration (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/rbac-administration/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, RBAC, CICD, Maintainer |
+| **01/07/2023** | [OSS maintainer - Terraform Module: sonarqube-aci-internal (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/sonarqube-aci-internal/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
 | **20/06/2023** | [Automating Terraform Documentation with Terraform-Docs and Azure DevOps](https://dev.to/pwd9000/automating-terraform-documentation-with-terraform-docs-and-azure-devops-oan) | Blog/Website Post | Terraform | DevOps, Automation, IaC, Tutorial |
 | **01/06/2023** | [Terraform - Understanding the Lifecycle Block](https://dev.to/pwd9000/terraform-understanding-the-lifecycle-block-4f6e) | Blog/Website Post | Terraform | DevOps, Automation, IaC, Tutorial |
 | **18/05/2023** | [London Microsoft DevOps Meetup - DevOps Dash May](https://www.meetup.com/london-microsoft-devops/events/292656648) | Event Organiser | DevOps, Meetup | AI/ML, DevOps, Meetup, Automation |
