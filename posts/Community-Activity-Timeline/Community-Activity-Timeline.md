@@ -32,6 +32,7 @@ More Coming soon!
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **14/08/2023** | [OSS maintainer - Terraform Module: openai-private-chatgpt (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/openai-private-chatgpt/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
 | **06/08/2023** | [OSS maintainer - Terraform Module: openai-service (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/openai-service/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
 | **02/08/2023** | [OSS maintainer - Terraform Module: private-dns-administration (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/private-dns-administration/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
 | **13/07/2023** | [OSS maintainer - Terraform Module: rbac-administration (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/rbac-administration/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, RBAC, CICD, Maintainer |
