@@ -24,7 +24,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | Date | Activity | Type | Topic Area | Tags |
 | ---- | -------- | ---- | ---------- | ---- |
 
-More Coming soon!
+| **27/09/2023** | [DevSecCon - GitHub-Azure Passwordless Authentication](https://www.devseccon.com/events/rethinking-kubernetes-github-azure-passwordless-authentication) | Public Speaking | Azure, GitHub | DevSecOps, DevOps, Security |
 
 ---
 
@@ -32,6 +32,7 @@ More Coming soon!
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **17/08/2023** | [Developer South Coast - Multi environment AZURE deployments with Terraform and GitHub](https://www.meetup.com/developersouthcoast/events/294910384) | Public Speaking | Azure, Terraform | Terraform, Azure, IaC, CICD |
 | **14/08/2023** | [OSS maintainer - Terraform Module: openai-private-chatgpt (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/openai-private-chatgpt/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
 | **06/08/2023** | [OSS maintainer - Terraform Module: openai-service (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/openai-service/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
 | **02/08/2023** | [OSS maintainer - Terraform Module: private-dns-administration (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/private-dns-administration/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
