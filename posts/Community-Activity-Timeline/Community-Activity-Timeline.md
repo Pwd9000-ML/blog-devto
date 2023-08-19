@@ -23,7 +23,6 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | ---- | -------- | ---- | ---------- | ---- |
-
 | **27/09/2023** | [DevSecCon - GitHub-Azure Passwordless Authentication](https://www.devseccon.com/events/rethinking-kubernetes-github-azure-passwordless-authentication) | Public Speaking | Azure, GitHub | DevSecOps, DevOps, Security |
 
 ---
