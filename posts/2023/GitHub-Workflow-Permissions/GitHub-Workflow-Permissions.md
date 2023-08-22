@@ -31,9 +31,9 @@ The `permissions` key allows you to set read, write, or none to different `scope
 Here is an example of defining permissions at the root level of a workflow:
 
 ```yaml
-name: "My workflow"
+name: 'My workflow'
 
-on: [ push ]
+on: [push]
 
 permissions:
   actions: read|write|none
@@ -50,8 +50,7 @@ permissions:
   security-events: read|write|none
   statuses: read|write|none
 
-jobs:
-  ...
+jobs: ...
 ```
 
 You can also define permissions at the job level:
@@ -80,9 +79,9 @@ jobs:
       - uses: actions/stale@v5
 ```
 
-If you specify the access for any of these scopes, all of those that are not specified are set to `none`.  
+If you specify the access for any of these scopes, all of those that are not specified are set to `none`.
 
-You can use the following syntax to define read or write access for all of the available scopes:  
+You can use the following syntax to define read or write access for all of the available scopes:
 
 ```yaml
 permissions: read-all|write-all
@@ -96,11 +95,11 @@ permissions: {}
 
 ## Practical Use Cases
 
-Now that we understand how the permissions key is structured, let's move on to a few practical use cases.  
+Now that we understand how the permissions key is structured, let's move on to a few practical use cases.
 
-1. **Workflows That Need Custom Permissions**  
+1. **Workflows That Need Custom Permissions**
 
-In workflows where you need to increase or restrict permissions for a particular job, you can set permissions on the job level:  
+In workflows where you need to increase or restrict permissions for a particular job, you can set permissions on the job level:
 
 ```yaml
 jobs:
@@ -109,17 +108,17 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-    - name: Push commit
-      run: |
-        echo "Hello, GitHub!" > hello.txt
-        git add hello.txt
-        git commit -m "Add hello.txt"
-        git push
+      - name: Push commit
+        run: |
+          echo "Hello, GitHub!" > hello.txt
+          git add hello.txt
+          git commit -m "Add hello.txt"
+          git push
 ```
 
-In this example, `job1` has **write** access to the repository contents which allows it to create a commit.  
+In this example, `job1` has **write** access to the repository contents which allows it to create a commit.
 
-2. **Cases Where You Want to Limit Potential Damage**  
+2. **Cases Where You Want to Limit Potential Damage**
 
 fgdfg
 
