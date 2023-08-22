@@ -7,17 +7,18 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 1576283
 series: GitHub Pro Tips
+date: '2023-08-22T09:46:21Z'
 ---
 
 ## Overview - Managing Permissions in GitHub Actions Workflows
 
-In this **GitHub Pro Tips** post we will look at how to manage permissions in GitHub Actions workflows.  
+In this **GitHub Pro Tips** post we will look at how to manage permissions in GitHub Actions workflows.
 
-GitHub Actions is a powerful tool for automating your CI/CD pipelines/workflows. It allows you to create workflows that can be triggered by events such as a **push** to a repository, a **pull request**, or a **new release**. Workflows are defined in **YAML** files that live in the `.github/workflows` directory of your repository.  
+GitHub Actions is a powerful tool for automating your CI/CD pipelines/workflows. It allows you to create workflows that can be triggered by events such as a **push** to a repository, a **pull request**, or a **new release**. Workflows are defined in **YAML** files that live in the `.github/workflows` directory of your repository.
 
-In terms of Continuous Integration/Continuous Deployment (CI/CD), GitHub Actions provides a robust feature set for automating, customizing, and executing your software development workflows right in your repository. Today we will look at the the `permissions` parameter as a groundbreaking feature for constraining the `permissions` provided to the GitHub token.  
+In terms of Continuous Integration/Continuous Deployment (CI/CD), GitHub Actions provides a robust feature set for automating, customizing, and executing your software development workflows right in your repository. Today we will look at the the `permissions` parameter as a groundbreaking feature for constraining the `permissions` provided to the GitHub token.
 
-We will also look at a few practical examples of how and when you would use this feature.  
+We will also look at a few practical examples of how and when you would use this feature.
 
 ## Conclusion
 
