@@ -97,7 +97,7 @@ permissions: {}
 
 Now that we understand how the permissions key is structured, let's move on to a few practical use cases.
 
-- **Workflows That Need Custom Permissions**  
+- **Workflows That Need Custom Permissions**
 
 In workflows where you need to increase or restrict permissions for a particular job, you can set permissions on the job level:
 
@@ -118,9 +118,9 @@ jobs:
 
 In this example, `job1` has **write** access to the repository contents which allows it to create a commit.
 
-- **Cases Where You Want to Limit Potential Damage**  
+- **Cases Where You Want to Limit Potential Damage**
 
-Perhaps your workflow only needs **read** access to the contents of your repository and should never be able to write. By setting the contents key to **read** or **none**, you can prevent potential malicious scripts or configuration errors from altering your repo:  
+Perhaps your workflow only needs **read** access to the contents of your repository and should never be able to write. By setting the contents key to **read** or **none**, you can prevent potential malicious scripts or configuration errors from altering your repo:
 
 ```yaml
 permissions: read
@@ -128,7 +128,7 @@ permissions: read
 
 - **Third-Party Action Usage**
 
-When using third-party actions in your workflow, it's a wise security practice to limit the permissions of the `GITHUB_TOKEN`, especially if you're not entirely sure about what the third-party action is doing.  
+When using third-party actions in your workflow, it's a wise security practice to limit the permissions of the `GITHUB_TOKEN`, especially if you're not entirely sure about what the third-party action is doing.
 
 ```yaml
 permissions:
@@ -137,11 +137,11 @@ permissions:
   contents: read
 ```
 
-The example above restricts the third-party actions from initiating further GitHub actions, while allowing read access to checks and contents.  
+The example above restricts the third-party actions from initiating further GitHub actions, while allowing read access to checks and contents.
 
 ## Conclusion
 
-In conclusion, the **permissions** parameter provides refined control over the `GITHUB_TOKEN` scope within GitHub **Actions**, introducing a new level of security and allowing developers to adhere to the principle of least privilege. With this feature, you can avoid accidental write operations, limit the potential harm from vulnerabilities, and securely use third-party actions.  
+In conclusion, the **permissions** parameter provides refined control over the `GITHUB_TOKEN` scope within GitHub **Actions**, introducing a new level of security and allowing developers to adhere to the principle of least privilege. With this feature, you can avoid accidental write operations, limit the potential harm from vulnerabilities, and securely use third-party actions.
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
