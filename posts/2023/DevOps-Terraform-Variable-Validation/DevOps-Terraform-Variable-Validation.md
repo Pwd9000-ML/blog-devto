@@ -12,7 +12,7 @@ date: '2023-08-28T08:06:42Z'
 
 ## Overview
 
-Today we will discus an interesting feature of Terraform and take a closer look at the **[variable validation rules](https://developer.hashicorp.com/terraform/language/values/variables#custom-validation-rules)** inside **terraform variables**.
+Today we will discuss an interesting feature of Terraform by taking a closer look at **[variable validation rules](https://developer.hashicorp.com/terraform/language/values/variables#custom-validation-rules)** inside **terraform variables**.
 
 ```hcl
 variable "fruit" {
@@ -27,7 +27,7 @@ variable "fruit" {
 }
 ```
 
-The above example validates the `fruit` variable against a set of predefined fruits. An input that matches the regex pattern passes the validation. If any invalid fruit is passed, the error message quickly informs the users about the allowed values.
+The above example **validates** the `fruit` variable against a set of predefined fruits. An input that matches the regex pattern passes the validation. If any invalid fruit is passed, the error message quickly informs the users about the allowed values.
 
 **Terraform's** consistent updates have always aimed to make **infrastructure-as-code (IaC)** development more efficient, secure, and error-free. One of these updates, the addition of a **validation capability** for **input variables**, has significantly improved this IaC tool's robustness.
 
