@@ -12,7 +12,7 @@ date: '2023-08-28T08:06:42Z'
 
 ## Overview
 
-Today we will discus an interesting feature of Terraform and take a closer look at the **variable validation block** inside **terraform variables**.
+Today we will discus an interesting feature of Terraform and take a closer look at the **[variable validation rules](https://developer.hashicorp.com/terraform/language/values/variables#custom-validation-rules)** inside **terraform variables**.
 
 ```hcl
 variable "fruit" {
