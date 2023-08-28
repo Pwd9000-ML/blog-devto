@@ -12,7 +12,26 @@ date: '2023-08-28T08:06:42Z'
 
 ## Overview
 
-**Terraform's** consistent updates have always aimed to make **infrastructure-as-code (IaC)** development more efficient, secure, and error-free. One of these updates, the addition of a **validation capability** for **input variables**, has significantly improved this IaC tool's robustness. This blog post will demystify **Terraform validation**, discussing its utility and providing practical examples using the Azure platform.
+Today we will discus an interesting feature of Terraform and take a closer look at the **variable validation block** inside **terraform variables**.  
+
+```hcl
+variable "fruit" {
+  type        = string
+  description = "What fruit to pick?"
+  default     = "apple"
+
+  validation {
+    condition     = can(regex("^(lemon|apple|mango|banana|cherry)$", var.fruit))
+    error_message = "Invalid fruit selected, only allowed fruits are: 'lemon', 'apple', 'mango', 'banana', 'cherry'. Default 'apple'"
+  }
+}
+```
+
+The above example validates the `fruit` variable against a set of predefined fruits. An input that matches the regex pattern passes the validation. If any invalid fruit is passed, the error message quickly informs the users about the allowed values.  
+
+**Terraform's** consistent updates have always aimed to make **infrastructure-as-code (IaC)** development more efficient, secure, and error-free. One of these updates, the addition of a **validation capability** for **input variables**, has significantly improved this IaC tool's robustness.  
+
+This blog post will demystify **Terraform validation**, discussing its utility and providing practical examples using the Azure platform.  
 
 ## Understanding Terraform Variable Validation
 
