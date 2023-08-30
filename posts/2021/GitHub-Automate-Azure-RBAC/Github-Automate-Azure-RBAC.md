@@ -159,7 +159,7 @@ The next thing we will do is create our GitHub actions workflow and script. Lets
 
         steps:
         - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.6.0
         with:
             fetch-depth: 0
 

@@ -97,7 +97,7 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.6.0
       - uses: ncipollo/release-action@v1
         with:
           generateReleaseNotes: true
@@ -139,7 +139,7 @@ That's it, now we can automatically let **Dependabot** take care of our terrafor
 
 Additionally we also have a really straight forward easy way to create new releases of our own module by simply creating a valid semantic version number as a tag and then push that tag to our remote repository where the **GitHub Workflow** will create a release for us based on the semantic version tag.
 
-As an added bonus, I also added another section onto the **Dependabot** config file to also regularly check the **GitHub Actions** used in the workflow called: `ncipollo/release-action@v1` and `actions/checkout@v2` so when a new versions of these actions come out, **Dependabot** will also let me know that I can update my workflow actions (Ive also changed my Dependency scans to run on a specific week day and time as shown below).
+As an added bonus, I also added another section onto the **Dependabot** config file to also regularly check the **GitHub Actions** used in the workflow called: `ncipollo/release-action@v1` and `actions/checkout@v3.6.0` so when a new versions of these actions come out, **Dependabot** will also let me know that I can update my workflow actions (Ive also changed my Dependency scans to run on a specific week day and time as shown below).
 
 ```yml
 version: 2

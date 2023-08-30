@@ -393,7 +393,7 @@ jobs:
       run:
         shell: pwsh
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.6.0
       - name: Setup Terraform
         run: choco install terraform -y
       - name: Refresh Environment

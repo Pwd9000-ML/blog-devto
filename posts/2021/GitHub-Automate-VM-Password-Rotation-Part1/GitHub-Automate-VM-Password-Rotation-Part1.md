@@ -153,7 +153,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.6.0
 
       - name: Log into Azure using github secret AZURE_CREDENTIALS
         uses: Azure/login@v1

@@ -281,7 +281,7 @@ jobs:
   testRunner:
     runs-on: [self-hosted, Pwd9000, GitHub-Codespaces-Lab]
     steps:
-      - uses: actions/checkout@v3.0.2
+      - uses: actions/checkout@v3.6.0
       - name: Display Terraform Version
         run: terraform --version
       - name: Display Azure-CLI Version

@@ -144,7 +144,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.6.0
 
       # Run MSDO analyzers
       - name: Run Microsoft Security DevOps Analysis

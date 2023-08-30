@@ -301,7 +301,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.6.0
 
       - name: Scan IaC - tfsec
         if: ${{ inputs.ENABLE_TFSEC == 'true' }}
