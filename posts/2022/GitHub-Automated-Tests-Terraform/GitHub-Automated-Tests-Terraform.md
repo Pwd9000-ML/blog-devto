@@ -85,10 +85,10 @@ jobs:
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.6.0
 
       - name: Run Dependency Tests - Plan AND Apply AND Destroy
-        uses: Pwd9000-ML/terraform-azurerm-tests@v1.0.2
+        uses: Pwd9000-ML/terraform-azurerm-tests@v1.0.6
         with:
           test_type: plan-apply-destroy ## (Required) Valid options are "plan", "plan-apply", "plan-apply-destroy". Default="plan"
           path: 'tests/auto_test1' ## (Optional) Specify path to test module to run.
@@ -113,6 +113,11 @@ jobs:
       contents: write
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3.6.0
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+
       - name: Dependabot metadata
         id: metadata
         uses: dependabot/fetch-metadata@v1.1.1
@@ -179,10 +184,10 @@ dependabot-plan-apply-destroy:
   if: ${{ github.actor == 'dependabot[bot]' }}
   steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3.6.0
 
     - name: Run Dependency Tests - Plan AND Apply AND Destroy
-      uses: Pwd9000-ML/terraform-azurerm-tests@v1.0.2
+      uses: Pwd9000-ML/terraform-azurerm-tests@v1.0.6
       with:
         test_type: plan-apply-destroy ## (Required) Valid options are "plan", "plan-apply", "plan-apply-destroy". Default="plan"
         path: 'tests/auto_test1' ## (Optional) Specify path to test module to run.
@@ -213,7 +218,7 @@ if: ${{ github.actor == 'dependabot[bot]' }}
 
 **NOTE:** To see what extra permissions can be granted to the `GITHUB_TOKEN` see: [Permissions for the github_token](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)
 
-The automated tests are then run using the action: `uses: Pwd9000-ML/terraform-azurerm-tests@v1.0.2`
+The automated tests are then run using the action: `uses: Pwd9000-ML/terraform-azurerm-tests@v1.0.6`
 
 The following inputs can be used:
 
@@ -296,6 +301,11 @@ merge_pr:
     contents: write
   if: ${{ github.actor == 'dependabot[bot]' }}
   steps:
+    - name: Checkout
+      uses: actions/checkout@v3.6.0
+      with:
+        token: ${{secrets.GITHUB_TOKEN}}
+
     - name: Dependabot metadata
       id: metadata
       uses: dependabot/fetch-metadata@v1.1.1
