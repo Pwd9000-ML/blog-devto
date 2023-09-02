@@ -97,7 +97,7 @@ permissions: {}
 
 Now that we understand how the permissions key is structured, let's move on to a few practical use cases.
 
-## Example 1: Workflows That Need Custom Permissions
+### Example 1: Workflows That Need Custom Permissions
 
 In workflows where you need to increase or restrict permissions for a particular job, you can set permissions on the job level:
 
@@ -118,7 +118,9 @@ jobs:
 
 In this example, `job1` has **write** access to the repository contents which allows it to create a commit.
 
-## Example 2: Cases Where You Want to Limit Potential Damage
+---
+
+### Example 2: Cases Where You Want to Limit Potential Damage
 
 Perhaps your workflow only needs **read** access to the contents of your repository and should never be able to write. By setting the contents key to **read** or **none**, you can prevent potential malicious scripts or configuration errors from altering your repo:
 
@@ -126,7 +128,9 @@ Perhaps your workflow only needs **read** access to the contents of your reposit
 permissions: read
 ```
 
-## Example 3: Third-Party Action Usage
+---
+
+### Example 3: Third-Party Action Usage
 
 When using third-party actions in your workflow, it's a wise security practice to limit the permissions of the `GITHUB_TOKEN`, especially if you're not entirely sure about what the third-party action is doing.
 
@@ -138,6 +142,8 @@ permissions:
 ```
 
 The example above restricts the third-party actions from initiating further GitHub actions, while allowing read access to checks and contents.
+
+---
 
 ## Conclusion
 
