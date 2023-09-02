@@ -31,6 +31,8 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **02/09/2023** | [GitHub - Understanding Workflow Permissions](https://dev.to/pwd9000/fgjgghjgh-19ka) | Blog/Website Post | GitHub | DevOps, Automation, GitHubActions, Tutorial |
+| **28/08/2023** | [Terraform - Variable Validation](https://dev.to/pwd9000/terraform-variable-validation-47ka) | Blog/Website Post | Terraform | DevOps, Automation, IaC, Tutorial |
 | **17/08/2023** | [Developer South Coast - Multi environment AZURE deployments with Terraform and GitHub](https://www.meetup.com/developersouthcoast/events/294910384) | Public Speaking | Azure, Terraform | Terraform, Azure, IaC, CICD |
 | **14/08/2023** | [OSS maintainer - Terraform Module: openai-private-chatgpt (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/openai-private-chatgpt/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
 | **06/08/2023** | [OSS maintainer - Terraform Module: openai-service (AZURE)](https://registry.terraform.io/modules/Pwd9000-ML/openai-service/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
