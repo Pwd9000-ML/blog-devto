@@ -1,6 +1,6 @@
 ---
 title: GitHub - Understanding Workflow Permissions
-published: false
+published: true
 description: GitHub - Understanding GitHub Workflow Permissions
 tags: 'github, githubactions, cicd, automation'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Workflow-Permissions/assets/main-gh-tips.png'
