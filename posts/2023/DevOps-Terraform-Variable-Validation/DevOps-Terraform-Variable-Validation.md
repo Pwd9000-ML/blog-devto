@@ -132,7 +132,7 @@ resource "azurerm_private_dns_cname_record" "private_dns_cname_record" {
 }
 ```
 
-The resource blocks above creates an Azure Private DNS **'A'** or **'CNAME'** record, but only if the `private_dns_record_type` variable is **"A"** or **"CNAME"** for example. If the DNS record type doesn't fit that criteria of teh validation, count equals 0, and Terraform won't create this record type. This approach ensures the correct DNS record gets created based on the initially validated variable and avoids unnecessary or inaccurate resources.
+The resource blocks above creates an Azure Private DNS **'A'** or **'CNAME'** record, but only if the `private_dns_record_type` variable is **"A"** or **"CNAME"** for example. If the DNS record type doesn't fit that criteria of the validation, count equals 0, and Terraform won't create this record type. This approach ensures the correct DNS record gets created based on the initially validated variable and avoids unnecessary or inaccurate resources.
 
 By integrating variable validation in your Terraform configurations like this, you enhance the **accuracy and predictability** of your deployments. With this advanced feature, you'll be able to manage resources more effectively on platforms like Azure.
 
