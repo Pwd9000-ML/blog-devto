@@ -29,7 +29,7 @@ Firs look at finding a suitable project, one that aligns with your skills, inter
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/awesome.png)
 
-**GitHub Search:** Use GitHub's advanced search feature to seek out projects using specific filters, such as repositories written in a particular language, those with issues flavored as ***"good first issue"*** or ***"help wanted"***, or projects that have not been updated recently.
+**GitHub Search:** Use GitHub's advanced search feature to seek out projects using specific filters, such as repositories written in a particular language, those with issues flavored as **_"good first issue"_** or **_"help wanted"_**, or projects that have not been updated recently.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/search.png)
 
@@ -64,11 +64,11 @@ Here are the steps to follow:
 
 ![image.png]()
 
-**Create a New Branch:** It's a good practice to create a new branch for each new feature or bug fix you work on, to keep your contributions organized. Use the git branch `'branch_name'` to create a new branch, and git checkout branch_name to switch to it.
+**Create a New Branch:** It's a good practice to create a new branch for each new feature or bug fix you work on, to keep your contributions organised. Use the git branch `'branch_name'` to create a new branch, and git checkout branch_name to switch to it.
 
 ![image.png]()
 
-**Make Changes and Commit:** Now, dive into the code. First, open the code in your preferred Integrated Development Environment (IDE), such as [VSCode]() or even a [GitHub Codespace]() . Make the necessary changes and save them. After making changes, use `git add .` to stage the changes, and `git commit -m "commit message"` to save your changes. Be sure to write a meaningful commit message, explaining the changes you made.
+**Make Changes and Commit:** Now, dive into the code. First, open the code in your preferred Integrated Development Environment (IDE), such as [VSCode](https://code.visualstudio.com) or even a [GitHub Codespace](https://docs.github.com/en/codespaces/overview) . Make the necessary changes and save them. After making changes, use `git add .` to stage the changes, and `git commit -m "commit message"` to save your changes. Be sure to write a meaningful commit message, explaining the changes you made.
 
 ![image.png]()
 
@@ -76,7 +76,7 @@ Here are the steps to follow:
 
 ![image.png]()
 
-**Create a Pull Request:** Navigate back to your forked repository on GitHub. Click on `'Pull Request'` then create a new pull request. Ensure the source branch is **your** recently created **branch** and the destination branch is the master branch of the original repository. Summarize the changes you've made, then click `'Create a pull request'`.
+**Create a Pull Request:** Navigate back to your forked repository on GitHub. Click on `'Pull Request'` then create a new pull request. Ensure the source branch is **your** recently created **branch** and the destination branch is the master branch of the original repository. Summarise the changes you've made, then click `'Create a pull request'`.
 
 ![image.png]()
 
