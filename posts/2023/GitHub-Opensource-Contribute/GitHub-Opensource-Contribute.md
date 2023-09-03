@@ -27,6 +27,24 @@ Firs look at finding a suitable project, one that aligns with your skills, inter
 
 - **GitHub Search:** Use GitHub's advanced search feature to seek out projects using specific filters, such as repositories written in a particular language, those with issues flavored as **'good first issue'** or **'help wanted'**, or projects that have not been updated recently.  
 
+![image.png]()
+
+## Contributing Guidelines
+
+An essential step before making any contribution is to review the project's contribution guidelines, which will guide you throughout your contribution journey. These guidelines are typically found in a file named `CONTRIBUTING.md`, `CONTRIBUTING.md`, or `HOW_TO_CONTRIBUTE.md` in the project repository. In some cases, it might also be a part of the `README.md` file.
+
+**The guidelines may contain:**
+
+1. **Code of Conduct:** This outlines the expectations for participation in the community, as well as the consequences for unacceptable behavior.  
+
+2. **What to Contribute:** Most projects clarify what they expect from contributors, be it bug reports, feature requests, or code improvements.  
+
+3. **Pull Request Process:** Step-by-step guidance on how to submit a pull request (PR) for the project.  
+
+4. **Coding Standards:** The coding conventions, like code styling and testing procedures, used in the project.
+
+If the contributing guidelines seem unclear, do not hesitate to open an issue asking the maintainers for clarification.
+
 ## Conclusion
 
 I hope you have enjoyed this post and have learned something new. :heart:
