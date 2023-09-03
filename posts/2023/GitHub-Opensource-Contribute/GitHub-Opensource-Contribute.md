@@ -35,11 +35,11 @@ An essential step before making any contribution is to review the project's cont
 
 **The guidelines may contain:**
 
-1. **Code of Conduct:** This outlines the expectations for participation in the community, as well as the consequences for unacceptable behavior.  
+1. **Code of Conduct:** This outlines the expectations for participation in the community, as well as the consequences for unacceptable behavior.
 
-2. **What to Contribute:** Most projects clarify what they expect from contributors, be it bug reports, feature requests, or code improvements.  
+2. **What to Contribute:** Most projects clarify what they expect from contributors, be it bug reports, feature requests, or code improvements.
 
-3. **Pull Request Process:** Step-by-step guidance on how to submit a pull request (PR) for the project.  
+3. **Pull Request Process:** Step-by-step guidance on how to submit a pull request (PR) for the project.
 
 4. **Coding Standards:** The coding conventions, like code styling and testing procedures, used in the project.
 
