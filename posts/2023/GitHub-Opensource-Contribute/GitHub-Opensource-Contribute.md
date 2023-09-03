@@ -79,13 +79,17 @@ Finally, let's focus on the most rewarding part, contributing to an open-source 
 
 **Push Your Changes:** After committing your changes, it's time to upload them to your **forked repository** on GitHub. This process is known as `'pushing'`. The `git push origin your_branch_name` command will push your changes to your forked GitHub repository.
 
-![image.png]()
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/com2.png)  
 
 **Create a Pull Request:** Navigate back to your forked repository on GitHub. Click on `'Pull Request'` then create a new pull request. Ensure the source branch is **your** recently created **branch** and the destination branch is the master branch of the original repository. Summarise the changes you've made, then click `'Create a pull request'`.
 
-![image.png]()
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/PR.png)  
 
-Pat yourself on the back! You've just made your first pull request. The maintainers of the original repository will then review your request, provide feedback or suggest changes (if required), and finally merge the changes into the original repository.
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/PR2.png)  
+
+Pat yourself on the back! You've just made your first pull request. The maintainers of the original repository will then review your request, provide feedback or suggest changes (if required), and finally merge the changes into the original repository. You can inspect your Pull request on teh original repository by clicking on the `'Pull Requests'` tab.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/PR3.png)  
 
 ## Conclusion
 
