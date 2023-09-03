@@ -35,7 +35,7 @@ Firs look at finding a suitable project, one that aligns with your skills, inter
 
 ## Contributing Guidelines
 
-An essential step before making any contribution is to review the project's contribution guidelines, which will guide you throughout your contribution journey. These guidelines are typically found in a file named `CONTRIBUTING.md`, `CONTRIBUTING.md`, or `HOW_TO_CONTRIBUTE.md` in the project repository. In some cases, it might also be a part of the `README.md` file.  
+An essential step before making any contribution is to review the project's contribution guidelines, which will guide you throughout your contribution journey. These guidelines are typically found in a file named `CONTRIBUTING.md`, `CONTRIBUTING.md`, or `HOW_TO_CONTRIBUTE.md` in the project repository. In some cases, it might also be a part of the `README.md` file.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/cont.png)
 
