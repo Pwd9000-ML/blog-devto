@@ -29,7 +29,7 @@ Firs look at finding a suitable project, one that aligns with your skills, inter
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/awesome.png)
 
-**GitHub Search:** Use GitHub's advanced search feature to seek out projects using specific filters, such as repositories written in a particular language, those with issues flavored as ***'good first issue'*** or ***'help wanted'***, or projects that have not been updated recently.
+**GitHub Search:** Use GitHub's advanced search feature to seek out projects using specific filters, such as repositories written in a particular language, those with issues flavored as ***"good first issue"*** or ***"help wanted"***, or projects that have not been updated recently.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/search.png)
 
