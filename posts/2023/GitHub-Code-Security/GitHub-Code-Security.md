@@ -27,7 +27,7 @@ You can enable and configure these security features on **_all_** repositories, 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/orgsec2.png)
 
-Or you can enabled on these features on individual repositories, by navigating to the **Security** tab in your repository's **settings**.
+Or you can also enable/disable security features on individual repositories, by navigating to the **Security** tab in your repository's **settings**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/repo-sec.png)
 
