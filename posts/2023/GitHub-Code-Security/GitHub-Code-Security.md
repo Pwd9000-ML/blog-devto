@@ -84,8 +84,8 @@ Here is what a default configuration config would looks like:
 If your repository does not host supported CodeQL languages, or even if it does, but also contain other languages or frameworks, you can also add third-party code scanning tools in addition to your repository to further enhance your code's security, such as:
 
 - **_[SonarCloud:](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning)_** A cloud-based code analysis service that automatically detects bugs, vulnerabilities, and code smells in your code.
-- **_TFSEC:_** A static analysis security scanner for your Terraform code.
-- **_trivy:_** Scan Docker container images for vulnerabilities in OS packages and language dependencies.
+- **_[TfSec:](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning)_** A static analysis security scanner for your Terraform code.
+- **_[trivy:](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning)_** Scan Docker container images for vulnerabilities in OS packages and language dependencies.
 
 At the time of this writing there are over 70 third-party [code scanning tools/workflows](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning) available for use, and the list is growing.
 
@@ -114,6 +114,22 @@ You can also look at what dependencies are being monitored by **Dependabot** in 
 ---
 
 ## 5. Security Policies and Advisories
+
+GitHub allows developers to forge their security policies and advisories by allowing anyone to report security vulnerabilities directly and privately to the maintainers.  
+
+- A **security policy** document assists contributors in understanding how to report a security vulnerability in your project. It's like creating a help page for a user who identifies a potential breach, thereby promoting responsible reporting.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/pol.png)  
+
+- A **security advisory**, on the other hand, allows you to interact with users regarding identified vulnerabilities. For example, you could use an advisory to discuss a recently discovered flaw in your project, suggest a workaround, and preview a fix before public disclosure.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/report.png)  
+
+When private vulnerability reporting is enabled for a repository, security researchers will see a new button in the Advisories page of the repository. The security researcher can click this button to privately discuss, fix, and publish information about security vulnerabilities in your repository's code.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/report2.png)  
+
+Have a look at **_[Privately reporting a security vulnerability](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability)_** for more information.  
 
 ---
 
