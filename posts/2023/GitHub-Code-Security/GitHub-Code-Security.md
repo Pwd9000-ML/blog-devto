@@ -19,17 +19,17 @@ In this guide, we will walk you through the varied features, from **security ale
 
 ## Automating Code Security
 
-Before we dive deeper, let's understand why we need to focus on securing our code. With cyber threats on the rise, we simply can't ignore the importance of robust security measures. Hackers often exploit weak spots in your code and dependencies, which might be left vulnerable accidentally. GitHub has automated security features that help mitigate these risks, making your projects resilient to such threats.  
+Before we dive deeper, let's understand why we need to focus on securing our code. With cyber threats on the rise, we simply can't ignore the importance of robust security measures. Hackers often exploit weak spots in your code and dependencies, which might be left vulnerable accidentally. GitHub has automated security features that help mitigate these risks, making your projects resilient to such threats.
 
-You can configure these security features to on all of your repositories, by navigating to the **Security & Analysis** tab in your organization's settings.  
+You can configure these security features to on all of your repositories, by navigating to the **Security & Analysis** tab in your organization's settings.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/orgsec2.png)
 
-Or on individual repositories, by navigating to the **Security** tab in your repository's settings.  
+Or on individual repositories, by navigating to the **Security** tab in your repository's settings.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/repo-sec.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/repo-sec.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/repo-sec2.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/repo-sec2.png)
 
 ### Feature 1: Security Alerts for Vulnerable Dependencies
 
