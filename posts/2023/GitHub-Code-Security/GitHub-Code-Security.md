@@ -11,13 +11,13 @@ series: GitHub Pro Tips
 
 ## Understanding and Leveraging GitHub's Security Tools
 
-GitHub is the preferred platform for millions of developers worldwide, and for good reason. Alongside its version control functionalities, GitHub provides a wealth of security features specially designed to keep your projects safe.  
+GitHub is the preferred platform for millions of developers worldwide, and for good reason. Alongside its version control functionalities, GitHub provides a wealth of security features specially designed to keep your projects safe.
 
-In this guide, we will walk you through the varied features, from **security alerts** for **vulnerable dependencies** to **secret scanning**, to help you fortify your code.  
+In this guide, we will walk you through the varied features, from **security alerts** for **vulnerable dependencies** to **secret scanning**, to help you fortify your code.
 
 ## Automating Code Security
 
-Before we dive deeper, let's understand why we need to focus on securing our code. With cyber threats on the rise, we simply can't ignore the importance of robust security measures. Hackers often exploit weak spots in your code and dependencies, which might be left vulnerable accidentally. GitHub has automated security features that help mitigate these risks, making your projects resilient to such threats.  
+Before we dive deeper, let's understand why we need to focus on securing our code. With cyber threats on the rise, we simply can't ignore the importance of robust security measures. Hackers often exploit weak spots in your code and dependencies, which might be left vulnerable accidentally. GitHub has automated security features that help mitigate these risks, making your projects resilient to such threats.
 
 ### Feature 1: Security Alerts for Vulnerable Dependencies
 
