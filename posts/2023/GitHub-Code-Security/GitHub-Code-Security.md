@@ -135,11 +135,11 @@ Have a look at **_[Privately reporting a security vulnerability](https://docs.gi
 
 ## Conclusion
 
-GitHub's security features can drastically help lower the risks of your code getting exploited. By using these tools in concert, you benefit from both proactive detection and resolution of potential vulnerabilities.  
+GitHub's security features can drastically help lower the risks of your code getting exploited. By using these tools in concert, you benefit from both proactive detection and resolution of potential vulnerabilities.
 
-Moreover, the value of automating your code security cannot be overstated. With these automated features, you can manage vulnerabilities, dependencies, and other threats all in one place. The ability to find and fix issues before they become problematic means you can continue to write code confidently.  
+Moreover, the value of automating your code security cannot be overstated. With these automated features, you can manage vulnerabilities, dependencies, and other threats all in one place. The ability to find and fix issues before they become problematic means you can continue to write code confidently.
 
-By harnessing the potential of GitHub's security features, you are taking a significant step towards a more secure coding environment. Protecting your code is as crucial as writing it. Lean on GitHub's comprehensive suite of security tools and keep your projects safe and resilient.  
+By harnessing the potential of GitHub's security features, you are taking a significant step towards a more secure coding environment. Protecting your code is as crucial as writing it. Lean on GitHub's comprehensive suite of security tools and keep your projects safe and resilient.
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
