@@ -15,6 +15,8 @@ GitHub is the preferred platform for millions of developers worldwide, and for g
 
 In this guide, we will walk you through the varied features, from **security alerts** for **vulnerable dependencies** to **secret scanning**, to help you fortify your code.
 
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/orgsec.png)
+
 ## Automating Code Security
 
 Before we dive deeper, let's understand why we need to focus on securing our code. With cyber threats on the rise, we simply can't ignore the importance of robust security measures. Hackers often exploit weak spots in your code and dependencies, which might be left vulnerable accidentally. GitHub has automated security features that help mitigate these risks, making your projects resilient to such threats.
