@@ -43,7 +43,7 @@ Let's take a look at some of these security features in a bit more detail.
 
 ## 1. Security Alerts for Vulnerable Dependencies
 
-GitHub's [Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts) monitors your dependencies (viewable under the repository Security > vulnerability alerts > Dependabot) and sends alerts when it encounters any vulnerabilities.
+GitHub's **[Dependabot Alerts](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts)** monitors your dependencies (viewable under the repository Security > vulnerability alerts > Dependabot) and sends alerts when it encounters any vulnerabilities.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/secalert.png)
 
@@ -88,6 +88,32 @@ If your repository does not host supported CodeQL languages, or even if it does,
 - **_trivy:_** Scan Docker container images for vulnerabilities in OS packages and language dependencies.  
 
 At the time of this writing there are over 70 third-party [code scanning tools/workflows](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning) available for use, and the list is growing.
+
+---
+
+## 4. Dependabot Security/Dependency Updates
+
+**[Dependabot Security Updates](https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/about-dependabot-security-updates)** is a security tool that handles your project **dependencies** by generating **alerts** for **vulnerabilities** as mentioned earlier, but can also create pull requests to update them.  
+
+Dependabot Security Updates is a feature of **Dependabot**, which is a bot that automates dependency updates not just for security, but also for non-security updates, or out of date dependencies, keeping your project up to date.  
+
+For instance, if a new version of a dependency you're using is released that fixes a major security flaw, Dependabot would send an alert. It would also raise a pull request to update the dependency version in your project, keeping your project secure without requiring manual intervention.  
+
+Here is an example of a Dependabot pull request where it has updated the **[Terraform AzureRM Provider](https://github.com/hashicorp/terraform-provider-azurerm/releases)** from version **3.69.0** to **3.71.0**:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/dependabot.png)
+
+Have a look at all the [supported package ecosystems](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem) Dependabot supports for more information.  
+
+You can also look at what dependencies are being monitored by **Dependabot** in your repository by navigating to the **Insights** tab in your repository.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/insights.png)  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/insights2.png)  
+
+---
+
+## 5. Security Policies and Advisories
 
 ---
 
