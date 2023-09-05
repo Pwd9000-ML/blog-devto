@@ -65,21 +65,21 @@ Have a look at the [supported-secrets](https://docs.github.com/en/code-security/
 
 ## 3. Code Scanning
 
-GitHub's Code Scanning feature, empowered by the semantic analysis engine **CodeQL**, is a crucial security tool that scans your code for any potential vulnerabilities.  
+GitHub's Code Scanning feature, empowered by the semantic analysis engine **CodeQL**, is a crucial security tool that scans your code for any potential vulnerabilities.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/codescan.png)
 
 Consider a scenario where a developer unknowingly introduces a SQL injection vulnerability in their code. The **Code Scanning** feature would identify this vulnerability during its analysis, providing a description of the issue and advice for resolution. This proactive approach to threat detection allows for resolution before any damage occurs.
 
-Have a look at [supported languages and frameworks](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql#about-codeql) for more information.  
+Have a look at [supported languages and frameworks](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql#about-codeql) for more information.
 
-If your repository hosts supported CodeQL languages, you can either let GitHub automatically analyse your code by using a **_default_** setting or allow you to customise an advanced configuration using a **YAML** config.  
+If your repository hosts supported CodeQL languages, you can either let GitHub automatically analyse your code by using a **_default_** setting or allow you to customise an advanced configuration using a **YAML** config.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/codescan2.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/codescan2.png)
 
-Here is what a default configuration config would looks like:  
+Here is what a default configuration config would looks like:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/codescan3.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/codescan3.png)
 
 If your repository does not host supported CodeQL languages, or even if it does, but also contain other languages or frameworks, you can also add third-party code scanning tools in addition to your repository to further enhance your code's security, such as:  
 
@@ -87,7 +87,7 @@ If your repository does not host supported CodeQL languages, or even if it does,
 - **_TFSEC:_** A static analysis security scanner for your Terraform code.  
 - **_trivy:_** Scan Docker container images for vulnerabilities in OS packages and language dependencies.  
 
-At the time of this writing there are over 70 third-party [code scanning tools/workflows](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning) available for use, and the list is growing.  
+At the time of this writing there are over 70 third-party [code scanning tools/workflows](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning) available for use, and the list is growing.
 
 ---
 
