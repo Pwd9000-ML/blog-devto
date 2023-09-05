@@ -41,23 +41,23 @@ Let's take a look at some of these security features in a bit more detail.
 
 ### Feature 1: Security Alerts for Vulnerable Dependencies
 
-GitHub's [Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts) monitors your dependencies (viewable under the repository Security > vulnerability alerts > Dependabot) and sends alerts when it encounters any vulnerabilities.  
+GitHub's [Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts) monitors your dependencies (viewable under the repository Security > vulnerability alerts > Dependabot) and sends alerts when it encounters any vulnerabilities.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/secalert.png)
 
-For example, consider you're using an outdated or vulnerable version of a library. **Dependabot** would send you an alert mentioning the vulnerability, its severity level, and steps to resolve it. Depending on how serious the issue is, GitHub can generate an automated security update to alleviate the risk, bolstering your code's security.  
+For example, consider you're using an outdated or vulnerable version of a library. **Dependabot** would send you an alert mentioning the vulnerability, its severity level, and steps to resolve it. Depending on how serious the issue is, GitHub can generate an automated security update to alleviate the risk, bolstering your code's security.
 
 ---
 
 ### Feature 2: Secret Scanning
 
-In the rush of development work, it's not uncommon to accidentally commit sensitive details like **API keys** or **passwords**. GitHub's Secret Scanning feature comes in handy here.  
+In the rush of development work, it's not uncommon to accidentally commit sensitive details like **API keys** or **passwords**. GitHub's Secret Scanning feature comes in handy here.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/secscan.png)
 
-Suppose you unknowingly committed an **Azure Storage Account Access Key** to your repository. The **Secret Scanning** feature, once activated, would identify this and notify you or the secret provider. You can then revoke the compromised secret and generate a new one, thereby preventing any unauthorised access.  
+Suppose you unknowingly committed an **Azure Storage Account Access Key** to your repository. The **Secret Scanning** feature, once activated, would identify this and notify you or the secret provider. You can then revoke the compromised secret and generate a new one, thereby preventing any unauthorised access.
 
-Have a look at the [supported-secrets](https://docs.github.com/en/code-security/secret-scanning/secret-scanning-patterns#supported-secrets) for more information.  
+Have a look at the [supported-secrets](https://docs.github.com/en/code-security/secret-scanning/secret-scanning-patterns#supported-secrets) for more information.
 
 ---
 
