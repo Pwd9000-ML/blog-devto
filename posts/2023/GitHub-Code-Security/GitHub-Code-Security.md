@@ -19,7 +19,7 @@ In this guide, we will walk you through the varied features, from **security ale
 
 ## Automating Code Security
 
-Before we dive deeper, let's understand why we need to focus on securing our code. With cyber threats on the rise, we simply can't ignore the importance of robust security measures. Hackers often exploit weak spots in your code and dependencies, which might be left vulnerable accidentally.  
+Before we dive deeper, let's understand why we need to focus on securing our code. With cyber threats on the rise, we simply can't ignore the importance of robust security measures. Hackers often exploit weak spots in your code and dependencies, which might be left vulnerable accidentally.
 
 GitHub has automated security features that help mitigate these risks, making your projects resilient to such threats.
 
@@ -31,13 +31,13 @@ Or you can also enable/disable security features on individual repositories, by 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/repo-sec.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/repo-sec2.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/repo-sec2.png)
 
-**Recommendation:** I recommended to enable these features on **_all_** repositories (existing and new) in your organisation, and if absolutely necessary, disable the ones you do not need on a per repository basis.  
+**Recommendation:** I recommended to enable these features on **_all_** repositories (existing and new) in your organisation, and if absolutely necessary, disable the ones you do not need on a per repository basis.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/orgsec.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/orgsec.png)
 
-Let's take a look at some of these security features in a bit more detail.  
+Let's take a look at some of these security features in a bit more detail.
 
 ### Feature 1: Security Alerts for Vulnerable Dependencies
 
