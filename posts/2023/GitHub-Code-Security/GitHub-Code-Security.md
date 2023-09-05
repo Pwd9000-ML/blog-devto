@@ -39,7 +39,9 @@ Or you can also enable/disable security features on individual repositories, by 
 
 Let's take a look at some of these security features in a bit more detail.
 
-### Feature 1: Security Alerts for Vulnerable Dependencies
+---
+
+## 1. Security Alerts for Vulnerable Dependencies
 
 GitHub's [Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts) monitors your dependencies (viewable under the repository Security > vulnerability alerts > Dependabot) and sends alerts when it encounters any vulnerabilities.
 
@@ -49,7 +51,7 @@ For example, consider you're using an outdated or vulnerable version of a librar
 
 ---
 
-### Feature 2: Secret Scanning
+## 2. Secret Scanning
 
 In the rush of development work, it's not uncommon to accidentally commit sensitive details like **API keys** or **passwords**. GitHub's Secret Scanning feature comes in handy here.
 
