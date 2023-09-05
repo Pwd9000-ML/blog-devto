@@ -67,7 +67,7 @@ Have a look at the [supported-secrets](https://docs.github.com/en/code-security/
 
 GitHub's Code Scanning feature, empowered by the semantic analysis engine **CodeQL**, is a crucial security tool that scans your code for any potential vulnerabilities.  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/codecscan.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/codescan.png)
 
 Consider a scenario where a developer unknowingly introduces a SQL injection vulnerability in their code. The **Code Scanning** feature would identify this vulnerability during its analysis, providing a description of the issue and advice for resolution. This proactive approach to threat detection allows for resolution before any damage occurs.
 
@@ -75,11 +75,11 @@ Have a look at [supported languages and frameworks](https://docs.github.com/en/c
 
 If your repository hosts supported CodeQL languages, you can either let GitHub automatically analyse your code by using a **_default_** setting or allow you to customise an advanced configuration using a **YAML** config.  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/codecscan2.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/codescan2.png)  
 
 Here is what a default configuration config would looks like:  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/codecscan2.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/codescan3.png)  
 
 If your repository hosts supported CodeQL languages, you can also add third-party code scanning tools to your repository, such as [SonarCloud](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning) or even add scanning tools like **_TFSEC_** (A static analysis security scanner for your Terraform code.) or **_trivy_** (Scan Docker container images for vulnerabilities in OS packages and language dependencies.), to further enhance your code's security.  
 
