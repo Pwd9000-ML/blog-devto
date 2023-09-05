@@ -81,7 +81,11 @@ Here is what a default configuration config would looks like:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/codescan3.png)  
 
-If your repository hosts supported CodeQL languages, you can also add third-party code scanning tools to your repository, such as [SonarCloud](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning) or even add scanning tools like **_TFSEC_** (A static analysis security scanner for your Terraform code.) or **_trivy_** (Scan Docker container images for vulnerabilities in OS packages and language dependencies.), to further enhance your code's security.  
+If your repository does not host supported CodeQL languages, or even if it does, but also contain other languages or frameworks, you can also add third-party code scanning tools in addition to your repository to further enhance your code's security, such as:  
+
+- **_[SonarCloud:](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning)_** A cloud-based code analysis service that automatically detects bugs, vulnerabilities, and code smells in your code.  
+- **_TFSEC:_** A static analysis security scanner for your Terraform code.  
+- **_trivy:_** Scan Docker container images for vulnerabilities in OS packages and language dependencies.  
 
 At the time of this writing there are over 70 third-party [code scanning tools/workflows](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning) available for use, and the list is growing.  
 
