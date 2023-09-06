@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 1589878
 series: GitHub Pro Tips
+date: '2023-09-06T15:10:04Z'
 ---
 
 ## Understanding and Leveraging GitHub's Security Tools
