@@ -31,6 +31,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **06/09/2023** | [Securing Your Code with GitHub](https://dev.to/pwd9000/securing-your-code-with-github-3le0) | Blog/Website Post | GitHub | DevOps, DevSecOps, Security, Tutorial |
 | **02/09/2023** | [GitHub - Understanding Workflow Permissions](https://dev.to/pwd9000/fgjgghjgh-19ka) | Blog/Website Post | GitHub | DevOps, Automation, GitHubActions, Tutorial |
 | **28/08/2023** | [Terraform - Variable Validation](https://dev.to/pwd9000/terraform-variable-validation-47ka) | Blog/Website Post | Terraform | DevOps, Automation, IaC, Tutorial |
 | **17/08/2023** | [Developer South Coast - Multi environment AZURE deployments with Terraform and GitHub](https://www.meetup.com/developersouthcoast/events/294910384) | Public Speaking | Azure, Terraform | Terraform, Azure, IaC, CICD |
