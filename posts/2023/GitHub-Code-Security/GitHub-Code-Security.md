@@ -1,6 +1,6 @@
 ---
 title: Securing Your Code with GitHub
-published: false
+published: true
 description: Understanding and Leveraging GitHub's Security Tools
 tags: 'github, devsecops, devops, security'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/main-gh-tips.png'
