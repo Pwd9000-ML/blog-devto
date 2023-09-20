@@ -16,7 +16,7 @@ Open source projects have made a profound impact on the world of software develo
 
 As a developer, contributing to open source projects on **GitHub** can boost your skills, broaden your network, and amp up your resume. Despite these advantages, contributing to an open source community for the first time can feel daunting.
 
-Hopefully this post will server as a comprehensive guide that walks you through finding suitable open source projects, understanding their contribution guidelines, and making your first pull request on **GitHub**.
+Hopefully this post will serve as a comprehensive guide that walks you through finding suitable open source projects, understanding their contribution guidelines, and making your first pull request on **GitHub**.
 
 ## Discovering Open Source Projects
 
