@@ -20,7 +20,7 @@ Hopefully this post will serve as a comprehensive guide that walks you through f
 
 ## Discovering Open Source Projects
 
-Firs look at finding a suitable project, one that aligns with your skills, interests, and the tech stack you're familiar with or wish to learn. Here are some tips to help you find the right project:
+First look at finding a suitable project, one that aligns with your skills, interests, and the tech stack you're familiar with or wish to learn. Here are some tips to help you find the right project:
 
 **[GitHub Explore:](https://github.com/explore)** This is a built-in feature on GitHub that lets you explore popular repositories, trending developers, topic-wise collections, and other curated sections. This wealth of content is a great starting point to discover open-source projects that match your abilities and interests.
 
@@ -30,13 +30,13 @@ Firs look at finding a suitable project, one that aligns with your skills, inter
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/awesome.png)
 
-**GitHub Search:** Use GitHub's advanced search feature to seek out projects using specific filters, such as repositories written in a particular language, those with issues flavored as **_"good first issue"_** or **_"help wanted"_**, or projects that have not been updated recently.
+**GitHub Search:** Use GitHub's advanced search feature to seek out projects using specific filters, such as repositories written in a particular language, those with issues flavoured as **_"good first issue"_** or **_"help wanted"_**, or projects that have not been updated recently.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/search.png)
 
 ## Contributing Guidelines
 
-An essential step before making any contribution is to review the project's contribution guidelines, which will guide you throughout your contribution journey. These guidelines are typically found in a file named `CONTRIBUTING.md`, `CONTRIBUTING.md`, or `HOW_TO_CONTRIBUTE.md` in the project repository. In some cases, it might also be a part of the `README.md` file.
+An essential step before making any contribution is to review the project's contribution guidelines, which will guide you throughout your contribution journey. These guidelines are typically found in a file named `CONTRIBUTING.md`, `CONTRIBUTE.md`, or `HOW_TO_CONTRIBUTE.md` in the project repository. In some cases, it might also be a part of the `README.md` file.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/cont.png)
 
@@ -88,7 +88,7 @@ Finally, let's focus on the most rewarding part, contributing to an open-source 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/PR2.png)
 
-Pat yourself on the back! You've just made your first pull request. The maintainers of the original repository will then review your request, provide feedback or suggest changes (if required), and finally merge the changes into the original repository. You can inspect or add comments to your **Pull request (PR)** on the original repository by clicking on the `'Pull Requests'` tab.
+Pat yourself on the back! You've just made your first pull request. The maintainers of the original repository will review your request, provide feedback or suggest changes (if required), and finally merge the changes into the original repository. You can inspect or add comments to your **Pull request (PR)** on the original repository by clicking on the `'Pull Requests'` tab.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/PR3.png)
 
