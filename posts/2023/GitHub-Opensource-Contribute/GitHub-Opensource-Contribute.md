@@ -67,7 +67,7 @@ GitHub allows users to create a personal copy of another user's project. This is
 The next step is to get this remote repository on your local system for making changes. This is known as **cloning**. Use the `'git clone'` command followed by the URL of your forked repository.
 
 ```bash
-git clone "https://example.com/your_username/your_forked_repo.git"  
+git clone "https://example.com/your_username/your_forked_repo.git"
 ```
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/clone.png)
@@ -75,7 +75,7 @@ git clone "https://example.com/your_username/your_forked_repo.git"
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/clone2.png)
 
 **3. Create a New Branch:**  
-It's a good practice to create a new branch for each new feature or bug fix you work on, to keep your contributions organised. Use the `'git branch "branch_name"'` to create a new branch, and `'git checkout "branch_name"'` to switch to it.  
+It's a good practice to create a new branch for each new feature or bug fix you work on, to keep your contributions organised. Use the `'git branch "branch_name"'` to create a new branch, and `'git checkout "branch_name"'` to switch to it.
 
 ```bash
 git branch "branch_name"
