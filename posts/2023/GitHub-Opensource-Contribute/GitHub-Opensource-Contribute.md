@@ -66,18 +66,20 @@ GitHub allows users to create a personal copy of another user's project. This is
 **2. Clone the Repository:**  
 The next step is to get this remote repository on your local system for making changes. This is known as **cloning**. Use the `'git clone'` command followed by the URL of your forked repository.
 
-```bash
-git clone "https://example.com/your_username/your_forked_repo.git"
-```
-
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/clone.png)
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/clone2.png)
+
+```bash
+#Code example
+git clone "https://example.com/your_username/your_forked_repo.git"
+```
 
 **3. Create a New Branch:**  
 It's a good practice to create a new branch for each new feature or bug fix you work on, to keep your contributions organised. Use the `'git branch "branch_name"'` to create a new branch, and `'git checkout "branch_name"'` to switch to it.
 
 ```bash
+#Code example
 git branch "branch_name"
 git checkout "branch_name"
 ```
@@ -91,21 +93,23 @@ You can also create the new branch directly from the **GitHub website**, or your
 **4. Make Changes and Commit:**  
 Now, dive into the code. First, open the code in your Development Environment (IDE), e.g. [VSCode](https://code.visualstudio.com). Make the necessary changes and save them. After making changes, use `'git add .'` to stage the changes, and `'git commit -m "commit message"'` to save your changes. Be sure to write a meaningful commit message, explaining the changes you made.
 
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/com.png)
+
 ```bash
+#Code example
 git add .
 git commit -m "commit message"
 ```
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/com.png)
-
 **5. Push Your Changes:**  
 After committing your changes, it's time to upload them to your **forked repository** on GitHub. This process is known as **pushing**. The `'git push origin "your_branch_name"'` command will push your changes to your forked GitHub repository.
 
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/sync.png)
+
 ```bash
+#Code example
 git push origin "your_branch_name"
 ```
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/sync.png)
 
 **6. Create a Pull Request:**  
 Navigate back to your forked repository on GitHub. Click on `'Pull Request'` then create a new pull request. Ensure the source branch is **your** recently created **branch** and the destination branch is the **master/main** branch of the **original repository**. Summarise the changes you've made, then click `'Create a pull request'`.
