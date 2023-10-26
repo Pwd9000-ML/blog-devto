@@ -23,7 +23,8 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **27/09/2023** | [DevSecCon - GitHub-Azure Passwordless Authentication](https://www.devseccon.com/events/rethinking-kubernetes-github-azure-passwordless-authentication) | Public Speaking | Azure, GitHub | DevSecOps, DevOps, Security |
+| **14/11/2023** | [.NET Conf 2023 - London Microsoft DevOps Meetup](https://www.meetup.com/london-microsoft-devops/events/296727947/) | Public Speaking | Azure, GitHub | DevSecOps, DevOps, Ignite |
+| **27/09/2023** | [DevSecCon - Empowering DevSecOps: GitHub-Azure Authentication and SLSA in DevOps](https://www.devseccon.com/events/empowering-devsecops-github-azure-authentication-and-slsa-in-devops) | Public Speaking | Azure, GitHub | DevSecOps, DevOps, Security |
 
 ---
 
