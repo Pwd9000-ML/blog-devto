@@ -19,7 +19,7 @@ jobs:
         node-version: 14
 
     - name: Install Dependencies
-      uses: bahmutov/npm-install@v1.8.35
+      uses: bahmutov/npm-install@v1.8.36
 
     - name: Run Prettier (Write)
       run: yarn run prettier:write
