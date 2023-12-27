@@ -28,7 +28,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 ---
 
-# 🤘 2024 🤘
+# 😎 2024 😎
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
