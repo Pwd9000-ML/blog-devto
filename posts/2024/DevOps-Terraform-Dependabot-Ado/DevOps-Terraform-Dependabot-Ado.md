@@ -46,11 +46,11 @@ Go to your project **settings** and select the **repositories** option. Find the
 
 ### Setting up Dependabot
 
-Once the extension is installed, we can now set up **Dependabot** for our **Azure DevOps** repos to scan for **Terraform** dependencies. Go to your **"Azure DevOps Project"** and locate the Git repo you want to set up **Dependabot** for.
+Once the extension is installed and permissions are set, we can now set up **Dependabot** for our **Azure DevOps** repos to scan for **Terraform** dependencies using an **Azure DevOps Pipeline**. Go to your **"Azure DevOps Project"** and locate the Git repo you want to set up **Dependabot** for.
 
 Add a configuration file stored at `.github/dependabot.yml` conforming to the [official spec](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file).
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/market.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/dep.png)
 
 In my case the content of the file is as follows:
 
@@ -67,7 +67,7 @@ The above configuration file will scan for **Terraform** dependencies and will o
 
 Notice the `versions.tf` file in the root of my repository, this file is used to pin the version of the **Terraform** provider I am using in my module, in this case the **AzureRM** provider.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/market.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/version.png)
 
 ```hcl
 terraform {
