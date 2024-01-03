@@ -31,7 +31,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 # 😎 2024 😎
 
 | Date | Activity | Type | Topic Area | Tags |
-| ---- | -------- | ---- | ---------- | ---- |
+| --- | --- | --- | --- | --- |
 | **03/01/2024** | [Terraform - Keep dependencies up to date with Dependabot (Azure DevOps version)](https://dev.to/pwd9000/terraform-keep-dependencies-up-to-date-with-dependabot-azure-devops-version-40kp) | Blog/Website Post | DevOps | DevOps, Dependabot, Security, Tutorial |
 
 ---
