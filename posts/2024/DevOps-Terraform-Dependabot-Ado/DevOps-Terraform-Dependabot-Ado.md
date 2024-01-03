@@ -117,7 +117,7 @@ The above pipeline will run the **Dependabot** scan daily at 2am UTC and will on
 
 Note that the **Dependabot** task is currently only supported on **Ubuntu** and **MacOS** agents, so if you are using **Windows** agents, you will need to change your pipeline to use **Ubuntu** or **MacOS** agents instead.
 
-Notice that after the pipeline runs, a **pull request** is created with the updated version of the **AzureRM** provider:
+Notice that after the pipeline runs, a **pull request** is created with the updated version of the **AzureRM** provider from `3.55.0` to `3.85.0`:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/pr.png)
 
