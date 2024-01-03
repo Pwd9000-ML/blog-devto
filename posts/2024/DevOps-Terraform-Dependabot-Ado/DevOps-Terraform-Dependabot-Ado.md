@@ -29,6 +29,21 @@ To integrate **Dependabot** with our **Azure DevOps repos**, we need to install 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/market.png)  
 
+### Repository Permissions
+
+In order for ***Dependabot** to create a **pull request**, you need to grant some permissions to your repository's `Project Collection Build Service (OrgName)`.  
+
+Go to your project **settings** and select the **repositories** option. Find the repo where your **Terraform code** is located and click on the **security tab**. Then, add a use called `Project collection build service (YourOrgName)` and give it the following permissions:  
+
+- **Bypass policies when pushing**
+- **Contribute**
+- **Contribute to pull request**
+- **Create Branch**
+- **Create Tag**
+- **Force Push**
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/permission.png)  
+
 ### Setting up Dependabot
 
 Once the extension is installed, we can now set up **Dependabot** for our **Azure DevOps** repos to scan for **Terraform** dependencies. Go to your **"Azure DevOps Project"** and locate the Git repo you want to set up **Dependabot** for.  
