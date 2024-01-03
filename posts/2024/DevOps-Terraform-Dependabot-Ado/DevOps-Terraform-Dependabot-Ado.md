@@ -25,13 +25,13 @@ This automated process ensures your infrastructure's configuration is always up-
 
 ### Getting Started
 
-To integrate **Dependabot** with our **Azure DevOps repos**, we need to install [this extension](https://marketplace.visualstudio.com/items?itemName=tingle-software.dependabot) by Tingle Software. You can find it in the Azure DevOps Extension Marketplace by searching for **"Dependabot"**. Go to your **"Organization Settings"** in Azure DevOps and see if you have this extension installed. If not, please install it before moving on.
+To integrate **Dependabot** with our **Azure DevOps repos**, we need to install [the Dependabot extension](https://marketplace.visualstudio.com/items?itemName=tingle-software.dependabot) by Tingle Software. You can find it in the Azure DevOps Extension Marketplace by searching for **"Dependabot"**. Go to your **"Organization Settings"** in Azure DevOps and see if you have this extension installed. If not, please install it before moving on.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/market.png)
 
 ### Repository Permissions
 
-In order for **\*Dependabot** to create a **pull request**, you need to grant some permissions to your repository's `Project Collection Build Service (OrgName)`.
+In order for **Dependabot** to create a **pull request**, you need to grant some permissions to your repository's `Project Collection Build Service (OrgName)`.
 
 Go to your project **settings** and select the **repositories** option. Find the repo where your **Terraform code** is located and click on the **security tab**. Then, add a use called `Project collection build service (YourOrgName)` and give it the following permissions:
 
