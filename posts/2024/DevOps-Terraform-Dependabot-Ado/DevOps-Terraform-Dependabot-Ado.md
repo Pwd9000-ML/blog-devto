@@ -11,7 +11,7 @@ series: Terraform Pro Tips
 
 ## Previously
 
-If you are interested to see how to do the same thing described in this post but in **GitHub** instead, feel free to check out my previous post: [Automate Terraform Module Releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-4775)
+If you are interested to see how to do the same thing described in this post but in **GitHub** instead, feel free to check out my previous post: [Automate Terraform Module Releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-4775)  
 
 ## Overview
 
@@ -21,13 +21,53 @@ In this post we will look at how you can automate and maintain your terraform mo
 
 When **Dependabot** identifies an outdated Terraform module or provider, it automatically creates a pull request in your version control system with the updated version, we will look how to set this automated check and **Pull Requests** up using **Azure DevOps Pipelines**. These pull requests include change logs and compatibility scores, just like any other Dependabot update.
 
-This automated process ensures your infrastructure's configuration is always up-to-date and reduces the risks associated with outdated modules or providers. Furthermore, Dependabot simplifies the process of managing multiple dependencies, making it significantly effortless and more efficient for developers to maintain a healthy Terraform codebase.
+This automated process ensures your infrastructure's configuration is always up-to-date and reduces the risks associated with outdated modules or providers. Furthermore, Dependabot simplifies the process of managing multiple dependencies, making it significantly effortless and more efficient for developers to maintain a healthy Terraform codebase.  
 
 ### Getting Started
 
 To integrate **Dependabot** with our **Azure DevOps repos**, we need to install [this extension](https://marketplace.visualstudio.com/items?itemName=tingle-software.dependabot) by Tingle Software. You can find it in the Azure DevOps Extension Marketplace by searching for **"Dependabot"**. Go to your **"Organization Settings"** in Azure DevOps and see if you have this extension installed. If not, please install it before moving on.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/market.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/market.png)  
+
+### Setting up Dependabot
+
+Once the extension is installed, we can now set up **Dependabot** for our **Azure DevOps** repos to scan for **Terraform** dependencies. Go to your **"Azure DevOps Project"** and locate the Git repo you want to set up **Dependabot** for.  
+
+Add a configuration file stored at `.github/dependabot.yml` conforming to the [official spec](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file).  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/market.png)  
+
+In my case the content of the file is as follows:  
+
+```yaml
+version: 2
+updates:
+  - package-ecosystem: "terraform" 
+    directory: "/"
+    schedule:
+      interval: "daily"
+```
+
+The above configuration file will scan for **Terraform** dependencies and will only check the root of my repository code where my terraform `*.tf` files are located for my module.  
+
+Notice the `versions.tf` file in the root of my repository, this file is used to pin the version of the **Terraform** provider I am using in my module, in this case the **AzureRM** provider.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/market.png)  
+
+```hcl
+terraform {
+  required_version = ">= 1.6.6"
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 3.55.0"
+    }
+  }
+}
+```
+
+
+
 
 ### _Author_
 
