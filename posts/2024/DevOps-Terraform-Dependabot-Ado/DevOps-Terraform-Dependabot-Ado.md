@@ -126,7 +126,7 @@ It also includes a **change log** and a nice **overview** for the new version:
 
 You can also inspect the **pull request** to see the **diff** between the old and new version:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/diff.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/diff2.png)
 
 ### Conclusion
 
