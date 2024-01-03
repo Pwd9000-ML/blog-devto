@@ -84,7 +84,7 @@ terraform {
 }
 ```
 
-### setting up the pipeline
+### Setting up the pipeline
 
 Now that we have our **Dependabot** configuration file in place, we can now set up our **Azure DevOps Pipeline** to run the **Dependabot** scan. Go to your **Azure DevOps Project** and create a new **Pipeline**. Select your **Git repo** and choose the **Starter Pipeline** template or copy the following code into a `yaml` file to be used. I will be using the **YAML** pipeline for this example:
 
