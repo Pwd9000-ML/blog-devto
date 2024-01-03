@@ -95,7 +95,7 @@ schedules:
   always: true # run even when there are no code changes
   branches:
     include:
-      - main
+      - dev
   batch: true
   displayName: Daily
 
