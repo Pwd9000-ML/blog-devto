@@ -65,7 +65,7 @@ updates:
 
 The above configuration file will scan for **Terraform** dependencies and will only check the root of my repository code where my terraform `*.tf` files are located for my module.
 
-Notice the `versions.tf` file in the root of my repository, this file is used to pin the version of the **Terraform** provider I am using in my module, in this case the **AzureRM** provider. The current version is `3.55.0` and **Dependabot** will check if there is a newer version available and will create a **pull request** if there is a newer version available.  
+Notice the `versions.tf` file in the root of my repository, this file is used to pin the version of the **Terraform** provider I am using in my module, in this case the **AzureRM** provider. The current version is `3.55.0` and **Dependabot** will check if there is a newer version available and will create a **pull request** if there is a newer version available.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/version.png)
 
@@ -85,7 +85,7 @@ terraform {
 
 ### setting up the pipeline
 
-Now that we have our **Dependabot** configuration file in place, we can now set up our **Azure DevOps Pipeline** to run the **Dependabot** scan. Go to your **Azure DevOps Project** and create a new **Pipeline**. Select your **Git repo** and choose the **Starter Pipeline** template or copy the following code into a `yaml` file to be used.  
+Now that we have our **Dependabot** configuration file in place, we can now set up our **Azure DevOps Pipeline** to run the **Dependabot** scan. Go to your **Azure DevOps Project** and create a new **Pipeline**. Select your **Git repo** and choose the **Starter Pipeline** template or copy the following code into a `yaml` file to be used. I will be using the **YAML** pipeline for this example:
 
 ```yaml
 trigger: none # Disable CI trigger
@@ -106,31 +106,31 @@ stages:
       - job: Dependabot
         displayName: 'Run Dependabot'
         pool:
-          vmImage: 'ubuntu-latest' # Only Ubuntu and MacOS is supported at this time 
+          vmImage: 'ubuntu-latest' # Only Ubuntu and MacOS is supported at this time
         steps:
           - task: dependabot@1
             displayName: 'Run Dependabot'
 ```
 
-The above pipeline will run the **Dependabot** scan daily at 2am UTC and will only run if there are changes to the `main` branch. The pipeline will run on an **Ubuntu** agent and will use the **Dependabot** task that will use our configuration file to scan for **Terraform** dependencies.  
+The above pipeline will run the **Dependabot** scan daily at 2am UTC and will only run if there are changes to the `main` branch. The pipeline will run on an **Ubuntu** agent and will use the **Dependabot** task that will use our configuration file to scan for **Terraform** dependencies.
 
-Note that the **Dependabot** task is currently only supported on **Ubuntu** and **MacOS** agents, so if you are using **Windows** agents, you will need to change your pipeline to use **Ubuntu** or **MacOS** agents instead.  
+Note that the **Dependabot** task is currently only supported on **Ubuntu** and **MacOS** agents, so if you are using **Windows** agents, you will need to change your pipeline to use **Ubuntu** or **MacOS** agents instead.
 
-Notice that after the pipeline runs, a **pull request** is created with the updated version of the **AzureRM** provider:  
+Notice that after the pipeline runs, a **pull request** is created with the updated version of the **AzureRM** provider:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/pr.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/pr.png)
 
-It also includes a **change log** and a nice **overview** for the new version:  
+It also includes a **change log** and a nice **overview** for the new version:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/overview.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/overview.png)
 
-You can also inspect the **pull request** to see the **diff** between the old and new version:  
+You can also inspect the **pull request** to see the **diff** between the old and new version:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/diff.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/diff.png)
 
 ### Conclusion
 
-**Dependabot** is a great tool to help you keep your **Terraform** dependencies up to date and it is very easy to set up and use. It is also very flexible and can be used with **GitHub** or **Azure DevOps**.  I hope you found this post useful and if you have any questions or comments, please get in touch with me on **Twitter** or **LinkedIn**.  
+**Dependabot** is a great tool to help you keep your **Terraform** dependencies up to date and it is very easy to set up and use. It is also very flexible and can be used with **GitHub** or **Azure DevOps**. I hope you found this post useful and if you have any questions or comments, please get in touch with me on **Twitter** or **LinkedIn**.
 
 ### _Author_
 
