@@ -86,7 +86,7 @@ terraform {
 
 ### Setting up the pipeline
 
-Now that we have our **Dependabot** configuration file in place, we can now set up our **Azure DevOps Pipeline** to run the **Dependabot** scan. Go to your **Azure DevOps Project** and create a new **Pipeline**. Select your **Git repo** and choose the **Starter Pipeline** template or copy the following code into a `yaml` file to be used. I will be using the **YAML** pipeline for this example:
+Now that we have our **Dependabot** configuration file in place, we can now set up our **Azure DevOps Pipeline** to run the **Dependabot** scan. Go to your **Azure DevOps Project** and create a new **Pipeline**. Select your **Git repo** and choose the **Starter Pipeline** template or copy the following code into a `yaml` file to be used. I will be using the following **YAML** pipeline for this example:
 
 ```yaml
 trigger: none # Disable CI trigger
@@ -113,7 +113,7 @@ stages:
             displayName: 'Run Dependabot'
 ```
 
-The above pipeline will run the **Dependabot** scan daily at 2am UTC and will only run if there are changes to the `main` branch. The pipeline will run on an **Ubuntu** agent and will use the **Dependabot** task that will use our configuration file to scan for **Terraform** dependencies.
+The above pipeline will run the **Dependabot** scan daily at 2am UTC and will only run against the `dev` branch. The pipeline will run on an **Ubuntu** agent and will use the **Dependabot** task that will use our configuration file to scan for **Terraform** dependencies.
 
 Note that the **Dependabot** task is currently only supported on **Ubuntu** and **MacOS** agents, so if you are using **Windows** agents, you will need to change your pipeline to use **Ubuntu** or **MacOS** agents instead.
 
