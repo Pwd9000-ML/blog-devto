@@ -131,7 +131,7 @@ You can also inspect the **pull request** to see the **difference** between the 
 
 ### Conclusion
 
-**Dependabot** is a great tool to help you keep your **Terraform** dependencies up to date and it is very easy to set up and use, or schedule to check using a simple **pipeline** with a cron job as shown in this post. It is also very flexible and can be used with **GitHub** or **Azure DevOps**.
+**Dependabot** is a great tool to help you keep your **Terraform** dependencies up to date and it is very easy to set up and use, or to schedule dependency checks using a simple **pipeline** with a cron job as shown in this post. It is also very flexible and can be used with **GitHub** or **Azure DevOps**.
 
 Not only can it be used to keep your **Terraform** dependencies up to date, but it also supports other package ecosystems such as **npm**, **NuGet**, **Maven**, **Docker**, **Composer**, **Cargo**, **pip**, **Yarn** and so forth. Check out the full list of supported package ecosystems [here](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem).
 
