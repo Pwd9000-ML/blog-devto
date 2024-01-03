@@ -91,13 +91,13 @@ Now that we have our **Dependabot** configuration file in place, we can now set 
 trigger: none # Disable CI trigger
 
 schedules:
-- cron: '0 2 * * *' # daily at 2am UTC
-  always: true # run even when there are no code changes
-  branches:
-    include:
-      - dev
-  batch: true
-  displayName: Daily
+  - cron: '0 2 * * *' # daily at 2am UTC
+    always: true # run even when there are no code changes
+    branches:
+      include:
+        - dev
+    batch: true
+    displayName: Daily
 
 stages:
   - stage: CheckDependencies
