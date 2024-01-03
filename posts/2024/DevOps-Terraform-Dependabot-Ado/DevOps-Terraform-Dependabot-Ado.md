@@ -11,7 +11,7 @@ series: Terraform Pro Tips
 
 ## Previously
 
-If you are interested to see how to do the same thing described in this post but in **GitHub** instead, feel free to check out my previous post: [Automate Terraform Module Releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-4775)  
+If you are interested to see how to do the same thing described in this post but in **GitHub** instead, feel free to check out my previous post: [Automate Terraform Module Releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-4775)
 
 ## Overview
 
@@ -21,7 +21,7 @@ In this post we will look at how you can automate and maintain your terraform mo
 
 When **Dependabot** identifies an outdated Terraform module or provider, it automatically creates a pull request in your version control system with the updated version, we will look how to set this automated check and **Pull Requests** up using **Azure DevOps Pipelines**. These pull requests include change logs and compatibility scores, just like any other Dependabot update.
 
-This automated process ensures your infrastructure's configuration is always up-to-date and reduces the risks associated with outdated modules or providers. Furthermore, Dependabot simplifies the process of managing multiple dependencies, making it significantly effortless and more efficient for developers to maintain a healthy Terraform codebase.  
+This automated process ensures your infrastructure's configuration is always up-to-date and reduces the risks associated with outdated modules or providers. Furthermore, Dependabot simplifies the process of managing multiple dependencies, making it significantly effortless and more efficient for developers to maintain a healthy Terraform codebase.
 
 ### Getting Started
 
