@@ -20,7 +20,7 @@ In this post we will look at how you can automate and maintain your terraform mo
 
 **Dependabot** is an invaluable tool for managing **Terraform** infrastructure-as-code projects. It helps maintain your Terraform modules at their latest versions. It systematically scans your `*.tf` files, identifies dependencies (i.e., modules and Terraform providers), and checks for any new updates or releases available.
 
-When **Dependabot** identifies an outdated Terraform module or provider, it automatically creates a pull request in your version control system with the updated version, we will look how to set this automated check and **Pull Requests** up using **Azure DevOps Pipelines**. These pull requests include change logs and compatibility scores, just like any other Dependabot update.
+When **Dependabot** identifies an outdated Terraform module or provider, it automatically creates a pull request in your version control system with the updated version, we will look how to set this automated check and **Pull Requests** up using **Azure DevOps Pipelines**. These pull requests include change logs and release notes of the updated provider version, just like any other Dependabot update.
 
 This automated process ensures your infrastructure's configuration is always up-to-date and reduces the risks associated with outdated modules or providers. Furthermore, Dependabot simplifies the process of managing multiple dependencies, making it significantly effortless and more efficient for developers to maintain a healthy Terraform codebase.
 
@@ -34,7 +34,7 @@ To integrate **Dependabot** with our **Azure DevOps repos**, we need to install 
 
 In order for **Dependabot** to create a **pull request**, you need to grant some permissions to your repository's `Project Collection Build Service (OrgName)`.
 
-Go to your project **settings** and select the **repositories** option. Find the repo where your **Terraform code** is located and click on the **security tab**. Then, add a use called `Project collection build service (YourOrgName)` and give it the following permissions:
+Go to your project **settings** and select the **repositories** option. Find the repo where your **Terraform code** is located and click on the **security tab**. Then, add a user called `Project collection build service (YourOrgName)` and give it the following permissions:
 
 - **Bypass policies when pushing**
 - **Contribute**
@@ -135,7 +135,7 @@ You can also inspect the **pull request** to see the **difference** between the 
 
 Not only can it be used to keep your **Terraform** dependencies up to date, but it also supports other package ecosystems such as **npm**, **NuGet**, **Maven**, **Docker**, **Composer**, **Cargo**, **pip**, **Yarn** and so forth. Check out the full list of supported package ecosystems [here](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem).
 
-I hope you found this post useful and if you have any questions or comments, please get in touch with me on **Twitter** or **LinkedIn**.
+I hope you found this post useful and if you have any questions or comments, please get in touch with me on **[Twitter](https://twitter.com/pwd9000)** or **[LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)**.
 
 ### _Author_
 
