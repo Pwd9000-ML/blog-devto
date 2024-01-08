@@ -40,7 +40,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **15/12/2023** | [Festive Tech Calendar 2023 - GitHub Copilot Chat with Terraform](https://youtu.be/scrLucjs-CI?si=ifQ1YKrbG6CgtIix) | Public Speaking | GitHub | DevOps, Copilot, Tutorial, Conference |
+| **15/12/2023** | [Festive Tech Calendar 2023 - GitHub Copilot Chat with Terraform](https://youtu.be/6YoBamfz80Y?si=FFRXOaOOqAfwMKgG) | Public Speaking | GitHub | DevOps, Copilot, Tutorial, Conference |
 | **16/11/2023** | [DevSecCon - GitHub-Azure Authentication and SLSA in DevOps](https://www.devseccon.com/events/empowering-devsecops-github-azure-authentication-and-slsa-in-devops) | Public Speaking | Azure, GitHub | DevSecOps, DevOps, Security |
 | **14/11/2023** | [.NET Conf 2023 - London Microsoft DevOps Meetup](https://www.meetup.com/london-microsoft-devops/events/296727947/) | Public Speaking | Azure, GitHub | DevSecOps, DevOps, Ignite |
 | **20/09/2023** | [Open Source Contribution on GitHub](https://dev.to/pwd9000/open-source-contribution-on-github-545a) | Blog/Website Post | GitHub | DevOps, DevCommunity, GitHub, Tutorial |

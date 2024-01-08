@@ -18,7 +18,7 @@ In this session we will look at GitHub Copilot Chat integrated into VSCode and h
 
 See the following youtube video for a live demo recording.
 
-{% youtube scrLucjs-CI %}
+{% youtube 6YoBamfz80Y %}
 
 ### _Author_
 
