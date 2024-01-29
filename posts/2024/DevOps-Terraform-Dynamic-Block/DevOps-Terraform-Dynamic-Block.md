@@ -22,10 +22,17 @@ Dynamic blocks let you generate nested block configurations within resources or 
 In Terraform, a dynamic block consists of two parts: the `dynamic` keyword followed by the name of the nested block, and a `content` block that defines the structure of the dynamic block. Inside this `content` block, you reference iterator objects to assign values:
 
 ```hcl
-dynamic "block_name" {
-  for_each = var.collection # or expression
-  content {
-    # Block content
+resource "provider_resource" "example" {
+    
+  parameter = "value"
+  # ... other arguments ...
+
+  dynamic "parameter_block_name" {
+    for_each = var.collection # or expression
+    content {
+      # Block content
+    }
+
   }
 }
 ```
