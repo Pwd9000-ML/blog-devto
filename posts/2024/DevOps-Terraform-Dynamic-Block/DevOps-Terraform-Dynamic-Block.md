@@ -94,11 +94,11 @@ resource "azurerm_network_security_group" "example" {
 }
 ```
 
-In this scenario, dynamic blocks iterate over the `var.security_rules` list object, creating security rules based on its content. This dynamic approach keeps your code DRY (Don't Repeat Yourself) by avoiding repetitive block definitions.  
+In this scenario, dynamic blocks iterate over the `var.security_rules` list object, creating security rules based on its content. This dynamic approach keeps your code DRY (Don't Repeat Yourself) by avoiding repetitive block definitions.
 
 ## Scenario 2: Tagging Azure Resources Dynamically
 
-Tagging resources is critical for cost tracking, compliance, and management. However, not every resource may share the same set of tags. Using dynamic blocks can conditionally add tags based on the context.  
+Tagging resources is critical for cost tracking, compliance, and management. However, not every resource may share the same set of tags. Using dynamic blocks can conditionally add tags based on the context.
 
 ```hcl
 variable "common_tags" {
@@ -132,11 +132,11 @@ resource "azurerm_resource_group" "example" {
 }
 ```
 
-In this example, the resource group is tagged with a **merged** set of common and extra tags. Using dynamic blocks, you can easily combine these tags and apply them flexibly without having to declare each tag separately, simplifying the management of resource metadata. As you can see in the example, the `for_each` expression uses a `merge` function that combines the two maps into a single map.  
+In this example, the resource group is tagged with a **merged** set of common and extra tags. Using dynamic blocks, you can easily combine these tags and apply them flexibly without having to declare each tag separately, simplifying the management of resource metadata. As you can see in the example, the `for_each` expression uses a `merge` function that combines the two maps into a single map.
 
 ## Scenario 3: Conditional DNS Zone Groups with Private Endpoint
 
-Let's take a look at a few more advanced scenarios using conditions and expressions. In this example, we will create a private DNS zone group with a private endpoint.  
+Let's take a look at a few more advanced scenarios using conditions and expressions. In this example, we will create a private DNS zone group with a private endpoint.
 
 ```hcl
 variable "private_dns_zone_group" {
@@ -153,10 +153,10 @@ variable "private_dns_zone_group" {
     }
   ]
   description = "List of private dns zone groups to associate with the private endpoint."
-}  
+}
 
 resource "azurerm_private_endpoint" "private_endpoint" {
-  
+
   # ... other arguments ...
 
   dynamic "private_dns_zone_group" {
@@ -175,15 +175,15 @@ resource "azurerm_private_endpoint" "private_endpoint" {
 }
 ```
 
-In this example, the `for_each` argument is used to iterate over the `var.private_dns_zone_group` list. For each item in the list, it creates a new map with `name`, `private_dns_zone_ids`, and `enabled` keys if `enabled` is `true`.  
+In this example, the `for_each` argument is used to iterate over the `var.private_dns_zone_group` list. For each item in the list, it creates a new map with `name`, `private_dns_zone_ids`, and `enabled` keys if `enabled` is `true`.
 
-The `content` block then uses these values to create a new `private_dns_zone_group` block for each item in the `for_each` list. The `private_dns_zone_group.value.name` and `private_dns_zone_group.value.private_dns_zone_ids` expressions refer to the current item in the `for_each` list.  
+The `content` block then uses these values to create a new `private_dns_zone_group` block for each item in the `for_each` list. The `private_dns_zone_group.value.name` and `private_dns_zone_group.value.private_dns_zone_ids` expressions refer to the current item in the `for_each` list.
 
-This dynamic block allows us to create a flexible number of `private_dns_zone_group` blocks based on the input variable, which can be incredibly useful when dealing with complex infrastructure setups.  
+This dynamic block allows us to create a flexible number of `private_dns_zone_group` blocks based on the input variable, which can be incredibly useful when dealing with complex infrastructure setups.
 
 ## Scenario 4: Conditional Azure Virtual Network Subnets
 
-Suppose you are managing an Azure Virtual Network that needs to support multiple subnets. Each subnet has specific requirements and might only be necessary under certain conditions — driven by environment types, features toggling, or specific compliance needs.  
+Suppose you are managing an Azure Virtual Network that needs to support multiple subnets. Each subnet has specific requirements and might only be necessary under certain conditions — driven by environment types, features toggling, or specific compliance needs.
 
 Here's how you can use dynamic blocks with a condition to selectively create subnets:
 
@@ -223,14 +223,14 @@ resource "azurerm_virtual_network" "example" {
     content {
       name           = subnet.key
       address_prefix = subnet.value.address_prefixes[0]
-      // It’s common for the first item of the address_prefixes to be used, 
+      // It’s common for the first item of the address_prefixes to be used,
       // or integrate further logic to handle multiple prefixes.
     }
   }
 }
 ```
 
-In this example, the `for_each` expression has been augmented with a conditional. The iteration now only includes subnet configurations where the `create_subnet` attribute is set to `true`. As a result, despite the `var.subnets` variable containing multiple definitions, only those explicitly marked for creation are acted upon - `subnet1` in this case, while `subnet2` is ignored.  
+In this example, the `for_each` expression has been augmented with a conditional. The iteration now only includes subnet configurations where the `create_subnet` attribute is set to `true`. As a result, despite the `var.subnets` variable containing multiple definitions, only those explicitly marked for creation are acted upon - `subnet1` in this case, while `subnet2` is ignored.
 
 Using this pattern, you can fine-tune your Terraform configurations to respond dynamically not just to the contents of variables, but also to the logical conditions your infrastructure setup may require.
 
