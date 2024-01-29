@@ -1,6 +1,6 @@
 ---
 title: Terraform - Understanding Dynamic Blocks
-published: false
+published: true
 description: DevOps - Terraform - Understanding Dynamic Blocks
 tags: 'terraform, azure, iac, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dynamic-Block/assets/main-tf-tips.png'
