@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 1744700
 series: Terraform Pro Tips
+date: '2024-01-29T15:54:00Z'
 ---
 
 ## Overview
