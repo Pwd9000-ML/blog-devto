@@ -24,10 +24,10 @@ In Terraform, a dynamic block consists of two parts: the `dynamic` keyword follo
 ```hcl
 resource "provider_resource" "example" {
     
-  parameter = "value"
+  argument = "value"
   # ... other arguments ...
 
-  dynamic "parameter_block_name" {
+  dynamic "argument_block_name" {
     for_each = var.collection # or expression
     content {
       # Block content
