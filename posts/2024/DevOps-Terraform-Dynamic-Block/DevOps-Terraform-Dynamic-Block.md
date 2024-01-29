@@ -7,12 +7,11 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 1744700
 series: Terraform Pro Tips
-
 ---
 
 ## Overview
 
-In the complex world of infrastructure management, simplicity and reusability are key to maintaining sanity. This is where Terraform shines, offering a suite of advanced syntax and features to streamline the way you define and deploy resources in the cloud.  
+In the complex world of infrastructure management, simplicity and reusability are key to maintaining sanity. This is where Terraform shines, offering a suite of advanced syntax and features to streamline the way you define and deploy resources in the cloud.
 
 Today, we focus on **dynamic blocks** - a powerful feature that introduces greater flexibility and dynamism into your Terraform configurations. I'll walk you through various scenarios and show you how dynamic blocks can make a substantial difference in managing Azure resources and we will also look at a few real world uses cases and scenarios with a few examples using the **AzureRM provider**.
 
@@ -20,7 +19,7 @@ Today, we focus on **dynamic blocks** - a powerful feature that introduces great
 
 Dynamic blocks let you generate nested block configurations within resources or data structures dynamically. They are particularly useful when the configuration of a resource involves repeated nested blocks whose number and content may vary based on input variables or external data.
 
-In Terraform, a dynamic block consists of two parts: the `dynamic` keyword followed by the name of the nested block, and a `content` block that defines the structure of the dynamic block. Inside this `content` block, you reference iterator objects to assign values:  
+In Terraform, a dynamic block consists of two parts: the `dynamic` keyword followed by the name of the nested block, and a `content` block that defines the structure of the dynamic block. Inside this `content` block, you reference iterator objects to assign values:
 
 ```hcl
 dynamic "block_name" {
@@ -33,7 +32,7 @@ dynamic "block_name" {
 
 ## Scenario 1: Azure Network Security Group with Variable Rules
 
-Imagine you need to create a network security group in Azure with a varying number of security rules that can change over time. Instead of hardcoding each rule, you can use a `dynamic block` to generate these rules from a variable:  
+Imagine you need to create a network security group in Azure with a varying number of security rules that can change over time. Instead of hardcoding each rule, you can use a `dynamic block` to generate these rules from a variable:
 
 ```hcl
 variable "security_rules" {
@@ -88,9 +87,7 @@ resource "azurerm_network_security_group" "example" {
 }
 ```
 
-In this scenario, dynamic blocks iterate over the `var.security_rules` list object, creating security rules based on its content. This dynamic approach keeps your code DRY (Don't Repeat Yourself) by avoiding repetitive block definitions.  
-
-
+In this scenario, dynamic blocks iterate over the `var.security_rules` list object, creating security rules based on its content. This dynamic approach keeps your code DRY (Don't Repeat Yourself) by avoiding repetitive block definitions.
 
 ### _Author_
 
