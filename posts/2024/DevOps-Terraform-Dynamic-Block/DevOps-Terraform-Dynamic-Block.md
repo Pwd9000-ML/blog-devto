@@ -23,7 +23,7 @@ In Terraform, a dynamic block consists of two parts: the `dynamic` keyword follo
 
 ```hcl
 resource "provider_resource" "example" {
-    
+
   argument = "value"
   # ... other arguments ...
 
