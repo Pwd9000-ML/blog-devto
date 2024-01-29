@@ -32,6 +32,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **29/01/2024** | [Terraform - Understanding Dynamic Blocks](https://dev.to/pwd9000/terraform-understanding-dynamic-blocks-6f9) | Blog/Website Post | DevOps | DevOps, Terraform, IaC, Tutorial |
 | **24/01/2024** | [OSS maintainer - Terraform Module: (V2 Release) openai-private-chatgpt](https://registry.terraform.io/modules/Pwd9000-ML/openai-private-chatgpt/azurerm/latest) | Open Source Software | Azure, Terraform | Terraform, Azure, IaC, CICD, Maintainer |
 | **03/01/2024** | [Terraform - Keep dependencies up to date with Dependabot (Azure DevOps version)](https://dev.to/pwd9000/terraform-keep-dependencies-up-to-date-with-dependabot-azure-devops-version-40kp) | Blog/Website Post | DevOps | DevOps, Dependabot, Security, Tutorial |
 
