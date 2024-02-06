@@ -93,7 +93,7 @@ There are several branching strategies that you can adopt, such as:
 - **Release Branching**: A strategy where a `release` branch is created from the `main` branch to prepare for a new release, and then merged back into the main branch once the release is complete.
 - **Environment Branching**: A strategy where branches are used to manage different environments, such as `development`, `staging` and `production`.
 
-When choosing a branching strategy, it's important to consider the needs of your team and project. You should choose a strategy that is simple, flexible, and scalable, and that supports the way your team works. You should also document the branching strategy and make sure that everyone on the team understands how it works and follows it consistently.  
+When choosing a branching strategy, it's important to consider the needs of your team and project. You should choose a strategy that is simple, flexible, and scalable, and that supports the way your team works. You should also document the branching strategy and make sure that everyone on the team understands how it works and follows it consistently.
 
 You can get more information on branching and how to use branches at [GitHub branch documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches?wt.mc_id=DT-MVP-5004771).
 
