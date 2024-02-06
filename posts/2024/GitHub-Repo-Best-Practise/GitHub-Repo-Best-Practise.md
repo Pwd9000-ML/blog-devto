@@ -71,7 +71,7 @@ A well-written `README.md` file can help you:
 - **Onboarding**: Help new team members get up to speed with the project. It provides them with the information they need to understand the project and start contributing to it.
 - **Documentation**: Serve as documentation for the project. It provides users with the information they need to use the project.
 - **Promotion**: Help promote your project. It provides potential users with the information they need to understand the project and decide whether to use it.
-- **Standardisation**: Help standardise the way you document your projects. It provides a consistent structure for documenting your projects.  
+- **Standardisation**: Help standardise the way you document your projects. It provides a consistent structure for documenting your projects.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Repo-Best-Practise/assets/readme01.png)
 
