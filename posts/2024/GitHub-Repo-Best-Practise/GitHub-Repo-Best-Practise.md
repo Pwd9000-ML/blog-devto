@@ -11,20 +11,20 @@ series: GitHub Pro Tips
 
 ## Overview ?wt.mc_id=DT-MVP-5004771
 
-As a DevOps engineer, managing **GitHub repositories** is as crucial as the code they contain. A well-maintained repo sets the stage for effective **collaboration**, **code quality**, and **streamlined workflows**. In this blog, we'll discuss and look at a few best practices for managing **GitHub repositories** effectively.  
+As a DevOps engineer, managing **GitHub repositories** is as crucial as the code they contain. A well-maintained repo sets the stage for effective **collaboration**, **code quality**, and **streamlined workflows**. In this blog, we'll discuss and look at a few best practices for managing **GitHub repositories** effectively.
 
 ## Tip 1: Use a Clear Repository Naming Convention
 
-A clear repository naming convention in GitHub is a vital as it helps with organisation and clarity, which are crucial in a collaborative environment.  
+A clear repository naming convention in GitHub is a vital as it helps with organisation and clarity, which are crucial in a collaborative environment.
 
-A clear repository naming convention makes it easier to:  
+A clear repository naming convention makes it easier to:
 
 - Identify the purpose and content of a repository at a glance.
 - Search and retrieve repositories more effectively.
 - Adopt a standardised approach across teams and projects.
-- Implement automation to work more effectively by predicting the structure and naming of repositories. For example, CI/CD workflows can deploy versions based on naming conventions.  
+- Implement automation to work more effectively by predicting the structure and naming of repositories. For example, CI/CD workflows can deploy versions based on naming conventions.
 
-Lets look at some examples:  
+Lets look at some examples:
 
 - **Prefix by Project or Team**: If your organisation has several projects or teams, you could start with a prefix that identifies them e.g. `teamalpha_authentication_service` or `teambravo_data_pipeline`.
 - **Use Descriptive Names**: Repositories should have descriptive and specific names that tell you what's inside e.g. `customer_support_ticketing_system` or `machine_learning_model_trainer`.
@@ -33,15 +33,15 @@ Lets look at some examples:
 - **Avoid Special Characters**: Stick to simple alphanumeric characters and hyphens/underscores to maintain URL compatibility and avoid confusion e.g. `invoice-generator` or `invoice_generator`.
 - **Use Case**: Sometimes indicating whether the repository is a library, service, demo, or documentation can be helpful e.g. `authentication_lib`, `payment_api_service`, `demo_inventory_app`, `api_documentation`.
 
-By adhering to a clear and standardised repository naming convention, you ensure that everyone on the team can navigate repositories more efficiently, anticipate the nature and content of each repository before delving into it, and work cohesively with an intuitive structure guiding them. This ultimately leads to better collaboration, time-saving, and fewer mistakes, allowing teams to focus on building and deploying rather than being bogged down with organisational confusion.  
+By adhering to a clear and standardised repository naming convention, you ensure that everyone on the team can navigate repositories more efficiently, anticipate the nature and content of each repository before delving into it, and work cohesively with an intuitive structure guiding them. This ultimately leads to better collaboration, time-saving, and fewer mistakes, allowing teams to focus on building and deploying rather than being bogged down with organisational confusion.
 
 ## Tip 2: Classify Repositories with Topics
 
-GitHub allows you to classify repositories with **topics**. Topics are labels that can be added to repositories to help categorise and discover projects. They are a great way to organise and group repositories based on their purpose, technology stack, or any other relevant criteria.  
+GitHub allows you to classify repositories with **topics**. Topics are labels that can be added to repositories to help categorise and discover projects. They are a great way to organise and group repositories based on their purpose, technology stack, or any other relevant criteria.
 
-Topics can be added to a repository by navigating to the repository's **About** settings to **edit repository details** and selecting the **Topics** tab. You can then add topics that are relevant to the repository.  
+Topics can be added to a repository by navigating to the repository's **About** settings to **edit repository details** and selecting the **Topics** tab. You can then add topics that are relevant to the repository.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Repo-Best-Practise/assets/topics01.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Repo-Best-Practise/assets/topics01.png)
 
 You can get more information on topics and how to use them effectively in the [GitHub repo topics documentation](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics?wt.mc_id=DT-MVP-5004771).
 
@@ -50,7 +50,6 @@ You can get more information on topics and how to use them effectively in the [G
 A well-documented repository is a treasure trove for developers, contributors, and maintainers. The `README.md` file is the first thing a visitor sees when they land on your repository. It's a great place to provide a quick overview of the repository, its purpose, and how to get started with it.
 
 ## Tip 4: Embrace a consistent branching strategy
-
 
 ## Conclusion
 
