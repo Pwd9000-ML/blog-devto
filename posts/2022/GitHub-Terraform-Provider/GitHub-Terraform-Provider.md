@@ -24,7 +24,7 @@ However, in this post we will be looking at a specific terraform provider you ma
 To get started you'll need:
 
 - A GitHub account / Organisation
-- A Personal Access Token (PAT) - See [creating a personal access token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+- A Personal Access Token (PAT) - See [creating a personal access token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token?wt.mc_id=DT-MVP-5004771).
 - A Code editor such as [VSCode](https://code.visualstudio.com/download)
 - [Terraform](https://www.terraform.io/downloads)
 

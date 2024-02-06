@@ -48,7 +48,7 @@ Thankfully **GitHub** has made it so easy for us to secure our codebase even fur
 
 ### 1.) Enable vigilant mode
 
-First let's turn on something called **[vigilant mode](https://docs.github.com/en/authentication/managing-commit-signature-verification/displaying-verification-statuses-for-all-of-your-commits)**, where we enable displaying verification statuses for all git commits.
+First let's turn on something called **[vigilant mode](https://docs.github.com/en/authentication/managing-commit-signature-verification/displaying-verification-statuses-for-all-of-your-commits?wt.mc_id=DT-MVP-5004771)**, where we enable displaying verification statuses for all git commits.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/fake02.png)
 
@@ -66,7 +66,7 @@ Next we will enable **SSH commit verification** so that any future commits will 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/veri01.png)
 
-To enable SSH commit verification you can either use an [existing SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys) or [generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent):
+To enable SSH commit verification you can either use an [existing SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys?wt.mc_id=DT-MVP-5004771) or [generate a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?wt.mc_id=DT-MVP-5004771):
 
 Open a command terminal and run:
 
@@ -136,7 +136,7 @@ That's it, now when you make any changes to your code and commit those changes t
 
 The last thing I wanted to cover was how you can actively enforce **signature verification** to prevent unsigned commits from being pushed to your repositories.
 
-We can easily achieve this by configuring a **[Branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule)**
+We can easily achieve this by configuring a **[Branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule?wt.mc_id=DT-MVP-5004771)**
 
 1. Navigate to the repository you want to protect and select **'Settings' -> 'Branches' -> 'Add branch protection rule'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Verified-Commits-SSH/assets/pol01.png)
 

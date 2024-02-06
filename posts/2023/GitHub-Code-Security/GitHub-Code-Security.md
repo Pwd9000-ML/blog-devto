@@ -44,7 +44,7 @@ Let's take a look at some of these security features in a bit more detail.
 
 ## 1. Security Alerts for Vulnerable Dependencies
 
-GitHub's **[Dependabot Alerts](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts)** monitors your dependencies (viewable under the repository Security > vulnerability alerts > Dependabot) and sends alerts when it encounters any vulnerabilities.
+GitHub's **[Dependabot Alerts](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts?wt.mc_id=DT-MVP-5004771)** monitors your dependencies (viewable under the repository Security > vulnerability alerts > Dependabot) and sends alerts when it encounters any vulnerabilities.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/secalert.png)
 
@@ -60,7 +60,7 @@ In the rush of development work, it's not uncommon to accidentally commit sensit
 
 Suppose you unknowingly committed an **Azure Storage Account Access Key** to your repository. The **Secret Scanning** feature, once activated, would identify this and notify you or the secret provider. You can then revoke the compromised secret and generate a new one, thereby preventing any unauthorised access.
 
-Have a look at the [supported-secrets](https://docs.github.com/en/code-security/secret-scanning/secret-scanning-patterns#supported-secrets) for more information.
+Have a look at the [supported-secrets](https://docs.github.com/en/code-security/secret-scanning/secret-scanning-patterns#supported-secrets?wt.mc_id=DT-MVP-5004771) for more information.
 
 ---
 
@@ -72,7 +72,7 @@ GitHub's Code Scanning feature, empowered by the semantic analysis engine **Code
 
 Consider a scenario where a developer unknowingly introduces a SQL injection vulnerability in their code. The **Code Scanning** feature would identify this vulnerability during its analysis, providing a description of the issue and advice for resolution. This proactive approach to threat detection allows for resolution before any damage occurs.
 
-Have a look at [supported languages and frameworks](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql#about-codeql) for more information.
+Have a look at [supported languages and frameworks](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql#about-codeql?wt.mc_id=DT-MVP-5004771) for more information.
 
 If your repository hosts supported CodeQL languages, you can either let GitHub automatically analyse your code by using a **_default_** setting or allow you to customise an advanced configuration using a **YAML** config.
 
@@ -94,7 +94,7 @@ At the time of this writing there are over 70 third-party [code scanning tools/w
 
 ## 4. Dependabot Security/Dependency Updates
 
-**[Dependabot Security Updates](https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/about-dependabot-security-updates)** is a security tool that handles your project **dependencies** by generating **alerts** for **vulnerabilities** as mentioned earlier, but can also create pull requests to update them.
+**[Dependabot Security Updates](https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/about-dependabot-security-updates?wt.mc_id=DT-MVP-5004771)** is a security tool that handles your project **dependencies** by generating **alerts** for **vulnerabilities** as mentioned earlier, but can also create pull requests to update them.
 
 Dependabot Security Updates is a feature of **Dependabot**, which is a bot that automates dependency updates not just for security, but also for non-security updates, or out of date dependencies, keeping your project up to date.
 
@@ -104,7 +104,7 @@ Here is an example of a Dependabot pull request where it has updated the **[Terr
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/dependabot.png)
 
-Have a look at all the [supported package ecosystems](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem) Dependabot supports for more information.
+Have a look at all the [supported package ecosystems](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem?wt.mc_id=DT-MVP-5004771) Dependabot supports for more information.
 
 You can also look at what dependencies are being monitored by **Dependabot** in your repository by navigating to the **Insights** tab in your repository.
 
@@ -130,7 +130,7 @@ When private vulnerability reporting is enabled for a repository, security resea
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Code-Security/assets/report2.png)
 
-Have a look at **_[Privately reporting a security vulnerability](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability)_** for more information.
+Have a look at **_[Privately reporting a security vulnerability](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability?wt.mc_id=DT-MVP-5004771)_** for more information.
 
 ---
 

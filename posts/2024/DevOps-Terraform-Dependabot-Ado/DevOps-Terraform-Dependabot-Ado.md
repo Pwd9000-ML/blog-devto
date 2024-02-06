@@ -49,7 +49,7 @@ Go to your project **settings** and select the **repositories** option. Find the
 
 Once the extension is installed and permissions are set, we can now set up **Dependabot** for our **Azure DevOps** repos to scan for **Terraform** dependencies using an **Azure DevOps Pipeline**. Go to your **"Azure DevOps Project"** and locate the Git repo you want to set up **Dependabot** for.
 
-Add a configuration file stored at `.github/dependabot.yml` conforming to the [official spec](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file).
+Add a configuration file stored at `.github/dependabot.yml` conforming to the [official spec](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file?wt.mc_id=DT-MVP-5004771).
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/dep.png)
 
@@ -133,7 +133,7 @@ You can also inspect the **pull request** to see the **difference** between the 
 
 **Dependabot** is a great tool to help you keep your **Terraform** dependencies up to date and it is very easy to set up and use, or to schedule dependency checks using a simple **pipeline** with a cron job as shown in this post. It is also very flexible and can be used with **GitHub** or **Azure DevOps**.
 
-Not only can it be used to keep your **Terraform** dependencies up to date, but it also supports other package ecosystems such as **npm**, **NuGet**, **Maven**, **Docker**, **Composer**, **Cargo**, **pip**, **Yarn** and so forth. Check out the full list of supported package ecosystems [here](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem).
+Not only can it be used to keep your **Terraform** dependencies up to date, but it also supports other package ecosystems such as **npm**, **NuGet**, **Maven**, **Docker**, **Composer**, **Cargo**, **pip**, **Yarn** and so forth. Check out the full list of supported package ecosystems [here](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem?wt.mc_id=DT-MVP-5004771).
 
 I hope you found this post useful and if you have any questions or comments, please get in touch with me on **[Twitter](https://twitter.com/pwd9000)** or **[LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)**.
 

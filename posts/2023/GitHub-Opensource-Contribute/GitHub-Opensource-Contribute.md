@@ -84,7 +84,7 @@ git branch "branch_name"
 git checkout "branch_name"
 ```
 
-You can also create the new branch directly from the **GitHub website**, or your preferred **Integrated Development Environment (IDE)**, such as [VSCode](https://code.visualstudio.com) or even a [GitHub Codespace](https://docs.github.com/en/codespaces/overview).
+You can also create the new branch directly from the **GitHub website**, or your preferred **Integrated Development Environment (IDE)**, such as [VSCode](https://code.visualstudio.com) or even a [GitHub Codespace](https://docs.github.com/en/codespaces/overview?wt.mc_id=DT-MVP-5004771).
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/branch.png)
 

@@ -22,7 +22,7 @@ We will also look at a few practical examples of how and when you would use this
 
 ## A Dive Into GitHub Workflow's 'Permissions'
 
-Let's discuss the **'permissions'** key in detail, which was officially released by GitHub in April 2021. This new feature enables more fine-grained control over the permissions given to the **[GITHUB_TOKEN](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret)** in workflows.
+Let's discuss the **'permissions'** key in detail, which was officially released by GitHub in April 2021. This new feature enables more fine-grained control over the permissions given to the **[GITHUB_TOKEN](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret?wt.mc_id=DT-MVP-5004771)** in workflows.
 
 This is particularly useful to maintain **'principle of least privilege'** - an important security concept stating that a user should have just enough rights necessary to perform their job and nothing more. By minimising the access to resources, you can reduce the damage that could result from accidents or exploits.
 

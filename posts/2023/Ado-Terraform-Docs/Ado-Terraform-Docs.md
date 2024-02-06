@@ -266,7 +266,7 @@ The PAT token scope of permissions required for this solution is **'Code (Read &
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/Ado-Terraform-Docs/assets/PAT.png)
 
-For more information on how to create a PAT token, see [here](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=preview-page).
+For more information on how to create a PAT token, see [here](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=preview-page?wt.mc_id=DT-MVP-5004771).
 
 After creating the PAT token, add it to the keyvault as a secret called **'TerraformDocsPAToken'** and update the pipeline variables to point to the correct keyvault name.
 
