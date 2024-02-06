@@ -45,11 +45,11 @@ Topics can be added to a repository by navigating to the repository's **About** 
 
 It is useful to add topics to repositories for several reasons, including:  
 
-- **Discoverability**: Topics make it easier for others to find your repository. When someone searches for a topic, repositories with that topic will be included in the search results.
-- **Organisation**: Topics help you organise your repositories. You can group repositories based on their purpose, technology stack, or any other relevant criteria.
-- **Community**: Topics help you connect with others who are interested in the same topics. When someone views a repository with a topic, they can see other repositories with the same topic.
-- **Insights**: Topics can provide insights into the technologies and tools that are popular in your organisation. You can use this information to identify trends and make informed decisions about the technologies and tools you use.
-- **Standardisation**: Topics can help you standardise the way you categorise repositories. You can use the same topics across all your repositories to ensure consistency.
+- **Discoverability**: Make it easier for others to find your repository. When someone searches for a topic, repositories with that topic will be included in the search results.
+- **Organisation**: Help you organise your repositories. You can group repositories based on their purpose, technology stack, or any other relevant criteria.
+- **Community**: Help you connect with others who are interested in the same topics. When someone views a repository with a topic, they can see other repositories with the same topic.
+- **Insights**: Provide insights into the technologies and tools that are popular in your organisation. You can use this information to identify trends and make informed decisions about the technologies and tools you use.
+- **Standardisation**: Help you standardise the way you categorise repositories. You can use the same topics across all your repositories to ensure consistency.
 
 When adding topics to a repository, it's important to choose topics that are relevant and meaningful. You should choose topics that accurately describe the purpose, technology stack, or other relevant criteria of the repository.  
 
@@ -67,11 +67,11 @@ A well-documented repository is a treasure trove for developers, contributors, a
 
 A well-written `README.md` file can help you:  
 
-- **Attract Contributors**: A good `README.md` file can attract contributors to your project. It provides them with the information they need to understand the project and get started with it.
-- **Onboarding**: A good `README.md` file can help new team members get up to speed with the project. It provides them with the information they need to understand the project and start contributing to it.
-- **Documentation**: A good `README.md` file can serve as documentation for the project. It provides users with the information they need to use the project.
-- **Promotion**: A good `README.md` file can help promote your project. It provides potential users with the information they need to understand the project and decide whether to use it.
-- **Standardisation**: A good `README.md` file can help standardise the way you document your projects. It provides a consistent structure for documenting your projects.  
+- **Attract Contributors**: Attract contributors to your project. It provides them with the information they need to understand the project and get started with it.
+- **Onboarding**: Help new team members get up to speed with the project. It provides them with the information they need to understand the project and start contributing to it.
+- **Documentation**: Serve as documentation for the project. It provides users with the information they need to use the project.
+- **Promotion**: Help promote your project. It provides potential users with the information they need to understand the project and decide whether to use it.
+- **Standardisation**: Help standardise the way you document your projects. It provides a consistent structure for documenting your projects.  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Repo-Best-Practise/assets/readme01.png)  
 
