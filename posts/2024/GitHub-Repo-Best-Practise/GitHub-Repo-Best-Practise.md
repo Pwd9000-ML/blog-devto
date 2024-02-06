@@ -115,11 +115,39 @@ You can get more information on branch protection rules and how to use them at [
 
 When using branch protection rules, it's important to strike a balance between enforcing restrictions and requirements, and allowing your team to work effectively. You should consider the needs of your team and project, and choose rules that support the way your team works. You should also document the rules and make sure that everyone on the team understands how they work and follows them consistently.  
 
-## Tip 6: Automate Code Quality Checks
+## Tip 6: Maintain a Clean Commit History
+
+A clean commit history is crucial for effective collaboration and code management. It provides a clear record of the changes that have been made to the codebase, and helps to maintain a clean and stable codebase. It also makes it easier to understand the history of the codebase, and reduces the risk of conflicts and errors.  
+
+There are several best practices that you can adopt to maintain a clean commit history, such as:
+
+- **Write descriptive commit messages**: Write clear and descriptive commit messages that explain the purpose and context of the changes that have been made.
+- **Use atomic commits**: Make small, focused commits that contain a single logical change. This makes it easier to understand the history of the codebase, and reduces the risk of conflicts and errors.
+- **Use meaningful commit titles**: Use meaningful commit titles that summarise the purpose of the changes that have been made.
+- **Use consistent formatting**: Use consistent formatting for your commit messages, such as using the imperative mood and keeping the first line to 50 characters or less.
+- **Use signed commits**: Use signed commits to verify the authenticity of your commits and protect against tampering.
+
+For example, a good commit message looks like this::
+
+```bash
+git commit -m "Add user authentication mechanism to the inventory management system"
+```
+
+It's bad practice to have vague messages such as:
+
+```bash
+git commit -m "Fixed stuff"
+```
+
+When maintaining a clean commit history, it's important to consider the needs of your team and project. You should choose practices that are simple, flexible, and scalable, and that support the way your team works. You should also document the practices and make sure that everyone on the team understands how they work and follows them consistently.  
+
+## Tip 7: Automate Code Quality Checks
+
+
 
 ## Conclusion
 
-GitHub's comprehensive suite of security tools and keep your projects safe and resilient.
+In this blog, we only touched on a few topics, and we discussed a few best practices for managing GitHub repositories effectively. Follow this link to get additional information and guidelines on how to [set up your project for healthy contributions](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/?wt.mc_id=DT-MVP-5004771).  
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
