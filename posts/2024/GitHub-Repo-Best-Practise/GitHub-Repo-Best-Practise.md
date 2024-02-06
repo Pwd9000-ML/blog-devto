@@ -99,7 +99,7 @@ You can get more information on branching and how to use branches at [GitHub rep
 
 ## Tip 5: secure your repository with branch protection rules
 
-Branch protection rules are a powerful feature of GitHub that allow you to enforce certain restrictions and requirements on branches. They can help you maintain a clean and stable codebase. They can also help you prevent mistakes and errors, and improve the quality and security of your code.  
+Branch protection rules are a powerful feature of GitHub that allow you to enforce certain restrictions and requirements on branches. They can help you maintain a clean and stable codebase. They can also help you prevent mistakes and errors, and improve the quality and security of your code.
 
 To name a few, you can use branch protection rules to:
 
@@ -111,9 +111,9 @@ To name a few, you can use branch protection rules to:
 - **Require merge queue**: Require that pull requests are merged using a merge queue, such as GitHub Actions or a third-party service to run required checks on pull requests in a merge queue.
 - **Require deployments to succeed before merging**: Require that deployments to certain environments, such as production, succeed before a pull request can be merged.
 
-You can get more information on branch protection rules and how to use them at [GitHub repo branch protection documentation](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches?wt.mc_id=DT-MVP-5004771).  
+You can get more information on branch protection rules and how to use them at [GitHub repo branch protection documentation](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches?wt.mc_id=DT-MVP-5004771).
 
-When using branch protection rules, it's important to strike a balance between enforcing restrictions and requirements, and allowing your team to work effectively. You should consider the needs of your team and project, and choose rules that support the way your team works. You should also document the rules and make sure that everyone on the team understands how they work and follows them consistently.  
+When using branch protection rules, it's important to strike a balance between enforcing restrictions and requirements, and allowing your team to work effectively. You should consider the needs of your team and project, and choose rules that support the way your team works. You should also document the rules and make sure that everyone on the team understands how they work and follows them consistently.
 
 ## Tip 6: Automate Code Quality Checks
 
