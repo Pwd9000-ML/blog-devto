@@ -95,7 +95,7 @@ There are several branching strategies that you can adopt, such as:
 
 When choosing a branching strategy, it's important to consider the needs of your team and project. You should choose a strategy that is simple, flexible, and scalable, and that supports the way your team works. You should also document the branching strategy and make sure that everyone on the team understands how it works and follows it consistently.  
 
-You can get more information on branching and how to use branches at [GitHub branch documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches?wt.mc_id=DT-MVP-5004771).
+You can get more information on branching and how to use branches at [GitHub repo branch documentation](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches?wt.mc_id=DT-MVP-5004771).
 
 ## Tip 5: Automate Code Quality and Security Checks
 
