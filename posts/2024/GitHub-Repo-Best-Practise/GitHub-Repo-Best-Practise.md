@@ -117,7 +117,7 @@ When using branch protection rules, it's important to strike a balance between e
 
 ## Tip 6: Maintain a Clean Commit History
 
-A clean commit history is crucial for effective collaboration and code management. It provides a clear record of the changes that have been made to the codebase, and helps to maintain a clean and stable codebase. It also makes it easier to understand the history of the codebase, and reduces the risk of conflicts and errors.  
+A clean commit history is crucial for effective collaboration and code management. It provides a clear record of the changes that have been made to the codebase, and helps to maintain a clean and stable codebase. It also makes it easier to understand the history of the codebase, and reduces the risk of conflicts and errors.
 
 There are several best practices that you can adopt to maintain a clean commit history, such as:
 
@@ -139,15 +139,13 @@ It's bad practice to have vague messages such as:
 git commit -m "Fixed stuff"
 ```
 
-When maintaining a clean commit history, it's important to consider the needs of your team and project. You should choose practices that are simple, flexible, and scalable, and that support the way your team works. You should also document the practices and make sure that everyone on the team understands how they work and follows them consistently.  
+When maintaining a clean commit history, it's important to consider the needs of your team and project. You should choose practices that are simple, flexible, and scalable, and that support the way your team works. You should also document the practices and make sure that everyone on the team understands how they work and follows them consistently.
 
 ## Tip 7: Automate Code Quality Checks
 
-
-
 ## Conclusion
 
-In this blog, we only touched on a few topics, and we discussed a few best practices for managing GitHub repositories effectively. Follow this link to get additional information and guidelines on how to [set up your project for healthy contributions](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/?wt.mc_id=DT-MVP-5004771).  
+In this blog, we only touched on a few topics, and we discussed a few best practices for managing GitHub repositories effectively. Follow this link to get additional information and guidelines on how to [set up your project for healthy contributions](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/?wt.mc_id=DT-MVP-5004771).
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
