@@ -9,7 +9,7 @@ id: 1753615
 series: GitHub Pro Tips
 ---
 
-## Overview ?wt.mc_id=DT-MVP-5004771
+## Overview
 
 As a DevOps engineer, managing **GitHub repositories** is as crucial as the code they contain. A well-maintained **Github** repo sets the stage for effective **collaboration**, **code quality**, and **streamlined workflows**. In this blog, we'll discuss and look at my top 10 tips for best practices in managing **GitHub repositories** effectively.
 
