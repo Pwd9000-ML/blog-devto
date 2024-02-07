@@ -172,7 +172,7 @@ GitHub Actions is a big topic on it's own but to touch on few topics, you can us
 - **Automate IaC**: Automate infrastructure as code (IaC) tasks such as provisioning, configuring, and deploying infrastructure.
 - **Automate security checks**: Automate security checks such as vulnerability scanning, dependency analysis, and code analysis.
 
-The list goes on, but the point is that GitHub Actions is a powerful tool that can help you automate many of the tasks that are involved in managing a codebase.  
+The list goes on, but the point is that GitHub Actions is a powerful tool that can help you automate many of the tasks that are involved in managing a codebase.
 
 It's important to consider the needs of your team and project. You should choose workflows that are simple, flexible, and scalable, and that support the way your team works. You should also document the workflows and make sure that everyone on the team understands how they work and follows them consistently.
 
