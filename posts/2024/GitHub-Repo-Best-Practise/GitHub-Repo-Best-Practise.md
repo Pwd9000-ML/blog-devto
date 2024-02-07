@@ -184,7 +184,7 @@ You can get more information on GitHub Actions and how to use them effectively f
 
 ## Conclusion
 
-In this blog, we only touched on a few topics, and we discussed a few best practices for managing GitHub repositories effectively. Follow this link to get additional information and guidelines on how to [set up your project for healthy contributions](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/?wt.mc_id=DT-MVP-5004771).
+In this blog, we only touched on a few topics, and we discussed a few best practices for managing GitHub repositories effectively. But for more valuable information follow this link to get additional guidelines on how to [set up your project for healthy contributions](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/?wt.mc_id=DT-MVP-5004771).
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
