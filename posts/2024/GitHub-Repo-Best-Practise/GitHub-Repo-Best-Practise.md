@@ -1,6 +1,6 @@
 ---
 title: GitHub Repository Best Practices
-published: false
+published: true
 description: GitHub Repository Best Practices - Tips for Effective Management
 tags: 'github, git, devops, repository'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Repo-Best-Practise/assets/main-gh-tips.png'
