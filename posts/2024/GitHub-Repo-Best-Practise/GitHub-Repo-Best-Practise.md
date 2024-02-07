@@ -178,9 +178,36 @@ It's important to consider the needs of your team and project. You should choose
 
 You can get more information on GitHub Actions and how to use them effectively from the official [GitHub Actions documentation](https://docs.github.com/en/actions?wt.mc_id=DT-MVP-5004771).
 
-## Tip 9: Leverage Issue Tracking and Project Boards
+## Tip 9: Leverage Issue Tracking and Projects
+
+GitHub provides a powerful issue tracking system that allows you to manage and track **issues**, **bugs**, and **feature requests**. It also provides [project status boards](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/quickstart-for-projects#adding-a-board-layout?wt.mc_id=DT-MVP-5004771) that allow you to manage and track the progress of your work.  
+
+**Github Projects** can also help you to manage your work more effectively, and improve the collaboration and communication within your team.  
+
+Issue tracking and Projects are useful for several reasons, including:  
+
+- **Track issues and bugs**: Track issues and bugs, and manage the process of fixing them.
+- **Track feature requests**: Track feature requests, and manage the process of implementing them.
+- **Plan and prioritise work**: Plan and prioritise your work, and manage the process of completing it.
+- **Manage releases**: Manage releases, and track the progress of your work through **[milestones](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/viewing-your-milestones-progress?wt.mc_id=DT-MVP-5004771)**.
+- **Collaborate and communicate**: Collaborate and communicate with your team, and improve the quality and security of your code.
+- **Labelling**: Use labels to categorise issues, and make it easier to manage and track them. (e.g. `bug`, `enhancement`, `help wanted`).  
+
+You can get more information on issue tracking and project boards and how to use them effectively from the official [GitHub issue tracking documentation](https://docs.github.com/en/issues?wt.mc_id=DT-MVP-5004771) and [GitHub projects documentation](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects?wt.mc_id=DT-MVP-5004771).
 
 ## Tip 10: Make use of GitHub security features
+
+GitHub provides a range of security features that can help you to improve the security of your codebase. These features can help you to identify and fix security vulnerabilities, and proactively protect your code from security threats and leaks.
+
+To name a few, you can use GitHub security features to:
+
+- **Security Alerts for Vulnerable Dependencies**: Get alerts when your repository has a vulnerable dependency.
+- **Code and Secret Scanning**: Scan your code for security vulnerabilities, secrets committed in code and coding errors.
+- **Dependabot Security/Dependency Updates**: Automatically update your dependencies to the latest secure version using [Github Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/about-dependabot-security-updates?wt.mc_id=DT-MVP-5004771).
+- **Security Policies and Advisories**: Create and manage security policies and advisories for your repository.
+- **Dependency Insights**: Get insights into the security/dependencies of your codebase, and identify areas for improvement using [dependency graph](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph#about-the-dependency-graph?wt.mc_id=DT-MVP-5004771).  
+
+For more information and also to take a deeper dive into some of the security features and tooling available in GitHub natively I recommend checking an earlier blog post of this blog Series: [Securing Your Code with GitHub](https://dev.to/pwd9000/securing-your-code-with-github-3le0)  
 
 ## Conclusion
 
