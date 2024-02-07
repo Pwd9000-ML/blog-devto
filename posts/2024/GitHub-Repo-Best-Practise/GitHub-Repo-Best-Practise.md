@@ -141,7 +141,7 @@ git commit -m "Fixed stuff"
 
 When maintaining a clean commit history, it's important to consider the needs of your team and project. You should choose practices that are simple, flexible, and scalable, and that support the way your team works. You should also document the practices and make sure that everyone on the team understands how they work and follows them consistently.
 
-## Tip 7: Utilize .gitignore
+## Tip 7: Utilise .gitignore
 
 The `.gitignore` file is a simple and effective way to manage the files and directories that you want to exclude from version control. It allows you to specify patterns that match files and directories that you want to ignore, and prevents them from being added to the repository.
 
