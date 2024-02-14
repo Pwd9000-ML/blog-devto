@@ -11,19 +11,19 @@ series: Terraform Pro Tips
 
 ## Overview
 
-When working with Terraform, it is important to understand the difference between **implicit** and **explicit** dependencies. This is important as it can help you to understand how Terraform creates the **dependency graph** and how it determines the order in which resources are created.  
+When working with Terraform, it is important to understand the difference between **implicit** and **explicit** dependencies. This is important as it can help you to understand how Terraform creates the **dependency graph** and how it determines the order in which resources are created.
 
 ## What Are Dependencies in Terraform?
 
-Dependencies in Terraform dictate the order in which resources are created, updated, or destroyed. Terraform automatically determines dependencies between your resources, ensuring that they are managed in the correct sequence.  
+Dependencies in Terraform dictate the order in which resources are created, updated, or destroyed. Terraform automatically determines dependencies between your resources, ensuring that they are managed in the correct sequence.
 
 ## Implicit Dependencies
 
-Implicit dependencies are automatically discovered by Terraform by analysing resource attributes. When one resource refers to another using interpolation syntax, Terraform recognises this as a dependency.  
+Implicit dependencies are automatically discovered by Terraform by analysing resource attributes. When one resource refers to another using interpolation syntax, Terraform recognises this as a dependency.
 
-In other words, implicit dependencies in Terraform are created when one resource property references another resource's property or output. Terraform uses these references to automatically determine the order of resource creation.  
+In other words, implicit dependencies in Terraform are created when one resource property references another resource's property or output. Terraform uses these references to automatically determine the order of resource creation.
 
-Consider this example involving an Azure virtual network and a subnet:  
+Consider this example involving an Azure virtual network and a subnet:
 
 ```hcl
 resource "azurerm_resource_group" "example" {
@@ -46,17 +46,17 @@ resource "azurerm_subnet" "example_subnet" {
 }
 ```
 
-In this example, the `azurerm_subnet` resource has an implicit dependency on the `azurerm_virtual_network` resource. This is because the `virtual_network_name` property of the `azurerm_subnet` resource references the `name` property of the `azurerm_virtual_network` resource. Terraform automatically recognises this and creates the dependency.  
+In this example, the `azurerm_subnet` resource has an implicit dependency on the `azurerm_virtual_network` resource. This is because the `virtual_network_name` property of the `azurerm_subnet` resource references the `name` property of the `azurerm_virtual_network` resource. Terraform automatically recognises this and creates the dependency.
 
 ## Explicit Dependencies
 
-Sometimes, however, the relationship between resources is not captured by direct references. In these instances, you can use the `depends_on` attribute to create an explicit dependency.  
+Sometimes, however, the relationship between resources is not captured by direct references. In these instances, you can use the `depends_on` attribute to create an explicit dependency.
 
 Explicit dependencies should only be defined when Terraform can't automatically infer the required order for resource creation, or when specific provisioning steps are necessary before or after a resource is deployed.
 
-Let's illustrate an explicit dependency in a scenario where an Azure App Service depends on certain configuration settings that are applied via an Azure CLI script after the creation of an Azure Key Vault.  
+Let's illustrate an explicit dependency in a scenario where an Azure App Service depends on certain configuration settings that are applied via an Azure CLI script after the creation of an Azure Key Vault.
 
-Here's a simple Terraform configuration demonstrating this relationship:  
+Here's a simple Terraform configuration demonstrating this relationship:
 
 ```hcl
 resource "azurerm_resource_group" "example_rg" {
@@ -115,13 +115,13 @@ In the above example:
 4. `azurerm_app_service_plan.example_asp` sets up the required App Service Plan.
 5. `azurerm_app_service.example_app_service` creates the App Service with a `depends_on` pointing to `null_resource.example_kv_settings`. This explicit dependency ensures that the App Service is only provisioned after the Key Vault settings have been applied by the script.
 
-By using `depends_on`, we establish an explicit dependency chain: Resource Group -> Key Vault -> Key Vault Settings -> App Service. This ensures the resources are provisioned in the correct order, even though the dependencies aren't apparent from the resource attributes alone.  
+By using `depends_on`, we establish an explicit dependency chain: Resource Group -> Key Vault -> Key Vault Settings -> App Service. This ensures the resources are provisioned in the correct order, even though the dependencies aren't apparent from the resource attributes alone.
 
 ## When to Use Implicit vs. Explicit Dependencies
 
-Implicit dependencies should be your first go-to in Terraform since they are automatically detected, and Terraform handles the ordering for you. However, there are cases when Terraform cannot discern the right order, or you have custom steps in your provisioning process which can warrant the use of explicit dependencies with the `depends_on` attribute.  
+Implicit dependencies should be your first go-to in Terraform since they are automatically detected, and Terraform handles the ordering for you. However, there are cases when Terraform cannot discern the right order, or you have custom steps in your provisioning process which can warrant the use of explicit dependencies with the `depends_on` attribute.
 
-To minimise potential issues:  
+To minimise potential issues:
 
 - Rely mostly on implicit dependencies through resource attribute references.
 - Only use explicit dependencies when necessary, and keep them to a minimum to avoid tightly coupled architecture.
@@ -129,7 +129,7 @@ To minimise potential issues:
 
 ## Conclusion
 
-Grasping the concept of implicit and explicit dependencies and applying that knowledge to Azure resources with Terraform will lead to smoother deployments and a more robust infrastructure.  
+Grasping the concept of implicit and explicit dependencies and applying that knowledge to Azure resources with Terraform will lead to smoother deployments and a more robust infrastructure.
 
 ### _Author_
 
