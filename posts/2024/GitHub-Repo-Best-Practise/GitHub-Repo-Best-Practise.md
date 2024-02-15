@@ -64,7 +64,7 @@ A well-documented repository is a treasure trove for developers, contributors, a
 - Setup instructions
 - Usage examples
 - Contribution guidelines
-- License information
+- License information  
 
 A well-written `README.md` file can help you:
 
