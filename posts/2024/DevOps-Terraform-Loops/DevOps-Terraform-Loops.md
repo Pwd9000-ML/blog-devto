@@ -11,11 +11,11 @@ series: Terraform Pro Tips
 
 ## Overview
 
-When working with Terraform, you may need to create multiple instances of the same resource. This is where **count** and **for_each** loops come in. These loops allow you to create multiple resources with the same configuration, but with different values. This guide will explain how to use **count** and **for_each** loops in Terraform.  
+When working with Terraform, you may need to create multiple instances of the same resource. This is where **count** and **for_each** loops come in. These loops allow you to create multiple resources with the same configuration, but with different values. This guide will explain how to use **count** and **for_each** loops in Terraform.
 
 ## Count in Terraform
 
-The `count` parameter in Terraform allows you to create a specified number of identical resources. It is an integral part of a resource block that defines how many instances of a particular resource should be created.  
+The `count` parameter in Terraform allows you to create a specified number of identical resources. It is an integral part of a resource block that defines how many instances of a particular resource should be created.
 
 Here's an example of how to use `count` in Terraform:
 
@@ -30,7 +30,7 @@ resource "azurerm_resource_group" "example" {
 }
 ```
 
-In the example above, we create three identical resource groups in the Azure region "East US" with differing names using the `count` parameter.  
+In the example above, we create three identical resource groups in the Azure region "East US" with differing names using the `count` parameter.
 
 ## Pros:
 
@@ -53,22 +53,22 @@ resource "azurerm_virtual_machine" "vm" {
 }
 ```
 
-In the above example. Say After some time, you decide that you no longer need the second VM (**"vm-1"**, since **"count.index"** is zero-based). To remove this VM, you might change the `count` to `4` and adjust your resource names or indexes, which might intuitively seem like the correct approach.  
+In the above example. Say After some time, you decide that you no longer need the second VM (**"vm-1"**, since **"count.index"** is zero-based). To remove this VM, you might change the `count` to `4` and adjust your resource names or indexes, which might intuitively seem like the correct approach.
 
-The problem arises here: Terraform determines the creation and destruction of resources based on their index. If you simply remove or comment out the definition for **"vm-1"**, Terraform won't know that you specifically want to destroy **"vm-1"**. It would interpret that every VM from index 1 and onward (vm-1, vm-2, vm-3, and vm-4) should be destroyed and recreated because their indices have changed.  
+The problem arises here: Terraform determines the creation and destruction of resources based on their index. If you simply remove or comment out the definition for **"vm-1"**, Terraform won't know that you specifically want to destroy **"vm-1"**. It would interpret that every VM from index 1 and onward (vm-1, vm-2, vm-3, and vm-4) should be destroyed and recreated because their indices have changed.
 
-This could have several disruptive consequences:  
+This could have several disruptive consequences:
 
 - **Downtime:** Recreating VMs would lead to downtime for the services running on them, which may be unacceptable in a production environment.
 - **Data Loss:** If there's local data on the VMs that you haven't backed up, it would be lost when the VMs are destroyed and recreated.
 - **IP Changes:** If the VMs are assigned dynamic public IPs, these IPs would change and could cause connectivity issues.
 - **Costs:** Destroying and recreating resources might incur unnecessary costs in terms of the compute hours consumed.
 
-To avoid such issues with `count`, you'd want to use `create_before_destroy` [lifecycle rules](https://dev.to/pwd9000/terraform-understanding-the-lifecycle-block-4f6e) or consider whether `for_each` is a better choice for such a scenario because it provides a way to uniquely identify resources without relying on sequence. With `for_each`, each VM would be managed individually, and you could remove a single map entry that corresponds to the unwanted VM, leading to the destruction of only that particular VM without impacting the others.  
+To avoid such issues with `count`, you'd want to use `create_before_destroy` [lifecycle rules](https://dev.to/pwd9000/terraform-understanding-the-lifecycle-block-4f6e) or consider whether `for_each` is a better choice for such a scenario because it provides a way to uniquely identify resources without relying on sequence. With `for_each`, each VM would be managed individually, and you could remove a single map entry that corresponds to the unwanted VM, leading to the destruction of only that particular VM without impacting the others.
 
 ## For_Each in Terraform
 
-The `for_each` loop in Terraform, used within the `for_each` argument, iterates over a map or a set of strings, allowing you to create resources that correspond to the given elements.  
+The `for_each` loop in Terraform, used within the `for_each` argument, iterates over a map or a set of strings, allowing you to create resources that correspond to the given elements.
 
 Here's an example of how to use `for_each` in Terraform:
 
