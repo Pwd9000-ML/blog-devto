@@ -1,5 +1,5 @@
 ---
-title: Terraform - Understanding Loops
+title: Terraform - Understanding Count and For_Each Loops
 published: false
 description: DevOps - Terraform - Understanding Count and For_Each Loops
 tags: 'terraform, azure, iac, devops'
