@@ -23,7 +23,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **04/03/2023** | [Azure Spring Clean 2024 - Keep dependencies up to date with Dependabot (Azure DevOps version)](https://www.azurespringclean.com/) | Community Event | AzureDevOps | Dependabot, Automation, DevOps, Azure |
+| **06/03/2023** | [Azure Spring Clean 2024 - Keep dependencies up to date with Dependabot (Azure DevOps version)](https://www.azurespringclean.com/) | Community Event | AzureDevOps | Dependabot, Automation, DevOps, Azure |
 
 ---
 
