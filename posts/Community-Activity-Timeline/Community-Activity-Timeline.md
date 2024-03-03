@@ -24,7 +24,6 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
 | **04/03/2023** | [Azure Spring Clean 2024 - Keep dependencies up to date with Dependabot (Azure DevOps version)](https://www.azurespringclean.com/) | Community Event | AzureDevOps | Dependabot, Automation, DevOps, Azure |
-| **02/03/2024** | [Terraform - Understanding Count and For_Each Loops]() | Blog/Website Post | DevOps | DevOps, Terraform, IaC, Tutorial |
 
 ---
 
@@ -32,6 +31,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **03/03/2024** | [Terraform - Understanding Count and For_Each Loops]() | Blog/Website Post | DevOps | DevOps, Terraform, IaC, Tutorial |
 | **15/02/2024** | [Terraform - Understanding Implicit and Explicit Dependencies](https://dev.to/pwd9000/terraform-understanding-implicit-and-explicit-dependencies-n9l) | Blog/Website Post | DevOps | DevOps, Terraform, IaC, Tutorial |
 | **07/02/2024** | [GitHub Repository Best Practices](https://dev.to/pwd9000/github-repository-best-practices-23ck) | Blog/Website Post | GitHub | DevOps, DevCommunity, GitHub, Tutorial |
 | **29/01/2024** | [Terraform - Understanding Dynamic Blocks](https://dev.to/pwd9000/terraform-understanding-dynamic-blocks-6f9) | Blog/Website Post | DevOps | DevOps, Terraform, IaC, Tutorial |
