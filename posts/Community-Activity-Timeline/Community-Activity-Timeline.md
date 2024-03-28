@@ -23,7 +23,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **06/03/2023** | [Azure Spring Clean 2024 - Keep dependencies up to date with Dependabot (Azure DevOps version)](https://www.azurespringclean.com/) | Community Event | AzureDevOps | Dependabot, Automation, DevOps, Azure |
+| **19/04/2023** | [Global Azure 2024 - Azure Verified Modules](https://globalazure.net/) | Community Event | IaC | DevOps, Azure, Terraform, IaC |
 
 ---
 
@@ -31,6 +31,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **06/03/2023** | [Azure Spring Clean 2024 - Keep dependencies up to date with Dependabot (Azure DevOps version)](https://www.azurespringclean.com/) | Community Event | AzureDevOps | Dependabot, Automation, DevOps, Azure |
 | **03/03/2024** | [Terraform - Understanding Count and For_Each Loops](https://dev.to/pwd9000/terraform-understanding-count-and-foreach-loops-c6i) | Blog/Website Post | DevOps | DevOps, Terraform, IaC, Tutorial |
 | **15/02/2024** | [Terraform - Understanding Implicit and Explicit Dependencies](https://dev.to/pwd9000/terraform-understanding-implicit-and-explicit-dependencies-n9l) | Blog/Website Post | DevOps | DevOps, Terraform, IaC, Tutorial |
 | **07/02/2024** | [GitHub Repository Best Practices](https://dev.to/pwd9000/github-repository-best-practices-23ck) | Blog/Website Post | GitHub | DevOps, DevCommunity, GitHub, Tutorial |
