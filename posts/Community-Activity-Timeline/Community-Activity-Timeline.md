@@ -31,6 +31,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **15/04/2023** | [Azure Verified Modules - Quickstart GitHub Template](https://github.com/Pwd9000-ML/Azure-Verified-Modules) | Code Samples | IaC | GitHub, QuickStart, Terraform, IaC |
 | **06/03/2023** | [Azure Spring Clean 2024 - Keep dependencies up to date with Dependabot (Azure DevOps version)](https://www.azurespringclean.com/) | Community Event | AzureDevOps | Dependabot, Automation, DevOps, Azure |
 | **03/03/2024** | [Terraform - Understanding Count and For_Each Loops](https://dev.to/pwd9000/terraform-understanding-count-and-foreach-loops-c6i) | Blog/Website Post | DevOps | DevOps, Terraform, IaC, Tutorial |
 | **15/02/2024** | [Terraform - Understanding Implicit and Explicit Dependencies](https://dev.to/pwd9000/terraform-understanding-implicit-and-explicit-dependencies-n9l) | Blog/Website Post | DevOps | DevOps, Terraform, IaC, Tutorial |
