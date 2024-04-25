@@ -23,7 +23,8 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **19/04/2023** | [Global Azure 2024 - Azure Verified Modules](https://globalazure.net/) | Community Event | IaC | DevOps, Azure, Terraform, IaC |
+| **16/11/2023** | [DevSecCon - GitHub-Azure Authentication and SLSA in DevOps](https://www.devseccon.com/events/empowering-devsecops-github-azure-authentication-and-slsa-in-devops) | Public Speaking | Azure, GitHub | DevSecOps, DevOps, Security |
+| **14/11/2023** | [.NET Conf 2023 - London Microsoft DevOps Meetup](https://www.meetup.com/london-microsoft-devops/events/296727947/) | Public Speaking | Azure, GitHub | DevSecOps, DevOps, Ignite |
 
 ---
 
