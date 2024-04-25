@@ -48,7 +48,7 @@ extra https://azure.github.io/Azure-Verified-Modules/specs/shared/#id-rmfr4---ca
 
 ## Conclusion
 
-tofo  
+tofo
 
 ### _Author_
 
