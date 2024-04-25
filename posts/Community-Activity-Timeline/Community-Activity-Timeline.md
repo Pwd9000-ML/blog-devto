@@ -23,8 +23,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **16/11/2023** | [DevSecCon - GitHub-Azure Authentication and SLSA in DevOps](https://www.devseccon.com/events/empowering-devsecops-github-azure-authentication-and-slsa-in-devops) | Public Speaking | Azure, GitHub | DevSecOps, DevOps, Security |
-| **14/11/2023** | [.NET Conf 2023 - London Microsoft DevOps Meetup](https://www.meetup.com/london-microsoft-devops/events/296727947/) | Public Speaking | Azure, GitHub | DevSecOps, DevOps, Ignite |
+| COMING SOON | | | | |
 
 ---
 
@@ -32,8 +31,9 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **15/04/2023** | [Azure Verified Modules - Quickstart GitHub Template](https://github.com/Pwd9000-ML/Azure-Verified-Modules) | Code Samples | IaC | GitHub, QuickStart, Terraform, IaC |
-| **06/03/2023** | [Azure Spring Clean 2024 - Keep dependencies up to date with Dependabot (Azure DevOps version)](https://www.azurespringclean.com/) | Community Event | AzureDevOps | Dependabot, Automation, DevOps, Azure |
+| **19/04/2024** | [Global Azure 2024 - Azure Verified Modules](https://www.youtube.com/live/5dtRWBfj4xY?si=wZkmdcckCw4f2S2X&t=4222) | Community Event | IaC | DevOps, Azure, Terraform, IaC |
+| **15/04/2024** | [Azure Verified Modules - Quickstart GitHub Template](https://github.com/Pwd9000-ML/Azure-Verified-Modules) | Code Samples | IaC | GitHub, QuickStart, Terraform, IaC |
+| **06/03/2024** | [Azure Spring Clean 2024 - Keep dependencies up to date with Dependabot (Azure DevOps version)](https://www.azurespringclean.com/) | Community Event | AzureDevOps | Dependabot, Automation, DevOps, Azure |
 | **03/03/2024** | [Terraform - Understanding Count and For_Each Loops](https://dev.to/pwd9000/terraform-understanding-count-and-foreach-loops-c6i) | Blog/Website Post | DevOps | DevOps, Terraform, IaC, Tutorial |
 | **15/02/2024** | [Terraform - Understanding Implicit and Explicit Dependencies](https://dev.to/pwd9000/terraform-understanding-implicit-and-explicit-dependencies-n9l) | Blog/Website Post | DevOps | DevOps, Terraform, IaC, Tutorial |
 | **07/02/2024** | [GitHub Repository Best Practices](https://dev.to/pwd9000/github-repository-best-practices-23ck) | Blog/Website Post | GitHub | DevOps, DevCommunity, GitHub, Tutorial |
