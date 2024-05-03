@@ -6,6 +6,7 @@ tags: 'terraform, azure, iac, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-AVM/assets/main.png'
 canonical_url: null
 id: 1824654
+date: '2024-05-03T16:30:30Z'
 ---
 
 ## Overview
@@ -47,9 +48,9 @@ Examples of Consistent **[feature interfaces](https://azure.github.io/Azure-Veri
 
 ## Live Demo Recording
 
-Have a look at my session recording for a live demo of AMV with **Terraform**:  
+Have a look at my session recording for a live demo of AMV with **Terraform**:
 
-{% youtube 5dtRWBfj4xY %}  
+{% youtube 5dtRWBfj4xY %}
 
 ## Labs
 
