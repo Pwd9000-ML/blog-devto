@@ -11,7 +11,7 @@ date: '2024-05-03T16:30:30Z'
 
 ## Overview
 
-This post is also part of a LIVE session I did for the **Global Azure 2024** event (See below for teh recording).
+This post is also part of a LIVE session delivered at **Global Azure 2024** (See below for the recording).
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-AVM/assets/GlobalAzure2024-500.png)
 
