@@ -21,8 +21,8 @@ Here is a summary and timeline of my community activity, speaking events and con
 
 If you like my content feel free to bookmark this page as it gets updated frequently to showcase any new content or upcoming events/conferences/podcasts I will be presenting at.
 
-| Date        | Activity | Type | Topic Area | Tags |
-| ----------- | -------- | ---- | ---------- | ---- |
+| Date | Activity | Type | Topic Area | Tags |
+| --- | --- | --- | --- | --- |
 | **02/06/2024** | [Season of AI - Core AI](https://www.meetup.com/london-microsoft-devops/) | Event Organiser | DevOps, Meetup | AI, DevOps, Meetup, Azure |
 | **24/05/2024** | [Season of AI - DevOps AI](https://www.meetup.com/london-microsoft-devops/) | Event Organiser | DevOps, Meetup | AI, DevOps, Meetup, Azure |
 
