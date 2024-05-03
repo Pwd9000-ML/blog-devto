@@ -34,7 +34,7 @@ Relying on community-shared modules can be risky due to uncertainty about their 
 
 ## Interfaces
 
-Examples of Consistent features/interfaces to name a few:  
+Examples of Consistent **[feature interfaces](https://azure.github.io/Azure-Verified-Modules/specs/shared/interfaces?wt.mc_id=DT-MVP-5004771)** to name a few:  
 
 * Diagnostic Settings  
 * Role Assignments  
