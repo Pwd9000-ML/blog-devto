@@ -51,7 +51,7 @@ Take a look at my talk and session recording to see the usage of AMV with **Terr
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5dtRWBfj4xY?si=vNEGlxfx6o13H8uQ&amp;controls=0&amp;start=4242" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-{% youtube 5dtRWBfj4xY?si=vNEGlxfx6o13H8uQ&controls=0&start=4242 %}
+{% youtube 5dtRWBfj4xY %}
 
 [Global Azure 2024 - Azure Verified Modules](https://www.youtube.com/live/5dtRWBfj4xY?si=wZkmdcckCw4f2S2X&t=4222)
 
