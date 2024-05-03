@@ -12,7 +12,7 @@ id: 1824654
 
 This post is also part of a LIVE session I did for the **Global Azure 2024** event (See below for teh recording).  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-AVMassets/GlobalAzure2024-500.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-AVM/assets/GlobalAzure2024-500.png)  
 
 Today we are going to talk about **Azure Verified Modules** (AVM) and how to use them in Terraform.  
 
