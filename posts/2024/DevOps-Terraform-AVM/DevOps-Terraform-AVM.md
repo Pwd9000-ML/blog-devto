@@ -48,7 +48,7 @@ Examples of Consistent **[feature interfaces](https://azure.github.io/Azure-Veri
 
 ## Live Demo Recording
 
-Have a look at my session recording for a live demo of AMV with **Terraform**:
+Have a look at my session recording for a live demo of AMV with **Terraform** at timestamp - **1h10m**:
 
 {% youtube 5dtRWBfj4xY %}
 
