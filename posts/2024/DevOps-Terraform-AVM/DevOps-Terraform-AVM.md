@@ -45,11 +45,11 @@ Examples of Consistent **[feature interfaces](https://azure.github.io/Azure-Veri
 * Customer Managed Keys  
 * Azure Monitor Alerts  
 
-## Live Demo
+## Live Demo recording
 
 Take a look at my talk and session recording to see the usage of AMV with **Terraform** in action:  
 
-{% youtube wZkmdcckCw4f2S2X&t=4222 %}
+{% youtube 5dtRWBfj4xY %}
 
 ## Labs  
 
