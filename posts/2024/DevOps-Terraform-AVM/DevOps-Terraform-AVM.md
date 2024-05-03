@@ -1,6 +1,6 @@
 ---
 title: Azure Verified Modules using Terraform
-published: false
+published: true
 description: DevOps - Terraform - Azure Verified Modules - Learn how to use Azure Verified Modules in Terraform to deploy resources in Azure.
 tags: 'terraform, azure, iac, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-AVM/assets/main.png'
@@ -45,11 +45,11 @@ Examples of Consistent **[feature interfaces](https://azure.github.io/Azure-Veri
 * Customer Managed Keys  
 * Azure Monitor Alerts  
 
-## Live Demo recording
+## Live Demo Recording
 
-Take a look at my talk and session recording to see the usage of AMV with **Terraform** in action:  
+Have a look at my session recording for a live demo of AMV with **Terraform**:  
 
-{% youtube 5dtRWBfj4xY %}
+{% youtube 5dtRWBfj4xY %}  
 
 ## Labs  
 
