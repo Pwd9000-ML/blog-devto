@@ -23,7 +23,8 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date        | Activity | Type | Topic Area | Tags |
 | ----------- | -------- | ---- | ---------- | ---- |
-| COMING SOON |          |      |            |      |
+| **02/06/2024** | [Season of AI - Core AI](https://www.meetup.com/london-microsoft-devops/) | Event Organiser | DevOps, Meetup | AI, DevOps, Meetup, Azure |
+| **24/05/2024** | [Season of AI - DevOps AI](https://www.meetup.com/london-microsoft-devops/) | Event Organiser | DevOps, Meetup | AI, DevOps, Meetup, Azure |
 
 ---
 
@@ -31,6 +32,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **03/05/2024** | [Azure Verified Modules - Blog Post]() | Blog/Website Post | IaC | DevOps, Azure, Terraform, IaC |
 | **19/04/2024** | [Global Azure 2024 - Azure Verified Modules](https://www.youtube.com/live/5dtRWBfj4xY?si=wZkmdcckCw4f2S2X&t=4222) | Community Event | IaC | DevOps, Azure, Terraform, IaC |
 | **15/04/2024** | [Azure Verified Modules - Quickstart GitHub Template](https://github.com/Pwd9000-ML/Azure-Verified-Modules) | Code Samples | IaC | GitHub, QuickStart, Terraform, IaC |
 | **06/03/2024** | [Azure Spring Clean 2024 - Keep dependencies up to date with Dependabot (Azure DevOps version)](https://www.azurespringclean.com/) | Community Event | AzureDevOps | Dependabot, Automation, DevOps, Azure |
