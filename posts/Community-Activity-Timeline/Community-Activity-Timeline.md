@@ -24,7 +24,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
 | **02/06/2024** | [Season of AI - DevOps AI](https://www.meetup.com/london-microsoft-devops/events/300848498/) | Event Organiser | DevOps, Meetup | AI, DevOps, Meetup, Azure |
-| **24/05/2024** | [Season of AI - Core AI](https://www.meetup.com/london-microsoft-devops/events/300848455/) | Event Organiser | DevOps, Meetup | AI, DevOps, Meetup, Azure |
+| **24/05/2024** | [Season of AI - Core AI](https://www.meetup.com/london-microsoft-devops/events/300848455/) | Event Organiser + Speaker | DevOps, Meetup | AI, DevOps, Meetup, Azure |
 
 ---
 
