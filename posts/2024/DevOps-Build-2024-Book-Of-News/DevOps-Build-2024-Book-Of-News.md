@@ -76,15 +76,15 @@ Check out the **[Azure Functions - Build 24 Update](https://techcommunity.micros
 
 Azure Kubernetes Service (AKS) is introducing a new feature called Automatic, which is currently in preview. This feature is designed to simplify the adoption of Kubernetes for developers, DevOps teams, and platform engineers. Automatic will automate the setup and management of AKS clusters, incorporating best practice configurations to ensure security, performance, and dependability for applications.
 
-By providing access to the Kubernetes APIs, Automatic retains the flexibility of Kubernetes, which is crucial for many customers. Additionally, Automatic introduces several new features aimed at improving security and ease of operation, including the deployment safeguards enforcement option, which applies policy best practices to AKS clusters and can automatically adjust resource settings to align with these best practices. These enhancements are part of Microsoft's efforts to make Kubernetes adoption easier and more efficient for users.  
+By providing access to the Kubernetes APIs, Automatic retains the flexibility of Kubernetes, which is crucial for many customers. Additionally, Automatic introduces several new features aimed at improving security and ease of operation, including the deployment safeguards enforcement option, which applies policy best practices to AKS clusters and can automatically adjust resource settings to align with these best practices. These enhancements are part of Microsoft's efforts to make Kubernetes adoption easier and more efficient for users.
 
-Check out **[AKS Automatic](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/aks-at-build-enhancing-security-reliability-and-ease-of-use-for/ba-p/4146701?wt.mc_id=DT-MVP-5004771)** for more information.  
+Check out **[AKS Automatic](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/aks-at-build-enhancing-security-reliability-and-ease-of-use-for/ba-p/4146701?wt.mc_id=DT-MVP-5004771)** for more information.
 
 ---
 
 ### 8. Enhancing Messaging with Azure Service Bus
 
-The Azure Service Bus is enhancing its messaging system with several updates now in preview, focusing on robustness, efficiency, and resilience. Key features include Geo-disaster recovery for regional resilience, Durable terminus for maintaining message state across network disruptions, Batch delete for efficient message management, and Peek by state for selective message viewing. These improvements are designed to support uninterrupted and secure communication for enterprise operations.  
+The Azure Service Bus is enhancing its messaging system with several updates now in preview, focusing on robustness, efficiency, and resilience. Key features include Geo-disaster recovery for regional resilience, Durable terminus for maintaining message state across network disruptions, Batch delete for efficient message management, and Peek by state for selective message viewing. These improvements are designed to support uninterrupted and secure communication for enterprise operations.
 
 Check out the **[Azure Service Bus Blog](https://techcommunity.microsoft.com/t5/messaging-on-azure-blog/bg-p/MessagingonAzureBlog?wt.mc_id=DT-MVP-5004771)** for more information.  
 
