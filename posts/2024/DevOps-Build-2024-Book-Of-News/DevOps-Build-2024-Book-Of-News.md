@@ -108,7 +108,7 @@ My Personal favourite announcement is **GitHub** is launching the first set of G
 
 Developed by Microsoft and third-party partners. These extensions allow developers and organisations to tailor their GitHub Copilot experience with their preferred services, such as Azure, Docker, Sentry, and more, directly within GitHub Copilot Chat.  
 
-![image.png]((https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Build-2024-Book-Of-News/assets/extension.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Build-2024-Book-Of-News/assets/extension.png)  
 
 Specifically, the GitHub Copilot for Azure extension enables developers to build, troubleshoot, and deploy applications on Azure more efficiently. This showcases the potential of building in natural language and demonstrates how a broader range of capabilities can significantly accelerate development velocity.  
 
