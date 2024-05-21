@@ -24,15 +24,15 @@ Why don't you immerse yourself in cutting-edge AI technology and earn a badge by
 
 ### 1. .NET updates for developer community
 
-The .NET framework, Microsoft's cornerstone for building modern applications, has received significant updates, which include the introduction of .NET Aspire and the preview of .NET 9. .NET Aspire, a new cloud-native stack, simplifies building cloud-native apps by abstracting the complexities of setup, configuration, and diagnostics.
+The .NET framework, Microsoft's cornerstone for building modern applications, has received significant updates, which include the introduction of .NET Aspire and the preview of .NET 9. .NET Aspire, a new cloud-native stack, simplifies building cloud-native apps by abstracting the complexities of setup, configuration, and diagnostics. It aims to boost developer productivity by allowing them to focus on the logic that matters, using familiar tools within a less complex environment. Additionally, the .NET 9 Preview 4 brings enhancements aimed at optimising cloud-native app development and enhancing support for building generative AI apps.  
 
-It aims to boost developer productivity by allowing them to focus on the logic that matters, using familiar tools within a less complex environment. Additionally, the .NET 9 Preview 4 brings enhancements aimed at optimising cloud-native app development and enhancing support for building generative AI apps.
+Check out the **[General Availability of .NET Aspire](https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability?wt.mc_id=DT-MVP-5004771)** for more information.  
 
 ### 2. Empowering AI Development with Visual Studio Code
 
-The AI Toolkit for Visual Studio Code, now in preview, integrates AI development tools and models to streamline the development and deployment of intelligent apps.
+The AI Toolkit for Visual Studio Code, now in preview, integrates AI development tools and models to streamline the development and deployment of intelligent apps. This toolkit enables AI engineers to efficiently deploy their models to Microsoft Azure AI Studio, among other platforms, using container images. This addition underscores Microsoft's commitment to facilitating next-generation AI development, making it more accessible and efficient for developers.  
 
-This toolkit enables AI engineers to efficiently deploy their models to Microsoft Azure AI Studio, among other platforms, using container images. This addition underscores Microsoft's commitment to facilitating next-generation AI development, making it more accessible and efficient for developers.
+Check out the **[Visual Studio Code AI Toolkit](https://techcommunity.microsoft.com/t5/microsoft-developer-community/announcing-the-ai-toolkit-for-visual-studio-code/ba-p/4146473?wt.mc_id=DT-MVP-5004771)** for more information.  
 
 ### 3. Unleashing API and Generative AI Capabilities with Azure API Management
 
