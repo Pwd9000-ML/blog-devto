@@ -36,7 +36,9 @@ Check out the **[Visual Studio Code AI Toolkit](https://techcommunity.microsoft.
 
 ### 3. Unleashing API and Generative AI Capabilities with Azure API Management
 
-Azure API Management now includes new capabilities that significantly enhance the scalability and security of generative AI deployments. Features such as the Microsoft Azure OpenAI Service token limit policy, one-click import of Azure OpenAI Service endpoints, and a dedicated Load Balancer for efficient traffic distribution, position Azure as a leader in managing the rapid proliferation of APIs and AI solutions. These updates aim to streamline API sprawl and improve resource allocation and service protection.
+Azure API Management now includes new capabilities that significantly enhance the scalability and security of generative AI deployments. Features such as the Microsoft Azure OpenAI Service token limit policy, one-click import of Azure OpenAI Service endpoints, and a dedicated Load Balancer for efficient traffic distribution, position Azure as a leader in managing the rapid proliferation of APIs and AI solutions. These updates aim to streamline API sprawl and improve resource allocation and service protection.  
+
+Check out the **[Azure API Center](https://techcommunity.microsoft.com/t5/azure-integration-services-blog/azure-api-center-your-comprehensive-api-inventory-and-governance/ba-p/4125146?wt.mc_id=DT-MVP-5004771)** for more information.  
 
 ## 4. Boosting Web App Performance and Security with Azure App Service
 
