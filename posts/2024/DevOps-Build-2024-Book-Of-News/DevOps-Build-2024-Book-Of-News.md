@@ -22,7 +22,7 @@ Why don't you immerse yourself in cutting-edge AI technology and earn a badge by
 
 **[Microsoft Learn Challenge: Build Edition](https://www.microsoft.com/en-us/cloudskillschallenge/build/registration/2024?ocid=build24_csc_DT-MVP-5004771)**
 
-## The Latest in Developer Tools and DevOps from Microsoft and Azure
+## Build 2024 Updates - Developer Tools and DevOps
 
 ### 1. .NET updates for developer community
 
