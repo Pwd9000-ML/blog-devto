@@ -86,13 +86,13 @@ Check out **[AKS Automatic](https://techcommunity.microsoft.com/t5/apps-on-azure
 
 The Azure Service Bus is enhancing its messaging system with several updates now in preview, focusing on robustness, efficiency, and resilience. Key features include Geo-disaster recovery for regional resilience, Durable terminus for maintaining message state across network disruptions, Batch delete for efficient message management, and Peek by state for selective message viewing. These improvements are designed to support uninterrupted and secure communication for enterprise operations.
 
-Check out the **[Azure Service Bus Blog](https://techcommunity.microsoft.com/t5/messaging-on-azure-blog/bg-p/MessagingonAzureBlog?wt.mc_id=DT-MVP-5004771)** for more information.  
+Check out the **[Azure Service Bus Blog](https://techcommunity.microsoft.com/t5/messaging-on-azure-blog/bg-p/MessagingonAzureBlog?wt.mc_id=DT-MVP-5004771)** for more information.
 
 ---
 
 ### 9. Azure Static Web Apps: Introducing a Dedicated Pricing Plan
 
-Azure Static Web Apps is introducing a dedicated pricing plan, now in preview, designed to support enterprise-grade features for enhanced networking and data storage. This new plan utilises dedicated compute capacity, providing network isolation to enhance security, and enhanced quotas for more custom domains within an app service plan. Furthermore, it includes "always-on" functionality for Azure Static Web Apps managed functions, offering built-in API endpoints to connect to backend services. These features aim to deliver more advanced capabilities to customers, ensuring their web apps are both scalable and secure.  
+Azure Static Web Apps is introducing a dedicated pricing plan, now in preview, designed to support enterprise-grade features for enhanced networking and data storage. This new plan utilises dedicated compute capacity, providing network isolation to enhance security, and enhanced quotas for more custom domains within an app service plan. Furthermore, it includes "always-on" functionality for Azure Static Web Apps managed functions, offering built-in API endpoints to connect to backend services. These features aim to deliver more advanced capabilities to customers, ensuring their web apps are both scalable and secure.
 
 ---
 
@@ -102,9 +102,9 @@ Microsoft Dev Box has been updated with new features aimed at improving develope
 
 An improved connection experience is available in the Windows App, in preview, offering quick access to Dev Box in the taskbar and seamless transition between Dev Box and Windows devices. For enterprise management, Dev Box connection telemetry is now generally available through Azure Monitor, providing insights into performance and system events.
 
-Additionally, a hibernation feature on disconnect helps optimise costs by letting dev boxes hibernate when there is no active remote desktop protocol session. The updates also introduce the ability for developer tool vendors to create and publish Dev Box-compatible custom images via the "Windows client for developers" image in the Azure Marketplace, and new deployment regions have been added to improve connectivity performance and latency.  
+Additionally, a hibernation feature on disconnect helps optimise costs by letting dev boxes hibernate when there is no active remote desktop protocol session. The updates also introduce the ability for developer tool vendors to create and publish Dev Box-compatible custom images via the "Windows client for developers" image in the Azure Marketplace, and new deployment regions have been added to improve connectivity performance and latency.
 
-Check out **[Microsoft Dev Box is levelling up](https://devblogs.microsoft.com/develop-from-the-cloud/microsoft-dev-box-is-leveling-up-to-support-your-development-needs/?wt.mc_id=DT-MVP-5004771)** for more information.  
+Check out **[Microsoft Dev Box is levelling up](https://devblogs.microsoft.com/develop-from-the-cloud/microsoft-dev-box-is-leveling-up-to-support-your-development-needs/?wt.mc_id=DT-MVP-5004771)** for more information.
 
 ---
 
@@ -112,9 +112,9 @@ Check out **[Microsoft Dev Box is levelling up](https://devblogs.microsoft.com/d
 
 Microsoft Azure Deployment Environments are enhancing their extensibility model to include support for Pulumi, alongside existing support for Arm, Bicep, and Terraform. This update allows customers to perform deployments using Pulumi, a popular Infrastructure as Code (IaC) framework, enabling more flexible and efficient infrastructure management.
 
-Customers can either build their own container image following published guidance or directly utilise a sample container image published for Pulumi. Additionally, a quick-start template is available for platform engineers to deploy and configure Azure Deployment Environments with a single-click deployment, streamlining the setup process and promoting a more seamless experience for leveraging IaC frameworks within Azure.  
+Customers can either build their own container image following published guidance or directly utilise a sample container image published for Pulumi. Additionally, a quick-start template is available for platform engineers to deploy and configure Azure Deployment Environments with a single-click deployment, streamlining the setup process and promoting a more seamless experience for leveraging IaC frameworks within Azure.
 
-Check out **[project-specific templates in Azure Deployment Environments](https://devblogs.microsoft.com/develop-from-the-cloud/customized-project-specific-templates-in-azure-deployment-environments?wt.mc_id=DT-MVP-5004771)** for more information.  
+Check out **[project-specific templates in Azure Deployment Environments](https://devblogs.microsoft.com/develop-from-the-cloud/customized-project-specific-templates-in-azure-deployment-environments?wt.mc_id=DT-MVP-5004771)** for more information.
 
 ---
 
