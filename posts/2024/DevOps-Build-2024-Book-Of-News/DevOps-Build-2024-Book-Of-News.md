@@ -52,17 +52,25 @@ Check out the **[Azure API Center](https://techcommunity.microsoft.com/t5/azure-
 
 Microsoft Azure App Service, a cloud platform for quickly building, deploying, and running web apps and APIs, has been enhanced to offer better performance and security. These improvements allow developers to focus on innovation without worrying about the underlying infrastructure. The integration of WebJobs with Azure App Service is particularly noteworthy, as it enables cost savings and consistent performance by sharing compute resources.  
 
-Check out the **[App Modernization on Azure](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/discover-how-app-modernization-on-azure-enables-intelligent-app/ba-p/4147778?wt.mc_id=DT-MVP-5004771)** for more information.  
+Check out **[New in Azure Container Apps](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/what-s-new-in-azure-container-apps-at-build-24/ba-p/4144691?wt.mc_id=DT-MVP-5004771)** for more information.  
 
----  
+---
 
 ### 5. Introducing Dynamic Sessions in Azure Container Apps
 
 For AI app developers, the introduction of dynamic sessions in Microsoft Azure Container Apps is a game-changer. This feature allows for the on-demand, secure sandboxing of AI-generated code or the extension/customisation of SaaS apps. Dynamic sessions are designed to mitigate security risks, leverage serverless scaling, and reduce development and management overheads, highlighting Microsoft's focus on security and efficiency.
 
+Check out the **[Azure Container Apps](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/azure-container-apps-announcing-dynamic-sessions/ba-p/4147779?wt.mc_id=DT-MVP-5004771)** for more information.
+
+---
+
 ### 6. Expanding Flexibility with Azure Functions
 
-Azure Functions is launching new features that offer more flexibility and extensibility to users. The introduction of an extension for the Microsoft Azure OpenAI Service and the availability of Visual Studio Code for the Web as a browser-based developer experience are notable highlights. These updates are aimed at enabling developers to easily infuse AI into their apps and get started with Azure Functions more conveniently, further emphasising Microsoft's investment in serverless architectures and AI-driven applications.
+Azure Functions is launching new features that offer more flexibility and extensibility to users. The introduction of an extension for the Microsoft Azure OpenAI Service and the availability of Visual Studio Code for the Web as a browser-based developer experience are notable highlights. These updates are aimed at enabling developers to easily infuse AI into their apps and get started with Azure Functions more conveniently, further emphasising Microsoft's investment in serverless architectures and AI-driven applications.  
+
+Check out the **[Azure Functions - Build 24 Update](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/azure-functions-microsoft-build-2024-update/ba-p/4146471?wt.mc_id=DT-MVP-5004771)** for more information.  
+
+---
 
 ### 7. AKS Automatic: Simplifying Kubernetes Adoption
 
