@@ -48,7 +48,11 @@ Check out the **[Azure API Center](https://techcommunity.microsoft.com/t5/azure-
 
 ## 4. Boosting Web App Performance and Security with Azure App Service
 
-Microsoft Azure App Service, a cloud platform for quickly building, deploying, and running web apps and APIs, has been enhanced to offer better performance and security. These improvements allow developers to focus on innovation without worrying about the underlying infrastructure. The integration of WebJobs with Azure App Service is particularly noteworthy, as it enables cost savings and consistent performance by sharing compute resources.
+Microsoft Azure App Service, a cloud platform for quickly building, deploying, and running web apps and APIs, has been enhanced to offer better performance and security. These improvements allow developers to focus on innovation without worrying about the underlying infrastructure. The integration of WebJobs with Azure App Service is particularly noteworthy, as it enables cost savings and consistent performance by sharing compute resources.  
+
+Check out the **[App Modernization on Azure](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/discover-how-app-modernization-on-azure-enables-intelligent-app/ba-p/4147778?wt.mc_id=DT-MVP-5004771)** for more information.  
+
+---  
 
 ### 5. Introducing Dynamic Sessions in Azure Container Apps
 
