@@ -11,9 +11,9 @@ date: '2024-05-21T16:54:03Z'
 
 ## Overview
 
-In this DevOps Edition of the Build 2024 we will look at a few updates and announcements made at this years **[Build 2024](https://build.microsoft.com/en-US/home?wt.mc_id=DT-MVP-5004771)** containing a collection of the latest news and updates from the **DevOps** world. This edition covers a wide range of topics, including AI, Copilot, and more. Read on to learn about the latest trends and developments in the **Developer Tools** and **DevOps** space.
+With Microsoft **Build 2024** underway. I've decided to summarise a wide range of updates and announcements tailored for the Developer and DevOps communities. We will look at a few updates and announcements made at this years **[Build 2024](https://build.microsoft.com/en-US/home?wt.mc_id=DT-MVP-5004771)** containing a collection of the latest news and updates from the **Developer Tools** and **DevOps** sections of the Build 2024 Book of News.  
 
-This blog post only focuses on the DevOps related updates and announcements. To check out the full Book of News, visit the **[Build 2024 Book of News](https://news.microsoft.com/build-2024-book-of-news/?wt.mc_id=DT-MVP-5004771)**.
+This post will only focuses on the **DevOps** related updates and announcements, but also be sure to check out the full Book of News @ **[Build 2024 Book of News](https://news.microsoft.com/build-2024-book-of-news/?wt.mc_id=DT-MVP-5004771)**.
 
 ## Microsoft Learn Challenge
 
