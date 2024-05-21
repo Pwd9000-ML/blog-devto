@@ -138,7 +138,7 @@ Check out the **[GitHub Copilot Extensions](https://github.blog/2024-05-21-intro
 
 The Azure Event Grid has introduced new capabilities tailored to enhance support for Internet of Things (IoT) solutions and the integration of various event sources. These updates bolster the platform's MQTT broker capabilities, streamline the transition to Event Grid namespaces for both push and pull delivery of messages, and facilitate the integration of new sources like Microsoft Entra ID and Microsoft Outlook through the support of the Microsoft Graph API.
 
-By leveraging these enhancements, customers can now utilise Event Grid namespace capabilities, such as the MQTT broker, without the need to reconstruct existing workflows, and harness Event Grid for new use cases like processing information when a new employee is hired or a new email is received, thereby enabling further action in other applications.  
+By leveraging these enhancements, customers can now utilise Event Grid namespace capabilities, such as the MQTT broker, without the need to reconstruct existing workflows, and harness Event Grid for new use cases like processing information when a new employee is hired or a new email is received, thereby enabling further action in other applications.
 
 Check out **[New pub-sub capabilities in Azure Event Grid](https://techcommunity.microsoft.com/t5/messaging-on-azure-blog/announcing-new-pub-sub-capabilities-in-azure-event-grid/ba-p/4146881?wt.mc_id=DT-MVP-5004771)** for more information.
 
@@ -146,7 +146,7 @@ Check out **[New pub-sub capabilities in Azure Event Grid](https://techcommunity
 
 ### 14. Azure Load Testing: New Enhancements and Integrations
 
-Azure Load Testing is receiving new enhancements and integrations designed to simplify the process of running high-scale load tests, providing deeper insights into test results and optimising application performance. These updates include the ability to simulate load from multiple regions simultaneously in a single test run, support for Locust, a Python-based open-source load testing framework, and integrations with Azure App Service and Azure Functions. These features aim to offer a more comprehensive testing environment that mimics real-world traffic, fosters better collaboration, and allows for cost versus performance optimisation.  
+Azure Load Testing is receiving new enhancements and integrations designed to simplify the process of running high-scale load tests, providing deeper insights into test results and optimising application performance. These updates include the ability to simulate load from multiple regions simultaneously in a single test run, support for Locust, a Python-based open-source load testing framework, and integrations with Azure App Service and Azure Functions. These features aim to offer a more comprehensive testing environment that mimics real-world traffic, fosters better collaboration, and allows for cost versus performance optimisation.
 
 Check out **[Optimize Azure Functions for Performance and Costs](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/optimize-azure-functions-for-performance-and-costs-using-azure/ba-p/4138467?wt.mc_id=DT-MVP-5004771)** for more information.
 
@@ -156,7 +156,7 @@ Check out **[Optimize Azure Functions for Performance and Costs](https://techcom
 
 Spring Batch support for Azure Spring Apps Enterprise, now in preview, enables users to run Spring Batch apps cost-efficiently in the cloud. Spring Batch is a comprehensive framework for handling large-scale data processing, providing features like logging, tracing, transaction management, and job processing statistics.
 
-This integration offers several benefits, including cost-effective cloud execution where customers pay only for compute resources during the actual execution period, and a fully managed Service Registry for service discovery among apps. This preview aims to simplify the development process by minimising code modifications and leveraging ready-to-use components, making it easier for customers to focus on business logic.  
+This integration offers several benefits, including cost-effective cloud execution where customers pay only for compute resources during the actual execution period, and a fully managed Service Registry for service discovery among apps. This preview aims to simplify the development process by minimising code modifications and leveraging ready-to-use components, making it easier for customers to focus on business logic.
 
 Check out **[How App Modernization on Azure Enables Intelligent App Innovation](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/discover-how-app-modernization-on-azure-enables-intelligent-app/ba-p/4147778?wt.mc_id=DT-MVP-5004771)** for more information.
 
@@ -166,13 +166,13 @@ Check out **[How App Modernization on Azure Enables Intelligent App Innovation](
 
 Updates to Azure Logic Apps aim to enhance the developer experience and expand functionality for automated workflows with minimal coding. Key updates include an improved onboarding experience in Microsoft Visual Studio Code, simplifying extension installation and enhancing the project start and debugging process.
 
-Additionally, deployment scripting tools have been introduced in Visual Studio Code to aid in setting up continuous integration/continuous delivery (CI/CD) processes for Logic Apps Standard. Support for Zero Downtime deployment scenarios has been added, along with expanded functionality such as .NET Custom Code Support and connectors for IBM mainframe and midranges. These updates also include enhancements to Azure Integration accounts and a monitoring dashboard for Logic Apps, all designed to streamline project management and development processes.  
+Additionally, deployment scripting tools have been introduced in Visual Studio Code to aid in setting up continuous integration/continuous delivery (CI/CD) processes for Logic Apps Standard. Support for Zero Downtime deployment scenarios has been added, along with expanded functionality such as .NET Custom Code Support and connectors for IBM mainframe and midranges. These updates also include enhancements to Azure Integration accounts and a monitoring dashboard for Logic Apps, all designed to streamline project management and development processes.
 
 ---
 
 ### 17. GitHub Copilot Integration with Microsoft Visual Studio
 
-Microsoft Visual Studio 17.10 has introduced a significant update by integrating GitHub Copilot directly into the integrated development environment (IDE). This integration marks a notable leap in coding productivity, transforming the way developers code, debug, and manage projects. By providing smarter, context-aware coding assistance and intuitive interfaces, the GitHub Copilot integration enhances the development workflow, making it more efficient and streamlined for developers working on various projects.  
+Microsoft Visual Studio 17.10 has introduced a significant update by integrating GitHub Copilot directly into the integrated development environment (IDE). This integration marks a notable leap in coding productivity, transforming the way developers code, debug, and manage projects. By providing smarter, context-aware coding assistance and intuitive interfaces, the GitHub Copilot integration enhances the development workflow, making it more efficient and streamlined for developers working on various projects.
 
 Check out **[Visual Studio 2022 17.10 and GitHub Copilot](https://devblogs.microsoft.com/visualstudio/visual-studio-2022-17-10-now-available?wt.mc_id=DT-MVP-5004771)** for more information.
 
@@ -182,7 +182,7 @@ Check out **[Visual Studio 2022 17.10 and GitHub Copilot](https://devblogs.micro
 
 Microsoft Visual Studio Code for Education, now generally available, is a free, online computer science education platform providing an integrated curriculum and sandbox coding environment. It requires no setup or installation, making it accessible to anyone interested in learning to code. This platform emphasises future-ready skills by offering courses such as Introduction to Python, aligning with the high demand for Python skills in the workplace.
 
-Visual Studio Code for Education is designed to be inclusive and accessible across multiple devices, platforms, and browsers, simplifying the learning process with a streamlined code editing experience optimised for education. Its one-click-to-code functionality allows students to start coding immediately, making coding more accessible and learning code a realistic goal for all learners.  
+Visual Studio Code for Education is designed to be inclusive and accessible across multiple devices, platforms, and browsers, simplifying the learning process with a streamlined code editing experience optimised for education. Its one-click-to-code functionality allows students to start coding immediately, making coding more accessible and learning code a realistic goal for all learners.
 
 ---
 
