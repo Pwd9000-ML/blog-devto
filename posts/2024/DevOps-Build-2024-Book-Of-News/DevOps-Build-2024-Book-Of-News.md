@@ -11,7 +11,9 @@ date: '2024-05-21T16:54:03Z'
 
 ## Overview
 
-In this DevOps Edition of the Build 2024 we will look at a few updates and announcements made at this years **[Build 2024](https://build.microsoft.com/en-US/home?wt.mc_id=DT-MVP-5004771)** containing a collection of the latest news and updates from the **DevOps** world. This edition covers a wide range of topics, including AI, Copilot, and more. Read on to learn about the latest trends and developments in the **Developer Tools** and **DevOps** space.
+In this DevOps Edition of the Build 2024 we will look at a few updates and announcements made at this years **[Build 2024](https://build.microsoft.com/en-US/home?wt.mc_id=DT-MVP-5004771)** containing a collection of the latest news and updates from the **DevOps** world. This edition covers a wide range of topics, including AI, Copilot, and more. Read on to learn about the latest trends and developments in the **Developer Tools** and **DevOps** space.  
+
+This blog post only focuses on the DevOps related updates and announcements. To check out the full Book of News, visit the **[Build 2024 Book of News](https://news.microsoft.com/build-2024-book-of-news/?wt.mc_id=DT-MVP-5004771)**.  
 
 ## Microsoft Learn Challenge
 
@@ -24,27 +26,27 @@ Why don't you immerse yourself in cutting-edge AI technology and earn a badge by
 
 ### 1. .NET updates for developer community
 
-The .NET framework, Microsoft's cornerstone for building modern applications, has received significant updates, which include the introduction of .NET Aspire and the preview of .NET 9. .NET Aspire, a new cloud-native stack, simplifies building cloud-native apps by abstracting the complexities of setup, configuration, and diagnostics. It aims to boost developer productivity by allowing them to focus on the logic that matters, using familiar tools within a less complex environment. Additionally, the .NET 9 Preview 4 brings enhancements aimed at optimising cloud-native app development and enhancing support for building generative AI apps.  
+The .NET framework, Microsoft's cornerstone for building modern applications, has received significant updates, which include the introduction of .NET Aspire and the preview of .NET 9. .NET Aspire, a new cloud-native stack, simplifies building cloud-native apps by abstracting the complexities of setup, configuration, and diagnostics. It aims to boost developer productivity by allowing them to focus on the logic that matters, using familiar tools within a less complex environment. Additionally, the .NET 9 Preview 4 brings enhancements aimed at optimising cloud-native app development and enhancing support for building generative AI apps.
 
-Check out the **[General Availability of .NET Aspire](https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability?wt.mc_id=DT-MVP-5004771)** for more information.  
+Check out the **[General Availability of .NET Aspire](https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability?wt.mc_id=DT-MVP-5004771)** for more information.
 
----  
+---
 
 ### 2. Empowering AI Development with Visual Studio Code
 
-The AI Toolkit for Visual Studio Code, now in preview, integrates AI development tools and models to streamline the development and deployment of intelligent apps. This toolkit enables AI engineers to efficiently deploy their models to Microsoft Azure AI Studio, among other platforms, using container images. This addition underscores Microsoft's commitment to facilitating next-generation AI development, making it more accessible and efficient for developers.  
+The AI Toolkit for Visual Studio Code, now in preview, integrates AI development tools and models to streamline the development and deployment of intelligent apps. This toolkit enables AI engineers to efficiently deploy their models to Microsoft Azure AI Studio, among other platforms, using container images. This addition underscores Microsoft's commitment to facilitating next-generation AI development, making it more accessible and efficient for developers.
 
-Check out the **[Visual Studio Code AI Toolkit](https://techcommunity.microsoft.com/t5/microsoft-developer-community/announcing-the-ai-toolkit-for-visual-studio-code/ba-p/4146473?wt.mc_id=DT-MVP-5004771)** for more information.  
+Check out the **[Visual Studio Code AI Toolkit](https://techcommunity.microsoft.com/t5/microsoft-developer-community/announcing-the-ai-toolkit-for-visual-studio-code/ba-p/4146473?wt.mc_id=DT-MVP-5004771)** for more information.
 
----  
+---
 
 ### 3. Unleashing API and Generative AI Capabilities with Azure API Management
 
-Azure API Management now includes new capabilities that significantly enhance the scalability and security of generative AI deployments. Features such as the Microsoft Azure OpenAI Service token limit policy, one-click import of Azure OpenAI Service endpoints, and a dedicated Load Balancer for efficient traffic distribution, position Azure as a leader in managing the rapid proliferation of APIs and AI solutions. These updates aim to streamline API sprawl and improve resource allocation and service protection.  
+Azure API Management now includes new capabilities that significantly enhance the scalability and security of generative AI deployments. Features such as the Microsoft Azure OpenAI Service token limit policy, one-click import of Azure OpenAI Service endpoints, and a dedicated Load Balancer for efficient traffic distribution, position Azure as a leader in managing the rapid proliferation of APIs and AI solutions. These updates aim to streamline API sprawl and improve resource allocation and service protection.
 
-Check out the **[Azure API Center](https://techcommunity.microsoft.com/t5/azure-integration-services-blog/azure-api-center-your-comprehensive-api-inventory-and-governance/ba-p/4125146?wt.mc_id=DT-MVP-5004771)** for more information.  
+Check out the **[Azure API Center](https://techcommunity.microsoft.com/t5/azure-integration-services-blog/azure-api-center-your-comprehensive-api-inventory-and-governance/ba-p/4125146?wt.mc_id=DT-MVP-5004771)** for more information.
 
----  
+---
 
 ## 4. Boosting Web App Performance and Security with Azure App Service
 
@@ -92,9 +94,19 @@ Customers can either build their own container image following published guidanc
 
 ### 12. GitHub Copilot Extensions: Enhancing Developer Experience with Azure
 
-My Personal favourite announcements is GitHub is launching the first set of GitHub Copilot extensions in private preview, developed by Microsoft and third-party partners. These extensions allow developers and organisations to tailor their GitHub Copilot experience with their preferred services, such as Azure, Docker, Sentry, and more, directly within GitHub Copilot Chat.
+My Personal favourite announcement is **GitHub** is launching the first set of GitHub Copilot extensions in private preview.  
 
-Specifically, the GitHub Copilot for Azure extension enables developers to build, troubleshoot, and deploy applications on Azure more efficiently. This showcases the potential of building in natural language and demonstrates how a broader range of capabilities can significantly accelerate development velocity.
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Build-2024-Book-Of-News/assets/GitHub_Copilot_Extensions_Logo_Wall.png)  
+
+Developed by Microsoft and third-party partners. These extensions allow developers and organisations to tailor their GitHub Copilot experience with their preferred services, such as Azure, Docker, Sentry, and more, directly within GitHub Copilot Chat.  
+
+![image.png]((https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Build-2024-Book-Of-News/assets/GitHub_Copilot_Extensions.png)  
+
+Specifically, the GitHub Copilot for Azure extension enables developers to build, troubleshoot, and deploy applications on Azure more efficiently. This showcases the potential of building in natural language and demonstrates how a broader range of capabilities can significantly accelerate development velocity.  
+
+Check out the **[GitHub Copilot Extensions](https://github.blog/2024-05-21-introducing-github-copilot-extensions?wt.mc_id=DT-MVP-5004771)** for more information.  
+
+---
 
 ### 13. Azure Event Grid: New Capabilities for IoT and Event Integration
 
