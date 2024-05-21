@@ -15,11 +15,11 @@ In this DevOps Edition of the Build 2024 we will look at a few updates and annou
 ## Microsoft Learn Challenge
 
 Before we start looking at some of the latest and greatest updates and announcements for the Dev Community, there is also a new Microsoft Learn Challenge 😁  
-Why don't you immerse yourself in cutting-edge AI technology and earn a badge by completing one of these unique, AI-focused collections  
+Why don't you immerse yourself in cutting-edge AI technology and earn a badge by completing one of these unique, AI-focused collections
 
-**[Microsoft Learn Challenge: Build Edition](https://www.microsoft.com/en-us/cloudskillschallenge/build/registration/2024?ocid=build24_csc_DT-MVP-5004771)**  
+**[Microsoft Learn Challenge: Build Edition](https://www.microsoft.com/en-us/cloudskillschallenge/build/registration/2024?ocid=build24_csc_DT-MVP-5004771)**
 
-The challenge ends on June 21  
+The challenge ends on June 21
 
 ## DevOps
 
