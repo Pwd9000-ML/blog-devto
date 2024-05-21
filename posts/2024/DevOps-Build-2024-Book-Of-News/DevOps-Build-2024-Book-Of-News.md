@@ -26,7 +26,7 @@ Why don't you immerse yourself in cutting-edge AI technology and earn a badge by
 
 ### 1. .NET updates for developer community
 
-The .NET framework, Microsoft's cornerstone for building modern applications, has received significant updates, which include the introduction of .NET Aspire and the preview of .NET 9. .NET Aspire, a new cloud-native stack, simplifies building cloud-native apps by abstracting the complexities of setup, configuration, and diagnostics. It aims to boost developer productivity by allowing them to focus on the logic that matters, using familiar tools within a less complex environment. Additionally, the .NET 9 Preview 4 brings enhancements aimed at optimising cloud-native app development and enhancing support for building generative AI apps.
+The **.NET framework**, Microsoft's cornerstone for building modern applications, has received significant updates, which include the introduction of **.NET Aspire** and the preview of **.NET 9.** .NET Aspire, a new cloud-native stack, simplifies building cloud-native apps by abstracting the complexities of setup, configuration, and diagnostics. It aims to boost developer productivity by allowing them to focus on the logic that matters, using familiar tools within a less complex environment. Additionally, the **.NET 9 Preview 4** brings enhancements aimed at optimising cloud-native app development and enhancing support for building generative AI apps.
 
 Check out the **[General Availability of .NET Aspire](https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability?wt.mc_id=DT-MVP-5004771)** for more information.
 
