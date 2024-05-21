@@ -10,7 +10,7 @@ id: 1860712
 
 ## Overview
 
-In this DevOps Edition of the Build 2024 we will look at a few updates and announcements made at this years **[Build 2024](https://build.microsoft.com/en-US/home?wt.mc_id=DT-MVP-5004771)** is a collection of the latest news and updates from the **DevOps** world. This edition covers a wide range of topics, including AI, Copilot, and more. Read on to learn about the latest trends and developments in the **Developer Tools** and **DevOps** space.
+In this DevOps Edition of the Build 2024 we will look at a few updates and announcements made at this years **[Build 2024](https://build.microsoft.com/en-US/home?wt.mc_id=DT-MVP-5004771)** containing a collection of the latest news and updates from the **DevOps** world. This edition covers a wide range of topics, including AI, Copilot, and more. Read on to learn about the latest trends and developments in the **Developer Tools** and **DevOps** space.
 
 ## Microsoft Learn Challenge
 
