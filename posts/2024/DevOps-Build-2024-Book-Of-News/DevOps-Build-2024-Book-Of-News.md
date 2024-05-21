@@ -11,9 +11,9 @@ date: '2024-05-21T16:54:03Z'
 
 ## Overview
 
-In this DevOps Edition of the Build 2024 we will look at a few updates and announcements made at this years **[Build 2024](https://build.microsoft.com/en-US/home?wt.mc_id=DT-MVP-5004771)** containing a collection of the latest news and updates from the **DevOps** world. This edition covers a wide range of topics, including AI, Copilot, and more. Read on to learn about the latest trends and developments in the **Developer Tools** and **DevOps** space.  
+In this DevOps Edition of the Build 2024 we will look at a few updates and announcements made at this years **[Build 2024](https://build.microsoft.com/en-US/home?wt.mc_id=DT-MVP-5004771)** containing a collection of the latest news and updates from the **DevOps** world. This edition covers a wide range of topics, including AI, Copilot, and more. Read on to learn about the latest trends and developments in the **Developer Tools** and **DevOps** space.
 
-This blog post only focuses on the DevOps related updates and announcements. To check out the full Book of News, visit the **[Build 2024 Book of News](https://news.microsoft.com/build-2024-book-of-news/?wt.mc_id=DT-MVP-5004771)**.  
+This blog post only focuses on the DevOps related updates and announcements. To check out the full Book of News, visit the **[Build 2024 Book of News](https://news.microsoft.com/build-2024-book-of-news/?wt.mc_id=DT-MVP-5004771)**.
 
 ## Microsoft Learn Challenge
 
@@ -50,9 +50,9 @@ Check out the **[Azure API Center](https://techcommunity.microsoft.com/t5/azure-
 
 ## 4. Boosting Web App Performance and Security with Azure App Service
 
-Microsoft Azure App Service, a cloud platform for quickly building, deploying, and running web apps and APIs, has been enhanced to offer better performance and security. These improvements allow developers to focus on innovation without worrying about the underlying infrastructure. The integration of WebJobs with Azure App Service is particularly noteworthy, as it enables cost savings and consistent performance by sharing compute resources.  
+Microsoft Azure App Service, a cloud platform for quickly building, deploying, and running web apps and APIs, has been enhanced to offer better performance and security. These improvements allow developers to focus on innovation without worrying about the underlying infrastructure. The integration of WebJobs with Azure App Service is particularly noteworthy, as it enables cost savings and consistent performance by sharing compute resources.
 
-Check out **[New in Azure Container Apps](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/what-s-new-in-azure-container-apps-at-build-24/ba-p/4144691?wt.mc_id=DT-MVP-5004771)** for more information.  
+Check out **[New in Azure Container Apps](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/what-s-new-in-azure-container-apps-at-build-24/ba-p/4144691?wt.mc_id=DT-MVP-5004771)** for more information.
 
 ---
 
@@ -66,9 +66,9 @@ Check out the **[Azure Container Apps](https://techcommunity.microsoft.com/t5/ap
 
 ### 6. Expanding Flexibility with Azure Functions
 
-Azure Functions is launching new features that offer more flexibility and extensibility to users. The introduction of an extension for the Microsoft Azure OpenAI Service and the availability of Visual Studio Code for the Web as a browser-based developer experience are notable highlights. These updates are aimed at enabling developers to easily infuse AI into their apps and get started with Azure Functions more conveniently, further emphasising Microsoft's investment in serverless architectures and AI-driven applications.  
+Azure Functions is launching new features that offer more flexibility and extensibility to users. The introduction of an extension for the Microsoft Azure OpenAI Service and the availability of Visual Studio Code for the Web as a browser-based developer experience are notable highlights. These updates are aimed at enabling developers to easily infuse AI into their apps and get started with Azure Functions more conveniently, further emphasising Microsoft's investment in serverless architectures and AI-driven applications.
 
-Check out the **[Azure Functions - Build 24 Update](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/azure-functions-microsoft-build-2024-update/ba-p/4146471?wt.mc_id=DT-MVP-5004771)** for more information.  
+Check out the **[Azure Functions - Build 24 Update](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/azure-functions-microsoft-build-2024-update/ba-p/4146471?wt.mc_id=DT-MVP-5004771)** for more information.
 
 ---
 
@@ -102,17 +102,17 @@ Customers can either build their own container image following published guidanc
 
 ### 12. GitHub Copilot Extensions: Enhancing Developer Experience with Azure
 
-My Personal favourite announcement is **GitHub** is launching the first set of GitHub Copilot extensions in private preview.  
+My Personal favourite announcement is **GitHub** is launching the first set of GitHub Copilot extensions in private preview.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Build-2024-Book-Of-News/assets/extension_wall.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Build-2024-Book-Of-News/assets/extension_wall.png)
 
-Developed by Microsoft and third-party partners. These extensions allow developers and organisations to tailor their GitHub Copilot experience with their preferred services, such as Azure, Docker, Sentry, and more, directly within GitHub Copilot Chat.  
+Developed by Microsoft and third-party partners. These extensions allow developers and organisations to tailor their GitHub Copilot experience with their preferred services, such as Azure, Docker, Sentry, and more, directly within GitHub Copilot Chat.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Build-2024-Book-Of-News/assets/extension.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Build-2024-Book-Of-News/assets/extension.png)
 
-Specifically, the GitHub Copilot for Azure extension enables developers to build, troubleshoot, and deploy applications on Azure more efficiently. This showcases the potential of building in natural language and demonstrates how a broader range of capabilities can significantly accelerate development velocity.  
+Specifically, the GitHub Copilot for Azure extension enables developers to build, troubleshoot, and deploy applications on Azure more efficiently. This showcases the potential of building in natural language and demonstrates how a broader range of capabilities can significantly accelerate development velocity.
 
-Check out the **[GitHub Copilot Extensions](https://github.blog/2024-05-21-introducing-github-copilot-extensions?wt.mc_id=DT-MVP-5004771)** for more information.  
+Check out the **[GitHub Copilot Extensions](https://github.blog/2024-05-21-introducing-github-copilot-extensions?wt.mc_id=DT-MVP-5004771)** for more information.
 
 ---
 
