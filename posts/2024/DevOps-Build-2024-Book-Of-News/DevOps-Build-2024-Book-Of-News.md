@@ -18,7 +18,7 @@ This post only focuses on **DevOps** related updates and announcements, but also
 ## Microsoft Learn Challenge
 
 Before we start looking at some of the latest and greatest updates and announcements for the Dev Community, there is also a new Microsoft Learn Challenge 😁  
-Why don't you immerse yourself in cutting-edge AI technology and earn a badge by completing one of these unique, AI-focused collections. Be quick, the challenge ends on June 21, 2024.
+Why don't you immerse yourself in cutting-edge AI technology and earn a badge by completing one of these unique, **AI-focused collections**. Be quick, the challenge ends on June 21, 2024.
 
 **[Microsoft Learn Challenge: Build Edition](https://www.microsoft.com/en-us/cloudskillschallenge/build/registration/2024?ocid=build24_csc_DT-MVP-5004771)**
 
@@ -34,7 +34,7 @@ Check out the **[General Availability of .NET Aspire](https://devblogs.microsoft
 
 ### 2. Empowering AI Development with Visual Studio Code
 
-The AI Toolkit for Visual Studio Code, now in preview, integrates AI development tools and models to streamline the development and deployment of intelligent apps. This toolkit enables AI engineers to efficiently deploy their models to Microsoft Azure AI Studio, among other platforms, using container images. This addition underscores Microsoft's commitment to facilitating next-generation AI development, making it more accessible and efficient for developers.
+The **AI Toolkit** for Visual Studio Code, now in preview, integrates AI development tools and models to streamline the development and deployment of intelligent apps. This toolkit enables AI engineers to efficiently deploy their models to Microsoft **Azure AI Studio**, among other platforms, using container images. This addition underscores Microsoft's commitment to facilitating next-generation **AI development**, making it more accessible and efficient for developers.
 
 Check out the **[Visual Studio Code AI Toolkit](https://techcommunity.microsoft.com/t5/microsoft-developer-community/announcing-the-ai-toolkit-for-visual-studio-code/ba-p/4146473?wt.mc_id=DT-MVP-5004771)** for more information.
 
@@ -42,15 +42,15 @@ Check out the **[Visual Studio Code AI Toolkit](https://techcommunity.microsoft.
 
 ### 3. Unleashing API and Generative AI Capabilities with Azure API Management
 
-Azure API Management now includes new capabilities that significantly enhance the scalability and security of generative AI deployments. Features such as the Microsoft Azure OpenAI Service token limit policy, one-click import of Azure OpenAI Service endpoints, and a dedicated Load Balancer for efficient traffic distribution, position Azure as a leader in managing the rapid proliferation of APIs and AI solutions. These updates aim to streamline API sprawl and improve resource allocation and service protection.
+Azure **API Management** now includes new capabilities that significantly enhance the **scalability** and **security** of generative AI deployments. Features such as the Microsoft Azure OpenAI Service **token limit policy**, one-click **import** of Azure **OpenAI Service endpoints**, and a **dedicated Load Balancer** for efficient traffic distribution, position Azure as a leader in managing the rapid proliferation of APIs and AI solutions. These updates aim to **streamline API sprawl** and improve resource allocation and service protection.
 
 Check out the **[Azure API Center](https://techcommunity.microsoft.com/t5/azure-integration-services-blog/azure-api-center-your-comprehensive-api-inventory-and-governance/ba-p/4125146?wt.mc_id=DT-MVP-5004771)** for more information.
 
 ---
 
-## 4. Boosting Web App Performance and Security with Azure App Service
+### 4. Boosting Web App Performance and Security with Azure App Service
 
-Microsoft Azure App Service, a cloud platform for quickly building, deploying, and running web apps and APIs, has been enhanced to offer better performance and security. These improvements allow developers to focus on innovation without worrying about the underlying infrastructure. The integration of WebJobs with Azure App Service is particularly noteworthy, as it enables cost savings and consistent performance by sharing compute resources.
+Microsoft Azure App Service, a cloud platform for quickly building, deploying, and running web apps and APIs, has been enhanced to offer better **performance and security**. These improvements allow developers to focus on innovation without worrying about the underlying infrastructure. The integration of **WebJobs** with Azure App Service is particularly noteworthy, as it enables **cost savings** and **consistent performance** by sharing compute resources.
 
 Check out **[New in Azure Container Apps](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/what-s-new-in-azure-container-apps-at-build-24/ba-p/4144691?wt.mc_id=DT-MVP-5004771)** for more information.
 
@@ -58,7 +58,7 @@ Check out **[New in Azure Container Apps](https://techcommunity.microsoft.com/t5
 
 ### 5. Introducing Dynamic Sessions in Azure Container Apps
 
-For AI app developers, the introduction of dynamic sessions in Microsoft Azure Container Apps is a game-changer. This feature allows for the on-demand, secure sandboxing of AI-generated code or the extension/customisation of SaaS apps. Dynamic sessions are designed to mitigate security risks, leverage serverless scaling, and reduce development and management overheads, highlighting Microsoft's focus on security and efficiency.
+For AI app developers, the introduction of **dynamic sessions** in Microsoft Azure Container Apps is a game-changer. This feature allows for the on-demand, secure sandboxing of AI-generated code or the extension/customisation of SaaS apps. **Dynamic sessions** are designed to **mitigate security risks**, leverage serverless **scaling**, and reduce development and management overheads, highlighting Microsoft's focus on security and efficiency.
 
 Check out the **[Azure Container Apps](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/azure-container-apps-announcing-dynamic-sessions/ba-p/4147779?wt.mc_id=DT-MVP-5004771)** for more information.
 
@@ -66,7 +66,7 @@ Check out the **[Azure Container Apps](https://techcommunity.microsoft.com/t5/ap
 
 ### 6. Expanding Flexibility with Azure Functions
 
-Azure Functions is launching new features that offer more flexibility and extensibility to users. The introduction of an extension for the Microsoft Azure OpenAI Service and the availability of Visual Studio Code for the Web as a browser-based developer experience are notable highlights. These updates are aimed at enabling developers to easily infuse AI into their apps and get started with Azure Functions more conveniently, further emphasising Microsoft's investment in serverless architectures and AI-driven applications.
+Azure Functions is launching new features that offer more flexibility and extensibility to users. The introduction of an **extension** for the Microsoft Azure **OpenAI Service** and the availability of Visual Studio Code for the Web as a browser-based developer experience are notable highlights. These updates are aimed at enabling developers to easily **infuse AI** into their apps and get started with Azure Functions more conveniently, further emphasising Microsoft's investment in serverless architectures and **AI-driven applications**.
 
 Check out the **[Azure Functions - Build 24 Update](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/azure-functions-microsoft-build-2024-update/ba-p/4146471?wt.mc_id=DT-MVP-5004771)** for more information.
 
@@ -74,9 +74,9 @@ Check out the **[Azure Functions - Build 24 Update](https://techcommunity.micros
 
 ### 7. AKS Automatic: Simplifying Kubernetes Adoption
 
-Azure Kubernetes Service (AKS) is introducing a new feature called Automatic, which is currently in preview. This feature is designed to simplify the adoption of Kubernetes for developers, DevOps teams, and platform engineers. Automatic will automate the setup and management of AKS clusters, incorporating best practice configurations to ensure security, performance, and dependability for applications.
+Azure Kubernetes Service (AKS) is introducing a new feature called **Automatic**, which is currently in preview. This feature is designed to **simplify** the adoption of Kubernetes for developers, DevOps teams, and platform engineers. Automatic will automate the **setup and management** of AKS clusters, incorporating **best practice** configurations to ensure **security**, **performance**, and **dependability** for applications.
 
-By providing access to the Kubernetes APIs, Automatic retains the flexibility of Kubernetes, which is crucial for many customers. Additionally, Automatic introduces several new features aimed at improving security and ease of operation, including the deployment safeguards enforcement option, which applies policy best practices to AKS clusters and can automatically adjust resource settings to align with these best practices. These enhancements are part of Microsoft's efforts to make Kubernetes adoption easier and more efficient for users.
+By providing access to the Kubernetes APIs, Automatic retains the flexibility of Kubernetes, which is crucial for many customers. Additionally, Automatic introduces several new features aimed at improving security and ease of operation, including the deployment safeguards enforcement option, which applies policy best practices to AKS clusters and can automatically adjust resource settings to align with these **best practices**. These enhancements are part of Microsoft's efforts to make Kubernetes adoption easier and more efficient for users.
 
 Check out **[AKS Automatic](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/aks-at-build-enhancing-security-reliability-and-ease-of-use-for/ba-p/4146701?wt.mc_id=DT-MVP-5004771)** for more information.
 
@@ -84,7 +84,7 @@ Check out **[AKS Automatic](https://techcommunity.microsoft.com/t5/apps-on-azure
 
 ### 8. Enhancing Messaging with Azure Service Bus
 
-The Azure Service Bus is enhancing its messaging system with several updates now in preview, focusing on robustness, efficiency, and resilience. Key features include Geo-disaster recovery for regional resilience, Durable terminus for maintaining message state across network disruptions, Batch delete for efficient message management, and Peek by state for selective message viewing. These improvements are designed to support uninterrupted and secure communication for enterprise operations.
+The Azure Service Bus is enhancing its messaging system with several updates now in preview, focusing on robustness, efficiency, and resilience. Key features include **Geo-disaster recovery** for regional resilience, **Durable terminus** for maintaining message state across network disruptions, **Batch delete** for efficient message management, and **Peek by state** for selective message viewing. These improvements are designed to support uninterrupted and secure communication for enterprise operations.
 
 Check out the **[Azure Service Bus Blog](https://techcommunity.microsoft.com/t5/messaging-on-azure-blog/bg-p/MessagingonAzureBlog?wt.mc_id=DT-MVP-5004771)** for more information.
 
@@ -92,17 +92,17 @@ Check out the **[Azure Service Bus Blog](https://techcommunity.microsoft.com/t5/
 
 ### 9. Azure Static Web Apps: Introducing a Dedicated Pricing Plan
 
-Azure Static Web Apps is introducing a dedicated pricing plan, now in preview, designed to support enterprise-grade features for enhanced networking and data storage. This new plan utilises dedicated compute capacity, providing network isolation to enhance security, and enhanced quotas for more custom domains within an app service plan. Furthermore, it includes "always-on" functionality for Azure Static Web Apps managed functions, offering built-in API endpoints to connect to backend services. These features aim to deliver more advanced capabilities to customers, ensuring their web apps are both scalable and secure.
+Azure Static Web Apps is introducing a **dedicated pricing plan**, now in preview, designed to support enterprise-grade features for enhanced networking and data storage. This new plan utilises dedicated compute capacity, providing network isolation to enhance security, and enhanced quotas for more custom domains within an app service plan. Furthermore, it includes "always-on" functionality for Azure Static Web Apps managed functions, offering built-in API endpoints to connect to backend services. These features aim to deliver more advanced capabilities to customers, ensuring their web apps are both scalable and secure.
 
 ---
 
 ### 10. Microsoft Dev Box: New Features for Developer Productivity and Enterprise Management
 
-Microsoft Dev Box has been updated with new features aimed at improving developer productivity and offering enhanced enterprise management capabilities. These updates include team customisations and images, now in private preview, and project-based catalogs, in preview, enabling developer leads and platform engineers to create customised development environments for their teams.
+Microsoft Dev Box has been updated with new features aimed at improving developer productivity and offering **enhanced enterprise management capabilities**. These updates include **team customisations** and **images**, now in private preview, and **project-based catalogs**, in preview, enabling developer leads and platform engineers to create customised development environments for their teams.
 
-An improved connection experience is available in the Windows App, in preview, offering quick access to Dev Box in the taskbar and seamless transition between Dev Box and Windows devices. For enterprise management, Dev Box connection telemetry is now generally available through Azure Monitor, providing insights into performance and system events.
+An improved connection experience is available in the Windows App, in preview, offering quick access to Dev Box in the taskbar and seamless transition between Dev Box and Windows devices. For enterprise management, **Dev Box connection telemetry** is now generally available through **Azure Monitor**, providing insights into performance and system events.
 
-Additionally, a hibernation feature on disconnect helps optimise costs by letting dev boxes hibernate when there is no active remote desktop protocol session. The updates also introduce the ability for developer tool vendors to create and publish Dev Box-compatible custom images via the "Windows client for developers" image in the Azure Marketplace, and new deployment regions have been added to improve connectivity performance and latency.
+Additionally, a **hibernation** feature on disconnect helps **optimise costs** by letting dev boxes hibernate when there is no active remote desktop protocol session. The updates also introduce the ability for developer tool vendors to create and publish Dev Box-compatible custom images via the **"Windows client for developers"** image in the Azure Marketplace, and new deployment regions have been added to improve connectivity performance and latency.
 
 Check out **[Microsoft Dev Box is levelling up](https://devblogs.microsoft.com/develop-from-the-cloud/microsoft-dev-box-is-leveling-up-to-support-your-development-needs/?wt.mc_id=DT-MVP-5004771)** for more information.
 
