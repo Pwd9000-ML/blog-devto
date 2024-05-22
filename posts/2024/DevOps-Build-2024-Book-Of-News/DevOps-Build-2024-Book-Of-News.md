@@ -41,7 +41,7 @@ Developed by Microsoft and third-party partners. These extensions allow develope
 
 Specifically, the GitHub Copilot for Azure extension enables developers to build, troubleshoot, and deploy applications on Azure more efficiently. This showcases the potential of building in natural language and demonstrates how a broader range of capabilities can significantly accelerate development velocity.
 
-Check out the **[GitHub Copilot Extensions](https://github.blog/2024-05-21-introducing-github-copilot-extensions?wt.mc_id=DT-MVP-5004771)** for more information.
+Check out the **[GitHub Copilot Extensions](https://github.blog/2024-05-21-introducing-github-copilot-extensions?wt.mc_id=DT-MVP-5004771)** for more information. For a deep dive into chat extensions or how you can even create your own check out: **[GitHub Chat Extension Guides](https://code.visualstudio.com/api/extension-guides/chat?wt.mc_id=DT-MVP-5004771)**.  
 
 ---
 
