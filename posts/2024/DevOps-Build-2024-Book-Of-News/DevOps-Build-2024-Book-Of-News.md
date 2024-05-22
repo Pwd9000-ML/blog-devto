@@ -26,7 +26,7 @@ Why don't you immerse yourself in cutting-edge AI technology and earn a badge by
 
 ### 1. GitHub Copilot Extensions: Enhancing Developer Experience with Azure
 
-My personal favourite announcement is **GitHub** is launching the first set of GitHub Copilot extensions in private preview.
+My personal favourite announcement is **GitHub** launching the first set of GitHub Copilot extensions in private preview.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Build-2024-Book-Of-News/assets/extension_wall.png)
 
