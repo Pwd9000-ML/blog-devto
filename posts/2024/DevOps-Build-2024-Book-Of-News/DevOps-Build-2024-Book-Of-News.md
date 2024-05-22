@@ -13,7 +13,7 @@ date: '2024-05-21T16:54:03Z'
 
 With Microsoft **Build 2024** underway. I've decided to summarise a wide range of updates and announcements tailored for the Developer and DevOps communities. We will look at a few updates and announcements made at this years **[Build 2024](https://build.microsoft.com/en-US/home?wt.mc_id=DT-MVP-5004771)** containing a collection of the latest news and updates from the **Developer Tools** and **DevOps** sections of the Build 2024 Book of News.
 
-This post only focuses on **DevOps** related updates and announcements, but also be sure to check out the full Book of News @ **[Build 2024 Book of News](https://news.microsoft.com/build-2024-book-of-news/?wt.mc_id=DT-MVP-5004771)**.  
+This post only focuses on **DevOps** related updates and announcements, but also be sure to check out the full Book of News @ **[Build 2024 Book of News](https://news.microsoft.com/build-2024-book-of-news/?wt.mc_id=DT-MVP-5004771)**.
 
 ---
 
@@ -22,7 +22,7 @@ This post only focuses on **DevOps** related updates and announcements, but also
 Before we start looking at some of the latest and greatest updates and announcements for the Dev Community, there is also a new Microsoft Learn Challenge 😁  
 Why don't you immerse yourself in cutting-edge AI technology and earn a badge by completing one of these unique, **AI-focused collections**. Be quick, the challenge ends on June 21, 2024.
 
-**[Microsoft Learn Challenge: Build Edition](https://www.microsoft.com/en-us/cloudskillschallenge/build/registration/2024?ocid=build24_csc_DT-MVP-5004771)**  
+**[Microsoft Learn Challenge: Build Edition](https://www.microsoft.com/en-us/cloudskillschallenge/build/registration/2024?ocid=build24_csc_DT-MVP-5004771)**
 
 ---
 
