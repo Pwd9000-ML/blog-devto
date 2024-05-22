@@ -116,17 +116,22 @@ Check out **[project-specific templates in Azure Deployment Environments](https:
 
 ### 12. GitHub Copilot Extensions: Enhancing Developer Experience with Azure
 
-My personal favourite announcement is **GitHub** is launching the first set of GitHub Copilot extensions in private preview. For example the **GitHub Copilot for Azure** extension, you can speak and ask questions in natural language, by referencing **@Azure** e.g. **"@Azure, how do I deploy a web app to Azure?"** and GitHub Copilot will provide you with the code snippets and instructions to deploy a web app to Azure. Or or **"@Azure, how many storage accounts do I have?"** and GitHub Copilot will provide you with details about your storage accounts.
+My personal favourite announcement is **GitHub** is launching the first set of GitHub Copilot extensions in private preview.  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Build-2024-Book-Of-News/assets/extension_wall.png)
 
-Developed by Microsoft and third-party partners. These extensions allow developers and organisations to tailor their GitHub Copilot experience with their preferred services, such as **Azure**, **Docker**, **Sentry**, and more, directly within **GitHub Copilot Chat**.
+For example the **GitHub Copilot for Azure** extension, you can speak and ask questions in natural language, by referencing **@Azure** e.g:  
+
+* `"@Azure, how do I deploy a web app to Azure?"` and GitHub Copilot will provide you with the code snippets and instructions to deploy a web app to Azure.  
+* `"@Azure, how many storage accounts do I have?"` and GitHub Copilot will provide you with details about your storage accounts.  
+
+Developed by Microsoft and third-party partners. These extensions allow developers and organisations to tailor their GitHub Copilot experience with their preferred services, such as **Azure**, **Docker**, **Sentry**, and more, directly within **GitHub Copilot Chat**.  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Build-2024-Book-Of-News/assets/extension.png)
 
-Specifically, the GitHub Copilot for Azure extension enables developers to build, troubleshoot, and deploy applications on Azure more efficiently. This showcases the potential of building in natural language and demonstrates how a broader range of capabilities can significantly accelerate development velocity.
+Specifically, the GitHub Copilot for Azure extension enables developers to build, troubleshoot, and deploy applications on Azure more efficiently. This showcases the potential of building in natural language and demonstrates how a broader range of capabilities can significantly accelerate development velocity.  
 
-Check out the **[GitHub Copilot Extensions](https://github.blog/2024-05-21-introducing-github-copilot-extensions?wt.mc_id=DT-MVP-5004771)** for more information.
+Check out the **[GitHub Copilot Extensions](https://github.blog/2024-05-21-introducing-github-copilot-extensions?wt.mc_id=DT-MVP-5004771)** for more information.  
 
 ---
 
