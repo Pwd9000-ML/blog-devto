@@ -43,6 +43,8 @@ Specifically, the GitHub Copilot for Azure extension enables developers to build
 
 Check out the **[GitHub Copilot Extensions](https://github.blog/2024-05-21-introducing-github-copilot-extensions?wt.mc_id=DT-MVP-5004771)** for more information. For a deep dive into chat extensions or how you can even create your own check out: **[GitHub Chat Extension Guides](https://code.visualstudio.com/api/extension-guides/chat?wt.mc_id=DT-MVP-5004771)**.  
 
+For list of GitHub Copilot Chat extensions, head over to **[GitHub Copilot Chat Extensions Marketplace](https://github.com/marketplace?type=apps&copilot_app=true&wt.mc_id=DT-MVP-5004771)**.  
+
 ---
 
 ### 2. Empowering AI Development with Visual Studio Code
