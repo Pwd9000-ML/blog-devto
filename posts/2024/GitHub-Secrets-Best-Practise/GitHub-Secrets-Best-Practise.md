@@ -11,11 +11,15 @@ series: GitHub Pro Tips
 
 ## Best Practices for Managing Sensitive Information in a GitHub Workflow
 
-In today's fast-paced development environment, automation is key. However, this often requires the handling of **sensitive information** such as **API keys**, **credentials**, and other **secrets**. Managing these securely is crucial to avoid unauthorised access and data breaches. In this blog post, we'll explore best practices for managing sensitive information in your **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)** by using **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)**, and also how we can go further by storing **Secrets** securely in **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)**, integrating your GitHub Workflows with **Azure Key Vault** for enhanced security.  
+In today's fast-paced development environment, automation is key. However, this often requires the handling of **sensitive information** such as **API keys**, **credentials**, and other **secrets**. Managing these securely is crucial to avoid unauthorised access and data breaches.   
+
+In this blog post, we'll explore best practices for managing sensitive information in your **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)** by using **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)**, and also how we can go further by storing **Secrets** securely in **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)**, integrating your GitHub Workflows with **Azure Key Vault** for enhanced security.  
 
 ### Why Secure Handling of Sensitive Information is Crucial  
 
-What is the purpose of **GitHub Secrets** you may wonder, and why do you even want to use them? The reason is simple, exposing sensitive information in **git** code repositories can lead to severe consequences such as **unauthorised access**, **data breaches**, and possible leak of sensitive or **private information** which can lead to **reputational damage**. Properly managing this information ensures the security and integrity of your applications and data.  
+What is the purpose of **GitHub Secrets** you may wonder, and why do you even want to use them?  
+
+The reason is simple, exposing sensitive information in **git** code repositories can lead to severe consequences such as **unauthorised access**, **data breaches**, and possible leak of sensitive or **private information** which can lead to **reputational damage**. Properly managing this information ensures the security and integrity of your applications and data.  
 
 ### Using GitHub Secrets  
 
