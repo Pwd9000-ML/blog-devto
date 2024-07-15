@@ -27,8 +27,7 @@ The reason is simple, exposing sensitive information in **git** code repositorie
 
 1. **Navigate to Your Repository:**
    - Go to your GitHub repository.
-   - Click on `Settings`.
-   ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/1-settings.png)
+   - Click on `Settings`. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/1-settings.png)
 
 ## Conclusion
 
