@@ -23,11 +23,11 @@ The reason is simple, exposing sensitive information in **git** code repositorie
 
 ### Using GitHub Secrets
 
-**[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** allow you to securely store sensitive information and access it in your workflows. These secrets are encrypted and only exposed to selected workflows. Let's take a look at how you can get started with **GitHub Secrets** and how to set them up in your workflows.  
+**[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** allow you to securely store sensitive information and access it in your workflows. These secrets are encrypted and only exposed to selected workflows. Let's take a look at how you can get started with **GitHub Secrets** and how to set them up in your workflows.
 
-1. **Navigate to Your Repository:**  
-   - Go to your GitHub repository.  
-   - Click on `Settings`.  
+1. **Navigate to Your Repository:**
+   - Go to your GitHub repository.
+   - Click on `Settings`.
 
 ## Conclusion
 
