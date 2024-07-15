@@ -19,7 +19,15 @@ In this blog post, we'll explore best practices for managing sensitive informati
 
 What is the purpose of **GitHub Secrets** you may wonder, and why do you even want to use them?
 
-The reason is simple, exposing sensitive information in **git** code repositories can lead to severe consequences such as **unauthorised access**, **data breaches**, and possible leak of sensitive or **private information** which can lead to **reputational damage**. Properly managing this information ensures the security and integrity of your applications and data.
+The reason is simple, exposing sensitive information in **git** code repositories can lead to severe consequences such as **unauthorised access**, **data breaches**, and possible leak of sensitive or **private information** which can lead to **reputational damage**. Properly managing this information ensures the security and integrity of your applications and data.  
+
+### Common Pitfalls to Avoid  
+
+When managing sensitive information in your workflows, there are some common pitfalls to avoid:
+
+1. **Hardcoding Secrets:** Never hardcode secrets in your codebase. Always use **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** or secret management tools such as **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)**.  
+2. **Improper Access Control:** Ensure that only necessary workflows and users have access to secrets.  
+3. **Exposing Secrets in Logs:** Be cautious not to print secrets in logs, as logs can be accessed by unauthorised users.  
 
 ### Using GitHub Secrets
 
@@ -81,9 +89,101 @@ jobs:
           # Insert your deployment script here
 ```
 
-In the above example, `API_KEY` is a secret stored in GitHub Secrets. It is accessed using `${{ secrets.API_KEY }}` within the workflow.
+In the above example, `API_KEY` is a secret stored in GitHub Secrets. It is accessed using `${{ secrets.API_KEY }}` within the workflow.  
+
+### Integrating Azure Key Vault with GitHub Workflows  
+
+What if you want to take your security to the next level and store your secrets in a more secure location? **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)** is a cloud service for securely storing and accessing secrets. Integrating it with GitHub Actions provides an extra layer of security.  
+
+### Prerequisites  
+
+- Azure Subscription.  
+- Azure Key Vault.  
+- GitHub repository.  
+
+### Step-by-Step Integration  
+
+- **Set Up Azure Key Vault:**  
+  
+We will use Azure CLI to create a Key Vault and some secrets. For example:  
+
+```bash  
+  az keyvault create --name myKeyVault --resource-group myResourceGroup --location uksouth  
+  az keyvault secret set --vault-name myKeyVault --name "MySecret" --value "mySecretValue"  
+```  
+
+- **Configure Azure Service Principal:**  
+
+Next we will create a service principal in Azure EntraID and grant it access to the Key Vault:  
+
+```bash  
+  az ad sp create-for-rbac --name "myServicePrincipal" --role "Contributor" --scopes /subscriptions/{subscription-id}/resourceGroups/myResourceGroup  
+```
+
+Note down the `appId`, `password`, and `tenant`. We will need this information to configure the GitHub Secrets later so that the service principal can access the Key Vault from our GitHub Actions workflow.  
+
+You can also check this earlier post I wrote on how to create a federated service principal for passwordless integration between Azure and GitHub Actions Workflows using Open ID Connect (OIDC): **[GitHub Actions authentication methods for Azure](https://dev.to/pwd9000/bk-1iij)**  
+
+- **Store Service Principal Credentials in GitHub Secrets:**  
+
+Add the following secrets to your GitHub repository. This is so that the workflow we will set up later can access Azure and the Key Vault:  
+
+`AZURE_CLIENT_ID`: `appId` from the service principal  
+`AZURE_CLIENT_SECRET`: `password` from the service principal  
+`AZURE_TENANT_ID`: `tenant` from the service principal  
+`AZURE_KEY_VAULT`: Name of your Azure Key Vault  
+
+- **Access Azure Key Vault in GitHub Actions:**  
+  
+Use the Azure Key Vault action to retrieve secrets in your workflow:  
+  
+```yaml  
+name: CI/CD Pipeline  
+
+on: [push]  
+
+jobs:  
+  build:  
+    runs-on: ubuntu-latest  
+
+    steps:  
+    - uses: actions/checkout@v2  
+
+    - name: Use Node.js  
+      uses: actions/setup-node@v2  
+      with:  
+        node-version: '14'  
+
+    - name: Install Dependencies  
+      run: npm install  
+
+    - name: Run Tests  
+      run: npm test  
+
+    - name: Retrieve Secrets from Azure Key Vault  
+      uses: azure/secrets-store@v1  
+      with:  
+        method: 'keyvault'  
+        azure-client-id: ${{ secrets.AZURE_CLIENT_ID }}  
+        azure-client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}  
+        azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}  
+        keyvault-name: ${{ secrets.AZURE_KEY_VAULT }}  
+        secrets: |  
+          MySecret  
+      
+    - name: Deploy  
+      env:  
+        API_KEY: ${{ steps.retrieve-secrets.outputs.MySecret }}  
+      run: |  
+        echo "Deploying with API Key: $API_KEY"  
+        # Insert your deployment script here  
+```
+
+In the above example, the `azure/secrets-store` action is used to retrieve the `MySecret` secret from Azure Key Vault. The secret is then used in the deployment step.  
 
 ## Conclusion
+
+Managing sensitive information securely is vital for any DevOps workflow. By using **GitHub Secrets** and integrating Azure Key Vault, you can ensure that your secrets are stored and accessed securely. Always follow best practices and avoid common pitfalls to maintain the security and integrity of your applications.  
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
