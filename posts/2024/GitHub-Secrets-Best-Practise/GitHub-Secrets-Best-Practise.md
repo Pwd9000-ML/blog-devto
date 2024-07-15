@@ -103,7 +103,7 @@ What if you want to take your security to the next level and store your secrets 
 
 ### Step-by-Step Integration
 
-- **Set Up Azure Key Vault:**
+**1. Set Up Azure Key Vault:**
 
 We will use Azure CLI to create a Key Vault and some secrets. For example:
 
@@ -112,7 +112,7 @@ We will use Azure CLI to create a Key Vault and some secrets. For example:
   az keyvault secret set --vault-name myKeyVault --name "MySecret" --value "mySecretValue"
 ```
 
-- **Configure Azure Service Principal:**
+**2. Configure Azure Service Principal:**
 
 Next we will create a service principal in Azure EntraID and grant it access to the Key Vault:
 
@@ -124,7 +124,7 @@ Note down the `appId`, `password`, and `tenant`. We will need this information t
 
 You can also check this earlier post I wrote on how to create a federated service principal for passwordless integration between Azure and GitHub Actions Workflows using Open ID Connect (OIDC): **[GitHub Actions authentication methods for Azure](https://dev.to/pwd9000/bk-1iij)**
 
-- **Store Service Principal Credentials in GitHub Secrets:**
+**3. Store Service Principal Credentials in GitHub Secrets:**
 
 Add the following secrets to your GitHub repository. This is so that the workflow we will set up later can access Azure and the Key Vault:
 
@@ -133,7 +133,7 @@ Add the following secrets to your GitHub repository. This is so that the workflo
 `AZURE_TENANT_ID`: `tenant` from the service principal  
 `AZURE_KEY_VAULT`: Name of your Azure Key Vault
 
-- **Access Azure Key Vault in GitHub Actions:**
+**4. Access Azure Key Vault in GitHub Actions:**
 
 Use the Azure Key Vault action to retrieve secrets in your workflow:
 
