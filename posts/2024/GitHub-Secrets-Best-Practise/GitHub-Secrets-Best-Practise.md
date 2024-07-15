@@ -31,7 +31,7 @@ The reason is simple, exposing sensitive information in **git** code repositorie
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/1-settings.png)
 
-2. **Access Secrets:**  
+1. **Access Secrets:**  
    - In the left sidebar, click on `Secrets and variables` under the `Security` section.  
    - Notice that you have options for `Actions`, `Codespaces` and `Dependabot`.
    - Because we are working with GitHub Workflows, we will focus on `Actions`. But also know that you can use these secrets in other areas of your repository as well, such as inside of your **Codespaces** or for **Dependabot** specific workflows.
@@ -40,7 +40,7 @@ The reason is simple, exposing sensitive information in **git** code repositorie
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/1-secrets.png)
 
-3. **Add a New Secret:**  
+1. **Add a New Secret:**  
    - Click on `New repository secret`.  
    - Provide a `Name` and `Value` for your secret.  
    - Click `Add secret`.  
@@ -50,7 +50,7 @@ The reason is simple, exposing sensitive information in **git** code repositorie
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/2-add-secret.png)  
 
-   - Note that once the `Secret` is added, it is encrypted and cannot be viewed again. You can only update or delete the secret.  
+- Note that once the `Secret` is added, it is encrypted and cannot be viewed again. You can only update or delete the secret.  
 
 [image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/3-add-secret.png)  
 
