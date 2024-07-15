@@ -26,9 +26,9 @@ The reason is simple, exposing sensitive information in **git** code repositorie
 **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** allow you to securely store sensitive information and access it in your workflows. These secrets are encrypted and only exposed to selected workflows. Let's take a look at how you can get started with **GitHub Secrets** and how to set them up in your workflows.
 
 1. **Navigate to Your Repository:**  
-  1.1. Go to your GitHub repository.  
-  1.2. Click on `Settings`.  
-  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/1-settings.png)
+   1.1. Go to your GitHub repository.  
+   1.2. Click on `Settings`.  
+   ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/1-settings.png)
 
 2. **Access Secrets:**  
   2.1. In the left sidebar, click on `Secrets and variables` under the `Security` section.  
