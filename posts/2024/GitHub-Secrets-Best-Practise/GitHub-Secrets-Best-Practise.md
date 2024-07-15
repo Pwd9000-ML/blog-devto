@@ -81,7 +81,7 @@ jobs:
           # Insert your deployment script here
 ```
 
-In this example, `API_KEY` is a secret stored in GitHub Secrets. It is accessed using `${{ secrets.API_KEY }}` within the workflow.
+In the above example, `API_KEY` is a secret stored in GitHub Secrets. It is accessed using `${{ secrets.API_KEY }}` within the workflow.
 
 ## Conclusion
 
