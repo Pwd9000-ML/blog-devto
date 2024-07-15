@@ -31,21 +31,20 @@ The reason is simple, exposing sensitive information in **git** code repositorie
    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/1-settings.png)
 
 2. **Access Secrets:**  
-  2.1. In the left sidebar, click on `Secrets and variables` under the `Security` section.  
-  2.2. Notice that you have options for `Actions`, `Codespaces` and `Dependabot`.  
-  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/1-secrets.png)  
-  2.3. Because we are working with GitHub Workflows, we will focus on `Actions`. But also know that you can use these secrets in other areas of your repository as well, such as inside of your **Codespaces** or for **Dependabot** specific workflows.  
-  For more information on using **Secrets** in **Codespaces** check out: **[Codespaces Secrets](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces?wt.mc_id=DT-MVP-5004771)**, and for using **Secrets** in **Dependabot** check out: **[Dependabot Secrets](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#accessing-secrets?wt.mc_id=DT-MVP-5004771)**.  
+   2.1. In the left sidebar, click on `Secrets and variables` under the `Security` section.  
+   2.2. Notice that you have options for `Actions`, `Codespaces` and `Dependabot`.  
+   ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/1-secrets.png)  
+   2.3. Because we are working with GitHub Workflows, we will focus on `Actions`. But also know that you can use these secrets in other areas of your repository as well, such as inside of your **Codespaces** or for **Dependabot** specific workflows.  
+   For more information on using **Secrets** in **Codespaces** check out: **[Codespaces Secrets](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces?wt.mc_id=DT-MVP-5004771)**, and for using **Secrets** in **Dependabot** check out: **[Dependabot Secrets](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#accessing-secrets?wt.mc_id=DT-MVP-5004771)**.
 
 3. **Add a New Secret:**  
-  3.1. Click on `New repository secret`.  
-  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/1-add-secret.png)  
-  **Note:** that you can set up **[Environment Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-environment?wt.mc_id=DT-MVP-5004771)**, **[Organization Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-organization?wt.mc_id=DT-MVP-5004771)** and **[Repository Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository?wt.mc_id=DT-MVP-5004771)** as well as **[variables](https://docs.github.com/en/actions/learn-github-actions/variables?wt.mc_id=DT-MVP-5004771)** for use in your workflows.  
-  3.2. Provide a `Name` and `Value` for your secret.  
-  3.3. Click `Add secret`.  
-  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/2-add-secret.png)
-  Once the `Secret` is added, it is encrypted and cannot be viewed again. You can only update or delete the secret.  
-  ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/3-add-secret.png)  
+   3.1. Click on `New repository secret`.  
+   ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/1-add-secret.png)  
+   **Note:** that you can set up **[Environment Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-environment?wt.mc_id=DT-MVP-5004771)**, **[Organization Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-organization?wt.mc_id=DT-MVP-5004771)** and **[Repository Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository?wt.mc_id=DT-MVP-5004771)** as well as **[variables](https://docs.github.com/en/actions/learn-github-actions/variables?wt.mc_id=DT-MVP-5004771)** for use in your workflows.  
+   3.2. Provide a `Name` and `Value` for your secret.  
+   3.3. Click `Add secret`.  
+   ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/2-add-secret.png) Once the `Secret` is added, it is encrypted and cannot be viewed again. You can only update or delete the secret.  
+   ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/3-add-secret.png)
 
 ### Example: Using GitHub Secrets in a Workflow
 
