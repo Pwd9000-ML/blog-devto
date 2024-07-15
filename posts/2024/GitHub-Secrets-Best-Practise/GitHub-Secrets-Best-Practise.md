@@ -25,17 +25,17 @@ The reason is simple, exposing sensitive information in **git** code repositorie
 
 **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** allow you to securely store sensitive information and access it in your workflows. These secrets are encrypted and only exposed to selected workflows. Let's take a look at how you can get started with **GitHub Secrets** and how to set them up in your workflows.
 
-1. **Navigate to Your Repository:**
-   - Go to your GitHub repository.
-   - Click on `Settings`.
+- **Navigate to Your Repository:**
+  - Go to your GitHub repository.
+  - Click on `Settings`.
    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/1-settings.png)  
 
-2. **Access Secrets:**  
-   - In the left sidebar, click on `Secrets and variables` under the `Security` section.  
-   - Notice that you have options for `Actions`, `Codespaces` and `Dependabot`.
-   - Because we are working with GitHub Workflows, we will focus on `Actions`. But also know that you can use these secrets in other areas of your repository as well, such as inside of your **Codespaces** or for **Dependabot** specific workflows.
-   - For more information on using **Secrets** in **Codespaces** check out: **[Codespaces Secrets](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces?wt.mc_id=DT-MVP-5004771)**
-   - For more information on using **Secrets** in **Dependabot** check out: **[Dependabot Secrets](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#accessing-secrets?wt.mc_id=DT-MVP-5004771)**
+- **Access Secrets:**  
+  - In the left sidebar, click on `Secrets and variables` under the `Security` section.  
+  - Notice that you have options for `Actions`, `Codespaces` and `Dependabot`.
+  - Because we are working with GitHub Workflows, we will focus on `Actions`. But also know that you can use these secrets in other areas of your repository as well, such as inside of your **Codespaces** or for **Dependabot** specific workflows.
+  - For more information on using **Secrets** in **Codespaces** check out: **[Codespaces Secrets](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces?wt.mc_id=DT-MVP-5004771)**
+  - For more information on using **Secrets** in **Dependabot** check out: **[Dependabot Secrets](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#accessing-secrets?wt.mc_id=DT-MVP-5004771)**
    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/1-secrets.png)
 
 ## Conclusion
