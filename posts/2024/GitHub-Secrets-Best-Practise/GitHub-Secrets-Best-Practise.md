@@ -11,13 +11,13 @@ series: GitHub Pro Tips
 
 ## Overview - Managing Sensitive Information in a GitHub Workflow
 
-This article is **`Part 1`** of a 2-Part series where we'll explore the best practices for managing sensitive information in your **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)** by using **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** using the GitHub Website UI and giving a general overview and feel for **GitHub Secrets** and why you would want to use them.
+This article is **Part 1** of a 2-Part series where we'll explore the best practices for managing sensitive information in your **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)** by using **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** using the GitHub Website UI and giving a general overview and feel for **GitHub Secrets** and why you would want to use them.
 
 In today's fast-paced development environment, automation is key. However, this often requires the handling of **sensitive information** such as **API keys**, **credentials**, and other **secrets**. Managing these securely is crucial to avoid unauthorised access and data breaches.
 
 This is where **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** come in. **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** allow you to securely store sensitive information and access it in your workflows without exposing sensitive information in your codebase.
 
-But it does not end there in **`Part 2`** of this blog series we will also look at how we can go further by storing **Secrets** securely in **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)** and how to integrate your GitHub Workflows with **Azure Key Vault** for using **Secrets** to enhanced security and centralised management of your **Secrets**.
+But it does not end there in **Part 2** of this blog series we will also look at how we can go further by storing **Secrets** securely in **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)** and how to integrate your GitHub Workflows with **Azure Key Vault** for using **Secrets** to enhanced security and centralised management of your **Secrets**.
 
 ### Why Secure Handling of Sensitive Information is Crucial
 

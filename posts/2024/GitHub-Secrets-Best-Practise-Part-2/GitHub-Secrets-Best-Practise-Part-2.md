@@ -11,9 +11,9 @@ series: GitHub Pro Tips
 
 ## Overview - Managing Sensitive Information in a GitHub Workflow
 
-Welcome to **`Part 2`** of a 2-Part series where we'll explore more ways for managing sensitive information in your **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)** by using **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)** and how to integrate your GitHub Workflows with Azure Key Vault for using **Secrets** to enhanced security and centralised management of your **Secrets**.
+Welcome to **Part 2** of a 2-Part series where we'll explore more ways for managing sensitive information in your **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)** by using **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)** and how to integrate your GitHub Workflows with Azure Key Vault for using **Secrets** to enhanced security and centralised management of your **Secrets**.
 
-I recommend you read **`Part 1`** of this series where we explored the best practices for managing sensitive information in your **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)** by using **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** using the GitHub Website UI and giving a general overview and feel for **GitHub Secrets** and why you would want to use them.
+I recommend you read **Part 1** of this series where we explored the best practices for managing sensitive information in your **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)** by using **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** using the GitHub Website UI and giving a general overview and feel for **GitHub Secrets** and why you would want to use them.
 
 Let's jump straight into it and explore how we can integrate **Azure Key Vault** with our **GitHub Workflows**.
 
