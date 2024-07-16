@@ -49,7 +49,7 @@ Let's take a closer look at how you can start with using **[GitHub Secrets](http
    2.3. Because we are working with GitHub Workflows, we will focus on `Actions`. But also know that you can use these secrets in other areas of your repository as well, such as inside of your **Codespaces** or for **Dependabot** specific workflows.  
    For more information on using **Secrets** in **Codespaces** check out: **[Codespaces Secrets](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces?wt.mc_id=DT-MVP-5004771)**, and for using **Secrets** in **Dependabot** check out: **[Dependabot Secrets](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#accessing-secrets?wt.mc_id=DT-MVP-5004771)**.
 
-3. **Add a New Secret:**  
+3. **Adding Secrets:**  
    3.1. We will be setting up a **repository secret**, but note that you can configure secrets at different levels. Click on `New repository secret`.  
    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/1-add-secret.png)
    **[- Environment Secrets:](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-environment?wt.mc_id=DT-MVP-5004771)** If you have set up and use [github environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment?wt.mc_id=DT-MVP-5004771), these are stored at the environment level, so you can enable required reviewers to control access to the secrets. A benefit of this is that workflow jobs cannot access environment secrets until approval is granted by required approvers.  
