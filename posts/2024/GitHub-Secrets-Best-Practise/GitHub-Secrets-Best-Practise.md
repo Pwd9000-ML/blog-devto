@@ -27,7 +27,7 @@ The reason is simple, exposing sensitive information in **git** code repositorie
 
 ### Common Pitfalls to Avoid
 
-When managing sensitive information in your workflows, there are some common pitfalls to avoid:
+When managing sensitive information in your workflows and repositories, there are some common pitfalls to avoid:
 
 1. **Hardcoding Secrets:** Never hardcode secrets in your codebase. Always use **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** or secret management tools such as **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)**.
 2. **Improper Access Control:** Ensure that only necessary workflows and users have access to secrets.
