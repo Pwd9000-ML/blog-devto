@@ -103,7 +103,7 @@ But we can go even further by storing **Secrets** securely in **Azure Key Vault*
 
 One of the biggest benefits of using **Azure Key Vault** is that it allows you to store your secrets in a centralised location, separate from your codebase, apart from **[Organization Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-organization?wt.mc_id=DT-MVP-5004771)**, it addresses the limitation with **[Repository Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository?wt.mc_id=DT-MVP-5004771)** where secrets have to be set in each unique repository which can make secrets management or rotation cumbersome.
 
-Take a look at how you can integrate **Azure Key Vault** with your **GitHub Workflows** in the next part of this series: **[Integrating Azure Key Vault with GitHub Secrets and Workflows - Part 2]() COMING SOON!**.
+Take a look at how you can integrate **Azure Key Vault** with your **GitHub Workflows** in the next part of this series: **COMING SOON! [Integrating Azure Key Vault with GitHub Secrets and Workflows - Part 2]() COMING SOON!**.
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
