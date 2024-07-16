@@ -35,7 +35,7 @@ When managing sensitive information in your workflows and repositories, there ar
 
 ## Using GitHub Secrets
 
-**[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** allow you to securely store sensitive information and access it in your workflows. These secrets are encrypted and only exposed to selected workflows. Let's take a look at how you can get started with **GitHub Secrets** and how to set them up in your workflows using the GitHub Website UI.
+Let's take a closer look at how you can start with using **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** and how you can access them in your workflows using the GitHub Website UI. Remember that secrets are encrypted and only exposed to selected workflows.  
 
 1. **Navigate to Your Repository:**  
    1.1. Go to your GitHub repository.  
