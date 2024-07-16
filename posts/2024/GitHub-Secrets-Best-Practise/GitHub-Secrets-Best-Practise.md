@@ -1,5 +1,5 @@
 ---
-title: Securing Your GitHub Workflows - Best Practices for Using GitHub Secrets
+title: Best Practices for Using GitHub Secrets - Part 1
 published: false
 description: Best Practices for Managing Sensitive Information in a GitHub Workflow
 tags: 'github, git, devops, devsecops'
@@ -9,11 +9,15 @@ id: 1924247
 series: GitHub Pro Tips
 ---
 
-## Overview - Managing Sensitive Information in a GitHub Workflow
+## Overview - Managing Sensitive Information in a GitHub Workflow  
 
-In today's fast-paced development environment, automation is key. However, this often requires the handling of **sensitive information** such as **API keys**, **credentials**, and other **secrets**. Managing these securely is crucial to avoid unauthorised access and data breaches.
+This article is **`Part 1`** of a 2-Part series where we'll explore the best practices for managing sensitive information in your **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)** by using **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** using the GitHub Website UI and giving a general overview and feel for **GitHub Secrets** and why you would want to use them.  
 
-In this blog post, we'll explore best practices for managing sensitive information in your **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)** by using **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)**, and also how we can go further by storing **Secrets** securely in **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)**, integrating your GitHub Workflows with **Azure Key Vault** for enhanced security.
+In today's fast-paced development environment, automation is key. However, this often requires the handling of **sensitive information** such as **API keys**, **credentials**, and other **secrets**. Managing these securely is crucial to avoid unauthorised access and data breaches.  
+
+This is where **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** come in. **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** allow you to securely store sensitive information and access it in your workflows without exposing sensitive information in your codebase.  
+
+But it does not end there in **`Part 2`** of this blog series we will also look at how we can go further by storing **Secrets** securely in **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)** and how to integrate your GitHub Workflows with **Azure Key Vault** for using **Secrets** to enhanced security and centralised management of your **Secrets**.  
 
 ### Why Secure Handling of Sensitive Information is Crucial
 
@@ -31,7 +35,7 @@ When managing sensitive information in your workflows, there are some common pit
 
 ## Using GitHub Secrets
 
-**[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** allow you to securely store sensitive information and access it in your workflows. These secrets are encrypted and only exposed to selected workflows. Let's take a look at how you can get started with **GitHub Secrets** and how to set them up in your workflows.
+**[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** allow you to securely store sensitive information and access it in your workflows. These secrets are encrypted and only exposed to selected workflows. Let's take a look at how you can get started with **GitHub Secrets** and how to set them up in your workflows using the GitHub Website UI.  
 
 1. **Navigate to Your Repository:**  
    1.1. Go to your GitHub repository.  
@@ -91,76 +95,15 @@ jobs:
 
 In the above example, `API_KEY` is a secret stored in GitHub Secrets. It is accessed using `${{ secrets.API_KEY }}` within the workflow.
 
-## Integrating Azure Key Vault with GitHub Workflows
-
-What if you want to take your security to the next level and store your secrets in a more secure location? **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)** is a cloud service for securely storing and accessing secrets. Integrating it with GitHub Actions provides an extra layer of security and flexibility for managing your secrets.
-
-One of the biggest benefits of using **Azure Key Vault** is that it allows you to store your secrets in a centralised location, separate from your codebase, apart from **[Organization Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-organization?wt.mc_id=DT-MVP-5004771)**, it addresses the limitation with **[Repository Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository?wt.mc_id=DT-MVP-5004771)** where secrets have to be set in each unique repository which can make secrets management or rotation cumbersome.
-
-Let's take a look at how you can integrate **Azure Key Vault** with your **GitHub Workflows**:
-
-### Prerequisites
-
-- GitHub repository.
-- Azure Subscription.
-- Azure Key Vault.
-- Azure Service Principal with access to the Key Vault.
-
-### Step-by-Step Integration Example
-
-At the time of writing for the purposes of the following example on a **Windows** operating system, we will use **[GitHub CLI](https://github.com/cli/cli/releases?wt.mc_id=DT-MVP-5004771) v2.52.0** to create a **GitHub repository** and **[Azure CLI](https://github.com/Azure/azure-cli/releases?wt.mc_id=DT-MVP-5004771) v2.62.0** to create an **Azure Key Vault** and store an **Azure Storage Account Key** in it. We will then integrate the **Key Vault** with our **GitHub Actions workflow** with a service principal (identity) to access the storage account secret key securely during the actions workflow execution.
-
-**1. Set Up Azure Key Vault:**
-
-For the example below we will create a Key Vault and store a Storage Account Key in it which we will later access in our GitHub Actions workflow:
-
-```pwsh
-  # Set variables
-  $randomInt = Get-Random -Maximum 9999
-  $subscriptionId = $(az account show --query "id" --output tsv)
-  $resourceGroupName = "ghSecretsRg"
-  $location = "UKSouth"
-  $keyVaultName = "ghSecretsVault$randomInt"
-  $storageAccountName = "ghsecsa$randomInt"
-  $currentUser = $(az ad signed-in-user show --query "id" --output tsv)
-
-  # Create Resource Group
-  az group create --name "$resourceGroupName" --location "$location"
-
-  # Create Key Vault
-  az keyvault create --name "$keyVaultName" --resource-group "$resourceGroupName" --location "$location"
-
-  # Authorize the operation to create the tracker table - Signed in User
-  az role assignment create --assignee-object-id "$currentUser" `
-    --role "Key Vault Secrets Officer" `
-    --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$keyVaultName" `
-    --assignee-principal-type "User"
-
-  # Create a storage account and store the key in Key Vault (Example)
-  az storage account create --name "$storageAccountName" --resource-group "$resourceGroupName" --location "$location" --sku Standard_LRS
-
-  # Fetch and store a Storage Account Key in Key Vault
-  $storageKey = az storage account keys list --account-name "$storageAccountName" --resource-group "$resourceGroupName" --query "[0].value" --output tsv
-  az keyvault secret set --vault-name "$keyVaultName" --name "StorageAccountKey" --value "$storageKey"
-```
-
-As you can see we have securely created an **Azure Key Vault** and stored our **Storage Account Key** in it.
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/1-key-vault.png)
-
-**2. Configure Azure Service Principal:**
-
-Next we will create a federated service principal (passwordless) in **[Azure Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/whatis?wt.mc_id=DT-MVP-5004771)** and grant it access to the Key Vault. We will integrate this service principal (identity) to access the Key Vault from our GitHub Actions workflow:
-
-**NOTE:** You can also check this earlier blog post I wrote on other mechanisms and ways for integrating identities between Azure and GitHub: **[GitHub Actions authentication methods for Azure](https://dev.to/pwd9000/bk-1iij)**
-
-**3. Store Service Principal Credentials in GitHub Secrets:**
-
-**4. Access Azure Key Vault in GitHub Actions:**
-
 ## Conclusion
 
-Managing sensitive information securely is vital for any DevOps workflow. By using **GitHub Secrets** and integrating Azure Key Vault, you can ensure that your secrets are stored and accessed securely. Always follow best practices and avoid common pitfalls to maintain the security and integrity of your applications.
+Managing sensitive information securely is vital for any DevOps workflow. By using **GitHub Secrets** and integrating Azure Key Vault, you can ensure that your secrets are stored and accessed securely. Always follow best practices and avoid common pitfalls to maintain the security and integrity of your applications.  
+
+But we can go even further by storing **Secrets** securely in **Azure Key Vault** and integrating your GitHub Workflows with **Azure Key Vault** for using **Secrets**.  
+
+One of the biggest benefits of using **Azure Key Vault** is that it allows you to store your secrets in a centralised location, separate from your codebase, apart from **[Organization Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-organization?wt.mc_id=DT-MVP-5004771)**, it addresses the limitation with **[Repository Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository?wt.mc_id=DT-MVP-5004771)** where secrets have to be set in each unique repository which can make secrets management or rotation cumbersome.  
+
+Take a look at how you can integrate **Azure Key Vault** with your **GitHub Workflows** in the next part of this series: **[Integrating Azure Key Vault with GitHub Secrets and Workflows - Part 2]() COMING SOON!**.  
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
