@@ -91,7 +91,7 @@ jobs:
 
 In the above example, `API_KEY` is a secret stored in GitHub Secrets. It is accessed using `${{ secrets.API_KEY }}` within the workflow.
 
-## Integrating Azure Key Vault with GitHub Workflows  
+## Integrating Azure Key Vault with GitHub Workflows
 
 What if you want to take your security to the next level and store your secrets in a more secure location? **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)** is a cloud service for securely storing and accessing secrets. Integrating it with GitHub Actions provides an extra layer of security and flexibility for managing your secrets.
 
@@ -108,7 +108,7 @@ Let's take a look at how you can integrate **Azure Key Vault** with your **GitHu
 
 ### Step-by-Step Integration Example
 
-At the time of writing for the purposes of the following example on a **Windows** operating system, we will use **[GitHub CLI](https://github.com/cli/cli/releases?wt.mc_id=DT-MVP-5004771) v2.52.0** to create a **GitHub repository** and **[Azure CLI](https://github.com/Azure/azure-cli/releases?wt.mc_id=DT-MVP-5004771) v2.62.0** to create an **Azure Key Vault** and store an **Azure Storage Account Key** in it. We will then integrate the **Key Vault** with our **GitHub Actions workflow** with a service principal (identity) to access the storage account secret key securely during the actions workflow execution.  
+At the time of writing for the purposes of the following example on a **Windows** operating system, we will use **[GitHub CLI](https://github.com/cli/cli/releases?wt.mc_id=DT-MVP-5004771) v2.52.0** to create a **GitHub repository** and **[Azure CLI](https://github.com/Azure/azure-cli/releases?wt.mc_id=DT-MVP-5004771) v2.62.0** to create an **Azure Key Vault** and store an **Azure Storage Account Key** in it. We will then integrate the **Key Vault** with our **GitHub Actions workflow** with a service principal (identity) to access the storage account secret key securely during the actions workflow execution.
 
 **1. Set Up Azure Key Vault:**
 
@@ -152,16 +152,11 @@ As you can see we have securely created an **Azure Key Vault** and stored our **
 
 Next we will create a federated service principal (passwordless) in **[Azure Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/whatis?wt.mc_id=DT-MVP-5004771)** and grant it access to the Key Vault. We will integrate this service principal (identity) to access the Key Vault from our GitHub Actions workflow:
 
-
-
-**NOTE:** You can also check this earlier blog post I wrote on other mechanisms and ways for integrating identities between Azure and GitHub: **[GitHub Actions authentication methods for Azure](https://dev.to/pwd9000/bk-1iij)**  
+**NOTE:** You can also check this earlier blog post I wrote on other mechanisms and ways for integrating identities between Azure and GitHub: **[GitHub Actions authentication methods for Azure](https://dev.to/pwd9000/bk-1iij)**
 
 **3. Store Service Principal Credentials in GitHub Secrets:**
 
-
 **4. Access Azure Key Vault in GitHub Actions:**
-
-
 
 ## Conclusion
 
