@@ -11,9 +11,9 @@ series: GitHub Pro Tips
 
 ## Overview - Managing Sensitive Information in a GitHub Workflow
 
-Welcome to **Part 2** of this 2-Part series where we explore different ways for managing sensitive information in **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)**. In this part we look at how we can use **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)** as a secure **Secrets** store and how to integrate your GitHub Workflows with Key Vault for retrieving **Secrets**, to enhanced security and for more flexible centralised management of your **GitHub Secrets**.  
+Welcome to **Part 2** of this 2-Part series where we explore different ways for managing sensitive information in **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)**. In this part we look at how we can use **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)** as a secure **Secrets** store and how to integrate your GitHub Workflows with Key Vault for retrieving **Secrets**, to enhanced security and for more flexible centralised management of your **GitHub Secrets**.
 
-I recommend reading **Part 1** of the series where we explore the best practices for managing sensitive information in **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)** using **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** natively in the GitHub Website UI, giving a general overview and feel for **GitHub Secrets** and why you would want to use them.  
+I recommend reading **Part 1** of the series where we explore the best practices for managing sensitive information in **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)** using **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** natively in the GitHub Website UI, giving a general overview and feel for **GitHub Secrets** and why you would want to use them.
 
 Let's jump straight into it and see how we can integrate **Azure Key Vault** with **GitHub**.
 
@@ -74,9 +74,9 @@ As you can see we have securely created an **Azure Key Vault** and stored our **
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets/1-key-vault.png)
 
-**2. Create a GitHub Repository (Optional):**  
+**2. Create a GitHub Repository (Optional):**
 
-For the purposes of this example we will use the **GitHub CLI** to create a new repository and initialise it with a README.md file, but you can also skip this step if you already have a repository you would like to integrate with **Azure Key Vault**:  
+For the purposes of this example we will use the **GitHub CLI** to create a new repository and initialise it with a README.md file, but you can also skip this step if you already have a repository you would like to integrate with **Azure Key Vault**:
 
 ```pwsh
 # Authenticate to GitHub
@@ -88,27 +88,27 @@ gh repo create "Integration-Test-Repo" --public --description "Azure Key Vault I
 # Clone the new repository (Replace <your-username> with your actual GitHub username.)
 git clone "https://github.com/<your-username>/Integration-Test-Repo.git"
 cd "Integration-Test-Repo"
-  
-# Create a new file and add content  
-echo "# Key Vault Integration Test Repo" > README.md  
-  
-# Add the file to the staging area  
-git add README.md  
-  
-# Commit the file  
-git commit -m "Initial commit"  
-  
+
+# Create a new file and add content
+echo "# Key Vault Integration Test Repo" > README.md
+
+# Add the file to the staging area
+git add README.md
+
+# Commit the file
+git commit -m "Initial commit"
+
 # Push the changes to GitHub (If you are not using the main branch, replace 'main' with your branch name. e.g. 'master')
-git push origin main  
+git push origin main
 ```
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets/1-github-repo.png)
 
-Now that we have our **GitHub repository** set up, we can move on to the next step to integrate it with our **Azure Key Vault**.  
+Now that we have our **GitHub repository** set up, we can move on to the next step to integrate it with our **Azure Key Vault**.
 
 **3. Configure Azure Service Principal:**
 
-Next we will create a federated service principal (passwordless) in **[Azure Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/whatis?wt.mc_id=DT-MVP-5004771)** and grant it access to the Key Vault. We will integrate this service principal (identity) to access the Key Vault from our GitHub Actions workflow:  
+Next we will create a federated service principal (passwordless) in **[Azure Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/whatis?wt.mc_id=DT-MVP-5004771)** and grant it access to the Key Vault. We will integrate this service principal (identity) to access the Key Vault from our GitHub Actions workflow:
 
 ```pwsh
 
