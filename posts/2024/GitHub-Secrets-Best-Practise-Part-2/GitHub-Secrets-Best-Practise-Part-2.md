@@ -1,5 +1,5 @@
 ---
-title: Integrating Azure Key Vault with GitHub Secrets and Workflows - Part 2
+title: Integrating Azure Key Vault for Secrets with GitHub Action Workflows - Part 2
 published: false
 description: Best Practices for Managing Sensitive Information in a GitHub Workflow
 tags: 'github, git, devops, devsecops'
@@ -169,9 +169,13 @@ $appId | foreach-object {
 
 **NOTE:** You can also check this earlier blog post I wrote on other mechanisms and ways for integrating identities between Azure and GitHub: **[GitHub Actions authentication methods for Azure](https://dev.to/pwd9000/bk-1iij)**
 
-**3. Store Service Principal Credentials in GitHub Secrets:**
+**3. Access Azure Key Vault in GitHub Actions:**
 
-**4. Access Azure Key Vault in GitHub Actions:**
+Next we will create a GitHub Actions workflow file in our repository to access the Key Vault secrets using the service principal we created earlier. We will then retrieve the Storage Account Key from the Key Vault and use it in our workflow to create a new storage container and copy our Repository README.md file into the storage container:
+
+```yaml
+az storage container create --name "$containerName" --account-name "$storageAccountName" --account-key "$storageAccountKey"
+```
 
 ## Conclusion
 
