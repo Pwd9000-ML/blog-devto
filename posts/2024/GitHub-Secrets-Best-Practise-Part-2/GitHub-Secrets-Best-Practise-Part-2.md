@@ -167,7 +167,7 @@ $appId | foreach-object {
 
 ```
 
-**NOTE:** You can also check this earlier blog post I wrote on other mechanisms and ways for integrating identities between Azure and GitHub: **[GitHub Actions authentication methods for Azure](https://dev.to/pwd9000/bk-1iij)**
+**NOTE:** You can also check this earlier blog post I wrote on other mechanisms and ways for integration between Azure and GitHub: **[GitHub Actions authentication methods for Azure](https://dev.to/pwd9000/bk-1iij)**
 
 **3. Access Azure Key Vault in GitHub Actions:**
 
