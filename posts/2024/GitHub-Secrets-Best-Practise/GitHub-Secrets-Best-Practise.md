@@ -96,15 +96,26 @@ jobs:
           # Insert your deployment script here
 ```
 
-In the above example, `API_KEY` is a secret stored in GitHub Secrets. It is accessed using `${{ secrets.API_KEY }}` within the workflow.
+In the above example, in the last step named `Deploy`, the `API_KEY` secret is accessed using `${{ secrets.API_KEY }}`. This ensures that the secret is securely accessed in the workflow without exposing it in the codebase:  
+
+```yml
+- name: Deploy
+  env:
+    API_KEY: ${{ secrets.API_KEY }}
+  run: |
+    echo "Deploying with API Key: $API_KEY"  
+    # Insert your deployment script here
+```
 
 ## Conclusion
 
-Managing sensitive information securely is vital for any DevOps workflow. By using **GitHub Secrets** and integrating Azure Key Vault, you can ensure that your secrets are stored and accessed securely. Always follow best practices and avoid common pitfalls to maintain the security and integrity of your applications.
+Managing sensitive information securely is vital for any DevOps workflow. By using **GitHub Secrets** and integrating Azure Key Vault, you can ensure that your secrets are stored and accessed securely. Always follow best practices and avoid common pitfalls to maintain the security and integrity of your applications.  
 
-But we can go even further by storing **Secrets** securely in **Azure Key Vault** and integrating your GitHub Workflows with **Azure Key Vault** for using **Secrets**.
+In this post we only covered a basic overview of **GitHub Secrets** and how to use them in your **GitHub Workflows**. But we can go even further by storing **Secrets** securely in **Azure Key Vault** and integrating your GitHub Workflows with **Azure Key Vault** for using **Secrets**, which offers a few more benefits and flexibility in managing your **Secrets**.  
 
-One of the biggest benefits of using **Azure Key Vault** is that it allows you to store your secrets in a centralised location, separate from your codebase, apart from **[Organization Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-organization?wt.mc_id=DT-MVP-5004771)**, it addresses the limitation with **[Repository Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository?wt.mc_id=DT-MVP-5004771)** where secrets have to be set in each unique repository which can make secrets management or rotation cumbersome.
+One of the biggest benefits of using **Azure Key Vault** is that it allows you to store your secrets in a centralised location, separate from your codebase, apart from **[Organization Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-an-organization?wt.mc_id=DT-MVP-5004771)**, it addresses the limitation with **[Repository Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository?wt.mc_id=DT-MVP-5004771)** where secrets have to be set in each unique repository which can make secrets management or rotation cumbersome.  
+
+Just to name a few more benefits of using **Secrets** in **GitHub** with **Azure Key Vault** is that they can be accessed by multiple repositories and workflows, secret rotation can be managed centrally, access to secrets can be controlled using **Azure RBAC**, secrets history can also be maintained for auditing purposes and previous versions of secrets can be restored if needed.  
 
 Take a look at how you can integrate **Azure Key Vault** with your **GitHub Workflows** in the next part of this series: **COMING SOON! [Integrating Azure Key Vault for Secrets with GitHub Action Workflows - Part 2]() COMING SOON!**.
 
