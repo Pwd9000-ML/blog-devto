@@ -204,6 +204,10 @@ name: Azure Key Vault Integration Test
 
 on: [push]
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   access-key-vault:
     runs-on: ubuntu-latest
