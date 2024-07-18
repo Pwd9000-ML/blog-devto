@@ -203,7 +203,7 @@ Navigate to your **GitHub Repository** and go to the **Settings** tab, then clic
 
 **NOTE:** You can also check this previous blog post I wrote for more information about federated access between Azure and GitHub and other mechanisms and ways for integration between Azure and GitHub: **[GitHub Actions authentication methods for Azure](https://dev.to/pwd9000/bk-1iij)**
 
-**3. Access Azure Key Vault in GitHub Actions:**
+**4. Access Azure Key Vault in GitHub Actions:**
 
 That is it for the setup and configuration of the **Azure Key Vault** and the **Service Principal**. Now we can utilise the federated **Service Principal** to access the **Key Vault** from our **GitHub Actions Workflow**.
 
