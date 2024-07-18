@@ -36,13 +36,13 @@ There are a few things we need first to integrate **Azure Key Vault** with **Git
 
 ### Step-by-Step Integration Example
 
-At the time of writing and for the purposes of the example to follow the following tools were used to prepare the prerequisites for the integration:  
+At the time of writing and for the purposes of the example to follow the following tools were used to prepare the prerequisites for the integration:
 
 - **Windows** operating system.
 - **[GitHub CLI](https://github.com/cli/cli/releases?wt.mc_id=DT-MVP-5004771) v2.52.0** to create a **GitHub repository**
 - **[Azure CLI](https://github.com/Azure/azure-cli/releases?wt.mc_id=DT-MVP-5004771) v2.62.0** to create an **Azure Key Vault**, **Secrets** and supporting resources.
 
-In the following example we will integrate an **Azure Key Vault** with a **GitHub Actions workflow**, by integrating **Azure** with a **Github Repository** using a federated/passwordless **service principal** (identity) to access an **Azure Storage Account** as part of the workflow execution and using the **Storage Account Key** stored as a **secret** in the **Key Vault** to create a **Storage Container** and copy a **Blob file** into the created container.  
+In the following example we will integrate an **Azure Key Vault** with a **GitHub Actions workflow**, by integrating **Azure** with a **Github Repository** using a federated/passwordless **service principal** (identity) to access an **Azure Storage Account** as part of the workflow execution and using the **Storage Account Key** stored as a **secret** in the **Key Vault** to create a **Storage Container** and copy a **Blob file** into the created container.
 
 **1. Set Up Azure Key Vault:**
 
