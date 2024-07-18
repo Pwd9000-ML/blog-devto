@@ -307,7 +307,7 @@ This retrieval and usage of the **Storage Account Key** from the **Key Vault** w
       echo "::set-output name=secret_value::$STORAGE_KEY"
 ```
 
-**NOTE:** As you can see from the step above we can also optionally set the retrieved secret as an output as part of the workflow execution, for use in any other subsequent steps in the workflow using this syntax: `echo "::set-output name=secret_value::$STORAGE_KEY"`. We can then use the output secret in another step in the workflow using this syntax: `${{ steps.get-secret-sa-key.outputs.secret_value }}` as you can see in this step:
+**NOTE:** As you can see from the step above we can also optionally set the retrieved secret as an output as part of the workflow execution, for use in any other subsequent steps in the workflow using this syntax: `echo "::set-output name=secret_value::$STORAGE_KEY"`. We can then use the output secret in another step in the workflow using this syntax: `${{ steps.get-secret-sa-key.outputs.secret_value }}` as you can see in the next step of our workflow:  
 
 ```yml
 - name: Use the retrieved secret in another step (example)
