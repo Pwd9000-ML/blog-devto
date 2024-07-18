@@ -15,7 +15,7 @@ Welcome to **Part 2** of this 2-Part series where we explore different ways for 
 
 I recommend reading **[Part 1](https://dev.to/pwd9000/best-practices-for-using-github-secrets-part-1-596f)** of the series where we explore the best practices for managing sensitive information in **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)** using **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** natively in the GitHub Website UI and giving a general overview and feel for **GitHub Secrets** and why you would want to make use of them.
 
-Let's jump straight into it and see how we can integrate **Azure Key Vault** with **GitHub**.
+Let's jump straight in and see how we can integrate **Azure Key Vault** with **GitHub**.
 
 ## Integrating Azure Key Vault with GitHub Workflows
 
