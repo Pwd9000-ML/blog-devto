@@ -102,6 +102,8 @@ git commit -m "Initial commit"
 git push origin main
 ```
 
+As you can see we have created a new **GitHub repository** called `Integration-Test-Repo` and initialised it with a **README.md** file.  
+
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets/1-github-repo.png)
 
 Now that we have our **GitHub repository** set up, we can move on to the next step to integrate it with our **Azure Key Vault**.
@@ -111,7 +113,7 @@ Now that we have our **GitHub repository** set up, we can move on to the next st
 Next we will create a federated service principal (passwordless) in **[Azure Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/whatis?wt.mc_id=DT-MVP-5004771)** and grant it access to the Key Vault. We will integrate this service principal (identity) to access the Key Vault from our GitHub Actions workflow later on:
 
 ```pwsh
-# variables
+# Set variables
 $subscriptionId = $(az account show --query id -o tsv)
 $resourceGroupName = "ghSecretsRg" # Resource Group Name where Key Vault is located
 $keyVaultName = "ghSecretsVault4089" # Key Vault Name to access
@@ -167,14 +169,86 @@ $appId | foreach-object {
 }
 ```
 
-**NOTE:** You can also check this earlier blog post I wrote on other mechanisms and ways for integration between Azure and GitHub: **[GitHub Actions authentication methods for Azure](https://dev.to/pwd9000/bk-1iij)**
+As you ca see we have created a service principal in **Azure Entra ID** called `GitHub-projectName-Actions-OIDC`.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets/1-service-principal.png)  
+
+Note that the service principal is federated with **GitHub** credentials for my created repository on **Branch** and **Pull Request** entity types.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets/1-service-principal-cred.png)  
+
+Also note that the service principal has been granted access to the **Key Vault** with the **Key Vault Secrets User** role.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets/1-service-principal-access.png)  
+
+The last step to integrate the **Service Principal** with our **GitHub Repository** we will need to add the **Application ID** of the **Service Principal** as well as our **Azure Tenant ID** and **Azure Subscription ID** as **GitHub Secrets** into our repository. Since the **Service Principal** is federated/passwordless with **GitHub** credentials, we do not have to add any **Client Secret**.  
+
+Navigate to your **GitHub Repository** and go to the **Settings** tab, then click on **Secrets and variables** and add the following **GitHub Secrets**:  
+
+- **AZURE_CLIENT_ID**: The **Application ID** of the federated **Service Principal**.
+- **AZURE_TENANT_ID**: The **Azure Tenant ID** of your **Azure Subscription**.
+- **AZURE_SUBSCRIPTION_ID**: The **Azure Subscription ID** of your **Azure Subscription**.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets/1-github-secrets.png)
+
+**NOTE:** You can also check this previous blog post I wrote for more information about federated access between Azure and GitHub and other mechanisms and ways for integration between Azure and GitHub: **[GitHub Actions authentication methods for Azure](https://dev.to/pwd9000/bk-1iij)**
 
 **3. Access Azure Key Vault in GitHub Actions:**
 
-Next we will create a GitHub Actions workflow file in our repository to access the Key Vault secrets using the service principal we created earlier. We will then retrieve the Storage Account Key from the Key Vault and use it in our workflow to create a new storage container and copy our Repository README.md file into the storage container:
+That is it for the setup and configuration of the **Azure Key Vault** and the **Service Principal**. Now we can utilise the federated **Service Principal** to access the **Key Vault** from our **GitHub Actions Workflow**.  
 
-```yaml
-az storage container create --name "$containerName" --account-name "$storageAccountName" --account-key "$storageAccountKey"
+Let's test this by creating a simple **GitHub Actions workflow** file in our repository to access the **Key Vault secret** we created earlier called `StorageAccountKey`. We will retrieve the Storage Account Key from the Key Vault and use it in our workflow to create a new storage container and copy a file into the storage container:
+
+```yml
+name: Azure Key Vault Integration Test
+  
+on: [push]  
+  
+jobs:  
+  access-key-vault:  
+    runs-on: ubuntu-latest  
+  
+    steps:  
+    - name: Checkout code  
+      uses: actions/checkout@v4
+  
+    - name: Set up Azure CLI  
+      uses: azure/cli@v2  
+      with:  
+        azcliversion: latest  
+  
+    - name: Log in to Azure using federated Service Principal
+      uses: azure/login@v2  
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
+  
+    - name: Retrieve secret from Key Vault  
+      id: get-storage-key-secret  
+      run: |  
+        # Variables  
+        KEY_VAULT_NAME=ghSecretsVault4089  
+        SECRET_NAME=StorageAccountKey  
+  
+        # Retrieve secret from Key Vault  
+        STORAGE_KEY=$(az keyvault secret show --name $SECRET_NAME --vault-name $KEY_VAULT_NAME --query value -o tsv)
+
+        # Create a container in Azure Storage Account using the secret
+        az storage container create --name "ghrepocontainer" --account-name "ghsecsa4089" --account-key "$STORAGE_KEY"
+
+        # Copy a text file saying "Hello World" to the container
+        echo "Hello World" > hello.txt
+        az storage blob upload --container-name "ghrepocontainer" --file hello.txt --name hello.txt --account-name "ghsecsa4089" --account-key "$STORAGE_KEY"        
+  
+        # You can also set the retrieved secret as an output for use subsequent steps in the workflow  
+        echo "::set-output name=secret_value::$STORAGE_KEY"  
+  
+    - name: Use the retrieved secret in another step (example)  
+      run: |  
+        # Use the secret output from the previous step
+        # WARNING! Output secret to workflow log just as an example for the purposes of this demonstration 
+        echo "The secret value is: ${{ steps.get-secret.outputs.storage_key }}"  
 ```
 
 ## Conclusion
