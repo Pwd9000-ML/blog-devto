@@ -72,7 +72,7 @@ Once you have a suitable **Azure Subscription**, we will create a **Resource Gro
     --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$keyVaultName" `
     --assignee-principal-type "User"
 
-  # Create a storage account and store the key in Key Vault (Example)
+  # Create storage account
   az storage account create --name "$storageAccountName" --resource-group "$resourceGroupName" --location "$location" --sku Standard_LRS
 
   # Fetch and store a Storage Account Key in Key Vault
