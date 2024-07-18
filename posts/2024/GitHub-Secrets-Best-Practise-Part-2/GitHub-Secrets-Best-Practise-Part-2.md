@@ -108,18 +108,19 @@ Now that we have our **GitHub repository** set up, we can move on to the next st
 
 **3. Configure Azure Service Principal:**
 
-Next we will create a federated service principal (passwordless) in **[Azure Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/whatis?wt.mc_id=DT-MVP-5004771)** and grant it access to the Key Vault. We will integrate this service principal (identity) to access the Key Vault from our GitHub Actions workflow:
+Next we will create a federated service principal (passwordless) in **[Azure Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/whatis?wt.mc_id=DT-MVP-5004771)** and grant it access to the Key Vault. We will integrate this service principal (identity) to access the Key Vault from our GitHub Actions workflow later on:
 
 ```pwsh
-
 # variables
 $subscriptionId = $(az account show --query id -o tsv)
-$appName = "GitHub-projectName-Actions-OIDC"
-$RBACRole = "Contributor"
+$resourceGroupName = "ghSecretsRg" # Resource Group Name where Key Vault is located
+$keyVaultName = "ghSecretsVault4089" # Key Vault Name to access
+$appName = "GitHub-projectName-Actions-OIDC" # App Registration Name
+$RBACRole = "Key Vault Secrets User" # RBAC Role to apply
 
-$githubOrgName = "Pwd9000-ML"
-$githubRepoName = "RandomStuff"
-$githubBranch = "master"
+$githubOrgName = "Pwd9000-ML" # GitHub Organization/User Name
+$githubRepoName = "Integration-Test-Repo" # GitHub Repository Name
+$githubBranch = "master" # GitHub Branch Name
 
 # Create AAD App and Principal
 $appId = $(az ad app create --display-name $appName --query appId -o tsv)
@@ -147,16 +148,16 @@ $githubPRConfig = [PSCustomObject]@{
 $githubPRConfigJson = $githubPRConfig | ConvertTo-Json
 $githubPRConfigJson | az ad app federated-credential create --id $appId --parameters "@-"
 
-### Additional federated GitHub credential entity types are 'Tag' and 'Environment' (see: https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azcli#github-actions-example) ###
+### Additional federated GitHub credential entity types are 'Tag' and 'Environment' (see: https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azcli#github-actions-example?wt.mc_id=DT-MVP-5004771) ###
 
-# Assign RBAC permissions to Service Principal (Change as necessary)
+# Assign RBAC permissions on Service Principal to access KeyVault (Change as necessary)
 $appId | foreach-object {
 
     # Permission 1 (Example)
     az role assignment create `
         --role $RBACRole `
         --assignee $_ `
-        --subscription $subscriptionId
+        --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$keyVaultName"
 
     # Permission 2 (Example)
     #az role assignment create `
@@ -164,7 +165,6 @@ $appId | foreach-object {
     #    --assignee "$_" `
     #    --scope "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageName"
 }
-
 ```
 
 **NOTE:** You can also check this earlier blog post I wrote on other mechanisms and ways for integration between Azure and GitHub: **[GitHub Actions authentication methods for Azure](https://dev.to/pwd9000/bk-1iij)**

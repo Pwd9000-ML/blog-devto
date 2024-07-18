@@ -15,9 +15,9 @@ When you work with **GitHub Actions** and start to write and develop automation 
 
 Today we will look at two ways you can do this with **Azure**.
 
-In both methods we will create what is known as an [app registration/service principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals), assigning permissions to the principal and link the principal with GitHub to allow your action **workflows** to authenticate and perform relevant tasks in **Azure**.
+In both methods we will create what is known as an [app registration/service principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals?wt.mc_id=DT-MVP-5004771), assigning permissions to the principal and link the principal with GitHub to allow your action **workflows** to authenticate and perform relevant tasks in **Azure**.
 
-**NOTE:** If you are familiar with using **Azure DevOps** and **Azure pipelines**, this is synonymous to creating a [service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml) for your pipelines. **GitHub Actions workflows** are synonymous to **Azure multi-stage YAML Pipelines**.
+**NOTE:** If you are familiar with using **Azure DevOps** and **Azure pipelines**, this is synonymous to creating a [service connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?wt.mc_id=DT-MVP-5004771) for your pipelines. **GitHub Actions workflows** are synonymous to **Azure multi-stage YAML Pipelines**.
 
 ## Method 1 - Client and Secret (Legacy)
 
@@ -25,7 +25,7 @@ The first method we will look at is an older legacy method that uses a `'Client'
 
 ### 1. Create Service Principal credentials
 
-For this method I will use the following PowerShell script; ['Create-SP.ps1'](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/Create-SP.ps1) to create an **Azure AD App & Service Principal**.
+For this method I will use the following PowerShell script; ['Create-SP.ps1'](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code?wt.mc_id=DT-MVP-5004771/Create-SP.ps1) to create an **Azure AD App & Service Principal**.
 
 ```powershell
 ### Create-SP.ps1 ###
@@ -94,7 +94,7 @@ Select **New repository secret** to add the following secrets:
 
 Now that we have a **GitHub Secret** called `'AZURE_CREDENTIALS'` that contains our **Azure Service Principal credentials**, we can consume this secret inside of our **workflows** to authenticate and log into **Azure**.
 
-Here is an example workflow that will authenticate to Azure and show all resource groups on the subscription as part of the workflow run: [authenticate-azure.yml](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/authenticate-azure.yml).
+Here is an example workflow that will authenticate to Azure and show all resource groups on the subscription as part of the workflow run: [authenticate-azure.yml](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code?wt.mc_id=DT-MVP-5004771/authenticate-azure.yml).
 
 ```yml
 name: Authenticate Azure
@@ -147,7 +147,7 @@ We will be using **federated credentials** with **Open ID connect (OIDC)**. One 
 
 As before we will require an AAD App and Service Principal.
 
-You can use the following PowerShell script; ['Create-SP-OIDC.ps1'](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/Create-SP-OIDC.ps1) to create an **Azure AD App & Service Principal** with **federated GitHub Action credentials**.
+You can use the following PowerShell script; ['Create-SP-OIDC.ps1'](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code?wt.mc_id=DT-MVP-5004771/Create-SP-OIDC.ps1) to create an **Azure AD App & Service Principal** with **federated GitHub Action credentials**.
 
 ```powershell
 ### Create-SP-OIDC.ps1 ###
@@ -192,7 +192,7 @@ $githubPRConfig = [PSCustomObject]@{
 $githubPRConfigJson = $githubPRConfig | ConvertTo-Json
 $githubPRConfigJson | az ad app federated-credential create --id $appId --parameters "@-"
 
-### Additional federated GitHub credential entity types are 'Tag' and 'Environment' (see: https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azcli#github-actions-example) ###
+### Additional federated GitHub credential entity types are 'Tag' and 'Environment' (see: https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azcli#github-actions-example?wt.mc_id=DT-MVP-5004771) ###
 
 # Assign RBAC permissions to Service Principal (Change as necessary)
 $appId | foreach-object {
@@ -241,7 +241,7 @@ When the GitHub Actions workflow requests the Microsoft identity platform to exc
 - For Jobs not tied to an environment, include the **ref path** of the **branch/tag** based on the **ref path** used for triggering the workflow: `repo:<Organization/Repository>:ref:<ref path>`. For example, `repo:myOrg/myRepo:ref:refs/heads/myBranch` or `repo:myOrg/myRepo:ref:refs/tags/myTag`.
 - For workflows triggered by a **pull request** event use: `repo:<Organization/Repository>:pull-request`.
 
-You can see more examples on the official [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azcli#github-actions-example).
+You can see more examples on the official [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azcli#github-actions-example?wt.mc_id=DT-MVP-5004771).
 
 Grab the `'CLIENT_ID'` of the AAD application as we will need it in the next step.
 
@@ -276,7 +276,7 @@ To update your workflows for OIDC, you will need to make two changes to your YAM
 - Add a `permissions` setting with [id-token: write](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token) for the token.
 - Use the [azure/login](https://github.com/Azure/login) action to exchange the OIDC token (JWT) for a cloud access token.
 
-Here is an example workflow that will authenticate to Azure and show all resource groups on the subscription as part of the workflow run: [authenticate-azure-oidc.yml](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code/authenticate-azure-oidc.yml).
+Here is an example workflow that will authenticate to Azure and show all resource groups on the subscription as part of the workflow run: [authenticate-azure-oidc.yml](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code?wt.mc_id=DT-MVP-5004771/authenticate-azure-oidc.yml).
 
 ```yml
 name: Run Azure Login with OIDC
@@ -350,7 +350,7 @@ As you can see, it is pretty easy to set up authentication between your **GitHub
 
 OIDC is a better security option as it is an identity driven, passwordless authentication method that doesn't require frequent rotation or expiration of Azure service principal passwords/secrets.
 
-I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code) page. :heart:
+I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my published [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2022/GitHub-Auth-Methods-Azure/code?wt.mc_id=DT-MVP-5004771) page. :heart:
 
 ### _Author_
 
