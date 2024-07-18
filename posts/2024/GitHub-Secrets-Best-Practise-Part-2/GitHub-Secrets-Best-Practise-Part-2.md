@@ -49,6 +49,8 @@ In the following example we will integrate an **Azure Key Vault** with a **GitHu
 Once you have a suitable **Azure Subscription**, we will create a **Resource Group**, **Key Vault**, **Storage Account** and then store the Storage Account Key inside of the Key Vault as a secret, which we will later retrieve and use in our GitHub Actions workflow:
 
 ```pwsh
+  # Create Resource Group, Key Vault, Storage Account and set "StorageAccountKey" as secret in Key Vault
+
   # Set variables
   $randomInt = Get-Random -Maximum 9999
   $subscriptionId = $(az account show --query "id" --output tsv)
