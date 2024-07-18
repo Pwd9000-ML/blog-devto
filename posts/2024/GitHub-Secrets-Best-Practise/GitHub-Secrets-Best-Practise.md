@@ -26,7 +26,7 @@ In **Part 2** of this series we will go further and look at how we can store **S
 
 What is the purpose of **GitHub Secrets** you may wonder, and why do you even want to use them?
 
-The reason is simple, exposing sensitive information in **git** code repositories can lead to severe consequences such as **unauthorised access**, **data breaches**, and possible leak of sensitive or **private information** which can lead to **reputational damage**. Properly managing this information ensures the security and integrity of your applications and data.
+The reason is simple, exposing sensitive information in **git** code repositories can lead to severe consequences such as **unauthorised access**, **data breaches**, and possible leak of **sensitive** or **private information** which can lead to **reputational damage**. Properly managing this information ensures the security and integrity of your applications and data.
 
 ### Common Pitfalls to Avoid
 
