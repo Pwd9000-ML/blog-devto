@@ -197,7 +197,9 @@ Navigate to your **GitHub Repository** and go to the **Settings** tab, then clic
 
 That is it for the setup and configuration of the **Azure Key Vault** and the **Service Principal**. Now we can utilise the federated **Service Principal** to access the **Key Vault** from our **GitHub Actions Workflow**.
 
-Let's test this by creating a simple **GitHub Actions workflow** file in our repository to access the **Key Vault secret** we created earlier called `StorageAccountKey`. We will retrieve the Storage Account Key from the Key Vault and use it in our workflow to create a new storage container and copy a file into the storage container:
+Let's test this by creating a simple **GitHub Actions workflow** file in our repository to access the **Key Vault secret** we created earlier called `StorageAccountKey`. We will retrieve the Storage Account Key from the Key Vault and use it in our workflow to create a new storage container and copy a file into the storage container:  
+
+[keyvault-integration-test.yml](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets?wt.mc_id=DT-MVP-5004771/authenticate-azure-oidc.yml)
 
 ```yml
 name: Azure Key Vault Integration Test
@@ -256,11 +258,40 @@ jobs:
             echo "The secret value is: ${{ steps.get-secret-sa-key.outputs.secret_value }}"
 ```
 
+Note that after running the workflow above:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets/1-github-actions.png)
+
+The **Storage Account Key** was retrieved from the **Key Vault** and used to create a new storage container called `ghrepocontainer`:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets/1-azure-storage.png)  
+
+We also used the same retrieved **Storage Account Key** to upload a file called `hello.txt` to the storage container:
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets/1-azure-storage-file.png)
+
+**NOTE:** As you can see from the example above we can also optionally set the retrieved secret as an output for use in subsequent steps in the workflow using this syntax: `echo "::set-output name=secret_value::$STORAGE_KEY"`. We can then use the output secret in another step in the workflow using this syntax: `${{ steps.get-secret-sa-key.outputs.secret_value }}` as you can see in this step:
+
+```yml
+- name: Use the retrieved secret in another step (example)
+  uses: azure/cli@v2
+  with:
+    azcliversion: latest
+    inlineScript: |
+      # Use the secret output from the previous step
+      # WARNING! Output secret to workflow log just as an example for the purposes of this demonstration 
+      echo "The secret value is: ${{ steps.get-secret-sa-key.outputs.secret_value }}"
+```
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets/1-github-actions-output.png)
+
 ## Conclusion
 
-Managing sensitive information securely is vital for any DevOps workflow. By using **GitHub Secrets** and integrating Azure Key Vault, you can ensure that your secrets are stored and accessed securely. Always follow best practices and avoid common pitfalls to maintain the security and integrity of your applications.
+Managing sensitive information securely is vital for any DevOps workflow. By using **GitHub Secrets**, but by integrating Azure Key Vault, you can ensure that your secrets are stored and accessed securely and managed centrally. This provides an extra layer of security and more flexibility for managing your secrets.  
 
-I hope you have enjoyed this post and have learned something new. :heart:
+Always follow best practices and avoid common pitfalls to maintain the security and integrity of your applications.  
+
+I hope you have enjoyed this post and have learned something new. :heart:  
 
 ### _Author_
 
