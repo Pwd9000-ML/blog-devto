@@ -280,7 +280,7 @@ We also used the same retrieved **Storage Account Key** to upload a file called 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets/1-azure-storage-file.png)
 
-This retrieval and usage of the **Storage Account Key** from the **Key Vault** was done using an inline script with the **azure/cli@v2** action in the workflow file in the following step:  
+This retrieval and usage of the **Storage Account Key** from the **Key Vault** was done using an inline script with the **azure/cli@v2** action in the workflow file in the following step:
 
 ```yml
 - name: Retrieve secret from Key Vault
