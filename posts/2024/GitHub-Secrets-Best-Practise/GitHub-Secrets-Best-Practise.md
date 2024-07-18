@@ -58,7 +58,7 @@ Let's take a closer look at how you can start with using **[GitHub Secrets](http
    **[Repository Secrets:](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository?wt.mc_id=DT-MVP-5004771)** Repository-level secrets are stored in a single repository and can be used by workflows in the same repository. These secrets are not available to forks of the repository. Also see **[variables](https://docs.github.com/en/actions/learn-github-actions/variables?wt.mc_id=DT-MVP-5004771)** for more information on configuring non-secret variables in your workflows.  
     3.2. Provide a `Name` and `Value` for your secret.  
     3.3. Click `Add secret`.  
-    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/2-add-secret.png) Once the `Secret` is added, it is encrypted and cannot be viewed again. You can only update or delete the secret.  
+    ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/2-add-secret.png) Once the `Secret` is added, it is encrypted and cannot be viewed again. You can only update or delete the secret after it is created, no secret history is maintained either.  
     ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/3-add-secret.png)
 
 ### Using GitHub Secrets in a Actions Workflow
