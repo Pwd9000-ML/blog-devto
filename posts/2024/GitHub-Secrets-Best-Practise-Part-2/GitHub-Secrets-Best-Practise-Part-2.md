@@ -199,7 +199,7 @@ That is it for the setup and configuration of the **Azure Key Vault** and the **
 
 Let's test this by creating a simple **GitHub Actions workflow** file in our repository to access the **Key Vault secret** we created earlier called `StorageAccountKey`. We will retrieve the Storage Account Key from the Key Vault and use it in our workflow to create a new storage container and copy a file into the storage container:
 
-[keyvault-integration-test.yml](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets?wt.mc_id=DT-MVP-5004771/authenticate-azure-oidc.yml)
+[keyvault-integration-test.yml](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets?wt.mc_id=DT-MVP-5004771/keyvault-integration-test.yml)
 
 ```yml
 name: Azure Key Vault Integration Test
