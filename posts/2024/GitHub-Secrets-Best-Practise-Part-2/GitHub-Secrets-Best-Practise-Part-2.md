@@ -80,7 +80,7 @@ Once you have a suitable **Azure Subscription**, we will create a **Resource Gro
   az keyvault secret set --vault-name "$keyVaultName" --name "StorageAccountKey" --value "$storageKey"
 ```
 
-In the **Resource Group** created by the above script you will see a **Storage Account** and **Key Vault**. Notice that the **Storage Account Key** has been stored as a secret in the **Key Vault** called `StorageAccountKey`:  
+In the **Resource Group** created by the above script you will see a **Storage Account** and **Key Vault**. Notice that the **Storage Account Key** has been stored as a secret in the **Key Vault** called `StorageAccountKey`:
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets/1-key-vault.png)
 
