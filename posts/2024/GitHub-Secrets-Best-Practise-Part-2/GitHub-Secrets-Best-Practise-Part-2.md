@@ -307,7 +307,7 @@ This retrieval and usage of the **Storage Account Key** from the **Key Vault** w
       echo "::set-output name=secret_value::$STORAGE_KEY"
 ```
 
-**NOTE:** As you can see from the step above we can also optionally set the retrieved secret as an output as part of the workflow execution, for use in any other subsequent steps in the workflow using this syntax: `echo "::set-output name=secret_value::$STORAGE_KEY"`. We can then use the output secret in another step in the workflow using this syntax: `${{ steps.get-secret-sa-key.outputs.secret_value }}` as you can see in the next step of our workflow:
+**NOTE:** As you can see from the step above we can also optionally set the retrieved secret as an output as part of the workflow execution, for use in any other subsequent steps in the workflow using this syntax: `echo "::set-output name=secret_value::$STORAGE_KEY"`. We can then use the output secret in another step in the workflow using this syntax: `${{ steps.get-secret-sa-key.outputs.secret_value }}` as you can see in the next step of our workflow:  
 
 ```yml
 - name: Use the retrieved secret in another step (example)
@@ -324,9 +324,9 @@ This retrieval and usage of the **Storage Account Key** from the **Key Vault** w
 
 ## Conclusion
 
-Managing sensitive information securely is vital for any DevOps workflow. By using **GitHub Secrets**, but by integrating Azure Key Vault, you can ensure that your secrets are stored and accessed securely and managed centrally. This provides an extra layer of security and more flexibility for managing your secrets.
+Managing sensitive information securely is vital for any DevOps workflow. By integrating **Azure Key Vault** for **Secrets** management in **GitHub**, you can ensure that your secrets are stored and accessed securely and managed centrally providing more flexibility for managing your secrets.  
 
-Always follow best practices and avoid common pitfalls to maintain the security and integrity of your applications.
+Always follow best practices and avoid common pitfalls to maintain the security and integrity of your applications.  
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
