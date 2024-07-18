@@ -46,7 +46,7 @@ In the following example we will integrate an **Azure Key Vault** with a **GitHu
 
 **1. Set Up Azure Key Vault:**
 
-Once you have a suitable **Azure Subscription**, for the example below we will create a **Resource Group**, **Key Vault**, **Storage Account** and then store the Storage Account Key inside of the Key Vault as a secret, which we will later access in our GitHub Actions workflow:
+Once you have a suitable **Azure Subscription**, we will create a **Resource Group**, **Key Vault**, **Storage Account** and then store the Storage Account Key inside of the Key Vault as a secret, which we will later access in our GitHub Actions workflow:
 
 ```pwsh
   # Set variables
