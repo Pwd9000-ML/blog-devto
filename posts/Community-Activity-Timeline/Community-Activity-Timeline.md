@@ -24,7 +24,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | Date | Activity | Type | Topic Area | Tags |
 | ---- | -------- | ---- | ---------- | ---- |
 
-MORE COMING SOON!
+MORE COMING SOON!  
 
 ---
 
@@ -32,6 +32,7 @@ MORE COMING SOON!
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **18/07/2024** | [Best Practices for Using GitHub Secrets - Part 1](https://dev.to/pwd9000/best-practices-for-using-github-secrets-part-1-596f) | Blog/Website Post | GitHub | DevOps, DevSecOps, Git, Tutorial |
 | **02/07/2024** | [Season of AI - DevOps AI](https://www.meetup.com/london-microsoft-devops/events/300848498/) | Event Organiser | DevOps, Meetup | AI, DevOps, Meetup, Azure |
 | **24/06/2024** | [Season of AI - Core AI](https://www.meetup.com/london-microsoft-devops/events/300848455/) | Event Organiser + Speaker | DevOps, Meetup | AI, DevOps, Meetup, Azure |
 | **21/05/2024** | [Build 2024 - Book Of News - DevOps Edition](https://dev.to/pwd9000/build-2024-book-of-news-devops-edition-40hk) | Blog/Website Post | DevOps + AI | AI, MSBuild24, DevTools, Updates |
