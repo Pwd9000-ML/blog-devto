@@ -212,11 +212,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Azure CLI
-        uses: azure/cli@v2
-        with:
-          azcliversion: latest
-
       - name: Log in to Azure using federated Service Principal
         uses: azure/login@v2
         with:
@@ -225,30 +220,36 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Retrieve secret from Key Vault
-        id: get-storage-key-secret
-        run: |
-          # Variables  
-          KEY_VAULT_NAME=ghSecretsVault4089  
-          SECRET_NAME=StorageAccountKey  
+        id: get-secret-sa-key
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            # Variables  
+            KEY_VAULT_NAME=ghSecretsVault4089  
+            SECRET_NAME=StorageAccountKey  
 
-          # Retrieve secret from Key Vault  
-          STORAGE_KEY=$(az keyvault secret show --name $SECRET_NAME --vault-name $KEY_VAULT_NAME --query value -o tsv)
+            # Retrieve secret from Key Vault  
+            STORAGE_KEY=$(az keyvault secret show --name $SECRET_NAME --vault-name $KEY_VAULT_NAME --query value -o tsv)
 
-          # Create a container in Azure Storage Account using the secret
-          az storage container create --name "ghrepocontainer" --account-name "ghsecsa4089" --account-key "$STORAGE_KEY"
+            # Create a container in Azure Storage Account using the secret
+            az storage container create --name "ghrepocontainer" --account-name "ghsecsa4089" --account-key "$STORAGE_KEY"
 
-          # Copy a text file saying "Hello World" to the container
-          echo "Hello World" > hello.txt
-          az storage blob upload --container-name "ghrepocontainer" --file hello.txt --name hello.txt --account-name "ghsecsa4089" --account-key "$STORAGE_KEY"        
+            # Copy a text file saying "Hello World" to the container
+            echo "Hello World" > hello.txt
+            az storage blob upload --container-name "ghrepocontainer" --file hello.txt --name hello.txt --account-name "ghsecsa4089" --account-key "$STORAGE_KEY"        
 
-          # You can also set the retrieved secret as an output for use subsequent steps in the workflow  
-          echo "::set-output name=secret_value::$STORAGE_KEY"
+            # You can also set the retrieved secret as an output for use in subsequent steps in the workflow  
+            echo "::set-output name=secret_value::$STORAGE_KEY"
 
       - name: Use the retrieved secret in another step (example)
-        run: |
-          # Use the secret output from the previous step
-          # WARNING! Output secret to workflow log just as an example for the purposes of this demonstration 
-          echo "The secret value is: ${{ steps.get-secret.outputs.storage_key }}"
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            # Use the secret output from the previous step
+            # WARNING! Output secret to workflow log just as an example for the purposes of this demonstration 
+            echo "The secret value is: ${{ steps.get-secret-sa-key.outputs.secret_value }}"
 ```
 
 ## Conclusion
