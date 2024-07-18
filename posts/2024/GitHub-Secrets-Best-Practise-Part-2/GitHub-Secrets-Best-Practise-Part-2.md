@@ -9,7 +9,7 @@ id: 1925352
 series: GitHub Pro Tips
 ---
 
-## Overview - Managing Sensitive Information in a GitHub Workflow
+## Managing Sensitive Information in a GitHub Workflow
 
 Welcome to **Part 2** of this 2-Part series where we explore different ways for managing sensitive information in **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)**. In this part we look at how we can use **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)** as a secure **Secrets** store and how to integrate your GitHub Workflows with Key Vault for retrieving **Secrets**, to enhanced security and for more flexible centralised management of your **GitHub Secrets**.
 
