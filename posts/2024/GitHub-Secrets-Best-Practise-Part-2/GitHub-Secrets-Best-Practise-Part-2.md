@@ -280,6 +280,33 @@ We also used the same retrieved **Storage Account Key** to upload a file called 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets/1-azure-storage-file.png)
 
+This retrieval and usage of the **Storage Account Key** from the **Key Vault** was done using an inline script with the **azure/cli@v2** action in the workflow file in the following step:  
+
+```yml
+- name: Retrieve secret from Key Vault
+  id: get-secret-sa-key
+  uses: azure/cli@v2
+  with:
+    azcliversion: latest
+    inlineScript: |
+      # Variables  
+      KEY_VAULT_NAME=ghSecretsVault4089  
+      SECRET_NAME=StorageAccountKey  
+
+      # Retrieve secret from Key Vault  
+      STORAGE_KEY=$(az keyvault secret show --name $SECRET_NAME --vault-name $KEY_VAULT_NAME --query value -o tsv)
+
+      # Create a container in Azure Storage Account using the secret
+      az storage container create --name "ghrepocontainer" --account-name "ghsecsa4089" --account-key "$STORAGE_KEY"
+
+      # Copy a text file saying "Hello World" to the container
+      echo "Hello World" > hello.txt
+      az storage blob upload --container-name "ghrepocontainer" --file hello.txt --name hello.txt --account-name "ghsecsa4089" --account-key "$STORAGE_KEY"        
+
+      # You can also set the retrieved secret as an output for use in subsequent steps in the workflow  
+      echo "::set-output name=secret_value::$STORAGE_KEY"
+```
+
 **NOTE:** As you can see from the example above we can also optionally set the retrieved secret as an output for use in subsequent steps in the workflow using this syntax: `echo "::set-output name=secret_value::$STORAGE_KEY"`. We can then use the output secret in another step in the workflow using this syntax: `${{ steps.get-secret-sa-key.outputs.secret_value }}` as you can see in this step:
 
 ```yml
