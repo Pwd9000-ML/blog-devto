@@ -1,6 +1,6 @@
 ---
 title: Best Practices for Using GitHub Secrets - Part 1
-published: false
+published: true
 description: Best Practices for Managing Sensitive Information in a GitHub Workflow
 tags: 'github, git, devops, devsecops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/main-gh-tips.png'
@@ -9,7 +9,7 @@ id: 1924247
 series: GitHub Pro Tips
 ---
 
-## Overview - Managing Sensitive Information in a GitHub Workflow
+## Managing Sensitive Information in a GitHub Workflow
 
 This article is **Part 1** of a 2-Part series where we'll explore the best practices for managing sensitive information in your **[GitHub workflows](https://docs.github.com/en/actions/using-workflows/about-workflows?wt.mc_id=DT-MVP-5004771)** by using **[GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#about-secrets?wt.mc_id=DT-MVP-5004771)** using the GitHub Website UI and giving a general overview and feel for **GitHub Secrets** and why you would want to use them.
 
