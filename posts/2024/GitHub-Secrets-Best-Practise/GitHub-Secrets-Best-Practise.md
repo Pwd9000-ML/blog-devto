@@ -61,7 +61,7 @@ Let's take a closer look at how you can start with using **[GitHub Secrets](http
     ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/2-add-secret.png) Once the `Secret` is added, it is encrypted and cannot be viewed again. You can only update or delete the secret after it is created, no secret history is maintained either.  
     ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/3-add-secret.png)
 
-### Using GitHub Secrets in a Actions Workflow
+### Using GitHub Secrets in an Actions Workflow
 
 Secrets can be accessed in your workflows using the `${{ secrets.SECRET_NAME }}` syntax. Here's an example of how to use **GitHub Secrets** in a **GitHub Actions workflow**:
 
