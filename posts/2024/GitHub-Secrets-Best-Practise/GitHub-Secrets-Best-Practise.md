@@ -109,7 +109,7 @@ In the above example, in the last step named `Deploy`, the `API_KEY` secret is a
 
 ## Conclusion
 
-Managing sensitive information securely is vital for any DevOps workflow. By using **GitHub Secrets** and integrating Azure Key Vault, you can ensure that your secrets are stored and accessed securely. Always follow best practices and avoid common pitfalls to maintain the security and integrity of your applications.
+Managing sensitive information securely is vital for any DevOps workflow. By utilising **GitHub Secrets**, you can ensure that your secrets are stored and accessed securely. Always follow best practices and avoid common pitfalls to maintain the security and integrity of your applications and code base.
 
 In this post we only covered a basic overview of **GitHub Secrets** and how to use them in your **GitHub Workflows**. But we can go even further by storing **Secrets** securely in **Azure Key Vault** and integrating your GitHub Workflows with **Azure Key Vault** for using **Secrets**, which offers a few more benefits and flexibility in managing your **Secrets**.
 
