@@ -109,7 +109,7 @@ In the above example, in the last step named `Deploy`, the `API_KEY` secret is a
 
 ## Access Control for Secrets
 
-To be able to create actions on the repository you need to have **Admin access** to the repository, otherwise the UI will not be visible, since it is under the repository settings.  
+To be able to create actions on the repository you need to have **Admin access** to the repository, otherwise the UI will not be visible, since it is under the repository settings.
 
 That also means that team members that do not have Admin access, cannot ee the repository secrets in the UI and for organization level secrets you need Admin access to the organization level.
 
