@@ -107,6 +107,12 @@ In the above example, in the last step named `Deploy`, the `API_KEY` secret is a
     # Insert your deployment script here
 ```
 
+## Access Control for Secrets
+
+To be able to create actions on the repository you need to have **Admin access** to the repository, otherwise the UI will not be visible, since it is under the repository settings. That also means that team members that do not have Admin access, cannot ee the repository secrets in the UI and for organization level secrets you need Admin access to the organization level.  
+
+For more information on how to manage, access and maintain secrets as a non-admin user, you can check out this article by **[Rob Bos](https://www.linkedin.com/in/bosrob/)** explaining how you can use the **[GitHub API]()https://docs.github.com/en/rest/actions/secrets?wt.mc_id=DT-MVP-5004771)** and **[GitHub CLI](https://cli.github.com/manual/gh_secret_list?wt.mc_id=DT-MVP-5004771)** to manage secrets as a non-admin user: **[GitHub Secrets Without Admin Rights](https://devopsjournal.io/blog/2022/11/02/GitHub-secrets-without-admin-rights)**.
+
 ## Conclusion
 
 Managing sensitive information securely is vital for any DevOps workflow. By utilising **GitHub Secrets**, you can ensure that your secrets are stored and accessed securely. Always follow best practices and avoid common pitfalls to maintain the security and integrity of your applications and code base.
