@@ -179,7 +179,7 @@ $appId | foreach-object {
 }
 ```
 
-As you ca see we have created a service principal in **Azure Entra ID** called `GitHub-projectName-Actions-OIDC`.
+As you can see we have created a service principal in **Azure Entra ID** called `GitHub-projectName-Actions-OIDC`.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise-Part-2/assets/1-service-principal.png)
 
