@@ -11,13 +11,13 @@ date: '2021-07-03T07:54:05Z'
 
 ## What is an Azure function?
 
-[Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview) is a cloud service available on-demand that provides all the continually updated infrastructure and resources needed to run your applications. You focus on the pieces of code that matter most to you, and Functions handles the rest. Functions provides serverless compute for Azure. You can use Functions to build web APIs, respond to database changes, process IoT streams, manage message queues, and more.
+[Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview?wt.mc_id=DT-MVP-5004771) is a cloud service available on-demand that provides all the continually updated infrastructure and resources needed to run your applications. You focus on the pieces of code that matter most to you, and Functions handles the rest. Functions provides serverless compute for Azure. You can use Functions to build web APIs, respond to database changes, process IoT streams, manage message queues, and more.
 
 {% youtube 8-jz5f_JyEQ %}
 
 ## What is Azure Key Vault?
 
-[Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/general/overview) is a cloud service that allows us to protect cryptographic keys, certificates (and the private keys associated with certificates), and secrets (such as connection strings and passwords) in the cloud.
+[Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/general/overview?wt.mc_id=DT-MVP-5004771) is a cloud service that allows us to protect cryptographic keys, certificates (and the private keys associated with certificates), and secrets (such as connection strings and passwords) in the cloud.
 
 ## How to integrate Key Vault with Azure Functions
 
@@ -70,13 +70,13 @@ az functionapp create `
     --functions-version "3"
 ```
 
-Next we will enable the function app with a **system assigned** [managed identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) so that we can permission our function app to access our key vault.
+Next we will enable the function app with a **system assigned** [managed identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview?wt.mc_id=DT-MVP-5004771) so that we can permission our function app to access our key vault.
 
 Under the function app **settings** pane select **Identity** and enable the **system assigned** setting to be `ON` and save the setting:
 
 ![managedIdentity-01](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-KeyVault-Function-Integrate/assets/managedIdentity-01.png)
 
-With the managed identity now created, we can add a role assignment and permissions (IAM) to our key vault. We will give the function identity the role [Key Vault Secrets User](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-user) because we only want the function to be able to retrieve secrets.
+With the managed identity now created, we can add a role assignment and permissions (IAM) to our key vault. We will give the function identity the role [Key Vault Secrets User](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-user?wt.mc_id=DT-MVP-5004771) because we only want the function to be able to retrieve secrets.
 
 On the same **settings** pane where we set the **identity** you will now see a new setting called **Permissions**. Click on **Azure Role Assignments** and add the relevant permissions on the key vault.  
 **Note:** You can also add the role assignment permissions on the key vault by going to the key vault and select **IAM** on the key vault directly.
@@ -99,7 +99,7 @@ Create some secrets in the key vault for testing:
 ![kvsecrets](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-KeyVault-Function-Integrate/assets/kvsecrets.png)
 
 Now we will configure our function app to reference our key vault secrets and test the solution.  
-We will use the following [Reference syntax](https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references#reference-syntax).
+We will use the following [Reference syntax](https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references#reference-syntax?wt.mc_id=DT-MVP-5004771).
 
 ```txt
 @Microsoft.KeyVault(VaultName=<myVault>;SecretName=<mySecret>;SecretVersion=<secretVersion>)
