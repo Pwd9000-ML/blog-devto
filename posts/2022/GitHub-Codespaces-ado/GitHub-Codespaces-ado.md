@@ -40,17 +40,17 @@ Next we will create an **Azure DevOps** project.
 
 1. Log into your Azure DevOps organisation and select **New project**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-ado/assets/proj01.png)
 
-2. Enter information into the form provided. Provide a name for your project, an optional description, choose the [visibility](https://docs.microsoft.com/en-us/azure/devops/repos/tfvc/comparison-git-tfvc?view=azure-devops), and select `'Git'` as the source control type. Also select the work item [process](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/choose-process?view=azure-devops&tabs=agile-process). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-ado/assets/proj02.png)
+2. Enter information into the form provided. Provide a name for your project, an optional description, choose the [visibility](https://docs.microsoft.com/en-us/azure/devops/repos/tfvc/comparison-git-tfvc?view=azure-devops/?wt.mc_id=DT-MVP-5004771), and select `'Git'` as the source control type. Also select the work item [process](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/choose-process?view=azure-devops&tabs=agile-process/?wt.mc_id=DT-MVP-5004771). ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-ado/assets/proj02.png)
 
 **IMPORTANT:** For the purposes of this tutorial I have created a **'public'** GitHub repository and a **'private'** Azure DevOps project. Depending on your project and requirements, ensure you select the right **'visibility'** settings for your repository as well as your project.
 
 ## Integrating Azure DevOps Boards with GitHub
 
-Next we will [connect and link](https://docs.microsoft.com/en-us/azure/devops/boards/github/connect-to-github?view=azure-devops) **DevOps boards** to **GitHub**.
+Next we will [connect and link](https://docs.microsoft.com/en-us/azure/devops/boards/github/connect-to-github?view=azure-devops/?wt.mc_id=DT-MVP-5004771) **DevOps boards** to **GitHub**.
 
 1. Choose **'Project Settings'** and under the **Boards** section select **'GitHub connections'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-ado/assets/proj03.png)
 
-2. Choose **Connect your GitHub account** to use your GitHub account credentials. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-ado/assets/proj004.png) **NOTE:** Alternatively you can also connect to your GitHub account using a [Personal Access Token (PAT)](https://docs.microsoft.com/en-us/azure/devops/boards/github/connect-to-github?view=azure-devops#github-pat) instead.
+2. Choose **Connect your GitHub account** to use your GitHub account credentials. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-ado/assets/proj004.png) **NOTE:** Alternatively you can also connect to your GitHub account using a [Personal Access Token (PAT)](https://docs.microsoft.com/en-us/azure/devops/boards/github/connect-to-github?view=azure-devops#github-pat/?wt.mc_id=DT-MVP-5004771) instead.
 
 3. Next click **'Autorize AzureBoards'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-ado/assets/proj05.png)
 
@@ -187,13 +187,13 @@ You can also edit the **Azure Pipeline YAML** file stored on your **GitHub repos
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-ado/assets/pipe12.png)
 
-Additionally, the Azure Pipelines App we installed on GitHub also integrates [GitHub Checks](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#github-checks) which allows for sending detailed information about the **Azure DevOps pipeline** status and test, code coverage, and errors.
+Additionally, the Azure Pipelines App we installed on GitHub also integrates [GitHub Checks](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#github-checks/?wt.mc_id=DT-MVP-5004771) which allows for sending detailed information about the **Azure DevOps pipeline** status and test, code coverage, and errors.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-ado/assets/pipe13.png)
 
 Now you can fully manage your **Azure DevOps Pipelines** using **Codespaces** as they are hosted on your **GitHub repository**. Pretty neat!
 
-**NOTE:** Learn all about pipeline triggers as well by looking at [CI triggers](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#ci-triggers) and [PR triggers](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#pr-triggers) to automatically trigger pipeline runs.
+**NOTE:** Learn all about pipeline triggers as well by looking at [CI triggers](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#ci-triggers/?wt.mc_id=DT-MVP-5004771) and [PR triggers](https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#pr-triggers/?wt.mc_id=DT-MVP-5004771) to automatically trigger pipeline runs.
 
 ## Conclusion
 
