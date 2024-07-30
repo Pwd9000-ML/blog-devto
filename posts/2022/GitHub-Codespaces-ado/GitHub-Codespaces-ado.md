@@ -52,7 +52,7 @@ Next we will [connect and link](https://docs.microsoft.com/en-us/azure/devops/bo
 
 2. Choose **Connect your GitHub account** to use your GitHub account credentials. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-ado/assets/proj004.png) **NOTE:** Alternatively you can also connect to your GitHub account using a [Personal Access Token (PAT)](https://docs.microsoft.com/en-us/azure/devops/boards/github/connect-to-github?view=azure-devops#github-pat/?wt.mc_id=DT-MVP-5004771) instead.
 
-3. Next click **'Autorize AzureBoards'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-ado/assets/proj05.png)
+3. Next click **'Authorize AzureBoards'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-ado/assets/proj05.png)
 
 4. Select the **GitHub repositories** you want to link to **Azure Boards** and click **'Save'**. ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces-ado/assets/proj06.png)
 

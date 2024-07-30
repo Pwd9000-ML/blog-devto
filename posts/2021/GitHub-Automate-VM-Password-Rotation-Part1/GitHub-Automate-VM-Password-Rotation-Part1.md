@@ -34,7 +34,7 @@ Before we start, a quick word on secrets management in GitHub. When using GitHub
 
 There are a few ways to handle this. One way is to use [GitHub Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets). This is a great way that will allow you to store sensitive information in your organization, repository, or repository environments. In fact we will set up a github secret later in this tutorial to authenticate to Azure to connect to our key vault, retrieve server names and set/change passwords. Even though this is a great feature to be able to have secrets management in GitHub, you may be looking after many repositories all with different secrets, this can become an administrative overhead when secrets or keys need to be rotated on a regular basis for best security practice.
 
-This is where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview) can be utilized as a central source for all our secret management in our GitHub workflows.
+This is where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview/?wt.mc_id=DT-MVP-5004771) can be utilized as a central source for all our secret management in our GitHub workflows.
 
 **Note:** Azure key vaults are also particularly useful for security or ops teams who maintain secrets management, instead of giving other teams access to our deployment repositories in GitHub, teams who look after deployments no longer have to worry about giving access to other teams in order to manage secrets as secrets management will be done from an Azure key vault which nicely separates roles of responsibility when spread across different teams.
 
@@ -61,7 +61,7 @@ az group create --name "GitHub-Assets" -l "UKSouth"
 az keyvault create --name "github-secrets-vault3" --resource-group "GitHub-Assets" --location "UKSouth" --enable-rbac-authorization
 ```
 
-As you see above we use the option `--enable-rbac-authorization`. The reason for this is because our service principal we will create in the next step will access this key vault using the RBAC permission model. You can also create an Azure key vault by using the Azure portal. For information on using the portal see this [link](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).
+As you see above we use the option `--enable-rbac-authorization`. The reason for this is because our service principal we will create in the next step will access this key vault using the RBAC permission model. You can also create an Azure key vault by using the Azure portal. For information on using the portal see this [link](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal/?wt.mc_id=DT-MVP-5004771).
 
 Another nice benefit of using the RBAC model is that if anyone wanted to access certain secrets in our key vault, we will be able to give granular access to individual secrets at the secrets object layer rather than the entire key vault.
 
@@ -83,7 +83,7 @@ az ad sp create-for-rbac --name $appName `
     --sdk-auth
 ```
 
-The above command will create an AAD app & service principal and set the correct `Role Based Access Control (RBAC)` permissions on our key vault we created earlier. We will give our principal the RBAC/IAM role: [Key Vault Secrets Officer](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-officer) because we want our workflow to be able to retrieve `secret keys` and also set each `key value`.
+The above command will create an AAD app & service principal and set the correct `Role Based Access Control (RBAC)` permissions on our key vault we created earlier. We will give our principal the RBAC/IAM role: [Key Vault Secrets Officer](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-officer/?wt.mc_id=DT-MVP-5004771) because we want our workflow to be able to retrieve `secret keys` and also set each `key value`.
 
 The above command will also output a JSON object containing the credentials of the service principal that will provide access to the key vault. Copy this JSON object for later. You will only need the sections with the `clientId`, `clientSecret`, `subscriptionId`, and `tenantId` values:
 
@@ -96,7 +96,7 @@ The above command will also output a JSON object containing the credentials of t
 }
 ```
 
-We also want to give our service principal `clientId` permissions on our subscription in order to look up VMs as well as set/change VM passwords. We will grant our service principal identity the following RBAC role: [Virtual Machine Contributor](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#virtual-machine-contributor). Run the following command:
+We also want to give our service principal `clientId` permissions on our subscription in order to look up VMs as well as set/change VM passwords. We will grant our service principal identity the following RBAC role: [Virtual Machine Contributor](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#virtual-machine-contributor/?wt.mc_id=DT-MVP-5004771). Run the following command:
 
 ```powershell
 # Assign additional RBAC role to Service Principal Subscription to manage Virtual machines

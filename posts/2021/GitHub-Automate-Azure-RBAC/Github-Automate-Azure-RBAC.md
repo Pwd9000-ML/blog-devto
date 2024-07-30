@@ -13,11 +13,11 @@ date: '2021-05-24T16:04:03Z'
 
 ## What are Azure Roles and Custom Definitions?
 
-When you start working more and more with Azure permissions you will undoubtedly have used Azure RBAC (also known as IAM) and have most likely used some of the great [built-in roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) that have been created and provided by Microsoft, but sometimes you may come across a requirement or a need to have a very specific role tailored with a set of permissions that are more granular than what comes out of the box in a standard Azure (RBAC) built-in role.
+When you start working more and more with Azure permissions you will undoubtedly have used Azure RBAC (also known as IAM) and have most likely used some of the great [built-in roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/?wt.mc_id=DT-MVP-5004771) that have been created and provided by Microsoft, but sometimes you may come across a requirement or a need to have a very specific role tailored with a set of permissions that are more granular than what comes out of the box in a standard Azure (RBAC) built-in role.
 
-Luckily Azure offers a great deal of flexibility when it comes to defining your own custom roles vs built-in roles. This is where [Custom Role Definitions](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions) comes into play.
+Luckily Azure offers a great deal of flexibility when it comes to defining your own custom roles vs built-in roles. This is where [Custom Role Definitions](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions/?wt.mc_id=DT-MVP-5004771) comes into play.
 
-Today we will look at how we can utilize GitHub actions in creating and also maintaining our Azure (RBAC) custom role definitions from a GitHub repository through source control and automatically publishing those changes in Azure through a GitHub actions workflow without much effort. If you are still a bit unclear on what Azure RBAC is, or wanted more information have a look at the [Microsoft Docs](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview).
+Today we will look at how we can utilize GitHub actions in creating and also maintaining our Azure (RBAC) custom role definitions from a GitHub repository through source control and automatically publishing those changes in Azure through a GitHub actions workflow without much effort. If you are still a bit unclear on what Azure RBAC is, or wanted more information have a look at the [Microsoft Docs](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview/?wt.mc_id=DT-MVP-5004771).
 
 ### Protecting secrets in github
 
@@ -108,7 +108,7 @@ We will use the following JSON template structure to build our definition:
 }
 ```
 
-You can find more information on what each property in the JSON structure means [HERE](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#role-definition).  
+You can find more information on what each property in the JSON structure means [HERE](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#role-definition/?wt.mc_id=DT-MVP-5004771).  
 Our completed definition we will use in this tutorial will look something like below.  
 **Note:** Change the `"AssignableScopes"` value with the subscription ID you want to publish and make this role available for use on.
 
@@ -132,9 +132,9 @@ Our completed definition we will use in this tutorial will look something like b
 
 **Note:** We can add more subscriptions to our assignable scopes or even use management groups if required. But for the purpose of this tutorial we only want to make the role available to a single Azure subscription. You will also notice that `"Id": ""` is blank as our actions workflow script will take care of this value later on. Here are a few more valuable links for reference when creating custom role definitions:
 
-- [Operations](https://docs.microsoft.com/en-us/azure/role-based-access-control/resource-provider-operations)
-- [Operations format](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#operations-format)
-- [Assignable Scopes](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#assignablescopes)
+- [Operations](https://docs.microsoft.com/en-us/azure/role-based-access-control/resource-provider-operations/?wt.mc_id=DT-MVP-5004771)
+- [Operations format](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#operations-format/?wt.mc_id=DT-MVP-5004771)
+- [Assignable Scopes](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#assignablescopes/?wt.mc_id=DT-MVP-5004771)
 
 ### Configure our GitHub actions workflow
 

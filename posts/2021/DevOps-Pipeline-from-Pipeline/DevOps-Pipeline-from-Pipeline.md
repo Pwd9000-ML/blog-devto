@@ -11,7 +11,7 @@ date: '2021-08-07T14:06:14Z'
 
 ## Azure DevOps pipeline/YAML resources
 
-Azure DevOps pipelines provides very useful [resources](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=schema) we can define in our pipeline in one place and be consumed anywhere in our pipeline.
+Azure DevOps pipelines provides very useful [resources](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=schema/?wt.mc_id=DT-MVP-5004771) we can define in our pipeline in one place and be consumed anywhere in our pipeline.
 
 A resource is anything used by a pipeline that lives outside the pipeline. Pipeline resources include:
 
@@ -20,7 +20,7 @@ A resource is anything used by a pipeline that lives outside the pipeline. Pipel
 - container image registries (Azure Container Registry, Docker Hub, etc.)
 - package feeds (GitHub packages)
 
-Today we will take a look at the [Pipelines Resource](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=schema#resources-pipelines), in particular we will look at how we can use this resource in a pipeline to consume an artifact that was produced in another pipeline in a completely different project. Our pipeline will also even be triggered automatically by the source pipeline after the artifact has been created and published.
+Today we will take a look at the [Pipelines Resource](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=schema#resources-pipelines/?wt.mc_id=DT-MVP-5004771), in particular we will look at how we can use this resource in a pipeline to consume an artifact that was produced in another pipeline in a completely different project. Our pipeline will also even be triggered automatically by the source pipeline after the artifact has been created and published.
 
 ## Consume remote pipeline artifacts
 
@@ -159,7 +159,7 @@ Now when we trigger and run **PipelineA** in **ProjectA**, it will automatically
 
 ![results](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/DevOps-Pipeline-from-Pipeline/assets/results.png)
 
-Also note that triggers for resources are created based on the default branch configuration of our YAML, which is master. However, if we want to configure resource triggers from a different branch, we will need to change the default branch for the pipeline. For more information have a look at [Default branch for triggers](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=example#default-branch-for-triggers).
+Also note that triggers for resources are created based on the default branch configuration of our YAML, which is master. However, if we want to configure resource triggers from a different branch, we will need to change the default branch for the pipeline. For more information have a look at [Default branch for triggers](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=example#default-branch-for-triggers/?wt.mc_id=DT-MVP-5004771).
 
 I hope you have enjoyed this post and have learned something new. You can also find the code samples used in this blog post on my [GitHub](https://github.com/Pwd9000-ML/blog-devto/tree/main/posts/2021/DevOps-Pipeline-from-Pipeline/code) page. :heart:
 

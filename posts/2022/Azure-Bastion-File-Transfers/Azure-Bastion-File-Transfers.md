@@ -11,7 +11,7 @@ date: '2022-06-02T09:06:55Z'
 
 ## Overview
 
-In todays tutorial we will take a look at a cool new feature that is available to us in [Azure Bastion](https://docs.microsoft.com/en-us/azure/bastion/bastion-overview) whereby we can upload and download files to a VM using a native client. You can read more about [this feature](https://docs.microsoft.com/en-us/azure/bastion/vm-upload-download-native) on Microsoft Docs.
+In todays tutorial we will take a look at a cool new feature that is available to us in [Azure Bastion](https://docs.microsoft.com/en-us/azure/bastion/bastion-overview/?wt.mc_id=DT-MVP-5004771) whereby we can upload and download files to a VM using a native client. You can read more about [this feature](https://docs.microsoft.com/en-us/azure/bastion/vm-upload-download-native/?wt.mc_id=DT-MVP-5004771) on Microsoft Docs.
 
 With the new Azure Bastion native client support, available with Standard SKU, you can now:
 
@@ -30,7 +30,7 @@ There are a few important notes and limitations I would like to cover off first 
 
 In this demonstration, since our target VM is running a Linux OS we will be using Azure Bastion in **tunnel mode**, we will only be able to upload files and downloading files is **NOT** supported yet.
 
-If you want to see how you can **Upload** and **Download** files using the native Windows RDP client, please see: [Upload and download files - RDP](https://docs.microsoft.com/en-us/azure/bastion/vm-upload-download-native#rdp)
+If you want to see how you can **Upload** and **Download** files using the native Windows RDP client, please see: [Upload and download files - RDP](https://docs.microsoft.com/en-us/azure/bastion/vm-upload-download-native#rdp/?wt.mc_id=DT-MVP-5004771)
 
 ## Pre-requisites
 

@@ -15,7 +15,7 @@ date: '2021-11-14T10:04:58Z'
 
 In todays tutorial I will demonstrate how to use powerShell in GitHub Actions to automate Azure Service Bus SAS tokens to generate short lived usable tokens with a validity period of 10 minutes and securely store the newly generated SAS tokens inside of an Azure Key Vault ready for consumption.
 
-We will create an [Azure Service Bus](https://docs.microsoft.com/en-gb/azure/service-bus-messaging/service-bus-messaging-overview) and [Key Vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview) and a single **reusable** github workflow to handle our SAS token requests as well as a service principal / Azure identity to fully automate everything. For the purpose of this demonstration we will also have a main workflow that is triggered manually. Our main workflow, when triggered, will first call our **reusable** github workflow that will generate our temporary SAS token that will only be valid for 10 minutes and store the SAS token inside of the key vault (The token validity period can be adjusted based on your needs or requirement). Our main workflow will then retrieve the SAS token from the key vault and send the message through to our service bus queue.
+We will create an [Azure Service Bus](https://docs.microsoft.com/en-gb/azure/service-bus-messaging/service-bus-messaging-overview/?wt.mc_id=DT-MVP-5004771) and [Key Vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview/?wt.mc_id=DT-MVP-5004771) and a single **reusable** github workflow to handle our SAS token requests as well as a service principal / Azure identity to fully automate everything. For the purpose of this demonstration we will also have a main workflow that is triggered manually. Our main workflow, when triggered, will first call our **reusable** github workflow that will generate our temporary SAS token that will only be valid for 10 minutes and store the SAS token inside of the key vault (The token validity period can be adjusted based on your needs or requirement). Our main workflow will then retrieve the SAS token from the key vault and send the message through to our service bus queue.
 
 This means that whenever we need to call our service bus we can now generate a temporary SAS token to call our Azure service bus using a **reusable** GitHub workflow to generate our token for us and we can access the token securely from key vault using a different process or even a different github workflow.
 
@@ -29,7 +29,7 @@ Lets take a look at a sample use case flow diagram of how this would look like.
 
 [GitHub Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets) is a great way that will allow us to store sensitive information in our organization, repository, or repository environments. In fact we will set up a github secret later in this tutorial that will allow us to authenticate to Azure.
 
-Even though this is a great feature to be able to have secrets management in GitHub, you may be looking after many repositories all with different secrets, this can become an administrative overhead when secrets or keys need to be rotated on a regular basis for best security practice, that's where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview) can also be utilized as a central source for all your secret management in your GitHub workflows.
+Even though this is a great feature to be able to have secrets management in GitHub, you may be looking after many repositories all with different secrets, this can become an administrative overhead when secrets or keys need to be rotated on a regular basis for best security practice, that's where [Azure key vault](https://docs.microsoft.com/en-gb/azure/key-vault/general/overview/?wt.mc_id=DT-MVP-5004771) can also be utilized as a central source for all your secret management in your GitHub workflows.
 
 ### What do we need to start generating Service Bus SAS tokens?
 
@@ -79,7 +79,7 @@ az role assignment create --assignee-object-id "$currentUser" `
     --assignee-principal-type "User"
 ```
 
-As you see above we use the option `--enable-rbac-authorization`. The reason for this is because our `current logged in user` as well as our `service principal` used by our github workflow we will create later, will access this key vault using the RBAC permission model. We also grant the key vault creator, in our case the `current logged in user` [Key Vault Secrets Officer](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-officer) access to the key vault as we will store our service bus policy primary key in the key vault.
+As you see above we use the option `--enable-rbac-authorization`. The reason for this is because our `current logged in user` as well as our `service principal` used by our github workflow we will create later, will access this key vault using the RBAC permission model. We also grant the key vault creator, in our case the `current logged in user` [Key Vault Secrets Officer](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-officer/?wt.mc_id=DT-MVP-5004771) access to the key vault as we will store our service bus policy primary key in the key vault.
 
 ### Create an Azure Service Bus
 
@@ -119,7 +119,7 @@ az ad sp create-for-rbac --name $appName `
     --sdk-auth
 ```
 
-The above command will create an AAD app & service principal and set the correct `Role Based Access Control (RBAC)` permissions on our key vault we created earlier. We will give our principal the RBAC/IAM role: [Key Vault Secrets Officer](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-officer) because we want our workflow to be able to retrieve `secret keys` and also set secrets for our `Service Bus SAS tokens`.
+The above command will create an AAD app & service principal and set the correct `Role Based Access Control (RBAC)` permissions on our key vault we created earlier. We will give our principal the RBAC/IAM role: [Key Vault Secrets Officer](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#key-vault-secrets-officer/?wt.mc_id=DT-MVP-5004771) because we want our workflow to be able to retrieve `secret keys` and also set secrets for our `Service Bus SAS tokens`.
 
 The above command will output a JSON object with the role assignment credentials that provide access to your key vault. Copy this JSON object for later. You will only need the sections with the `clientId`, `clientSecret`, `subscriptionId`, and `tenantId` values:
 

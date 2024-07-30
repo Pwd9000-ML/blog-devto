@@ -17,7 +17,7 @@ PATs are easy to create when you need them and easy to revoke when you don’t.
 
 ![newPat](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/DevOps-PAT-Token-Policy/assets/new-pat2.png)
 
-When creating a new PAT you can select the organization where you want to use the token, and then choose a lifespan for your token. Say for example making it only active and usable for a period of 30 days. A PATs lifetime can be extended if needed, but cannot be longer than the maximum period of 1 year. You can also specify granular [permissions scopes](https://docs.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/oauth?view=azure-devops#scopes) to specify what access is authorised.
+When creating a new PAT you can select the organization where you want to use the token, and then choose a lifespan for your token. Say for example making it only active and usable for a period of 30 days. A PATs lifetime can be extended if needed, but cannot be longer than the maximum period of 1 year. You can also specify granular [permissions scopes](https://docs.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/oauth?view=azure-devops#scopes/?wt.mc_id=DT-MVP-5004771) to specify what access is authorised.
 
 ## Restricting personal access token (PAT) scope and lifespan via Azure AD tenant policy
 
@@ -25,7 +25,7 @@ So PATs are really handy and make it easy to authenticate against Azure DevOps t
 
 ## What do we need?
 
-- You would need to connect your Azure DevOps Organisation to Azure AD. [Here are the steps](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/connect-organization-to-azure-ad?view=azure-devops#connect-your-organization-to-azure-ad).
+- You would need to connect your Azure DevOps Organisation to Azure AD. [Here are the steps](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/connect-organization-to-azure-ad?view=azure-devops#connect-your-organization-to-azure-ad/?wt.mc_id=DT-MVP-5004771).
 
 - You would need to be assigned to the **Azure DevOps Administrator** RBAC role in Azure Active Directory.
 
@@ -45,7 +45,7 @@ These policies only apply to new PATs, and will not affect existing PATs that ha
 
 ![patpolicy](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/DevOps-PAT-Token-Policy/assets/pat-policy2.png)
 
-For more detailed information have a look at: [Managing Personal Access Tokens with policies](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/manage-pats-with-policies-for-administrators?view=azure-devops).
+For more detailed information have a look at: [Managing Personal Access Tokens with policies](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/manage-pats-with-policies-for-administrators?view=azure-devops/?wt.mc_id=DT-MVP-5004771).
 
 ### _Author_
 
