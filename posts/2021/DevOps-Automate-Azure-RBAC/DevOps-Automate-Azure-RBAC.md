@@ -13,15 +13,15 @@ date: '2021-05-05T13:41:50Z'
 
 ## What are Azure Roles and Custom Definitions?
 
-When you start working more and more with Azure permissions you will undoubtedly have used Azure RBAC (also known as IAM) and have most likely used some of the great [built-in roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) that have been created and provided by Microsoft, but sometimes you may come across a requirement or a need to have a very specific role tailored with a set of permissions that are more granular than what comes out of the box in a standard Azure (RBAC) built-in role.
+When you start working more and more with Azure permissions you will undoubtedly have used Azure RBAC (also known as IAM) and have most likely used some of the great [built-in roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/?wt.mc_id=DT-MVP-5004771) that have been created and provided by Microsoft, but sometimes you may come across a requirement or a need to have a very specific role tailored with a set of permissions that are more granular than what comes out of the box in a standard Azure (RBAC) built-in role.
 
-Luckily Azure offers a great deal of flexibility when it comes to defining your own custom roles vs built-in roles. This is where [Custom Role Definitions](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions) comes into play.
+Luckily Azure offers a great deal of flexibility when it comes to defining your own custom roles vs built-in roles. This is where [Custom Role Definitions](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions/?wt.mc_id=DT-MVP-5004771) comes into play.
 
-Today we will look at how we can utilize Azure DevOps in creating and also maintaining our Azure (RBAC) custom role definitions from an Azure DevOps repository through source control and automatically publishing those changes in Azure through a DevOps pipeline without much effort. If you are still a bit unclear on what Azure RBAC is, or wanted more information have a look at the [Microsoft Docs](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview).
+Today we will look at how we can utilize Azure DevOps in creating and also maintaining our Azure (RBAC) custom role definitions from an Azure DevOps repository through source control and automatically publishing those changes in Azure through a DevOps pipeline without much effort. If you are still a bit unclear on what Azure RBAC is, or wanted more information have a look at the [Microsoft Docs](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview/?wt.mc_id=DT-MVP-5004771).
 
 ### How to automate Custom Role Definitions in Azure using DevOps
 
-Firstly we will need to have an Azure DevOps repository where we can store our custom role definition JSON files. If you need more information on how to set up a new repository, have a look [here](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops).
+Firstly we will need to have an Azure DevOps repository where we can store our custom role definition JSON files. If you need more information on how to set up a new repository, have a look [here](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-new-repo?view=azure-devops/?wt.mc_id=DT-MVP-5004771).
 
 I called my repository `[Azure_Role_Definitions]`. In my repository I have created 3 main folder paths: ![rbac-repo-structure](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/DevOps-Automate-Azure-RBAC/assets/ADO-RBAC-Repo-Structure.png)
 
@@ -48,7 +48,7 @@ We will use the following JSON template structure to build our definition:
 }
 ```
 
-You can find more information on what each property in the JSON structure means [HERE](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#role-definition).  
+You can find more information on what each property in the JSON structure means [HERE](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#role-definition/?wt.mc_id=DT-MVP-5004771).  
 Our completed definition we will use in this tutorial will look something like below.  
 **Note:** Change the `"AssignableScopes"` value with the subscription ID you want to publish and make this role available for use on.
 
@@ -72,9 +72,9 @@ Our completed definition we will use in this tutorial will look something like b
 
 **Note:** We can add more subscriptions to our assignable scopes or even use management groups if required. But for the purpose of this tutorial we only want to make the role available to a single Azure subscription. You will also notice that `"Id": ""` is blank as our pipeline script will take care of this value later on. Here are a few more valuable links for reference when creating custom role definitions:
 
-- [Operations](https://docs.microsoft.com/en-us/azure/role-based-access-control/resource-provider-operations)
-- [Operations format](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#operations-format)
-- [Assignable Scopes](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#assignablescopes)
+- [Operations](https://docs.microsoft.com/en-us/azure/role-based-access-control/resource-provider-operations/?wt.mc_id=DT-MVP-5004771)
+- [Operations format](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#operations-format/?wt.mc_id=DT-MVP-5004771)
+- [Assignable Scopes](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-definitions#assignablescopes/?wt.mc_id=DT-MVP-5004771)
 
 The next thing we will do is create our pipeline and script. In my repository I like to create a sub folder under `[pipelines]` called `[task_groups]`. This way I can easily break my pipeline steps up into different task groups defined as `yaml templates`. Lets create the following `yaml` files in our repository.
 
@@ -245,7 +245,7 @@ Foreach ($file in $RoleDefinitions) {
 Our repository should now look something like this:  
 ![rbac-repo-structure2](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/DevOps-Automate-Azure-RBAC/assets/ADO-RBAC-Repo-Structure2.png)
 
-Now on to the last step. Since our script needs to run and perform tasks in Azure we will create a service connection called `'RbacServicePrincipal'` and we will also give the principal we create access in IAM to be able to perform it's tasks. Follow these steps to [create an Azure DevOps Service Connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml).  
+Now on to the last step. Since our script needs to run and perform tasks in Azure we will create a service connection called `'RbacServicePrincipal'` and we will also give the principal we create access in IAM to be able to perform it's tasks. Follow these steps to [create an Azure DevOps Service Connection](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml/?wt.mc_id=DT-MVP-5004771).  
 Ensure you name the service connection the same as what we defined in our Yaml task `[set_rbac.yml]`, namely `'RbacServicePrincipal'`. After the service connection is created we will slightly change the IAM permissions given to the principal to give it only the permissions it requires. So under the DevOps project settings, go to `'Service Connections'` and then select `'Manage Service Connection Roles'`.
 
 ![service-connection](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/DevOps-Automate-Azure-RBAC/assets/ADO-RBAC-Service-Connections.png)

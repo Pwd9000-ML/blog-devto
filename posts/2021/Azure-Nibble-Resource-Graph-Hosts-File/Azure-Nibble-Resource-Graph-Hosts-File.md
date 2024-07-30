@@ -11,7 +11,7 @@ date: '2021-09-08T15:29:44Z'
 
 ## Azure Resource Graph
 
-[Azure Resource Graph](https://docs.microsoft.com/en-gb/azure/governance/resource-graph/overview) allows us to quickly and efficiently query across Azure subscriptions. Analyse cloud inventory using complex queries launched programmatically or from the Azure portal. The query language used is known as **[Kusto Query Lanuage (KQL)](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query)**.
+[Azure Resource Graph](https://docs.microsoft.com/en-gb/azure/governance/resource-graph/overview/?wt.mc_id=DT-MVP-5004771) allows us to quickly and efficiently query across Azure subscriptions. Analyse cloud inventory using complex queries launched programmatically or from the Azure portal. The query language used is known as **[Kusto Query Lanuage (KQL)](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/?wt.mc_id=DT-MVP-5004771)**.
 
 ## Hosts File Generator
 

@@ -11,7 +11,7 @@ date: '2021-07-03T07:54:05Z'
 
 ## What is an Azure function?
 
-[Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview?wt.mc_id=DT-MVP-5004771) is a cloud service available on-demand that provides all the continually updated infrastructure and resources needed to run your applications. You focus on the pieces of code that matter most to you, and Functions handles the rest. Functions provides serverless compute for Azure. You can use Functions to build web APIs, respond to database changes, process IoT streams, manage message queues, and more.
+[Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview/?wt.mc_id=DT-MVP-5004771) is a cloud service available on-demand that provides all the continually updated infrastructure and resources needed to run your applications. You focus on the pieces of code that matter most to you, and Functions handles the rest. Functions provides serverless compute for Azure. You can use Functions to build web APIs, respond to database changes, process IoT streams, manage message queues, and more.
 
 {% youtube 8-jz5f_JyEQ %}
 
@@ -70,7 +70,7 @@ az functionapp create `
     --functions-version "3"
 ```
 
-Next we will enable the function app with a **system assigned** [managed identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview?wt.mc_id=DT-MVP-5004771) so that we can permission our function app to access our key vault.
+Next we will enable the function app with a **system assigned** [managed identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview/?wt.mc_id=DT-MVP-5004771) so that we can permission our function app to access our key vault.
 
 Under the function app **settings** pane select **Identity** and enable the **system assigned** setting to be `ON` and save the setting:
 

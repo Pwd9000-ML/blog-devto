@@ -11,7 +11,7 @@ date: '2021-07-11T22:56:40Z'
 
 ## What is Azure Private Link Service?
 
-[Azure Private Link service](https://docs.microsoft.com/en-us/azure/private-link/private-link-service-overview) is the reference to your own service that is powered by Azure Private Link. Your service that is running behind Azure Standard Load Balancer can be enabled for Private Link access so that consumers to your service can access it privately from their own VNets. Your customers can create a private endpoint inside their VNet and map it to this service.
+[Azure Private Link service](https://docs.microsoft.com/en-us/azure/private-link/private-link-service-overview/?wt.mc_id=DT-MVP-5004771) is the reference to your own service that is powered by Azure Private Link. Your service that is running behind Azure Standard Load Balancer can be enabled for Private Link access so that consumers to your service can access it privately from their own VNets. Your customers can create a private endpoint inside their VNet and map it to this service.
 
 ### Access internal API Management Service securely with Private Link Service from an external non-peered VNET
 
@@ -32,7 +32,7 @@ Luckily there is a solution to this problem statement, and that is Azure private
 ## What do we need?
 
 1. **Azure Virtual Network:** We will need either a new or an existing VNET with two subnets for our Private Link Service and APIM.
-2. **APIM (Internal VNET mode):** For this tutorial we will create an [internal APIM](https://docs.microsoft.com/en-us/azure/api-management/api-management-using-with-internal-vnet).
+2. **APIM (Internal VNET mode):** For this tutorial we will create an [internal APIM](https://docs.microsoft.com/en-us/azure/api-management/api-management-using-with-internal-vnet/?wt.mc_id=DT-MVP-5004771).
 3. **VM or VMMS:** For this tutorial we will create a single windows VM and configure it to be a forwarder to our internal APIM. (You can also use a Virtual Machine Scale Set (VMSS) instead).
 4. **Standard Load Balancer:** We will use a standard load balancer to front our VM/VMSS which will be used by the private link service.
 5. **Private Link Service:** We will create a Private link service and link it up with our load balancer.
@@ -287,7 +287,7 @@ Under the **Outbound settings** blade, add the following:
 
 ![outboundpls](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Private-Link-Service-Internal-APIM/assets/outboundpls.png)
 
-Under the **Access Security** blade, we will use **Restricted by subscription** with a list of our two subscriptions. For more details on the different types of access: `Role-based access control only`, `Restricted by subscription`, `Anyone with your alias`, see this [LINK](https://docs.microsoft.com/en-gb/azure/private-link/private-link-service-overview#control-service-exposure).
+Under the **Access Security** blade, we will use **Restricted by subscription** with a list of our two subscriptions. For more details on the different types of access: `Role-based access control only`, `Restricted by subscription`, `Anyone with your alias`, see this [LINK](https://docs.microsoft.com/en-gb/azure/private-link/private-link-service-overview#control-service-exposure/?wt.mc_id=DT-MVP-5004771).
 
 ![accesspls](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Private-Link-Service-Internal-APIM/assets/accesspls.png)
 

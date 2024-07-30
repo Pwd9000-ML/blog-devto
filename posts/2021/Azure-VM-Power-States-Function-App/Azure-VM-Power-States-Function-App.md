@@ -15,7 +15,7 @@ Azure Functions is a cloud service available on-demand that provides all the con
 
 {% youtube 8-jz5f_JyEQ %}
 
-For more details on Azure Functions have a look at the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview).
+For more details on Azure Functions have a look at the [Microsoft Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview/?wt.mc_id=DT-MVP-5004771).
 
 ## How to control Azure virtual machines power states using an Azure function
 
@@ -60,7 +60,7 @@ az functionapp create `
     --functions-version "4"
 ```
 
-**Note:** In this tutorial we are using a [`Consumption`](https://docs.microsoft.com/en-us/azure/azure-functions/consumption-plan) app service plan and not a [`dedicated`](https://docs.microsoft.com/en-us/azure/azure-functions/dedicated-plan) or [`premium`](https://docs.microsoft.com/en-us/azure/azure-functions/functions-premium-plan?tabs=portal) plan. You can however change the plan if needed as the consumption plan may take a bit of time to start up once we start using it. But for the purposes of this tutorial and use case this plan will be sufficient enough for our function.
+**Note:** In this tutorial we are using a [`Consumption`](https://docs.microsoft.com/en-us/azure/azure-functions/consumption-plan/?wt.mc_id=DT-MVP-5004771) app service plan and not a [`dedicated`](https://docs.microsoft.com/en-us/azure/azure-functions/dedicated-plan/?wt.mc_id=DT-MVP-5004771) or [`premium`](https://docs.microsoft.com/en-us/azure/azure-functions/functions-premium-plan?tabs=portal) plan. You can however change the plan if needed as the consumption plan may take a bit of time to start up once we start using it. But for the purposes of this tutorial and use case this plan will be sufficient enough for our function.
 
 After the function app has been deployed we have to change the `requirements.psd1` file on our function to allow the `AZ` PowerShell module inside of our function by uncommenting the following.
 
@@ -81,7 +81,7 @@ Navigate to the Function App's **'App files'** and select the dropdown `requirem
 
 **NOTE:** After making this change for the first time, it can take up to one hour for the **AZ PowerShell module** to be fully installed on the Function App runtime, but this is a one of process and will allow AZ cmdlets to be used inside the Function App code.
 
-Next we will enable the function app with a `system assigned` [`managed identity`](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) so that we can permission our function app against the virtual machines we will be maintaining. Under the function app `settings` pane select `Identity` and enable the `system assigned` setting to be `ON` and save the setting:
+Next we will enable the function app with a `system assigned` [`managed identity`](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview/?wt.mc_id=DT-MVP-5004771) so that we can permission our function app against the virtual machines we will be maintaining. Under the function app `settings` pane select `Identity` and enable the `system assigned` setting to be `ON` and save the setting:
 
 ![managedIdentity](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-VM-Power-States-Function-App/assets/managedIdentity.png)
 
@@ -231,7 +231,7 @@ Similarly you could also start a VM by changing the `{Action}` to `Start`.
 
 ## Securing function apps
 
-For the purposes of this tutorial be aware that the proxy URL we created to check the status, stop and start our VMs will be able to be run by anyone who knows the function app URL, subscription ID, Resource Group Name and VM Names. I would recommend securing the function app by following some of these [Function App Security recommendations](https://docs.microsoft.com/en-us/azure/architecture/serverless-quest/functions-app-security) as well as [Securing Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/security-concepts).
+For the purposes of this tutorial be aware that the proxy URL we created to check the status, stop and start our VMs will be able to be run by anyone who knows the function app URL, subscription ID, Resource Group Name and VM Names. I would recommend securing the function app by following some of these [Function App Security recommendations](https://docs.microsoft.com/en-us/azure/architecture/serverless-quest/functions-app-security/?wt.mc_id=DT-MVP-5004771) as well as [Securing Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/security-concepts/?wt.mc_id=DT-MVP-5004771).
 
 A very quick and effective way as well to limit access to our URL is to only allow a specific IP or range of IPs to access our URL.  
 Navigate to the function app `settings` pane and select `Networking`:

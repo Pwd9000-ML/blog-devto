@@ -19,12 +19,12 @@ In todays tutorial we will create and configure an **Azure Logic App** that will
 
 ## What is an Azure Logic app?
 
-[Azure Logic Apps](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-overview) is a cloud-based platform for creating and running automated workflows that integrate your apps, data, services, and systems. With this platform, you can quickly develop highly scalable integration solutions for your enterprise and business-to-business (B2B) scenarios. As a member of Azure Integration Services, Logic Apps simplifies the way that you connect legacy, modern, and cutting-edge systems across cloud, on premises, and hybrid environments.
+[Azure Logic Apps](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-overview/?wt.mc_id=DT-MVP-5004771) is a cloud-based platform for creating and running automated workflows that integrate your apps, data, services, and systems. With this platform, you can quickly develop highly scalable integration solutions for your enterprise and business-to-business (B2B) scenarios. As a member of Azure Integration Services, Logic Apps simplifies the way that you connect legacy, modern, and cutting-edge systems across cloud, on premises, and hybrid environments.
 
 ## What do we need?
 
-1. **Azure Logic App:** We will create a **[multi-tenant](https://docs.microsoft.com/en-us/azure/logic-apps/single-tenant-overview-compare)** logic app using the **[Consumption](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-pricing#consumption-pricing)** pricing plan.
-2. **Email Account:** We will also need an email account from a service that works with Azure Logic Apps, such as Outlook.com. For other supported email providers, review **[Connectors](https://docs.microsoft.com/en-us/connectors/connector-reference/connector-reference-logicapps-connectors)** for Azure Logic Apps.
+1. **Azure Logic App:** We will create a **[multi-tenant](https://docs.microsoft.com/en-us/azure/logic-apps/single-tenant-overview-compare/?wt.mc_id=DT-MVP-5004771)** logic app using the **[Consumption](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-pricing#consumption-pricing/?wt.mc_id=DT-MVP-5004771)** pricing plan.
+2. **Email Account:** We will also need an email account from a service that works with Azure Logic Apps, such as Outlook.com. For other supported email providers, review **[Connectors](https://docs.microsoft.com/en-us/connectors/connector-reference/connector-reference-logicapps-connectors/?wt.mc_id=DT-MVP-5004771)** for Azure Logic Apps.
 
 ## Creating the Logic App
 
