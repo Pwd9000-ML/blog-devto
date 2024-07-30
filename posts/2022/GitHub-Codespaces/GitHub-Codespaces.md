@@ -117,7 +117,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
 The **devcontainer.json** file tells Visual Studio Code (and other services and tools that support the format) how to access (or create) a **development container** with a well-defined tool and runtime stack.
 
-See the [official reference documentation](https://code.visualstudio.com/docs/remote/devcontainerjson-reference) for more details on how this file can be modified.
+See the [official reference documentation](https://code.visualstudio.com/docs/remote/devcontainerjson-reference/?wt.mc_id=DT-MVP-5004771) for more details on how this file can be modified.
 
 Note that the contents of this file can be amended to suit your needs and also determines if you are using a **dockerfile** or **docker compose**, what tooling is available and the version of that tooling. It can almost be seen as a configuration input file for the **dockerfile** that will configure additional features:
 
@@ -223,7 +223,7 @@ The configuration file now contains custom VS Code extensions that we want to lo
 }
 ```
 
-**NOTE:** To get the ID of a VS Code extension you can search the following [VS Code extensions page](https://marketplace.visualstudio.com/vscode) or you can right click on existing extensions inside of **VS Code** and select `'Copy Extension ID'`.
+**NOTE:** To get the ID of a VS Code extension you can search the following [VS Code extensions page](https://marketplace.visualstudio.com/vscode/?wt.mc_id=DT-MVP-5004771) or you can right click on existing extensions inside of **VS Code** and select `'Copy Extension ID'`.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Codespaces/assets/ext01.png)
 
