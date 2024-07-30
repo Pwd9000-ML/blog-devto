@@ -285,7 +285,7 @@ By doing this we can solve a few problems with one solution.
 2. Administration - Having both services running on the same compute and sharing the same configuration and tooling saves time on administration and maintenance.
 3. Availability - Having **self hosted DevOps agents** available as part of the running **codespace**.
 
-**IMPORTANT:** Do note that making use of **['Demands'](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/demands?view=azure-devops&tabs=yaml#task-demands)** is very important when **triggring/running pipelines** against DevOps Pipeline agents on a **Codespace**, to make sure you are running your pipelines against the correct codespace agent.
+**IMPORTANT:** Do note that making use of **['Demands'](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/demands?view=azure-devops&tabs=yaml#task-demands/?wt.mc_id=DT-MVP-5004771)** is very important when **triggring/running pipelines** against DevOps Pipeline agents on a **Codespace**, to make sure you are running your pipelines against the correct codespace agent.
 
 ## Example
 
