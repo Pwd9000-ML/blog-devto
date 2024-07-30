@@ -91,7 +91,7 @@ You can also create the new branch directly from the **GitHub website**, or your
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/branch2.png)
 
 **4. Make Changes and Commit:**  
-Now, dive into the code. First, open the code in your Development Environment (IDE), e.g. [VSCode](https://code.visualstudio.com). Make the necessary changes and save them. After making changes, use `'git add .'` to stage the changes, and `'git commit -m "commit message"'` to save your changes. Be sure to write a meaningful commit message, explaining the changes you made.
+Now, dive into the code. First, open the code in your Development Environment (IDE), e.g. [VSCode](https://code.visualstudio.com/?wt.mc_id=DT-MVP-5004771). Make the necessary changes and save them. After making changes, use `'git add .'` to stage the changes, and `'git commit -m "commit message"'` to save your changes. Be sure to write a meaningful commit message, explaining the changes you made.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Opensource-Contribute/assets/com.png)
 

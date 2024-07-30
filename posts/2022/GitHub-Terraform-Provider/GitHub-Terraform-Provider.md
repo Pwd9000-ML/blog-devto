@@ -25,7 +25,7 @@ To get started you'll need:
 
 - A GitHub account / Organisation
 - A Personal Access Token (PAT) - See [creating a personal access token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token?wt.mc_id=DT-MVP-5004771).
-- A Code editor such as [VSCode](https://code.visualstudio.com/download)
+- A Code editor such as [VSCode](https://code.visualstudio.com/download/?wt.mc_id=DT-MVP-5004771)
 - [Terraform](https://www.terraform.io/downloads)
 
 The minimum permission scopes required on the PAT token for this demo are: `"repo"`, `"read:repo_hook"`, `"read:org"`, `"read:discussion"` and `"delete_repo"`:
