@@ -24,7 +24,7 @@ In subsequent parts, we will look at how we can utilize **Azure** to store and r
 
 As also described in part one, before building and running docker images we need to set a few things up first. For my environment I will be using a **Windows 11** virtual machine running **WSL2**. Here is more information on running docker on [Windows Server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-Server#install-docker/?wt.mc_id=DT-MVP-5004771). Things that we will need on our VM are:
 
-- Install a code editor such as [VSCode](https://code.visualstudio.com/download)
+- Install a code editor such as [VSCode](https://code.visualstudio.com/download/?wt.mc_id=DT-MVP-5004771)
 
 - Install and enable WSL2 (For more information see: [how to enable WSL2](https://docs.microsoft.com/en-us/windows/wsl/install/?wt.mc_id=DT-MVP-5004771)):
 
