@@ -21,7 +21,7 @@ To get started you'll need a few things, firstly:
 - An Azure Subscription
 - A GitHub Account and Git repository
 
-You will also need to install a few local pre-requirements on the machine you will be working on. In my case I will prepare my machine for developing **C#** Functions, but you can take a look at some of the other code stacks here: [Run Local Requirements](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=csharp#prerequisites)
+You will also need to install a few local pre-requirements on the machine you will be working on. In my case I will prepare my machine for developing **C#** Functions, but you can take a look at some of the other code stacks here: [Run Local Requirements](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=csharp#prerequisites/?wt.mc_id=DT-MVP-5004771)
 
 - Azure Functions Core Tools
 - VSCode

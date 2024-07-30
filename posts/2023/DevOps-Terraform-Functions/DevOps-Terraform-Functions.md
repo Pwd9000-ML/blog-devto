@@ -29,7 +29,7 @@ Most **Terraform functions** follow a common syntax, for example:
 
 **NOTE:** You can use `terraform console` in a command prompt to run any of the function examples shown later, or to test your own function logic.
 
-Say for example you want to provision an **Azure storage account** using **Terraform**. As you may know, storage account names in **Azure** have certain [name rules and character limitations](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules).  
+Say for example you want to provision an **Azure storage account** using **Terraform**. As you may know, storage account names in **Azure** have certain [name rules and character limitations](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules/?wt.mc_id=DT-MVP-5004771).  
 The **length** of a storage account name must be between **3-24** characters, and can only be **lowercase letters and numbers**.
 
 Take this example of provisioning a storage account in **Azure**:
@@ -52,7 +52,7 @@ resource "azurerm_storage_account" "example" {
 
 As you can see from the above example the storage account name provided by the **default** value in the variable **'storage_account_name'** is: `'MySuperCoolStorageAccountName9000'`
 
-Because of the [provider limitations](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules), if the **default** value is used in the deployment, this resource creation would fail.
+Because of the [provider limitations](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules/?wt.mc_id=DT-MVP-5004771), if the **default** value is used in the deployment, this resource creation would fail.
 
 So how can we safeguard that the default value, or any value that is provided will always work?  
 You guessed it, we can use **Terraform functions**.

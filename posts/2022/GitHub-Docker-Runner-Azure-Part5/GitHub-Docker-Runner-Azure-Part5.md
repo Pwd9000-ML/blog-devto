@@ -20,7 +20,7 @@ In the previous part of this series, we looked at how we can use **Azure-CLI** o
 
 One of the drawbacks of having self hosted agent runners are if no **GitHub Action Workflows** or **Jobs** are running, the GitHub runner will just sit there idle consuming cost, whether that self hosted **GitHub runner** be an ACI or a docker container hosted on a VM.
 
-So following on from the previous part we will look at how we can use [Azure Container Apps (ACA)](https://docs.microsoft.com/en-gb/azure/container-apps/overview) to run images from the remote registry instead and also demonstrate how we can automatically scale our self hosted GitHub runners from **no runners** or **0** up and down based on load/demand, using [Kubernetes Event-driven Autoscaling (KEDA)](https://keda.sh/docs/2.7/concepts/).
+So following on from the previous part we will look at how we can use [Azure Container Apps (ACA)](https://docs.microsoft.com/en-gb/azure/container-apps/overview/?wt.mc_id=DT-MVP-5004771) to run images from the remote registry instead and also demonstrate how we can automatically scale our self hosted GitHub runners from **no runners** or **0** up and down based on load/demand, using [Kubernetes Event-driven Autoscaling (KEDA)](https://keda.sh/docs/2.7/concepts/).
 
 This will allow us to save on costs and only provision **self hosted GitHub runners** only when needed.
 
@@ -34,7 +34,7 @@ This will allow us to save on costs and only provision **self hosted GitHub runn
 
 Because there are no available [KEDA scalers for GitHub runners](https://keda.sh/docs/2.7/scalers/) at the time of this writing, we will use an **Azure Storage Queue** to control the scaling and provisioning of our self hosted **GitHub runners**.
 
-We'll create the **Container App Environment** and **Azure Queue**, then create an [Azure Queue KEDA Scale Rule](https://docs.microsoft.com/en-us/azure/container-apps/scale-app#keda-scalers-conversion) that will have a minimum of **0** and maximum of **3** self hosted runner containers. (It is possible to scale up to a max of **30**).
+We'll create the **Container App Environment** and **Azure Queue**, then create an [Azure Queue KEDA Scale Rule](https://docs.microsoft.com/en-us/azure/container-apps/scale-app#keda-scalers-conversion/?wt.mc_id=DT-MVP-5004771) that will have a minimum of **0** and maximum of **3** self hosted runner containers. (It is possible to scale up to a max of **30**).
 
 We'll use the **Azure Queue** to associate **GitHub workflows** as queue messages, to provision/scale self hosted runners using an external GitHub workflow **Job** that will signal KEDA to provision a self hosted runner on the fly to use on any subsequent workflow **Jobs** inside of the **GitHub Workflow**.
 

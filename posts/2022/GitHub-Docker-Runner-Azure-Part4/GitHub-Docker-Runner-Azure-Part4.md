@@ -18,7 +18,7 @@ Welcome to Part 4 of my series: **Self Hosted GitHub Runner containers on Azure*
 
 In the previous part of this series, we looked at how we can use CI/CD in **GitHub** using **GitHub Actions** to **build** our docker containers and then **push** the docker images to an **Azure Container Registry (ACR)** we created in **Azure**.
 
-Following on from the previous part we will now look at how we can use [Azure Container Instances (ACI)](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview) to run images from the remote registry.
+Following on from the previous part we will now look at how we can use [Azure Container Instances (ACI)](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview/?wt.mc_id=DT-MVP-5004771) to run images from the remote registry.
 
 I will cover two scenarios, first how we can run self hosted **GitHub runner** as as an **Azure Container Instances (ACI)** from our images using using **Azure-CLI**, and second how we can use CI/CD workflows in **GitHub** using **GitHub Actions** to deploy our ACIs.
 
