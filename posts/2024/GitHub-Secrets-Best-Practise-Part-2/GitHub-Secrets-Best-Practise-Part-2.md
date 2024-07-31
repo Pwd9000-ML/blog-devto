@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 1925352
 series: GitHub Pro Tips
+date: '2024-07-31T08:30:45Z'
 ---
 
 ## Managing Sensitive Information in a GitHub Workflow
