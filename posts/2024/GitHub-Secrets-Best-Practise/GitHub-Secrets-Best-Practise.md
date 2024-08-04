@@ -20,7 +20,7 @@ This is where **[GitHub Secrets](https://docs.github.com/en/actions/security-gui
 
 In this part we will focus more on what is available natively in **GitHub** in terms of **Secrets** management, what types of **Secrets** you can use and how to use them in your **GitHub Workflows**.
 
-In **Part 2** of this series we will go further and look at how we can store **Secrets** securely in **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)** and how to integrate your GitHub Workflows with **Azure** for retrieving **Secrets** from a **Key Vault** to use in workflows, giving you another flexible way of using secrets in your code and offers a more centralised management of your **Secrets**.
+In **[Part 2](https://dev.to/pwd9000/integrating-azure-key-vault-for-secrets-with-github-action-workflows-part-2-111h)** of this series we will go further and look at how we can store **Secrets** securely in **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)** and how to integrate your GitHub Workflows with **Azure** for retrieving **Secrets** from a **Key Vault** to use in workflows, giving you another flexible way of using secrets in your code and offers a more centralised management of your **Secrets**.
 
 ### Why Secure Handling of Sensitive Information is Crucial
 
@@ -125,7 +125,7 @@ One of the biggest benefits of using **Azure Key Vault** is that it allows you t
 
 Just to name a few more benefits of using **Secrets** in **GitHub** with **[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts?wt.mc_id=DT-MVP-5004771)** is that they can be accessed by multiple repositories and workflows, secret rotation can be managed centrally, access to secrets can be controlled using **[Azure RBAC](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview?wt.mc_id=DT-MVP-5004771)** instead of assigning Admin access over repos, secrets history can also be maintained for auditing purposes and previous versions of secrets can be restored if needed.
 
-Take a look at how you can integrate **Azure Key Vault** with your **GitHub Workflows** by using passwordless/federated integration between **GitHub** and **Azure** using OIDC (Open ID Connect), in the next part of this series: **COMING SOON! [Integrating Azure Key Vault for Secrets with GitHub Action Workflows - Part 2]() COMING SOON!**.
+Take a look at how you can integrate **Azure Key Vault** with your **GitHub Workflows** by using passwordless/federated integration between **GitHub** and **Azure** using OIDC (Open ID Connect), in the next part of this series: **[Integrating Azure Key Vault for Secrets with GitHub Action Workflows - Part 2](https://dev.to/pwd9000/integrating-azure-key-vault-for-secrets-with-github-action-workflows-part-2-111h)**.
 
 I hope you have enjoyed this post and have learned something new. :heart:
 
