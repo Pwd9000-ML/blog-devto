@@ -12,7 +12,7 @@ date: '2022-01-16T17:32:53Z'
 
 It’s that time of year again, time for [Azure Spring Clean](https://www.azurespringclean.com/).
 
-Firstly a big thanks and a shout out to the event organizers [Joe Carlyle](https://twitter.com/wedoazure) and [Thomas Thornton](https://twitter.com/tamstar1234) for featuring my contribution on this years **Azure Spring Clean 2022**.
+Firstly a big thanks and a shout out to the event organizers [Joe Carlyle](https://x.com/wedoazure) and [Thomas Thornton](https://x.com/tamstar1234) for featuring my contribution on this years **Azure Spring Clean 2022**.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Automate-VM-Password-Rotation-Part2/assets/Bit22.png)
 
@@ -134,7 +134,7 @@ I hope you have enjoyed this post and have learned something new. You can also f
 
 ### _Author_
 
-Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [Twitter](https://twitter.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X/Twitter](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
 
 {% user pwd9000 %}
 

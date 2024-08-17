@@ -137,11 +137,11 @@ You can also inspect the **pull request** to see the **difference** between the 
 
 Not only can it be used to keep your **Terraform** dependencies up to date, but it also supports other package ecosystems such as **npm**, **NuGet**, **Maven**, **Docker**, **Composer**, **Cargo**, **pip**, **Yarn** and so forth. Check out the full list of supported package ecosystems [here](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem?wt.mc_id=DT-MVP-5004771).
 
-I hope you found this post useful and if you have any questions or comments, please get in touch with me on **[Twitter](https://twitter.com/pwd9000)** or **[LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)**.
+I hope you found this post useful and if you have any questions or comments, please get in touch with me on **[X/Twitter](https://x.com/pwd9000)** or **[LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)**.
 
 ### _Author_
 
-Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [Twitter](https://twitter.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X/Twitter](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
 
 {% user pwd9000 %}
 

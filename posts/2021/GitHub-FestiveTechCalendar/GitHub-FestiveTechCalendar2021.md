@@ -13,9 +13,9 @@ date: '2021-12-04T12:33:22Z'
 
 This article is part of the [Festive Tech Calendar 2021](https://festivetechcalendar.com/). You'll find other helpful tech stories and talks published daily through the month of December by other community members and experts, so make sure to check it out every day.
 
-Firstly I'd like to say a big thank you to **[Gregor Suttie](https://twitter.com/gregor_suttie)** and **[Richard Hooper](https://twitter.com/Pixel_Robots)** who are the organizers of this wonderful community tech event and for inviting me to speak at this years event.
+Firstly I'd like to say a big thank you to **[Gregor Suttie](https://x.com/gregor_suttie)** and **[Richard Hooper](https://x.com/Pixel_Robots)** who are the organizers of this wonderful community tech event and for inviting me to speak at this years event.
 
-I'd also like to ask that, if you like my or any other authors content, to please help the events initiative to raise support and contributions towards a very worthy charity: **Girls Who Code**. Thank you to **[April Edwards](https://twitter.com/TheAprilEdwards)** for setting this up.
+I'd also like to ask that, if you like my or any other authors content, to please help the events initiative to raise support and contributions towards a very worthy charity: **Girls Who Code**. Thank you to **[April Edwards](https://x.com/TheAprilEdwards)** for setting this up.
 
 Please donate or share to this just giving page:
 
@@ -31,7 +31,7 @@ My original blog post can be found here: {% link <https://dev.to/pwd9000/automat
 
 ### _Author_
 
-Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [Twitter](https://twitter.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X/Twitter](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
 
 {% user pwd9000 %}
 
