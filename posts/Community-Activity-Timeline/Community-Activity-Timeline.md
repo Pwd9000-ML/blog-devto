@@ -32,6 +32,7 @@ MORE COMING SOON!
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **07/09/2024** | [Upgrade community developed Azure Terraform modules to support newly released AzureRM Provider v4.x.x](https://registry.terraform.io/search/modules?namespace=Pwd9000-ML) | Code Samples | Terraform | DevOps, IaC, Azure, Code |
 | **31/07/2024** | [Integrating Azure Key Vault for Secrets with GitHub Action Workflows - Part 2](https://dev.to/pwd9000/integrating-azure-key-vault-for-secrets-with-github-action-workflows-part-2-111h) | Blog/Website Post | GitHub | DevOps, DevSecOps, Git, Tutorial |
 | **18/07/2024** | [Best Practices for Using GitHub Secrets - Part 1](https://dev.to/pwd9000/best-practices-for-using-github-secrets-part-1-596f) | Blog/Website Post | GitHub | DevOps, DevSecOps, Git, Tutorial |
 | **02/07/2024** | [Season of AI - DevOps AI](https://www.meetup.com/london-microsoft-devops/events/300848498/) | Event Organiser | DevOps, Meetup | AI, DevOps, Meetup, Azure |
