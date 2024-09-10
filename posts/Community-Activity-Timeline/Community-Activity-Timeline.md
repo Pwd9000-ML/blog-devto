@@ -24,7 +24,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | Date | Activity | Type | Topic Area | Tags |
 | ---- | -------- | ---- | ---------- | ---- |
 
-| **25/09/2024** | [Best Practices for Using GitHub Secrets - WeAreDevelopers Live 2024 (Season 8)](https://www.wearedevelopers.com/en/live-events/7/data-and-security-day-september-2024) | Public Speaking | Azure, GitHub | DevSecOps, DevOps, Security, GitHub |
+| **25/09/2024** | [Best Practices for Using GitHub Secrets - WeAreDevelopers Live 2024 (Data and Security Day)](https://www.wearedevelopers.com/en/live-events/7/data-and-security-day-september-2024) | Public Speaking | Azure, GitHub | DevSecOps, DevOps, Security, GitHub |
 
 ---
 
