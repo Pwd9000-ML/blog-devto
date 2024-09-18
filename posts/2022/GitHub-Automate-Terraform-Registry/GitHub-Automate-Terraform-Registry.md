@@ -169,14 +169,9 @@ Check out the next blog post on this series: **Using Terraform on GitHub** that 
 
 I hope you have enjoyed this post and have learned something new. You can find the code samples used in this blog post on my GitHub project [Terraform module repository - Dynamic Subnets](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets). :heart:
 
-If you are interested in checking out my public terraform modules on the registry here they are:
+If you are interested in checking out my public terraform modules for azure, including some cool modules like **OpenAI-Service**, **OpenAI-Private-ChatGpt**, **Custom Role Definitions** and **Sonarqube ACI**, you can find them on the public terraform registry:  
 
-- [AZURE - Dynamic Subnets.](https://registry.terraform.io/modules/Pwd9000-ML/dynamic-subnets/azurerm/latest)
-- [AZURE - Secure Backend.](https://registry.terraform.io/modules/Pwd9000-ML/secure-backend/azurerm/latest)
-- [AZURE - Custom Role Definitions.](https://registry.terraform.io/modules/Pwd9000-ML/custom-role-definitions/azurerm/latest)
-- [AZURE - Sonarqube ACI.](https://registry.terraform.io/modules/Pwd9000-ML/sonarqube-aci/azurerm/latest)
-
-I will be adding a few more cool modules on the public registry in due course.
+- [Pwd9000-ML - Public Terraform Registry Modules](https://registry.terraform.io/search/modules?namespace=Pwd9000-ML)
 
 ### _Author_
 
