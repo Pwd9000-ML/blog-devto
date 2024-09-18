@@ -84,11 +84,11 @@ Here is what a default configuration config would looks like:
 
 If your repository does not host supported CodeQL languages, or even if it does, but also contain other languages or frameworks, you can also add third-party code scanning tools in addition to your repository to further enhance your code's security, such as:
 
-- **_[SonarCloud:](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning)_** A cloud-based code analysis service that automatically detects bugs, vulnerabilities, and code smells in your code.
-- **_[TfSec:](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning)_** A static analysis security scanner for your Terraform code.
-- **_[trivy:](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning)_** Scan Docker container images for vulnerabilities in OS packages and language dependencies.
+- **_[SonarCloud:](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=SonarCloud)_** A cloud-based code analysis service that automatically detects bugs, vulnerabilities, and code smells in your code.
+- **_[TfSec:](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=TfSec)_** A static analysis security scanner for your Terraform code.
+- **_[trivy:](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=Trivy)_** Scan Docker container images for vulnerabilities in OS packages and language dependencies.
 
-At the time of this writing there are over 70 third-party [code scanning tools/workflows](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning) available for use, and the list is growing.
+At the time of this writing, there are over 76 third-party [code scanning tools/workflows](https://github.com/Pwd9000-ML/terraform-azurerm-nsg-administration/actions/new?category=security&query=code+scanning) available for use, and the list is growing.
 
 ---
 
