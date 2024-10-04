@@ -24,7 +24,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
 | **Date TBC** | [Microsoft Reactor Series: Empowering Innovators with GenAI Series - Transforming DevOps with AI: Insights from Azure AI Studio](https://reactor.microsoft.com/en-us/reactor/) | Public Speaking | Azure, GitHub | DevOps, GitHub, Azure OpenAI |
-| **Date TBC** | [Scottish Summit 2024 - Transforming DevOps with AI: Insights from Azure AI Studio](https://www.scottishsummit.com/2024/) | Public Speaking | Azure, GitHub | DevOps, GitHub, Azure OpenAI |
+| **18/10/2024** | [Scottish Summit 2024 - Transforming DevOps with AI: Insights from Azure AI Studio](https://www.scottishsummit.com/2024/) | Public Speaking | Azure, GitHub | DevOps, GitHub, Azure OpenAI |
 
 ---
 
