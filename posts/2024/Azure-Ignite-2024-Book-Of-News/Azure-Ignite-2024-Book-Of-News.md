@@ -6,6 +6,7 @@ tags: 'ai, msignite, azure, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/Azure-Ignite-2024-Book-Of-News/assets/main.png'
 canonical_url: null
 id: 2113794
+date: '2024-11-20T17:12:46Z'
 ---
 
 ## Overview
