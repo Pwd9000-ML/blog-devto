@@ -62,7 +62,7 @@ Microsoft introduced Azure ND GB200 V6 VMs, powered by NVIDIA Blackwell, to enha
 ---
 
 ### 8. **[Azure Arc and Azure Local](https://techcommunity.microsoft.com/blog/azurearcblog/introducing-azure-local-cloud-infrastructure-for-distributed-locations-enabled-b/4296017/?wt.mc_id=DT-MVP-5004771)**:
-Microsoft expanded its hybrid cloud capabilities with Azure Arc, allowing for unified management across on-premises, multi-cloud, and edge environments. Azure Local provides localised infrastructure support, catering to specific regional requirements.
+Microsoft expanded its hybrid cloud capabilities with Azure Arc, allowing for unified management across on-premises, multi-cloud, and edge environments. Azure Local provides localised infrastructure support, catering to specific regional requirements.  
 
 ---
 
