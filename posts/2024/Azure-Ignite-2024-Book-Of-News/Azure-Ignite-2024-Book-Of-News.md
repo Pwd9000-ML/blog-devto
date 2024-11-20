@@ -58,7 +58,7 @@ Power Platform received several enhancements, including AI-powered automation in
 
 ### 6. **[Azure AI Search Integration with Github](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/github-models-retrieval-augmented-generation-rag/4302518/?wt.mc_id=DT-MVP-5004771)**
 
-Developers can now leverage retrieval augmented generation (RAG) applications directly from GitHub, simplifying the integration of AI capabilities into their projects. This integration streamlines the development process, enabling developers to access advanced AI tools and services directly within GitHub. You can now streamline the creation of high-quality, data-driven applications with GitHub integration. It leverages Azure AI Search's advanced features such as hybrid retrieval, semantic ranking, vectorisation, and more, for optimised performance.
+Developers can now leverage retrieval augmented generation (RAG) applications directly from GitHub, simplifying the integration of AI capabilities into their projects. This integration streamlines the development process, enabling developers to access advanced AI tools and services directly within GitHub for creation of high-quality, data-driven applications. It leverages Azure AI Search's advanced features such as hybrid retrieval, semantic ranking, vectorisation, and more, for optimised performance.
 
 ---
 
