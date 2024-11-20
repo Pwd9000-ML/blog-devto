@@ -10,7 +10,7 @@ id: 2113794
 
 ## Overview
 
-With Microsoft **Ignite 2024** underway, it's sometimes hard to capture all the great topics and focus areas (as there are so many!) in this fully packed tech event, so I've decided to summarise my favourite to 10 updates and announcements tailored specifically on topics for developers, DevOps and Azure communities.
+With Microsoft **Ignite 2024** underway, it's sometimes hard to capture all the great topics and focus areas (as there are so many!) in this fully packed tech event, so I've decided to summarise my favourite top 10 updates and announcements tailored specifically on topics for developers, DevOps and Azure communities.
 
 We will look at a few updates and announcements made at this years **[Ignite 2024](https://ignite.microsoft.com/?wt.mc_id=DT-MVP-5004771)** containing a collection of the latest news and updates from the **[Ignite 2024 Book of News](https://news.microsoft.com/ignite-2024-book-of-news/?wt.mc_id=DT-MVP-5004771)**.
 
