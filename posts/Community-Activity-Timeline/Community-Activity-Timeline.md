@@ -23,7 +23,6 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **20/11/2024** | [Ignite 2024: Book Of News DevOps Highlights](https://developer.microsoft.com/en-us/reactor/events/24273/?wt.mc_id=DT-MVP-5004771) | Blog/Website Post | GitHub, Azure, AzureAI | DevOps, Azure, GitHub, AzureAI |
 | **05/12/2024** | [Vision to Visualisation: Using GitHub Copilot for Azure, Python, and Diagrams](https://developer.microsoft.com/en-us/reactor/events/24273/?wt.mc_id=DT-MVP-5004771) | Public Speaking | Azure, GitHub | DevOps, GitHub, GitHub Copilot, AI |
 | **01/12/2024** | [Festive Tech Calendar 2024 - Transforming DevOps with AI: Insights from Azure AI Studio](https://www.festivetechcalendar.com/Home/Speakers) | Public Speaking | Azure, GitHub | DevOps, GitHub, AzureOpenAI, AzureAI Studio |
 
@@ -33,6 +32,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **20/11/2024** | [Ignite 2024: Book Of News DevOps Highlights](https://dev.to/pwd9000/ignite-2024-book-of-news-devops-edition-5hlc) | Blog/Website Post | GitHub, Azure, AzureAI | DevOps, Azure, GitHub, AzureAI |
 | **18/10/2024** | [Scottish Summit 2024 - Transforming DevOps with AI: Insights from Azure AI Studio](https://www.scottishsummit.com/2024/) | Public Speaking | Azure, GitHub | DevOps, GitHub, Azure OpenAI |
 | **25/09/2024** | [WeAreDevelopers Live 2024: Data and Security Day- Best Practices for Using GitHub Secrets](https://www.wearedevelopers.com/en/live-events/7/data-and-security-day-september-2024) | Public Speaking: [YouTube Recording](https://www.youtube.com/live/33Vs6osVNIs?feature=shared&t=3503) | Azure, GitHub | DevSecOps, DevOps, Security, GitHub |
 | **07/09/2024** | [Upgrade community developed Azure Terraform modules to support newly released AzureRM Provider v4.x.x](https://registry.terraform.io/search/modules?namespace=Pwd9000-ML) | Code Samples | Terraform | DevOps, IaC, Azure, Code |
