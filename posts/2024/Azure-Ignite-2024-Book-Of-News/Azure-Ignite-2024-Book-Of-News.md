@@ -3,7 +3,7 @@ title: Ignite 2024 - Book Of News - DevOps Edition
 published: false
 description: Ignite 2024 - Book Of News - DevOps Edition
 tags: 'ai, msignite, azure, devops'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/Azure-ignite-2024-Book-Of-News/assets/main1.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/Azure-Ignite-2024-Book-Of-News/assets/main.png'
 canonical_url: null
 id: 2113794
 ---
