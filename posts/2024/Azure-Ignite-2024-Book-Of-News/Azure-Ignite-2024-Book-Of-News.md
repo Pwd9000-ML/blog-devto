@@ -24,6 +24,8 @@ Why not take the **[Microsoft Learn Challenge: Ignite Edition](https://learn.mic
 
 ---
 
+Onto the announcement highlights... Here is my top 10 list of updates and announcements from Microsoft Ignite 2024:
+
 1. **[Azure AI Foundry](https://techcommunity.microsoft.com/blog/aiplatformblog/ignite-2024-announcing-the-azure-ai-foundry-sdk/4295862/?wt.mc_id=DT-MVP-5004771)**: Microsoft introduced Azure AI Foundry, a unified platform consolidating AI development tools. This platform offers a centralised portal and SDK, facilitating the creation, management, and auditing of AI projects. It integrates seamlessly with GitHub and Visual Studio, streamlining the AI application lifecycle.
 2. **[Azure AI Foundry Unified Tooling](https://techcommunity.microsoft.com/blog/aiplatformblog/ignite-2024-announcing-the-azure-ai-foundry-sdk/4295862/?wt.mc_id=DT-MVP-5004771)**: Microsoft introduced Azure AI Foundry Unified Tooling, a platform that supports the entire AI project lifecycle. This tooling integrates with GitHub, enabling continuous integration and continuous deployment (CI/CD) workflows. Developers can leverage this platform to enhance collaboration, streamline development processes, and accelerate AI project delivery.
 3. **[Azure AI Agent Service](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/introducing-azure-ai-agent-service/4298357/?wt.mc_id=DT-MVP-5004771)**: simplifies the creation, deployment, and monitoring of autonomous AI agents for automating complex business processes. It offers robust integrations, secure data grounding, flexible model support, and enterprise-ready features to streamline workflows and improve scalability.
