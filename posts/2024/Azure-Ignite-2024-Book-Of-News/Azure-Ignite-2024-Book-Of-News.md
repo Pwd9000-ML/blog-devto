@@ -16,15 +16,13 @@ With Microsoft **Ignite 2024** underway. It is sometimes had to capture all the 
 
 ## Microsoft Learn Challenges
 
-Interested to get certified on **[Microsoft Fabric](https://learn.microsoft.com/en-us/training/paths/get-started-fabric/?wt.mc_id=DT-MVP-5004771)** for free?  
+Interested to get certified on **[Microsoft Fabric](https://learn.microsoft.com/en-us/training/paths/get-started-fabric/?wt.mc_id=DT-MVP-5004771)** for free?
 
 Why not take the **[Microsoft Learn Challenge: Ignite Edition](https://learn.microsoft.com/en-us/training/topics/event-challenges/?wt.mc_id=DT-MVP-5004771)** and earn a badge by completing one of these unique, **Fabric-focused collections**. Be quick, the challenge ends on 10 January 2025.
 
 ---
 
-### 1. 
-
-
+### 1.
 
 ## Conclusion
 
