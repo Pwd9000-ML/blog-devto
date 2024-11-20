@@ -42,7 +42,7 @@ Simplifies the creation, deployment, and monitoring of autonomous AI agents for 
 ---
 
 1. **[Azure Managed Redis](https://techcommunity.microsoft.com/blog/AppsonAzureBlog/introducing-azure-managed-redis-cost-effective-caching-for-your-ai-apps/4299104/?wt.mc_id=DT-MVP-5004771)**  
-Microsoft unveiled Azure Managed Redis, an in-memory caching solution designed to enhance AI application performance. This cost-effective caching service offers intelligent scaling and efficient data retrieval and storage, ensuring optimal performance for AI workloads. Check out the Ignite session here: [BRK189](https://ignite.microsoft.com/en-US/sessions/BRK189/?wt.mc_id=DT-MVP-5004771).
+Microsoft unveiled Azure Managed Redis, an in-memory caching solution designed to enhance AI application performance. This cost-effective caching service offers intelligent scaling and efficient data retrieval and storage, ensuring optimal performance for AI workloads. Check out the Ignite session here: [BRK189](https://ignite.microsoft.com/en-US/sessions/BRK189/?wt.mc_id=DT-MVP-5004771).  
 
 ---
 
