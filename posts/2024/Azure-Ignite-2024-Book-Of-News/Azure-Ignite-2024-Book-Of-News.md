@@ -10,7 +10,7 @@ id: 2113794
 
 ## Overview
 
-With Microsoft **Ignite 2024** underway. It's sometimes had to capture all the great topics in this fully packed event, so I've decided to summarise my fav updates and announcements tailored specifically on topics for the Developer, DevOps and AzureAI communities.
+With Microsoft **Ignite 2024** underway. It's sometimes had to capture all the great topics in this fully packed event, so I've decided to summarise my favourite to 10 updates and announcements tailored specifically on topics for developers, DevOps and Azure communities.
 
 We will look at a few updates and announcements made at this years **[Ignite 2024](https://ignite.microsoft.com/?wt.mc_id=DT-MVP-5004771)** containing a collection of the latest news and updates from the **[Ignite 2024 Book of News](https://news.microsoft.com/ignite-2024-book-of-news/?wt.mc_id=DT-MVP-5004771)**.
 
@@ -23,10 +23,6 @@ Interested to get certified on **[Microsoft Fabric](https://learn.microsoft.com/
 Why not take the **[Microsoft Learn Challenge: Ignite Edition](https://learn.microsoft.com/en-us/training/topics/event-challenges/?wt.mc_id=DT-MVP-5004771)** and earn a badge by completing one of these unique, **Fabric-focused collections**. Be quick, the challenge ends on 10 January 2025.
 
 ---
-
-### 1. DevOps
-
--Azure Managed Redis: A cost-effective solution for in-memory caching designed to boost AI app performance and scale intelligently​(Ignite-Book-Of-News-2024). -Power Platform Enhancements: Features like AI-powered automation in Power Automate and Copilot for low-code/no-code environments​(Ignite-Book-Of-News-2024). GitHub:
 
 1. **[Azure AI Foundry](https://techcommunity.microsoft.com/blog/aiplatformblog/ignite-2024-announcing-the-azure-ai-foundry-sdk/4295862/?wt.mc_id=DT-MVP-5004771)**: Microsoft introduced Azure AI Foundry, a unified platform consolidating AI development tools. This platform offers a centralised portal and SDK, facilitating the creation, management, and auditing of AI projects. It integrates seamlessly with GitHub and Visual Studio, streamlining the AI application lifecycle.
 2. **[Azure AI Foundry Unified Tooling](https://techcommunity.microsoft.com/blog/aiplatformblog/ignite-2024-announcing-the-azure-ai-foundry-sdk/4295862/?wt.mc_id=DT-MVP-5004771)**: Microsoft introduced Azure AI Foundry Unified Tooling, a platform that supports the entire AI project lifecycle. This tooling integrates with GitHub, enabling continuous integration and continuous deployment (CI/CD) workflows. Developers can leverage this platform to enhance collaboration, streamline development processes, and accelerate AI project delivery.
