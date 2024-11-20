@@ -16,7 +16,7 @@ For the full book of news on all new announcements you can see this link: **[Ign
 
 ---
 
-## Microsoft Learn Challenges
+## Firstly -> Microsoft Learn Challenges
 
 Interested to get certified on **[Microsoft Fabric](https://learn.microsoft.com/en-us/training/paths/get-started-fabric/?wt.mc_id=DT-MVP-5004771)** for free?
 
