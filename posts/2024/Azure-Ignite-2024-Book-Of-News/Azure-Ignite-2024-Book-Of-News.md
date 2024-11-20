@@ -63,7 +63,7 @@ Developers can now leverage retrieval augmented generation (RAG) applications di
 
 ---
 
-### 7. **[Azure ND GB200 V6 VMs](https://techcommunity.microsoft.com/blog/azurehighperformancecomputingblog/microsoft-adopts-nvidia-blackwell-to-power-the-next-frontier-of-ai-supercomputin/4303541/?wt.mc_id=DT-MVP-5004771)**  
+### 7. **[Azure ND GB200 V6 VMs](https://techcommunity.microsoft.com/blog/azurehighperformancecomputingblog/microsoft-adopts-nvidia-blackwell-to-power-the-next-frontier-of-ai-supercomputin/4303541/?wt.mc_id=DT-MVP-5004771)**
 
 Microsoft introduced Azure ND GB200 V6 VMs, powered by NVIDIA Blackwell, to enhance AI model training and inference. These virtual machines offer advanced computational capabilities, enabling developers to accelerate AI project development and deployment as well as address ethical AI challenges.
 
