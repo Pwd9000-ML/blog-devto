@@ -80,7 +80,7 @@ Microsoft announced partnerships aimed at simplifying data preparation, model tr
 
 **Microsoft Ignite** 2024 highlights the company's commitment to innovation across AI, cloud computing, and developer tools. Whether you're a DevOps engineer, GitHub user, or Azure architect, these updates provide the tools and integrations needed to streamline workflows, enhance performance, and deliver scalable solutions.
 
-Microsoft and Azure keeps making significant strides in supporting developer and DevOps communities. By simplifying cloud-native development, enhancing AI integration and providing flexible, efficient tools for app development and deployment, Microsoft continues to empower developers to innovate and build the future of technology.
+Microsoft and Azure keeps making significant strides in supporting developer and DevOps communities. By simplifying cloud-native development, enhancing AI integration and providing flexible, efficient tools for app development and deployment, Microsoft continues to empower developers to innovate and build the future of technology.  
 
 ### _Author_
 
