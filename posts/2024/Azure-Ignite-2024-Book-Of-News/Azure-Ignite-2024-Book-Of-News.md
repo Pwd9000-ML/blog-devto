@@ -40,7 +40,7 @@ Along with Azure AI Foundry also comes Unified Tooling and an SDK for the platfo
 
 ### 3. **[Azure AI Agent Service](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/introducing-azure-ai-agent-service/4298357/?wt.mc_id=DT-MVP-5004771)**
 
-Simplifies the creation, deployment, and monitoring of autonomous AI agents for automating complex business processes. It offers robust integrations, secure data grounding, flexible model support, and enterprise-ready features to streamline workflows and improve scalability.
+This service aims to simplify the creation, deployment, and monitoring of autonomous AI agents for automating complex business processes. It offers robust integrations, secure data grounding, flexible model support, and enterprise-ready features to streamline workflows and improve scalability.
 
 ---
 
