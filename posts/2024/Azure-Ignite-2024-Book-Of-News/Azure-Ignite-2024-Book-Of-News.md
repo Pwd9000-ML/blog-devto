@@ -28,13 +28,13 @@ Onto the announcement highlights... Here is my top 10 list of updates and announ
 
 ### 1. **[Azure AI Foundry](https://techcommunity.microsoft.com/blog/aiplatformblog/ignite-2024-announcing-the-azure-ai-foundry-sdk/4295862/?wt.mc_id=DT-MVP-5004771)**
 
-Microsoft introduced Azure AI Foundry, a unified platform consolidating AI development tools. This platform offers a centralised portal and SDK, facilitating the creation, management, and auditing of AI projects. It integrates seamlessly with GitHub and Visual Studio, streamlining the AI application lifecycle.
+Microsoft introduced Azure AI Foundry, a unified platform consolidating AI development. This platform offers a centralised portal, facilitating the creation, management, and auditing of AI projects.  
 
 ---
 
-### 2. **[Azure AI Foundry Unified Tooling](https://techcommunity.microsoft.com/blog/aiplatformblog/ignite-2024-announcing-the-azure-ai-foundry-sdk/4295862/?wt.mc_id=DT-MVP-5004771)**
+### 2. **[Azure AI Foundry SDK](https://techcommunity.microsoft.com/blog/aiplatformblog/ignite-2024-announcing-the-azure-ai-foundry-sdk/4295862/?wt.mc_id=DT-MVP-5004771)**
 
-Microsoft introduced Azure AI Foundry Unified Tooling, a platform that supports the entire AI project lifecycle. This tooling integrates with GitHub, enabling continuous integration and continuous deployment (CI/CD) workflows. Developers can leverage this platform to enhance collaboration, streamline development processes, and accelerate AI project delivery.
+Along with Azure AI Foundry also comes Unified Tooling and an SDK for the platform to support the entire AI project lifecycle. This tooling integrates with GitHub, enabling continuous integration and continuous deployment (CI/CD) workflows. Developers can leverage this platform to enhance collaboration, streamline development processes, and accelerate AI project delivery.
 
 ---
 
