@@ -29,13 +29,13 @@ Onto the announcement highlights... Here is my top 10 list of updates and announ
 
 ### 1. **[Azure AI Foundry](https://techcommunity.microsoft.com/blog/aiplatformblog/ignite-2024-announcing-the-azure-ai-foundry-sdk/4295862/?wt.mc_id=DT-MVP-5004771)**
 
-Microsoft introduced Azure AI Foundry, a unified platform consolidating AI development. This platform offers a centralised portal, facilitating the creation, management, and auditing of AI projects. Fun fact for anyone who has worked in Azure AI Studio/Hub, this is the next evolution of that platform and was thus renamed to Azure AI Foundry.
+Microsoft introduced Azure AI Foundry, a unified platform consolidating AI development. This platform offers a centralised portal, facilitating the creation, management, and auditing of AI projects. **Azure AI Foundry** is basically a rebrand of Azure AI Studio/Hub with some nifty new features a newer slicker looking interface, this release and announcement is the next evolution of the AI Studio platform and experience.
 
 ---
 
 ### 2. **[Azure AI Foundry SDK](https://techcommunity.microsoft.com/blog/aiplatformblog/ignite-2024-announcing-the-azure-ai-foundry-sdk/4295862/?wt.mc_id=DT-MVP-5004771)**
 
-What really makes Azure AI Foundry stand out that is new (other than Azure AI Studio's rebrand to Foundry) is the SDK. So along with announcements of Azure AI Foundry, including some new features, it also now comes with Unified Tooling and an SDK for the platform to support the entire AI project lifecycle. This tooling integrates with GitHub, enabling continuous integration and continuous deployment (CI/CD) workflows. Developers can leverage this platform to enhance collaboration, streamline development processes, and accelerate AI project delivery.
+What really makes Azure AI Foundry stand out is the new SDK. So along with announcements of Azure AI Foundry, including some new features and a sleeker look to Azure AI Studio, it also comes with Unified Tooling and an SDK for the platform to support the entire AI project lifecycle. This tooling integrates with GitHub, enabling continuous integration and continuous deployment (CI/CD) workflows. Developers can leverage this platform to enhance collaboration, streamline development processes, and accelerate AI project delivery.
 
 ---
 
