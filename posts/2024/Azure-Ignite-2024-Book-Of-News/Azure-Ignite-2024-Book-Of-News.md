@@ -29,7 +29,7 @@ Onto the announcement highlights... Here is my top 10 list of updates and announ
 
 ### 1. **[Azure AI Foundry](https://techcommunity.microsoft.com/blog/aiplatformblog/ignite-2024-announcing-the-azure-ai-foundry-sdk/4295862/?wt.mc_id=DT-MVP-5004771)**
 
-Microsoft introduced Azure AI Foundry, a unified platform consolidating AI development. This platform offers a centralised portal, facilitating the creation, management, and auditing of AI projects. **Azure AI Foundry** is basically a rebrand of Azure AI Studio/Hub with some nifty new features a newer slicker looking interface, this release and announcement is the next evolution of the AI Studio platform and experience.
+Microsoft introduced Azure AI Foundry, a unified platform consolidating AI development. This platform offers a centralised portal, facilitating the creation, management, and auditing of AI projects. **Azure AI Foundry** is basically a rebrand of Azure AI Studio/Hub with some nifty new features a newer sleeker looking interface, this release and announcement is the next evolution of the AI Studio platform and experience.
 
 ---
 
