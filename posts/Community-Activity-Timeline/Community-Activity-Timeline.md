@@ -24,7 +24,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
 | **05/12/2024** | [Vision to Visualisation: Using GitHub Copilot for Azure, Python, and Diagrams](https://developer.microsoft.com/en-us/reactor/events/24273/?wt.mc_id=DT-MVP-5004771) | Public Speaking | Azure, GitHub | DevOps, GitHub, GitHub Copilot, AI |
-| **01/12/2024** | [Festive Tech Calendar 2024 - Transforming DevOps with AI: Insights from Azure AI Studio](https://www.festivetechcalendar.com/Home/Speakers) | Public Speaking | Azure, GitHub | DevOps, GitHub, AzureOpenAI, AzureAI Studio |
+| **09/12/2024** | [Festive Tech Calendar 2024 - Transforming DevOps with AI: Insights from Azure AI Studio](https://www.festivetechcalendar.com/Home/Speakers) | Public Speaking | Azure, GitHub | DevOps, GitHub, AzureOpenAI, AzureAI Studio |
 
 ---
 
