@@ -5,18 +5,17 @@ description: How GitHub Copilot is transforming DevOps with AI
 tags: 'githubcopilot, festivetechcalendar, github, azure'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Festive-Tech-Calendar-2024/assets/main.jpg'
 id: 2143796
-
 ---
 
 ## Festive Tech Calendar 2024
 
-This article is part of the [Festive Tech Calendar 2024](https://festivetechcalendar.com/). You'll find other helpful tech stories and talks published daily through the month of December by other community members and experts, so make sure to check it out every day.  
+This article is part of the [Festive Tech Calendar 2024](https://festivetechcalendar.com/). You'll find other helpful tech stories and talks published daily through the month of December by other community members and experts, so make sure to check it out every day.
 
-Firstly I'd like to say a big thank you to **[Gregor Suttie](https://x.com/gregor_suttie)** and the rest of the team for the session and hosting this excellent tech event each year!  
+Firstly I'd like to say a big thank you to **[Gregor Suttie](https://x.com/gregor_suttie)** and the rest of the team for the session and hosting this excellent tech event each year!
 
-I'd also like to ask that, if you like my or any other authors content, to please help the events initiative to raise support and contributions towards a very worthy charity: **The Beatson Cancer Charity**.  
+I'd also like to ask that, if you like my or any other authors content, to please help the events initiative to raise support and contributions towards a very worthy charity: **The Beatson Cancer Charity**.
 
-Please donate or share to this just giving page:  
+Please donate or share to this just giving page:
 
 **[The Beatson Cancer Charity](https://www.justgiving.com/page/festive-tech-calendar-2024)**
 
