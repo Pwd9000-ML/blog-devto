@@ -22,6 +22,8 @@ Please donate or share to this just giving page:
 
 ## Transforming DevOps with AI
 
+{% youtube 2sUjfkSPOjg %}
+
 As part of the Festive Tech Calendar 2024, I will share a session on how GitHub Copilot is transforming DevOps with AI, we will explore the transformative capabilities of using GitHub Copilot and the GitHub Copilot extension for Azure in VSCode for cloud deployments and architectural analysis. We will learn how to harness the power of AI to seamlessly deploy technical system architectures into Microsoft Azure, simplifying complex processes and enhancing productivity.
 
 We will demonstrate how GitHub Copilot can assist in writing deployment code, enabling efficient resource provisioning in Microsoft Azure. Additionally, we will delve into the creation of a Python script using Copilot to also analyse existing Azure deployments. This analysis will include converting existing deployment resources into JSON format and use this data with AI to generate detailed architectural diagrams and documentation using Mermaid diagrams to visualise and diagram the architecture making it easier to see how everything fits together visually.
@@ -29,8 +31,6 @@ We will demonstrate how GitHub Copilot can assist in writing deployment code, en
 By the end of this session, you will gain a deeper understanding of how GitHub Copilot can be leveraged to not only create and deploy resources and technical system architectures but also to analyse, document and diagram existing ones. Harnessing the power of GitHub Copilot does not only have to be for developers and the demo will show you how GitHub Copilot can benefit and empower cloud architects, security analysts, DevOps engineers and developers alike to better understand and document their infrastructures hosted in Microsoft Azure, ultimately driving greater efficiency, security, clarity and understanding of their cloud hosted landscape in Microsoft Azure.
 
 Enjoy the session and happy holidays! :christmas_tree:
-
-{% youtube 2sUjfkSPOjg %}
 
 ### _Author_
 
