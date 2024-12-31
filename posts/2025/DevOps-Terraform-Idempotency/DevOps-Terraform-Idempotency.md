@@ -21,7 +21,7 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
 
 ### 1. Role Assignment (RBAC) Already Exists
 
-**Scenario:** You try to create an RBAC/IAM permission in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run).***Error:***  
+**Scenario:** You try to create an RBAC/IAM permission in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run).
 
   ```hcl
   Error: A role assignment with the specified scope and role definition already exists
@@ -29,8 +29,7 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
 
 ### 2. Resource Already Exists
 
-**Scenario:** You try to create a resource in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run).  
-***Error:***  
+**Scenario:** You try to create a resource in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run). 
 
   ```hcl
   Error: A resource with the ID already exists
@@ -38,8 +37,7 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
 
 ### 3. Duplicate Resource Declaration
 
-**Scenario:** You try to create a resource in Terraform that already exists in the state file.  
-***Error:***  
+**Scenario:** You try to create a resource in Terraform that already exists in the state file.
 
   ```hcl
   Error: Resource already managed by Terraform
@@ -47,8 +45,7 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
 
 ### 4. Resource Conflict
 
-**Scenario:** You attempt to create or modify a resource, but the desired configuration conflicts with the existing resource settings that already exist in the provider.  
-***Error:***  
+**Scenario:** You attempt to create or modify a resource, but the desired configuration conflicts with the existing resource settings that already exist in the provider.
 
   ```hcl
   Error: Conflict with existing settings
@@ -56,8 +53,7 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
 
 ### 5. Immutable Resources or Properties
 
-**Scenario:** "Immutable Resource Properties" or "Breaking Changes" in the context of Azure Resource Manager (ARM). These terms describe properties of Azure resources that cannot be modified directly and require recreating the resource to apply the change.  
-***Error:***  
+**Scenario:** "Immutable Resource Properties" or "Breaking Changes" in the context of Azure Resource Manager (ARM). These terms describe properties of Azure resources that cannot be modified directly and require recreating the resource to apply the change.
 
   ```hcl
   Error: Resource change requires replacement
@@ -65,8 +61,7 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
 
 ### 6. Provider level Errors
 
-**Scenario:** Errors that occur at the provider level in Azure, such as authentication issues, network problems, rate limiting, resource locks, azure policy restrictions, etc.  
-***Errors:***  
+**Scenario:** Errors that occur at the provider level in Azure, such as authentication issues, network problems, rate limiting, resource locks, azure policy restrictions, etc.
 
   ```hcl
   Error: AuthorizationFailed
