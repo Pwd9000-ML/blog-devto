@@ -23,7 +23,15 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **09/12/2024** | [Festive Tech Calendar 2024 - Transforming DevOps with AI](https://www.festivetechcalendar.com/Home/Speakers) | Public Speaking | Azure, GitHub | DevOps, GitHub, AzureOpenAI, AzureAI Studio |
+| **TBC/01/2025** | [A Cool surprise](https://tldr.net/) | Public Speaking | Azure, GitHub | DevOps, GitHub, AzureOpenAI, AzureAI Studio |
+
+---
+
+# 💫 2025 💫
+
+| Date | Activity | Type | Topic Area | Tags |
+| --- | --- | --- | --- | --- |
+| **TBC/01/2025** | [Terraform - Mastering Idempotency Violations: Handling Resource Conflicts and Failures](https://tldr.net/) | Blog/Website Post | DevOps | DevOps, Terraform, IaC, Tutorial |
 
 ---
 
