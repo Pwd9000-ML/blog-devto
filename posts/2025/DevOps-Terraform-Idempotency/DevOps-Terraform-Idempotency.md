@@ -19,7 +19,7 @@ series: Terraform Pro Tips
 
 When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry Error**, **Resource Conflict Errors**, or **Already Exists Errors**. Understanding what idempotency means in **practical scenarios** and knowing how to resolve these failures is crucial for maintaining a **reliable Infrastructure as Code**.  
 
-Let's look at a few common examples of **idempotency violations** when working with **Terraform** and **Microsoft Azure** and how to best handle them:  
+Let's look at a few common examples of **idempotency violations** when working with **Terraform** and **Microsoft Azure** and how to best handle them.  
 
 ### 1. Role Assignment (RBAC) Already Exists
 
