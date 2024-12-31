@@ -17,11 +17,26 @@ series: Terraform Pro Tips
 
 ## Common Idempotency Violations using Terraform
 
-When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry Error**, **Resource Conflict Errors**, or **Already Exists Errors**. Here are a few common examples of **idempotency violations** when working with **Terraform** and **Microsoft Azure**:  
+When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry Error**, **Resource Conflict Errors**, or **Already Exists Errors**. Understanding what idempotency means in **practical scenarios** and knowing how to resolve these failures is crucial for maintaining a **reliable Infrastructure as Code**.  
+
+Let's look at a few common examples of **idempotency violations** when working with **Terraform** and **Microsoft Azure** and how to best handle them:  
 
 ### 1. Role Assignment (RBAC) Already Exists
 
 **Scenario:** You try to create an RBAC/IAM permission in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run).
+
+**Example:**
+
+  ```hcl
+  ### Write an example on how to re-create the below error
+  resource "azurerm_role_assignment" "example" {
+    principal_id = data.azurerm_client_config.current.object_id
+    role_definition_name = "Contributor"
+    scope = azurerm_resource_group.example.id
+  }
+  ```
+
+**Error Message:**
 
   ```hcl
   Error: A role assignment with the specified scope and role definition already exists.
@@ -30,6 +45,17 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
       2: resource "azurerm_role_assignment" "example" {
   
   The role assignment already exists for the specified scope, principal, and role definition.
+  ```
+
+#### **Solution:** Add Conditions
+xcsdfdsf
+  ```hcl
+  resource "azurerm_role_assignment" "example" {
+    count = var.create_role_assignment ? 1 : 0
+    principal_id = data.azurerm_client_config.current.object_id
+    role_definition_name = "Contributor"
+    scope = azurerm_resource_group.example.id
+  }
   ```
 
 ### 2. Resource Already Exists
@@ -44,7 +70,6 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
   
   The specified resource already exists in Azure. It must be imported to Terraform or deleted manually.
   ```
-
 ### 3. Duplicate Resource Declaration
 
 **Scenario:** You try to create a resource in Terraform that already exists in the state file.
@@ -103,11 +128,25 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
   Allowed values: ['East US'].
   ```
 
-Understanding what idempotency means in **practical scenarios** and knowing how to resolve these failures is crucial for maintaining a **reliable Infrastructure as Code**.
+---
 
-Next up we will take a deeper look at what things to look out for that can cause **idempotency violations** and **resource conflicts** and how to best handle them  in an **Azure cloud environment** using **Terraform** and have much more **reliable** and **adaptable** infrastructure as code configurations.  
+## Best Practices to Avoid Problems with Idempotency
+
+1. **Import Existing Resources:** Add unmanaged resources to Terraform’s state before applying changes.
+2. **Use Data Sources:** Query existing resources to make decisions in your code.
+3. **Add Conditions:** Use `count` or `for_each` to create resources only when needed.
+4. **Ignore Unimportant Changes:** Use lifecycle rules to avoid unnecessary updates.
+5. **Limit Provisioners:** Only use provisioners for tasks Terraform can’t handle natively.
+6. **Plan Before Apply:** Always run `terraform plan` before applying your configuration. This step helps you preview the changes Terraform will make, ensuring they align with your expectations. For beginners, planning is especially critical as it can catch common issues like misconfigurations or unintended resource changes before they happen. It’s a simple but powerful way to avoid surprises and maintain control over your infrastructure. Always run `terraform plan` to preview changes and catch potential issues early.
+7. **Sync with Cloud State:** Use `terraform refresh` to update Terraform’s state before applying changes.
+
+---
 
 ## Conclusion
+
+Idempotency makes Terraform a reliable tool for managing cloud infrastructure. By understanding common problems and using the strategies in this blog, you can avoid errors and keep your infrastructure predictable. Whether you’re working on Azure RBAC or other setups, these tips will help you write better Terraform configurations. With careful planning and good practices, you can ensure that Terraform runs smoothly and efficiently every time.
+
+**Have you faced idempotency problems in Terraform? Share your solutions in the comments!**
 
 ### _Author_
 
