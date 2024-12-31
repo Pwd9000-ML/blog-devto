@@ -11,7 +11,7 @@ series: Terraform Pro Tips
 
 ## Idempotency: The Backbone of Terraform
 
-**Idempotency** is one of **Terraform's** most powerful features, ensuring that you can apply your **infrastructure code** multiple times and always get the same result. This consistency is essential for managing **Azure cloud resources** like **virtual machines**, **storage accounts**, **databases**, and **permissions** efficiently.  
+**Idempotency** is one of **Terraform's** most powerful features, ensuring that you can apply your **infrastructure code** multiple times and always get the same result. This consistency is essential for managing **Azure cloud resources** like **virtual machines**, **storage accounts**, **databases**, in addition **permissions and RBAC** and much more efficiently.  
 
 ---
 
