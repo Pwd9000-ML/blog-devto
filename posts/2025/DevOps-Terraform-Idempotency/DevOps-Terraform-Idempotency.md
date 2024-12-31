@@ -17,8 +17,7 @@ series: Terraform Pro Tips
 
 ## Common Idempotency Violations using Terraform
 
-When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry Error**, **Resource Conflict Errors**, or **Already Exists Errors**.  
-Here are a few common examples of **idempotency violations** when working with **Terraform** and **Microsoft Azure**:
+When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry Error**, **Resource Conflict Errors**, or **Already Exists Errors**. Here are a few common examples of **idempotency violations** when working with **Terraform** and **Microsoft Azure**:  
 
 ### 1. Role Assignment (RBAC) Already Exists
 
