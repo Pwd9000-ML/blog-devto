@@ -1,5 +1,5 @@
 ---
-title: Terraform - Mastering Idempotency Violations by Handling Resource Conflicts and Failures in Azure
+title: Terraform - Mastering Idempotency Violations - Handling Resource Conflicts and Failures in Azure
 published: false
 description: DevOps - Terraform - Mastering Idempotency Violations by Handling Resource Conflicts and Failures in Azure
 tags: 'terraform, azure, iac, azuredevops'
