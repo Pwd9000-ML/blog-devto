@@ -48,7 +48,7 @@ Let's look at a few common examples of **idempotency violations** when working w
   ```
 
 #### **Solution:** Add Conditions
-xcsdfdsf
+
   ```hcl
   resource "azurerm_role_assignment" "example" {
     count = var.create_role_assignment ? 1 : 0
@@ -57,6 +57,8 @@ xcsdfdsf
     scope = azurerm_resource_group.example.id
   }
   ```
+
+---
 
 ### 2. Resource Already Exists
 
