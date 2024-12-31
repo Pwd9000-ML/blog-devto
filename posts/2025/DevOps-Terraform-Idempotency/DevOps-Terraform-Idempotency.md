@@ -21,8 +21,7 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
 
 ### 1. Role Assignment (RBAC) Already Exists
 
-**Scenario:** You try to create an RBAC/IAM permission in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run).  
-***Error:***  
+**Scenario:** You try to create an RBAC/IAM permission in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run).***Error:***  
 
   ```hcl
   Error: A role assignment with the specified scope and role definition already exists
@@ -77,9 +76,9 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
   Error: RequestDisallowedByPolicy
   ```
 
-Understanding what idempotency means in **practical scenarios** and knowing how to resolve these failures is crucial for maintaining a **reliable infrastructure**.
+Understanding what idempotency means in **practical scenarios** and knowing how to resolve these failures is crucial for maintaining a **reliable Infrastructure as Code**.
 
-Next up we will explore how to handle these **idempotency violations** and **resource conflicts** in **Azure cloud environments** using **Terraform** and how to build more **reliable** and **adaptable infrastructure configurations**.
+Next up we will take a deeper look at what things to look out for that can cause **idempotency violations** and **resource conflicts** and how to best handle them  in an **Azure cloud environment** using **Terraform** and have much more **reliable** and **adaptable** infrastructure as code configurations.  
 
 ## Conclusion
 
