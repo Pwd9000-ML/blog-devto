@@ -13,47 +13,62 @@ series: Terraform Pro Tips
 
 **Idempotency** is one of **Terraform's** most powerful features, ensuring that you can apply your **infrastructure code** multiple times and always get the same result. This consistency is essential for managing **Azure cloud resources** like **virtual machines**, **storage accounts**, **databases**, and **permissions** efficiently.  
 
-However, when **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry Error**, **Resource Conflict Errors**, or **Already Exists Errors**.  
+---
 
+## Common Idempotency Violations in Azure when using Terraform
+
+However, when **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry Error**, **Resource Conflict Errors**, or **Already Exists Errors**.  
 Here are a few common examples of **idempotency violations** when working with **Terraform** and **Microsoft Azure**:
 
-**- Role Assignment (RBAC) Already Exists:**
-You try to create an RBAC/IAM permission in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run).
+### 1. Role Assignment (RBAC) Already Exists
+
+**Scenario:** You try to create an RBAC/IAM permission in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run).  
+***Error:***  
 
   ```hcl
   Error: A role assignment with the specified scope and role definition already exists
   ```
 
-**- Resource Already Exists:**
-You try to create a resource in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run).
+### 2. Resource Already Exists
+
+**Scenario:** You try to create a resource in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run).  
+***Error:***  
 
   ```hcl
   Error: A resource with the ID already exists
   ```
 
-**- Duplicate Resource Declaration:**
-You try to create a resource in Terraform that already exists in the state file.
+### 3. Duplicate Resource Declaration
+
+**Scenario:** You try to create a resource in Terraform that already exists in the state file.  
+***Error:***  
 
   ```hcl
   Error: Resource already managed by Terraform
   ```
 
-**- Resource Conflict:**
-You attempt to create or modify a resource, but the desired configuration conflicts with the existing resource settings that already exist in the provider.
+### 4. Resource Conflict
+
+**Scenario:** You attempt to create or modify a resource, but the desired configuration conflicts with the existing resource settings that already exist in the provider.  
+***Error:***  
 
   ```hcl
   Error: Conflict with existing settings
   ```
 
-**- Immutable Resources or Properties:**
-"Immutable Resource Properties" or "Breaking Changes" in the context of Azure Resource Manager (ARM). These terms describe properties of Azure resources that cannot be modified directly and require recreating the resource to apply the change.
+### 5. Immutable Resources or Properties
+
+**Scenario:** "Immutable Resource Properties" or "Breaking Changes" in the context of Azure Resource Manager (ARM). These terms describe properties of Azure resources that cannot be modified directly and require recreating the resource to apply the change.  
+***Error:***  
 
   ```hcl
   Error: Resource change requires replacement
   ```
 
-**- Provider level Errors:**
-Errors that occur at the provider level in Azure, such as authentication issues, network problems, rate limiting, resource locks, azure policy restrictions, etc.
+### 6. Provider level Errors
+
+**Scenario:** Errors that occur at the provider level in Azure, such as authentication issues, network problems, rate limiting, resource locks, azure policy restrictions, etc.  
+***Errors:***  
 
   ```hcl
   Error: AuthorizationFailed
