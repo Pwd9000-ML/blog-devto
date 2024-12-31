@@ -24,15 +24,25 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
 **Scenario:** You try to create an RBAC/IAM permission in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run).
 
   ```hcl
-  Error: A role assignment with the specified scope and role definition already exists
+  Error: A role assignment with the specified scope and role definition already exists.
+  
+    on main.tf line 2, in resource "azurerm_role_assignment" "example":
+      2: resource "azurerm_role_assignment" "example" {
+  
+  The role assignment already exists for the specified scope, principal, and role definition.
   ```
 
 ### 2. Resource Already Exists
 
-**Scenario:** You try to create a resource in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run). 
+**Scenario:** You try to create a resource in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run).
 
   ```hcl
-  Error: A resource with the ID already exists
+  Error: A resource with the ID already exists - to be managed via Terraform this resource needs to be imported into the State.
+  
+    on main.tf line 1, in resource "azurerm_storage_account" "example":
+      1: resource "azurerm_storage_account" "example" {
+  
+  The specified resource already exists in Azure. It must be imported to Terraform or deleted manually.
   ```
 
 ### 3. Duplicate Resource Declaration
@@ -41,6 +51,11 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
 
   ```hcl
   Error: Resource already managed by Terraform
+  
+    on main.tf line 2, in resource "azurerm_storage_account" "example":
+      2: resource "azurerm_storage_account" "example" {
+  
+  A resource with the ID is already defined in the Terraform state file. Remove duplicate declarations.
   ```
 
 ### 4. Resource Conflict
@@ -48,7 +63,12 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
 **Scenario:** You attempt to create or modify a resource, but the desired configuration conflicts with the existing resource settings that already exist in the provider.
 
   ```hcl
-  Error: Conflict with existing settings
+  Error: Conflict with existing settings.
+  
+    on main.tf line 2, in resource "azurerm_storage_account" "example":
+      2: resource "azurerm_storage_account" "example" {
+  
+  The specified settings for the resource conflict with the existing configuration in Azure.
   ```
 
 ### 5. Immutable Resources or Properties
@@ -56,7 +76,12 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
 **Scenario:** "Immutable Resource Properties" or "Breaking Changes" in the context of Azure Resource Manager (ARM). These terms describe properties of Azure resources that cannot be modified directly and require recreating the resource to apply the change.
 
   ```hcl
-  Error: Resource change requires replacement
+    Error: Resource change requires replacement.
+    
+      on main.tf line 2, in resource "azurerm_storage_account" "example":
+       2: resource "azurerm_storage_account" "example" {
+    
+    The property `account_tier` cannot be updated in place. The resource must be replaced.
   ```
 
 ### 6. Provider level Errors
@@ -65,10 +90,17 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
 
   ```hcl
   Error: AuthorizationFailed
+  
+  The client 'your-client-id' does not have authorization to perform action 
+  'Microsoft.Storage/storageAccounts/write' over scope '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}'.
   ```
 
   ```hcl
   Error: RequestDisallowedByPolicy
+  
+  The resource creation failed due to a policy compliance issue.
+  Policy: Allowed locations does not allow resources in location 'West Europe'.
+  Allowed values: ['East US'].
   ```
 
 Understanding what idempotency means in **practical scenarios** and knowing how to resolve these failures is crucial for maintaining a **reliable Infrastructure as Code**.
