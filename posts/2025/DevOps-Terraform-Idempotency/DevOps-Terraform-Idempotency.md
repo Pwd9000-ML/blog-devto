@@ -9,13 +9,15 @@ id: 2183449
 series: Terraform ERRORS!
 ---
 
-Welcome to a new Terraform blog post series, **[Terraform ERRORS!]()** In this series, we will explore common errors and issues that you may encounter when working with Terraform and how to resolve them. In this series, we will focus mainly on **idempotency violations** and how to handle them when working with **Terraform** and **Microsoft Azure**. These errors are normally classed under `StatusCode=409` and can be difficult to troubleshoot and resolve as they do not show up in the **Terraform plan**, but will fail during the **Terraform apply**.  
-
-Let's dive in!
-
 ## Idempotency: The Backbone of Terraform
 
-**Idempotency** is one of **Terraform's** most powerful features, ensuring that you can apply your **infrastructure code** multiple times and always get the same result. This consistency is essential for managing **Azure cloud resources** like **virtual machines**, **storage accounts**, **databases**, in addition **permissions and RBAC** and much more efficiently.  
+Welcome to a new Terraform blog post series, **[Terraform ERRORS!]()** In this series, we will explore common errors and issues that you may encounter when working with Terraform and how to resolve them.  
+
+**Idempotency** is one of **Terraform's** most powerful features, ensuring that you can apply your **infrastructure code** multiple times and always get the same result. This consistency is essential for managing **Azure cloud resources** like **virtual machines**, **storage accounts**, **databases**, in addition **permissions and RBAC** and much more efficiently. But what happens when idempotency breaks or cannot be maintained due to various reasons outside of our control? How do we handle these violations and ensure that our infrastructure remains consistent and reliable and more robust to better handle these violations?  
+
+In this series, we will focus mainly on **idempotency violations** and how to handle them when working with **Terraform** and **Microsoft Azure**. These errors are normally classed under `StatusCode=409` and can be difficult to troubleshoot and resolve as they do not show up in the **Terraform plan**, but will fail during the **Terraform apply**.  
+
+Let's dive in!
 
 ---
 
