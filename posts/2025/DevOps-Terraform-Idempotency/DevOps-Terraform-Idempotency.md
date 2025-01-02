@@ -111,6 +111,72 @@ This method is useful when you want to create the role assignment conditionally 
 
 ---
 
+## **Solution 2:** Use the Terraform `import` block
+
+If you want to take over the management of an existing permission using terraform that was created outside of **Terraform**, you can use the `import` block to import the existing role assignment into Terraform's state file. This way you can avoid the violation by importing the existing role assignment into Terraform's state file and manage it from there.  
+
+Now the tricky part. Sadly at the writing of this post there is no `data` source for `azurerm_role_assignment` to check if the role assignment already exists before creating it. So we need to use the `import` block to import the existing role assignment into Terraform's state file, so first we need to check what the existing role assignment ID/s are, that we want to import by using `az` CLI or the Azure Portal.  
+
+```azurecli
+# Log in to Azure
+az login --tenant ${TENANT_ID}
+
+# Get the object id of the user assigned identity (principal_id)
+az identity show --name ${IDENTITY_NAME} --resource-group ${RESOURCE_GROUP_NAME} --query "{ObjectId:principalId}" -o tsv
+
+# Get the ID/s of the existing role assignment/s (Resource level)
+az role assignment list --assignee ${IDENTITY_NAME} --scope ${RESOURCE_ID} --query "[].id" -o tsv
+
+# Get the ID/s of the existing role assignment/s (Resource Group level) ~ This is the one we want to import on this example ~
+az role assignment list --assignee ${IDENTITY_NAME} --scope /subscriptions/${SUBSCRIPTION_ID}/resourceGroups/${RESOURCE_GROUP_NAME} --query "[].id" -o tsv
+
+# Get the ID/s of the existing role assignment/s (Subscription level)
+az role assignment list --assignee ${IDENTITY_NAME} --scope /subscriptions/${SUBSCRIPTION_ID} --query "[].id" -o tsv
+```
+
+Since we want to import the existing role assignment at the **Resource Group** level, the **Azure CLI** command `output` will be structured as follows:
+
+```azurecli
+/subscriptions/<SUB_ID>/resourcegroups/<RESOURCE_GROUP>/providers/Microsoft.Authorization/roleAssignments/<ROLE_ASSIGNMENT_NAME>
+```
+
+In this example we have 2 existing role assignments `Contributor` and `Reader` assigned at the `Resource Group` that we want to import into Terraform's state file.  
+
+```bash
+/subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resourceGroups/Demo-Inf-Dev-Rg/providers/Microsoft.Authorization/roleAssignments/1a533459-6925-4770-9c4e-0d341ae69691
+/subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resourceGroups/Demo-Inf-Dev-Rg/providers/Microsoft.Authorization/roleAssignments/38e0ac0b-8342-40d9-ba29-7bfc16de6352
+```
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/rbac.png)
+
+To do this we need to add the `import` block to the `azurerm_role_assignment` resource to import the existing role assignments into Terraform's state file.  
+
+```hcl
+# Create a locals map of the RBAC permissions on the Resource Group level
+locals {
+  role_assignments = {
+    Reader      = "/subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resourceGroups/Demo-Inf-Dev-Rg/providers/Microsoft.Authorization/roleAssignments d5ee3efa-0ebe-44b7-a6ff-cdf1abc64418",
+    Contributor = "/subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resourceGroups/Demo-Inf-Dev-Rg/providers/Microsoft.Authorization/roleAssignments/511b6d94-4d69-41bd-898d-1d6ce49a9834"
+  }
+}
+
+import {
+  for_each = local.role_assignments
+  to       = azurerm_role_assignment.rbac[each.key]
+  id       = each.value
+}
+
+# Create the azurerm_role_assignment resource importing the existing role assignments
+resource "azurerm_role_assignment" "rbac" {
+  for_each             = local.role_assignments
+  principal_id         = azurerm_user_assigned_identity.uai.principal_id
+  role_definition_name = each.key
+  scope                = azurerm_resource_group.rg.id
+}
+```
+
+---
+
 ## **Solution 2:** Use `null_resource` with a `local-exec` provisioner using `az` CLI to create the role assignment
 
 Another way to handle the violation is by using a `null_resource` with a `local-exec` provisioner to create role assignments. This way we can avoid the violation by creating the role assignment using `az` CLI only when needed. This method is useful when you want to create the role assignment conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions as using `az`.
@@ -154,10 +220,9 @@ Federated tokens via OIDC or other methods can also be used to authenticate to A
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/azure-login.png)
 
-## solution 3: Use `terraform_data` instead of `null_resource` to create the role assignment
+## solution 3: Use a `local-exec` provisioner using `az` directly as part of the role assignment
 
-## solution 4: Use a `local-exec` provisioner to create the role assignment for Special Cases
-
+This should **ONLY** be used in special cases and as a **last resort**.
 Provisioners are useful in rare cases when you need to run a script or external command during Terraform's execution. However, they should generally be a last resort because they break Terraform's declarative model and can lead to unpredictable behaviour.
 
 Unlike `data` sources, provisioners do not integrate with Terraform's state or lifecycle management. Just like in the previous example, the `local-exec` provisioner is used to run the `az` CLI to create the role assignment. This way we can avoid the violation by creating the role assignment only when needed. However the main issues remain the same, if a provisioner fails or produces unexpected results, Terraform may not recover gracefully or recognise the issue during future runs. Data sources, on the other hand, allow Terraform to query existing infrastructure and make decisions based on the current state, ensuring better consistency and reliability.
@@ -192,6 +257,8 @@ resource "azurerm_role_assignment" "rbac" {
 In the above example we use a `local-exec` provisioner to run the `az` CLI to check if the role assignment we want to add already exists. Based on our earlier violation we know that `Contributor` already exists, (perhaps it was created outside of Terraform by an **Operations** or **Security** team, or during a previous run of another module perhaps with its own state file separate to this run), so we would want to skip the roles that exist and only create the ones we do not have yet e.g. `Reader` with the `local-exec` provisioner. This way we can avoid the violation by creating the role assignment after checking and only when needed. 
 
 ---
+
+## solution 4: Use `terraform_data` instead of `null_resource` to create the role assignment
 
 ## Best Practices to Avoid Problems with Idempotency
 
