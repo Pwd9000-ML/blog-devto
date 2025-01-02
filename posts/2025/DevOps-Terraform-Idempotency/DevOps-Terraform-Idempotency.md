@@ -9,7 +9,9 @@ id: 2183449
 series: Terraform ERRORS!
 ---
 
-Welcome to a new Terraform blog post series, **[Terraform ERRORS!]()** In this series, we will explore common errors and issues that you may encounter when working with Terraform and how to resolve them. In this series, we will focus mainly on **idempotency violations** and how to handle them when working with **Terraform** and **Microsoft Azure**. Let's dive in!
+Welcome to a new Terraform blog post series, **[Terraform ERRORS!]()** In this series, we will explore common errors and issues that you may encounter when working with Terraform and how to resolve them. In this series, we will focus mainly on **idempotency violations** and how to handle them when working with **Terraform** and **Microsoft Azure**. These errors are normally classed under `StatusCode=409` and can be difficult to troubleshoot and resolve as they do not show up in the **Terraform plan**, but will fail during the **Terraform apply**.  
+
+Let's dive in!
 
 ## Idempotency: The Backbone of Terraform
 
