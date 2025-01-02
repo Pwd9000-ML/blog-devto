@@ -84,13 +84,13 @@ As you can see the error message, it is clear that the role assignment already e
 Status=409 Code="RoleAssignmentExists" Message="The role assignment already exists.
 ```
 
-**Cause:** In a real world scenarios, this violation can happen when the role assignment was created outside of Terraform, for example by an **Operations** or **security** team, or by **Azure Policy** to enforce certain security or operational conditions, or perhaps the permission was set as part of a previous different Terraform configuration. So when our current Terraform configuration tries to create the role assignment again, it fails as the permission already exists.  
+**Cause:** In a real world scenarios, this violation can happen when the role assignment was created outside of Terraform, for example by an **Operations** or **security** team, or by **Azure Policy** to enforce certain security or operational conditions, or perhaps the permission was set as part of a previous different Terraform configuration with a separate state file. So when our current Terraform configuration tries to create the role assignment again, it fails as the permission already exists.  
 
 ---
 
 ### **Solution 1:** Add Conditions using a `variable` flag/switch
 
-Not the best method in my personal opinion, but in the following solution we can create a condition to control the `azurerm_role_assignment` resource to create the role assignment only if the variable `create_role_assignment` is set to `true`. This way we can avoid the violation by creating the role assignment only when needed.  
+This is not the best method in my personal opinion, but in the following solution we can create a condition to control the `azurerm_role_assignment` resource to create the role assignment only if the variable `create_role_assignment` is set to `true`. This way we can avoid the violation by creating the role assignment only when needed.  
 
 ```hcl
 variable "create_role_assignment" {
@@ -113,7 +113,7 @@ This method is useful when you want to create the role assignment conditionally 
 
 ## **Solution 2:** Use a `null_resource` with `local-exec` provisioner to create the role assignment
 
-This is another solution to the violation by using a `null_resource` with a `local-exec` provisioner to create role assignments. This way we can avoid the violation by creating the role assignment using `az` CLI only when needed. This method is useful when you want to create the role assignment conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions as using `az`.
+Another way to handle the violation is by using a `null_resource` with a `local-exec` provisioner to create role assignments. This way we can avoid the violation by creating the role assignment using `az` CLI only when needed. This method is useful when you want to create the role assignment conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions as using `az`.
 
 ```hcl
 # Create a null resource with a local-exec provisioner to create the role assignment for 'contributor' and 'reader' from a var.permissions list
@@ -150,7 +150,7 @@ If you are using GitHub Actions, you can set these environment variables in the 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/github-secrets.png)
 
-Federated tokens via IODC or other methods can also be used to authenticate to Azure and create the role assignment using the `az` CLI in the `local-exec` provisioner. For more details on how to authenticate to Azure using the `az` CLI, see **[Authenticate Azure CLI](https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli/?wt.mc_id=DT-MVP-5004771)**
+Federated tokens via OIDC or other methods can also be used to authenticate to Azure and create the role assignment using the `az` CLI in the `local-exec` provisioner. For more details on how to authenticate to Azure using the `az` CLI, see **[Authenticate Azure CLI](https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli/?wt.mc_id=DT-MVP-5004771)**
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/azure-login.png)
 
