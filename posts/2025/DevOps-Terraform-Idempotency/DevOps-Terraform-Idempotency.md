@@ -82,9 +82,11 @@ Status=409 Code="RoleAssignmentExists" Message="The role assignment already exis
 
 So how can this violation happen and how can we avoid it?  
 
-## **Solution 1:** Add Conditions using a `variable` flag/switch
+---
 
-In the following solution we can create a condition to the `azurerm_role_assignment` resource to create the role assignment only if the variable `create_role_assignment` is set to `true`. This way we can avoid the violation by creating the role assignment only when needed. This method is useful when you want to create the role assignment conditionally but is somewhat limited as it will not work if you have multiple user assigned identities or have multiple role definitions.
+### **Solution 1:** Add Conditions using a `variable` flag/switch
+
+Not the best method in my personal opinion, but in the following solution we can create a condition to control the `azurerm_role_assignment` resource to create the role assignment only if the variable `create_role_assignment` is set to `true`. This way we can avoid the violation by creating the role assignment only when needed.  
 
 ```hcl
 variable "create_role_assignment" {
@@ -101,12 +103,16 @@ resource "azurerm_role_assignment" "rbac" {
 }
 ```
 
-## **Solution 2:** Add Conditions using a `data` resource as a method to check if the role assignment already exists
+This method is useful when you want to create the role assignment conditionally but is somewhat limited as it will not work if you have multiple user assigned identities or have multiple role definitions.
 
-This is a more robust solution as it uses a `data` resource to check if the role assignment/s already exists before creating it. This way we can avoid the violation by creating the role assignment only when needed. This method is useful with `for_each` when you want to check and create role assignments conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions.
+---
+
+### **Solution 2:** Add Conditions using a `data` resource checks
+
+This is a more robust solution as it uses a `data` resource to check if the role assignment/s already exists before creating it. This way we can avoid the violation by creating the role assignment only when needed. This method is useful with `for_each` when you want to check and create role assignments conditionally and is a lot more flexible as it can be used with multiple user assigned identities or multiple role definitions, will skip permissions that already exist and only create the ones that do not exist yet.
 
 ```hcl
-#Write a data resource to check if the role assignment already exists with for_each on the role definition
+# Data resource to check if the role assignment already exists with 'for_each' on the role definition
 data "azurerm_role_assignments" "rbac" {
   for_each = toset(["Contributor", "Reader"])
   principal_id = azurerm_user_assigned_identity.uai.principal_id
@@ -114,7 +120,7 @@ data "azurerm_role_assignments" "rbac" {
   scope = azurerm_resource_group.rg.id
 }
 
-#Only create role assignments for the role definitions that do not exist in the data resource and skip the ones that already exist
+# Only create role assignments for the role definitions that do not exist in the data resource check and skip the ones that already exist in the data resource check
 resource "azurerm_role_assignment" "rbac" {
   for_each = toset(["Contributor", "Reader"])
   count = data.azurerm_role_assignments.rbac[each.value] == null ? 1 : 0
@@ -124,7 +130,7 @@ resource "azurerm_role_assignment" "rbac" {
 }
 ```
 
-In the above example we use a `data` resource to check if the role assignment we want to add already exists with a `for_each` on the `role_definition_name`. Based on our earlier violation we know that `Contributor` already exists, (perhaps it was created outside of Terraform by an **Operations** or **Security** team, or during a previous run of another module perhaps with its own state file separate to this run), so we would want to skip the roles that exist and only create the ones we do not have yet e.g. `Reader`. This way we can avoid the violation by creating the role assignment after checking and only when needed. This method is useful when you want to check and create role assignments conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions/permissions.
+In the above example we use a `data` resource to check if the role assignment we want to add already exists with a `for_each` on the `role_definition_name`. Based on our earlier violation we know that `Contributor` already exists, (perhaps it was created outside of Terraform by an **Operations** or **Security** team, or during a previous run of another module perhaps with its own state file separate to this run), so the best approach would be to check and to skip the roles that already exist and only create the ones we do not have yet e.g. `Reader`. This way we can avoid the violation by performing a check. This method is useful when you want to create role assignments conditionally skipping ones that exists already. It provides a more flexible solution and can be used with multiple user assigned identities or multiple role definitions/permissions.
 
 ## **Solution 3:** Use a `null_resource` with `local-exec` provisioner to create the role assignment
 
