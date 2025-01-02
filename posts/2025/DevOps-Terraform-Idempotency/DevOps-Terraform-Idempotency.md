@@ -134,9 +134,9 @@ resource "null_resource" "rbac" {
 }
 ```
 
-In the above example we use a `null_resource` with a `local-exec` provisioner to create the role assignment. Since we know that th contributor role already exists which causes the violation, we can skip it and only create the reader role assignment. This way we can avoid the violation by creating the role assignment only when needed. The only downside to this method is that it uses the `az` CLI to create the role assignment which may not be available in all environments or may require additional setup on the build agent.  
+In the example since we know that the `contributor` role already exists causing a violation, using `az` CLI, will inherently skip any existing RBAC/IAM permissions and only create the `reader` role assignment as per the example. This way we can avoid the violation by skipping existing assignments and creating missing ones we need. The only downside to this method is that it uses `az` CLI to create the role assignment which may not be available in all environments or may require additional setup on the build agent.  
 
-The other downside is that the `null_resource` does not have a state file, so it will not be managed by Terraform and will not be shown in the plan or apply. This means that if the role assignment is deleted outside of Terraform, Terraform will not know about it and will not recreate it. This can be a problem if you want to keep your infrastructure in sync with your code and want to avoid manual changes to the infrastructure.  
+Another downside to this method is that changes are made outside of Terraform and will not be persisted in the **Terraform State File**. This can lead to **Drift** and **State Confusion** if not managed properly.  
 
 **IMPORTANT!:** When using `az` CLI like this you need to be aware that you will need a way for your agent to also authenticate to Azure and have the necessary permissions to create the role assignment. This can be done by setting the environment variables `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_TENANT_ID` and `ARM_SUBSCRIPTION_ID` on the build agent to use a service principal with the necessary permissions. As you can see from the command above, we are using a service principal to authenticate to Azure and create the role assignment.  
 
