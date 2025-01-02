@@ -61,6 +61,8 @@ resource "azurerm_role_assignment" "rbac" {
 }
 ```
 
+## solution 4: Use `terraform_data` instead of `null_resource` to create the role assignment
+
 ### 3. Duplicate Resource Declaration
 
 **Scenario:** You try to create a resource in Terraform that already exists in the state file.

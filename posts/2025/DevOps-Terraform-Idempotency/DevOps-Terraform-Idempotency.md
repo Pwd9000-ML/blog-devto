@@ -111,7 +111,7 @@ This method is useful when you want to create the role assignment conditionally 
 
 ---
 
-## **Solution 2:** Use the Terraform `import` block
+### **Solution 2:** Use the Terraform `import` block
 
 If you want to take over the management of an existing permission using terraform that was created outside of **Terraform**, you can use the `import` block to import the existing role assignment into Terraform's state file. This way you can avoid the violation by importing the existing role assignment into Terraform's state file and manage it from there.  
 
@@ -175,11 +175,17 @@ resource "azurerm_role_assignment" "rbac" {
 }
 ```
 
+As you can see in the example above, the **Terraform Plan** will use the `import` block to import the existing role assignments into Terraform's state file. This way we can avoid the violation by importing the existing role assignments into Terraform's state file and manage them from there. This method is useful when you want to import existing role assignments into Terraform's state file and manage them from there.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/plan3.png)
+
+**NOTE:** Once the role assignments are imported into Terraform's state file, you can remove or comment out the `import` block from the configuration as it is only needed to import the existing role assignments into Terraform's state file.
+
 ---
 
-## **Solution 2:** Use `null_resource` with a `local-exec` provisioner using `az` CLI to create the role assignment
+### **Solution 3:** Use `null_resource` with a `local-exec` provisioner using `az` CLI to create the role assignment
 
-Another way to handle the violation is by using a `null_resource` with a `local-exec` provisioner to create role assignments. This way we can avoid the violation by creating the role assignment using `az` CLI only when needed. This method is useful when you want to create the role assignment conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions as using `az`.
+In some cases you may not want to manage the existing role assignments in Terraform's state file, but you still want to create the role assignment conditionally. Thus another way to handle the violation is by using a `null_resource` with a `local-exec` provisioner to create role assignments. This way we can avoid the violation by creating the role assignment using `az` CLI only when needed. This method is useful when you want to create the role assignment conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions as using `az`.
 
 ```hcl
 # Create a null resource with a local-exec provisioner to create the role assignment for 'contributor' and 'reader' from a var.permissions list
@@ -202,7 +208,7 @@ resource "null_resource" "rbac" {
 
 In the example since we know that the `contributor` role already exists causing a violation, using `az` CLI, will inherently skip any existing RBAC/IAM permissions and only create the `reader` role assignment as per the example. This way we can avoid the violation by skipping existing assignments and creating missing ones we need. The only downside to this method is that it uses `az` CLI to create the role assignment which may not be available in all environments or may require additional setup on the build agent.  
 
-Another downside to this method is that changes are made outside of Terraform and will not be persisted in the **Terraform State File**. This can lead to **Drift** and **State Confusion** if not managed properly.  
+s mentioned one downside to this method is that changes are made outside of Terraform and will not be persisted in the **Terraform State File**. This can lead to **Drift** and **State Confusion** if not managed properly.  
 
 **IMPORTANT!:** When using `az` CLI like this you need to be aware that you will need a way for your agent to also authenticate to Azure and have the necessary permissions to create the role assignment. This can be done by setting the environment variables `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_TENANT_ID` and `ARM_SUBSCRIPTION_ID` on the build agent to use a service principal with the necessary permissions. As you can see from the command above, we are using a service principal to authenticate to Azure and create the role assignment.  
 
@@ -218,7 +224,9 @@ If you are using GitHub Actions, you can set these environment variables in the 
 
 Federated tokens via OIDC or other methods can also be used to authenticate to Azure and create the role assignment using the `az` CLI in the `local-exec` provisioner. For more details on how to authenticate to Azure using the `az` CLI, see **[Authenticate Azure CLI](https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli/?wt.mc_id=DT-MVP-5004771)**
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/azure-login.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/azure-login.png)#
+
+--- 
 
 ## solution 3: Use a `local-exec` provisioner using `az` directly as part of the role assignment
 
@@ -254,21 +262,18 @@ resource "azurerm_role_assignment" "rbac" {
 }
 ```
 
-In the above example we use a `local-exec` provisioner to run the `az` CLI to check if the role assignment we want to add already exists. Based on our earlier violation we know that `Contributor` already exists, (perhaps it was created outside of Terraform by an **Operations** or **Security** team, or during a previous run of another module perhaps with its own state file separate to this run), so we would want to skip the roles that exist and only create the ones we do not have yet e.g. `Reader` with the `local-exec` provisioner. This way we can avoid the violation by creating the role assignment after checking and only when needed. 
+In the above example we use a `local-exec` provisioner to run the `az` CLI to check if the role assignment we want to add already exists. Based on our earlier violation we know that `Contributor` already exists, (perhaps it was created outside of Terraform by an **Operations** or **Security** team, or during a previous run of another module perhaps with its own state file separate to this run), so we would want to skip the roles that exist and only create the ones we do not have yet e.g. `Reader` with the `local-exec` provisioner. This way we can avoid the violation by creating the role assignment after checking and only when needed.  
 
 ---
 
-## solution 4: Use `terraform_data` instead of `null_resource` to create the role assignment
-
 ## Best Practices to Avoid Problems with Idempotency
 
-1. **Import Existing Resources:** Add unmanaged resources to Terraform's state before applying changes. but in some cases, this may not be possible or practical due to the complexity of the resource or the number of resources or teams involved in managing them when it comes to permissions and RBAC. So if the permissions and RBAC are managed by different teams or are created outside of Terraform, it may be better to use the `data` resource method to check and create the role assignments conditionally.
-2. **Use Data Sources:** Query existing resources to make decisions in your code.
-3. **Add Conditions:** based on the data source results to create resources conditionally.
-4. **Ignore Unimportant Changes:** Use lifecycle rules to avoid unnecessary updates and changes.
-5. **Limit Provisioners:** Only use provisioners for tasks Terraform can't handle natively or for last resort special cases.
-6. **Plan Before Apply:** Always run `terraform plan` before applying your configuration. This step helps you preview the changes Terraform will make, ensuring they align with your expectations. For beginners, planning is especially critical as it can catch common issues like misconfigurations or unintended resource changes before they happen. It's a simple but powerful way to avoid surprises and maintain control over your infrastructure. Always run `terraform plan` to preview changes and catch potential issues early. But remember that the plan will not show any errors for the violation, so you will need to check the apply output for the error message in these cases.
-7. **Sync with Cloud State:** Use `terraform refresh` to update Terraform’s state before applying changes.
+1. **Import Existing Resources:** Add unmanaged resources to Terraform's state before applying changes. but in some cases, this may not be possible or practical due to the complexity of the resource or the number of resources or perhaps teams involved in managing them when it comes to the business. For example if RBAC is managed by **operations** or **security** teams.
+2. **Add Conditions:** based on the data sources or variables to create resources conditionally.
+3. **Ignore Unimportant Changes:** Use lifecycle rules to avoid unnecessary updates and changes.
+4. **Limit Provisioners:** Only use `local-exec` provisioners for tasks Terraform can't handle natively or for last resort special cases.
+5. **Plan Before Apply:** Always run `terraform plan` before applying your configuration. This step helps you preview the changes Terraform will make, ensuring they align with your expectations. For beginners, planning is especially critical as it can catch common issues like misconfigurations or unintended resource changes before they happen. It's a simple but powerful way to avoid surprises and maintain control over your infrastructure. Always run `terraform plan` to preview changes and catch potential issues early. But remember that the plan will not show any errors for certain violations or conditions, so you will need to check the apply output for the error message in these cases.
+6. **Sync with Cloud State:** Use `terraform refresh` to update Terraform’s state before applying changes.
 
 ---
 
