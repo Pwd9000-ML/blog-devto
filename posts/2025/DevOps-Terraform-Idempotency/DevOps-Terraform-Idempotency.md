@@ -111,7 +111,7 @@ This method is useful when you want to create the role assignment conditionally 
 
 ---
 
-## **Solution 2:** Use a `null_resource` with `local-exec` provisioner to create the role assignment
+## **Solution 2:** Use `null_resource` with a `local-exec` provisioner using `az` CLI to create the role assignment
 
 Another way to handle the violation is by using a `null_resource` with a `local-exec` provisioner to create role assignments. This way we can avoid the violation by creating the role assignment using `az` CLI only when needed. This method is useful when you want to create the role assignment conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions as using `az`.
 
