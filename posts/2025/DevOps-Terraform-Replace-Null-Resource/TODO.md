@@ -23,42 +23,7 @@ When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry
 
 Let's look at a few common examples of **idempotency violations** when working with **Terraform** and **Microsoft Azure** and how to best handle them.  
 
-### 1. Role Assignment (RBAC) Already Exists
 
-**Scenario:** You try to create an RBAC/IAM permission in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run).
-
-**Example:**
-
-  ```hcl
-  ### Write an example on how to re-create the below error
-  resource "azurerm_role_assignment" "example" {
-    principal_id = data.azurerm_client_config.current.object_id
-    role_definition_name = "Contributor"
-    scope = azurerm_resource_group.example.id
-  }
-  ```
-
-**Error Message:**
-
-  ```hcl
-  Error: A role assignment with the specified scope and role definition already exists.
-  
-    on main.tf line 2, in resource "azurerm_role_assignment" "example":
-      2: resource "azurerm_role_assignment" "example" {
-  
-  The role assignment already exists for the specified scope, principal, and role definition.
-  ```
-
-#### **Solution:** Add Conditions
-
-  ```hcl
-  resource "azurerm_role_assignment" "example" {
-    count = var.create_role_assignment ? 1 : 0
-    principal_id = data.azurerm_client_config.current.object_id
-    role_definition_name = "Contributor"
-    scope = azurerm_resource_group.example.id
-  }
-  ```
 
 ---
 
@@ -74,6 +39,28 @@ Let's look at a few common examples of **idempotency violations** when working w
   
   The specified resource already exists in Azure. It must be imported to Terraform or deleted manually.
   ```
+
+This is a more robust solution as it uses a `data` resource to check if the role assignment/s already exists before creating it. This way we can avoid the violation by creating the role assignment only when needed. This method is useful with `for_each` when you want to check and create role assignments conditionally and is a lot more flexible as it can be used with multiple user assigned identities or multiple role definitions, will skip permissions that already exist and only create the ones that do not exist yet.
+
+```hcl
+# Check if the role assignment already exists with 'for_each' on  'data' resource
+data "azurerm_role_assignments" "rbac" {
+  for_each = toset(["Contributor", "Reader"])
+  principal_id = azurerm_user_assigned_identity.uai.principal_id
+  role_definition_name = each.value
+  scope = azurerm_resource_group.rg.id
+}
+
+# Only create role assignments for the role definitions that do not exist in the data resource check and skip the ones that already exist in the data resource check
+resource "azurerm_role_assignment" "rbac" {
+  for_each = toset(["Contributor", "Reader"])
+  count = data.azurerm_role_assignments.rbac[each.value] == null ? 1 : 0
+  principal_id = azurerm_user_assigned_identity.uai.principal_id
+  role_definition_name = each.value
+  scope = azurerm_resource_group.rg.id
+}
+```
+
 ### 3. Duplicate Resource Declaration
 
 **Scenario:** You try to create a resource in Terraform that already exists in the state file.

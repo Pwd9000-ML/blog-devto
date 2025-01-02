@@ -107,51 +107,50 @@ This method is useful when you want to create the role assignment conditionally 
 
 ---
 
-### **Solution 2:** Add Conditions using a `data` resource checks
+## **Solution 2:** Use a `null_resource` with `local-exec` provisioner to create the role assignment
 
-This is a more robust solution as it uses a `data` resource to check if the role assignment/s already exists before creating it. This way we can avoid the violation by creating the role assignment only when needed. This method is useful with `for_each` when you want to check and create role assignments conditionally and is a lot more flexible as it can be used with multiple user assigned identities or multiple role definitions, will skip permissions that already exist and only create the ones that do not exist yet.
-
-```hcl
-# Data resource to check if the role assignment already exists with 'for_each' on the role definition
-data "azurerm_role_assignments" "rbac" {
-  for_each = toset(["Contributor", "Reader"])
-  principal_id = azurerm_user_assigned_identity.uai.principal_id
-  role_definition_name = each.value
-  scope = azurerm_resource_group.rg.id
-}
-
-# Only create role assignments for the role definitions that do not exist in the data resource check and skip the ones that already exist in the data resource check
-resource "azurerm_role_assignment" "rbac" {
-  for_each = toset(["Contributor", "Reader"])
-  count = data.azurerm_role_assignments.rbac[each.value] == null ? 1 : 0
-  principal_id = azurerm_user_assigned_identity.uai.principal_id
-  role_definition_name = each.value
-  scope = azurerm_resource_group.rg.id
-}
-```
-
-In the above example we use a `data` resource to check if the role assignment we want to add already exists with a `for_each` on the `role_definition_name`. Based on our earlier violation we know that `Contributor` already exists, (perhaps it was created outside of Terraform by an **Operations** or **Security** team, or during a previous run of another module perhaps with its own state file separate to this run), so the best approach would be to check and to skip the roles that already exist and only create the ones we do not have yet e.g. `Reader`. This way we can avoid the violation by performing a check. This method is useful when you want to create role assignments conditionally skipping ones that exists already. It provides a more flexible solution and can be used with multiple user assigned identities or multiple role definitions/permissions.
-
-## **Solution 3:** Use a `null_resource` with `local-exec` provisioner to create the role assignment
-
-This is another solution to the violation by using a `null_resource` with a `local-exec` provisioner to create the role assignment. This way we can avoid the violation by creating the role assignment only when needed. This method is useful when you want to create the role assignment conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions.
+This is another solution to the violation by using a `null_resource` with a `local-exec` provisioner to create role assignments. This way we can avoid the violation by creating the role assignment using `az` CLI only when needed. This method is useful when you want to create the role assignment conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions as using `az`.
 
 ```hcl
-#Create a null resource with a local-exec provisioner to create the role assignment
+# Create a null resource with a local-exec provisioner to create the role assignment for 'contributor' and 'reader' from a var.permissions list
+# Using classic 'az' login to authenticate and create the role assignment
 resource "null_resource" "rbac" {
+  for_each = toset(["Contributor", "Reader"])
   triggers = {
     always_run = timestamp()
   }
 
   provisioner "local-exec" {
-    command = "az role assignment create --role Contributor --assignee ${azurerm_user_assigned_identity.uai.principal_id} --scope ${azurerm_resource_group.rg.id}"
+    command = <<EOT
+      az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID --output none
+      az account set --subscription $ARM_SUBSCRIPTION_ID --output none
+      az role assignment create --assignee ${azurerm_user_assigned_identity.uai.principal_id} --role ${each.key} --scope ${azurerm_resource_group.rg.id}
+    EOT
   }
 }
 ```
 
-In the above example we use a `null_resource` with a `local-exec` provisioner to create the role assignment. This way we can avoid the violation by creating the role assignment only when needed. This method is useful when you want to create the role assignment conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions/permissions. The only downside to this method is that it uses the `az` CLI to create the role assignment which may not be available in all environments or may require additional setup on the build agent.  
+In the above example we use a `null_resource` with a `local-exec` provisioner to create the role assignment. Since we know that th contributor role already exists which causes the violation, we can skip it and only create the reader role assignment. This way we can avoid the violation by creating the role assignment only when needed. The only downside to this method is that it uses the `az` CLI to create the role assignment which may not be available in all environments or may require additional setup on the build agent.  
 
-The other downside is that the `null_resource` does not have a state file, so it will not be managed by Terraform and will not be shown in the plan or apply. This means that if the role assignment is deleted outside of Terraform, Terraform will not know about it and will not recreate it. This can be a problem if you want to keep your infrastructure in sync with your code and want to avoid manual changes to the infrastructure.
+The other downside is that the `null_resource` does not have a state file, so it will not be managed by Terraform and will not be shown in the plan or apply. This means that if the role assignment is deleted outside of Terraform, Terraform will not know about it and will not recreate it. This can be a problem if you want to keep your infrastructure in sync with your code and want to avoid manual changes to the infrastructure.  
+
+**IMPORTANT!:** When using `az` CLI like this you need to be aware that you will need a way for your agent to also authenticate to Azure and have the necessary permissions to create the role assignment. This can be done by setting the environment variables `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_TENANT_ID` and `ARM_SUBSCRIPTION_ID` on the build agent to use a service principal with the necessary permissions. As you can see from the command above, we are using a service principal to authenticate to Azure and create the role assignment.  
+
+```azurecli
+az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID --output none
+az account set --subscription $ARM_SUBSCRIPTION_ID --output none
+az role assignment create --assignee ${azurerm_user_assigned_identity.uai.principal_id} --role ${each.key} --scope ${azurerm_resource_group.rg.id}
+```
+
+If you are using GitHub Actions, you can set these environment variables in the GitHub Secrets and use them in your workflow.  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/github-secrets.png)
+
+Federated tokens via IODC or other methods can also be used to authenticate to Azure and create the role assignment using the `az` CLI in the `local-exec` provisioner. For more details on how to authenticate to Azure using the `az` CLI, see **[Authenticate Azure CLI](https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli/?wt.mc_id=DT-MVP-5004771)**
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/azure-login.png)
+
+## solution 3: Use `terraform_data` instead of `null_resource` to create the role assignment
 
 ## solution 4: Use a `local-exec` provisioner to create the role assignment for Special Cases
 
