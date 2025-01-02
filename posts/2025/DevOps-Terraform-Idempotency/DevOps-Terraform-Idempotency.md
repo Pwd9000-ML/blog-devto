@@ -19,24 +19,45 @@ Welcome to a new Terraform blog post series, **[Terraform ERRORS!]()** In this s
 
 ## Common Idempotency Violations using Terraform
 
-When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry Error**, **Resource Conflict Errors**, or **Already Exists Errors**. Understanding what idempotency means in **practical scenarios** and knowing how to resolve these failures is crucial for maintaining a **reliable Infrastructure as Code**.  
+When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry Error**, **Resource Conflict Errors**, or **Already Exists Errors**. Understanding what idempotency means in **practical scenarios** and knowing how to resolve these failures is crucial for maintaining a **reliable Infrastructure as Code**. The main problem with certain idempotency violations is that the terraform plan will not show any errors, but the apply will fail.
 
-Let's look at a few common examples of **idempotency violations** when working with **Terraform** and **Microsoft Azure** and how to best handle them.  
+Let's look at a common example of a **idempotency violation** when working with **Terraform** and **Microsoft Azure** and see how to best handle it.  
 
-### 1. Role Assignment (RBAC) Already Exists
+### Role Assignment (RBAC) Already Exists
 
 **Scenario:** You try to create an RBAC/IAM permission in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run).
 
 **Example:**
 
   ```hcl
-  ### Write an example on how to re-create the below error
-  resource "azurerm_role_assignment" "example" {
-    principal_id = data.azurerm_client_config.current.object_id
-    role_definition_name = "Contributor"
-    scope = azurerm_resource_group.example.id
-  }
+#Create a Resource Group
+resource "azurerm_resource_group" "rg" {
+  name     = var.resource_group_name
+  location = var.location
+  tags     = var.tags
+}
+
+#Write a resource creation of a user assigned managed identity
+resource "azurerm_user_assigned_identity" "uai" {
+  name                = "${var.resource_group_name}-uai"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+#Create a role assignment (twice to cause the violation)
+resource "azurerm_role_assignment" "rbac" {
+  count                = 2
+  principal_id         = azurerm_user_assigned_identity.uai.principal_id
+  role_definition_name = "Contributor"
+  scope                = azurerm_resource_group.rg.id
+}
   ```
+
+In the above example we will try to simulate the violation by creating two role assignments with the `same principal_id`, `role_definition_name` and `scope`. As you can see the plan will not show any errors, but the apply will fail.  
+
+**Plan:**
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/plan.png)
 
 **Error Message:**
 
