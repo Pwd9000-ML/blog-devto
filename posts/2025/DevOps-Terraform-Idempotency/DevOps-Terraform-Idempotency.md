@@ -29,7 +29,7 @@ Let's look at a common example of a **idempotency violation** when working with 
 
 **Example:**
 
-  ```hcl
+```hcl
 #Create a Resource Group
 resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name
@@ -51,48 +51,147 @@ resource "azurerm_role_assignment" "rbac" {
   role_definition_name = "Contributor"
   scope                = azurerm_resource_group.rg.id
 }
-  ```
+ ```
 
-In the above example we will try to simulate the violation by creating two role assignments with the `same principal_id`, `role_definition_name` and `scope`. As you can see the plan will not show any errors, but the apply will fail.  
+In the above example we will try to simulate the violation by creating two role assignments with the `same principal_id`, `role_definition_name` and `scope`. As you can see the plan will not show any errors, but the apply will fail. But in real scenarios, the violation can happen when the role assignment was created outside of Terraform or during a previous run of another Terraform configuration trying to create the same role assignment.  
 
 **Plan:**
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/plan.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/plan1.png)  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/plan2.png)
 
 **Error Message:**
 
-  ```hcl
-  Error: A role assignment with the specified scope and role definition already exists.
-  
-    on main.tf line 2, in resource "azurerm_role_assignment" "example":
-      2: resource "azurerm_role_assignment" "example" {
-  
-  The role assignment already exists for the specified scope, principal, and role definition.
+  ```bash
+╷
+│ Error: authorization.RoleAssignmentsClient#Create: Failure responding to request: StatusCode=409 -- Original Error: autorest/azure: Service returned an error. Status=409 Code="RoleAssignmentExists" Message="The role assignment already exists."
+│ 
+│   with azurerm_role_assignment.rbac[0],
+│   on foundation_resources.tf line 22, in resource "azurerm_role_assignment" "rbac":
+│   22: resource "azurerm_role_assignment" "rbac" {
+│ 
+╵
   ```
 
-#### **Solution:** Add Conditions
+As you can see the error message, it is clear that the role assignment already exists!
 
-  ```hcl
-  resource "azurerm_role_assignment" "example" {
-    count = var.create_role_assignment ? 1 : 0
-    principal_id = data.azurerm_client_config.current.object_id
-    role_definition_name = "Contributor"
-    scope = azurerm_resource_group.example.id
+```bash
+Status=409 Code="RoleAssignmentExists" Message="The role assignment already exists.
+```
+
+So how can this violation happen and how can we avoid it?  
+
+## **Solution 1:** Add Conditions using a `variable` flag/switch
+
+In the following solution we can create a condition to the `azurerm_role_assignment` resource to create the role assignment only if the variable `create_role_assignment` is set to `true`. This way we can avoid the violation by creating the role assignment only when needed. This method is useful when you want to create the role assignment conditionally but is somewhat limited as it will not work if you have multiple user assigned identities or have multiple role definitions.
+
+```hcl
+variable "create_role_assignment" {
+  description = "Flag to create the role assignment"
+  type        = bool
+  default     = false
+}
+
+resource "azurerm_role_assignment" "rbac" {
+  count                = var.create_role_assignment ? 1 : 0
+  principal_id         = azurerm_user_assigned_identity.uai.principal_id
+  role_definition_name = "Contributor"
+  scope                = azurerm_resource_group.rg.id
+}
+```
+
+## **Solution 2:** Add Conditions using a `data` resource as a method to check if the role assignment already exists
+
+This is a more robust solution as it uses a `data` resource to check if the role assignment/s already exists before creating it. This way we can avoid the violation by creating the role assignment only when needed. This method is useful with `for_each` when you want to check and create role assignments conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions.
+
+```hcl
+#Write a data resource to check if the role assignment already exists with for_each on the role definition
+data "azurerm_role_assignments" "rbac" {
+  for_each = toset(["Contributor", "Reader"])
+  principal_id = azurerm_user_assigned_identity.uai.principal_id
+  role_definition_name = each.value
+  scope = azurerm_resource_group.rg.id
+}
+
+#Only create role assignments for the role definitions that do not exist in the data resource and skip the ones that already exist
+resource "azurerm_role_assignment" "rbac" {
+  for_each = toset(["Contributor", "Reader"])
+  count = data.azurerm_role_assignments.rbac[each.value] == null ? 1 : 0
+  principal_id = azurerm_user_assigned_identity.uai.principal_id
+  role_definition_name = each.value
+  scope = azurerm_resource_group.rg.id
+}
+```
+
+In the above example we use a `data` resource to check if the role assignment we want to add already exists with a `for_each` on the `role_definition_name`. Based on our earlier violation we know that `Contributor` already exists, (perhaps it was created outside of Terraform by an **Operations** or **Security** team, or during a previous run of another module perhaps with its own state file separate to this run), so we would want to skip the roles that exist and only create the ones we do not have yet e.g. `Reader`. This way we can avoid the violation by creating the role assignment after checking and only when needed. This method is useful when you want to check and create role assignments conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions/permissions.
+
+## **Solution 3:** Use a `null_resource` with `local-exec` provisioner to create the role assignment
+
+This is another solution to the violation by using a `null_resource` with a `local-exec` provisioner to create the role assignment. This way we can avoid the violation by creating the role assignment only when needed. This method is useful when you want to create the role assignment conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions.
+
+```hcl
+#Create a null resource with a local-exec provisioner to create the role assignment
+resource "null_resource" "rbac" {
+  triggers = {
+    always_run = timestamp()
   }
-  ```
 
----
+  provisioner "local-exec" {
+    command = "az role assignment create --role Contributor --assignee ${azurerm_user_assigned_identity.uai.principal_id} --scope ${azurerm_resource_group.rg.id}"
+  }
+}
+```
+
+In the above example we use a `null_resource` with a `local-exec` provisioner to create the role assignment. This way we can avoid the violation by creating the role assignment only when needed. This method is useful when you want to create the role assignment conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions/permissions. The only downside to this method is that it uses the `az` CLI to create the role assignment which may not be available in all environments or may require additional setup on the build agent.  
+
+The other downside is that the `null_resource` does not have a state file, so it will not be managed by Terraform and will not be shown in the plan or apply. This means that if the role assignment is deleted outside of Terraform, Terraform will not know about it and will not recreate it. This can be a problem if you want to keep your infrastructure in sync with your code and want to avoid manual changes to the infrastructure.
+
+## solution 4: Use a `local-exec` provisioner to create the role assignment for Special Cases
+
+Provisioners are useful in rare cases when you need to run a script or external command during Terraform's execution. However, they should generally be a last resort because they break Terraform's declarative model and can lead to unpredictable behaviour.
+
+Unlike `data` sources, provisioners do not integrate with Terraform's state or lifecycle management. Just like in the previous example, the `local-exec` provisioner is used to run the `az` CLI to create the role assignment. This way we can avoid the violation by creating the role assignment only when needed. However the main issues remain the same, if a provisioner fails or produces unexpected results, Terraform may not recover gracefully or recognise the issue during future runs. Data sources, on the other hand, allow Terraform to query existing infrastructure and make decisions based on the current state, ensuring better consistency and reliability.
+
+```hcl
+#Create a role assignment with a local-exec provisioner to create the role assignment
+resource "azurerm_role_assignment" "rbac" {
+  for_each = toset(["Contributor", "Reader"])
+  role_definition_name = each.value
+  scope = azurerm_resource_group.rg.id
+  principal_id = azurerm_user_assigned_identity.uai.principal_id
+
+  provisioner "local-exec" {
+    command = <<EOT
+      if ! az role assignment list --scope ${azurerm_resource_group.rg.id} --assignee ${azurerm_user_assigned_identity.uai.principal_id} --role ${each.value} --query [].roleDefinitionName -o tsv; then
+        echo "Role assignment does not exist. Proceeding with creation."
+        exit 0
+      else
+        echo "Role assignment already exists. Skipping creation."
+        exit 1
+      fi
+    EOT
+    interpreter = ["bash", "-c"]
+  }
+
+  lifecycle {
+    ignore_changes = [provisioner]
+  }
+}
+```
+
+In the above example we use a `local-exec` provisioner to run the `az` CLI to check if the role assignment we want to add already exists. Based on our earlier violation we know that `Contributor` already exists, (perhaps it was created outside of Terraform by an **Operations** or **Security** team, or during a previous run of another module perhaps with its own state file separate to this run), so we would want to skip the roles that exist and only create the ones we do not have yet e.g. `Reader` with the `local-exec` provisioner. This way we can avoid the violation by creating the role assignment after checking and only when needed. 
 
 ---
 
 ## Best Practices to Avoid Problems with Idempotency
 
-1. **Import Existing Resources:** Add unmanaged resources to Terraform’s state before applying changes.
+1. **Import Existing Resources:** Add unmanaged resources to Terraform's state before applying changes. but in some cases, this may not be possible or practical due to the complexity of the resource or the number of resources or teams involved in managing them when it comes to permissions and RBAC. So if the permissions and RBAC are managed by different teams or are created outside of Terraform, it may be better to use the `data` resource method to check and create the role assignments conditionally.
 2. **Use Data Sources:** Query existing resources to make decisions in your code.
-3. **Add Conditions:** Use `count` or `for_each` to create resources only when needed.
-4. **Ignore Unimportant Changes:** Use lifecycle rules to avoid unnecessary updates.
-5. **Limit Provisioners:** Only use provisioners for tasks Terraform can’t handle natively.
-6. **Plan Before Apply:** Always run `terraform plan` before applying your configuration. This step helps you preview the changes Terraform will make, ensuring they align with your expectations. For beginners, planning is especially critical as it can catch common issues like misconfigurations or unintended resource changes before they happen. It’s a simple but powerful way to avoid surprises and maintain control over your infrastructure. Always run `terraform plan` to preview changes and catch potential issues early.
+3. **Add Conditions:** based on the data source results to create resources conditionally.
+4. **Ignore Unimportant Changes:** Use lifecycle rules to avoid unnecessary updates and changes.
+5. **Limit Provisioners:** Only use provisioners for tasks Terraform can't handle natively or for last resort special cases.
+6. **Plan Before Apply:** Always run `terraform plan` before applying your configuration. This step helps you preview the changes Terraform will make, ensuring they align with your expectations. For beginners, planning is especially critical as it can catch common issues like misconfigurations or unintended resource changes before they happen. It's a simple but powerful way to avoid surprises and maintain control over your infrastructure. Always run `terraform plan` to preview changes and catch potential issues early. But remember that the plan will not show any errors for the violation, so you will need to check the apply output for the error message in these cases.
 7. **Sync with Cloud State:** Use `terraform refresh` to update Terraform’s state before applying changes.
 
 ---
