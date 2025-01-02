@@ -82,8 +82,6 @@ As you can see the error message, it is clear that the role assignment already e
 Status=409 Code="RoleAssignmentExists" Message="The role assignment already exists.
 ```
 
-So how can this violation happen and how can we avoid it?  
-
 ---
 
 ### **Solution 1:** Add Conditions using a `variable` flag/switch
