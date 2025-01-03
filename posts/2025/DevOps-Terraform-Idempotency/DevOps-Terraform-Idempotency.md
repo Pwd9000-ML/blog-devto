@@ -84,7 +84,7 @@ As you can see the error message, it is clear that the role assignment already e
 Status=409 Code="RoleAssignmentExists" Message="The role assignment already exists.
 ```
 
-**Cause:** In a real world scenarios, this violation can happen when the role assignment was created outside of Terraform, for example by an **Operations** or **security** team, or by **Azure Policy** to enforce certain security or operational conditions, or perhaps the permission was set as part of a previous different Terraform configuration with a separate state file. So when our current Terraform configuration tries to create the role assignment again, it fails as the permission already exists.  
+**Cause:** In a real world scenarios, this violation can happen when the role assignment was created outside of Terraform, for example by an **Operations** or **Security** team, or by **Azure Policy** to enforce certain security or operational conditions, or perhaps the permission was set as part of a previous different Terraform configuration with a separate state file. So when our current Terraform configuration tries to create the role assignment again, it fails as the permission already exists.  
 
 ---
 
@@ -179,7 +179,7 @@ As you can see in the example above, the **Terraform Plan** will use the `import
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/plan3.png)
 
-**NOTE:** Once the role assignments are imported into Terraform's state file, you can remove or comment out the `import` block from the configuration as it is only needed to import the existing role assignments into Terraform's state file.
+**NOTE:** Once the role assignments are imported into Terraform's state file, you can remove or comment out the `import` block from the configuration as it is only needed to import the existing role assignments into Terraform's state file and can now be managed from a terraform configuration.  
 
 ---
 
@@ -208,7 +208,7 @@ resource "null_resource" "rbac" {
 
 In the example since we know that the `contributor` role already exists causing a violation, using `az` CLI, will inherently skip any existing RBAC/IAM permissions and only create the `reader` role assignment as per the example. This way we can avoid the violation by skipping existing assignments and creating missing ones we need. The only downside to this method is that it uses `az` CLI to create the role assignment which may not be available in all environments or may require additional setup on the build agent.  
 
-s mentioned one downside to this method is that changes are made outside of Terraform and will not be persisted in the **Terraform State File**. This can lead to **Drift** and **State Confusion** if not managed properly.  
+As mentioned one downside to this method is that changes are made outside of Terraform and will not be persisted in the **Terraform State File**. This can lead to **Drift** and **State Confusion** if not managed properly.  
 
 **IMPORTANT!:** When using `az` CLI like this you need to be aware that you will need a way for your agent to also authenticate to Azure and have the necessary permissions to create the role assignment. This can be done by setting the environment variables `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_TENANT_ID` and `ARM_SUBSCRIPTION_ID` on the build agent to use a service principal with the necessary permissions. As you can see from the command above, we are using a service principal to authenticate to Azure and create the role assignment.  
 
