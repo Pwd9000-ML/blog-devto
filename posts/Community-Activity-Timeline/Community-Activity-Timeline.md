@@ -31,7 +31,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **TBC/01/2025** | [Terraform - Mastering Idempotency Violations: Handling Resource Conflicts and Failures](https://tldr.net/) | Blog/Website Post | DevOps | DevOps, Terraform, IaC, Tutorial |
+| **03/01/2025** | [Terraform - Mastering Idempotency Violations: Handling Resource Conflicts and Failures](https://dev.to/pwd9000/terraform-mastering-idempotency-violations-handling-resource-conflicts-and-failures-in-azure-3f3d) | Blog/Website Post | DevOps | DevOps, Terraform, IaC, Tutorial |
 
 ---
 
