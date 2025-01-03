@@ -226,44 +226,6 @@ Federated tokens via OIDC or other methods can also be used to authenticate to A
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/azure-login.png)#
 
---- 
-
-## solution 3: Use a `local-exec` provisioner using `az` directly as part of the role assignment
-
-This should **ONLY** be used in special cases and as a **last resort**.
-Provisioners are useful in rare cases when you need to run a script or external command during Terraform's execution. However, they should generally be a last resort because they break Terraform's declarative model and can lead to unpredictable behaviour.
-
-Unlike `data` sources, provisioners do not integrate with Terraform's state or lifecycle management. Just like in the previous example, the `local-exec` provisioner is used to run the `az` CLI to create the role assignment. This way we can avoid the violation by creating the role assignment only when needed. However the main issues remain the same, if a provisioner fails or produces unexpected results, Terraform may not recover gracefully or recognise the issue during future runs. Data sources, on the other hand, allow Terraform to query existing infrastructure and make decisions based on the current state, ensuring better consistency and reliability.
-
-```hcl
-#Create a role assignment with a local-exec provisioner to create the role assignment
-resource "azurerm_role_assignment" "rbac" {
-  for_each = toset(["Contributor", "Reader"])
-  role_definition_name = each.value
-  scope = azurerm_resource_group.rg.id
-  principal_id = azurerm_user_assigned_identity.uai.principal_id
-
-  provisioner "local-exec" {
-    command = <<EOT
-      if ! az role assignment list --scope ${azurerm_resource_group.rg.id} --assignee ${azurerm_user_assigned_identity.uai.principal_id} --role ${each.value} --query [].roleDefinitionName -o tsv; then
-        echo "Role assignment does not exist. Proceeding with creation."
-        exit 0
-      else
-        echo "Role assignment already exists. Skipping creation."
-        exit 1
-      fi
-    EOT
-    interpreter = ["bash", "-c"]
-  }
-
-  lifecycle {
-    ignore_changes = [provisioner]
-  }
-}
-```
-
-In the above example we use a `local-exec` provisioner to run the `az` CLI to check if the role assignment we want to add already exists. Based on our earlier violation we know that `Contributor` already exists, (perhaps it was created outside of Terraform by an **Operations** or **Security** team, or during a previous run of another module perhaps with its own state file separate to this run), so we would want to skip the roles that exist and only create the ones we do not have yet e.g. `Reader` with the `local-exec` provisioner. This way we can avoid the violation by creating the role assignment after checking and only when needed.  
-
 ---
 
 ## Best Practices to Avoid Problems with Idempotency
@@ -273,7 +235,7 @@ In the above example we use a `local-exec` provisioner to run the `az` CLI to ch
 3. **Ignore Unimportant Changes:** Use lifecycle rules to avoid unnecessary updates and changes.
 4. **Limit Provisioners:** Only use `local-exec` provisioners for tasks Terraform can't handle natively or for last resort special cases.
 5. **Plan Before Apply:** Always run `terraform plan` before applying your configuration. This step helps you preview the changes Terraform will make, ensuring they align with your expectations. For beginners, planning is especially critical as it can catch common issues like misconfigurations or unintended resource changes before they happen. It's a simple but powerful way to avoid surprises and maintain control over your infrastructure. Always run `terraform plan` to preview changes and catch potential issues early. But remember that the plan will not show any errors for certain violations or conditions, so you will need to check the apply output for the error message in these cases.
-6. **Sync with Cloud State:** Use `terraform refresh` to update Terraform’s state before applying changes.
+6. **Sync with Cloud State:** Use `terraform refresh` to update Terraform's state before applying changes.
 
 ---
 
