@@ -11,11 +11,11 @@ series: Terraform ERRORS!
 
 ## Idempotency: The Backbone of Terraform
 
-Welcome to a new Terraform blog post series, **[Terraform ERRORS!](https://dev.to/pwd9000/series/29961)** In this series, we will explore common errors and issues that you may encounter when working with Terraform and how to resolve them.  
+Welcome to a new Terraform series, **[Terraform ERRORS!](https://dev.to/pwd9000/series/29961)** In this series, we'll explore common errors and issues that you may encounter when working with Terraform and how to resolve them.  
 
-**Idempotency** is one of **Terraform's** most powerful features, ensuring that you can apply your **infrastructure code** multiple times and always get the same result. This consistency is essential for managing **Azure cloud resources** like **virtual machines**, **storage accounts**, **databases**, in addition **permissions and RBAC** and much more efficiently. But what happens when idempotency breaks or cannot be maintained due to various reasons outside of our control? How do we handle these violations and ensure that our infrastructure remains consistent and reliable and more robust to better handle these violations?  
+**Idempotency** is one of **Terraform's** most powerful features, ensuring that you can apply your **infrastructure code** multiple times and always get the same result. This consistency is essential for managing **cloud resources** in **Microsoft Azure**, and other providers, in addition **permissions and RBAC** can also be managed efficiently. But what happens when idempotency breaks or cannot be maintained due to various reasons outside of our control? How do we handle these violations and ensure that our infrastructure and configurations remain consistent, reliable and more robust to better handle these violations?  
 
-In this series, we will focus mainly on **idempotency violations** and how to handle them when working with **Terraform** and **Microsoft Azure**. These errors are normally classed under `StatusCode=409` and can be difficult to troubleshoot and resolve as they do not show up in the **Terraform plan**, but will fail during the **Terraform apply**.  
+This series will focus mainly on **idempotency violations** and how to handle them when working with **Terraform** and **Microsoft Azure**. These errors are normally classed under a `StatusCode=409` and can be difficult to troubleshoot and resolve as they do not show up in the **Terraform plan**, but will fail during the **Terraform apply**.  
 
 Let's dive in!
 
@@ -23,13 +23,13 @@ Let's dive in!
 
 ## Common Idempotency Violations using Terraform
 
-When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry Error**, **Resource Conflict Errors**, or **Already Exists Errors**. Understanding what idempotency means in **practical scenarios** and knowing how to resolve these failures is crucial for maintaining **reliable Infrastructure as Code**. The main problem with certain idempotency violations is that the terraform plan will not show any errors, but the apply will fail.
+When **idempotency breaks**, it can lead to issues such as **Duplicate Key/Entry Error**, **Resource Conflict Errors**, or **Already Exists Errors**. Understanding what idempotency means in **practical scenarios** and knowing how to resolve these sorts of failures are crucial for maintaining **reliable Infrastructure as Code**. The main problem with some errors are that the terraform plan will not show any problems, but the deployment will fail when applied.
 
-Let's look at a common example of a **idempotency violation** when working with **Terraform** and **Microsoft Azure** and see how to best handle it.  
+Here's a common example of an **idempotency violation** using **Terraform** when configuring **RBAC/IAM** on **Microsoft Azure**.  
 
 ### Role Assignment (RBAC) Already Exists
 
-**Scenario:** You try to create an RBAC/IAM permission in Azure, but it already exists (perhaps it was created outside of Terraform or during a previous run).
+**Scenario:** You try to assign a role definition (RBAC/IAM permissions) on Azure, but get an error with `StatusCode=409`, stating that the assignment already exists. The most likely reason being that the permission was set outside of your Terraform configuration, or during a different deployment.  
 
 **Example:**
 
@@ -57,7 +57,7 @@ resource "azurerm_role_assignment" "rbac" {
 }
  ```
 
-In the above example we simulate the violation by creating two role assignments with the `same principal_id`, `role_definition_name` and `scope` using `count=2`. As you can see the plan will not show any errors, but the apply will fail.  
+In the above example we simulate the violation by trying to create a role assignment with the same `principal_id` (of an user assigned identity), `role_definition_name` (Contributor access) and `scope` (Resource Group) twice by using `count=2`. As you can see the plan will not show any errors. However, during the deployment the `contributor` permission will only be granted to the `user assigned identity` on the `resource group` during the first iteration, and on the second iteration it will fail with a `StatusCode=409` error.  
 
 **Terraform Plan:**
 
@@ -78,19 +78,21 @@ In the above example we simulate the violation by creating two role assignments 
 ╵
   ```
 
-As you can see the error message, it is clear that the role assignment already exists!
+As you can see the error message, it is clear that the role assignment already exists!  
 
 ```bash
 Status=409 Code="RoleAssignmentExists" Message="The role assignment already exists.
 ```
 
-**Cause:** In a real world scenarios, this violation can happen when the role assignment was created outside of Terraform, for example by an **Operations** or **Security** team, or by **Azure Policy** to enforce certain security or operational conditions, or perhaps the permission was set as part of a previous different Terraform configuration with a separate state file. So when our current Terraform configuration tries to create the role assignment again, it fails as the permission already exists.  
+**Cause:** In a real world scenario, this violation can happen when the role assignment was created outside of Terraform, for example by an **Operations** or **Security** team, or by **Azure Policy** to enforce certain security or operational conditions, or perhaps the permission was set as part of a previous Terraform configuration with a different state file. So when our current Terraform configuration tries to create the same role assignment again, it fails as the permission already exists.  
+
+Let's take a look at some strategies to handle these types of violations when they arise, and ensure that our Terraform configurations remain consistent and reliable.  
 
 ---
 
 ### **Solution 1:** Add Conditions using a `variable` flag/switch
 
-This is not the best method in my personal opinion, but in the following solution we can create a condition to control the `azurerm_role_assignment` resource to create the role assignment only if the variable `create_role_assignment` is set to `true`. This way we can avoid the violation by creating the role assignment only when needed.  
+One solution is to create a condition to control the `azurerm_role_assignment`. For example creating a flag/switch to be set to create the role assignment only if the switch is set to `true`, such as a variable called, `create_role_assignment`. This way we can avoid the violation by creating the role assignment only when needed.  
 
 ```hcl
 variable "create_role_assignment" {
@@ -107,15 +109,17 @@ resource "azurerm_role_assignment" "rbac" {
 }
 ```
 
-This method is useful when you want to create the role assignment conditionally but is somewhat limited as it will not work if you have multiple user assigned identities or have multiple role definitions.
+The above code will only create the role assignment if the `create_role_assignment` variable is explicitly set to `true`. This way we can avoid the violation by creating the role assignment only when needed.  
+This method is useful when you want to create the role assignment conditionally but is somewhat limited as it will not work if you have multiple identities or multiple role definitions that need to be maintained.  
 
 ---
 
 ### **Solution 2:** Use the Terraform `import` block
 
-If you want to take over the management of an existing permission using terraform that was created outside of **Terraform**, you can use the `import` block to import the existing role assignment into Terraform's state file. This way you can avoid the violation by importing the existing role assignment into Terraform's state file and manage it from there.  
-
-Now the tricky part. Sadly at the writing of this post there is no `data` source for `azurerm_role_assignment` to check if the role assignment already exists before creating it. So we need to use the `import` block to import the existing role assignment into Terraform's state file, so first we need to check what the existing role assignment ID/s are, that we want to import by using `az` CLI or the Azure Portal.  
+Another method to apply is to import the permission into the current configuration. You would need to decide if you want to take over the management of the existing permission using terraform, if it was created outside of terraform.  
+To accomplish this you can use the `import` command, or code block to import the existing role assignment into your current Terraform configurations state file. This way you can avoid the violation by importing existing role assignments and manage them from your Terraform configuration onwards.  
+Let's take a look at how to do this using the `import` block, in the example below we will import existing role assignments that was created outside of Terraform into the current configuration.  
+Firstly we meed to establish the existing role assignments IDs in order to import them by using **Az CLI** or the **Azure Portal**.  
 
 ```azurecli
 # Log in to Azure
@@ -134,13 +138,13 @@ az role assignment list --assignee ${IDENTITY_NAME} --scope /subscriptions/${SUB
 az role assignment list --assignee ${IDENTITY_NAME} --scope /subscriptions/${SUBSCRIPTION_ID} --query "[].id" -o tsv
 ```
 
-Since we want to import the existing role assignment at the **Resource Group** level, the **Azure CLI** command `output` will be structured as follows:
+Since we want to import the existing role assignments at the **Resource Group** level, the **Azure CLI** command `output` will be structured as follows:
 
 ```azurecli
 /subscriptions/<SUB_ID>/resourcegroups/<RESOURCE_GROUP>/providers/Microsoft.Authorization/roleAssignments/<ROLE_ASSIGNMENT_NAME>
 ```
 
-In this example we have 2 existing role assignments `Contributor` and `Reader` assigned at the `Resource Group` that we want to import into Terraform's state file.  
+In this example we have 2 existing role assignments `Contributor` and `Reader` assigned at the `Resource Group` that we want to import.  
 
 ```bash
 /subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resourceGroups/Demo-Inf-Dev-Rg/providers/Microsoft.Authorization/roleAssignments/1a533459-6925-4770-9c4e-0d341ae69691
@@ -149,10 +153,12 @@ In this example we have 2 existing role assignments `Contributor` and `Reader` a
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/rbac.png)
 
-To do this we need to add the `import` block to the `azurerm_role_assignment` resource to import the existing role assignments into Terraform's state file.  
+In our Terraform configuration we will create a `locals` block to store the existing role assignments and their IDs.  
+Next we'll add the `import` block to the `azurerm_role_assignment` resource to import the existing role assignments from the `locals` map.  
+Finally we'll create the `azurerm_role_assignment` resource to manage the role assignments from the Terraform configuration.  
 
 ```hcl
-# Create a locals map of the RBAC permissions on the Resource Group level
+# 1. Create a locals map of the RBAC permissions on the Resource Group level
 locals {
   role_assignments = {
     Reader      = "/subscriptions/829efd7e-aa80-4c0d-9c1c-7aa2557f8e07/resourceGroups/Demo-Inf-Dev-Rg/providers/Microsoft.Authorization/roleAssignments d5ee3efa-0ebe-44b7-a6ff-cdf1abc64418",
@@ -160,13 +166,14 @@ locals {
   }
 }
 
+# 2. Import the existing role assignments into Terraform's state file
 import {
   for_each = local.role_assignments
-  to       = azurerm_role_assignment.rbac[each.key]
+  to       = azurerm_role_assignment.rbac[each.key] # Pay attention to the 'To' setting here, it defines the resource to import the existing role assignment into (next step)
   id       = each.value
 }
 
-# Create the azurerm_role_assignment resource importing the existing role assignments
+# 3. Create the azurerm_role_assignment resource importing the existing role assignments
 resource "azurerm_role_assignment" "rbac" {
   for_each             = local.role_assignments
   principal_id         = azurerm_user_assigned_identity.uai.principal_id
@@ -175,17 +182,25 @@ resource "azurerm_role_assignment" "rbac" {
 }
 ```
 
-As you can see in the example above, the **Terraform Plan** will use the `import` block to import the existing role assignments into Terraform's state file. This way we can avoid the violation by importing the existing role assignments into Terraform's state file and manage them from there. This method is useful when you want to import existing role assignments into Terraform's state file and manage them from there.  
+As you can see in the example above, the **Terraform Plan** will use the `import` block to import the existing role assignments from the `locals` into the `resource`.  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/plan3.png)
 
+Now we can avoid the violation and the existing role assignments can be managed from the terraform configuration.  
+
 **NOTE:** Once the role assignments are imported into Terraform's state file, you can remove or comment out the `import` block from the configuration as it is only needed to import the existing role assignments into Terraform's state file and can now be managed from a terraform configuration.  
+
+This method is useful when you want to import existing role assignments into Terraform and manage them from there in your code, however it may not always be practical or possible due to other teams managing the permissions or the complexity of the permissions.  
 
 ---
 
 ### **Solution 3:** Use `null_resource` with a `local-exec` provisioner using `az` CLI to create the role assignment
 
-In some cases you may not want to manage the existing role assignments in Terraform's state file, but you still want to create the role assignment conditionally. Thus another way to handle the violation is by using a `null_resource` with a `local-exec` provisioner to create role assignments. This way we can avoid the violation by creating the role assignment using `az` CLI only when needed. This method is useful when you want to create the role assignment conditionally and is more flexible as it can be used with multiple user assigned identities or multiple role definitions as using `az`.
+In some cases you may not want to manage the existing role assignments in Terraform as it is maintained by someone else or **Azure Policy**, but still may need create role assignments conditionally for functionality of you code. For example you write a module that builds and AKS (Azure Kubernetes) cluster that attaches as User Assigned Managed Identity to the cluster, and have to give the identity access to an ACR (Azure Container Registry), but perhaps the ACR already have the identity permissioned by an Azure Policy or a different module deployment.  
+In such rare cases, you might want consider another way to handle the violation or skip existing permissions and only set them if necessary outside of the Terraform code.  
+Luckily, still using terraform you can accomplish this by using a resource called `null_resource` in combination with a `local-exec` provisioner to create role assignments. Let's look at how we can create the role assignment we need using `Az CLI` only when needed using this method.  
+
+In this example we will use a `User Assigned Managed Identity` to create the role assignment for `Contributor` and `Reader` on the `Resource Group` that already has `Contributor` permissions set, but not `Reader`.
 
 ```hcl
 # Create a null resource with a local-exec provisioner to create the role assignment for 'contributor' and 'reader' from a var.permissions list
@@ -206,25 +221,27 @@ resource "null_resource" "rbac" {
 }
 ```
 
-In the example since we know that the `contributor` role already exists causing a violation, using `az` CLI, will inherently skip any existing RBAC/IAM permissions and only create the `reader` role assignment as per the example. This way we can avoid the violation by skipping existing assignments and creating missing ones we need. The only downside to this method is that it uses `az` CLI to create the role assignment which may not be available in all environments or may require additional setup on the build agent.  
+In the example above, by using `az` CLI inside of Terraform this way, the CLI will inherently **skip** any **existing** RBAC/IAM permissions (Contributor) and only create the permissions that are not there (Reader), this way we can avoid the violation by skipping existing role assignments and only creating missing ones we may need for functionality.  
+The downside to this method is that it uses `az` CLI, which may not be available in all environments or may require additional setup on the build agent as well as the changes made will be outside of Terraform not be persisted in the **State File**. This can lead to **Drift** and **State Confusion** if not managed properly.  
 
-As mentioned one downside to this method is that changes are made outside of Terraform and will not be persisted in the **Terraform State File**. This can lead to **Drift** and **State Confusion** if not managed properly.  
-
-**IMPORTANT!:** When using `az` CLI like this you need to be aware that you will need a way for your agent to also authenticate to Azure and have the necessary permissions to create the role assignment. This can be done by setting the environment variables `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_TENANT_ID` and `ARM_SUBSCRIPTION_ID` on the build agent to use a service principal with the necessary permissions. As you can see from the command above, we are using a service principal to authenticate to Azure and create the role assignment.  
+**IMPORTANT!:** When using `az` CLI like this you need to be aware that you will need a way for your build agent to authenticate to Azure using `az` CLI and have the necessary permissions to create the role assignment. This can be done by setting up environment variables such as, `ARM_CLIENT_ID`, `ARM_CLIENT_SECRET`, `ARM_TENANT_ID` and `ARM_SUBSCRIPTION_ID` on the build agent to use a service principal with the necessary permissions. As you can see from the command above, we are using a service principal to authenticate to Azure and then creating the role assignment.  
 
 ```azurecli
+# Authenticate to Azure using a service principal
 az login --service-principal --username $ARM_CLIENT_ID --password $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID --output none
 az account set --subscription $ARM_SUBSCRIPTION_ID --output none
+
+# Create the role assignment using the az CLI
 az role assignment create --assignee ${azurerm_user_assigned_identity.uai.principal_id} --role ${each.key} --scope ${azurerm_resource_group.rg.id}
 ```
 
-If you are using GitHub Actions, you can set these environment variables in the GitHub Secrets and use them in your workflow.  
+If you are using GitHub Actions, you can set these environment variables on your worker/runner/build agent in **GitHub Secrets** and use them in your workflows as variables.  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/github-secrets.png)
 
-Federated tokens via OIDC or other methods can also be used to authenticate to Azure and create the role assignment using the `az` CLI in the `local-exec` provisioner. For more details on how to authenticate to Azure using the `az` CLI, see **[Authenticate Azure CLI](https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli/?wt.mc_id=DT-MVP-5004771)**
+Federated identities using OIDC or other methods can also be used to authenticate to Azure using the `az` CLI in the `local-exec` provisioner. For more details on how to authenticate to Azure using the `az` CLI, see **[Authenticate Azure CLI](https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli/?wt.mc_id=DT-MVP-5004771)**
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/azure-login.png)#
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/azure-login.png)
 
 ---
 
