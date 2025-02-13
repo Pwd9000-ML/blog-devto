@@ -2,7 +2,7 @@
 title: How GitHub Actions can improve CI/CD and compares with Azure Pipelines
 published: true
 description: How GitHub Actions can improve CI/CD with some pros and cons and comparison to Azure DevOps Pipelines.
-tags: 'github, devops, githubactions, development'
+tags: 'github, devops, githubactions, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/GitHub-Actions-CICD/assets/main.png'
 canonical_url: null
 id: 1363756

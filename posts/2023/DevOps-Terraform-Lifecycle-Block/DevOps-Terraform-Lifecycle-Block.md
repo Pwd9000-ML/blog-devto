@@ -2,7 +2,7 @@
 title: Terraform - Understanding the Lifecycle Block
 published: true
 description: DevOps - Terraform - Understanding the Lifecycle Block
-tags: 'terraform, azure, iac, azuredevops'
+tags: 'terraform, azure, tutorial, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/DevOps-Terraform-Lifecycle-Block/assets/main-tf-tips.png'
 canonical_url: null
 id: 1484553

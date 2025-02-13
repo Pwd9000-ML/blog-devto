@@ -2,7 +2,7 @@
 title: Terraform - Understanding Count and For_Each Loops
 published: true
 description: DevOps - Terraform - Understanding Count and For_Each Loops
-tags: 'terraform, azure, iac, devops'
+tags: 'terraform, tutorial, iac, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Loops/assets/main-tf-tips.png'
 canonical_url: null
 id: 1762109

@@ -2,7 +2,7 @@
 title: Terraform - Understanding Implicit and Explicit Dependencies
 published: true
 description: DevOps - Terraform - Understanding Implicit and Explicit Dependencies
-tags: 'terraform, azure, iac, devops'
+tags: 'terraform, azure, tutorial, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Implicit-Explicit-Dependency/assets/main-tf-tips.png'
 canonical_url: null
 id: 1761018

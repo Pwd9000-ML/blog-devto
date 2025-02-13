@@ -2,7 +2,7 @@
 title: Terraform - Variable Validation
 published: true
 description: DevOps - Terraform - Enhancing Infrastructure-as-Code Development using Variable Validation
-tags: 'terraform, azure, iac, azuredevops'
+tags: 'terraform, azure, iac, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2023/DevOps-Terraform-Variable-Validation/assets/main-tf-tips.png'
 canonical_url: null
 id: 1573291

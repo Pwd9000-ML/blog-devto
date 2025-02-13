@@ -2,7 +2,7 @@
 title: Festive Tech Calendar 2024 - Transforming DevOps with AI
 published: true
 description: How GitHub Copilot is transforming DevOps with AI
-tags: 'githubcopilot, festivetechcalendar, github, azure'
+tags: 'githubcopilot, tutorial, github, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Festive-Tech-Calendar-2024/assets/main.jpg'
 id: 2143796
 date: '2024-12-07T18:34:26Z'
