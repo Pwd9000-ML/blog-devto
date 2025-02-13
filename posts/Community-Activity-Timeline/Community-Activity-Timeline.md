@@ -2,7 +2,7 @@
 title: My Tech Community Activity Timeline
 published: true
 description: Showcase and timeline of my tech community activity and contributions
-tags: 'ai, learning, devops, github'
+tags: 'ai, tutorial, devops, github'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Community-Activity-Timeline/assets/main.png'
 canonical_url: null
 id: 953760
