@@ -11,11 +11,13 @@ date: '2022-01-13T11:34:23Z'
 
 ## Tech Community Contributions
 
-When it comes to cloud technology, I usually blog and go where my curiosity takes me covering topics on Microsoft Azure, Azure DevOps and GitHub. I enjoy creating technical content, public speaking & virtual meetups, and love to share my knowledge in these areas with the tech community.
+As a Dual-category Microsoft MVP in Developer Technologies and Azure, I am deeply passionate about cloud technology and the tech community. My curiosity drives me to explore and share insights on Microsoft Azure, Azure DevOps, GitHub and AI through blogging, technical content creation, and speaking engagements.  
 
-Here is a summary and timeline of my community activity, speaking events and contributions. Including events I will be presenting at in the near future. Feel free to reach out to me if you would like me to speak at a community user group, event, conference or meetup.
+I actively contribute through public speaking, virtual meetups, knowledge-sharing initiatives, Contributing to opensource and sharing my expertise as part of the Microsoft for Startups Expert Network!(Founders Hub). Below, you'll find a timeline of my community activities, speaking events, and contributions, including upcoming talks and engagements.  
 
-<a href="https://www.buymeacoffee.com/pwd9000"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=pwd9000&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
+If you're looking for a speaker for a community user group, event, conference, meetup, or mentorship feel free to reach out! I'm always excited to connect and collaborate.  
+
+[GitHub](https://github.com/Pwd9000-ML) | :penguin: [X/Twitter](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)  
 
 # 🔥 Upcoming 🔥
 
@@ -202,7 +204,5 @@ If you like my content feel free to bookmark this page as it gets updated freque
 ---
 
 ### _Author_
-
-Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X/Twitter](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
 
 {% user pwd9000 %}
