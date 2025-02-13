@@ -2,7 +2,7 @@
 title: Best Practices for Using GitHub Secrets - Part 1
 published: true
 description: Best Practices for Managing Sensitive Information in a GitHub Workflow
-tags: 'github, git, devops, devsecops'
+tags: 'github, tutorial, devops, devsecops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/main-gh-tips.png'
 canonical_url: null
 id: 1924247

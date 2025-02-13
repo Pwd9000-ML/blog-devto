@@ -2,7 +2,7 @@
 title: Securing Azure Logic apps with Private Endpoints
 published: true
 description: Azure - Private Endpoint Azure Logic apps
-tags: 'logicapps, azure, cloudsecurity, cloudnetworking'
+tags: 'tutorial, azure, security, networking'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Private-Endpoint-Logic-App/assets/main-cover-logicapp.png'
 canonical_url: null
 id: 732865

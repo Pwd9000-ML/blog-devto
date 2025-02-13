@@ -2,7 +2,7 @@
 title: Automate Azure Resource Decommissions (with tracking)
 published: true
 description: Azure - Automate Azure Resource Decommissions
-tags: 'azurefunctions, azure, serverless, automation'
+tags: 'azurefunctions, azure, tutorial, automation'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Automated-Resource-Decommissions/assets/mainfunc.png'
 canonical_url: null
 id: 930485

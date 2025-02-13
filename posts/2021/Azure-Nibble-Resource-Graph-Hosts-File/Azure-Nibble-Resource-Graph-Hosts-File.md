@@ -2,7 +2,7 @@
 title: Azure Nibble - Hosts File Generator using KQL for App Services
 published: true
 description: Azure - Nibble - Hosts File Generator using KQL for App Services in Resource Graph
-tags: 'kql, azure, kusto, azureappservice'
+tags: 'kql, azure, kusto, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Azure-Nibble-Resource-Graph-Hosts-File/assets/main.png'
 canonical_url: null
 id: 817556
