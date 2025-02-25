@@ -1,5 +1,5 @@
 ---
-title: Terraform_Data Resource - Avoiding Duplicate Resource Violations in Azure with checks
+title: Terraform_Data - Avoiding Duplicate Resource Violations in Azure with checks
 published: false
 description: DevOps - Terraform - Avoiding Duplicate Violations in Azure using Terraform_Data Resource
 tags: 'terraform, azure, tutorial, devops'
@@ -32,15 +32,15 @@ Have a look at my previous post: **["Mastering Idempotency Violations - Handling
 
 However, in some cases you may not want to `import` the resource or manage the resource in Terraform. Perhaps it is out of scope of your responsibility for managing the resource, or it may be part of a different deployment.  
 
-In these situations you can use the `terraform_data` resource to check if a resource already exists. This way you can avoid the violation by creating the resources only when needed and also ensure your code will remain running if the configuration depends on already existing resources that you want to keep outside of your configuration and state file.  
+In these situations you can use the `terraform_data` resource to check if a resource already exists. This way you can avoid the violation by creating the resources only when needed and also ensure your code will remain running if the configuration depends on existing resources that you do not want to manage in Terraform.  
 
-This method is useful when you want to check and only create resources conditionally and is a lot more flexible. The only drawback is that you will not be able to manage the resource in Terraform as mentioned, but you can always import the resource if you need to manage it in Terraform later.  
+This method is useful when you want to only check and create resources conditionally and can be more flexible. The only drawback is that you won't be able to manage the resource in Terraform as mentioned, but you can always `import` the resource if needed later.  
 
 ## Example
 
 Say for example you want to create resources inside of a **resource group** called `Demo-Inf-Dev-Rg-720`, but the resource group already exists and is managed and provisioned by another team in your organisation. If you attempted to create the resource group you will get an error saying that the **resource group** already exists: `Error: A resource with the ID already exists - to be managed via Terraform this resource needs to be imported into the State.` and the deployment would fail.  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency-2/assets/main-tf-error.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency-2/assets/error.png)  
 
 An Azure Resource Group is a very basic example, but the same concept can be applied to any resource in Azure that you may have a dependency on that is managed outside of Terraform or your scope of responsibility.  
 
