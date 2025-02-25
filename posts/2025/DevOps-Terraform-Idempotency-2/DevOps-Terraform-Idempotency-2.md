@@ -1,6 +1,6 @@
 ---
 title: Terraform_Data - Avoiding Duplicate Resource Violations in Azure with checks
-published: false
+published: true
 description: DevOps - Terraform - Avoiding Duplicate Violations in Azure using Terraform_Data Resource
 tags: 'terraform, azure, tutorial, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency-2/assets/main-tf-error.png'
@@ -38,13 +38,13 @@ This method is useful when you want to only check and create resources condition
 
 ## Example
 
-Say for example you want to create resources inside of a **resource group** called `Demo-Inf-Dev-Rg-720`, but the resource group already exists and is managed and provisioned by another team in your organisation. If you attempted to create the resource group you will get an error saying that the **resource group** already exists: `Error: A resource with the ID already exists - to be managed via Terraform this resource needs to be imported into the State.` and the deployment would fail.  
+Say for example you want to create resources inside of a **resource group** called `Demo-Inf-Dev-Rg-720`, but the resource group already exists and is managed and provisioned by another team in your organisation. If you attempted to create the resource group you will get an error saying that the **resource group** already exists: `Error: A resource with the ID already exists - to be managed via Terraform this resource needs to be imported into the State.`  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency-2/assets/error.png)  
 
-An Azure Resource Group is a very basic example, but the same concept can be applied to any resource in Azure that you may have a dependency on that is managed outside of Terraform or your scope of responsibility.  
+An Azure Resource Group is a very basic example, but the same concept can be applied to any resource in Azure that you may have a dependency on that is managed outside of Terraform that was created by another means.  
 
-You can use the new `terraform_data` resource with `local-exec` instead to check if the resource group already exists and only create it if it does not exist. Let's take a look:  
+In our example, you can use the `terraform_data` resource with `local-exec` instead, to check if the resource group exists and only create it if it does not exist. Let's take a look:  
 
 ```hcl
 resource "terraform_data" "rg_check" {
@@ -86,8 +86,8 @@ resource "terraform_data" "rg_check" {
 
 This block defines a Terraform resource named `terraform_data.rg_check`. It has two attributes:
 
-- **input:** This is set to the value of the variable `var.resource_group_name`, which is expected to be the name of the resource group.  
-- **triggers_replace:** This is set to the current timestamp, ensuring that the resource is re-evaluated whenever the timestamp changes. This sort of trigger will cause the resource to be re-evaluated every time the configuration is applied, which is useful when you want to check if the resource exists every time the configuration is applied.  
+- **input:** This is set to the value of the variable `var.resource_group_name`, which is expected to be the name of the resource group to check.  
+- **triggers_replace:** This is set to the current `timestamp()`, ensuring that the resource is re-evaluated whenever the timestamp changes. This sort of trigger will cause the resource to be re-evaluated every time the configuration is applied, which is useful when you want to check if the resource exists every time the configuration is applied since it is not managed by Terraform and may change outside of Terraform.  
 
 **Provisioner:** `local-exec`  
 
@@ -110,13 +110,13 @@ This block defines a Terraform resource named `terraform_data.rg_check`. It has 
 }
 ```
 
-This nested block defines a `local-exec` provisioner, which allows you to run a local command using **Powershell Core** for example. The provisioner has the following attributes:  
+This nested block inside of the resource, defines a `local-exec` provisioner, which allows you to run a local command using **Powershell Core** for example. The provisioner has the following attributes:  
 
-- **interpreter:** Specifies the interpreter to use, in this case, PowerShell Core (pwsh). You have to make sure that PowerShell Core is installed on the machine where the Terraform configuration is being applied.
-- **command:** Contains the PowerShell script to execute. The script performs the following actions:  
+- **interpreter:** Specifies the interpreter to use, in this case, **PowerShell Core (pwsh)**. You have to make sure that PowerShell Core is installed on the machine where the Terraform configuration is being applied.
+- **command:** Contains the PowerShell script to execute. The script performs the following:  
   - Sets the error action preference to "Stop" to halt execution on any error.  
-  - Logs into Azure using a service principal with credentials provided via environment variables. In this case my script uses Azure service principal credentials stored as Github Secrets and passed as environment variables into my Github Actions workflow.  
-  - Sets the Azure subscription context where my service principal has access to.  
+  - Logs into Azure using a service principal with credentials provided via environment variables. In this case the script uses **Azure service principal credentials** stored as **Github Secrets** and passed as environment variables into the **Github Actions workflow** CI/CD process.  
+  - Sets the Azure subscription context where the service principal has **IAM/RBAC** access to.  
   - Checks if the resource group specified by `var.resource_group_name` exists using **Azure CLI**.
   - If the resource group exists, it outputs the `resource group ID`.  
   - If the resource group does not exist, it creates the resource group using **Azure CLI** in the specified location and outputs the new `resource group ID`.  
@@ -143,7 +143,7 @@ This block defines an output variable named `rg_id_output`. It has the following
 
 ## Conclusion
 
-In this post, we explored how to avoid duplicate resource violations in Azure when working with Terraform by using the `terraform_data` resource to check if a resource already exists before creating it conditionally. Remember the resources you create in Azure using this technique will not be managed by Terraform, so if you need to manage the resource in Terraform at a later time, you can always import the resource into Terraform's state.  
+In this post, we explored how to avoid duplicate resource violations in Azure when working with Terraform by using the `terraform_data` resource to check if a resource already exists before creating it conditionally. Remember the resources you create in Azure using this technique will not be managed by Terraform, so if you need to manage the resource in Terraform at a later time, you can always import the resource into Terraform's state when needed.  
 
 **Have you faced idempotency problems in Terraform? Share your solutions in the comments!**  
 
