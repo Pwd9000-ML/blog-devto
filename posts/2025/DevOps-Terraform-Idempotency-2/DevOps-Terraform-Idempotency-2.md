@@ -44,6 +44,8 @@ Say for example you want to create resources inside of a **resource group** call
 
 An Azure Resource Group is a very basic example, but the same concept can be applied to any resource in Azure that you may have a dependency on that is managed outside of Terraform that was created by another means.  
 
+It is also quite useful if you want to create resources, or modifications to existing resources, that are available, maybe as ***"Preview"*** features that are not yet added into the AzureRM Terraform provider, that can be imported at a later date when the provider is updated or become ***"Generally Available (GA)"***.  
+
 In our example, you can use the `terraform_data` resource with `local-exec` instead, to check if the resource group exists and only create it if it does not exist. Let's take a look:  
 
 ```hcl
