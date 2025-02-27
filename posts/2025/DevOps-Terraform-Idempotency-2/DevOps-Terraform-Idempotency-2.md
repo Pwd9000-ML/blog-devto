@@ -145,7 +145,11 @@ This block defines an output variable named `rg_id_output`. It has the following
 
 ## Conclusion
 
-In this post, we explored how to avoid duplicate resource violations in Azure when working with Terraform by using the `terraform_data` resource to check if a resource already exists before creating it conditionally. Remember the resources you create in Azure using this technique will not be managed by Terraform, so if you need to manage the resource in Terraform at a later time, you can always import the resource into Terraform's state when needed.  
+In this post, we explored how to avoid duplicate resource violations in Azure when working with Terraform by using the `terraform_data` resource.  
+
+Even though the `terraform_data` resource can be used for various other scenarios and use cases, it is very handy built-in functionality now that can be used and in our example case explained, to check if an Azure resource already exists before creating it conditionally.  
+
+Remember the resources you create or modify in Azure using this technique will not be managed by Terraform, so if you need to manage the resource in Terraform at a later time, you can always import the resource into Terraform's state when needed. Especially those resources that are managed outside of Terraform or are not yet supported by the Terraform provider you are using.  
 
 **Have you faced idempotency problems in Terraform? Share your solutions in the comments!**  
 
