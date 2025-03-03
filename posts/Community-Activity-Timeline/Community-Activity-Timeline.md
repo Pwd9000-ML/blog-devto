@@ -27,7 +27,6 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **03/03/2025** | [Azure Spring Clean 2025 - Using GitHub Copilot for Azure and Diagrams](https://www.azurespringclean.com/wall.html) | Speaker | Azure, GitHub | DevOps, GitHub, GitHubCopilot |
 | **05/03/2025** | [Microsoft AI Tour London - In Person Hub Expert](https://aitour.microsoft.com/en-US/home) | Speaker | Azure, GitHub | DevOps, GitHub, GitHubCopilot |
 | **10/03/2025** | [Global AI Bootcamp 2025 - Using GitHub Copilot for Azure and Diagrams](https://globalai.community/chapters/karlsruhe/events/global-ai-bootcamp-karlsruhe/) | Blog | Azure, GitHub | DevOps, GitHub, GitHubCopilot |
 
@@ -37,6 +36,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **03/03/2025** | [Azure Spring Clean 2025 - Using GitHub Copilot for Azure and Diagrams](https://www.azurespringclean.com/wall.html) | Speaker | Azure, GitHub | DevOps, GitHub, GitHubCopilot |
 | **25/02/2025** | [Terraform_Data - Avoiding Duplicate Resource Violations in Azure with checks](https://dev.to/pwd9000/terraformdata-avoiding-duplicate-resource-violations-in-azure-with-checks-401e) | Blog | DevOps | DevOps, Terraform, IaC, Tutorial |
 | **29/01/2025** | [Founders Hub Engagement](https://foundershub.startups.microsoft.com/) | Blockchain Platform | Azure, GitHub | GitHub, Copilot, BotFramework |
 | **03/01/2025** | [Terraform - Mastering Idempotency Violations: Handling Resource Conflicts and Failures](https://dev.to/pwd9000/terraform-mastering-idempotency-violations-handling-resource-conflicts-and-failures-in-azure-3f3d) | Blog | DevOps | DevOps, Terraform, IaC, Tutorial |
