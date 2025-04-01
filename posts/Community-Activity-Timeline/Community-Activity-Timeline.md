@@ -27,7 +27,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **22/03/2025** | [MVPSummit 2025 - In Person Attendance 2025](https://summit25.msftevents.io/account/login) | Speaker | Azure, GitHub | DevOps, GitHub, GitHubCopilot |
+| **TBC** | [TBC](https://summit25.msftevents.io/account/login) | Speaker | Azure, GitHub | DevOps, GitHub, GitHubCopilot |
 
 ---
 
@@ -35,6 +35,8 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **01/04/2025** | [MVP Summit 2025 Feedback - Enhancing Efficiency with Shell: Technical Review and Planning](https://summit.microsoft.com/) | Feedback | Azure, AI | DevOps, GitHubCopilot, AI-Services |
+| **22/03/2025** | [MVPSummit 2025 - In Person Attendance 2025](https://summit.microsoft.com/) | MVPSummit | Azure, GitHub | DevOps, GitHub, GitHubCopilot |
 | **12/03/2025** | [Sessionize - Speaker of the Day - Wednesday, 12 Mar 2025](https://www.linkedin.com/feed/update/urn:li:activity:7305489730043871232/) | Speaker | Azure, GitHub | DevOps, GitHub, GitHubCopilot |
 | **10/03/2025** | [Global AI Bootcamp 2025 - Using GitHub Copilot for Azure and Diagrams](https://globalai.community/chapters/karlsruhe/events/global-ai-bootcamp-karlsruhe/) | Speaker | Azure, GitHub | DevOps, GitHub, GitHubCopilot |
 | **05/03/2025** | [Microsoft AI Tour London - In Person OpenAI Hub Expert](https://aitour.microsoft.com/en-US/home) | Speaker | Azure, GitHub | DevOps, GitHub, GitHubCopilot |
