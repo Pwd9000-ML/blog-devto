@@ -25,12 +25,12 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 ## 📑 Table of Contents
 
-[🔥 Upcoming Events](#upcoming-events)
-[💫 Highlights of 2025](highlights-of-2025)
-[😎 2024 Activities](#2024)
-[🤘 2023 Activities](#2023)
-[👉 2022 Activities](#2022)
-[✨ 2021 Activities](#2021)
+- [🔥 Upcoming Events](#upcoming-events)
+- [💫 Highlights of 2025](#highlights-of-2025)
+- [😎 2024 Activities](#2024)
+- [🤘 2023 Activities](#2023)
+- [👉 2022 Activities](#2022)
+- [✨ 2021 Activities](#2021)
 
 ---
 
