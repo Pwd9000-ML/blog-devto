@@ -9,7 +9,7 @@ id: 953760
 date: '2022-01-13T11:34:23Z'
 ---
 
-## Tech Community Contributions
+# Tech Community Contributions
 
 As a Dual-category Microsoft MVP in Developer Technologies + Azure, I am deeply passionate about cloud technology and the tech community. My curiosity drives me to explore and share insights on Microsoft Azure, Azure DevOps, GitHub and AI through blogging, technical content creation, and speaking engagements.  
 
@@ -17,21 +17,23 @@ I actively contribute through public speaking, virtual meetups, knowledge-sharin
 
 Below, you'll find a timeline of my community activities, speaking events, and contributions, including upcoming talks and engagements.  
 
-If you're looking for a speaker for a community user group, event, conference, meetup, or mentorship feel free to reach out! I'm always excited to connect and collaborate.  
+**If you're looking for a speaker for a community user group, event, conference, meetup, or mentorship feel free to reach out! I'm always excited to connect and collaborate.**
 
-[GitHub](https://github.com/Pwd9000-ML) | :penguin: [X/Twitter](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)  
-
-# 🔥 Upcoming 🔥
-
-If you like my content feel free to bookmark this page as it gets updated frequently to showcase any new content or upcoming events/conferences/podcasts I will be presenting at.
-
-| Date | Activity | Type | Topic Area | Tags |
-| --- | --- | --- | --- | --- |
-| **TBC** | [TBC](https://summit25.msftevents.io/account/login) | Speaker | Azure, GitHub | DevOps, GitHub, GitHubCopilot |
+[GitHub](https://github.com/Pwd9000-ML) | :penguin: [X/Twitter](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
 
 ---
 
-# 💫 2025 💫
+## 🔥 Upcoming Events 🔥
+
+If you like my content, feel free to bookmark this page as it gets updated frequently to showcase any new content or upcoming events/conferences/podcasts I will be presenting at.
+
+| Date | Activity | Type | Topic Area | Tags |
+| --- | --- | --- | --- | --- |
+| **TBC** | [TBC](https://summit25.msftevents.io/account/login) | 🎤 Speaker | Azure, GitHub | DevOps, GitHub, GitHubCopilot |
+
+---
+
+## 💫 Highlights of 2025 💫
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
@@ -48,7 +50,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 ---
 
-# 😎 2024 😎
+## 😎 2024 😎
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
@@ -76,7 +78,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 ---
 
-# 🤘 2023 🤘
+## 🤘 2023 🤘
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
@@ -108,7 +110,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | **11/01/2023** | [London Microsoft DevOps Meetup - H4ppy N3w Y34r](https://www.meetup.com/london-microsoft-devops/events/289518388/) | Event Organiser | GitHub, DevOps | Security, DevOps, Meetup, Automation |
 | **10/01/2023** | [Terraform - Fun with Functions](https://dev.to/pwd9000/terraform-fun-with-functions-30p4) | Blog | Terraform | DevOps, Automation, IaC, Tutorial |
 
-# 👉 2022 👈
+## 👉 2022 👈
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
@@ -141,7 +143,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 | **13/05/2022** | [Top Stories from the Microsoft DevOps Community – 13.05.2022](https://devblogs.microsoft.com/devops/top-stories-from-the-microsoft-devops-community-06-13-2022/?wt.mc_id=DT-MVP-5004771) | Article | GitHub, Azure | Functions, CICD, Automation, Tutorial |
 | **11/05/2022** | [Implement CI/CD with GitHub - Deploy Azure Functions](https://dev.to/pwd9000/implement-cicd-with-github-deploy-azure-functions-3kma) | Blog | GitHub, Azure | Functions, CICD, Automation, Tutorial |
 | **30/04/2022** | [Microsoft Cloud Security User Group - Automate Azure Role Based Access Control using Azure DevOps](https://youtu.be/QwA1Ai1oUP8) | Speaker | Azure DevOps, PowerShell | Security, DevSecOps, RBAC, Automation, Podcast |
-| **29/04/2022** | [Journey To The Cloud 4.0 - Protect secrets in Azure Functions using Key Vault](https://youtu.be/C0s6A758mn0) | Speaker | Security, Serverless, FunctionApps, Tutorial |
+| **29/04/2022** | [Journey To The Cloud 4.0 - Protect secrets in Azure Functions using Key Vault](https://youtu.be/C0s6A758mn0) | Speaker | Security, Serverless | FunctionApps, Tutorial |
 | **28/04/2022** | [DeveloperWeek Europe 2022 - Reusable GitHub workflows to automate tokens](https://www.developerweek.com/europe/speakers/) | Speaker | Azure, PowerShell, GitHub | Automation, Security, GitHubActions, ServiceBus, DevSecOps, Speaker |
 | **27/04/2022** | [Cloud Lunch and Learn - Automate Azure Role Based Access Control using Azure DevOps](https://youtu.be/USw7nbRwWbY) | Speaker | Azure DevOps, PowerShell | Security, DevSecOps, RBAC, Automation, Podcast |
 | **14/04/2022** | [Terraform - Selective configuration with 'lookup()'](https://dev.to/pwd9000/terraform-selective-configuration-with-lookup-goe) | Blog | DevOps | Terraform, Automation, IaC, Tutorial |
@@ -178,7 +180,7 @@ If you like my content feel free to bookmark this page as it gets updated freque
 
 ---
 
-# ✨ 2021 ✨
+## ✨ 2021 ✨
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
