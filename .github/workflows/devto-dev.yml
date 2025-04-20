@@ -38,7 +38,7 @@ jobs:
           separator: ","
           config: ./.github/.markdownlint.json
 
-      - name: Publish articles on dev.to
+      - name: Dry Run Publish to Dev.to
         uses: sinedied/publish-devto@v2
         with:
           files: 'posts/**/*.md'
