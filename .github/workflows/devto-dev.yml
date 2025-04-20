@@ -1,4 +1,9 @@
-name: Prepare for Dev.to (Dev Branch)
+
+name: Check Markdown files on Dev Branch
+# This workflow checks for changes in Markdown files on the dev branch and runs linting and formatting tools.
+# It does not publish to Dev.to. The publish step is handled in the main workflow.
+# It is triggered on push events to the dev branch.
+
 on:
   push:
     branches:
@@ -8,28 +13,27 @@ on:
       - 'posts/**/**/**.md'
 
 jobs:
-  prepare:
+  CheckMarkdown:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4.2.2
-
-      - name: Setup Node
-        uses: actions/setup-node@v4.4.0
         with:
-          node-version: 20
+          fetch-depth: 0
 
-      - name: Install Dependencies
-        uses: bahmutov/npm-install@v1.10.9
+      - name: Check Changed Files
+        uses: tj-actions/changed-files@v45
+        id: changed-files
+        with:
+          files: |
+            posts/**/**/**.md
+            posts/**/**.md 
+          separator: ","
 
       - name: Lint Markdown files
+        if: steps.changed-files.outputs.any_changed == 'true'
         uses: DavidAnson/markdownlint-cli2-action@v19
         with:
-          globs: 'posts/**/*.md'
-          fix: true
-
-      - name: Run Prettier (Write)
-        run: yarn run prettier:write
-
-      - name: Run Embedme (Write)
-        run: yarn run embedme:write
+          globs: ${{ steps.changed-files.outputs.all_changed_files }}
+          separator: ","
+          config: ./.github/.markdownlint.json
