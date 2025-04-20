@@ -17,7 +17,7 @@ Enter the **Model Context Protocol (MCP)**. MCP is an open standard that allows 
 
 In this guide, we'll walk you through the process of setting up the **GitHub MCP server** in **VSCode** using **Node.js** (specifically npx), allowing you to supercharge your Copilot experience in Agent Mode. This setup will enable Copilot to interact directly with the GitHub API, allowing you to perform various actions like summarising or even creating issues, reading files, and searching code repositories directly from the chat interface.
 
-We will also cover the prerequisites, configuration steps, tips to ensure a smooth setup, and troubleshooting advice
+We will also cover the prerequisites, configuration steps, tips to ensure a smooth setup, and troubleshooting advice.
 
 ## Prerequisites
 
