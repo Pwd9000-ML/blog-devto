@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
   
       - name: Setup Node
         uses: actions/setup-node@v4.4.0
@@ -23,20 +25,7 @@ jobs:
   
       - name: Install Dependencies
         uses: bahmutov/npm-install@v1.10.9
-  
-      - name: Lint Markdown files
-        uses: DavidAnson/markdownlint-cli2-action@v19
-        with:
-          globs: 'posts/**/*.md'
-          fix: true
-        continue-on-error: true
-  
-      - name: Run Prettier (Write)
-        run: yarn run prettier:write
-  
-      - name: Run Embedme (Write)
-        run: yarn run embedme:write
-  
+        
       - name: Publish articles on dev.to
         uses: sinedied/publish-devto@v2
         with:
