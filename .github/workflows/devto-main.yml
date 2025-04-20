@@ -34,4 +34,5 @@ jobs:
           files: 'posts/**/*.md'
           devto_key: ${{ secrets.DEVTO_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          conventional_commits: true
+          conventional_commits: false
+          dry_run: false
