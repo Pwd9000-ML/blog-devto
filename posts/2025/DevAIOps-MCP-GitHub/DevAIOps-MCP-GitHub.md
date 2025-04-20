@@ -21,9 +21,13 @@ We will also cover the prerequisites, configuration steps, tips to ensure a smoo
 
 ## Prerequisites
 
-Before we start, make sure you have the following:
+Before we start, make sure you have the following installed and set up:
 
-Visual Studio Code: The latest stable or insiders release.   GitHub Copilot & Copilot Chat Extensions: Installed and enabled in VS Code.   Node.js and npm/npx: Node.js (version 16 or higher recommended) and its package manager npm (which includes npx) must be installed. You can download them from nodejs.org.   GitHub Account: You'll need a GitHub account. GitHub Personal Access Token (PAT): A token to authenticate the MCP server with GitHub.   Step 1: Generate a GitHub Personal Access Token (PAT) The MCP server needs a PAT to interact with GitHub securely.
+- **Visual Studio Code**: The latest stable or insiders release.
+- **GitHub Copilot & Copilot Chat Extensions**: Installed and enabled in VS Code.
+- **Node.js and npm/npx**: Node.js (version 16 or higher recommended) and its package manager npm (which includes npx) must be installed. You can download them from [nodejs.org](https://nodejs.org).
+- **GitHub Account**: You'll need a GitHub account.
+- **GitHub Personal Access Token (PAT)**: A token to authenticate the MCP server with GitHub.
 
 Go to your GitHub Settings. Navigate to Developer settings > Personal access tokens > Tokens (classic).   Click Generate new token and choose Generate new token (classic).   Give your token a descriptive Note (e.g., "VSCode-MCP-Server-Token"). Set an Expiration date. Select the necessary scopes (permissions). For general use (reading repos, managing issues), the repo scope might be sufficient. For public repositories only, public_repo could work. Important: Grant only the permissions you need (principle of least privilege).   Click Generate token.   Crucial: Copy the generated token immediately and save it somewhere secure (like a password manager). GitHub will not show it again. Treat this token like a password.   Step 2: Ensure Node.js and npx are Ready Verify your Node.js and npx installation by opening your terminal or command prompt and running:
 
