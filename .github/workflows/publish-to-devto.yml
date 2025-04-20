@@ -16,10 +16,14 @@ jobs:
     - name: Setup Node
       uses: actions/setup-node@v4.4.0
       with:
-        node-version: 14
+        node-version: 20
 
     - name: Install Dependencies
       uses: bahmutov/npm-install@v1.10.9
+
+    - name: Lint Markdown files
+      run: |
+        npx markdownlint-cli2 "posts/**/*.md"
 
     - name: Run Prettier (Write)
       run: yarn run prettier:write
@@ -28,7 +32,6 @@ jobs:
       run: yarn run embedme:write
 
     - name: Publish articles on dev.to
-      continue-on-error: true
       uses: sinedied/publish-devto@v2
       with:
         files: 'posts/**/*.md'
