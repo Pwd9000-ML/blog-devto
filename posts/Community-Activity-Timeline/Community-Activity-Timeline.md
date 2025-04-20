@@ -11,11 +11,11 @@ date: '2022-01-13T11:34:23Z'
 
 ## 🌟 Tech Community Contributions 🌟
 
-As a **Dual-category Microsoft MVP** in **Developer Technologies + Azure**, I am deeply passionate about cloud technology and the tech community. My curiosity drives me to explore and share insights on Microsoft Azure, Azure DevOps, GitHub and AI through blogging, technical content creation, and speaking engagements.  
+As a **Dual-category Microsoft MVP** in **Developer Technologies + Azure**, I am deeply passionate about cloud technology and the tech community. My curiosity drives me to explore and share insights on Microsoft Azure, Azure DevOps, GitHub and AI through blogging, technical content creation, and speaking engagements.
 
-I actively contribute through **public speaking**, **virtual meetups**, **knowledge-sharing initiatives**, contributing to **opensource** and sharing my expertise as part of the **Microsoft for Startups Expert Network/Founders Hub**.  
+I actively contribute through **public speaking**, **virtual meetups**, **knowledge-sharing initiatives**, contributing to **opensource** and sharing my expertise as part of the **Microsoft for Startups Expert Network/Founders Hub**.
 
-Below, you'll find a timeline of my community activities, speaking events, and contributions, including upcoming talks and engagements.  
+Below, you'll find a timeline of my community activities, speaking events, and contributions, including upcoming talks and engagements.
 
 **If you're looking for a speaker for a community user group, event, conference, meetup, or mentorship feel free to reach out! I'm always excited to connect and collaborate.**
 
