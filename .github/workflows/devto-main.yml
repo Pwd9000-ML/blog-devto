@@ -9,7 +9,8 @@ on:
       - 'posts/**/**/**.md'
 
 jobs:
-  publish:
+  publishDevto:
+    # This job is triggered when a pull request to the main branch is merged.
     if: ${{ github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'dev' }}
     runs-on: ubuntu-latest
     steps:
@@ -25,7 +26,7 @@ jobs:
   
       - name: Install Dependencies
         uses: bahmutov/npm-install@v1.10.9
-        
+
       - name: Publish articles on dev.to
         uses: sinedied/publish-devto@v2
         with:

@@ -12,7 +12,7 @@ on:
       - 'posts/**/**/**.md'
 
 jobs:
-  prepare:
+  CheckMarkdown:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
