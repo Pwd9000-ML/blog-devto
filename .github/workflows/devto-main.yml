@@ -9,6 +9,7 @@ on:
       - 'posts/**/**/**.md'
 
 jobs:
+
   publishDevto:
     # This job is triggered when a pull request to the main branch is merged.
     if: ${{ github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'dev' }}
