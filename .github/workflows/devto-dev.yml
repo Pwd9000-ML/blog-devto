@@ -24,12 +24,14 @@ jobs:
         uses: tj-actions/changed-files@v45
         id: changed-files
         with:
-          files: '/posts/**/*.md,posts/**/**/**.md'
+          files: |
+            posts/**/**/**.md
+            posts/**/**.md 
           separator: ","
 
       - name: Lint Markdown files
+        if: steps.changed-files.outputs.any_changed == 'true'
         uses: DavidAnson/markdownlint-cli2-action@v19
-        if: steps.changed-files.outputs.files == 'true'
         with:
           globs: ${{ steps.changed-files.outputs.all_changed_files }}
           separator: ","
