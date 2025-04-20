@@ -25,7 +25,7 @@ Before we start, make sure you have the following installed and set up:
 
 - **Visual Studio Code**: The latest stable or insiders release.
 - **GitHub Copilot & Copilot Chat Extensions**: Installed and enabled in VS Code.
-- **Node.js and npm/npx**: Node.js (version 16 or higher recommended) and its package manager npm (which includes npx) must be installed. You can download them from [nodejs.org](https://nodejs.org).
+- **Node.js and npm/npx**: Node.js (version 23 or higher recommended) and its package manager npm (which includes npx) must be installed. You can download them from [nodejs.org](https://nodejs.org).
 - **GitHub Account**: You'll need a GitHub account.
 - **GitHub Personal Access Token (PAT)**: A token to authenticate the MCP server with GitHub.
 
