@@ -1,0 +1,35 @@
+name: Prepare for Dev.to (Dev Branch)
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - 'posts/**/**.md'
+      - 'posts/**/**/**.md'
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Node
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        uses: bahmutov/npm-install@v1.10.9
+
+      - name: Lint Markdown files
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: 'posts/**/*.md'
+          fix: true
+
+      - name: Run Prettier (Write)
+        run: yarn run prettier:write
+
+      - name: Run Embedme (Write)
+        run: yarn run embedme:write
