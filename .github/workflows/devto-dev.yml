@@ -37,3 +37,11 @@ jobs:
           globs: ${{ steps.changed-files.outputs.all_changed_files }}
           separator: ","
           config: ./.github/.markdownlint.json
+
+      - name: Dry Run Publish to Dev.to
+        uses: sinedied/publish-devto@v2
+        with:
+          files: 'posts/**/*.md'
+          devto_key: ${{ secrets.DEVTO_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          dry_run: true
