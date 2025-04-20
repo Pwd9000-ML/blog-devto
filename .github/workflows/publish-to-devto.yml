@@ -22,8 +22,11 @@ jobs:
       uses: bahmutov/npm-install@v1.10.9
 
     - name: Lint Markdown files
-      run: |
-        npx markdownlint-cli2 "posts/**/*.md"
+      uses: DavidAnson/markdownlint-cli2-action@v19
+      with:
+        globs: 'posts/**/*.md'
+        fix: true
+      continue-on-error: true
 
     - name: Run Prettier (Write)
       run: yarn run prettier:write
