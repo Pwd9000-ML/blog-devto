@@ -128,8 +128,6 @@ As you can see the terraform configuration we just ran using the [GitHub Provide
 
 ### Branch protection rule created with Terraform:
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Terraform-Provider/assets/branch.png)
-
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Terraform-Provider/assets/rule.png)
 
 We have only scratched the surface of what this **terraform provider** can do and if you are interested to see what other resources can be built and managed in GitHub using this provider head over to the official [GitHub Provider](https://registry.terraform.io/providers/integrations/github/latest/docs) documentation.
