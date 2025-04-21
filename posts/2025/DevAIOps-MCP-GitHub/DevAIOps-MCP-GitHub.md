@@ -156,8 +156,7 @@ In this guide, we have covered how to supercharge your GitHub Copilot experience
 
 We also provided some fun example prompts to help you get started with using the MCP server in **Agent Mode**.
 
-There is a plethora MCP servers and we only looked at the one for GitHub. You can explore other MCP servers available for different platforms and services to further enhance your Copilot experience even more.
-
+There is a plethora of MCP servers and we only looked at the one for GitHub. You can explore other MCP servers available for different platforms and services to further enhance your Copilot experience even more.
 Have a look at all the available MCP servers and packages available for other services on the [MCP Server list GitHub repository](https://github.com/modelcontextprotocol/servers)
 
 ### _Author_
