@@ -104,9 +104,7 @@ Lets look at a few examples of how to use the MCP server for GitHub tools in **A
 
 I will ask GitHub Copilot with a prompt to check if there are any Markdown files missing an author entry.
 
-```text
-Prompt: Check if there are any Markdown files in the current folder and compare it to other Markdown files in the codebase to see if there are any documentation missing an author entry at the bottom of the markdown file.
-```
+Prompt: `Check if there are any Markdown files in the current folder and compare it to other Markdown files in the codebase to see if there are any documentation missing an author entry at the bottom of the markdown file.`
 
 As you can see from the following screenshot, GitHub Copilot is able to check the current folder for Markdown files and compare it to other Markdown files in the codebase.
 
@@ -115,9 +113,7 @@ It notified me that one Markdown file is missing an author entry at the bottom o
 
 Lets ask GitHub Copilot to create an issue for us in the GitHub repository.
 
-```text
-Prompt: Create an issue in the GitHub repository for the missing author entry in the Markdown file.
-```
+Prompt: `Create an issue in the GitHub repository for the missing author entry in the Markdown file.`
 
 GitHub Copilot is able to create an issue in the GitHub repository for the missing author entry in the Markdown file. It also provided me with a link to the issue that was created.
 
@@ -133,21 +129,13 @@ I can now go even further and ask GitHub Copilot to correct the Markdown file fo
 
 Here are a few more example prompts you can try to interact with the GitHub MCP server in **Agent Mode**, because we are using the **GitHub MCP server** we can use the GitHub API to perform various actions on our GitHub repositories or even compare files in the codebase to other files in the codebase or even other repositories in GitHub itself that are public.
 
-```text
-Prompt: Search Public GitHub Repositories and compare my Server configuration file `"ServerConfig.json"` with another configuration file that is similar to mine. Are there any features or configurations that I may be missing that I can add to my configuration file?
-```
+Prompt: `Search Public GitHub Repositories and compare my Server configuration file "ServerConfig.json" with another configuration file that is similar to mine. Are there any features or configurations that I may be missing that I can add to my configuration file?`
 
-```text
-Prompt: Create a GitHub issue for each feature or configuration that I am missing in my configuration file.
-```
+Prompt: `Create a GitHub issue for each feature or configuration that I am missing in my configuration file.`
 
-```text  
-Prompt: Look at all the issues in the GitHub repository and check if there are any issues that are similar to the one I created that is already resolved. If so, please close the issue I created and add a comment with a link to the issue that was closed with the resolution.
-```
+Prompt: `Look at all the issues in the GitHub repository and check if there are any issues that are similar to the one I created that is already resolved. If so, please close the issue I created and add a comment with a link to the issue that was closed with the resolution.`
 
-```text
-Prompt: Assist me in the code review process by providing feedback on the changes made in the pull request.
-```
+Prompt: `Assist me in the code review process by providing feedback on the changes made in the pull request.`
 
 The list goes on and on, and you can use the GitHub API to perform various actions on your GitHub repositories as well as public ones out there using the GitHub API to search for code snippets, issues, and even pull requests.
 
