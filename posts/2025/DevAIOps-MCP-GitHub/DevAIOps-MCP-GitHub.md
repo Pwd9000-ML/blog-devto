@@ -49,17 +49,17 @@ Open GitHub Copilot Chat in VSCode and select **Agent Mode**. You can do this by
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode001.png)
 
-Next, click on the **tools** :wrench: icon in the chat view on the left side of the screen to see the available tools for the selected mode. In **Agent Mode**, you will see a list of available tools that you can use to interact with. Scroll down to the bottom of the list and click on **'Add a new tool'**. This will open a new window where you can configure the MCP server.
+Next, click on the **tools** :wrench: icon in the chat view on the left side of the screen to see the available tools for the selected mode. In **Agent Mode**, you will see a list of available tools that you can use to interact with. Scroll down to the bottom of the list and click on **'Add More Tools...'**. This will open a new window where you can configure the MCP server.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode002.png)
 
-Click on **'Add MCP Server'** and select **'GitHub MCP Server'** from the list of available servers. This will open a new window where you can configure the server, followed by **'NPM Package'**:  
+Click on **'Add MCP Server'** and select **'NPM Package'** from the dropdown menu. This will allow you to add an MCP server that is packaged as an NPM package.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode003.png)  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode004.png)
+Provide the location of the model context protocol server package: **'@modelcontextprotocol/server-github'**.  
 
-Then add the model context protocol server package name **'@modelcontextprotocol/server-github'** and click on **'Add'**. This will add the server to the list of available servers in the MCP configuration:  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode004.png)  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode005.png)
 
