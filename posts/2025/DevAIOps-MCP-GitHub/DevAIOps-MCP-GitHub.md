@@ -50,7 +50,6 @@ Next, click on the tools icon in the chat view on the left side of the screen to
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode02.png)
 
-
 There are a few different ways to set up an MCP Servers in VSCode, the easiest without having to install a third party application such as **Claude**. We will focus on using **Cline extension** in VSCode to run the GitHub MCP server. This method is straightforward and doesn't require much configuration.
 
 Once the Cline extension is installed, opn the **Cline** tab in the sidebar and click on **'Get Started For Free'**. This will prompt you to sign in with your GitHub account. Follow the instructions to authenticate and authorize the Cline extension to access your GitHub account.
@@ -85,9 +84,7 @@ Then paste in the folowing configuration:
 ```
 
 - **GitHub Personal Access Token (PAT)**: A token to authenticate the MCP server with GitHub. **Warning**: This token should be kept secret and not shared publicly. It grants access to your GitHub account, so treat it like a password.
-
-
-
+ 
 Go to your GitHub Settings. Navigate to Developer settings > Personal access tokens > Tokens (classic).   Click Generate new token and choose Generate new token (classic).   Give your token a descriptive Note (e.g., "VSCode-MCP-Server-Token"). Set an Expiration date. Select the necessary scopes (permissions). For general use (reading repos, managing issues), the repo scope might be sufficient. For public repositories only, public_repo could work. Important: Grant only the permissions you need (principle of least privilege).   Click Generate token.   Crucial: Copy the generated token immediately and save it somewhere secure (like a password manager). GitHub will not show it again. Treat this token like a password.   Step 2: Ensure Node.js and npx are Ready Verify your Node.js and npx installation by opening your terminal or command prompt and running:
 
 Bash
