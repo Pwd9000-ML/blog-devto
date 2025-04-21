@@ -12,7 +12,9 @@ date: '2025-04-21T11:33:26Z'
 
 ## Introduction
 
-GitHub Copilot has revolutionised the way developers write code, providing intelligent suggestions and automating repetitive tasks. With the introduction of **Copilot Chat**, users can now interact with Copilot in a conversational manner, asking questions and getting contextual help. But what if you could take this a step further? What if you could enable Copilot to perform actions directly on your GitHub repositories, like creating issues or searching for code snippets?
+GitHub Copilot Chat allows developers to use natural language in a conversational manner, asking questions and getting contextual help. But what if you could take this a step further? What if you could enable Copilot to perform actions directly on your GitHub repositories, like creating issues, searching for similar projects on GitHub that are public to get inspiration, or even comparing files in your codebase to other files in the codebase or even other repositories or projects on GitHub?
+
+What about providing feedback on the changes made in the pull request? Or even be a peer reviewer that can assist you in the code review process by providing feedback, adding comments and linking issues for you, on the changes made in the pull request?
 
 Enter the **Model Context Protocol (MCP)**. MCP is an open standard that allows AI applications like Copilot Agent Mode to securely connect with external tools and data sources, enabling a more integrated experience.
 
