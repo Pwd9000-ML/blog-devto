@@ -66,7 +66,7 @@ Provide the location of the model context protocol server package: **'@modelcont
 
 Take a look at the **[GitHub MCP Server documentation](https://github.com/modelcontextprotocol/servers/tree/main/src/github)** for more information on how to set up the MCP server packaged as a Docker image.  
 
-You can also add MCP servers that are packaged as Docker images or Python packages. Or even MCP servers for other services such as **WhatsApp**, **Git**, **GitLab**, and many more. The process is similar.  
+You can also add additional MCP servers for other services such as **WhatsApp**, **Git**, **GitLab**, and many more. The process is similar.  
 
 When you complete the above steps you will see that your VSCode **'Settings.json'** file will be updated with a new configuration block called `"mcp": {}` and the MCP server configuration with the Name/ID:  
 
@@ -91,12 +91,13 @@ When you complete the above steps you will see that your VSCode **'Settings.json
 }
 ```
 
-Next, you will need to add your **GitHub Personal Access Token** (PAT) to the configuration. This token is used to authenticate the MCP server with your GitHub account and allows it to perform actions on your behalf.
-**Warning**: This token should be kept secret and not shared publicly. It grants access to your GitHub account, so treat it like a password.
+Next, you will need to add your **GitHub Personal Access Token** (PAT) to the configuration. This token is used to authenticate the MCP server with your GitHub account and allows it to perform actions on your behalf. 
 
-Once you have generated your PAT, you can add it to the configuration by replacing the `<YOUR_TOKEN>` placeholder with your actual token. Make sure to keep the quotes around the token or pass it as an environment variable. Do not commit this token to your repository or share it with anyone else.
+**Warning**: This token should be kept secret and not shared publicly. It grants access to your GitHub account, so treat it like a password.  
 
-Once you have added your PAT, you can save the configuration and close the settings file. Your MCP server is now configured and ready to use. Click on the **'Start'** button above the MCP server configuration.
++Once you have generated your PAT, you can add it to the configuration by replacing the `<YOUR_TOKEN>` placeholder with your actual token. Make sure to keep the quotes around the token or pass it as an environment variable. Do not commit this token to your repository or share it with anyone else.
+
+Once you have added your PAT, you can save the configuration, and your MCP server is now configured and ready to use. Click on the **'Start'** button above the MCP server configuration.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode006.png)
 
