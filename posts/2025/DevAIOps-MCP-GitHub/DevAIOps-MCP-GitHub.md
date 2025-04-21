@@ -1,5 +1,5 @@
 ---
-title: Supercharge VSCode GitHub Copilot using Model Context Protocol (MCP) - Easy Step-by-Step Guide
+title: Supercharge VSCode GitHub Copilot using Model Context Protocol (MCP) - Easy Guide
 published: false
 description: 'Unlock the power of GitHub Copilot in VS Code with the Model Context Protocol (MCP) for seamless GitHub integration.'
 tags: 'GitHubCopilot, MCP, tutorial, AI'
@@ -27,31 +27,31 @@ Before we start, make sure you have the following installed and set up:
 
 - **[Visual Studio Code](https://code.visualstudio.com/download)**: The latest stable or insiders release.
 - **[GitHub Copilot & Copilot Chat Extensions](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)**: Installed and enabled in VS Code.
-- **GitHub Account**: You'll need a GitHub account.
+- **[GitHub Account](https://github.com)**: You'll need a GitHub account.
 
 MCP servers supports many different packages and languages, so running them in VSCode you would need to have either one of the following installed on your machine:
 
 - **[Python](https://www.python.org/downloads/)** for PIP packages.
 - **[Node.js](https://nodejs.org/en/download/)** for NPM packages.
 - **[TypeScript](https://www.typescriptlang.org/download)** for TS packages.
-- **docker** for Docker images.
+- **[Docker](https://www.docker.com)** for Docker images.
 
 There are many more supported frameworks and **Microsoft** even released support for **C#** recently. You can find the full list of supported languages and packages in the [MCP documentation](https://github.com/modelcontextprotocol)
 
-For this blog post I will be using **Node.js** so make sure you have the latest version installed on your machine. You can check if it's installed by running `node -v` in your terminal. If you don't have it, download and install the latest version from the official website.  
+In this post I will be using **'Node.js'** so make sure you have the latest version installed on your machine. You can check if it's installed by running `node -v` in your terminal. If you don't have it, download and install the latest version from the official website.  
 
 ## Configuration Steps
 
-Open Github Copilot Chat in VSCode and select **Agent Mode**. You can do this by clicking on the **Copilot icon** in the sidebar and selecting **Agent Mode** from the dropdown menu.
+Open GitHub Copilot Chat in VSCode and select **Agent Mode**. You can do this by clicking on the **Copilot icon** in the sidebar and selecting **Agent Mode** from the dropdown menu.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode01.png)
 
-Next, click on the tools icon in the chat view on the left side of the screen to see the available tools for the selected mode. In **Agent Mode**, you will see a list of available tools that you can use to interact with. Scroll down to the bottom of the list and click on **'Add a new tool'**. This will open a new window where you can configure the MCP server.
+Next, click on the **tools** :wrench: icon in the chat view on the left side of the screen to see the available tools for the selected mode. In **Agent Mode**, you will see a list of available tools that you can use to interact with. Scroll down to the bottom of the list and click on **'Add a new tool'**. This will open a new window where you can configure the MCP server.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode02.png)
 
 
-Then paste in the folowing configuration:
+Then paste in the following configuration:
 
 ```json
 {
