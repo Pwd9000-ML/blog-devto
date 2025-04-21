@@ -160,7 +160,7 @@ We also provided some example prompts to help you get started with using the MCP
 
 There is a plethora of possibilities with the MCP servers and we only looked at the MCP server for GitHub. You can explore other MCP servers available for different platforms and services to further enhance your Copilot experience and automate your workflows even more.
 
-Have a look at all rhe available MCP servers and packages available on the [MCP GitHub repository](https://github.com/modelcontextprotocol/servers)
+Have a look at all the available MCP servers and packages available on the [MCP GitHub repository](https://github.com/modelcontextprotocol/servers)
 
 ### _Author_
 
