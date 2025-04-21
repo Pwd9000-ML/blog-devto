@@ -44,17 +44,17 @@ In this post I will be using **'Node.js'** so make sure you have the latest vers
 
 Open GitHub Copilot Chat in VSCode and select **Agent Mode**. You can do this by clicking on the **Copilot icon** in the sidebar and selecting **Agent Mode** from the dropdown menu.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode01.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode1.png)
 
 Next, click on the **tools** :wrench: icon in the chat view on the left side of the screen to see the available tools for the selected mode. In **Agent Mode**, you will see a list of available tools that you can use to interact with. Scroll down to the bottom of the list and click on **'Add a new tool'**. This will open a new window where you can configure the MCP server.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode02.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode2.png)
 
 Click on **'Add MCP Server'** and select **'GitHub MCP Server'** from the list of available servers. This will open a new window where you can configure the server, followed by **'NPM Package'**:  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode03.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode3.png)  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode04.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode4.png)
 
 Then add the model context protocol server package name **'@modelcontextprotocol/server-github'** and click on **'Add'**. This will add the server to the list of available servers in the MCP configuration:  
 
