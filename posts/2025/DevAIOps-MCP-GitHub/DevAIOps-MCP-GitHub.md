@@ -50,68 +50,122 @@ Next, click on the **tools** :wrench: icon in the chat view on the left side of 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode02.png)
 
+Click on **'Add MCP Server'** and select **'GitHub MCP Server'** from the list of available servers. This will open a new window where you can configure the server, followed by **'NPM Package'**:  
 
-Then paste in the following configuration:
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode03.png)  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode04.png)
+
+Then add the model context proocol server package name **'@modelcontextprotocol/server-github'** and click on **'Add'**. This will add the server to the list of available servers in the MCP configuration:  
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode05.png)
+
+**Note:** Once you hit enter, you will be guided by VSCode to install the package, by giving it a Name/ID and allow it as well as any User or Workspace settings. (I named mine **'github-mcp-with-node'**).
+
+When you complete this step you will see that your VSCode **'Settings.json'** file will be updated with a new configuration block called `"mcp": {}` and the MCP server configuration with the Name/ID:  
 
 ```json
 {
-  "servers": {
-    "github-mcp-server": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-github"
-      ],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "PASTE_YOUR_GITHUB_PAT_HERE"
+  "mcp": {
+      "servers": {
+          // Notice the button above each MCP server configuration
+          // <START>
+          "github-mcp-with-node": {
+              "command": "npx",
+              "args": [    
+                  "-y",
+                  "@modelcontextprotocol/server-github"
+              ],
+              "env": {
+                  "GITHUB_PERSONAL_ACCESS_TOKEN": "<YOUR_TOKEN>"
+              }
+          }
       }
-    }
   }
 }
 ```
 
-- **GitHub Personal Access Token (PAT)**: A token to authenticate the MCP server with GitHub. **Warning**: This token should be kept secret and not shared publicly. It grants access to your GitHub account, so treat it like a password.
- 
-Go to your GitHub Settings. Navigate to Developer settings > Personal access tokens > Tokens (classic).   Click Generate new token and choose Generate new token (classic).   Give your token a descriptive Note (e.g., "VSCode-MCP-Server-Token"). Set an Expiration date. Select the necessary scopes (permissions). For general use (reading repos, managing issues), the repo scope might be sufficient. For public repositories only, public_repo could work. Important: Grant only the permissions you need (principle of least privilege).   Click Generate token.   Crucial: Copy the generated token immediately and save it somewhere secure (like a password manager). GitHub will not show it again. Treat this token like a password.   Step 2: Ensure Node.js and npx are Ready Verify your Node.js and npx installation by opening your terminal or command prompt and running:
+Next, you will need to add your **GitHub Personal Access Token** (PAT) to the configuration. This token is used to authenticate the MCP server with your GitHub account and allows it to perform actions on your behalf.
+**Warning**: This token should be kept secret and not shared publicly. It grants access to your GitHub account, so treat it like a password.
 
-Bash
+Once you have generated your PAT, you can add it to the configuration by replacing the `<YOUR_TOKEN>` placeholder with your actual token. Make sure to keep the quotes around the token or pass it as an environment variable. Do not commit this token to your repository or share it with anyone else.
 
-node -v npx -v If these commands return version numbers, you're good to go. If not, install Node.js from nodejs.org.
+Once you have added your PAT, you can save the configuration and close the settings file. Your MCP server is now configured and ready to use. Click on the **'Start'** button above the MCP server configuration.
 
-Step 3: Configure the GitHub MCP Server in VS Code Now, let's tell VS Code how to run the GitHub MCP server using npx. You can configure this per-project (recommended for collaboration) or globally in your user settings.
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode06.png)
 
-Option A: Workspace Configuration (Recommended)
+Once the MCP server is started, you will now see additional tools available in the **Agent Mode** tools :wrench: list. You can now use these tools to interact with your GitHub repositories directly from the chat interface.
 
-Open your project folder in VS Code.
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode07.png)
 
-Create a file named mcp.json inside the .vscode directory (i.e., .vscode/mcp.json).  
+Lets look at a few examples of how to use the MCP server for GitHub tools in **Agent Mode** next.
 
-Paste the following JSON configuration into the mcp.json file:
+## Example Usage
 
-JSON
+I will ask GitHub Copilot with a prompt to check if there are any Markdown files missing an author entry.
 
-{ "servers": { "github-mcp-server": { "command": "npx", "args": [ "-y", "@modelcontextprotocol/server-github" ], "env": { "GITHUB_PERSONAL_ACCESS_TOKEN": "PASTE_YOUR_GITHUB_PAT_HERE" } } } } Replace "PASTE_YOUR_GITHUB_PAT_HERE" with the actual GitHub PAT you generated in Step 1.
+```text
+Prompt: Check if there are any Markdown files in the current folder and compare it to other Markdown files in the codebase to see if there are any documentation missing an author entry at the bottom of the markdown file.
+```
 
-Security Warning: The .vscode folder is often committed to version control. Do not commit your PAT directly in this file if you share your repository. Consider using environment variable placeholders or VS Code input variables for shared configurations , although direct pasting is the simplest method for personal use.  
+As you can see from the following screenshot, GitHub Copilot is able to check the current folder for Markdown files and compare it to other Markdown files in the codebase.
 
-Option B: User Settings Configuration (Global)
+It notified me that one MArkdown file is missing an author entry at the bottom of the file.
 
-Open the VS Code Command Palette (Ctrl+Shift+P or Cmd+Shift+P).
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode08.png)
 
-Type "Preferences: Open User Settings (JSON)" and select it.
+Lets ask GitHub Copilot to create an issue for us in the GitHub repository.
 
-Find the "mcp" key in your settings.json file. If it doesn't exist, add it.
+```text
+Prompt: Create an issue in the GitHub repository for the missing author entry in the Markdown file.
+```
 
-Add the server configuration under the servers object within "mcp":
+GitHub Copilot is able to create an issue in the GitHub repository for the missing author entry in the Markdown file. It also provided me with a link to the issue that was created.
 
-JSON
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode09.png)
 
-{ //... other settings... "mcp": { "servers": { "github-mcp-server": { "command": "npx", "args": [ "-y", "@modelcontextprotocol/server-github" ], "env": { "GITHUB_PERSONAL_ACCESS_TOKEN": "PASTE_YOUR_GITHUB_PAT_HERE" } } //... potentially other global servers... } } //... other settings... } Replace "PASTE_YOUR_GITHUB_PAT_HERE" with your PAT.
+When Navigating to GitHub I can see that an issue was created for me with the title and description I provided in the prompt.
 
-Configuration Explained:
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/github01.png)
 
-"github-mcp-server": A unique name you give to this server configuration. "command": "npx": Specifies that we'll use npx to run the server.   "args": ["-y", "@modelcontextprotocol/server-github"]: These are the arguments passed to npx. -y skips confirmation prompts, and @modelcontextprotocol/server-github is the official npm package for the GitHub MCP server.   "env": { "GITHUB_PERSONAL_ACCESS_TOKEN": "..." }: This sets the necessary environment variable within the server's process, providing it with your PAT for authentication.   Step 4: Verify the Setup Let's make sure VS Code recognizes and can run the server:
+I can now go even further and ask GitHub Copilot to correct the Markdown file for me by adding the author entry at the bottom of the file in the same format as the other Markdown files, as well as create a pull request and assign it to me for review. Additionally, GitHub Copilot can generate a summary of the changes made in the pull request for better clarity and context or assist me in the code review process.
 
-Restart VS Code: It's often good practice to restart VS Code after changing configurations like this. Check MCP Server Status: Open the Command Palette (Ctrl+Shift+P or Cmd+Shift+P). Type "MCP: List Servers" and select it.   You should see "github-mcp-server" listed. You can select it to view its status, start/stop it manually, or view its output logs. Check the logs for any error messages if it fails to start.   Check Copilot Agent Mode Tools: Open the Copilot Chat view (Ctrl+Alt+I or Cmd+Opt+I). Select "Agent" mode from the dropdown in the chat input area.   Click the "Tools" icon (often looks like a plug or puzzle piece) next to the input box.   You should see tools related to GitHub (e.g., create_issue, get_file_contents, search_repositories) listed, provided by github-mcp-server.   Step 5: Using GitHub Tools in Copilot Agent Mode With the server running and recognized, you can now ask Copilot Agent Mode to perform GitHub tasks:
+## Example Prompts
 
-Make sure you are in Agent Mode in the Chat view.   Ensure the relevant GitHub tools are enabled in the Tools menu.   Try prompts like: "List open issues in the owner/repo repository." "What are the latest commits in owner/repo?"   "Get the contents of the README.md file in owner/repo."   "Create a new issue in owner/repo titled 'Update documentation' with the body 'Need to add details about MCP setup'."   "Search for repositories about 'model context protocol'."   Approval: For actions that modify things (like creating issues or files), Copilot will show you the tool it intends to use and its parameters. You'll need to approve the action before it runs. You can often choose to approve just once, for the session, or always for that specific tool.   Troubleshooting Tips PAT Errors: Double-check that the PAT is copied correctly and hasn't expired. Ensure it has the necessary scopes (repo) for the actions you're attempting.   command not found: npx or ENOENT errors: Your Node.js installation might not be correctly added to your system's PATH. Try using the full path to npx in the "command" field. You can find the path by running which npx (Linux/macOS) or where npx (Windows) in your terminal.   Node Version Issues: Some MCP servers require specific Node.js versions. While the GitHub server is generally compatible, if you encounter strange errors, consider using a Node Version Manager (like nvm or nvs) to switch to a different Node.js version and update the command/args in your configuration accordingly.   Server Not Starting: Check the server logs via "MCP: List Servers" > "Show Output" for specific error messages.   Conclusion You've now successfully configured the GitHub MCP server in VS Code using npx! This setup empowers GitHub Copilot Agent Mode to act as a more integrated development assistant, capable of directly interacting with your repositories based on your chat prompts. Explore the available tools, experiment with different prompts, and enjoy a more streamlined GitHub workflow directly within your editor.  
+Here are a few more example prompts you can try to interact with the GitHub MCP server in **Agent Mode**, because we are using the **GitHub MCP server** we can use the GitHub API to perform various actions on our GitHub repositories or even compare files in the codebase to other files in the codebase or even other repositories in GitHub itself that are public.
+
+```text
+Prompt: Search Public GitHub Repositories and compare my Server configuration file `"ServerConfig.json"` with another configuration file that is similar to mine. Are there any features or configurations that I may be missing that I can add to my configuration file?
+```
+
+```text
+Prompt: Create a GitHub issue for each feature or configuration that I am missing in my configuration file.
+```
+
+```text  
+Prompt: Look at all the issues in the GitHub repository and check if there are any issues that are similar to the one I created that is already resolved. If so, please close the issue I created and add a comment with a link to the issue that was closed with the resolution.
+```
+
+```text
+Prompt: Assist me in the code review process by providing feedback on the changes made in the pull request.
+```
+
+The list goes on and on, and you can use the GitHub API to perform various actions on your GitHub repositories as well as public ones out there using the GitHub API to search for code snippets, issues, and even pull requests.
+
+## Conclusion
+
+In this guide, we have covered how to supercharge your GitHub Copilot experience in VSCode using the Model Context Protocol (MCP) for GitHub. We walked through the prerequisites, configuration steps, and example usage of the MCP server to interact with your GitHub repositories directly from the chat interface.
+
+We also provided some example prompts to help you get started with using the MCP server in **Agent Mode**.
+
+There is a plethora of possibilities with the MCP servers and we only looked at the MCP server for GitHub. You can explore other MCP servers available for different platforms and services to further enhance your Copilot experience and automate your workflows even more.
+
+Have a look at all rhe available MCP servers and packages available on the [MCP GitHub repository](https://github.com/modelcontextprotocol/servers)
+
+### _Author_
+
+Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X/Twitter](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+
+{% user pwd9000 %}
+
+Date: 21/04/2025
