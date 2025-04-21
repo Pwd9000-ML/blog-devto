@@ -63,9 +63,11 @@ Provide the location of the model context protocol server package: **'@modelcont
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode005.png)
 
-**Note:** Once you hit enter, you will be guided by VSCode to install the package, by giving it a Name/ID and allow it as well as any User or Workspace settings. (I named mine **'github-mcp-with-node'**).
+**Note:** Once you hit enter, you will be guided by VSCode to install the package, by giving it a Name/ID and allow it as well as any User or Workspace settings. (I named mine **'github-mcp-with-node'**).  
 
-You can also add MCP servers that are packaged as Docker images or Python packages. Or even MCP servers for other services such as **WhatsApp**, **Git**, **GitLab**, and many more. The process is similar. Take a look at the **[GitHub MCP Server documentation](https://github.com/modelcontextprotocol/servers/tree/main/src/github)** for more information on how to set up the MCP server packaged as a Docker image.  
+Take a look at the **[GitHub MCP Server documentation](https://github.com/modelcontextprotocol/servers/tree/main/src/github)** for more information on how to set up the MCP server packaged as a Docker image.  
+
+You can also add MCP servers that are packaged as Docker images or Python packages. Or even MCP servers for other services such as **WhatsApp**, **Git**, **GitLab**, and many more. The process is similar.  
 
 When you complete the above steps you will see that your VSCode **'Settings.json'** file will be updated with a new configuration block called `"mcp": {}` and the MCP server configuration with the Name/ID:  
 
