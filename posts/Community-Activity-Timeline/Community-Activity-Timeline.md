@@ -48,6 +48,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **21/04/2025** | [Supercharge VSCode GitHub Copilot using Model Context Protocol (MCP) - Easy Setup Guide](https://dev.to/pwd9000/supercharge-vscode-github-copilot-using-model-context-protocol-mcp-easy-setup-guide-371e) | ✍️ Blog | GitHub, AI | DevOps, MCP, AI, Tutorial |
 | **01/04/2025** | [MVP Summit 2025 - Addressing safe deployment challenges in Azure](https://summit.microsoft.com/) | 💬 Feedback | Azure, DevOps | DevOps, IaC, AI-Services |
 | **01/04/2025** | [MVP Summit 2025 - Enhancing Efficiency with Shell: Technical Review and Planning](https://summit.microsoft.com/) | 💬 Feedback | Azure, DevOps | DevOps, IaC, AI-Services |
 | **22/03/2025** | [MVPSummit 2025 - In Person Attendance 2025](https://summit.microsoft.com/) | 🏆 MVP Summit | Azure, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
@@ -219,7 +220,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 | **24/05/2021** | [Automate Azure Role Based Access Control (RBAC) using GitHub](https://dev.to/pwd9000/automate-azure-role-based-access-control-rbac-using-github-2349) | ✍️ Blog | GitHub, PowerShell, Security | Security, DevSecOps, RBAC, Automation, Tutorial |
 | **17/05/2021** | [Automate password rotation with GitHub and Azure (Part 1)](https://dev.to/pwd9000/automate-password-rotation-with-github-and-azure-412a) | ✍️ Blog | GitHub, PowerShell, Security | Security, DevSecOps, Automation, Tutorial |
 | **05/05/2021** | [Automate Azure Role Based Access Control (RBAC) using DevOps](https://dev.to/pwd9000/automate-azure-role-based-access-control-rbac-with-devops-2ehf) | ✍️ Blog | Azure DevOps, PowerShell, Security | Security, DevSecOps, RBAC, Automation, Tutorial |
-| **02/05/2021** | [PowerShell - Using Parameter Sets](https://dev.to/pwd9000/powershell-using-parameter-sets-5da8) | ✍️ Blog | PowerShell, Development | Tutorial, Scripting, Development |
+| **02/05/2021** | [PowerShell - Using Parameter Sets](https://dev.to/pwd9000/powershell-using-parameter-sets-5da8) | ✍️ Blog | PowerShell, Development | Tutorial, Scripting, Development, PS |
 
 ---
 
