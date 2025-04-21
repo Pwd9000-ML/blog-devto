@@ -95,7 +95,7 @@ Next, you will need to add your **GitHub Personal Access Token** (PAT) to the co
 
 **Warning**: This token should be kept secret and not shared publicly. It grants access to your GitHub account, so treat it like a password.  
 
-+Once you have generated your PAT, you can add it to the configuration by replacing the `<YOUR_TOKEN>` placeholder with your actual token. Make sure to keep the quotes around the token or pass it as an environment variable. Do not commit this token to your repository or share it with anyone else.
+After [generating your PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens/?wt.mc_id=DT-MVP-5004771), you can add it to the configuration by replacing the `<YOUR_TOKEN>` placeholder with your actual token. Make sure to keep the quotes around the token or pass it as an environment variable. Do not commit this token to your repository or share it with anyone else.
 
 Once you have added your PAT, you can save the configuration, and your MCP server is now configured and ready to use. Click on the **'Start'** button above the MCP server configuration.
 
@@ -105,7 +105,7 @@ Once the MCP server is started, you will now see additional tools available in t
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode007.png)
 
-Lets look at a few examples of how to use the MCP server for GitHub tools in **Agent Mode** next.
+Let's look at a few examples of how to use the MCP server for GitHub tools in **Agent Mode** next.
 
 ## Example Usage
 
@@ -130,11 +130,13 @@ When Navigating to GitHub I can see that an issue was created for me with the ti
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/github001.png)
 
-I can now go even further and ask GitHub Copilot to correct the Markdown file for me by adding the author entry at the bottom of the file in the same format as the other Markdown files, as well as create a pull request and assign it to me for review. Additionally, GitHub Copilot can generate a summary of the changes made in the pull request for better clarity and context or assist me in the code review process.
+I can now go even further and ask GitHub Copilot to correct the Markdown file for me by adding the author entry at the bottom of the file in the same format as the other Markdown files, as well as create a pull request and assign it to me for review.  
 
-## Example Prompts
+Additionally, GitHub Copilot can generate a summary of the changes made in the pull request for better clarity and context or assist me in the code review process.
 
-Here are a few more example prompts you can try to interact with the GitHub MCP server in **Agent Mode**, because we are using the **GitHub MCP server** we can use the GitHub API to perform various actions on our GitHub repositories or even compare files in the codebase to other files in the codebase or even other repositories in GitHub itself that are public.
+## Fun Example Prompts
+
+Here are a few more example prompts you can try to interact with the GitHub MCP server in **Agent Mode**. Because we are using the **GitHub MCP server**, we can use the GitHub API to perform various actions on our GitHub repositories or even compare files in the codebase to other files in the codebase or even other repositories in GitHub itself that are public.
 
 **Prompt**: `Search Public GitHub Repositories and compare my Server configuration file "ServerConfig.json" with another configuration file that is similar to mine. Are there any features or configurations that I may be missing that I can add to my configuration file?`
 
@@ -144,15 +146,17 @@ Here are a few more example prompts you can try to interact with the GitHub MCP 
 
 **Prompt**: `Assist me in the code review process by providing feedback on the changes made in the pull request.`
 
-The list goes on and on, and you can use the GitHub API to perform various actions on your GitHub repositories as well as public ones out there using the GitHub API to search for code snippets, issues, and even pull requests.
+The list goes on and on, and you can use the GitHub API to perform various actions on your GitHub repositories as well as public ones out there using the GitHub API to search for code snippets, issues, and even open, review or close pull requests.  
+
+Basically anything that is possible with the GitHub API, given the right permissions and access are granted to the **MCP server** with the **GitHub Personal Access Token** (PAT). You can use the MCP server to perform those actions directly from the chat interface in **Agent Mode**. Pretty Neat! :fire:
 
 ## Conclusion
 
-In this guide, we have covered how to supercharge your GitHub Copilot experience in VSCode using the Model Context Protocol (MCP) for GitHub. We walked through the prerequisites, configuration steps, and example usage of the MCP server to interact with your GitHub repositories directly from the chat interface.
+In this guide, we have covered how to supercharge your GitHub Copilot experience in VSCode using the Model Context Protocol (MCP) for GitHub. We walked through the prerequisites, configuration steps, and example usage of the MCP server to interact with your GitHub repositories directly from the GitHub Copilot chat interface.
 
-We also provided some example prompts to help you get started with using the MCP server in **Agent Mode**.
+We also provided some fun example prompts to help you get started with using the MCP server in **Agent Mode**.
 
-There is a plethora of possibilities with the MCP servers and we only looked at the MCP server for GitHub. You can explore other MCP servers available for different platforms and services to further enhance your Copilot experience and automate your workflows even more.
+There is a plethora MCP servers and we only looked at the one for GitHub. You can explore other MCP servers available for different platforms and services to further enhance your Copilot experience even more.
 
 Have a look at all the available MCP servers and packages available for other services on the [MCP Server list GitHub repository](https://github.com/modelcontextprotocol/servers)
 
