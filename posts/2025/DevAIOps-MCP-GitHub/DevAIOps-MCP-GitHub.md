@@ -104,7 +104,7 @@ Lets look at a few examples of how to use the MCP server for GitHub tools in **A
 
 I will ask GitHub Copilot with a prompt to check if there are any Markdown files missing an author entry.
 
-**Prompt**: `Create an issue in the GitHub repository for the missing author entry in the Markdown file.`
+**Prompt**: `Check if there are any Markdown files in the current folder and compare it to other Markdown files in the codebase to see if there are any documentation missing an author entry at the bottom of the markdown file.`
 
 As you can see from the following screenshot, GitHub Copilot is able to check the current folder for Markdown files and compare it to other Markdown files in the codebase.
 
