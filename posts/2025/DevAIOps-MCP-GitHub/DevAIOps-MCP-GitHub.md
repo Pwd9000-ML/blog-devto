@@ -13,11 +13,11 @@ series: DevAIOps
 
 GitHub Copilot Chat allows developers to use natural language in a conversational manner, asking questions and getting contextual help. But what if you could take this a step further? What if you could enable Copilot to perform actions directly on your GitHub repositories, like creating issues, searching for similar projects on GitHub that are public to get inspiration, or even comparing files in your codebase to other files in the codebase or even other repositories or projects on GitHub?
 
-What about providing feedback on the changes made in the pull request? Or even be a peer reviewer that can assist you in the code review process by providing feedback, adding comments and linking issues for you, on the changes made in the pull request?
+What about providing feedback on the changes made in the pull request? Or even be a peer reviewer that can assist you in the code review process by providing feedback, adding comments and linking issues for you, on the changes made in the pull request.
 
 Enter the **Model Context Protocol (MCP)**. MCP is an open standard that allows AI applications like Copilot Agent Mode to securely connect with external tools and data sources, enabling a more integrated experience.
 
-There are many MCP servers available, each designed to work with different platforms and services. In this guide, we will focus on the **GitHub MCP server**, and walk you through the process of getting up and running in **VSCode** quickly, allowing you to supercharge your Copilot experience in Agent Mode by leveraging its capabilities.  
+There are many **[MCP servers](https://github.com/modelcontextprotocol/servers)** available, each designed to work with different platforms and services. In this guide, we will focus on the **GitHub MCP server**, and walk you through the process of getting up and running in **VSCode** quickly, allowing you to supercharge your Copilot experience in Agent Mode by leveraging its capabilities.  
 
 This setup will enable Copilot to interact directly with the GitHub API, allowing you to perform various actions like summarising or even creating issues, reading files, and searching code repositories directly from the chat interface.
 
