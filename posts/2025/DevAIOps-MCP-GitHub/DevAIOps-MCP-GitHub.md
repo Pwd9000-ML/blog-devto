@@ -35,7 +35,7 @@ Before we start, make sure you have the following installed and set up:
 MCP servers supports many different packages and languages, so running them in VSCode you would need to have either one of the following installed on your machine:
 
 - **[Python](https://www.python.org/downloads/)** for PIP packages.
-- **[Node.js](https://nodejs.org/en/download/)** for NPM packages.
+- **[Node.js](https://nodejs.org/en/download/)** for NPX packages.
 - **[TypeScript](https://www.typescriptlang.org/download)** for TS packages.
 - **[Docker](https://www.docker.com)** for Docker images.
 
@@ -53,7 +53,7 @@ Next, click on the **tools** :wrench: icon in the chat view on the left side of 
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode002.png)
 
-Click on **'Add MCP Server'** and select **'NPM Package'** from the dropdown menu. This will allow you to add an MCP server that is packaged as an NPM package.
+Click on **'Add MCP Server'** and select **'NPX Package'** from the dropdown menu. This will allow you to add an MCP server that is packaged as an NPX package.
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode003.png)  
 
