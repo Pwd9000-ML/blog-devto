@@ -110,8 +110,7 @@ Prompt: Check if there are any Markdown files in the current folder and compare 
 
 As you can see from the following screenshot, GitHub Copilot is able to check the current folder for Markdown files and compare it to other Markdown files in the codebase.
 
-It notified me that one MArkdown file is missing an author entry at the bottom of the file.
-
+It notified me that one Markdown file is missing an author entry at the bottom of the file.
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode08.png)
 
 Lets ask GitHub Copilot to create an issue for us in the GitHub repository.
