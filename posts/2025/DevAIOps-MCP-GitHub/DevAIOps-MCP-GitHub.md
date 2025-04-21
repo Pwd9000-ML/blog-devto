@@ -50,19 +50,6 @@ Next, click on the tools icon in the chat view on the left side of the screen to
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode02.png)
 
-There are a few different ways to set up an MCP Servers in VSCode, the easiest without having to install a third party application such as **Claude**. We will focus on using **Cline extension** in VSCode to run the GitHub MCP server. This method is straightforward and doesn't require much configuration.
-
-Once the Cline extension is installed, opn the **Cline** tab in the sidebar and click on **'Get Started For Free'**. This will prompt you to sign in with your GitHub account. Follow the instructions to authenticate and authorize the Cline extension to access your GitHub account.
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/cline01.png)  
-
-Once authenticated, you will be taken to the Cline dashboard. Here, you can manage your MCP servers and configurations. Click on the **'MCP Servers'** tab and search for **GitHub** in the search bar. This will filter the list of available MCP servers to show only the GitHub MCP server.
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/cline02.png)
-
-You will see a list of available MCP servers on the **Marketplace**. Click on the **'Installed'** tab next and hen **'Configure MCP Servers'**. This will take you to the configuration page for the GitHub MCP server.  
-
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/cline03.png)
 
 Then paste in the folowing configuration:
 
