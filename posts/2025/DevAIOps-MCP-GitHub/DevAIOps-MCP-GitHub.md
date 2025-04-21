@@ -56,7 +56,7 @@ Click on **'Add MCP Server'** and select **'GitHub MCP Server'** from the list o
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode04.png)
 
-Then add the model context proocol server package name **'@modelcontextprotocol/server-github'** and click on **'Add'**. This will add the server to the list of available servers in the MCP configuration:  
+Then add the model context protocol server package name **'@modelcontextprotocol/server-github'** and click on **'Add'**. This will add the server to the list of available servers in the MCP configuration:  
 
 ![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode05.png)
 
