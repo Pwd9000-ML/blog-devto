@@ -44,21 +44,21 @@ In this post I will be using **'Node.js'** so make sure you have the latest vers
 
 Open GitHub Copilot Chat in VSCode and select **Agent Mode**. You can do this by clicking on the **Copilot icon** in the sidebar and selecting **Agent Mode** from the dropdown menu.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode1.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode001.png)
 
 Next, click on the **tools** :wrench: icon in the chat view on the left side of the screen to see the available tools for the selected mode. In **Agent Mode**, you will see a list of available tools that you can use to interact with. Scroll down to the bottom of the list and click on **'Add a new tool'**. This will open a new window where you can configure the MCP server.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode2.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode002.png)
 
 Click on **'Add MCP Server'** and select **'GitHub MCP Server'** from the list of available servers. This will open a new window where you can configure the server, followed by **'NPM Package'**:  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode3.png)  
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode003.png)  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode4.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode004.png)
 
 Then add the model context protocol server package name **'@modelcontextprotocol/server-github'** and click on **'Add'**. This will add the server to the list of available servers in the MCP configuration:  
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode5.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode005.png)
 
 **Note:** Once you hit enter, you will be guided by VSCode to install the package, by giving it a Name/ID and allow it as well as any User or Workspace settings. (I named mine **'github-mcp-with-node'**).
 
@@ -92,11 +92,11 @@ Once you have generated your PAT, you can add it to the configuration by replaci
 
 Once you have added your PAT, you can save the configuration and close the settings file. Your MCP server is now configured and ready to use. Click on the **'Start'** button above the MCP server configuration.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode06.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode006.png)
 
 Once the MCP server is started, you will now see additional tools available in the **Agent Mode** tools :wrench: list. You can now use these tools to interact with your GitHub repositories directly from the chat interface.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode07.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode007.png)
 
 Lets look at a few examples of how to use the MCP server for GitHub tools in **Agent Mode** next.
 
@@ -111,7 +111,7 @@ Prompt: Check if there are any Markdown files in the current folder and compare 
 As you can see from the following screenshot, GitHub Copilot is able to check the current folder for Markdown files and compare it to other Markdown files in the codebase.
 
 It notified me that one Markdown file is missing an author entry at the bottom of the file.
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode08.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode008.png)
 
 Lets ask GitHub Copilot to create an issue for us in the GitHub repository.
 
@@ -121,11 +121,11 @@ Prompt: Create an issue in the GitHub repository for the missing author entry in
 
 GitHub Copilot is able to create an issue in the GitHub repository for the missing author entry in the Markdown file. It also provided me with a link to the issue that was created.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode09.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode009.png)
 
 When Navigating to GitHub I can see that an issue was created for me with the title and description I provided in the prompt.
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/github01.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/github001.png)
 
 I can now go even further and ask GitHub Copilot to correct the Markdown file for me by adding the author entry at the bottom of the file in the same format as the other Markdown files, as well as create a pull request and assign it to me for review. Additionally, GitHub Copilot can generate a summary of the changes made in the pull request for better clarity and context or assist me in the code review process.
 

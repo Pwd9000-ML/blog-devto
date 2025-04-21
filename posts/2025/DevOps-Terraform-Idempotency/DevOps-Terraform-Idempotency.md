@@ -61,9 +61,9 @@ In the above example we simulate the violation by trying to create a role assign
 
 **Terraform Plan:**
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/plan1.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/plan001.png)
 
-![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/plan2.png)
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/plan002.png)
 
 **Error Message:**
 
