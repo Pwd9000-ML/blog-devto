@@ -3,10 +3,11 @@ title: Terraform - Mastering Idempotency Violations - Handling Resource Conflict
 published: true
 description: DevOps - Terraform - Mastering Idempotency Violations by Handling Resource Conflicts and Failures in Azure
 tags: 'terraform, azure, tutorial, devops'
-cover_image:
+cover_image: null
 canonical_url: null
 id: 2183449
 series: Terraform ERRORS!
+date: '2025-01-03T00:48:12Z'
 ---
 
 ## Idempotency: The Backbone of Terraform
