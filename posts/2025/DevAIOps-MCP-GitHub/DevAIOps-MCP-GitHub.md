@@ -1,5 +1,5 @@
 ---
-title: Supercharge VS Code Copilot with MCP for GitHub
+title: Supercharge VSCode GitHub Copilot using Model Context Protocol (MCP) - Easy Step-by-Step Guide
 published: false
 description: Unlock the power of GitHub Copilot in VS Code with the Model Context Protocol (MCP) for seamless GitHub integration.
 tags: 'GitHubCopilot, MCP, tutorial, AI'
@@ -15,20 +15,63 @@ GitHub Copilot has revolutionised the way developers write code, providing intel
 
 Enter the **Model Context Protocol (MCP)**. MCP is an open standard that allows AI applications like Copilot Agent Mode to securely connect with external tools and data sources, enabling a more integrated experience.
 
-In this guide, we'll walk you through the process of setting up the **GitHub MCP server** in **VSCode** using **Node.js** (specifically npx), allowing you to supercharge your Copilot experience in Agent Mode. This setup will enable Copilot to interact directly with the GitHub API, allowing you to perform various actions like summarising or even creating issues, reading files, and searching code repositories directly from the chat interface.
+There are many MCP servers available, each designed to work with different platforms and services. In this guide, we will focus on the **GitHub MCP server**, and walk you through the process of getting up and running in **VSCode** quickly, allowing you to supercharge your Copilot experience in Agent Mode by leveraging its capabilities.  
 
-We will also cover the prerequisites, configuration steps, tips to ensure a smooth setup, and troubleshooting advice
+This setup will enable Copilot to interact directly with the GitHub API, allowing you to perform various actions like summarising or even creating issues, reading files, and searching code repositories directly from the chat interface.
+
+We will also cover the prerequisites, configuration steps, tips to ensure a smooth setup, and troubleshooting advice.
 
 ## Prerequisites
 
 Before we start, make sure you have the following installed and set up:
 
-- **Visual Studio Code**: The latest stable or insiders release.
-- **GitHub Copilot & Copilot Chat Extensions**: Installed and enabled in VS Code.
-- **Node.js and npm/npx**: Node.js (version 23 or higher recommended) and its package manager npm (which includes npx) must be installed. You can download them from [nodejs.org](https://nodejs.org).
+- **[Visual Studio Code](https://code.visualstudio.com/download)**: The latest stable or insiders release.
+- **[GitHub Copilot & Copilot Chat Extensions](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)**: Installed and enabled in VS Code.
 - **GitHub Account**: You'll need a GitHub account.
-- **GitHub Personal Access Token (PAT)**: A token to authenticate the MCP server with GitHub.
 
+MCP servers supports many different packages and languages, so running them in VSCode you would need to have either one of the following installed on your machine:
+
+- **[Python](https://www.python.org/downloads/)** for PIP packages.
+- **[Node.js](https://nodejs.org/en/download/)** for NPM packages.
+- **[TypeScript](https://www.typescriptlang.org/download)** for TS packages.
+- **docker** for Docker images.
+
+There are many more supported frameworks and **Microsoft** even released support for **C#** recently. You can find the full list of supported languages and packages in the [MCP documentation](https://github.com/modelcontextprotocol)
+
+For this blog post I will be using **Node.js** so make sure you have the latest version installed on your machine. You can check if it's installed by running `node -v` in your terminal. If you don't have it, download and install the latest version from the official website.  
+
+## Configuration Steps
+
+Open Github Copilot Chat in VSCode and select **Agent Mode**. You can do this by clicking on the **Copilot icon** in the sidebar and selecting **Agent Mode** from the dropdown menu.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode01.png)
+
+Next, click on the tools icon in the chat view on the left side of the screen to see the available tools for the selected mode. In **Agent Mode**, you will see a list of available tools that you can use to interact with. Scroll down to the bottom of the list and click on **'Add a new tool'**. This will open a new window where you can configure the MCP server.
+
+![image.png](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/vscode02.png)
+
+
+Then paste in the folowing configuration:
+
+```json
+{
+  "servers": {
+    "github-mcp-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "PASTE_YOUR_GITHUB_PAT_HERE"
+      }
+    }
+  }
+}
+```
+
+- **GitHub Personal Access Token (PAT)**: A token to authenticate the MCP server with GitHub. **Warning**: This token should be kept secret and not shared publicly. It grants access to your GitHub account, so treat it like a password.
+ 
 Go to your GitHub Settings. Navigate to Developer settings > Personal access tokens > Tokens (classic).   Click Generate new token and choose Generate new token (classic).   Give your token a descriptive Note (e.g., "VSCode-MCP-Server-Token"). Set an Expiration date. Select the necessary scopes (permissions). For general use (reading repos, managing issues), the repo scope might be sufficient. For public repositories only, public_repo could work. Important: Grant only the permissions you need (principle of least privilege).   Click Generate token.   Crucial: Copy the generated token immediately and save it somewhere secure (like a password manager). GitHub will not show it again. Treat this token like a password.   Step 2: Ensure Node.js and npx are Ready Verify your Node.js and npx installation by opening your terminal or command prompt and running:
 
 Bash
