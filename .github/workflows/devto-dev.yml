@@ -46,3 +46,4 @@ jobs:
           devto_key: ${{ secrets.DEVTO_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: true
+        continue-on-error: true
