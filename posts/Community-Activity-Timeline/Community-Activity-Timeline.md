@@ -48,6 +48,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **21/04/2025** | [Supercharge VSCode GitHub Copilot using Model Context Protocol (MCP) - Easy Setup Guide](https://dev.to/pwd9000/supercharge-vscode-github-copilot-using-model-context-protocol-mcp-easy-setup-guide-371e) | ✍️ Blog | GitHub, AI | DevOps, MCP, AI, Tutorial |
 | **01/04/2025** | [MVP Summit 2025 - Addressing safe deployment challenges in Azure](https://summit.microsoft.com/) | 💬 Feedback | Azure, DevOps | DevOps, IaC, AI-Services |
 | **01/04/2025** | [MVP Summit 2025 - Enhancing Efficiency with Shell: Technical Review and Planning](https://summit.microsoft.com/) | 💬 Feedback | Azure, DevOps | DevOps, IaC, AI-Services |
 | **22/03/2025** | [MVPSummit 2025 - In Person Attendance 2025](https://summit.microsoft.com/) | 🏆 MVP Summit | Azure, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
