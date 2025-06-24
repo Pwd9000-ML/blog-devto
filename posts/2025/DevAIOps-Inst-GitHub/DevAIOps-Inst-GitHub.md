@@ -13,11 +13,11 @@ series: DevAIOps
 
 Hey everyone! If you're a developer or, like me, a **DevOps engineer**, you've probably already experienced the magic that is **GitHub Copilot**. It's a game-changer, right? From suggesting boilerplate code to squashing annoying bugs, it feels like having an extra pair of hands (or rather, an extra brain) in your IDE.
 
-But here's the thing: out of the box, Copilot is fantastic, but it's also… generic. It learns from billions of lines of public code, which is awesome, but it doesn't know *your* team's specific coding standards, your obscure internal libraries, or that quirky cloud configuration you spent weeks perfecting. And for us in DevOps, **consistency, best practices, and domain-specific knowledge** aren't just nice-to-haves; they're the bedrock of stable, scalable systems.
+But here's the thing: out of the box, Copilot is fantastic, but it's also generic. It learns from billions of lines of public code, which is awesome, but it doesn't know *your* team's specific coding standards, your obscure internal libraries, or that quirky cloud configuration you spent weeks perfecting. And for us in DevOps, **consistency, best practices, and domain-specific knowledge** aren't just nice-to-haves, they're the bedrock of stable, scalable systems.
 
 This is where the real power of Copilot unfolds: **Customisation**. We're moving beyond basic code completion to actively shaping Copilot to become an even more powerful, domain-aware extension of our DevOps team.  
 
-We will look at two distinct ways of customising Copilot: **Custom Instructions** and **Prompt Files**. These features allow you to define how Copilot behaves, what it prioritises, and how it interacts with your codebase. This is not just about making Copilot "smarter"; it's about making it *smarter for you*.
+We will look at two distinct ways of customising Copilot: **Custom Instructions** and **Prompt Files**. These features allow you to define how Copilot behaves, what it prioritises, and how it interacts with your codebase. This is not just about making Copilot "smarter", it's about making it *smarter for you*.
 
 ## Why DevOps Needs an Opinionated AI Assistant
 
@@ -196,20 +196,16 @@ No matter how many custom instructions you have, Copilot needs context to provid
 ### Practical Strategies for DevOps Teams
 
 * **Start Small, Iterate Often:** Don't try to define every single rule at once. Pick a pain point (e.g., inconsistent naming conventions, repetitive pipeline tasks, or ensuring private endpoints) and start there. Build momentum with small wins.
-
 * **Document Your AI Guidelines:** Just like your coding standards, document your team's Copilot custom instructions and commonly used prompt files. Version control these! This is crucial for team alignment and auditability. Treat your AI configuration as code!
-
 * **Share and Collaborate:** Encourage team members to contribute to and refine your collective AI assistant. The more brains feeding it, the smarter it gets. Regularly review and update your custom instructions as your tech stack or best practices evolve.
-
 * **Measure the Impact:** How has customisation improved code quality? Reduced review cycles? Sped up common infrastructure tasks? Are you seeing more consistent private networking implementations? Keep an eye on the tangible benefits.
-
 * **Identify Your "AI Champion":** Who on your team will take the lead in exploring, documenting, and evangelising Copilot customisation? Having a dedicated champion can make a huge difference in driving adoption and refinement.
 
 ## Conclusion
 
-Customising GitHub Copilot isn't just about tweaking settings; it's about evolving our relationship with AI. We're moving from simply using an AI to actively shaping it to fit our unique engineering culture and operational needs. This paves the way for even more sophisticated AI-driven DevOps: imagine AI-assisted incident response, proactive anomaly detection, or even self-healing systems that leverage your custom AI guidelines.
+Customising GitHub Copilot isn't just about tweaking settings, it's about evolving our relationship with AI. We're moving from simply using an AI to actively shaping it to fit our unique engineering culture and operational needs. This paves the way for even more sophisticated AI-driven DevOps: imagine AI-assisted incident response, proactive anomaly detection, or even self-healing systems that leverage your custom AI guidelines.
 
-The future of DevOps is collaborative, and AI is becoming an increasingly integral part of that collaboration. By mastering Copilot customisation, you're not just enhancing your personal productivity; you're contributing to a smarter, more consistent, and more efficient future for your entire team.
+The future of DevOps is collaborative, and AI is becoming an increasingly integral part of that collaboration. By mastering Copilot customisation, you're not just enhancing your personal productivity, you're contributing to a smarter, more consistent, and more efficient future for your entire team.
 
 So, what are you waiting for? Start customising your GitHub Copilot today and unlock its true potential!
 
