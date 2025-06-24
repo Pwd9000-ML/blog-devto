@@ -74,6 +74,7 @@ Let's get specific with some real-world examples for **Infrastructure as Code (I
 - Recommend using self-hosted agents within a private VNet for enhanced security when dealing with internal resources.
 - Ensure all pipelines include a static code analysis (SAST) step and container image scanning if Docker is involved.
 - When defining stages, explicitly define `displayName` and `condition`.
+```
 
 ### _Author_
 
