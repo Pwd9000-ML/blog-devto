@@ -68,7 +68,7 @@ Apply the [general coding guidelines](./general-coding.instructions.md) to all c
 - When suggesting virtual networks, always include at least one subnet dedicated for private endpoints and ensure `enforce_private_link_endpoint_network_policies = true` on any such subnets.
 - Never hardcode secrets or sensitive values. Always reference them from Azure Key Vault, GitHub Secrets or Azure DevOps Secure Files.
 - Prefer using `for_each` over `count` for deploying multiple similar resources over duplicating resource blocks.
-- avoid excessive use of `data` blocks and prefer using `locals` for static values by computed values based on the provider.
+- Avoid excessive use of `data` blocks and prefer using `locals` for static values by computed values based on the provider.
 - Add comments to explain complex resources or unusual patterns.
 ```
 
