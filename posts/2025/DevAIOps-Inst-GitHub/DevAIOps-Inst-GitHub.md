@@ -76,6 +76,60 @@ Let's get specific with some real-world examples for **Infrastructure as Code (I
 - When defining stages, explicitly define `displayName` and `condition`.
 ```
 
+💡 **My Take:** This is like setting up a global `.editorconfig` or a team-wide linter, but for Copilot's behaviour. It ensures baseline consistency across all your AI-assisted tasks and, crucially, enforces those critical security and architectural patterns like private networking from the get-go!
+
+### **2. Prompt Files: Reusable Rituals for Common Tasks**
+
+Have you ever found yourself typing the same prompt over and over for recurring tasks? Prompt Files are your solution! These are essentially pre-defined, reusable prompts that you can trigger directly in the Copilot chat. They're perfect for standardising common DevOps workflows. ✅
+
+**How it works:** You create `.prompt` files (or similar) in your workspace containing your well-crafted prompts.
+
+**DevOps Use Case Examples:**
+
+**New Terraform Module Scaffold (`new-tf-module.prompt`):**
+
+```markdown
+# Prompt for generating a new Terraform module structure
+
+You are a highly opinionated DevOps expert.
+Generate a basic Terraform module structure for a new Azure resource.
+Include `main.tf`, `variables.tf`, `outputs.tf`, and a `README.md` following the provided best practices.
+Ask me for the module's purpose and primary resource type (e.g., 'Azure App Service', 'Azure SQL Database').
+
+Specifically, ensure:
+- The `main.tf` has a placeholder for `resource` blocks.
+- `variables.tf` has at least `location` and `resource_group_name` variables with descriptions.
+- `outputs.tf` has a placeholder for key resource IDs/names.
+- `README.md` includes sections for "Usage", "Inputs", "Outputs", and "Examples".
+```
+
+**Azure DevOps Pipeline Stage (`new-ado-stage.prompt`):**
+
+```markdown
+# Prompt for generating a new Azure DevOps pipeline stage
+
+You are an Azure DevOps pipeline expert.
+Generate a new stage for an Azure DevOps YAML pipeline.
+The stage should be named dynamically, accept an `environment` parameter, and use an `AzureResourceManager@1` service connection.
+Include steps for Terraform `init`, `plan`, and `apply`.
+Ensure secrets are securely handled and not hardcoded.
+Ask me for the stage name and target environment.
+```
+
+**Consistent README Update (`update-readme.prompt`):**
+
+```markdown
+# Prompt for updating a README.md file
+
+You are a documentation specialist.
+Help me update this README.md file.
+I need to add a new section about 'Troubleshooting' to this document.
+Generate a heading and two placeholder bullet points for common issues.
+Maintain the existing markdown formatting and style.
+```
+
+💡 **My Take:** These are your personal, AI-powered snippets and templates. They save you typing, ensure consistency, and allow you to quickly invoke complex multi-part instructions. This is especially powerful when onboarding new team members – just point them to your prompt files!
+
 ### _Author_
 
 {% user pwd9000 %}
