@@ -1,7 +1,7 @@
 ---
 title: Supercharge VSCode GitHub Copilot using Instructions
 published: false
-description: 'Unlock the power of GitHub Copilot in VS Code with Custom Integration.'
+description: Unlock the power of GitHub Copilot in VS Code with Custom Integration.
 tags: 'GitHubCopilot, MCP, tutorial, AI'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-Inst-GitHub/assets/main.png'
 canonical_url: null
