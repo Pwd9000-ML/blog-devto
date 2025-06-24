@@ -141,10 +141,11 @@ Custom Chat Modes take customisation to another level. They define how Copilot o
 **"Terraform Security Review Mode":** Imagine a mode that, when activated, instructs Copilot to specifically review your Terraform files for common security misconfigurations (e.g., open security groups, public storage accounts). It could suggest fixes or point to relevant Azure Security Centre recommendations.
 
 **"Azure DevOps Pipeline Hardening Mode":** A mode that guides Copilot to analyse your YAML pipelines for security weaknesses, such as:
-- Hardcoded secrets (it would suggest using Key Vault).
-- Overly broad service connection permissions.
-- Lack of mandatory approvals for sensitive stages.
-- Absence of image scanning for container builds.
+
+* Hardcoded secrets (it would suggest using Key Vault).
+* Overly broad service connection permissions.
+* Lack of mandatory approvals for sensitive stages.
+* Absence of image scanning for container builds.
 
 **"Network Topology Advisor Mode":** This mode could be amazing! You'd provide it with an existing VNet and subnet configuration, and Copilot could suggest the best way to integrate a new service using private endpoints, considering DNS zones and routing, based on your custom instructions for private networking.
 
@@ -205,7 +206,7 @@ The future of DevOps is collaborative, and AI is becoming an increasingly integr
 
 So, what are you waiting for? Start customising your GitHub Copilot today and unlock its true potential! 🚀
 
-### _Author_
+### *Author*
 
 {% user pwd9000 %}
 
