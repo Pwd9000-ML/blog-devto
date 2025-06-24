@@ -11,7 +11,7 @@ series: DevAIOps
 
 ## Supercharge Your GitHub Copilot: How DevOps Engineers are Mastering Customisation
 
-Hey everyone! 👋 If you're a developer or, like me, a **DevOps engineer**, you've probably already experienced the magic that is **GitHub Copilot**. It's a game-changer, right? From suggesting boilerplate code to squashing annoying bugs, it feels like having an extra pair of hands (or rather, an extra brain) in your IDE. ✨
+Hey everyone! If you're a developer or, like me, a **DevOps engineer**, you've probably already experienced the magic that is **GitHub Copilot**. It's a game-changer, right? From suggesting boilerplate code to squashing annoying bugs, it feels like having an extra pair of hands (or rather, an extra brain) in your IDE.
 
 But here's the thing: out of the box, Copilot is fantastic, but it's also… generic. It learns from billions of lines of public code, which is awesome, but it doesn't know *your* team's specific coding standards, your obscure internal libraries, or that quirky cloud configuration you spent weeks perfecting. And for us in DevOps, **consistency, best practices, and domain-specific knowledge** aren't just nice-to-haves; they're the bedrock of stable, scalable systems.
 
@@ -25,7 +25,7 @@ Ready to transform your AI sidekick into a hyper-efficient, opinionated teammate
 
 ---
 
-Think about it. In DevOps, we thrive on **standardization, automation, and shared knowledge**. A generic AI assistant, while helpful, can sometimes introduce friction or suggest patterns that don't align with our meticulously crafted workflows. Here’s why customizing Copilot is an absolute game-changer for DevOps engineers:
+Think about it. In DevOps, we thrive on **standardisation, automation, and shared knowledge**. A generic AI assistant, while helpful, can sometimes introduce friction or suggest patterns that don't align with our meticulously crafted workflows. Here’s why customising Copilot is an absolute game-changer for DevOps engineers:
 
 * **Consistency is King (and Queen!):** Whether it's Terraform modules, Kubernetes manifests, or CI/CD pipeline definitions, consistency prevents "snowflake" environments and simplifies troubleshooting. Your custom Copilot can enforce these standards.
 * **Domain-Specific Knowledge Injection:** Copilot doesn't inherently know your internal `shared-components` library, your specific Azure Resource Group naming conventions, or the unique security policies your organization adheres to. You can teach it!
