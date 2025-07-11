@@ -40,6 +40,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **13/07/2025** | [Context Engineering with GitHub Copilot in VS Code](https://tbc) | ✍️ Blog | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
 | **19/07/2025** | [Season of AI Agents: Build the Future with AI](https://dotnetcopilot.com/season-of-ai-agents-build-the-future-with-ai/) | 🎤 Speaker | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
 | **TBA Sept 2025** | [Azure Back to School 2025 - Using MCPs inside of VS Code with GitHub Copilot](https://azurebacktoschool.com/) | 🎤 Speaker | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
 
