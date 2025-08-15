@@ -51,4 +51,4 @@ Validate with `yarn embedme:check` and `yarn prettier:check` before commit.
 4. `yarn embedme:check` & `yarn prettier:check` pass.
 5. No large (>1MB) unoptimised images.
 
-Feedback welcome—extend these instructions only with patterns demonstrably used in the repo.
+Feedback welcome—extend these instructions only with patterns demonstrably used in the repo.e
