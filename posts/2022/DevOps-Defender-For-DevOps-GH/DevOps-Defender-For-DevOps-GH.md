@@ -188,7 +188,6 @@ env:
 There are a few ways to configure the various tools and their inputs:
 
 - By creating a `*.gdnconfig` file to save configurations:
-
   - Great for reuse between team members and local/remote runs.
   - Can save multiple tool configurations in a single file to run all configurations.
 
