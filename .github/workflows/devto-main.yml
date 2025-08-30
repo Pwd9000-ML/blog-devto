@@ -7,12 +7,15 @@ on:
     paths:
       - 'posts/**/**.md'
       - 'posts/**/**/**.md'
+  # Allow manual runs from the Actions UI
+  workflow_dispatch: {}
 
 jobs:
 
   publishDevto:
-    # This job is triggered when a pull request to the main branch is merged.
-    if: ${{ github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'dev' }}
+    # This job runs either when a qualifying PR is merged (existing behavior)
+    # or when the workflow is triggered manually from the Actions UI.
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'dev') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
