@@ -270,4 +270,3 @@ If you enjoyed this post and want to learn more about **Terraform** and **Azure*
 {% user pwd9000 %}
 
 Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X/Twitter](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
-

@@ -41,7 +41,6 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
 | **13/07/2025** | [Context Engineering with GitHub Copilot in VS Code](https://tbc) | ✍️ Blog | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
-| **19/07/2025** | [Season of AI Agents: Build the Future with AI](https://dotnetcopilot.com/season-of-ai-agents-build-the-future-with-ai/) | 🎤 Speaker | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
 | **TBA Sept 2025** | [Azure Back to School 2025 - Using MCPs inside of VS Code with GitHub Copilot](https://azurebacktoschool.com/) | 🎤 Speaker | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
 
 ---Instructions and Prompt Files to supercharge VS Code with GitHub Copilot
@@ -50,6 +49,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **19/07/2025** | [Season of AI Agents: Build the Future with AI](https://www.youtube.com/watch?v=kzOCEMsVK9k&list=PL3mDu3f_2t8eBqJsoAKbU9DlbwRo0y01T&index=2) | 🎤 Speaker | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
 | **30/06/2025** | [.NET Notts Live Session / Marcel Lupo - VS Code GHCP / Matteo Emili - SDLC Security in 2025](https://www.youtube.com/watch?v=uug2jqR0PTk&t=3097s) | 🎤 Speaker | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
 | **24/06/2025** | [Instructions and Prompt Files to supercharge VS Code with GitHub Copilot](https://dev.to/pwd9000/supercharge-vscode-github-copilot-using-instructions-and-prompt-files-2p5e) | ✍️ Blog | GitHub, Copilot | DevOps, GitHubCopilot, AI-Services, Tutorial |
 | **08/05/2025** | [Transforming DevOps with AI – Insights from Azure AI Foundry](https://dev.to/pwd9000/supercharge-vscode-github-copilot-using-model-context-protocol-mcp-easy-setup-guide-371e) | 🎤 Speaker | Azure, GitHub, AI | Foundry, Azure, AI-Services |
