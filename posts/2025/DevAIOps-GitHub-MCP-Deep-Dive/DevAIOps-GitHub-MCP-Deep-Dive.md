@@ -10,7 +10,7 @@ series: DevAIOps
 
 ## Overview
 
-This post is a companion to the recorded deep dive demo and notes showing how GitHub Copilot integrates with GitHub's Model Context Protocol (MCP) remote server and how to apply use context engineering with instruction files and prompt files in VS Code.
+This post is a companion to the recorded deep dive demo and notes showing how GitHub Copilot integrates with GitHub's Model Context Protocol (MCP) remote server and how to apply context engineering with instruction files and prompt files in VS Code.
 
 YouTube demo (watch on YouTube):
 
