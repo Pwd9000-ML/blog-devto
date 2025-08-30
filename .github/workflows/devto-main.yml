@@ -7,16 +7,19 @@ on:
     paths:
       - 'posts/**/**.md'
       - 'posts/**/**/**.md'
+  # Allow manual runs from the Actions UI
+  workflow_dispatch: {}
 
 jobs:
 
   publishDevto:
-    # This job is triggered when a pull request to the main branch is merged.
-    if: ${{ github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'dev' }}
+    # This job runs either when a qualifying PR is merged (existing behavior)
+    # or when the workflow is triggered manually from the Actions UI.
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'dev') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v5.0.0
         with:
           fetch-depth: 0
   
@@ -26,7 +29,7 @@ jobs:
           node-version: 20
   
       - name: Install Dependencies
-        uses: bahmutov/npm-install@v1.10.9
+        uses: bahmutov/npm-install@v1.10.10
 
       - name: Publish articles on dev.to
         uses: sinedied/publish-devto@v2
