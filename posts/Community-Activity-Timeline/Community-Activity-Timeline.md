@@ -41,7 +41,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
 
-| **17/09/2025** | [VS Code Dev Days Brighton 2025 - Workshop and Labs](https://www.meetup.com/devops-github-conf-brighton/events/310385643/) | 📋 Event Organiser | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
+| **17/09/2025** | [VS Code Dev Days- Brighton - Workshop and Labs](https://www.meetup.com/devops-github-conf-brighton/events/310385643/) | 📋 Event Organiser | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
 
 ---Instructions and Prompt Files to supercharge VS Code with GitHub Copilot
 
