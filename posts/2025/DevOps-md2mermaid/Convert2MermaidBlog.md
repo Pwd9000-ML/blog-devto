@@ -231,7 +231,7 @@ Each SVG below was generated with the Convert 2 Mermaid API and lives alongside 
 
 ### C4 context
 
-![C4 context diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-c4.svg)
+No C4 diagram available
 
 ```json
 {
@@ -253,7 +253,7 @@ Each SVG below was generated with the Convert 2 Mermaid API and lives alongside 
 
 ### Sankey
 
-![Sankey diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sankey.svg)
+![Sankey diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sanke.svg)
 
 ```json
 {
