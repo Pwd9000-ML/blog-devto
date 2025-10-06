@@ -2,12 +2,11 @@
 title: "From Markdown to Mermaid Magic: Supercharge Documentation with the Convert 2 Mermaid API"
 published: false
 description: "Learn how the Convert 2 Mermaid API turns plain Markdown outlines into beautiful, multi-format Mermaid diagrams ready for docs, decks, and dashboards."
-tags: 'api, mermaid, documentation, automation, markdown, diagrams, rapidapi, developer-tools'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/fastApi-Md2Mermaid-api/master/Blog-template/assets/blog-cover-template.svg'
+tags: 'api, mermaid, automation, diagrams'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/main.png'
 canonical_url: null
 id: null
 series: null
-date: '2025-10-06T00:00:00Z'
 ---
 
 ## Transform Your Documentation Workflow in Seconds
@@ -129,6 +128,164 @@ for stub in SOURCE_DIR.glob("*.json"):
 
 Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, and optional `export` flags) into `diagrams/`, and this script will produce deterministic SVGs ready for publication. Because caching keys off the payload hash, unchanged diagrams skip network calls—perfect for monorepos where pipelines must stay lean.
 
+## Diagram Gallery: Every Mermaid Type at a Glance
+
+Each SVG below was generated with the Convert 2 Mermaid API and lives alongside this post under `assets/`. Add the standard RapidAPI headers, set `output_format` to `svg` when you want an image stream back, and pass one of these payloads to reproduce the result.
+
+### Flowchart
+
+![Flowchart diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-flowchart.svg)
+
+```json
+{
+  "markdown": "# Deployment Pipeline\n- Build\n- Test\n- Security scan\n- Deploy",
+  "diagram": "flowchart"
+}
+```
+
+### Mindmap
+
+![Mindmap diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-mindmap.svg)
+
+```json
+{
+  "markdown": "# Platform Roadmap\n- Observability\n- Reliability\n- Developer experience\n- Cost optimisation",
+  "diagram": "mindmap"
+}
+```
+
+### Sequence
+
+![Sequence diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sequence.svg)
+
+```json
+{
+  "markdown": "# Login Flow\n- User->API: request token\n- API->Database: validate credentials\n- Database->API: success\n- API->User: token",
+  "diagram": "sequence"
+}
+```
+
+### State
+
+![State diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-state.svg)
+
+```json
+{
+  "markdown": "# Order States\n- Pending\n- Confirmed\n- Shipped\n- Delivered",
+  "diagram": "state"
+}
+```
+
+### Entity relationship
+
+![Entity relationship diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-er.svg)
+
+```json
+{
+  "markdown": "# E-Commerce Schema\n- Customer\n- Order\n- Product\n- Customer ||--o{ Order : places\n- Order }|--|{ Product : contains",
+  "diagram": "er"
+}
+```
+
+### Gantt
+
+![Gantt diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-gantt.svg)
+
+```json
+{
+  "markdown": "# Release Plan\n- Phase 1:\n- Design\n- Planning\n- Phase 2:\n- Implementation\n- Testing",
+  "diagram": "gantt"
+}
+```
+
+### Git graph
+
+![Git graph diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-git.svg)
+
+```json
+{
+  "markdown": "# Git History\n- commit: Initial commit\n- branch develop\n- checkout develop\n- commit: Add feature\n- checkout main\n- merge develop",
+  "diagram": "git"
+}
+```
+
+### User journey
+
+![User journey diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-journey.svg)
+
+```json
+{
+  "markdown": "# Shopping Experience\n- Browse products: 5: Customer\n- Add to cart: 4: Customer\n- Checkout: 3: Customer, System\n- Payment: 2: Customer, Payment gateway\n- Confirmation: 5: Customer",
+  "diagram": "journey"
+}
+```
+
+### Class
+
+![Class diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-class.svg)
+
+```json
+{
+  "markdown": "# Payment Classes\n- Payment : +amount\n- Payment : +process()\n- CreditCard\n- PayPal\n- CreditCard <|-- Payment\n- PayPal <|-- Payment",
+  "diagram": "class"
+}
+```
+
+### C4 context
+
+![C4 context diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-c4.svg)
+
+```json
+{
+  "markdown": "# System Context\n- User: Customer\n- Frontend: Web application\n- Backend: API service\n- Database: PostgreSQL",
+  "diagram": "c4"
+}
+```
+
+### Pie
+
+![Pie diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-pie.svg)
+
+```json
+{
+  "markdown": "# Market Share\n- Product A : 45\n- Product B : 30\n- Product C : 15\n- Product D : 10",
+  "diagram": "pie"
+}
+```
+
+### Sankey
+
+![Sankey diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sanke.svg)
+
+```json
+{
+  "markdown": "# Energy Flow\n- Solar,Battery,50\n- Solar,Grid,30\n- Battery,Home,40\n- Grid,Home,60",
+  "diagram": "sankey"
+}
+```
+
+### Timeline
+
+![Timeline diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-timeline.svg)
+
+```json
+{
+  "markdown": "# Company History\n- 2010 : Company founded\n- 2015 : Series A funding\n- 2018 : Reached one million users\n- 2020 : IPO\n- 2023 : Global expansion",
+  "diagram": "timeline"
+}
+```
+
+### Quadrant
+
+![Quadrant diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-quadrant.svg)
+
+```json
+{
+  "markdown": "# Priority Matrix\n- High impact: [0.9, 0.8]\n- Quick wins: [0.7, 0.6]\n- Nice to have: [0.4, 0.3]\n- Deprioritise: [0.2, 0.5]",
+  "diagram": "quadrant"
+}
+```
+
 ## Code Examples for Everyday Scenarios
 
 ### Python Flowchart (covered above)
@@ -223,6 +380,6 @@ Let me know how you use the Convert 2 Mermaid API—I cannot wait to see your Ma
 
 {% user pwd9000 %}
 
-Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X/Twitter](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000//)
+Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X/Twitter](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
 
-Date: 06-10-2025
+Date: 06/10/2025
