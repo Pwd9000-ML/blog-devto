@@ -1,64 +1,27 @@
-## GitHub Copilot Project Instructions (blog-devto)
+# Copilot Instructions for `blog-devto`
 
-@azure Rule - Use Azure Best Practices: When generating code for Azure, running terminal commands for Azure, or performing operations related to Azure, invoke the Azure best‑practices tool before making changes.
+## Project snapshot
+- This repo is a content workspace that publishes Markdown articles to DEV.to. Each article lives under `posts/<year>/<slug>/` and is the single source of truth for that post.
+- Use `Blog-template/BlogTemplate.md` as the starting skeleton. Copy it into the new post folder and update the front matter (title, description, tags, cover path, ISO8601 date).
+- Every post keeps media in an `assets/` subfolder. Ensure the cover image is saved as `assets/main.png` (1000×420) and referenced in front matter via the raw GitHub URL pointing to `main`.
 
-### Repository Purpose
+## Writing workflow
+- Draft content in Markdown. Keep `published: false` until ready to ship; DEV.to automation key off this flag and the `id` field (leave `null` for new posts).
+- Follow the house style for author footer (`{% user pwd9000 %}` followed by the social links block). Reuse the block from the template.
+- For long form guides, break sections with `##` headings; DEV.to will treat the first heading as the article title H1.
 
-Static source-of-truth for dev.to articles under `posts/` (grouped by year). Each folder may contain an `assets/` subfolder for images and optional `code/` samples embedded into articles via `embedme`.
+## Code and assets conventions
+- Store runnable samples next to the article inside a `code/` folder when practical. Reference them from the Markdown with relative paths (e.g., `[link](./code/sample.ps1)`).
+- When embedding generated diagrams or screenshots, place them in the post's `assets/` folder and link via the raw GitHub CDN (`https://raw.githubusercontent.com/.../assets/<file>`).
+- Keep filenames dash-cased; this matches existing slugs and avoids URL encoding surprises.
 
-### Authoring a New Post
+## Tooling & quality gates
+- Run `yarn install` once to pull `prettier` and `embedme`.
+- Formatting: `yarn prettier:write` (or `yarn prettier:check` in CI) respects `.prettierrc.json` (80 char wrap, single quotes, no prose wrap). Apply before committing.
+- Embedded code fences: if you add `<!-- embedme path/to/file -->` directives, sync them with `yarn embedme:write` and validate with `yarn embedme:check`.
+- Linting/test automation is lightweight here; the `publish-to-devto` GitHub Action assumes posts follow the template and that assets exist.
 
-1. Create: `posts/<YEAR>/<Slug-Title>/<Slug-Title>.md` (match folder & filename).
-2. Add front matter between leading and trailing `---` including (in order): `title`, `published` (false until ready), `description`, `tags` (single quoted, comma separated, lower-case where possible), `cover_image` (raw GitHub URL), `canonical_url` (null if none), `id` (omit/null for new), `date` (ISO 8601 if scheduling), `series` (optional).
-3. Use British English spelling (standardise, customisation, behaviour, organisation, optimise, etc.).
-4. Defer `id` until after the article exists on dev.to (see README “How to find the ID”).
-5. Reference images via canonical raw URL under the post's `assets/` directory.
-
-### Required Footer Pattern
-
-Add at end (before EOF):
-
-```
-### _Author_
-
-Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X/Twitter](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
-
-{% user pwd9000 %}
-```
-
-Older posts may also embed a Buy Me A Coffee button; keep if present, do not add by default.
-
-### Conventions & Lint Notes
-
-- Avoid trailing punctuation in headings (MD026) – no colon at end.
-- Preferred unordered list marker: asterisk `*` (MD004); don't churn legacy dashes.
-- Code fences: specify language (`bash`, `powershell`, `terraform`, `json`, `yaml`, `markdown`).
-- Keep `### _Author_` even though MD049 flags underscore emphasis; this is intentional.
-- Tag formatting: lower-case concise topics (`terraform, azure, iac, devops`).
-
-### Embedding Code Samples
-
-Place files under `posts/<YEAR>/<Slug>/code/`. Use regular fenced blocks referencing those files so `embedme` can inject content. After editing samples run:
-
-- `yarn embedme:write` – refresh embedded snippets
-- `yarn prettier:write` – format Validate with `yarn embedme:check` and `yarn prettier:check` before commit.
-
-### Updating Existing Articles
-
-- Preserve existing `id` & `date`; never reuse an `id`.
-- Add new sections without renaming established headings to preserve external anchors.
-
-### Safety & Content
-
-- Never commit secrets; use obvious placeholders (`<SUBSCRIPTION_ID>`, `<RESOURCE_GROUP>`).
-- Image links must target `main` branch raw URL for dev.to rendering.
-
-### Quick QA Checklist Before Commit
-
-1. Front matter complete & valid.
-2. British English spelling audit (search for `-ize`, `behavior`, etc.).
-3. Footer present.
-4. `yarn embedme:check` & `yarn prettier:check` pass.
-5. No large (>1MB) unoptimised images.
-
-Feedback welcome—extend these instructions only with patterns demonstrably used in the repo.e
+## Tips for agents
+- Prefer updating existing posts in place; multiple articles may share assets, so confirm relative links before renaming.
+- When generating new cover art, include the MD2MMD logo or relevant branding and export to `main.png` at 1000×420 to keep DEV.to card previews sharp.
+- Review similar posts within the target year for voice, section ordering, and footer usage before drafting large changes.
