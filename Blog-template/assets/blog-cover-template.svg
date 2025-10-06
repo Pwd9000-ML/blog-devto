@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="417" viewBox="0 0 1000 417" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="1000" y2="417" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2B1E5B"/>
+      <stop offset="1" stop-color="#1B0F3B"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7C5CFF"/>
+      <stop offset="1" stop-color="#62D5FF"/>
+    </linearGradient>
+    <style><![CDATA[
+      .title {
+        font-family: 'Poppins', 'Segoe UI', sans-serif;
+        font-size: 54px;
+        font-weight: 700;
+        fill: #FFFFFF;
+      }
+      .subtitle {
+        font-family: 'Poppins', 'Segoe UI', sans-serif;
+        font-size: 26px;
+        font-weight: 500;
+        fill: #D9E7FF;
+      }
+      .caption {
+        font-family: 'Poppins', 'Segoe UI', sans-serif;
+        font-size: 20px;
+        fill: #C4D7FF;
+      }
+      .label {
+        font-family: 'Poppins', 'Segoe UI', sans-serif;
+        font-size: 18px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        fill: #B3C8FF;
+      }
+    ]]></style>
+  </defs>
+  <rect width="1000" height="417" rx="32" fill="url(#bgGradient)"/>
+  <path d="M760 -60C866 -14 948 118 906 244C866 363 719 440 597 395C503 361 420 275 416 176C412 53 526 -35 649 -67C684 -76 725 -78 760 -60Z" fill="url(#accent)" fill-opacity="0.2"/>
+  <rect x="64" y="64" width="146" height="46" rx="12" fill="#3C2E6B" opacity="0.8"/>
+  <text x="80" y="95" class="label">Blog Series</text>
+  <text x="64" y="170" class="title">[Insert Compelling Title]</text>
+  <text x="64" y="220" class="subtitle">Add a concise subtitle or value proposition.</text>
+  <text x="64" y="270" class="caption">Optional: highlight audience ➜ e.g. "For DevOps Engineers"</text>
+  <line x1="64" y1="305" x2="420" y2="305" stroke="#7C5CFF" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  <text x="64" y="350" class="caption">Update icons on the right to match your post.</text>
+  <g transform="translate(720 120)">
+    <rect x="0" y="0" width="100" height="100" rx="20" fill="#3C2E6B" stroke="#7C5CFF" stroke-width="3" stroke-dasharray="12 10"/>
+    <text x="50" y="58" class="caption" text-anchor="middle">Icon 1</text>
+  </g>
+  <g transform="translate(850 208)">
+    <rect x="0" y="0" width="100" height="100" rx="20" fill="#3C2E6B" stroke="#62D5FF" stroke-width="3" stroke-dasharray="12 10"/>
+    <text x="50" y="58" class="caption" text-anchor="middle">Icon 2</text>
+  </g>
+  <!--
+    Template editing tips:
+    1. Replace text nodes with your blog title, subtitle, and messaging.
+    2. Swap placeholder icon boxes with relevant SVGs or PNGs (use <image> tags if needed).
+    3. Export as PNG (1000x417) via Inkscape, Illustrator, or VS Code extensions for cover usage.
+  -->
+</svg>
