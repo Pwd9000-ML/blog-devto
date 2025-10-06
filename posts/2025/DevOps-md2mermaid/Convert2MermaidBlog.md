@@ -135,6 +135,8 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ### Flowchart
 
+![Flowchart diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-flowchart.png)
+
 ```json
 {
   "markdown": "# Deployment Pipeline\n- Build\n- Test\n- Security scan\n- Deploy",
@@ -142,9 +144,9 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 }
 ```
 
-<img src="https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-flowchart.png" alt="SVG Logo" width="50" height="50">
-
 ### Mindmap
+
+![Mindmap diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-mindmap.png)
 
 ```json
 {
@@ -153,9 +155,9 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 }
 ```
 
-<img src="https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-mindmap.png" alt="SVG Logo" width="50" height="50">
-
 ### Sequence
+
+![Sequence diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sequence.png)
 
 ```json
 {
@@ -163,8 +165,6 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
   "diagram": "sequence"
 }
 ```
-
-![Sequence diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sequence.png)
 
 ### State
 
