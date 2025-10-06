@@ -133,7 +133,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ## Diagram Gallery: Every Mermaid Type at a Glance
 
-### - Flowchart
+### 1. Flowchart
 
 ![Flowchart diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-flowchart.png)
 
@@ -146,7 +146,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ---
 
-### - Mindmap
+### 2. Mindmap
 
 ![Mindmap diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-mindmap.png)
 
@@ -159,7 +159,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ---
 
-### - Sequence
+### 3. Sequence
 
 ![Sequence diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sequence.png)
 
@@ -172,20 +172,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ---
 
-### - State
-
-![State diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-state.png)
-
-```json
-{
-  "markdown": "# Login Flow\n- User->API: request token\n- API->Database: validate credentials\n- Database->API: success\n- API->User: token",
-  "diagram": "sequence"
-}
-```
-
----
-
-### State
+### 4. State
 
 ![State diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-state.png)
 
@@ -198,7 +185,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ---
 
-### - Entity relationship
+### 5. Entity relationship
 
 ![Entity relationship diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-er.png)
 
@@ -211,7 +198,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ---
 
-### - Gantt
+### 6. Gantt
 
 ![Gantt diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-gantt.png)
 
@@ -224,7 +211,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ---
 
-### - Git graph
+### 7. Git graph
 
 ![Git graph diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-git.png)
 
@@ -237,7 +224,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ---
 
-### - User journey
+### 8. User journey
 
 ![User journey diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-journey.png)
 
@@ -250,7 +237,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ---
 
-### - Class
+### 9. Class
 
 ![Class diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-class.png)
 
@@ -263,7 +250,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ---
 
-### - C4 context
+### 10. C4 context
 
 No C4 diagram available
 
@@ -276,7 +263,7 @@ No C4 diagram available
 
 ---
 
-### - Pie
+### 11. Pie
 
 ![Pie diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-pie.png)
 
@@ -289,7 +276,7 @@ No C4 diagram available
 
 --- 
 
-### - Sankey
+### 12. Sankey
 
 ![Sankey diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sankey.png)
 
@@ -302,7 +289,7 @@ No C4 diagram available
 
 ---
 
-### - Timeline
+### 13. Timeline
 
 ![Timeline diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-timeline.png)
 
@@ -315,7 +302,7 @@ No C4 diagram available
 
 ---
 
-### - Quadrant
+### 14. Quadrant
 
 ![Quadrant diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-quadrant.png)
 
