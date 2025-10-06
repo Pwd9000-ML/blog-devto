@@ -142,7 +142,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 }
 ```
 
-<img src="https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-flowchart.svg" alt="SVG Logo" width="50" height="50">
+<img src="https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-flowchart.png" alt="SVG Logo" width="50" height="50">
 
 ### Mindmap
 
@@ -153,7 +153,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 }
 ```
 
-<img src="https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-mindmap.svg" alt="SVG Logo" width="50" height="50">
+<img src="https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-mindmap.png" alt="SVG Logo" width="50" height="50">
 
 ### Sequence
 
@@ -164,11 +164,11 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 }
 ```
 
-![Sequence diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sequence.svg)
+![Sequence diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sequence.png)
 
 ### State
 
-![State diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-state.svg)
+![State diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-state.png)
 
 ```json
 {
@@ -179,7 +179,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ### Entity relationship
 
-![Entity relationship diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-er.svg)
+![Entity relationship diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-er.png)
 
 ```json
 {
@@ -190,7 +190,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ### Gantt
 
-![Gantt diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-gantt.svg)
+![Gantt diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-gantt.png)
 
 ```json
 {
@@ -201,7 +201,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ### Git graph
 
-![Git graph diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-git.svg)
+![Git graph diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-git.png)
 
 ```json
 {
@@ -212,7 +212,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ### User journey
 
-![User journey diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-journey.svg)
+![User journey diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-journey.png)
 
 ```json
 {
@@ -223,7 +223,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ### Class
 
-![Class diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-class.svg)
+![Class diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-class.png)
 
 ```json
 {
@@ -245,7 +245,7 @@ No C4 diagram available
 
 ### Pie
 
-![Pie diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-pie.svg)
+![Pie diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-pie.png)
 
 ```json
 {
@@ -256,7 +256,7 @@ No C4 diagram available
 
 ### Sankey
 
-![Sankey diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sanke.svg)
+![Sankey diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sanke.png)
 
 ```json
 {
@@ -267,7 +267,7 @@ No C4 diagram available
 
 ### Timeline
 
-![Timeline diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-timeline.svg)
+![Timeline diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-timeline.png)
 
 ```json
 {
@@ -278,7 +278,7 @@ No C4 diagram available
 
 ### Quadrant
 
-![Quadrant diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-quadrant.svg)
+![Quadrant diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-quadrant.png)
 
 ```json
 {
