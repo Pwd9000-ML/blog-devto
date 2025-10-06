@@ -312,6 +312,7 @@ No C4 diagram available
   "diagram": "quadrant"
 }
 ```
+
 ---
 
 ## Code Examples for Everyday Scenarios
