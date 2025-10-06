@@ -133,7 +133,7 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 
 ## Diagram Gallery: Every Mermaid Type at a Glance
 
-### Flowchart
+### - Flowchart
 
 ![Flowchart diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-flowchart.png)
 
@@ -144,7 +144,9 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 }
 ```
 
-### Mindmap
+---
+
+### - Mindmap
 
 ![Mindmap diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-mindmap.png)
 
@@ -155,7 +157,9 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 }
 ```
 
-### Sequence
+---
+
+### - Sequence
 
 ![Sequence diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sequence.png)
 
@@ -165,6 +169,21 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
   "diagram": "sequence"
 }
 ```
+
+---
+
+### - State
+
+![State diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-state.png)
+
+```json
+{
+  "markdown": "# Login Flow\n- User->API: request token\n- API->Database: validate credentials\n- Database->API: success\n- API->User: token",
+  "diagram": "sequence"
+}
+```
+
+---
 
 ### State
 
@@ -177,7 +196,9 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 }
 ```
 
-### Entity relationship
+---
+
+### - Entity relationship
 
 ![Entity relationship diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-er.png)
 
@@ -188,7 +209,9 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 }
 ```
 
-### Gantt
+---
+
+### - Gantt
 
 ![Gantt diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-gantt.png)
 
@@ -199,7 +222,9 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 }
 ```
 
-### Git graph
+---
+
+### - Git graph
 
 ![Git graph diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-git.png)
 
@@ -210,7 +235,9 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 }
 ```
 
-### User journey
+---
+
+### - User journey
 
 ![User journey diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-journey.png)
 
@@ -221,7 +248,9 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 }
 ```
 
-### Class
+---
+
+### - Class
 
 ![Class diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-class.png)
 
@@ -232,7 +261,9 @@ Drop JSON payloads like `service-map.json` (containing `markdown`, `diagram`, an
 }
 ```
 
-### C4 context
+---
+
+### - C4 context
 
 No C4 diagram available
 
@@ -243,7 +274,9 @@ No C4 diagram available
 }
 ```
 
-### Pie
+---
+
+### - Pie
 
 ![Pie diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-pie.png)
 
@@ -254,7 +287,9 @@ No C4 diagram available
 }
 ```
 
-### Sankey
+--- 
+
+### - Sankey
 
 ![Sankey diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sankey.png)
 
@@ -265,7 +300,9 @@ No C4 diagram available
 }
 ```
 
-### Timeline
+---
+
+### - Timeline
 
 ![Timeline diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-timeline.png)
 
@@ -276,7 +313,9 @@ No C4 diagram available
 }
 ```
 
-### Quadrant
+---
+
+### - Quadrant
 
 ![Quadrant diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-quadrant.png)
 
@@ -286,6 +325,7 @@ No C4 diagram available
   "diagram": "quadrant"
 }
 ```
+---
 
 ## Code Examples for Everyday Scenarios
 
