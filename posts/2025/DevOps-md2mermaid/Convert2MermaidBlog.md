@@ -83,7 +83,7 @@ Use the `C4` diagram type to describe systems and dependencies. Include it in yo
 
 Program managers can feed milestone lists into the `Gantt` diagram type, export an SVG, and embed it in weekly updates. No more wrestling with bespoke PM software when priorities shift.
 
-These are just a subset of the 14 types available—mix and match to fit your storytelling needs.
+These are just a subset of the 14 types available, mix and match to fit your storytelling needs.
 
 ## Pro Implementation: Build a Diagram Pipeline
 
