@@ -256,7 +256,7 @@ No C4 diagram available
 
 ### Sankey
 
-![Sankey diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sanke.png)
+![Sankey diagram preview](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/diagram-sankey.png)
 
 ```json
 {
