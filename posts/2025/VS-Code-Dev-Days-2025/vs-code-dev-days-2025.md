@@ -5,6 +5,7 @@ description: 'A recap of VS Code Dev Days 2025. Exploring how GitHub Copilot and
 tags: 'github, githubcopilot, tutorial, vscode'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/refs/heads/main/posts/2025/VS-Code-Dev-Days-2025/assets/main2.png'
 id: 2953972
+date: '2025-10-24T09:36:12Z'
 ---
 
 ## Overview
