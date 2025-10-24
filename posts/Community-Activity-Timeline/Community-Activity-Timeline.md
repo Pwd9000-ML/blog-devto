@@ -40,14 +40,13 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **17/09/2025** | [VS Code Dev Days- Brighton - Workshop and Labs](https://www.meetup.com/devops-github-conf-brighton/events/310385643/) | 📋 Event Organiser | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
-
----Instructions and Prompt Files to supercharge VS Code with GitHub Copilot
+| **17/09/2025** | [VS Code Dev Days- Brighton - Workshop and Labs](https://dev.to/pwd9000/vs-code-dev-days-2025-unlocking-ai-powered-dev-workflows-with-github-copilot-2mg9) | 📋 Event Organiser | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
 
 ## 💫 Highlights of 2025 💫
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **17/09/2025** | [VS Code Dev Days- Brighton - Workshop and Labs](https://dev.to/pwd9000/vs-code-dev-days-2025-unlocking-ai-powered-dev-workflows-with-github-copilot-2mg9) | 📋 Event Organiser | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
 | **03/09/2025** | [Azure Back to School 2025 - Supercharge VS Code GitHub Copilot using Model Context Protocol (MCP)](https://www.youtube.com/watch?v=5qNNy_HAZjo) | 🎤 Speaker | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
 | **30/08/2025** | [GitHub MCP Server Deep Dive and Context Engineering](https://dev.to/pwd9000/github-mcp-server-deep-dive-and-context-engineering-49lo) | ✍️ Blog | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
 | **19/07/2025** | [Season of AI Agents: Build the Future with AI](https://www.youtube.com/watch?v=kzOCEMsVK9k&list=PL3mDu3f_2t8eBqJsoAKbU9DlbwRo0y01T&index=2) | 🎤 Speaker | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
