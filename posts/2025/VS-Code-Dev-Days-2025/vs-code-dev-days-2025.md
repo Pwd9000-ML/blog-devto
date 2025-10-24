@@ -1,16 +1,13 @@
 ---
-title: "🚀 VS Code Dev Days 2025 — Unlocking AI-Powered Dev Workflows with GitHub Copilot"
-published: true
-description: "A recap of VS Code Dev Days 2025 — exploring how GitHub Copilot and Azure DevOps elevate developer workflows with AI automation and hands-on labs."
-tags: 'github, copilot, vscode, azuredevops, ai'
+title: "🚀 VS Code Dev Days 2025 - Unlocking AI Powered Dev Workflows with GitHub Copilot"
+published: false
+description: "A recap of VS Code Dev Days 2025. Exploring how GitHub Copilot and Azure DevOps elevate developer workflows with AI automation and hands on labs, learn all about MCPs and take part along the way with intuitive on-hands labs."
+tags: 'github, githubcopilot, tutorial'
 cover_image: "https://res.cloudinary.com/practicaldev/image/fetch/s--E8C7Rm4E--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure.meetupstatic.com%2Fphotos%2Fevent%2F1%2Fhighres_523715397.jpeg&w=1200&q=75"
-canonical_url: null
-id: null
-series: null
-date: '2025-10-23T00:00:00Z'
+id: 2953972
 ---
 
-# 🚀 VS Code Dev Days 2025 — Unlocking AI-Powered Dev Workflows with GitHub Copilot
+## 🚀 VS Code Dev Days 2025 - Unlocking AI Powered Dev Workflows with GitHub Copilot
 
 On **17 September 2025**, the **DevOps & GitHub Meetup Brighton** community hosted **VS Code Dev Days 2025**, an engaging online workshop series exploring how **Visual Studio Code**, **GitHub Copilot**, and **Azure DevOps** can elevate modern developer workflows with AI automation and hands-on labs.
 
@@ -21,6 +18,7 @@ On **17 September 2025**, the **DevOps & GitHub Meetup Brighton** community host
 ## 🎬 Session Recordings
 
 ### 🧩 Part 1 – Getting Started with GitHub Copilot
+
 Explore how to set up VS Code with GitHub Copilot, enable your free trial, and use intelligent code suggestions, refactoring, and contextual completions.
 
 ▶️ [Watch on YouTube](https://youtu.be/DdGp8q66oGw)  
@@ -29,6 +27,7 @@ Explore how to set up VS Code with GitHub Copilot, enable your free trial, and u
 ---
 
 ### ⚙️ Part 2 – Azure DevOps MCP with GitHub Copilot
+
 Dive deeper into how GitHub Copilot integrates with **Azure DevOps pipelines (MCP)** to automate build, test, and deployment workflows — showcasing how AI can streamline DevOps practices.
 
 ▶️ [Watch on YouTube](https://youtu.be/4gI3FGSzR1w)  
@@ -37,7 +36,8 @@ Dive deeper into how GitHub Copilot integrates with **Azure DevOps pipelines (MC
 ---
 
 ### 🔗 Part 3 – Integrate MCP with GitHub Copilot
-See it all come together — from coding in VS Code with Copilot to deploying through **Azure DevOps pipelines**. Learn how AI assistance can bridge development and automation seamlessly.
+See it all come together — from coding in VS Code with 
+Copilot to deploying through **Azure DevOps pipelines**. Learn how AI assistance can bridge development and automation seamlessly.
 
 ▶️ [Watch on YouTube](https://youtu.be/XxR80NHWZJk)  
 {% youtube XxR80NHWZJk %}
@@ -73,8 +73,6 @@ This event showcased how developers can move from manual coding to **AI-augmente
 If you missed them, catch up using the recordings above — and experience how **GitHub Copilot** can power your next level of development.  
 
 💬 _“The future of development is augmented — not exhausted.”_
-
-#VSCodeDevDays #GitHubCopilot #AzureDevOps #AI #DevOps
 
 ### _Author_
 
