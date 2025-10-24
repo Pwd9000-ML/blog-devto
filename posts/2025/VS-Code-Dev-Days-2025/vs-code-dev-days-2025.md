@@ -3,7 +3,7 @@ title: "🚀 VS Code Dev Days 2025 - Unlocking AI Powered Dev Workflows with Git
 published: false
 description: "A recap of VS Code Dev Days 2025. Exploring how GitHub Copilot and Azure DevOps elevate developer workflows with AI automation and hands on labs, learn all about MCPs and take part along the way with intuitive on-hands labs."
 tags: 'github, githubcopilot, tutorial'
-cover_image: "https://res.cloudinary.com/practicaldev/image/fetch/s--E8C7Rm4E--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure.meetupstatic.com%2Fphotos%2Fevent%2F1%2Fhighres_523715397.jpeg&w=1200&q=75"
+cover_image: "'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/VS-Code-Dev-Days-2025/assets/devdays.png'"
 id: 2953972
 ---
 
