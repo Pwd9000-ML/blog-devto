@@ -3,7 +3,7 @@ title: 'From Markdown to Mermaid Magic: Beautify Documentation with the Convert 
 published: true
 description: 'Learn how the Convert 2 Mermaid API turns plain Markdown outlines into beautiful, multi-format Mermaid diagrams ready for docs, decks, and dashboards.'
 tags: 'devops, mermaid, automation, diagrams'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/refs/heads/main/posts/2025/DevOps-md2mermaid/assets/main.png'
 id: 2897960
 date: '2025-10-06T14:06:18Z'
 ---
