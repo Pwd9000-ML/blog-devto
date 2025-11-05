@@ -1,7 +1,7 @@
 ---
-title: "TODO: Blog Title"
+title: 'TODO: Blog Title'
 published: false
-description: "TODO: One-sentence summary of the post."
+description: 'TODO: One-sentence summary of the post.'
 tags: 'tag1, tag2, tag3'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/YYYY/Folder/assets/main.png'
 canonical_url: null

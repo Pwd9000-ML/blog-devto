@@ -16,7 +16,7 @@ On **17 September 2025**, the **DevOps & GitHub Meetup Brighton** community host
 
 ---
 
-**Part 1 – Getting Started with GitHub Copilot**  
+**Part 1 – Getting Started with GitHub Copilot**
 
 Explore how to set up VS Code with GitHub Copilot, enable your free trial, and use intelligent code suggestions, refactoring, and contextual completions.
 
@@ -24,7 +24,7 @@ Explore how to set up VS Code with GitHub Copilot, enable your free trial, and u
 
 ---
 
-**Part 2 – Azure DevOps MCP with GitHub Copilot**  
+**Part 2 – Azure DevOps MCP with GitHub Copilot**
 
 Dive deeper into how GitHub Copilot integrates with **Azure DevOps MCP Server** to automate build, test, and deployment workflows, showcasing how AI can streamline DevOps practices.
 
@@ -32,7 +32,7 @@ Dive deeper into how GitHub Copilot integrates with **Azure DevOps MCP Server** 
 
 ---
 
-**Part 3 – Integrate MCP with GitHub Copilot**  
+**Part 3 – Integrate MCP with GitHub Copilot**
 
 See it all come together, from coding in VS Code with GitHub Copilot to interacting with **GitHub MCP Server**, demonstrating a seamless AI-augmented development lifecycle.
 
@@ -42,9 +42,9 @@ See it all come together, from coding in VS Code with GitHub Copilot to interact
 
 ## 🧠 What You’ll Learn
 
-- How Copilot in VS Code transforms coding speed, accuracy, and creativity.  
-- Embedding AI-powered assistance directly into **DevOps workflows**.  
-- Hands-on labs showing how to integrate GitHub, VS Code, and Azure DevOps.  
+- How Copilot in VS Code transforms coding speed, accuracy, and creativity.
+- Embedding AI-powered assistance directly into **DevOps workflows**.
+- Hands-on labs showing how to integrate GitHub, VS Code, and Azure DevOps.
 - Practical next steps to evolve your automation journey using GitHub Copilot.
 
 ---
@@ -58,15 +58,15 @@ This event showcased how developers can move from manual coding to **AI-augmente
 
 ## ✍️ Quick Start Tips
 
-- Install **Visual Studio Code** and sign in with your **GitHub account** to activate your Copilot trial.  
-- Experiment with **Copilot Labs** inside VS Code for creative prompts and refactoring ideas.  
-- Try automating a small **Azure DevOps pipeline** using Copilot generated YAML.  
+- Install **Visual Studio Code** and sign in with your **GitHub account** to activate your Copilot trial.
+- Experiment with **Copilot Labs** inside VS Code for creative prompts and refactoring ideas.
+- Try automating a small **Azure DevOps pipeline** using Copilot generated YAML.
 - Review your repetitive tasks and ask: _"Can this be assisted or automated by AI?"_
 
 ---
 
 **Thank you to everyone who joined the VS Code Dev Days workshops!**  
-If you missed them, catch up using the recordings above and experience how **GitHub Copilot** can power your next level of development.  
+If you missed them, catch up using the recordings above and experience how **GitHub Copilot** can power your next level of development.
 
 _“The future of development is augmented — not exhausted.”_
 

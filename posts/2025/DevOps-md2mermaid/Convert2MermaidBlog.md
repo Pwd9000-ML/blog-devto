@@ -274,7 +274,7 @@ No C4 diagram available
 }
 ```
 
---- 
+---
 
 ### 12. Sankey
 
@@ -324,22 +324,23 @@ Already seen the basics? Let us expand with a mind map and an SVG export to roun
 ### Node.js Mind Map for Project Planning
 
 ```javascript
-const axios = require("axios");
+const axios = require('axios');
 
 async function generateMindMap() {
   const response = await axios.post(
-    "https://convert2mermaid.p.rapidapi.com/convert",
+    'https://convert2mermaid.p.rapidapi.com/convert',
     {
-      markdown: "# Platform Roadmap\n- Observability\n- Reliability\n- Developer Experience\n- Cost Optimisation",
-      diagram: "mindmap"
+      markdown:
+        '# Platform Roadmap\n- Observability\n- Reliability\n- Developer Experience\n- Cost Optimisation',
+      diagram: 'mindmap',
     },
     {
       headers: {
-        "X-RapidAPI-Key": process.env.RAPIDAPI_KEY,
-        "X-RapidAPI-Host": "convert2mermaid.p.rapidapi.com",
-        "Content-Type": "application/json"
-      }
-    }
+        'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+        'X-RapidAPI-Host': 'convert2mermaid.p.rapidapi.com',
+        'Content-Type': 'application/json',
+      },
+    },
   );
 
   console.log(response.data.mermaid);
