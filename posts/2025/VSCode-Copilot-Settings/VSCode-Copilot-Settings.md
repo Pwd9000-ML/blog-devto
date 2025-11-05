@@ -1,5 +1,5 @@
 ---
-title: 'Tune GitHub Copilot Settings in VS Code'
+title: Tune GitHub Copilot Settings in VS Code
 published: false
 description: 'Review every GitHub Copilot and Copilot Chat setting in VS Code and grab a ready-to-use settings.json template.'
 tags: 'vscode, copilot, tutorial, githubcopilot'
