@@ -123,7 +123,7 @@ If you are rolling out GitHub Copilot across a team, the settings surface in VS 
 - `chat.promptFilesLocations`
 - `chat.modeFilesLocations`
 
-> The VS Code Copilot customization guide walks through instruction files, reusable prompts, and custom chat modes in depth. See "Customize chat to your workflow" on the Visual Studio Code docs.
+> The VS Code Copilot customisation guide walks through instruction files, reusable prompts, and custom chat modes in depth. See "Customize chat to your workflow" on the Visual Studio Code docs.
 
 ### Debugging
 
@@ -165,7 +165,7 @@ Rolling Copilot out to a mixed environment? Keep a shared `settings.json` in `.v
 3. Trim the comments or keys you do not need, then commit the file so teammates inherit the same defaults.
 4. Revisit the configuration quarterly; many Copilot features are still in preview and can change behaviour.
 
-Prefer a ready-to-use file? [Download the JSON directly](./assets/settings.json) and drop it into `.vscode/settings.json`.
+Prefer a ready-to-use file? [Download the JSON directly](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/VSCode-Copilot-Settings/assets/settings.json) and drop it into `.vscode/settings.json`.
 
 ```jsonc
 {
