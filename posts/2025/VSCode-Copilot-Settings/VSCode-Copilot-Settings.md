@@ -1,6 +1,6 @@
 ---
 title: Tune GitHub Copilot Settings in VS Code
-published: false
+published: true
 description: Review every GitHub Copilot and Copilot Chat setting in VS Code and grab a ready-to-use settings.json template.
 tags: 'vscode, copilot, tutorial, githubcopilot'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/VSCode-Copilot-Settings/assets/main.png'
