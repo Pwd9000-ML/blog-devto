@@ -1,7 +1,7 @@
 ---
-title: 'Tune GitHub Copilot Settings in VS Code'
+title: Tune GitHub Copilot Settings in VS Code
 published: false
-description: 'Review every GitHub Copilot and Copilot Chat setting in VS Code and grab a ready-to-use settings.json template.'
+description: Review every GitHub Copilot and Copilot Chat setting in VS Code and grab a ready-to-use settings.json template.
 tags: 'vscode, copilot, productivity'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/VSCode-Copilot-Settings/assets/main.png'
 canonical_url: null
