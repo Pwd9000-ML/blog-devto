@@ -6,7 +6,7 @@ tags: 'GitHubCopilot, MCP, tutorial, AI'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-Inst-GitHub/assets/main.png'
 canonical_url: null
 id: 2620657
-series: DevAIOps
+series: GitHubCopilot
 date: '2025-06-24T13:07:57Z'
 ---
 

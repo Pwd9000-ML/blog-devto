@@ -6,6 +6,7 @@ tags: 'vscode, copilot, tutorial, githubcopilot'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/VSCode-Copilot-Settings/assets/main.png'
 canonical_url: null
 id: 2995753
+series: GitHubCopilot
 date: '2025-11-05T21:12:59Z'
 ---
 
