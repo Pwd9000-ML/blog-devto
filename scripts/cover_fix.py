@@ -8,7 +8,8 @@ import shutil
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import List, Tuple
+from typing import List, Tuple, Dict
+from urllib.parse import urlparse
 
 try:
     from PIL import Image
@@ -40,6 +41,59 @@ def resolve_article_root(article_arg: str, repo_root: Path) -> Path:
     raise FileNotFoundError(f"Article path not found: {article_arg}")
 
 
+def find_article_markdown(article_dir: Path) -> Path | None:
+    preferred = article_dir / f"{article_dir.name}.md"
+    if preferred.exists():
+        return preferred
+    for p in sorted(article_dir.glob("*.md")):
+        return p
+    return None
+
+
+def parse_front_matter(markdown_path: Path | None) -> Dict[str, str]:
+    if not markdown_path or not markdown_path.exists():
+        return {}
+    text = markdown_path.read_text(encoding="utf-8")
+    lines = text.splitlines()
+    if not lines or lines[0].strip() != "---":
+        return {}
+    fm_lines: list[str] = []
+    for idx in range(1, len(lines)):
+        if lines[idx].strip() == "---":
+            fm_lines = lines[1:idx]
+            break
+    data: Dict[str, str] = {}
+    for raw in fm_lines:
+        if not raw.strip() or raw.lstrip().startswith("#"):
+            continue
+        if ":" not in raw:
+            continue
+        key, value = raw.split(":", 1)
+        cleaned = value.strip().strip("'\"")
+        data[key.strip()] = cleaned
+    return data
+
+
+def path_from_cover_url(cover_url: str, repo_root: Path) -> Path | None:
+    try:
+        u = urlparse(cover_url)
+        if not u.scheme.startswith("http"):
+            return None
+        # raw.githubusercontent.com/<owner>/<repo>/<branch>/<rest>
+        parts = [p for p in u.path.split("/") if p]
+        if "raw.githubusercontent.com" in u.netloc and len(parts) >= 4:
+            rel_parts = parts[3:]  # after branch
+            rel_path = "/".join(rel_parts)
+            return (repo_root / rel_path).resolve()
+        # Fallback: locate /main/ segment
+        if "/main/" in u.path:
+            rel = u.path.split("/main/", 1)[1]
+            return (repo_root / rel).resolve()
+    except Exception:
+        return None
+    return None
+
+
 def cover_priority(path: Path) -> Tuple[int, str]:
     name = path.name.lower()
     if name == "main.png":
@@ -66,16 +120,31 @@ def select_asset_images(assets_dir: Path, image_name: str | None) -> Tuple[List[
     return [], [assets_dir / MISSING_PLACEHOLDER]
 
 
-def enumerate_article_assets(posts_root: Path, image_name: str | None) -> Tuple[List[Path], List[Path]]:
+def enumerate_article_assets(posts_root: Path, image_name: str | None, prefer_front_matter: bool) -> Tuple[List[Path], List[Path]]:
     images: List[Path] = []
     missing: List[Path] = []
     for assets_dir in posts_root.glob("**/assets"):
         article_dir = assets_dir.parent
         if not article_dir.is_dir():
             continue
-        markdown_present = any(p.suffix.lower() == ".md" for p in article_dir.iterdir())
-        if not markdown_present:
+        markdown = find_article_markdown(article_dir)
+        if not markdown:
             continue
+        if prefer_front_matter and image_name is None:
+            meta = parse_front_matter(markdown)
+            cover_url = meta.get("cover_image") if meta else None
+            if cover_url:
+                local = path_from_cover_url(cover_url, posts_root.parent)
+                if local and local.exists():
+                    images.append(local)
+                    continue
+            fallback = assets_dir / "main.png"
+            if fallback.exists():
+                images.append(fallback)
+                continue
+            missing.append(assets_dir / MISSING_PLACEHOLDER)
+            continue
+
         found, not_found = select_asset_images(assets_dir, image_name)
         images.extend(found)
         missing.extend(not_found)
@@ -139,6 +208,7 @@ def collect_targets(
     repo_root: Path,
     article: str | None,
     image_name: str | None,
+    prefer_front_matter: bool,
 ) -> Tuple[List[Path], List[Path]]:
     posts_root = repo_root / "posts"
     if article:
@@ -149,11 +219,23 @@ def collect_targets(
             return [], []
         assets_dir = article_root / "assets"
         if assets_dir.is_dir():
+            if prefer_front_matter and image_name is None:
+                markdown = find_article_markdown(article_root)
+                meta = parse_front_matter(markdown)
+                cover_url = meta.get("cover_image") if meta else None
+                if cover_url:
+                    local = path_from_cover_url(cover_url, repo_root)
+                    if local and local.exists():
+                        return [local], []
+                fallback = assets_dir / "main.png"
+                if fallback.exists():
+                    return [fallback], []
+                return [], [assets_dir / MISSING_PLACEHOLDER]
             found, not_found = select_asset_images(assets_dir, image_name)
             return found, not_found
         # Treat path as a container of articles (e.g. posts/2025)
-        return enumerate_article_assets(article_root, image_name)
-    return enumerate_article_assets(posts_root, image_name)
+        return enumerate_article_assets(article_root, image_name, prefer_front_matter)
+    return enumerate_article_assets(posts_root, image_name, prefer_front_matter)
 
 
 def describe(path: Path, repo_root: Path) -> str:
@@ -167,13 +249,18 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Check and fix non-conforming cover images.")
     parser.add_argument("--article", help="Optional path to a specific article directory or markdown file")
     parser.add_argument("--image", help="Specific image filename to inspect (otherwise auto-detected)")
+    parser.add_argument(
+        "--front-matter",
+        action="store_true",
+        help="Only target the cover declared in article front matter; fallback to assets/main.png",
+    )
     parser.add_argument("--fix", action="store_true", help="Apply padding/stretch corrections where needed")
     parser.add_argument("--stretch", action="store_true", help="Stretch images to fit instead of padding")
     parser.add_argument("--no-backup", action="store_true", help="Skip writing .bak copies before fixing")
     args = parser.parse_args()
 
     repo_root = resolve_repo_root(Path(__file__))
-    images, missing = collect_targets(repo_root, args.article, args.image)
+    images, missing = collect_targets(repo_root, args.article, args.image, args.front_matter)
 
     if not images and not missing:
         print("No images found to inspect.")
