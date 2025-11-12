@@ -2,7 +2,7 @@
 title: Instructions and Prompt Files to supercharge VS Code with GitHub Copilot
 published: true
 description: Unlock the power of GitHub Copilot in VS Code with Custom Instructions and Prompt Files.
-tags: 'github-copilot, mcp, tutorial, ai'
+tags: 'githubcopilot, mcp, tutorial, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-Inst-GitHub/assets/main3.png'
 id: 2620657
 series: GitHubCopilot
