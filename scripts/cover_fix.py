@@ -81,11 +81,20 @@ def path_from_cover_url(cover_url: str, repo_root: Path) -> Path | None:
             return None
         # raw.githubusercontent.com/<owner>/<repo>/<branch>/<rest>
         parts = [p for p in u.path.split("/") if p]
-        if "raw.githubusercontent.com" in u.netloc and len(parts) >= 4:
-            rel_parts = parts[3:]  # after branch
-            rel_path = "/".join(rel_parts)
-            return (repo_root / rel_path).resolve()
-        # Fallback: locate /main/ segment
+        if "raw.githubusercontent.com" in u.netloc:
+            # Handle URLs like /owner/repo/branch/path...
+            # and URLs like /owner/repo/refs/heads/branch/path...
+            if len(parts) >= 3 and parts[2] != "refs":
+                # standard: owner/repo/branch/...
+                rel_parts = parts[3:]
+                rel_path = "/".join(rel_parts)
+                return (repo_root / rel_path).resolve()
+            if len(parts) >= 5 and parts[2] == "refs" and parts[3] in ("heads", "tags"):
+                # refs style: owner/repo/refs/heads/branch/...
+                rel_parts = parts[5:]
+                rel_path = "/".join(rel_parts)
+                return (repo_root / rel_path).resolve()
+        # Fallback: locate the '/main/' segment and take path after it
         if "/main/" in u.path:
             rel = u.path.split("/main/", 1)[1]
             return (repo_root / rel).resolve()
