@@ -18,11 +18,11 @@
 - Store runnable samples next to the article inside a `code/` folder when practical. Reference them from the Markdown with relative paths (e.g., `[link](./code/sample.ps1)`).
 - When embedding generated diagrams or screenshots, place them in the post's `assets/` folder and link via the raw GitHub CDN (`https://raw.githubusercontent.com/.../assets/<file>`).
 - Keep filenames dash-cased; this matches existing slugs and avoids URL encoding surprises.
- - If you rename any file under an article's `assets/` folder, you must update all references in the article's Markdown:
-	 - Update front matter `cover_image` to the new raw GitHub URL if the cover filename changes.
-	 - Update any in-body image links and diagrams that reference the old filename.
-	 - Prefer keeping the cover named `assets/main.png` (1000×420). If you intentionally use a different filename, ensure the front matter `cover_image` matches it.
-	 - After changes, run `python scripts/cover_fix.py --article <post-path>` to validate size, and quickly scan the Markdown for broken image links.
+- If you rename any file under an article's `assets/` folder, you must update all references in the article's Markdown:
+  - Update front matter `cover_image` to the new raw GitHub URL if the cover filename changes.
+  - Update any in-body image links and diagrams that reference the old filename.
+  - Prefer keeping the cover named `assets/main.png` (1000×420). If you intentionally use a different filename, ensure the front matter `cover_image` matches it.
+  - After changes, run `python scripts/cover_fix.py --article <post-path>` to validate size, and quickly scan the Markdown for broken image links.
 
 ## Tooling & quality gates
 
@@ -35,5 +35,5 @@
 
 - Prefer updating existing posts in place; multiple articles may share assets, so confirm relative links before renaming.
 - When generating new cover art, include the MD2MMD logo or relevant branding and export to `main.png` at 1000×420 to keep DEV.to card previews sharp.
- - When changing any asset filenames, search-and-replace references within the corresponding `*.md` file in the same folder so links and the `cover_image` remain correct.
+- When changing any asset filenames, search-and-replace references within the corresponding `*.md` file in the same folder so links and the `cover_image` remain correct.
 - Review similar posts within the target year for voice, section ordering, and footer usage before drafting large changes.

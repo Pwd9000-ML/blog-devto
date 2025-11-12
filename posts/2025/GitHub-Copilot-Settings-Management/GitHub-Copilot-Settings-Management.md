@@ -12,8 +12,7 @@ date: '2025-11-12T16:49:29Z'
 
 ## Managing GitHub Copilot & VS Code Settings Across Teams
 
-Ensuring consistent development environments across your team is crucial for productivity and code quality. This guide explores five practical approaches to manage [VS Code settings](https://code.visualstudio.com/docs/getstarted/settings) and [GitHub Copilot configurations](https://docs.github.com/en/copilot/using-github-copilot/getting-started-with-github-copilot): workspace configurations, VS Code profiles, bootstrap scripts, enterprise policies, and a combined strategy that leverages the strengths of each method.
-For a detailed, complementary walkthrough of every GitHub Copilot and Copilot Chat setting that can be configured in VS Code, see the companion article: [Tune GitHub Copilot Settings in VS Code](https://dev.to/pwd9000/tune-github-copilot-settings-in-vs-code-32kp).
+Ensuring consistent development environments across your team is crucial for productivity and code quality. This guide explores five practical approaches to manage [VS Code settings](https://code.visualstudio.com/docs/getstarted/settings) and [GitHub Copilot configurations](https://docs.github.com/en/copilot/using-github-copilot/getting-started-with-github-copilot): workspace configurations, VS Code profiles, bootstrap scripts, enterprise policies, and a combined strategy that leverages the strengths of each method. For a detailed, complementary walkthrough of every GitHub Copilot and Copilot Chat setting that can be configured in VS Code, see the companion article: [Tune GitHub Copilot Settings in VS Code](https://dev.to/pwd9000/tune-github-copilot-settings-in-vs-code-32kp).
 
 ---
 
@@ -35,7 +34,7 @@ Create a `.vscode/` directory in your repository root with these configuration f
   "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
   "typescript.preferences.quoteStyle": "single",
-  
+
   // GitHub Copilot settings
   "github.copilot.enable": {
     "*": true,
@@ -61,13 +60,15 @@ Create a `.vscode/` directory in your repository root with these configuration f
 }
 ```
 
-**Pros:** 
+**Pros:**
+
 - Version controlled with code
 - Zero configuration for developers
 - Project-specific conventions
 - Works across all platforms
 
-**Cons:** 
+**Cons:**
+
 - Not enforced (users can override)
 - Limited to workspace scope
 - No control over user-level settings
@@ -93,16 +94,19 @@ Tip: If you're using VS Code Profiles to standardise settings across teams, the 
 ### Importing a Profile
 
 New team members can [import profiles](https://code.visualstudio.com/docs/editor/profiles#_import) via:
+
 - Command Palette → "Profiles: Import Profile..."
 - Or via URL if hosted: `code --profile "Team Profile" --profile-import-url https://example.com/profile.code-profile`
 
-**Pros:** 
+**Pros:**
+
 - Complete environment replication
 - Includes UI layout and theme
 - Multiple profiles for different contexts
 - Built-in VS Code feature
 
-**Cons:** 
+**Cons:**
+
 - Manual import required
 - No automatic updates
 - Can diverge over time
@@ -118,11 +122,13 @@ For organisations requiring strict compliance, VS Code supports [policy manageme
 ### Windows Group Policy / Intune Configuration
 
 VS Code respects [policies set via](https://code.visualstudio.com/docs/setup/enterprise#_group-policy-windows):
+
 - Windows Registry (Group Policy)
 - macOS preferences
 - Linux policy files
 
 Example policy locations:
+
 - Windows: `HKLM\SOFTWARE\Policies\Microsoft\VSCode`
 - macOS: `/Library/Preferences/com.microsoft.VSCode.plist`
 - Linux: `/etc/vscode/policies.json`
@@ -150,12 +156,14 @@ Learn more about [available policy settings](https://code.visualstudio.com/docs/
 }
 ```
 
-**Pros:** 
+**Pros:**
+
 - Centrally enforced
 - Audit compliance
 - Cannot be overridden by users
 
-**Cons:** 
+**Cons:**
+
 - Requires IT infrastructure
 - Platform-specific implementation
 - Less flexible for developers
@@ -199,11 +207,11 @@ if ((Test-Path $userSettings) -and !$Force) {
     Write-Host "Merging settings..."
     $current = Get-Content $userSettings -Raw | ConvertFrom-Json
     $new = Get-Content $repoSettings -Raw | ConvertFrom-Json
-    
+
     foreach ($prop in $new.PSObject.Properties) {
         $current | Add-Member -MemberType NoteProperty -Name $prop.Name -Value $prop.Value -Force
     }
-    
+
     $current | ConvertTo-Json -Depth 10 | Set-Content $userSettings
 } else {
     Write-Host "Copying settings..."
@@ -255,17 +263,20 @@ echo "✓ VS Code settings configured"
 Layer these approaches based on your organisation's needs:
 
 ### Small Teams / Open Source Projects
+
 1. **Primary:** `.vscode/settings.json` and `.vscode/extensions.json`
 2. **Optional:** Shared profile for complex setups
 
 ### Medium-Sized Teams
+
 1. **Foundation:** Repository workspace settings
 2. **Onboarding:** Team VS Code profile
 3. **Automation:** Bootstrap script for Codespaces/containers
 
 ### Enterprise Organisations
+
 1. **Baseline:** Repository workspace settings
-2. **Standards:** Department/role-based VS Code profiles  
+2. **Standards:** Department/role-based VS Code profiles
 3. **Compliance:** Enterprise policies via MDM
 4. **Automation:** Bootstrap scripts for cloud workstations
 
@@ -278,7 +289,7 @@ Layer these approaches based on your organisation's needs:
 Learn more about [GitHub Copilot settings in VS Code](https://docs.github.com/en/copilot/using-github-copilot/getting-started-with-github-copilot?tool=vscode#configuring-github-copilot-settings):
 
 | Setting | Scope | Purpose |
-|---------|-------|---------|
+| --- | --- | --- |
 | `github.copilot.enable` | Workspace/User | [Control Copilot per language](https://docs.github.com/en/copilot/using-github-copilot/getting-started-with-github-copilot?tool=vscode#enabling-or-disabling-github-copilot) |
 | `github.copilot.advanced.authProvider` | User | Authentication method |
 | `github.copilot.editor.enableAutoCompletions` | User/Workspace | [Automatic suggestions](https://docs.github.com/en/copilot/using-github-copilot/getting-started-with-github-copilot?tool=vscode#getting-your-first-suggestion) |
@@ -309,7 +320,7 @@ Review [GitHub Copilot security best practices](https://docs.github.com/en/copil
 ## Troubleshooting Common Issues
 
 | Issue | Cause | Solution |
-|-------|-------|----------|
+| --- | --- | --- |
 | Settings not applying | Policy override | Check [enterprise policies](https://code.visualstudio.com/docs/setup/enterprise#_troubleshooting) with `code --status` |
 | Copilot not working | License/auth issue | Verify with `GitHub Copilot: Check Status` command ([troubleshooting guide](https://docs.github.com/en/copilot/troubleshooting-github-copilot)) |
 | Extensions missing | Marketplace access | Confirm [network/proxy settings](https://code.visualstudio.com/docs/setup/network#_proxy-server-support) |
