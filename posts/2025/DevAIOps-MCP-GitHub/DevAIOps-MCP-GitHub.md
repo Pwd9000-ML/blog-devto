@@ -4,7 +4,6 @@ published: true
 description: Unlock the power of GitHub Copilot in VS Code with the Model Context Protocol (MCP) for seamless GitHub integration.
 tags: 'github-copilot, mcp, tutorial, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/main2.png'
-canonical_url: null
 id: 2420334
 series: GitHubCopilot
 date: '2025-04-21T11:33:26Z'
