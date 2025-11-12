@@ -2,7 +2,7 @@
 title: Managing GitHub Copilot & VS Code Settings Across Teams
 published: true
 description: 'How to share, standardise, and enforce VS Code & GitHub Copilot settings: repo config, profiles, scripts, and enterprise policies.'
-tags: 'github, vscode, copilot, devops'
+tags: 'github, vscode, githubcopilot, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/GitHub-Copilot-Settings-Management/assets/main.png'
 canonical_url: null
 id: 3016971
@@ -13,6 +13,7 @@ date: '2025-11-12T16:49:29Z'
 ## Managing GitHub Copilot & VS Code Settings Across Teams
 
 Ensuring consistent development environments across your team is crucial for productivity and code quality. This guide explores five practical approaches to manage VS Code and GitHub Copilot settings: workspace configurations, VS Code profiles, bootstrap scripts, enterprise policies, and a combined strategy that leverages the strengths of each method.
+For a detailed, complementary walkthrough of every GitHub Copilot and Copilot Chat setting that can be configured in VS Code, see the companion article: [Tune GitHub Copilot Settings in VS Code](https://dev.to/pwd9000/tune-github-copilot-settings-in-vs-code-32kp).
 
 ---
 
@@ -86,6 +87,8 @@ VS Code Profiles bundle settings, extensions, UI layout, and keybindings into sh
 3. Choose what to include (settings, extensions, UI state, keybindings, snippets, tasks)
 4. Export as `.code-profile` file
 5. Share via repository, wiki, or internal documentation
+
+Tip: If you're using VS Code Profiles to standardise settings across teams, the companion article [Tune GitHub Copilot Settings in VS Code](https://dev.to/pwd9000/tune-github-copilot-settings-in-vs-code-32kp) includes a detailed sample `settings.json` and explains Copilot-specific keys you might want to include.
 
 ### Importing a Profile
 
@@ -276,6 +279,8 @@ Layer these approaches based on your organisation's needs:
 | `github.copilot.advanced.authProvider` | User | Authentication method |
 | `github.copilot.editor.enableAutoCompletions` | User/Workspace | Automatic suggestions |
 | `github.copilot.chat.localeOverride` | User | Chat interface language |
+
+For a full list and explanation of Copilot-related VS Code settings (including `chat`, `agent`, and inline suggestion keys) check: [Tune GitHub Copilot Settings in VS Code](https://dev.to/pwd9000/tune-github-copilot-settings-in-vs-code-32kp).
 
 ### Security Considerations
 

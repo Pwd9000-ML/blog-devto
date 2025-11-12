@@ -2,7 +2,7 @@
 title: Mastering GitHub Copilot Code Agent - Your AI Coding Companion for DevOps Excellence
 published: false
 description: Discover how GitHub Copilot Code Agent revolutionises development workflows with intelligent code assistance and AI-powered development guidance.
-tags: 'GitHubCopilot, AI, DevOps, tutorial'
+tags: 'githubcopilot, ai, devops, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-GitHub-CodeAgent/assets/main.png'
 canonical_url: null
 series: GitHubCopilot
