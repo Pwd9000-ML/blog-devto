@@ -2,7 +2,7 @@
 title: PowerShell - Using Parameter Sets
 published: true
 description: Powershell - How to use parameter sets in PowerShell functions
-tags: 'powershell, PoSH'
+tags: 'powershell, posh, tutorial, scripting'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2021/Powershell-Using-Parameter-Sets/assets/PowerShellHowTo.png'
 canonical_url: null
 id: 685386

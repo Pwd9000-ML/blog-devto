@@ -2,7 +2,7 @@
 title: Terraform - Keep dependencies up to date with Dependabot (Azure DevOps version)
 published: true
 description: Terraform - How to keep dependencies up to date with Dependabot and Azure DevOps
-tags: 'terraform, Dependabot, tutorial, AzureDevOps'
+tags: 'terraform, dependabot, tutorial, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/main-tf-tips.png'
 canonical_url: null
 id: 1715663
