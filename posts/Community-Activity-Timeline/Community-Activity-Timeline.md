@@ -47,6 +47,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
 | **05/11/2025** | [Tune GitHub Copilot Settings in VS Code](https://dev.to/pwd9000/tune-github-copilot-settings-in-vs-code-32kp) | ✍️ Blog | GitHub, Copilot | Copilot, GitHubCopilot, GitHub, tutorial |
+| **29/10/2025** | [Custom AI Agents with GitHub Copilot in VS Code](https://www.youtube.com/watch?v=hY1v3yaaA1c) | 🎬 Video | GitHub, Copilot | Video, Tutorial, GitHubCopilot, VSCode |
 | **23/10/2025** | [Centralised GitHub Copilot template skeleton for IDE standardisation across Development Archetypes for Custom Instruction, Prompt and Chatmode files](https://github.com/Pwd9000-ML/copilot-archetype-standards) | 🔧 Open Source Software | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
 | **17/09/2025** | [VS Code Dev Days- Brighton - Workshop and Labs](https://dev.to/pwd9000/vs-code-dev-days-2025-unlocking-ai-powered-dev-workflows-with-github-copilot-2mg9) | 📋 Event Organiser | GitHub, Copilot | Copilot, GitHubCopilot, GitHub, tutorial |
 | **03/09/2025** | [Azure Back to School 2025 - Supercharge VS Code GitHub Copilot using Model Context Protocol (MCP)](https://www.youtube.com/watch?v=5qNNy_HAZjo) | 🎤 Speaker | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
