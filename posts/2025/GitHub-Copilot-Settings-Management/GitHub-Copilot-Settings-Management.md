@@ -318,7 +318,7 @@ Layer these approaches based on your organisation's needs:
 
 ## Conclusion
 
-Effective settings management improves team velocity and code consistency. Start with repository-level configuration files—they provide immediate value with minimal overhead. Add VS Code profiles for richer onboarding experiences, and only implement enterprise policies when compliance demands it. The layered approach ensures you can adapt as your team grows without sacrificing developer productivity.
+Effective settings management improves team velocity and code consistency. Start with repository-level configuration files as they provide immediate value with minimal overhead. Add VS Code profiles for richer onboarding experiences, and only implement enterprise policies when compliance demands it. The layered approach ensures you can adapt as your team grows without sacrificing developer productivity.
 
 ### _Author_
 
