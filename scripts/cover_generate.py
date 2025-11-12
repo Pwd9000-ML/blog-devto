@@ -688,16 +688,30 @@ def draw_cover_glass(
         draw.rounded_rectangle([text_x, chip_y, text_x + cw + 24, chip_y + ch + 16], radius=12, fill=(36, 110, 210, 220))
         draw.text((text_x + 12, chip_y + 8), caption, font=caption_font, fill=(255, 255, 255))
 
-    # Logos with subtle glow
+    # Logos with subtle glow (support up to two logos for glass style)
     if logo_images:
-        cx, cy = 210, 140
-        _draw_glow_blob(img, (cx, cy + 40), 70, (124, 92, 255), alpha=60, blur=22)
         resample = Image.Resampling.LANCZOS if hasattr(Image, "Resampling") else Image.LANCZOS
-        logo = logo_images[0].convert("RGBA")
-        w, h = logo.size
-        scale = min(120 / max(w, 1), 120 / max(h, 1))
-        logo = logo.resize((max(1, int(w * scale)), max(1, int(h * scale))), resample)
-        img.paste(logo, (cx - logo.size[0] // 2, cy - logo.size[1] // 2), logo)
+        primary_center = (210, 140)
+        _draw_glow_blob(img, (primary_center[0], primary_center[1] + 40), 70, (124, 92, 255), alpha=60, blur=22)
+        primary = logo_images[0].convert("RGBA")
+        pw, ph = primary.size
+        pscale = min(120 / max(pw, 1), 120 / max(ph, 1))
+        primary = primary.resize((max(1, int(pw * pscale)), max(1, int(ph * pscale))), resample)
+        img.paste(primary, (primary_center[0] - primary.size[0] // 2, primary_center[1] - primary.size[1] // 2), primary)
+
+        # Optional secondary logo (e.g. additional GitHub Octocat) placed to the right
+        if len(logo_images) > 1:
+            secondary_center = (primary_center[0] + 150, primary_center[1] + 10)
+            _draw_glow_blob(img, (secondary_center[0], secondary_center[1] + 20), 50, (98, 213, 255), alpha=55, blur=18)
+            secondary = logo_images[1].convert("RGBA")
+            sw, sh = secondary.size
+            sscale = min(88 / max(sw, 1), 88 / max(sh, 1))
+            secondary = secondary.resize((max(1, int(sw * sscale)), max(1, int(sh * sscale))), resample)
+            img.paste(
+                secondary,
+                (secondary_center[0] - secondary.size[0] // 2, secondary_center[1] - secondary.size[1] // 2),
+                secondary,
+            )
 
     return img.convert("RGB")
 
@@ -779,6 +793,113 @@ def draw_cover_flow(
     return img.convert("RGB")
 
 
+def draw_cover_fun(
+    title: str,
+    label_text: str,
+    logo_images: list[Image.Image] | None,
+) -> Image.Image:
+    """Playful style with vibrant gradient, confetti, and careful logo placement.
+
+    Ensures: only title text rendered; logos do not overlap title; title does not overlap.
+    Logos are pasted unmodified to respect brand guidelines.
+    """
+    img = Image.new("RGBA", (WIDTH, HEIGHT), (18, 22, 44, 255))
+    draw = ImageDraw.Draw(img, "RGBA")
+
+    # Colorful diagonal gradient
+    for y in range(HEIGHT):
+        t = y / max(HEIGHT - 1, 1)
+        r = int(30 + 80 * (1 - t))
+        g = int(50 + 90 * (t))
+        b = int(100 + 40 * (0.5 - abs(0.5 - t)))
+        draw.line([(0, y), (WIDTH, y)], fill=(r, g, b))
+
+    # Soft spotlight circles
+    spot = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
+    sdraw = ImageDraw.Draw(spot, "RGBA")
+    sdraw.ellipse([120, -80, 520, 320], fill=(255, 200, 120, 60))
+    sdraw.ellipse([580, 120, 1040, 520], fill=(98, 213, 255, 70))
+    spot = spot.filter(ImageFilter.GaussianBlur(36))
+    img.alpha_composite(spot)
+
+    # Title block
+    title_font = find_font(54)
+    max_title_width = int(WIDTH * 0.78)
+    tdraw = ImageDraw.Draw(img, "RGBA")
+    lines = wrap_text(tdraw, title, title_font, max_title_width)
+    spacing = 8
+    total_h = 0
+    for i, ln in enumerate(lines):
+        _, h = measure(tdraw, ln, title_font)
+        total_h += h + (spacing if i < len(lines) - 1 else 0)
+    top = (HEIGHT - total_h) // 2
+    bbox = [WIDTH, HEIGHT, 0, 0]
+    y = top
+    for ln in lines:
+        w, h = measure(tdraw, ln, title_font)
+        x = (WIDTH - w) // 2
+        # subtle shadow
+        tdraw.text((x + 3, y + 3), ln, font=title_font, fill=(0, 0, 0, 120))
+        tdraw.text((x, y), ln, font=title_font, fill=(255, 255, 255, 255))
+        bbox[0] = min(bbox[0], x)
+        bbox[1] = min(bbox[1], y)
+        bbox[2] = max(bbox[2], x + w)
+        bbox[3] = max(bbox[3], y + h)
+        y += h + spacing
+
+    # Confetti shapes (avoid title bbox)
+    import random as _rand
+    rnd = _rand.Random(31415)
+    for _ in range(140):
+        cx = rnd.randrange(0, WIDTH)
+        cy = rnd.randrange(0, HEIGHT)
+        if bbox[0] - 12 <= cx <= bbox[2] + 12 and bbox[1] - 12 <= cy <= bbox[3] + 12:
+            continue
+        size = rnd.choice([3, 4, 5, 6])
+        col = rnd.choice([
+            (255, 255, 255, 180),
+            (124, 92, 255, 170),
+            (98, 213, 255, 170),
+            (255, 160, 160, 170),
+            (180, 255, 180, 170),
+        ])
+        shape = rnd.choice(["rect", "circle", "diamond"])
+        if shape == "rect":
+            draw.rectangle([cx, cy, cx + size, cy + size], fill=col)
+        elif shape == "circle":
+            draw.ellipse([cx, cy, cx + size, cy + size], fill=col)
+        else:
+            draw.polygon([(cx, cy + size), (cx + size, cy), (cx + size * 2, cy + size), (cx + size, cy + size * 2)], fill=col)
+
+    # Label pill
+    label_font = find_font(18)
+    label = label_text.upper()
+    lw, lh = measure(draw, label, label_font)
+    draw.rounded_rectangle([40, 34, 40 + lw + 26, 34 + lh + 18], radius=12, fill=(0, 0, 0, 90))
+    draw.text((40 + 13, 34 + 9), label, font=label_font, fill=(200, 220, 255, 255))
+
+    # Logos: choose corners, nudge to avoid title bbox
+    if logo_images:
+        resample = Image.Resampling.LANCZOS if hasattr(Image, "Resampling") else Image.LANCZOS
+        slots = [(WIDTH - 150, 36), (WIDTH - 160, HEIGHT - 160), (60, HEIGHT - 150)]
+        for (lx, ly), logo in zip(slots, logo_images[:3]):
+            logo_rgba = logo.convert("RGBA")
+            w, h = logo_rgba.size
+            scale = min(104 / max(w, 1), 104 / max(h, 1))
+            logo_resized = logo_rgba.resize((max(1, int(w * scale)), max(1, int(h * scale))), resample)
+            bx1, by1 = lx, ly
+            bx2, by2 = lx + logo_resized.size[0], ly + logo_resized.size[1]
+            # If overlapping title, push away vertically
+            if not (bx2 < bbox[0] or bx1 > bbox[2] or by2 < bbox[1] or by1 > bbox[3]):
+                if ly < HEIGHT / 2:
+                    ly = max(16, bbox[1] - logo_resized.size[1] - 20)
+                else:
+                    ly = min(HEIGHT - logo_resized.size[1] - 16, bbox[3] + 20)
+            img.paste(logo_resized, (lx, ly), logo_resized)
+
+    return img.convert("RGB")
+
+
 def build_tagline(metadata: Dict[str, str], explicit: str | None) -> str | None:
     if explicit:
         return explicit
@@ -815,9 +936,9 @@ def main() -> None:
     )
     parser.add_argument(
         "--style",
-        choices=["default", "template", "pixel", "glass", "flow", "random"],
+        choices=["default", "template", "pixel", "glass", "flow", "fun", "random"],
         default="default",
-        help="Choose a style: default, template, pixel (background only), glass, flow, or random",
+        help="Choose a style: default, template, pixel (background only), glass, flow, fun, or random",
     )
     parser.add_argument(
         "--compact",
@@ -963,10 +1084,15 @@ def main() -> None:
             label_text=args.label,
             logo_images=logo_imgs,
         ),
+        "fun": lambda: draw_cover_fun(
+            title=title,
+            label_text=args.label,
+            logo_images=logo_imgs,
+        ),
     }
 
     if args.style == "random":
-        candidates = ["default", "template", "glass", "flow"]
+        candidates = ["default", "template", "glass", "flow", "fun"]
         choice = random.choice(candidates)
         image = style_funcs[choice]()
     elif args.style == "template":
@@ -998,6 +1124,12 @@ def main() -> None:
             title=title,
             subtitle=subtitle,
             caption=tagline,
+            label_text=args.label,
+            logo_images=logo_imgs,
+        )
+    elif args.style == "fun":
+        image = draw_cover_fun(
+            title=title,
             label_text=args.label,
             logo_images=logo_imgs,
         )
