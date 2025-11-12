@@ -1,5 +1,5 @@
 ---
-title: 'Managing GitHub Copilot & VS Code Settings Across Teams'
+title: Managing GitHub Copilot & VS Code Settings Across Teams
 published: true
 description: 'How to share, standardise, and enforce VS Code & GitHub Copilot settings: repo config, profiles, scripts, and enterprise policies.'
 tags: 'github, vscode, copilot, devops'
@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 3016971
 series: GitHubCopilot
+date: '2025-11-12T16:49:29Z'
 ---
 
 ## Managing GitHub Copilot & VS Code Settings Across Teams
