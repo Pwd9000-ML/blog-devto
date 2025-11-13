@@ -23,7 +23,12 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 ---
 
-## 📊 Impact Summary Dashboard (Snapshot)
+## 📊 Impact Summary Dashboard
+
+- **Speaking**: Conference talks, user groups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
+- **Content**: Blogs, articles, videos, podcasts (all published content pieces).
+- **Open Source**: Modules, marketplace actions, code templates, hackathon build outcomes.
+- **Events**: Organisation, community initiatives, feedback/advisory sessions, expert/mentor engagements.
 
 | Year  | Speaking | Content | Open Source | Events |
 | ----- | -------- | ------- | ----------- | ------ |
@@ -33,11 +38,6 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 | 2022  | 15       | 38      | 9           | 1      |
 | 2021  | 1        | 22      | 2           | 0      |
 | Total | 36       | 88      | 23          | 11     |
-
-- **Speaking**: Conference talks, user groups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
-- **Content**: Blogs, articles, videos, podcasts (all published content pieces).
-- **Open Source**: Modules, marketplace actions, code templates, hackathon build outcomes.
-- **Events**: Organisation, community initiatives, feedback/advisory sessions, expert/mentor engagements.
 
 ---
 
