@@ -5,7 +5,6 @@ description: Automate Terraform Module Releases on the public terraform registry
 tags: 'github, terraform, githubactions, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Automate-Terraform-Registry/assets/main3.png'
 id: 979002
-series: Terraform Registry
 ---
 
 {% youtube rD8aJ8Yersw?t=411 %}
@@ -70,10 +69,10 @@ updates:
       - "terraform"
     # Optional: Add reviewers
     reviewers:
-      - "pwd9000-ml"
+      - "pwd9000"
     # Optional: Add assignees
     assignees:
-      - "pwd9000-ml"
+      - "pwd9000"
     # Optional: Customise commit message prefix
     commit-message:
       prefix: "chore"
@@ -129,7 +128,7 @@ This workflow will trigger on a tag push and create a **GitHub Release**. As per
 
 Example of valid tags are: v1.0.1 and 0.9.4. To publish a new module, you must already have at least one tag created.
 
-To release a new version, create and push a new tag with the proper format. The webhook will notify the registry of the new version and it will appear on the registry usually in less a minute.
+To release a new version, create and push a new tag with the proper format. The webhook will notify the registry of the new version and it will appear on the registry usually in less than a minute.
 
 The current version of my public module is `version = 1.0.3`:
 
@@ -278,6 +277,8 @@ registries:
       url: "https://my-private-registry.com"
       token: "${{secrets.REGISTRY_TOKEN}}"
 ```
+
+Note: When using custom registries, ensure the token is properly configured in your repository secrets.
 
 These additional options provide fine-grained control over how Dependabot manages your dependencies, allowing you to customise the automation to fit your team's workflow perfectly.
 
