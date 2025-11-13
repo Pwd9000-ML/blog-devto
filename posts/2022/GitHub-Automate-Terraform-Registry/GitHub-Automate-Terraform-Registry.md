@@ -2,10 +2,9 @@
 title: Automate Terraform Module Releases on the public registry using GitHub
 published: true
 description: Automate Terraform Module Releases on the public terraform registry using GitHub Actions
-tags: 'github, terraform, iac, devops'
+tags: 'github, terraform, azure, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Automate-Terraform-Registry/assets/main1.png'
 id: 979002
-date: '2022-02-05T15:38:50Z'
 series: Terraform Registry
 ---
 
@@ -37,15 +36,17 @@ In my [Terraform module repository - Dynamic Subnets](https://github.com/Pwd9000
 
 ```hcl
 terraform {
-  required_version = "~> 1.1.0"
+  required_version = ">= 1.0"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 2.62.0"
+      version = ">= 3.0"
     }
   }
 }
 ```
+
+**NOTE:** Using `>=` constraints allows more flexibility for module consumers while ensuring minimum version requirements are met.
 
 We will set up dependabot by creating a special folder at the root of the repository called `.github` and inside that folder create a `YAML` file called [dependabot.yml](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets/blob/master/.github/dependabot.yml):
 
@@ -53,7 +54,7 @@ We will set up dependabot by creating a special folder at the root of the reposi
 # To get started with Dependabot version updates, you'll need to specify which
 # package ecosystems to update and where the package manifests are located.
 # Please see the documentation for all configuration options:
-# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+# https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference
 
 version: 2
 updates:
@@ -61,9 +62,23 @@ updates:
     directory: '/' # Location of package manifests
     schedule:
       interval: 'daily'
+    # Optional: Limit number of open PRs for version updates
+    open-pull-requests-limit: 5
+    # Optional: Add labels to PRs
+    labels:
+      - "dependencies"
+      - "terraform"
+    # Optional: Add reviewers
+    reviewers:
+      - "pwd9000-ml"
+    # Optional: Add assignees
+    assignees:
+      - "pwd9000-ml"
+    # Optional: Customise commit message prefix
+    commit-message:
+      prefix: "chore"
+      include: "scope"
 ```
-
-**NOTE:** The package-ecosystem is `terraform` and the `versions.tf` file is at the root of the project repository, which is represented by the directory: `"/"`
 
 Once the dependabot `YAML` file has been created and committed to the repository, you will notice that it automatically opened a Pull-Request for me, showing me that my provider version is out of date:
 
@@ -81,23 +96,29 @@ Say for example we take this version change (or any changes and improvements on 
 
 After testing to perform a release we will create a **workflow**.
 
+**Security Note:** It's recommended to use minimal permissions for GitHub Actions workflows. We'll add explicit permissions to our workflow.
+
 Under the `.github` directory we will create a new folder called `workflows` and in this folder we will create another `YAML` file called: [push-tf-registry.yml](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets/blob/master/.github/workflows/push-tf-registry.yml).
 
 ```yml
 ### This workflow can be used to manually create new release versions from a tag push using e.g. VSCODE ###
+name: Release to terraform public registry
+
 on:
   push:
     tags:
-      - '*'
+      - 'v*.*.*'  # More specific pattern for semantic versioning
 
-name: Release to terraform public registry
+permissions:
+  contents: write  # Required for creating releases
+
 jobs:
   Release:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.6.0
-      - uses: ncipollo/release-action@v1
+      - uses: actions/checkout@v4.2.2  # Updated to latest version
+      - uses: ncipollo/release-action@v1.14.0  # Updated to latest version
         with:
           generateReleaseNotes: true
           name: 'v${{ github.ref_name }}'
@@ -108,7 +129,7 @@ This workflow will trigger on a tag push and create a **GitHub Release**. As per
 
 Example of valid tags are: v1.0.1 and 0.9.4. To publish a new module, you must already have at least one tag created.
 
-To release a new version, create and push a new tag with the proper format. The webhook will notify the registry of the new version and it will appear on the registry usually in less than a minute.
+To release a new version, create and push a new tag with the proper format. The webhook will notify the registry of the new version and it will appear on the registry usually in less a minute.
 
 The current version of my public module is `version = 1.0.3`:
 
@@ -138,7 +159,7 @@ That's it, now we can automatically let **Dependabot** take care of our terrafor
 
 Additionally we also have a really straight forward easy way to create new releases of our own module by simply creating a valid semantic version number as a tag and then push that tag to our remote repository where the **GitHub Workflow** will create a release for us based on the semantic version tag.
 
-As an added bonus, I also added another section onto the **Dependabot** config file to also regularly check the **GitHub Actions** used in the workflow called: `ncipollo/release-action@v1` and `actions/checkout@v3.6.0` so when a new versions of these actions come out, **Dependabot** will also let me know that I can update my workflow actions (Ive also changed my Dependency scans to run on a specific week day and time as shown below).
+As an added bonus, I also added another section onto the **Dependabot** config file to also regularly check the **GitHub Actions** used in the workflow called: `ncipollo/release-action@v1` and `actions/checkout@v4` so when new versions of these actions come out, **Dependabot** will also let me know that I can update my workflow actions (I've also changed my Dependency scans to run on a specific weekday and time as shown below).
 
 ```yml
 version: 2
@@ -150,6 +171,32 @@ updates:
       day: 'sunday'
       time: '09:00'
       timezone: 'Europe/London'
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "terraform"
+    reviewers:
+      - "pwd9000"
+    assignees:
+      - "pwd9000"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "fix"
+      include: "scope"
+    # Optional: Ignore specific versions or version ranges
+    ignore:
+      - dependency-name: "hashicorp/azurerm"
+        versions: ["2.x", "3.0.0"]
+    # Optional: Allow specific dependency updates
+    allow:
+      - dependency-type: "all"
+    # Optional: Target branch for PRs (default is the default branch)
+    target-branch: "main"
+    # Optional: Milestone to set on PRs
+    milestone: 1
+    # Optional: Prefix for PR branch names
+    pull-request-branch-name:
+      separator: "-"
 
   - package-ecosystem: 'github-actions'
     # Workflow files stored in the
@@ -160,7 +207,107 @@ updates:
       day: 'friday'
       time: '09:00'
       timezone: 'Europe/London'
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "github-actions"
+    # Optional: Group updates together
+    groups:
+      github-actions:
+        patterns:
+          - "actions/*"
+        update-types:
+          - "minor"
+          - "patch"
 ```
+
+### Advanced Dependabot Configuration
+
+For more complex scenarios, you can leverage additional Dependabot features:
+
+#### Grouping Dependencies
+Starting with Dependabot version 2, you can group related updates together:
+
+```yml
+groups:
+  terraform-providers:
+    patterns:
+      - "hashicorp/*"
+      - "azure/*"
+    update-types:
+      - "minor"
+      - "patch"
+```
+
+#### Vendor or Cache Dependencies
+For ecosystems that support it, you can specify vendoring:
+
+```yml
+vendor: true  # For ecosystems like Go
+```
+
+#### Rebase Strategy
+Control how Dependabot handles rebasing:
+
+```yml
+rebase-strategy: "auto"  # Options: auto, disabled
+```
+
+#### Versioning Strategy
+Specify how to update manifest files:
+
+```yml
+versioning-strategy: "increase"  # Options: auto, increase, increase-if-necessary, lockfile-only, widen
+```
+
+#### Security Updates Configuration
+Enable or disable security updates:
+
+```yml
+enable-beta-ecosystems: true  # For beta ecosystem support
+insecure-external-code-execution: "deny"  # Options: allow, deny
+```
+
+#### Custom Registry Configuration
+For private registries or custom sources:
+
+```yml
+registries:
+  - terraform-private:
+      type: "terraform-registry"
+      url: "https://my-private-registry.com"
+      token: "${{secrets.REGISTRY_TOKEN}}"
+```
+
+These additional options provide fine-grained control over how Dependabot manages your dependencies, allowing you to customise the automation to fit your team's workflow perfectly.
+
+### Troubleshooting Common Issues
+
+#### Module Not Appearing on Terraform Registry
+- Ensure your repository name follows the format: `terraform-<PROVIDER>-<NAME>`
+- Verify the webhook is properly configured in your GitHub repository settings
+- Check that your tags follow semantic versioning (e.g., v1.0.0, 1.0.0)
+
+#### Dependabot PRs Not Being Created
+- Verify the `.github/dependabot.yml` file is in the default branch
+- Check repository settings to ensure Dependabot is enabled
+- Review the Dependabot logs in the repository's Insights > Dependency graph > Dependabot
+
+#### Release Workflow Failures
+- Ensure the `GITHUB_TOKEN` has appropriate permissions
+- Verify tag format matches the workflow trigger pattern
+- Check that previous releases don't have conflicting names
+
+### Best Practices
+
+1. **Version Constraints**: Use flexible version constraints (`>=`) in modules to avoid forcing specific versions on consumers
+2. **Testing**: Always test module changes before creating a new release
+3. **Documentation**: Keep your README and examples updated with each release
+4. **Security**: Regularly review and merge Dependabot security updates
+5. **Semantic Versioning**: Follow semantic versioning strictly:
+   - MAJOR version for incompatible API changes
+   - MINOR version for backwards-compatible functionality additions
+   - PATCH version for backwards-compatible bug fixes
 
 ### Fully Automated Testing and Release on changes to IaC
 
