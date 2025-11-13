@@ -266,7 +266,7 @@ Layer these approaches based on your organisation's needs:
 1. **Primary:** `.vscode/settings.json` and `.vscode/extensions.json`
 2. **Optional:** Shared profile for complex setups
 
-### Medium-Sized Teams
+### Medium Sized Teams
 
 1. **Foundation:** Repository workspace settings
 2. **Onboarding:** Team VS Code profile
