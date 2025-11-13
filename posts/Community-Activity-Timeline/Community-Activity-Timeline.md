@@ -25,10 +25,10 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 ## 📊 Impact Summary Dashboard
 
-- **Speaking**: Conference talks, user groups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
+- **Speaking**: Conference talks, user groups, Meetups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
 - **Content**: Blogs, articles, videos, podcasts (all published content pieces).
-- **Open Source**: Modules, marketplace actions, code templates, hackathon build outcomes.
-- **Events**: Organisation, community initiatives, feedback/advisory sessions, expert/mentor engagements.
+- **Open Source**: Terraform Modules, GitHub Marketplace Actions, Code templates, Code samples, Hackathons.
+- **Events**: Microsoft Events, 3rd Party Events, Organisational Events, community initiatives, feedback/advisory sessions, expert/mentor engagements, Microsoft for Startups Expert Network/Founders Hub.
 
 | Year  | Speaking | Content | Open Source | Events |
 | ----- | -------- | ------- | ----------- | ------ |
