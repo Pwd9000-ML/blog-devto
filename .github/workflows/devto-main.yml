@@ -1,5 +1,14 @@
-name: Publish to Dev.to on Main Merge
+name: Dev.to CI/CD
+
 on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+      - main
+    paths:
+      - 'posts/**/**.md'
+      - 'posts/**/**/**.md'
   pull_request:
     types: [closed]
     branches:
@@ -7,27 +16,52 @@ on:
     paths:
       - 'posts/**/**.md'
       - 'posts/**/**/**.md'
-  # Allow manual runs from the Actions UI
-  workflow_dispatch: {}
 
 jobs:
-
-  publishDevto:
-    # This job runs either when a qualifying PR is merged (existing behavior)
-    # or when the workflow is triggered manually from the Actions UI.
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'dev') }}
+  format_check:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v5.0.0
         with:
           fetch-depth: 0
-  
+
       - name: Setup Node
         uses: actions/setup-node@v6.0.0
         with:
           node-version: 20
-  
+
+      - name: Install Dependencies
+        uses: bahmutov/npm-install@v1.11.2
+
+      - name: Run Prettier Check
+        run: yarn prettier:check
+
+      - name: Dry Run Publish to Dev.to
+        uses: sinedied/publish-devto@v2
+        with:
+          files: 'posts/**/*.md'
+          devto_key: ${{ secrets.DEVTO_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          dry_run: true
+        continue-on-error: true
+
+  publish_devto:
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true) }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v5.0.0
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Setup Node
+        uses: actions/setup-node@v6.0.0
+        with:
+          node-version: 20
+
       - name: Install Dependencies
         uses: bahmutov/npm-install@v1.11.2
 
