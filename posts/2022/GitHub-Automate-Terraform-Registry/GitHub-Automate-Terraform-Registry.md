@@ -65,18 +65,18 @@ updates:
     open-pull-requests-limit: 5
     # Optional: Add labels to PRs
     labels:
-      - "dependencies"
-      - "terraform"
+      - 'dependencies'
+      - 'terraform'
     # Optional: Add reviewers
     reviewers:
-      - "pwd9000"
+      - 'pwd9000'
     # Optional: Add assignees
     assignees:
-      - "pwd9000"
+      - 'pwd9000'
     # Optional: Customise commit message prefix
     commit-message:
-      prefix: "chore"
-      include: "scope"
+      prefix: 'chore'
+      include: 'scope'
 ```
 
 Once the dependabot `YAML` file has been created and committed to the repository, you will notice that it automatically opened a Pull-Request for me, showing me that my provider version is out of date:
@@ -106,18 +106,18 @@ name: Release to terraform public registry
 on:
   push:
     tags:
-      - 'v*.*.*'  # More specific pattern for semantic versioning
+      - 'v*.*.*' # More specific pattern for semantic versioning
 
 permissions:
-  contents: write  # Required for creating releases
+  contents: write # Required for creating releases
 
 jobs:
   Release:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2  # Updated to latest version
-      - uses: ncipollo/release-action@v1.14.0  # Updated to latest version
+      - uses: actions/checkout@v4.2.2 # Updated to latest version
+      - uses: ncipollo/release-action@v1.14.0 # Updated to latest version
         with:
           generateReleaseNotes: true
           name: 'v${{ github.ref_name }}'
@@ -172,30 +172,30 @@ updates:
       timezone: 'Europe/London'
     open-pull-requests-limit: 5
     labels:
-      - "dependencies"
-      - "terraform"
+      - 'dependencies'
+      - 'terraform'
     reviewers:
-      - "pwd9000"
+      - 'pwd9000'
     assignees:
-      - "pwd9000"
+      - 'pwd9000'
     commit-message:
-      prefix: "chore"
-      prefix-development: "fix"
-      include: "scope"
+      prefix: 'chore'
+      prefix-development: 'fix'
+      include: 'scope'
     # Optional: Ignore specific versions or version ranges
     ignore:
-      - dependency-name: "hashicorp/azurerm"
-        versions: ["2.x", "3.0.0"]
+      - dependency-name: 'hashicorp/azurerm'
+        versions: ['2.x', '3.0.0']
     # Optional: Allow specific dependency updates
     allow:
-      - dependency-type: "all"
+      - dependency-type: 'all'
     # Optional: Target branch for PRs (default is the default branch)
-    target-branch: "main"
+    target-branch: 'main'
     # Optional: Milestone to set on PRs
     milestone: 1
     # Optional: Prefix for PR branch names
     pull-request-branch-name:
-      separator: "-"
+      separator: '-'
 
   - package-ecosystem: 'github-actions'
     # Workflow files stored in the
@@ -208,16 +208,16 @@ updates:
       timezone: 'Europe/London'
     open-pull-requests-limit: 5
     labels:
-      - "dependencies"
-      - "github-actions"
+      - 'dependencies'
+      - 'github-actions'
     # Optional: Group updates together
     groups:
       github-actions:
         patterns:
-          - "actions/*"
+          - 'actions/*'
         update-types:
-          - "minor"
-          - "patch"
+          - 'minor'
+          - 'patch'
 ```
 
 ### Advanced Dependabot Configuration
@@ -225,57 +225,63 @@ updates:
 For more complex scenarios, you can leverage additional Dependabot features:
 
 #### Grouping Dependencies
+
 Starting with Dependabot version 2, you can group related updates together:
 
 ```yml
 groups:
   terraform-providers:
     patterns:
-      - "hashicorp/*"
-      - "azure/*"
+      - 'hashicorp/*'
+      - 'azure/*'
     update-types:
-      - "minor"
-      - "patch"
+      - 'minor'
+      - 'patch'
 ```
 
 #### Vendor or Cache Dependencies
+
 For ecosystems that support it, you can specify vendoring:
 
 ```yml
-vendor: true  # For ecosystems like Go
+vendor: true # For ecosystems like Go
 ```
 
 #### Rebase Strategy
+
 Control how Dependabot handles rebasing:
 
 ```yml
-rebase-strategy: "auto"  # Options: auto, disabled
+rebase-strategy: 'auto' # Options: auto, disabled
 ```
 
 #### Versioning Strategy
+
 Specify how to update manifest files:
 
 ```yml
-versioning-strategy: "increase"  # Options: auto, increase, increase-if-necessary, lockfile-only, widen
+versioning-strategy: 'increase' # Options: auto, increase, increase-if-necessary, lockfile-only, widen
 ```
 
 #### Security Updates Configuration
+
 Enable or disable security updates:
 
 ```yml
-enable-beta-ecosystems: true  # For beta ecosystem support
-insecure-external-code-execution: "deny"  # Options: allow, deny
+enable-beta-ecosystems: true # For beta ecosystem support
+insecure-external-code-execution: 'deny' # Options: allow, deny
 ```
 
 #### Custom Registry Configuration
+
 For private registries or custom sources:
 
 ```yml
 registries:
   - terraform-private:
-      type: "terraform-registry"
-      url: "https://my-private-registry.com"
-      token: "${{secrets.REGISTRY_TOKEN}}"
+      type: 'terraform-registry'
+      url: 'https://my-private-registry.com'
+      token: '${{secrets.REGISTRY_TOKEN}}'
 ```
 
 Note: When using custom registries, ensure the token is properly configured in your repository secrets.
@@ -285,16 +291,19 @@ These additional options provide fine-grained control over how Dependabot manage
 ### Troubleshooting Common Issues
 
 #### Module Not Appearing on Terraform Registry
+
 - Ensure your repository name follows the format: `terraform-<PROVIDER>-<NAME>`
 - Verify the webhook is properly configured in your GitHub repository settings
 - Check that your tags follow semantic versioning (e.g., v1.0.0, 1.0.0)
 
 #### Dependabot PRs Not Being Created
+
 - Verify the `.github/dependabot.yml` file is in the default branch
 - Check repository settings to ensure Dependabot is enabled
 - Review the Dependabot logs in the repository's Insights > Dependency graph > Dependabot
 
 #### Release Workflow Failures
+
 - Ensure the `GITHUB_TOKEN` has appropriate permissions
 - Verify tag format matches the workflow trigger pattern
 - Check that previous releases don't have conflicting names

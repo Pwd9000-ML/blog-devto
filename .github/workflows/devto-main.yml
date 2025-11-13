@@ -35,8 +35,8 @@ jobs:
       - name: Install Dependencies
         uses: bahmutov/npm-install@v1.11.2
 
-      - name: Run Prettier Check
-        run: yarn prettier:check
+      - name: Run Prettier Write
+        run: yarn prettier:write
 
       - name: Dry Run Publish to Dev.to
         if: ${{ github.ref == 'refs/heads/dev' }}

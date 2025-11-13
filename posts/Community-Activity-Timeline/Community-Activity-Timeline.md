@@ -25,15 +25,16 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 | Year | Speaking | Writing | Open Source | Events |
 | ---- | -------- | ------- | ----------- | ------ |
-| 2025 | 9 | 8 | 1 | 4 |
-| 2024 | 5 | 10 | 3 | 3 |
-| 2023 | 6 | 10 | 8 | 3 |
-| 2022 | 15 | 38 | 9 | 1 |
-| 2021 | 1 | 22 | 2 | 0 |
+| 2025 | 9        | 8       | 1           | 4      |
+| 2024 | 5        | 10      | 3           | 3      |
+| 2023 | 6        | 10      | 8           | 3      |
+| 2022 | 15       | 38      | 9           | 1      |
+| 2021 | 1        | 22      | 2           | 0      |
 
 **Totals (2021–2025):** 36 Speaking • 88 Writing • 23 Open Source • 11 Events.
 
 Category definitions (condensed for clarity):
+
 - **Speaking**: Conference talks, user groups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
 - **Writing**: Blogs, articles, videos, podcasts (all published content pieces).
 - **Open Source**: Modules, marketplace actions, code templates, hackathon build outcomes.
