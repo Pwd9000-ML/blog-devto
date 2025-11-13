@@ -4,7 +4,8 @@ published: true
 description: Automate Terraform Module Releases on the public terraform registry using GitHub Actions
 tags: 'github, terraform, githubactions, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Automate-Terraform-Registry/assets/main3.png'
-id: 979002
+id: 3020585
+series: Terraform Registry
 ---
 
 {% youtube rD8aJ8Yersw?t=411 %}
