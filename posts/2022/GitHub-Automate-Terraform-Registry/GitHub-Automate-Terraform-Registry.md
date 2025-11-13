@@ -6,6 +6,7 @@ tags: 'github, terraform, githubactions, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2022/GitHub-Automate-Terraform-Registry/assets/main3.png'
 id: 3020585
 series: Terraform Registry
+date: '2025-11-13T17:11:59Z'
 ---
 
 ### Overview
