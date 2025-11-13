@@ -14,7 +14,7 @@ date: '2024-01-03T14:52:42Z'
 
 ## Previously
 
-If you are interested to see how to do the same thing described in this post but in **GitHub** instead, feel free to check out my previous post: [Automate Terraform Module Releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-4775)
+If you are interested to see how to do the same thing described in this post but in **GitHub** instead, feel free to check out my previous post: [Automate Terraform Module Releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-actions-26em)
 
 ## Overview
 

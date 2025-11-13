@@ -14,7 +14,7 @@ date: '2022-02-14T12:03:25Z'
 
 This tutorial uses examples from the following GitHub project [Terraform module repository - Dynamic Subnets](https://github.com/Pwd9000-ML/terraform-azurerm-dynamic-subnets).
 
-In the previous tutorial on this blog series **Terraform Registry**, we looked at how to [automate terraform module releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-4775). In todays tutorial we will build on the same topic but take a look at how we can also perform full end to end automation that includes:
+In the previous tutorial on this blog series **Terraform Registry**, we looked at how to [automate terraform module releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-actions-26em). In todays tutorial we will build on the same topic but take a look at how we can also perform full end to end automation that includes:
 
 - Automated dependency checks for Terraform modules using GitHub **dependabot**.
 - Triggering an automated Terraform test when **dependabot** opens a Pull Request (PR) on the version change.
@@ -43,7 +43,7 @@ updates:
 
 This dependabot file enables **dependabot** on our **GitHub** project repository and will `daily` check our repository root folder, `directory: '/'` for any terraform files that have provider versions configured and checks if the provider versions are the latest version.
 
-We discussed **dependabot** in much more detail on the previous tutorial [automate terraform module releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-4775), so take a look at the previous tutorial for more details on enabling **dependabot**.
+We discussed **dependabot** in much more detail on the previous tutorial [automate terraform module releases on the public registry using GitHub](https://dev.to/pwd9000/automate-terraform-module-releases-on-the-public-registry-using-github-actions-26em), so take a look at the previous tutorial for more details on enabling **dependabot**.
 
 ### Automated Testing
 
