@@ -27,11 +27,11 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 | Year | Speaking | Content | Open Source | Events |
 | ---- | -------- | ------- | ----------- | ------ |
-| 2025 | 7        | 6       | 1           | 5      |
-| 2024 | 4        | 9       | 3           | 3      |
-| 2023 | 5        | 9       | 7           | 3      |
-| 2022 | 14       | 39      | 9           | 1      |
-| 2021 | 1        | 23      | 2           | 0      |
+| 2025 | 9        | 8       | 1           | 4      |
+| 2024 | 5        | 10      | 3           | 3      |
+| 2023 | 6        | 10      | 8           | 3      |
+| 2022 | 15       | 38      | 9           | 1      |
+| 2021 | 1        | 22      | 2           | 0      |
 
 **Totals (2021–2025):** 31 Speaking • 86 Content • 22 Open Source • 12 Events.
 
