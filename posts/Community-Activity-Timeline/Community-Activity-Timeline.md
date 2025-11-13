@@ -19,7 +19,7 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 **If you're looking for a speaker for a community user group, event, conference, meetup, or mentorship feel free to reach out! I'm always excited to connect and collaborate.**
 
-[GitHub](https://github.com/Pwd9000-ML) | :penguin: [X/Twitter](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+[GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
 
 ---
 
