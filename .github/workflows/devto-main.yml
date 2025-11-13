@@ -19,7 +19,7 @@ on:
 
 jobs:
   format_check:
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' }}
+    if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -39,13 +39,14 @@ jobs:
         run: yarn prettier:check
 
       - name: Dry Run Publish to Dev.to
+        if: ${{ github.ref == 'refs/heads/dev' }}
         uses: sinedied/publish-devto@v2
         with:
           files: 'posts/**/*.md'
           devto_key: ${{ secrets.DEVTO_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: true
-        continue-on-error: true
+        continue-on-error: false
 
   publish_devto:
     if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true) }}
