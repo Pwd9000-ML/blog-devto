@@ -5,7 +5,7 @@ description: Unlock the power of GitHub Copilot in VS Code with Custom Instructi
 tags: 'githubcopilot, mcp, tutorial, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-Inst-GitHub/assets/main3.png'
 id: 2620657
-series: GitHubCopilot
+series: GitHub Copilot
 date: '2025-06-24T13:07:57Z'
 ---
 

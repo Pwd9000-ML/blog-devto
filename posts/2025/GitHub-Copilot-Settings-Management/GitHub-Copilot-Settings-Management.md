@@ -5,7 +5,7 @@ description: 'How to share, standardise, and enforce VS Code & GitHub Copilot se
 tags: 'github, vscode, githubcopilot, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/GitHub-Copilot-Settings-Management/assets/main.png'
 id: 3016971
-series: GitHubCopilot
+series: GitHub Copilot
 date: '2025-11-12T16:49:29Z'
 ---
 

@@ -5,7 +5,7 @@ description: Review every GitHub Copilot and Copilot Chat setting in VS Code and
 tags: 'vscode, githubcopilot, tutorial, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/VSCode-Copilot-Settings/assets/main.png'
 id: 2995753
-series: GitHubCopilot
+series: GitHub Copilot
 date: '2025-11-05T21:12:59Z'
 ---
 

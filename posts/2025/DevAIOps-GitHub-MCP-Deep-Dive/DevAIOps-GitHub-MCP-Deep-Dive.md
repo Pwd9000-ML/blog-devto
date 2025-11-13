@@ -5,7 +5,7 @@ description: 'Deep dive into how to configure and set up GitHub MCP server local
 tags: 'githubcopilot, mcp, tutorial, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-GitHub-MCP-Deep-Dive/assets/main.png'
 id: 2809718
-series: GitHubCopilot
+series: GitHub Copilot
 date: '2025-08-30T19:15:11Z'
 ---
 
