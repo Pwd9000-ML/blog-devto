@@ -1,6 +1,6 @@
 ---
 title: 'Microsoft Ignite 2025 for Devs & DevOps: My Top Announcements'
-published: false
+published: true
 description: 'A hands on look at the most important Microsoft Ignite 2025 updates for developers, DevOps teams and GitHub users, straight from the Ignite 2025 Book of News.'
 tags: 'azure, devops, github, copilot'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/Ignite-2025-DevOps/assets/main.png'
@@ -10,17 +10,24 @@ id: 3038886
 
 ## Microsoft Ignite 2025 for Devs & DevOps: My Top Announcements
 
-Microsoft Ignite 2025 is very clearly the “agentic AI” edition – the Book of News is packed with updates about agents, MCP, Copilots and end-to-end lifecycle tooling. :contentReference[oaicite:0]{index=0}  
+This years [Microsoft Ignite 2025](https://ignite.microsoft.com/) is very clearly the "agentic AI" edition. [The Book of News](https://news.microsoft.com/ignite-2025-book-of-news/) is packed with updates about agents, MCP, Copilots and end-to-end lifecycle tooling.  
 
-If you live in the world of **GitHub, Azure, IaC and DevOps**, there’s a *lot* to unpack – but you don’t need every announcement to understand how your day-to-day work is about to change.
+If you live in the world of **GitHub, Azure, IaC and DevOps**, there's a *lot* to unpack, but you don't need every announcement to understand how your day-to-day work is about to change.
 
-In this post I’m focusing on the pieces that matter most for:
+In this post I'm focusing on the pieces that matter most for:
 
 - **Developers shipping cloud apps on Azure**
 - **DevOps / SRE teams running infra at scale**
 - **Teams doubling down on GitHub & GitHub Copilot**
 
-All of it is grounded in the official Ignite 2025 **Book of News** plus supporting Microsoft blogs.
+Here's the quick hitlist of the **top announcements** for this crowd:
+
+- **Microsoft Foundry** as the agentic developer platform, with a unified **MCP tool catalogue**.
+- **Foundry Agent Service** as a hosted, multi-agent runtime with built-in memory and integration with Microsoft 365 and Agent 365.
+- **Foundry Control Plane** to operate agents with enterprise-grade observability, governance and security.
+- The next phase of **Azure Copilot** embedded across portal, PowerShell and CLI for deployment, migration, optimisation and troubleshooting workflows.
+- **Native integration between Microsoft Defender for Cloud and GitHub Advanced Security** for runtime-aware DevSecOps.
+- **Azure DocumentDB (GA)**, **SQL Server 2025 (GA) with GitHub Copilot integration**, **Azure HorizonDB (PostgreSQL, preview)** and **Fabric databases (GA)** as an AI-ready data layer.
 
 ---
 
@@ -29,13 +36,13 @@ All of it is grounded in the official Ignite 2025 **Book of News** plus supporti
 Three big themes jump out for engineering teams:
 
 1. **Agentic dev platforms are now real products, not slideware.**  
-   Microsoft Foundry + Foundry Agent Service + Azure Copilot form a stack for building and running AI agents with real governance, observability and runtime guarantees. :contentReference[oaicite:1]{index=1}  
+   Microsoft Foundry + Foundry Agent Service + Azure Copilot form a stack for building and running AI agents with real governance, observability and runtime guarantees.  
 
-2. **The data layer has gone fully “AI-ready” for builders.**  
-   You get an open DocumentDB service, an AI-powered SQL Server 2025, a new HorizonDB (PostgreSQL) for vector workloads and Fabric databases as a unified SaaS database experience. :contentReference[oaicite:2]{index=2}  
+2. **The data layer has gone fully "AI-ready" for builders.**  
+   You get an open Azure DocumentDB service, an AI-powered SQL Server 2025, a new Azure HorizonDB (PostgreSQL) for vector workloads and Fabric databases as a unified SaaS database experience.  
 
 3. **Security and GitHub are stitched directly into the pipeline.**  
-   Defender for Cloud now **natively integrates with GitHub Advanced Security**, connecting code → build → runtime and even using Copilot Autofix/GitHub Copilot to propose fixes. :contentReference[oaicite:3]{index=3}  
+   Microsoft Defender for Cloud now **natively integrates with GitHub Advanced Security**, connecting code → build → runtime and even using Copilot Autofix/GitHub Copilot to propose fixes.  
 
 Taken together, this is a pretty major re-shape of the **Dev/DevOps toolchain**: agents and Copilots become first-class participants in your pipelines, while GitHub sits at the center of secure SDLC.
 
@@ -43,49 +50,49 @@ Taken together, this is a pretty major re-shape of the **Dev/DevOps toolchain**:
 
 ## Key Concepts or Pillars
 
-Here are the core building blocks from Ignite that I’d highlight for any Dev/DevOps team.
+Here are the core building blocks from Ignite that I'd highlight for any Dev/DevOps team.
 
 ### 1. Microsoft Foundry: the agentic developer platform
 
-Foundry is Microsoft’s “factory” for AI apps and agents, and Ignite 2025 upgrades it significantly:
+Microsoft Foundry is Microsoft's "factory" for AI apps and agents, and Ignite 2025 upgrades it significantly:
 
-- **Unified MCP tool catalog (preview).**  
-  Developers get a single, governed catalog of **Model Context Protocol (MCP) tools** – public and private – discoverable and managed from one secure interface in Foundry. :contentReference[oaicite:4]{index=4}  
+- **Unified MCP tool catalogue (preview).**  
+  Developers get a single, governed catalogue of **Model Context Protocol (MCP) tools** – public and private – discoverable and managed from one secure interface in Foundry.  
 - **Deep business integration via Logic Apps.**  
-  Connectors to 1,400+ systems (SAP, Salesforce, HubSpot, etc.) are exposed as MCP tools, so agents can act on **real enterprise data and workflows** without custom plumbing. :contentReference[oaicite:5]{index=5}  
+  Connectors to 1,400+ systems (SAP, Salesforce, HubSpot, etc.) are exposed as MCP tools, so agents can act on **real enterprise data and workflows** without custom plumbing.  
 - **Prebuilt AI services as MCP servers.**  
-  Transcription, translation, voice, document processing and more ship as ready-made tools. :contentReference[oaicite:6]{index=6}  
+  Transcription, translation, voice, document processing and more ship as ready-made tools.  
 - **Custom tool extensibility.**  
-  You can securely expose *any* API or function via API Management as MCP tools – perfect for wrapping existing line-of-business logic. :contentReference[oaicite:7]{index=7}  
+  You can securely expose *any* API or function via API Management as MCP tools – perfect for wrapping existing line-of-business logic.  
 
-On top of that, the **model router** in Foundry is now GA and can auto-select from a pool of 12 models (GPT-4.1, GPT-5, DeepSeek, Llama, Grok, etc.), optimizing for cost, latency and quality, with reported *up to 40% faster responses and 50% lower costs* in early use. :contentReference[oaicite:8]{index=8}  
+On top of that, the **model router** in Microsoft Foundry is now GA and can auto-select from a pool of models (GPT-4.1, GPT-5, DeepSeek, Llama, Grok, etc.), optimising for cost, latency and quality, with reported *up to 40% faster responses and 50% lower costs* in early use.  
 
 For developers, this means:
 
-> “Pick the tools and guardrails, not the specific model per prompt.”
+> "Pick the tools and guardrails, not the specific model per prompt."
 
 ### 2. Foundry Agent Service: hosted, multi-agent runtime
 
-**Foundry Agent Service** is evolving into an agent-native runtime that hides a lot of “yak-shaving” for infra and orchestration. New in preview: :contentReference[oaicite:9]{index=9}  
+**Foundry Agent Service** is evolving into an agent-native runtime that hides a lot of "yak-shaving" for infra and orchestration. New in preview:  
 
 - **Hosted agents** – deploy agents built with Microsoft Agent Framework, LangGraph, CrewAI or OpenAI Agents SDK **without managing containers or infra**.  
 - **Built-in memory** – agents get persistent, secure memory across sessions for context, preferences and history.  
-- **Multi-agent workflows** – coordinate multiple specialized agents across long-running processes (onboarding, approvals, supply chain, etc.) with either a visual designer or an API.  
+- **Multi-agent workflows** – coordinate multiple specialised agents across long-running processes (onboarding, approvals, supply chain, etc.) with either a visual designer or an API.  
 - **Microsoft 365 + Agent 365 integration** – deploy agents directly into Microsoft 365 apps via Agent 365, with governance and enterprise deployment patterns baked in.  
 
-The new **Microsoft Agent Framework** unifies previous work like Semantic Kernel + AutoGen into a single open-source SDK, with durable execution for more resilient agents. :contentReference[oaicite:10]{index=10}  
+The new **Microsoft Agent Framework** unifies previous work like Semantic Kernel + AutoGen into a single open-source SDK, with durable execution for more resilient agents.  
 
-This is *very* relevant for DevOps: it’s basically **“Kubernetes for agents”** – but managed for you.
+This is *very* relevant for DevOps: it's basically **"Kubernetes for agents"** – but managed for you.
 
 ### 3. Foundry Control Plane: DevOps for agents
 
-**Foundry Control Plane** (preview) extends Agent 365 so developers get visibility, security and control over agents running in the Microsoft Cloud. :contentReference[oaicite:11]{index=11}  
+**Foundry Control Plane** (preview) extends Agent 365 so developers get visibility, security and control over agents running in the Microsoft Cloud.  
 
 Key ideas:
 
 - One place to see **health, performance, usage and cost** for agents.
-- Behavioral guardrails and policies applied centrally.
-- Built on **Entra Agent ID**, with Defender watching runtime activity and Purview protecting data flows. :contentReference[oaicite:12]{index=12}  
+- Behavioural guardrails and policies applied centrally.
+- Built on **Entra Agent ID**, with Defender watching runtime activity and Purview protecting data flows.  
 
 If you currently treat microservices as deployable units, expect to treat **agents as another fleet** you observe, budget and secure.
 
@@ -93,26 +100,26 @@ If you currently treat microservices as deployable units, expect to treat **agen
 
 ## Deep Dive: Azure Copilot + GitHub in the DevOps Loop
 
-For infrastructure and app modernization, the **next phase of Azure Copilot** is a big deal. :contentReference[oaicite:13]{index=13}  
+For infrastructure and app modernisation, the **next phase of Azure Copilot** is a big deal.  
 
 Azure Copilot now:
 
-- Lives directly inside the **Azure portal, PowerShell and CLI** as specialized agents (private preview).
-- Evolves chat into a **full-screen command center**, powered by GPT-5 reasoning, ARM-driven scenarios and artifact generation.
-- Respects existing **RBAC, Azure Policy and compliance** and requires explicit confirmation before changing resources. :contentReference[oaicite:14]{index=14}  
+- Lives directly inside the **Azure portal, PowerShell and CLI** as specialised agents (private preview).
+- Evolves chat into a **full-screen command centre**, powered by GPT-5 reasoning, ARM-driven scenarios and artifact generation.
+- Respects existing **RBAC, Azure Policy and compliance** and requires explicit confirmation before changing resources.  
 
 Agent capabilities are very DevOps-flavoured:
 
 - **Deployment** – generate architectures and deployments aligned with the Well-Architected Framework.  
-- **Migration** – discover workloads and generate AI-powered IaaS/PaaS recommendations, with **GitHub Copilot integration** to help modernize .NET and Java apps and turn inventory into actionable code blueprints. :contentReference[oaicite:15]{index=15}  
-- **Optimization** – surface cost + carbon-aware actions and walk you through execution. :contentReference[oaicite:16]{index=16}  
-- **Observability & troubleshooting** – combine metrics, traces and logs (Azure Monitor / Application Insights) to diagnose full-stack issues and suggest mitigation; auto-create support tickets when needed. :contentReference[oaicite:17]{index=17}  
+- **Migration** – discover workloads and generate AI-powered IaaS/PaaS recommendations, with **GitHub Copilot integration** to help modernise .NET and Java apps and turn inventory into actionable code blueprints.  
+- **Optimisation** – surface cost + carbon-aware actions and walk you through execution.  
+- **Observability & troubleshooting** – combine metrics, traces and logs (Azure Monitor / Application Insights) to diagnose full-stack issues and suggest mitigation; auto-create support tickets when needed.  
 
 This effectively wires **GitHub Copilot ↔ Azure Copilot ↔ ARM** into a loop:
 
 1. GitHub Copilot helps you define and refactor app + infra code.
-2. Azure Copilot proposes target architectures, migration plans and optimizations.
-3. Foundry / Agent 365 manage agents and automations that keep that environment **continuously modernized**.
+2. Azure Copilot proposes target architectures, migration plans and optimisations.
+3. Microsoft Foundry / Agent 365 manage agents and automations that keep that environment **continuously modernised**.
 
 ---
 
@@ -122,16 +129,16 @@ The most GitHub-specific security announcement is:
 
 ### Native integration of Defender for Cloud + GitHub Advanced Security (preview)
 
-Microsoft Defender for Cloud now natively integrates with **GitHub Advanced Security** to protect cloud-native apps across the **full app lifecycle**, from code to runtime. :contentReference[oaicite:18]{index=18}  
+Microsoft Defender for Cloud now natively integrates with **GitHub Advanced Security** to protect cloud-native apps across the **full app lifecycle**, from code to runtime.  
 
 Highlights:
 
 - **Runtime context + code linkage.**  
-  Runtime threats are mapped back to the exact code in GitHub, helping teams prioritize *exploitable* issues rather than just noisy findings. :contentReference[oaicite:19]{index=19}  
+  Runtime threats are mapped back to the exact code in GitHub, helping teams prioritise *exploitable* issues rather than just noisy findings.  
 - **Real-time collaboration.**  
-  Security teams can create campaigns that notify GitHub repo owners, open GitHub issues directly from Defender, and track remediation status without leaving the security portal. :contentReference[oaicite:20]{index=20}  
+  Security teams can create campaigns that notify GitHub repo owners, open GitHub issues directly from Defender, and track remediation status without leaving the security portal.  
 - **AI-assisted fixes (Copilot Autofix + GitHub Copilot coding agent).**  
-  The integration can generate suggested fixes with Copilot, reducing mean-time-to-remediate while keeping developers in familiar GitHub workflows. :contentReference[oaicite:21]{index=21}  
+  The integration can generate suggested fixes with Copilot, reducing mean-time-to-remediate while keeping developers in familiar GitHub workflows.  
 
 For DevOps teams, this is basically **DevSecOps with runtime awareness**: CI/CD, repos, and runtime all feed a single security picture.
 
@@ -144,22 +151,22 @@ Ignite also brings several important updates to the data platform that directly 
 ### Azure DocumentDB (GA)
 
 - First managed service built on the **open-source DocumentDB standard** under the Linux Foundation, compatible with MongoDB.
-- Multicloud-ready, AI-friendly with vector + hybrid search, instant autoscale and independent compute/storage scaling. :contentReference[oaicite:22]{index=22}  
+- Multicloud-ready, AI-friendly with vector + hybrid search, instant autoscale and independent compute/storage scaling.  
 
 ### SQL Server 2025 (GA) – with GitHub Copilot integration
 
 - Access to AI models on-prem or in the cloud.
 - Native JSON support, REST APIs, and change event streaming.
 - Near real-time analytics via mirroring data into Microsoft OneLake/Fabric.
-- **GitHub Copilot integration in VS Code and SQL Server Management Studio 22**, plus a new cross-platform Python driver (`mssql-python`). :contentReference[oaicite:24]{index=24}  
+- **GitHub Copilot integration in VS Code and SQL Server Management Studio 22**, plus a new cross-platform Python driver (`mssql-python`).  
 
 ### Azure HorizonDB (PostgreSQL, private preview)
 
-- HorizonDB is a new **PostgreSQL cloud database** optimized for mission-critical and AI workloads: :contentReference[oaicite:25]{index=25}  
+- Azure HorizonDB is a new **PostgreSQL cloud database** optimised for mission-critical and AI workloads:  
 
 ### Fabric Databases (GA)
 
-- Fabric databases merge SQL DB + Cosmos DB into a unified SaaS database in Fabric with **native vector and RAG support** for real-time, intelligent apps. :contentReference[oaicite:26]{index=26}  
+- Fabric databases merge SQL DB + Cosmos DB into a unified SaaS database in Fabric with **native vector and RAG support** for real-time, intelligent apps.  
 
 ---
 
@@ -168,7 +175,7 @@ Ignite also brings several important updates to the data platform that directly 
 - **Dataverse MCP Server (GA) + SDK for Python (preview).**
 - **Azure Copilot migration workflows.**
 
-The pattern is clear: **GitHub Copilot becomes the coding surface**, while Foundry, Azure Copilot and Dataverse MCP provide the *context and tools* around it.
+The pattern is clear: **GitHub Copilot becomes the coding surface**, while Microsoft Foundry, Azure Copilot and Dataverse MCP provide the *context and tools* around it.
 
 ---
 
@@ -176,13 +183,13 @@ The pattern is clear: **GitHub Copilot becomes the coding surface**, while Found
 
 Imagine a fairly typical scenario:
 
-> You have a fleet of legacy .NET apps, some SQL Server workloads and a growing list of “let’s build an agent for this” asks from the business.
+> You have a fleet of legacy .NET apps, some SQL Server workloads and a growing list of "let's build an agent for this" asks from the business.
 
 A potential Ignite-2025-style path could look like:
 
 1. **Assess & plan with Azure Copilot.**  
 2. **Refactor with GitHub Copilot + App Service Managed Instance.**  
-3. **Modernize data with SQL Server 2025 / HorizonDB / Fabric.**  
+3. **Modernise data with SQL Server 2025 / Azure HorizonDB / Fabric.**  
 4. **Introduce agents with Foundry Agent Service.**  
 5. **Secure the pipeline with Defender + GitHub.**  
 6. **Operate agents with Foundry Control Plane + Azure Copilot.**
@@ -191,20 +198,20 @@ A potential Ignite-2025-style path could look like:
 
 ## Practical Steps or How-To
 
-If you want to start *this month*, here’s a pragmatic checklist:
+If you want to start *this month*, here's a pragmatic checklist:
 
 1. **Skim the Book of News for your area.**
 2. **Get hands-on with Foundry Agent Service (where available).**
 3. **Enable GitHub Advanced Security + Defender integration in a pilot repo.**
 4. **Trial Azure Copilot in your infra lifecycle.**
-5. **Pick one data workload to modernize.**
+5. **Pick one data workload to modernise.**
 
 ---
 
 ## Tips, Tricks, or Best Practices
 
 - **Design for MCP from day one.**
-- **Treat agents as production workloads, not “experiments”.**
+- **Treat agents as production workloads, not "experiments".**
 - **Keep GitHub as the single source of truth.**
 - **Start with one or two golden paths.**
 
@@ -212,10 +219,10 @@ If you want to start *this month*, here’s a pragmatic checklist:
 
 ## Conclusion
 
-Ignite 2025 doesn’t just add a few new Azure SKUs – it **reframes the developer and DevOps story** around:
+Ignite 2025 doesn't just add a few new Azure SKUs – it **reframes the developer and DevOps story** around:
 
-- Agent platforms (Foundry, Agent Service, Agent 365)
-- AI-ready infra and data (Azure Copilot, DocumentDB, SQL Server 2025, HorizonDB, Fabric)
+- Agent platforms (Microsoft Foundry, Foundry Agent Service, Agent 365)
+- AI-ready infra and data (Azure Copilot, Azure DocumentDB, SQL Server 2025, Azure HorizonDB, Fabric databases)
 - A tighter GitHub-centric DevSecOps loop (Defender + GitHub Advanced Security + Copilot)
 
 Which of these announcements are you most tempted to try first – Foundry Agent Service, Azure Copilot, or the Defender + GitHub integration?
