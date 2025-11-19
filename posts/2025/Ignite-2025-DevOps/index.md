@@ -6,6 +6,7 @@ tags: 'azure, devops, github, copilot'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/Ignite-2025-DevOps/assets/main.png'
 canonical_url: null
 id: 3038886
+date: '2025-11-19T17:20:05Z'
 ---
 
 ## Microsoft Ignite 2025 for Devs & DevOps: My Top Announcements
