@@ -20,7 +20,7 @@ In this comprehensive guide, I'll walk you through everything you need to know a
 
 In today's rapidly evolving tech landscape, understanding GitHub and AI-powered development tools isn't just an advantage, it's becoming essential. Consider this: GitHub serves over **100 million developers worldwide**, and companies like Shopify, Stripe, Coca-Cola, and General Motors are using GitHub Copilot to accelerate their development. Here's why GitHub Skills should be your go-to learning resource:
 
-- **Hands-on Learning**: No more passive video watching. GitHub Skills provides interactive, practical courses where you learn by doing real work in actual repositories. As the platform says: _"Learning should be fun—there are no simulations or boring tutorials here, just hands-on lessons created by GitHub and taught with GitHub Actions."_
+- **Hands-on Learning**: No more passive video watching. GitHub Skills provides interactive, practical courses where you learn by doing real work in actual repositories. As the platform says: _"Learning should be fun, there are no simulations or boring tutorials here, just hands-on lessons created by GitHub and taught with GitHub Actions."_
 - **Free and Accessible**: All courses are completely free and available to anyone with a GitHub account.
 - **Self-Paced**: Learn at your own speed, on your own schedule, without pressure or deadlines.
 - **Real Workflow Experience**: Everything happens with real GitHub features—Issues, Actions, Codespaces, and Pull Requests—giving you genuine experience.
