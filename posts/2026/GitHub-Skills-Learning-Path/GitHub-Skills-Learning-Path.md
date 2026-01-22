@@ -93,7 +93,7 @@ Expand Copilot's capabilities with the Model Context Protocol (MCP):
 
 ### **4. [Expand Your Team with Copilot Coding Agent](https://github.com/skills/expand-your-team-with-copilot)**
 
-The most cutting-edge course—let Copilot tackle issues directly on GitHub:
+The most cutting-edge course! Let Copilot tackle issues directly on GitHub:
 
 - Assign issues to Copilot and let it autonomously write code
 - Review and collaborate on Copilot's work
