@@ -57,7 +57,7 @@ Once you're comfortable with the basics, tackle these courses:
 
 6. **[Test with Actions](https://github.com/skills/test-with-actions)** - Create workflows that enable Continuous Integration (CI) for your projects.
 
-7. **[Secure Code Game](https://github.com/skills/secure-code-game)** - A GitHub Security Lab initiative where you secure intentionally vulnerable code—gamified learning at its best!
+7. **[Secure Code Game](https://github.com/skills/secure-code-game)** - A GitHub Security Lab initiative where you secure intentionally vulnerable code. Gamified learning at its best!
 
 ## Mastering GitHub Copilot: The AI Revolution
 
