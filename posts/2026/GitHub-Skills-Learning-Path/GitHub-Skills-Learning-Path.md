@@ -23,7 +23,7 @@ In today's rapidly evolving tech landscape, understanding GitHub and AI-powered 
 - **Hands-on Learning**: No more passive video watching. GitHub Skills provides interactive, practical courses where you learn by doing real work in actual repositories. As the platform says: _"Learning should be fun, there are no simulations or boring tutorials here, just hands-on lessons created by GitHub and taught with GitHub Actions."_
 - **Free and Accessible**: All courses are completely free and available to anyone with a GitHub account.
 - **Self-Paced**: Learn at your own speed, on your own schedule, without pressure or deadlines.
-- **Real Workflow Experience**: Everything happens with real GitHub features—Issues, Actions, Codespaces, and Pull Requests—giving you genuine experience.
+- **Real Workflow Experience**: Everything happens with real GitHub features, Issues, Actions, Codespaces, and Pull Requests, giving you genuine experience.
 - **Industry-Standard Tools**: Master the same tools and workflows used by millions of developers worldwide.
 - **AI-Ready Skills**: Get ahead of the curve with courses specifically designed for GitHub Copilot and AI-assisted development.
 
