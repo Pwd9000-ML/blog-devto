@@ -81,13 +81,13 @@ GitHub now offers professional certifications that can significantly boost your 
 
 While GitHub continues to evolve its certification offerings, here's what you should know:
 
-1. **GitHub Foundations Certification**: Start with the fundamentals—prove your knowledge of repositories, collaboration, and GitHub features.
+1. **[GitHub Foundations Certification](https://learn.github.com/certification/GHF)**: Start with the fundamentals. Prove your knowledge of repositories, collaboration, and GitHub features.
 
-2. **GitHub Actions Certification**: Demonstrate your ability to automate workflows, build CI/CD pipelines, and leverage GitHub's automation platform.
+2. **[GitHub Actions Certification](https://learn.github.com/certification/ACTIONS)**: Demonstrate your ability to automate workflows, build CI/CD pipelines, and leverage GitHub's automation platform.
 
-3. **GitHub Advanced Security Certification**: Show expertise in securing your codebase and implementing security best practices.
+3. **[GitHub Advanced Security Certification](https://learn.github.com/certification/GHAS)**: Show expertise in securing your codebase and implementing security best practices.
 
-4. **GitHub Copilot Certification**: This exam evaluates your skill in using the AI-driven code completion tool in various programming languages, certifying your capability to optimize software development workflows efficiently.
+4. **[GitHub Copilot Certification](https://learn.github.com/certification/COPILOT)**: This exam evaluates your skill in using the AI-driven code completion tool in various programming languages, certifying your capability to optimize software development workflows efficiently.
 
 ### **Why Get Certified?**
 
@@ -124,7 +124,7 @@ Ready to begin? Here's your step-by-step action plan:
 
 ### Long-term: Certification Preparation
 
-1. Review [GitHub's certification offerings](https://examregistration.github.com/certification)
+1. Review [GitHub's certification offerings](https://learn.github.com/credentials)
 2. Study recommended materials and complete relevant Skills courses
 3. Join GitHub community discussions and forums
 4. Schedule and take your certification exams
@@ -148,7 +148,7 @@ Once you've completed the core GitHub Skills courses, continue your learning jou
 - **[GitHub Blog](https://github.blog/)**: Stay updated on new features and best practices
 - **[GitHub Community](https://github.community/)**: Connect with other developers, ask questions, and share knowledge
 - **[GitHub Copilot Documentation](https://docs.github.com/en/copilot)**: Deep dive into AI-assisted development
-- **[GitHub Learning Lab](https://lab.github.com/)**: Additional interactive courses and learning paths
+- **[GitHub Learning Lab](https://github.com/apps/github-learning-lab)**: Additional interactive courses and learning paths
 
 ## Conclusion: Your Journey Starts Now
 
