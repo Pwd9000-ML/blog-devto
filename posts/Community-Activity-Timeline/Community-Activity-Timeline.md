@@ -27,12 +27,13 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 | Year  | Speaking | Content | Open Source | Events |
 | ----- | -------- | ------- | ----------- | ------ |
+| 2026  | 0        | 1       | 0           | 0      |
 | 2025  | 9        | 8       | 1           | 4      |
 | 2024  | 5        | 10      | 3           | 3      |
 | 2023  | 6        | 10      | 8           | 3      |
 | 2022  | 15       | 38      | 9           | 1      |
 | 2021  | 1        | 22      | 2           | 0      |
-| Total | 36       | 88      | 23          | 11     |
+| Total | 36       | 89      | 23          | 11     |
 
 - **Speaking**: Conference talks, user groups, Meetups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
 - **Content**: Blogs, articles, videos, podcasts (all published content pieces).
@@ -44,6 +45,7 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 ## 📑 Table of Contents
 
 - [🔥 Upcoming Events](#upcoming-events)
+- [🚀 2026 Highlights](#2026-highlights)
 - [💫 Highlights of 2025](#highlights-of-2025)
 - [😎 2024 Activities](#2024)
 - [🤘 2023 Activities](#2023)
@@ -59,6 +61,12 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
 | **TBC** | [TBC](https://tbc.com) | Open Source | GitHub, Copilot | Copilot, Azure, AI-Services, GitHub |
+
+## 🚀 2026 Highlights 🚀
+
+| Date | Activity | Type | Topic Area | Tags |
+| --- | --- | --- | --- | --- |
+| **22/01/2026** | [GitHub Skills: Your Complete Learning Path to AI-Powered Development](https://dev.to/pwd9000/github-skills-your-complete-learning-path-to-ai-powered-development) | Content | GitHub, Copilot, AI | GitHub, GitHubCopilot, Learning, AI |
 
 ## 💫 Highlights of 2025 💫
 
