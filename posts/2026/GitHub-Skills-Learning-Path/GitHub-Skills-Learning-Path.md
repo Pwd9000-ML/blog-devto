@@ -1,6 +1,6 @@
 ---
 title: 'GitHub Skills: Your Complete Learning Path to AI-Powered Development'
-published: false
+published: true
 description: 'Discover how GitHub Skills can accelerate your journey from beginner to AI-powered developer. Learn about GitHub, GitHub Copilot, certification paths, and hands-on resources to skill up in modern development.'
 tags: 'github, githubcopilot, learning, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Skills-Learning-Path/assets/main.png'
@@ -156,7 +156,7 @@ If you're a student or educator, GitHub has amazing news for you! **[GitHub Educ
 
 ### **For Students:**
 
-- **Free GitHub Copilot Pro** for verified students—the same tools professionals pay for!
+- **Free GitHub Copilot Pro** for verified students. The same tools professionals pay for!
 - **GitHub Student Developer Pack** with free access to premium developer tools
 - Join a community of **5+ million students** worldwide
 - **Campus Experts Program** to develop leadership skills
@@ -271,18 +271,17 @@ GitHub Skills provides you with a clear, structured path from complete beginner 
 
 ### Your Action Checklist:
 
-- [ ] **Start small**: Don't try to learn everything at once
-- [ ] **Practice consistently**: Regular practice beats occasional cramming
-- [ ] **Apply your knowledge**: Build real projects to solidify your learning
-- [ ] **Consider certification**: Validate your skills with recognised credentials
-- [ ] **Stay curious**: The tech landscape evolves rapidly—commit to continuous learning
-- [ ] **Join the community**: Connect with fellow learners and share your progress
-
+- **Start small**: Don't try to learn everything at once
+- **Practice consistently**: Regular practice beats occasional cramming
+- **Apply your knowledge**: Build real projects to solidify your learning
+- **Consider certification**: Validate your skills with recognised credentials
+- **Stay curious**: The tech landscape evolves rapidly, commit to continuous learning
+- **Join the community**: Connect with fellow learners and share your progress
 Whether you're aiming to land your first developer job, transition to a new role, or simply enhance your existing skills with AI-powered tools, GitHub Skills is your launchpad. The platform is free, the content is excellent, and the potential is limitless.
 
 **Ready to begin?** Head over to **[skills.github.com](https://skills.github.com/)** and start your first course today. Your future self will thank you!
 
-> _"Learning should be fun: There are no simulations or boring tutorials here, just hands-on lessons created by GitHub and taught with GitHub Actions."_ — GitHub Skills
+> _"Learning should be fun: There are no simulations or boring tutorials here, just hands-on lessons created by GitHub and taught with GitHub Actions."_
 
 ### _Author_
 
