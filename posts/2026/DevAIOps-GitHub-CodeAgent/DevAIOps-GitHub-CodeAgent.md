@@ -5,7 +5,7 @@ description: Discover how GitHub Copilot Code Agent revolutionises development w
 tags: 'githubcopilot, ai, devops, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/DevAIOps-GitHub-CodeAgent/assets/main.png'
 series: GitHub Copilot
-id: null
+id: 3192022
 ---
 
 ## Introduction
