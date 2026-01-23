@@ -6,6 +6,7 @@ tags: 'github, githubcopilot, learning, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Skills-Learning-Path/assets/main.png'
 id: 3191980
 series: GitHub Copilot
+date: '2026-01-23T00:19:05Z'
 ---
 
 ## Unlock Your Development Potential with GitHub Skills
