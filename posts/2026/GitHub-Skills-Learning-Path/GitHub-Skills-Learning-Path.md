@@ -106,7 +106,7 @@ The most cutting-edge course! Let Copilot tackle issues directly on GitHub:
 
 - **Prompt Engineering**: Learn how to communicate your intent clearly to get the best AI-generated code
 - **Code Review with AI**: Understand how to review and validate AI-suggested code
-- **Productivity Acceleration**: Discover workflows that can dramatically accelerate development—companies like Grupo Boticário report **94% increased developer productivity** with Copilot!
+- **Productivity Acceleration**: Discover workflows that can dramatically accelerate development. Companies like Grupo Boticário report **94% increased developer productivity** with Copilot!
 - **Best Practices**: Learn when to use Copilot and when to rely on your own expertise
 
 ## Certifications: Validate Your AI Development Expertise
