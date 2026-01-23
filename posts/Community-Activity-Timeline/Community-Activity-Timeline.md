@@ -66,7 +66,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **22/01/2026** | [GitHub Skills: Your Complete Learning Path to AI-Powered Development](https://dev.to/pwd9000/github-skills-your-complete-learning-path-to-ai-powered-development) | Content | GitHub, Copilot, AI | GitHub, GitHubCopilot, Learning, AI |
+| **23/01/2026** | [GitHub Skills: Your Complete Learning Path to AI-Powered Development](https://dev.to/pwd9000/github-skills-your-complete-learning-path-to-ai-powered-development) | Content | GitHub, Copilot, AI | GitHub, GitHubCopilot, Learning, AI |
 
 ## 💫 Highlights of 2025 💫
 
