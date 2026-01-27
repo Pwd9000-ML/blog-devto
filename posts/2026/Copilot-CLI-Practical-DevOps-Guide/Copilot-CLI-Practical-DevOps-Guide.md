@@ -7,7 +7,6 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: null
 series: GitHub Copilot
-date: '2026-01-27T18:14:00Z'
 ---
 
 ## GitHub Copilot CLI: A DevOps Engineer's Practical Guide to AI-Powered Terminal Automation
@@ -110,8 +109,10 @@ copilot
 Follow the on-screen instructions to authenticate via your browser. Alternatively, you can use a [fine-grained personal access token](https://github.com/settings/personal-access-tokens/new) with the "Copilot Requests" permission:
 
 ```bash
-# Set the token in your environment
+# Set the token in your environment (GH_TOKEN takes precedence over GITHUB_TOKEN)
 export GH_TOKEN="your_token_here"
+# Or use GITHUB_TOKEN
+export GITHUB_TOKEN="your_token_here"
 
 # Or add to your shell profile (.bashrc, .zshrc, etc.)
 echo 'export GH_TOKEN="your_token_here"' >> ~/.bashrc
@@ -448,7 +449,11 @@ Run shell commands directly with `!`:
 
 ### 4. Custom Instructions
 
-Enhance Copilot's understanding by adding custom instructions to your repository:
+Enhance Copilot's understanding by adding custom instructions to your repository. Copilot CLI supports multiple instruction formats:
+
+- **Repository-wide instructions**: `.github/copilot-instructions.md`
+- **Path-specific instructions**: `.github/instructions/**/*.instructions.md`
+- **Agent files**: `AGENTS.md` in your repository root
 
 Create `.github/copilot-instructions.md`:
 
@@ -516,6 +521,55 @@ copilot --allow-url github.com --allow-url api.github.com
 # Allow specific tools without confirmation
 copilot -p "Backup the database" --allow-tool 'shell(pg_dump)'
 ```
+
+### 8. Context Management Commands
+
+Copilot CLI provides slash commands to monitor and manage your context window:
+
+- `/usage` - View session statistics (premium requests used, duration, lines edited, token breakdown)
+- `/context` - Visual overview of current token usage
+- `/compact` - Manually compress conversation history to free up context space
+
+> **Note**: Copilot CLI automatically compresses history when approaching 95% of the token limit and warns you when less than 20% remains.
+
+### 9. Model Selection
+
+Switch models during your session:
+
+```
+/model
+```
+
+Select from the available models. Each submission reduces your monthly premium request quota by the multiplier shown (e.g., `Claude Sonnet 4.5 (1x)` = 1 premium request per prompt).
+
+### 10. Built-in Custom Agents
+
+Copilot CLI includes specialised agents for common tasks:
+
+| Agent | Purpose |
+|-------|--------|
+| **Explore** | Quick codebase analysis without adding to main context |
+| **Task** | Execute commands (tests, builds) with brief summaries |
+| **Plan** | Analyse dependencies and create implementation plans |
+| **Code-review** | Review changes, surfacing only genuine issues |
+
+Use them with:
+
+```
+/agent
+```
+
+Or call them directly in prompts: `Use the Plan agent to analyse how to refactor the authentication module`
+
+### 11. Extend with MCP Servers
+
+Copilot CLI comes with the GitHub MCP server pre-configured. Add more MCP servers to extend functionality:
+
+```
+/mcp add
+```
+
+Fill in the server details and press `Ctrl+S` to save. Server configurations are stored in `~/.copilot/mcp-config.json`.
 
 ---
 
@@ -663,9 +717,11 @@ GitHub Copilot CLI represents a paradigm shift in how DevOps engineers interact 
 
 - [Official Copilot CLI Documentation](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli)
 - [About GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli)
-- [Installing GitHub Copilot CLI](https://docs.github.com/en/copilot/managing-copilot/configure-personal-settings/installing-github-copilot-in-the-cli)
+- [Installing GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-cli)
 - [Custom Instructions Guide](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions)
 - [GitHub Copilot Plans](https://github.com/features/copilot/plans)
+
+> **Tip**: Use the `/feedback` slash command in an interactive session to submit feedback, report bugs, or suggest new features directly to GitHub.
 
 The future of DevOps is conversational—start the conversation with Copilot CLI today!
 
