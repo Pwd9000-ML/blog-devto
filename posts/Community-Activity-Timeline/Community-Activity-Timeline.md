@@ -27,7 +27,7 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 | Year  | Speaking | Content | Open Source | Events |
 | ----- | -------- | ------- | ----------- | ------ |
-| 2026  | 0        | 1       | 1           | 0      |
+| 2026  | 0        | 2       | 1           | 0      |
 | 2025  | 9        | 8       | 1           | 4      |
 | 2024  | 5        | 10      | 3           | 3      |
 | 2023  | 6        | 10      | 8           | 3      |
@@ -66,6 +66,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **28/01/2026** | [GitHub Copilot CLI: A DevOps Engineer's Practical Guide to AI-Powered Terminal Automation](https://dev.to/pwd9000/github-copilot-cli-practical-devops-guide-i3kq) | Content | GitHub, Copilot, DevOps | GitHub, GitHubCopilot, DevOps, automation |
 | **26/01/2026** | [GitHub Copilot Bootcamp](https://github.com/Pwd9000-ML/GitHub-Copilot-Bootcamp) | Open Source | GitHub, Copilot, AI | GitHub, GitHubCopilot, Learning, AI |
 | **23/01/2026** | [GitHub Skills: Your Complete Learning Path to AI-Powered Development](https://dev.to/pwd9000/github-skills-your-complete-learning-path-to-ai-powered-development-ieo) | Content | GitHub, Copilot, AI | GitHub, GitHubCopilot, Learning, AI |
 
