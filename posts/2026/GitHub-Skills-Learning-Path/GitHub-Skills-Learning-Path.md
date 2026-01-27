@@ -275,7 +275,9 @@ GitHub Skills provides you with a clear, structured path from complete beginner 
 - **Apply your knowledge**: Build real projects to solidify your learning
 - **Consider certification**: Validate your skills with recognised credentials
 - **Stay curious**: The tech landscape evolves rapidly, commit to continuous learning
-- **Join the community**: Connect with fellow learners and share your progress Whether you're aiming to land your first developer job, transition to a new role, or simply enhance your existing skills with AI-powered tools, GitHub Skills is your launchpad. The platform is free, the content is excellent, and the potential is limitless.
+- **Join the community**: Connect with fellow learners and share your progress
+
+Whether you're aiming to land your first developer job, transition to a new role, or simply enhance your existing skills with AI-powered tools, GitHub Skills is your launchpad. The platform is free, the content is excellent, and the potential is limitless.
 
 **Ready to begin?** Head over to **[skills.github.com](https://skills.github.com/)** and start your first course today. Your future self will thank you!
 
