@@ -25,7 +25,9 @@ FONT_CANDIDATES = (
 
 def find_font(size: int, mono: bool = False) -> ImageFont.FreeTypeFont:
     """Find a suitable font, preferring monospace for code aesthetics."""
-    candidates = FONT_CANDIDATES if not mono else FONT_CANDIDATES[:2] + FONT_CANDIDATES[2:]
+    # When mono is True, keep monospace fonts (first two) first;
+    # when mono is False, prioritise non-monospace fonts.
+    candidates = FONT_CANDIDATES if mono else FONT_CANDIDATES[2:] + FONT_CANDIDATES[:2]
     for candidate in candidates:
         path = Path(candidate)
         if path.exists():
@@ -348,7 +350,7 @@ def add_chromatic_aberration(img: Image.Image, offset: int = 2) -> Image.Image:
 
 def add_noise(img: Image.Image, amount: float = 0.03) -> Image.Image:
     """Add subtle film grain noise."""
-    import random
+
     
     pixels = img.load()
     width, height = img.size
@@ -403,9 +405,17 @@ def generate_matrix_cover(
     img = add_chromatic_aberration(img, offset=1)
     img = add_noise(img, amount=0.02)
     
-    # Slight contrast boost
-    enhancer = ImageEnhance.Contrast(img.convert("RGB"))
-    final = enhancer.enhance(1.1)
+    # Slight contrast boost (preserve alpha if present)
+    if img.mode == "RGBA":
+        # Enhance contrast on RGB channels only, keep original alpha
+        r, g, b, a = img.split()
+        rgb = Image.merge("RGB", (r, g, b))
+        enhancer = ImageEnhance.Contrast(rgb)
+        enhanced_rgb = enhancer.enhance(1.1)
+        final = Image.merge("RGBA", (*enhanced_rgb.split(), a))
+    else:
+        enhancer = ImageEnhance.Contrast(img)
+        final = enhancer.enhance(1.1)
     
     # Save
     output_path.parent.mkdir(parents=True, exist_ok=True)
