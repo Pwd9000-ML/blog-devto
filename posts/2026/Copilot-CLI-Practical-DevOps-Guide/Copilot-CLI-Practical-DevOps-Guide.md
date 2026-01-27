@@ -11,7 +11,7 @@ date: '2026-01-27T18:43:53Z'
 
 ## GitHub Copilot CLI: A DevOps Engineer's Practical Guide to AI-Powered Terminal Automation
 
-As DevOps engineers, we live in the terminal—deploying infrastructure, debugging production issues, managing CI/CD pipelines, and orchestrating complex workflows. What if you could have an AI assistant directly in your command line that understands your context, writes scripts, debugs issues, and even interacts with GitHub.com on your behalf? Enter [GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli)—a powerful AI agent that brings GitHub Copilot's intelligence to your terminal, enabling you to automate DevOps tasks faster and more efficiently than ever before.
+As DevOps engineers, we live in the terminal, deploying infrastructure, debugging production issues, managing CI/CD pipelines, and orchestrating complex workflows. What if you could have an AI assistant directly in your command line that understands your context, writes scripts, debugs issues, and even interacts with GitHub.com on your behalf? Enter [GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli), a powerful AI agent that brings GitHub Copilot's intelligence to your terminal, enabling you to automate DevOps tasks faster and more efficiently than ever before.
 
 In this hands-on guide, we'll explore how to set up and leverage Copilot CLI to supercharge your DevOps workflows, from infrastructure automation to incident response and everything in between.
 
@@ -721,9 +721,9 @@ GitHub Copilot CLI represents a paradigm shift in how DevOps engineers interact 
 - [Custom Instructions Guide](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions)
 - [GitHub Copilot Plans](https://github.com/features/copilot/plans)
 
-> **Tip**: Use the `/feedback` slash command in an interactive session to submit feedback, report bugs, or suggest new features directly to GitHub.
+**Tip**: Use the `/feedback` slash command in an interactive session to submit feedback, report bugs, or suggest new features directly to GitHub.
 
-The future of DevOps is conversational—start the conversation with Copilot CLI today!
+The future of DevOps is conversational, start the conversation with Copilot CLI today!
 
 ---
 
