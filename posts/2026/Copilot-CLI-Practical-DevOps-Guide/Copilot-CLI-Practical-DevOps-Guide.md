@@ -1,6 +1,6 @@
 ---
 title: 'GitHub Copilot CLI: A DevOps Engineer's Practical Guide to AI-Powered Terminal Automation'
-published: true
+published: false
 description: 'Master GitHub Copilot CLI for DevOps: from setup to advanced automation. Learn practical workflows for infrastructure, CI/CD, troubleshooting, and GitHub operations—all from your terminal.'
 tags: 'github, devops, githubcopilot, automation'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/Copilot-CLI-Practical-DevOps-Guide/assets/main.png'
