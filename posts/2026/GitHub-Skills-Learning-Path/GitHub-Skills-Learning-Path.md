@@ -108,6 +108,8 @@ The most cutting-edge course! Let Copilot tackle issues directly on GitHub:
 - **Productivity Acceleration**: Discover workflows that can dramatically accelerate development. Companies like Grupo Boticário report **94% increased developer productivity** with Copilot!
 - **Best Practices**: Learn when to use Copilot and when to rely on your own expertise
 
+> **Want a structured, hands-on deep dive?** Check out the **[GitHub Copilot Bootcamp](https://github.com/Pwd9000-ML/GitHub-Copilot-Bootcamp)**, a free, open-source 4-week training curriculum I created that takes you from setup to advanced prompt engineering, DevOps automation, refactoring, and ethical AI practices — complete with labs and exercises. Read more about it in my blog post: **[GitHub Copilot Bootcamp: A Free 4-Week Training Curriculum to Master AI-Powered Development](https://dev.to/pwd9000/github-copilot-bootcamp-a-free-4-week-training-curriculum-to-master-ai-powered-development-4pid)**.
+
 ## Certifications: Validate Your AI Development Expertise
 
 GitHub now offers professional certifications that can significantly boost your career prospects. According to the **2025 Pearson VUE Value of IT Certification** report:
@@ -256,6 +258,7 @@ Once you've completed the core GitHub Skills courses, continue your learning jou
 - **[GitHub Copilot Trust Center](https://copilot.github.trust.page/)**: Security, privacy, and responsible AI policies
 - **[Pluralsight GitHub Courses](https://www.pluralsight.com/search?q=GitHub)**: Subscription-based in-depth training
 - **[LinkedIn Learning GitHub Courses](https://www.linkedin.com/learning/topics/github)**: Professional development resources
+- **[GitHub Copilot Bootcamp](https://github.com/Pwd9000-ML/GitHub-Copilot-Bootcamp)**: Free 4-week hands-on training curriculum for mastering GitHub Copilot
 - **[GitHub Education Community Discussions](https://github.com/orgs/community/discussions/categories/github-education)**: Connect with fellow learners
 
 ## Conclusion: Your Journey Starts Now
