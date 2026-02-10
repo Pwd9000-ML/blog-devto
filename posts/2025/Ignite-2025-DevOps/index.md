@@ -2,7 +2,7 @@
 title: 'Microsoft Ignite 2025 for Devs & DevOps: My Top Announcements'
 published: true
 description: 'A hands on look at the most important Microsoft Ignite 2025 updates for developers, DevOps teams and GitHub users, straight from the Ignite 2025 Book of News.'
-tags: 'azure, devops, github, copilot'
+tags: 'azure, devops, github, githubcopilot'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/Ignite-2025-DevOps/assets/main.png'
 canonical_url: null
 id: 3038886

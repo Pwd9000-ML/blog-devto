@@ -2,7 +2,7 @@
 title: Supercharge VSCode GitHub Copilot using Model Context Protocol (MCP) - Easy Setup Guide
 published: true
 description: Unlock the power of GitHub Copilot in VS Code with the Model Context Protocol (MCP) for seamless GitHub integration.
-tags: 'githubcopilot, mcp, tutorial, ai'
+tags: 'githubcopilot, github, tutorial, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/main2.png'
 id: 2420334
 series: GitHub Copilot
