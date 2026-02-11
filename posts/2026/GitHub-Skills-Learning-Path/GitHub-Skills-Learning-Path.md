@@ -258,7 +258,7 @@ Once you've completed the core GitHub Skills courses, continue your learning jou
 - **[GitHub Copilot Trust Center](https://copilot.github.trust.page/)**: Security, privacy, and responsible AI policies
 - **[Pluralsight GitHub Courses](https://www.pluralsight.com/search?q=GitHub)**: Subscription-based in-depth training
 - **[LinkedIn Learning GitHub Courses](https://www.linkedin.com/learning/topics/github)**: Professional development resources
-- **[GitHub Copilot Bootcamp](https://github.com/Pwd9000-ML/GitHub-Copilot-Bootcamp)**: Free 4-week hands-on training curriculum for mastering GitHub Copilot
+- **[GitHub Copilot Bootcamp](https://github.com/Pwd9000-ML/GitHub-Copilot-Bootcamp)**: Free hands-on training curriculum for mastering GitHub Copilot
 - **[GitHub Education Community Discussions](https://github.com/orgs/community/discussions/categories/github-education)**: Connect with fellow learners
 
 ## Conclusion: Your Journey Starts Now
