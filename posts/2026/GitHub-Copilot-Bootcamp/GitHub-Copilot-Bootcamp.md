@@ -1,7 +1,7 @@
 ---
 title: 'GitHub Copilot Bootcamp: A Free Training Curriculum to Master AI-Powered Development'
 published: true
-description: 'Accelerate your GitHub Copilot skills with this free, hands-on 4-week bootcamp. From setup to advanced prompt engineering, DevOps automation, refactoring, and ethical AI practices, complete with labs and exercises.'
+description: 'Accelerate your GitHub Copilot skills with this free, hands-on bootcamp. From setup to advanced prompt engineering, DevOps automation, refactoring, and ethical AI practices, complete with labs and exercises.'
 tags: 'github, githubcopilot, tutorial, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/refs/heads/main/posts/2026/GitHub-Copilot-Bootcamp/assets/main.png'
 id: 3246239
@@ -9,11 +9,11 @@ series: GitHub Copilot
 date: '2026-02-10T11:33:29Z'
 ---
 
-## GitHub Copilot Bootcamp: A Free 4-Week Training Curriculum to Master AI-Powered Development
+## GitHub Copilot Bootcamp: A Free Training Curriculum to Master AI-Powered Development
 
 If you've ever felt overwhelmed by all the features GitHub Copilot offers, or wanted a structured, progressive path to go from "I've heard of Copilot" to "I use it to ship production code faster every single day," then this is for you.
 
-I'm excited to share the **[GitHub Copilot Bootcamp](https://github.com/Pwd9000-ML/GitHub-Copilot-Bootcamp)**, a comprehensive, open-source, 4-week training curriculum I've designed and curated to help developers at any experience level master GitHub Copilot through **hands-on labs, real-world exercises, prompt examples, and weekly reflections**.
+I'm excited to share the **[GitHub Copilot Bootcamp](https://github.com/Pwd9000-ML/GitHub-Copilot-Bootcamp)**, a comprehensive, open-source, training curriculum I've designed and curated to help developers at any experience level master GitHub Copilot through **hands-on labs, real-world exercises, prompt examples, and weekly reflections**.
 
 The programme is completely free, self-paced, and publicly available as a GitHub template repository so you can fork it, adapt it for your team, or simply work through it on your own.
 
@@ -32,7 +32,7 @@ I wanted to create something that:
 
 ---
 
-## What You'll Learn: The 4-Week Curriculum
+## What You'll Learn: The Curriculum
 
 The bootcamp is structured as a progressive learning journey. Each week builds on the previous one, so by the end you'll have a well-rounded mastery of GitHub Copilot across your entire development workflow.
 
