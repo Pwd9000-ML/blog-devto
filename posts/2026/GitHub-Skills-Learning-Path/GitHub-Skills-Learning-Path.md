@@ -108,7 +108,7 @@ The most cutting-edge course! Let Copilot tackle issues directly on GitHub:
 - **Productivity Acceleration**: Discover workflows that can dramatically accelerate development. Companies like Grupo Boticário report **94% increased developer productivity** with Copilot!
 - **Best Practices**: Learn when to use Copilot and when to rely on your own expertise
 
-> **Want a structured, hands-on deep dive?** Check out the **[GitHub Copilot Bootcamp](https://github.com/Pwd9000-ML/GitHub-Copilot-Bootcamp)**, a free, open-source 4-week training curriculum I created that takes you from setup to advanced prompt engineering, DevOps automation, refactoring, and ethical AI practices — complete with labs and exercises. Read more about it in my blog post: **[GitHub Copilot Bootcamp: A Free 4-Week Training Curriculum to Master AI-Powered Development](https://dev.to/pwd9000/github-copilot-bootcamp-a-free-4-week-training-curriculum-to-master-ai-powered-development-4pid)**.
+> **Want a structured, hands-on deep dive?** Check out the **[GitHub Copilot Bootcamp](https://github.com/Pwd9000-ML/GitHub-Copilot-Bootcamp)**, a free, open-source 4-week training curriculum I created that takes you from setup to advanced prompt engineering, DevOps automation, refactoring, and ethical AI practices — complete with labs and exercises. Read more about it in my blog post: **[GitHub Copilot Bootcamp: A Free Training Curriculum to Master AI-Powered Development](https://dev.to/pwd9000/github-copilot-bootcamp-a-free-4-week-training-curriculum-to-master-ai-powered-development-h5b)**.
 
 ## Certifications: Validate Your AI Development Expertise
 
