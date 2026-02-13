@@ -1,5 +1,5 @@
 ---
-title: 'GitHub Copilot CLI: A DevOps Engineer''s Practical Guide to AI-Powered Terminal Automation'
+title: "GitHub Copilot CLI: A DevOps Engineer's Practical Guide to AI-Powered Terminal Automation"
 published: true
 description: 'Master GitHub Copilot CLI for DevOps: from setup to advanced automation. Learn practical workflows for infrastructure, CI/CD, troubleshooting, and GitHub operations all from your terminal.'
 tags: 'github, devops, githubcopilot, tutorial'
@@ -546,12 +546,12 @@ Select from the available models. Each submission reduces your monthly premium r
 
 Copilot CLI includes specialised agents for common tasks:
 
-| Agent | Purpose |
-|-------|--------|
-| **Explore** | Quick codebase analysis without adding to main context |
-| **Task** | Execute commands (tests, builds) with brief summaries |
-| **Plan** | Analyse dependencies and create implementation plans |
-| **Code-review** | Review changes, surfacing only genuine issues |
+| Agent           | Purpose                                                |
+| --------------- | ------------------------------------------------------ |
+| **Explore**     | Quick codebase analysis without adding to main context |
+| **Task**        | Execute commands (tests, builds) with brief summaries  |
+| **Plan**        | Analyse dependencies and create implementation plans   |
+| **Code-review** | Review changes, surfacing only genuine issues          |
 
 Use them with:
 
@@ -732,4 +732,3 @@ The future of DevOps is conversational, start the conversation with Copilot CLI 
 {% user pwd9000 %}
 
 Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
-
