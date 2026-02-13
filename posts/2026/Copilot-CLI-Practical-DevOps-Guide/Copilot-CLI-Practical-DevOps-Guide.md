@@ -1,5 +1,5 @@
 ---
-title: "GitHub Copilot CLI: A DevOps Engineer's Practical Guide to AI-Powered Terminal Automation"
+title: 'GitHub Copilot CLI: A DevOps Engineer''s Practical Guide to AI-Powered Terminal Automation'
 published: true
 description: 'Master GitHub Copilot CLI for DevOps: from setup to advanced automation. Learn practical workflows for infrastructure, CI/CD, troubleshooting, and GitHub operations all from your terminal.'
 tags: 'github, devops, githubcopilot, tutorial'
