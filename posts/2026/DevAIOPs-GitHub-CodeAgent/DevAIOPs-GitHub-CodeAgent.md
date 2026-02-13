@@ -3,7 +3,7 @@ title: 'DevAIOps in Action: Unleashing GitHub Copilot Coding Agent for DevOps Au
 published: false
 description: 'Transform your DevOps workflows with GitHub Copilot Coding Agent. Learn how to automate CI/CD pipelines, Infrastructure as Code, testing, and documentation with this comprehensive hands-on guide.'
 tags: 'github, devops, githubcopilot, automation'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/DevAIOPs-GitHub-CodeAgent/assets/main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/DevAIOps-GitHub-CodeAgent/assets/main.png'
 canonical_url: null
 id: 3254797
 series: GitHub Copilot
@@ -49,10 +49,22 @@ Before diving into practical use cases, it's essential to understand how the cod
 ### Security and Compliance
 
 - **Ephemeral Environments**: Each session runs in a fresh, isolated container that's destroyed after completion
+- **Protected Branching**: The agent can only create and push to branches beginning with `copilot/`, never directly to `main` or `master`
+- **Automated Security Scanning**: CodeQL scans every agent PR for code security issues, secret scanning detects leaked credentials, and dependencies are checked against the GitHub Advisory Database
 - **Audit Trails**: All actions are logged with full transparency into what the agent did and why
-- **Permission Controls**: Respect branch protection rules, required reviewers, and environment restrictions
+- **Permission Controls**: Respects branch protection rules, required reviewers, and environment restrictions. Only users with write access can trigger the agent
+- **Independent Review**: The person who triggered the agent cannot approve the resulting PR, ensuring independent human review
 - **No Autonomous Merges**: The agent cannot merge its own PRs; human approval is always required
 - **Data Protection**: Operates under GitHub's [Data Protection Agreement](https://gh.io/dpa) with enterprise-grade security
+
+### Key Limitations to Be Aware Of
+
+- **Single repository scope**: Each task can only modify one repository
+- **One PR per task**: The agent opens exactly one pull request per assigned issue
+- **Linux runners only**: The agent runs on Ubuntu x64 GitHub Actions runners
+- **Read-only repository access**: The agent has read-only access to the codebase and works in an ephemeral environment
+- **Firewall restrictions**: Internet access is limited by a default firewall. External services require explicit allow-listing
+- **No signed commits**: The agent doesn't support "Require signed commits" repository rules without bypass configuration
 
 ---
 
@@ -66,73 +78,68 @@ Before enabling the coding agent, ensure you have:
 
 - **GitHub Copilot Subscription**: Pro, Pro+, Business, or Enterprise plan with Copilot access
 - **Repository Permissions**: Write access to the repository where you'll use the agent
-- **Organization Settings**: If using Copilot through an organisation, ensure the coding agent feature is enabled
+- **Organisation Settings**: If using Copilot through an organisation, ensure the coding agent feature is enabled
 - **GitHub Actions Enabled**: The agent executes in GitHub Actions runners
 
 > **Note**: Managed user accounts and certain restricted repositories may have limited access to agentic features. Check with your GitHub administrator if you encounter access issues.
 
 ### Step 1: Enable Copilot Coding Agent
 
-For **Individual Repositories**:
+For **Individual Users** (Pro, Pro+):
 
-1. Navigate to your repository on GitHub.com
-2. Click the **"Agents"** tab (you'll find this next to Issues, Pull Requests, etc.)
-3. Enable **"GitHub Copilot Coding Agent"**
-4. Configure any repository-specific settings or permissions
+The coding agent is available by default in your repositories on GitHub.com. You can start assigning issues to `@copilot` straight away. If you need to opt out specific repositories, you can do so in repository settings.
 
-For **Organizations**:
+For **Organisations** (Business, Enterprise):
 
-1. Go to your organization settings
-2. Navigate to **Copilot** → **Agents**
+1. Go to your organisation settings
+2. Navigate to **Copilot** → **Policies & features**
 3. Enable the coding agent feature for your organisation
 4. Set policies for which repositories can use agentic features
 5. Configure budget limits and usage monitoring
+
+> **Note**: The coding agent consumes both GitHub Actions minutes and Copilot premium requests. Monitor usage through your organisation's billing settings.
 
 ### Step 2: Configure Your Development Environment
 
 The coding agent needs a properly configured environment to work effectively. Here's how to optimise your repository:
 
-#### Create a Setup Script
+#### Create a Setup Workflow
 
-Create a `.github/copilot-setup.sh` (or `.ps1` for Windows) that mirrors your developer onboarding:
+Create a `.github/workflows/copilot-setup-steps.yml` file that mirrors your developer onboarding. This GitHub Actions workflow runs before the agent begins its work. The job **must** be named `copilot-setup-steps` and the workflow must be present on your default branch:
 
-```bash
-#!/bin/bash
-# .github/copilot-setup.sh
-set -e
+```yaml
+# .github/workflows/copilot-setup-steps.yml
+name: Copilot Setup Steps
+on: workflow_dispatch
 
-echo "Setting up development environment..."
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
-# Install dependencies
-npm install
-# or: pip install -r requirements.txt
-# or: bundle install
+      - name: Install dependencies
+        run: |
+          npm install
+          # or: pip install -r requirements.txt
+          # or: bundle install
 
-# Configure environment
-cp .env.example .env
+      - name: Build project
+        run: npm run build
 
-# Run initial build
-npm run build
-
-# Run tests to verify setup
-npm test
-
-echo "Environment ready for Copilot Coding Agent!"
+      - name: Verify setup
+        run: npm test
 ```
 
-Make it executable:
+> **Important**: Only `steps`, `permissions`, `runs-on`, `services`, `snapshot`, and `timeout-minutes` settings are honoured within the `copilot-setup-steps` job. Other settings will be ignored.
 
-```bash
-chmod +x .github/copilot-setup.sh
-```
+#### Configure Environment Variables and Secrets
 
-#### Configure GitHub Actions Secrets
+If your workflows require secrets (API keys, credentials, etc.), configure them through the **`copilot` environment**:
 
-If your workflows require secrets (API keys, credentials, etc.), ensure they're configured:
-
-1. Go to repository **Settings** → **Secrets and variables** → **Actions**
-2. Add required secrets that the agent might need during testing or deployment
-3. Use the same secrets your regular CI/CD workflows use
+1. Go to repository **Settings** → **Environments** → **copilot**
+2. Add required secrets and variables that the agent might need during testing
+3. For sensitive values like API keys, use environment secrets rather than plain variables
 
 ### Step 3: Choose Your Interaction Method
 
@@ -158,8 +165,9 @@ Logs are available in workflow run #1234.
 
 1. Install the [GitHub Pull Requests](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github) extension
 2. Sign in to GitHub in VS Code
-3. In the **GitHub** sidebar, right-click an issue and select **"Assign to Copilot"**
-4. Monitor progress in the Copilot panel
+3. Use the Copilot Chat panel to describe a task and ask Copilot to open a PR
+4. Alternatively, right-click an issue in the **GitHub** sidebar to assign it to Copilot
+5. Monitor progress directly in your editor
 
 #### Method 3: GitHub CLI (For Power Users)
 
@@ -183,11 +191,18 @@ You can also request changes on existing PRs:
 @copilot please add integration tests for the new API endpoints and ensure they cover error cases and edge conditions.
 ```
 
+#### Method 5: Third-Party Integrations
+
+Copilot Coding Agent also supports task assignment from external tools:
+
+- **Slack** and **Microsoft Teams**: Assign tasks without leaving your chat platform
+- **Linear** and **Azure Boards**: Trigger agent work from your project management tool
+
 ### Step 4: Monitor and Manage Agent Sessions
 
 Once a task is assigned, monitor its progress:
 
-1. **GitHub Agents Tab**: Real-time view of active sessions, progress, and logs
+1. **Copilot Agents Panel**: Available on every page on GitHub, providing real-time view of active sessions, progress, and logs
 2. **VS Code Copilot Panel**: In-editor tracking with the ability to send steering instructions
 3. **GitHub Mobile App**: Check status on the go
 4. **Email Notifications**: Receive updates when PRs are created or need attention
@@ -588,56 +603,56 @@ If agent is stuck for >2 hours, reassign to human engineer
 
 ## Advanced Techniques
 
-### Custom Agent Creation
+### Extending with Custom Instructions and Tools
 
-For specialised workflows, create custom agents with specific capabilities:
+For specialised workflows, combine custom instructions with targeted guidance files. Beyond the global `.github/copilot-instructions.md`, you can create scoped instruction files for specific file types:
 
-```yaml
-# .github/agents/terraform-specialist.yml
-name: Terraform Specialist
-description: Expert in Terraform and AWS infrastructure
-capabilities:
-  - terraform-validation
-  - aws-best-practices
-  - cost-optimisation
-tools:
-  - terraform
-  - tflint
-  - checkov
-  - infracost
-context:
-  - terraform/**
-  - .terraform.lock.hcl
-  - terraform.tfvars
+```markdown
+<!-- .github/instructions/terraform.instructions.md -->
+---
+applyTo: "terraform/**"
+---
+
+# Terraform Guidelines
+
+- Use Terraform 1.6+ syntax with provider version constraints
+- Run `terraform fmt` and `terraform validate` before committing
+- Use `tflint` for linting and `checkov` for security scanning
+- Include `infracost` cost estimates in PR descriptions
+- All modules must have README.md with usage examples
+- Use remote state with S3 + DynamoDB locking
+- Tag all resources: Environment, Owner, CostCentre, ManagedBy
 ```
+
+These scoped instructions automatically apply when the agent works on matching files, giving it domain-specific expertise without cluttering global instructions.
 
 ### Model Context Protocol (MCP) Integration
 
-Enhance agent capabilities by connecting external tools:
+Enhance agent capabilities by connecting external tools via MCP servers. The coding agent has access to GitHub and Playwright MCP servers by default. You can add additional servers through your repository settings or `.vscode/mcp.json`:
 
-```typescript
-// mcp-server.ts
-import { MCPServer } from '@github/copilot-sdk';
-
-const server = new MCPServer({
-  name: 'devops-tools',
-  version: '1.0.0',
-  capabilities: {
-    resources: true,
-    tools: true,
-  },
-});
-
-server.addTool({
-  name: 'check-aws-costs',
-  description: 'Analyse AWS costs for infrastructure changes',
-  handler: async params => {
-    // Integration with AWS Cost Explorer API
-  },
-});
-
-server.listen();
+```json
+// .vscode/mcp.json
+{
+  "servers": {
+    "azure-mcp": {
+      "command": "npx",
+      "args": ["-y", "@azure/mcp-server"],
+      "env": {
+        "AZURE_SUBSCRIPTION_ID": "${env:AZURE_SUBSCRIPTION_ID}"
+      }
+    },
+    "terraform-mcp": {
+      "command": "npx",
+      "args": ["-y", "@hashicorp/terraform-mcp-server"],
+      "env": {
+        "TF_CLOUD_TOKEN": "${env:TF_CLOUD_TOKEN}"
+      }
+    }
+  }
+}
 ```
+
+> **Note**: The agent operates behind a default firewall. If your MCP servers or tools need access to external services, update the allowed domains list in your repository's Copilot settings.
 
 ### Scheduled Maintenance Tasks
 
@@ -696,7 +711,7 @@ Track these metrics to quantify the impact:
 - **Change failure rate**: Percentage of deployments causing issues
 - **Developer satisfaction**: Survey team on toil reduction
 
-Example ROI calculation:
+Illustrative ROI calculation:
 
 ```
 Before Copilot Coding Agent:
@@ -720,7 +735,7 @@ After Copilot Coding Agent:
 
 **Solution**:
 
-1. Check the Agents tab for session logs
+1. Check the Copilot agents panel for session logs
 2. Look for permissions errors or missing secrets
 3. Try providing additional context via a comment
 4. If stuck > 2 hours, unassign and reassign
@@ -771,8 +786,8 @@ jobs:
 
 **Solution**:
 
-1. Set monthly budget limits in organization settings
-2. Use labels to prioritize high-value tasks
+1. Set monthly budget limits in organisation settings
+2. Use labels to prioritise high-value tasks
 3. Batch similar issues into a single task
 4. Review session logs to identify inefficient prompts
 
@@ -789,24 +804,14 @@ jobs:
 
 ### Access Control
 
-```yaml
-# .github/agent-policy.yml
-agent_access:
-  sensitive_files:
-    - .env*
-    - secrets/**
-    action: deny
+The coding agent's access is governed by existing GitHub security features rather than custom policy files:
 
-  production_changes:
-    require_approval:
-      - security-team
-      - lead-engineer
-
-  external_api_calls:
-    allowed_domains:
-      - api.github.com
-      - api.terraform.io
-```
+- **Branch protection rules**: The agent can only push to `copilot/` prefixed branches, never to protected branches directly
+- **Required reviewers**: Configure branch protection to require specific teams (e.g., `security-team`, `lead-engineer`) before merging agent PRs
+- **Environment protection rules**: Use GitHub Environments with required reviewers and deployment gates for production changes
+- **Repository rulesets**: Apply rulesets to control what the agent can modify
+- **Firewall configuration**: Manage which external domains the agent can access through repository Copilot settings
+- **Opt-out**: Repository owners can disable the coding agent for specific repositories
 
 ### Compliance
 
@@ -819,9 +824,11 @@ For regulated industries:
 
 ---
 
-## Real-World Success Stories
+## Illustrative Scenarios: What's Possible
 
-### Case Study 1: E-commerce Platform
+The following scenarios illustrate the types of outcomes DevOps teams can achieve with Copilot Coding Agent. These are representative examples based on common DevOps challenges.
+
+### Scenario 1: E-commerce Platform
 
 **Challenge**: 200+ microservices with inconsistent CI/CD patterns
 
@@ -833,7 +840,7 @@ For regulated industries:
 - Reduced pipeline failures by 45%
 - Improved deployment time from 35 to 12 minutes average
 
-### Case Study 2: FinTech Startup
+### Scenario 2: FinTech Startup
 
 **Challenge**: Security vulnerabilities blocking SOC 2 certification
 
@@ -845,7 +852,7 @@ For regulated industries:
 - Achieved SOC 2 certification 2 months ahead of schedule
 - Ongoing: Agent maintains security posture with weekly scans
 
-### Case Study 3: SaaS Company
+### Scenario 3: SaaS Company
 
 **Challenge**: Technical debt in infrastructure code
 
@@ -864,7 +871,7 @@ For regulated industries:
 GitHub Copilot Coding Agent represents a fundamental shift in how we approach DevOps:
 
 - **Shift from Manual to Autonomous**: AI handles routine tasks whilst humans focus on architecture and strategy
-- **Continuous Improvement**: Agents that learn from your patterns and optimize over time
+- **Continuous Improvement**: Agents that learn from your patterns and optimise over time
 - **Democratised Expertise**: Junior engineers gain access to senior-level automation capabilities
 - **24/7 Operations**: Agents work around the clock, not just during business hours
 
