@@ -11,6 +11,7 @@
 - Draft content in Markdown. Keep `published: false` until ready to ship; DEV.to automation key off this flag and the `id` field (leave `null` for new posts).
 - Follow the house style for author footer (`{% user pwd9000 %}` followed by the social links block). Reuse the block from the template.
 - For long form guides, break sections with `##` headings; DEV.to will treat the first heading as the article title H1.
+- Dont use emdashes instead use a full stop or a comma where appropriate instead of emdashes.
 - Use British English spelling and style throughout each article.
 
 ## Code and assets conventions
