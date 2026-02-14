@@ -1,5 +1,5 @@
 ---
-title: 'Using GitHub Copilot Coding Agent for DevOps Automation'
+title: Using GitHub Copilot Coding Agent for DevOps Automation
 published: false
 description: 'Transform your DevOps workflows with GitHub Copilot Coding Agent. Learn how to automate CI/CD pipelines, Infrastructure as Code, testing, and documentation with practical use cases you can try today.'
 tags: 'github, devops, githubcopilot, automation'
