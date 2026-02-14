@@ -1,6 +1,6 @@
 ---
 title: Using GitHub Copilot Coding Agent for DevOps Automation
-published: false
+published: true
 description: 'Transform your DevOps workflows with GitHub Copilot Coding Agent. Learn how to automate CI/CD pipelines, Infrastructure as Code, testing, and documentation with practical use cases you can try today.'
 tags: 'github, devops, githubcopilot, automation'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/refs/heads/main/posts/2026/DevAIOPs-GitHub-CodeAgent/assets/main.png'
@@ -13,7 +13,7 @@ series: GitHub Copilot
 
 What if you could assign a GitHub Issue to an AI teammate and come back to a ready-to-review pull request? That is exactly what [GitHub Copilot Coding Agent](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent) does. It works autonomously inside an ephemeral GitHub Actions environment, analyses your codebase, makes changes, runs tests, and opens a PR for your approval.
 
-In this post we will look at how the coding agent works, how to set it up for a DevOps repository, and walk through four practical use cases you can try straight away.
+In this post we will look at how the coding agent works, how to set it up for a DevOps repository, and walk through six practical use cases you can try straight away.
 
 ---
 
@@ -123,7 +123,7 @@ You can track progress through the **Copilot Agents Panel** on GitHub, which giv
 
 ## DevOps Use Cases
 
-Here is where things get interesting. These four scenarios show how the coding agent fits naturally into DevOps workflows.
+Here is where things get interesting. These six scenarios show how the coding agent fits naturally into DevOps workflows.
 
 ### Use Case 1: Fix a Broken CI/CD Pipeline
 
@@ -226,6 +226,43 @@ jobs:
 ```
 
 Every merged infrastructure PR spawns a documentation task that the agent handles. Your docs stay fresh without anyone having to remember.
+
+---
+
+### Use Case 5: Boost Test Coverage on Autopilot
+
+**The problem**: Your team knows test coverage is low, but writing tests for existing modules never makes it to the sprint.
+
+**With the agent**: Create targeted issues for each area that needs coverage:
+
+```markdown
+Title: Add unit tests for authentication module
+
+The auth module at src/auth/ currently has minimal test coverage. Please:
+
+1. Analyse the existing code and identify untested paths
+2. Write comprehensive unit tests covering happy paths and edge cases
+3. Ensure all tests pass and document any discovered bugs
+4. Report the before/after coverage in the PR description
+
+Assignee: @copilot
+```
+
+The agent reads the module, generates tests that exercise both success and failure paths, runs them to confirm they pass, and opens a PR with a coverage summary. Repeat across modules with separate issues and you can steadily burn down test debt in the background.
+
+> **Tip**: GitHub's own experiments with this pattern took test coverage from roughly 5% to near 100% across 45 days, producing over 1,400 tests. Small, daily PRs kept reviews manageable. See the [Continuous AI blog post](https://github.blog/ai-and-ml/generative-ai/continuous-ai-in-practice-what-developers-can-automate-today-with-agentic-ci/) for details.
+
+---
+
+### Use Case 6: Remediate Security Alerts via Campaigns
+
+**The problem**: Your organisation runs [security campaigns](https://docs.github.com/en/code-security/code-scanning/managing-code-scanning-alerts/fixing-alerts-in-security-campaign) to address CodeQL or Dependabot findings at scale, but engineers struggle to find time for the fixes.
+
+**With the agent**: From the **Security** tab on GitHub, select alerts and assign them directly to Copilot as part of a campaign. The agent receives the alert context, analyses the vulnerable code path, applies a fix, validates the change passes your test suite, and opens a PR, all without anyone filing a separate issue.
+
+This is a first-class integration, not a workaround. The coding agent understands the alert metadata (CVE, severity, affected file and line) and uses it to produce targeted patches. For large campaigns spanning dozens of alerts, you can assign batches to Copilot and review the resulting PRs as they arrive.
+
+> **Note**: Security campaigns require **GitHub Advanced Security** or **GitHub Code Security**. The coding agent's own built-in security scanning (CodeQL, secret scanning, dependency checks) does not require these licences.
 
 ---
 
