@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/refs/heads
 canonical_url: null
 id: 3254797
 series: GitHub Copilot
+date: '2026-02-14T14:27:20Z'
 ---
 
 ## Using GitHub Copilot Coding Agent for DevOps Automation
