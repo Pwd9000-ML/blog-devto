@@ -66,7 +66,8 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **10/02/2026** | [GitHub Copilot Bootcamp: A Free 4-Week Training Curriculum to Master AI-Powered Development](https://dev.to/pwd9000/github-copilot-bootcamp-a-free-4-week-training-curriculum-to-master-ai-powered-development-h5b) | Content | GitHub, Copilot, AI | GitHub, GitHubCopilot, Tutorial, AI |
+| **14/02/2026** | [Using GitHub Copilot Coding Agent for DevOps Automation](https://dev.to/pwd9000/using-github-copilot-coding-agent-for-devops-automation) | Content | GitHub, Copilot, DevOps | GitHub, GitHubCopilot, DevOps, automation |
+| **10/02/2026** | [GitHub Copilot Bootcamp: A Free Training Curriculum to Master AI-Powered Development](https://dev.to/pwd9000/github-copilot-bootcamp-a-free-4-week-training-curriculum-to-master-ai-powered-development-h5b) | Content | GitHub, Copilot, AI | GitHub, GitHubCopilot, Tutorial, AI |
 | **28/01/2026** | [GitHub Copilot CLI: A DevOps Engineer's Practical Guide to AI-Powered Terminal Automation](https://dev.to/pwd9000/github-copilot-cli-a-devops-engineers-practical-guide-to-ai-powered-terminal-automation-1jh0) | Content | GitHub, Copilot, DevOps | GitHub, GitHubCopilot, DevOps, automation |
 | **26/01/2026** | [GitHub Copilot Bootcamp](https://github.com/Pwd9000-ML/GitHub-Copilot-Bootcamp) | Open Source | GitHub, Copilot, AI | GitHub, GitHubCopilot, Learning, AI |
 | **23/01/2026** | [GitHub Skills: Your Complete Learning Path to AI-Powered Development](https://dev.to/pwd9000/github-skills-your-complete-learning-path-to-ai-powered-development-ieo) | Content | GitHub, Copilot, AI | GitHub, GitHubCopilot, Learning, AI |
