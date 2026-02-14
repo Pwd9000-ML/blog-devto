@@ -1,5 +1,5 @@
 ---
-title: 'DevAIOps in Action: Unleashing GitHub Copilot Coding Agent for DevOps Automation'
+title: 'Using GitHub Copilot Coding Agent for DevOps Automation'
 published: false
 description: 'Transform your DevOps workflows with GitHub Copilot Coding Agent. Learn how to automate CI/CD pipelines, Infrastructure as Code, testing, and documentation with this comprehensive hands-on guide.'
 tags: 'github, devops, githubcopilot, automation'
@@ -9,7 +9,7 @@ id: 3254797
 series: GitHub Copilot
 ---
 
-## DevAIOps in Action: Unleashing GitHub Copilot Coding Agent for DevOps Automation
+## Using GitHub Copilot Coding Agent for DevOps Automation
 
 As DevOps engineers, we're constantly juggling infrastructure provisioning, CI/CD pipeline maintenance, incident response, security patches, and documentation updates. What if you had an AI-powered colleague who could autonomously handle many of these tasks whilst you focus on strategic improvements? Enter [GitHub Copilot Coding Agent](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent), a revolutionary tool that brings autonomous AI capabilities directly into your DevOps workflows, transforming how we approach infrastructure, automation, and operations.
 
@@ -959,5 +959,3 @@ Start with one use case today. Pick a pain point in your current workflow, assig
 {% user pwd9000 %}
 
 Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
-
-Date: 13-02-2026
