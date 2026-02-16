@@ -324,7 +324,7 @@ async function ralphLoop(promptFile: string, maxIterations: number = 50) {
     for (let i = 1; i <= maxIterations; i++) {
       console.log(`\n=== Iteration ${i}/${maxIterations} ===`);
 
-      // Fresh session each iteration — context isolation is the point
+      // Fresh session each iteration. Context isolation is the point
       const session = await client.createSession({
         model: 'gpt-4.1',
         workingDirectory: process.cwd(),
@@ -453,7 +453,7 @@ You could deploy this as a Slack bot, a Teams webhook, or a CLI tool for your on
 
 ### Use Case 5: PR Age Visualisation and Repository Insights
 
-**Source**: [Official Copilot SDK Cookbook — PR Visualization](https://github.com/github/awesome-copilot/blob/main/cookbook/copilot-sdk/nodejs/pr-visualization.md)
+**Source**: [Official Copilot SDK Cookbook: PR Visualization](https://github.com/github/awesome-copilot/blob/main/cookbook/copilot-sdk/nodejs/pr-visualization.md)
 
 This cookbook recipe demonstrates a powerful pattern: using the SDK with **zero custom tools**. Instead, it relies entirely on the Copilot CLI's built-in capabilities, the GitHub MCP server for fetching PR data, file tools for saving charts, and code execution for generating visualisations.
 
