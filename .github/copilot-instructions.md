@@ -13,6 +13,7 @@
 - For long form guides, break sections with `##` headings; DEV.to will treat the first heading as the article title H1.
 - Dont use emdashes instead use a full stop or a comma where appropriate instead of emdashes.
 - Use British English spelling and style throughout each article.
+- When referencing facts or external information, check that sources are correct and use verifiable online sources.
 
 ## Code and assets conventions
 
