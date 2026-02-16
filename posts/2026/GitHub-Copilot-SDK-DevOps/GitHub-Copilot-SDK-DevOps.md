@@ -15,7 +15,7 @@ GitHub Copilot has steadily evolved from an in-editor autocomplete tool into a f
 
 For DevOps engineers, this opens up a powerful new pattern: instead of relying solely on Copilot inside your IDE or through GitHub Issues, you can now build **custom AI agents** that plug into your existing operational tooling. Think incident response bots, infrastructure validators, deployment assistants, and compliance checkers, all powered by the Copilot engine and your own custom tools.
 
-In this post we will cover what the SDK is, how it works, how to get started, and walk through four practical DevOps use cases with code samples you can adapt today.
+In this post we will cover what the SDK is, how it works, how to get started, and walk through six practical DevOps use cases, several drawn from real open-source projects you can explore today.
 
 ---
 
@@ -237,9 +237,259 @@ The [MCP Servers Directory](https://github.com/modelcontextprotocol/servers) mai
 
 ## DevOps Use Cases
 
-Here are four practical scenarios where the Copilot SDK can add real value to a DevOps team's tooling.
+The SDK is still young, but the community is already building real tools with it. Here are six use cases, several drawn from actual open-source projects and the official cookbook, that show what is possible for DevOps teams.
 
-### Use Case 1: Infrastructure as Code Validation Agent
+### Use Case 1: Autonomous SRE Agent for GitHub Actions
+
+**Real project**: [htekdev/github-sre-agent](https://github.com/htekdev/github-sre-agent)
+
+This open-source project is a fully autonomous SRE agent built with the Copilot SDK. It listens for GitHub Actions webhook events and, when a workflow fails, it:
+
+1. **Fetches and analyses logs** via the GitHub MCP server.
+2. **Checks GitHub system status** to rule out platform outages.
+3. **Searches the web** for known fixes using the Exa AI MCP server.
+4. **Makes an intelligent decision**: retry a transient failure, create a detailed issue for a genuine bug, or skip if the failure is expected.
+5. **Tracks resolution**: when a previously failed workflow succeeds, it automatically closes the related issue.
+
+The architecture is clean and worth studying. It uses the Copilot SDK's `createSession` with two MCP servers (GitHub and Exa AI) plus custom tools for status checking, note-taking, and workflow tracking. Repository-level configuration lives in `.github/sre-agent.yml`:
+
+```yaml
+version: 1
+enabled: true
+instructions: |
+  - This repo uses pnpm, not npm
+  - Always check if tests pass before suggesting retry
+  - Create issues with label "ci-failure" for tracking
+actions:
+  retry:
+    enabled: true
+    maxAttempts: 3
+  createIssue:
+    enabled: true
+    labels:
+      - sre-agent
+      - automated
+      - ci-failure
+```
+
+This is a strong example of how the SDK can replace manual on-call triage for CI/CD failures.
+
+---
+
+### Use Case 2: Repository Health Analysis (Repo Doctor)
+
+**Real project**: [glaucia86/repo-doctor](https://github.com/glaucia86/repo-doctor) (53+ stars)
+
+Repo Doctor is an agentic CLI tool built with the Copilot SDK that performs comprehensive health checks across six areas: **documentation**, **developer experience**, **CI/CD**, **testing**, **governance**, and **security**. It delivers a health score (0-100%), prioritised findings (P0/P1/P2), and actionable remediation steps with code snippets.
+
+It offers two analysis modes:
+
+| Mode | How it works | Best for |
+| --- | --- | --- |
+| **Quick Scan** | Analyses via GitHub API (up to 20 file reads) | Governance review, quick checks |
+| **Deep Analysis** | Full source scan using Repomix | Code quality, architecture review |
+
+The killer feature for DevOps teams is the `--issue` flag. After analysis, it automatically creates structured GitHub Issues for each problem found, complete with priority labels, impact assessments, and fix instructions:
+
+```bash
+repo-doctor analyze your-org/your-repo --issue
+
+# Creates:
+# 🔴 [Repo Doctor] docs: Missing README
+# 🟠 [Repo Doctor] ci: No CI/CD Pipeline
+# 🟡 [Repo Doctor] dx: Code Quality Issues
+```
+
+This pattern, using the SDK to audit repositories and create actionable issues, is directly applicable to platform engineering teams managing dozens of microservice repos.
+
+---
+
+### Use Case 3: Autonomous Coding Loops (Ralph Loop Pattern)
+
+**Source**: [Official Copilot SDK Cookbook](https://github.com/github/awesome-copilot/blob/main/cookbook/copilot-sdk/nodejs/ralph-loop.md)
+
+The Ralph Loop is an autonomous development pattern from the SDK cookbook that is particularly powerful for DevOps automation. The concept: an AI agent iterates through tasks in isolated context windows, with state persisted on disk between iterations. Each loop creates a **fresh session**, reads the current state, does one task, writes results back, and exits.
+
+```typescript
+import { readFile } from 'fs/promises';
+import { CopilotClient } from '@github/copilot-sdk';
+
+async function ralphLoop(promptFile: string, maxIterations: number = 50) {
+  const client = new CopilotClient();
+  await client.start();
+
+  try {
+    const prompt = await readFile(promptFile, 'utf-8');
+
+    for (let i = 1; i <= maxIterations; i++) {
+      console.log(`\n=== Iteration ${i}/${maxIterations} ===`);
+
+      // Fresh session each iteration — context isolation is the point
+      const session = await client.createSession({
+        model: 'gpt-4.1',
+        workingDirectory: process.cwd(),
+        onPermissionRequest: async () => ({ allow: true }),
+      });
+
+      try {
+        await session.sendAndWait({ prompt }, 600_000);
+      } finally {
+        await session.destroy();
+      }
+
+      console.log(`Iteration ${i} complete.`);
+    }
+  } finally {
+    await client.stop();
+  }
+}
+
+ralphLoop('PROMPT.md', 20);
+```
+
+For DevOps, imagine pointing this at an `IMPLEMENTATION_PLAN.md` that lists infrastructure tasks: "add monitoring to service X", "update Terraform module Y to v2", "write integration tests for pipeline Z". The agent picks the next task, implements it, runs tests, commits, and moves on. The key principles:
+
+- **Fresh context per iteration** prevents context window degradation.
+- **Disk as shared state** (`IMPLEMENTATION_PLAN.md`) coordinates between iterations.
+- **Backpressure** (tests, builds, lints) ensures quality, the agent must pass them before committing.
+
+This is ideal for burning down infrastructure debt or implementing a batch of related IaC changes unattended.
+
+---
+
+### Use Case 4: Incident Response with PagerDuty and Datadog
+
+**Source**: [microsoft/copilot-sdk-samples](https://github.com/microsoft/copilot-sdk-samples)
+
+Microsoft's official sample repository includes dedicated **PagerDuty** and **Datadog** connector samples that demonstrate how to build incident management and monitoring agents. All connectors support a **mock-first** design, so you can develop and test without live credentials.
+
+Here is how you might wire up an incident response agent that combines both:
+
+```typescript
+import { CopilotClient, defineTool } from '@github/copilot-sdk';
+
+// Tools backed by your PagerDuty and Datadog connectors
+const getActiveIncidents = defineTool('get_active_incidents', {
+  description: 'List active PagerDuty incidents for a service',
+  parameters: {
+    type: 'object',
+    properties: {
+      service: { type: 'string', description: 'Service name' },
+    },
+    required: ['service'],
+  },
+  handler: async (args: { service: string }) => {
+    // In production, call PagerDuty API
+    return {
+      incidents: [
+        {
+          id: 'PD-4521',
+          title: 'High error rate on payments-api',
+          severity: 'P1',
+          triggered: '2026-02-15T14:32:00Z',
+          assignee: 'on-call-team',
+        },
+      ],
+    };
+  },
+});
+
+const queryMonitoring = defineTool('query_monitoring', {
+  description: 'Query Datadog metrics and logs',
+  parameters: {
+    type: 'object',
+    properties: {
+      query: { type: 'string', description: 'Datadog query string' },
+      timeRange: { type: 'string', description: 'Time range (e.g. last_1h)' },
+    },
+    required: ['query', 'timeRange'],
+  },
+  handler: async (args: { query: string; timeRange: string }) => {
+    // In production, call Datadog API
+    return {
+      metrics: {
+        errorRate: '12.4%',
+        p99Latency: '2340ms',
+        requestsPerSecond: 890,
+      },
+      recentLogs: [
+        'ERROR: Connection pool exhausted for database replica-02',
+        'WARN: Retry limit exceeded for downstream service auth-api',
+      ],
+    };
+  },
+});
+
+const client = new CopilotClient();
+const session = await client.createSession({
+  model: 'gpt-4.1',
+  streaming: true,
+  tools: [getActiveIncidents, queryMonitoring],
+  systemMessage: {
+    content:
+      'You are an incident response assistant. When asked about an incident, ' +
+      'gather data from PagerDuty and Datadog, then provide: ' +
+      '1) Incident timeline, 2) Affected services and metrics, ' +
+      '3) Likely root cause, 4) Recommended remediation steps.',
+  },
+});
+
+session.on('assistant.message_delta', (event) => {
+  process.stdout.write(event.data.deltaContent);
+});
+
+await session.sendAndWait({
+  prompt:
+    'We have a P1 incident on payments-api. Pull the PagerDuty details and check Datadog for the last hour.',
+});
+
+await client.stop();
+process.exit(0);
+```
+
+You could deploy this as a Slack bot, a Teams webhook, or a CLI tool for your on-call team. The agent correlates PagerDuty incident metadata with Datadog metrics and logs, then produces a structured summary with remediation steps.
+
+---
+
+### Use Case 5: PR Age Visualisation and Repository Insights
+
+**Source**: [Official Copilot SDK Cookbook — PR Visualization](https://github.com/github/awesome-copilot/blob/main/cookbook/copilot-sdk/nodejs/pr-visualization.md)
+
+This cookbook recipe demonstrates a powerful pattern: using the SDK with **zero custom tools**. Instead, it relies entirely on the Copilot CLI's built-in capabilities, the GitHub MCP server for fetching PR data, file tools for saving charts, and code execution for generating visualisations.
+
+The core setup is refreshingly simple. No `defineTool` calls, just a session with a system message and a prompt:
+
+```typescript
+import { CopilotClient } from '@github/copilot-sdk';
+
+const client = new CopilotClient({ logLevel: 'error' });
+
+const session = await client.createSession({
+  model: 'gpt-4.1',
+  systemMessage: {
+    content: `You are analyzing pull requests for the GitHub repository: ${owner}/${repo}.
+Use the GitHub MCP Server tools to fetch PR data.
+Use your file and code execution tools to generate charts.
+Save any generated images to the current working directory.`,
+  },
+});
+
+await session.sendAndWait({
+  prompt: `Fetch the open pull requests for ${owner}/${repo} from the last week.
+Calculate the age of each PR in days.
+Generate a bar chart showing the distribution of PR ages.
+Save the chart as "pr-age-chart.png".
+Summarise the PR health - average age, oldest PR, and how many might be stale.`,
+});
+```
+
+The agent uses the GitHub MCP server to list PRs, then generates a chart using Python/matplotlib. The interactive session lets you ask follow-up questions like "expand to the last month" or "group by author instead of age".
+
+For DevOps leads, this pattern is gold. Build a scheduled job that runs this weekly and posts the chart to a Slack channel. No API integration code to maintain, just prompts.
+
+---
+
+### Use Case 6: Infrastructure as Code Validation Agent
 
 **The problem**: Your team maintains dozens of Terraform modules. Reviewing them for best practices, security compliance, and naming conventions is time-consuming and inconsistent.
 
@@ -304,245 +554,7 @@ await session.sendAndWait({
 await client.stop();
 ```
 
-You could run this as a pre-commit hook, a CI step, or a standalone CLI that your platform team uses during module reviews.
-
----
-
-### Use Case 2: Incident Response Assistant
-
-**The problem**: When production incidents occur, engineers spend valuable time pulling information from multiple sources: logs, metrics, deployment history, and runbooks.
-
-**The solution**: Build an incident response agent that aggregates data from your monitoring stack and provides a situation summary.
-
-```python
-from github_copilot_sdk import CopilotClient, define_tool
-
-@define_tool(
-    name="get_recent_deployments",
-    description="Get recent deployments for a service",
-    parameters={
-        "type": "object",
-        "properties": {
-            "service": {"type": "string", "description": "Service name"}
-        },
-        "required": ["service"]
-    }
-)
-def get_recent_deployments(service: str):
-    # In production, query your deployment API or GitHub API
-    return {
-        "service": service,
-        "deployments": [
-            {"version": "v2.4.1", "time": "2026-02-15T14:30:00Z",
-             "status": "success", "deployer": "ci-pipeline"},
-            {"version": "v2.4.0", "time": "2026-02-14T09:15:00Z",
-             "status": "success", "deployer": "ci-pipeline"},
-        ]
-    }
-
-@define_tool(
-    name="query_metrics",
-    description="Query application metrics for a given time range",
-    parameters={
-        "type": "object",
-        "properties": {
-            "service": {"type": "string", "description": "Service name"},
-            "metric": {"type": "string", "description": "Metric name"},
-            "duration": {"type": "string", "description": "Time range"}
-        },
-        "required": ["service", "metric", "duration"]
-    }
-)
-def query_metrics(service: str, metric: str, duration: str):
-    # In production, query Prometheus, Datadog, or Azure Monitor
-    return {
-        "service": service,
-        "metric": metric,
-        "values": [
-            {"time": "14:30", "value": 45},
-            {"time": "14:35", "value": 120},
-            {"time": "14:40", "value": 350},
-            {"time": "14:45", "value": 890},
-        ]
-    }
-
-client = CopilotClient()
-session = client.create_session(
-    model="gpt-4.1",
-    tools=[get_recent_deployments, query_metrics],
-    system_message={
-        "content": (
-            "You are an incident response assistant for a DevOps team. "
-            "When asked about an incident, gather deployment history and "
-            "metrics, then provide a structured summary with: "
-            "1) Timeline of events, 2) Likely root cause, "
-            "3) Recommended next steps."
-        )
-    }
-)
-
-response = session.send_and_wait(
-    prompt=(
-        "The payments-api service is returning 500 errors "
-        "since about 14:35 UTC. Help me investigate."
-    )
-)
-print(response.data.content)
-client.stop()
-```
-
-The agent calls your tools to gather data, correlates the deployment at 14:30 with the error spike at 14:35, and presents a clear summary. You could integrate this into a Slack bot or a Teams webhook for your on-call team.
-
----
-
-### Use Case 3: Pipeline Troubleshooting Bot
-
-**The problem**: Failed CI/CD pipelines generate long log files. Engineers often spend 15 to 30 minutes reading through logs to find the root cause.
-
-**The solution**: Build an agent that fetches pipeline logs and analyses them.
-
-```typescript
-import { CopilotClient, defineTool } from '@github/copilot-sdk';
-
-const getPipelineLogs = defineTool('get_pipeline_logs', {
-  description:
-    'Fetch the logs from a GitHub Actions workflow run',
-  parameters: {
-    type: 'object',
-    properties: {
-      runId: {
-        type: 'string',
-        description: 'The workflow run ID',
-      },
-    },
-    required: ['runId'],
-  },
-  handler: async (args: { runId: string }) => {
-    // In production, use the GitHub API:
-    // GET /repos/{owner}/{repo}/actions/runs/{run_id}/logs
-    return {
-      runId: args.runId,
-      status: 'failure',
-      jobs: [
-        {
-          name: 'build',
-          status: 'success',
-          duration: '2m 14s',
-        },
-        {
-          name: 'test',
-          status: 'failure',
-          duration: '4m 52s',
-          error:
-            "FAIL src/auth/token.test.ts - TypeError: Cannot read properties of undefined (reading 'verify')",
-        },
-        {
-          name: 'deploy',
-          status: 'skipped',
-        },
-      ],
-    };
-  },
-});
-
-const client = new CopilotClient();
-const session = await client.createSession({
-  model: 'gpt-4.1',
-  streaming: true,
-  tools: [getPipelineLogs],
-  systemMessage: {
-    content:
-      'You are a CI/CD troubleshooting assistant. When given a failed workflow run, fetch the logs and provide: 1) Which job failed and why. 2) The likely root cause. 3) A suggested fix with code if applicable.',
-  },
-});
-
-session.on('assistant.message_delta', (event) => {
-  process.stdout.write(event.data.deltaContent);
-});
-
-await session.sendAndWait({
-  prompt: 'Workflow run 9847 failed. What went wrong?',
-});
-
-await client.stop();
-process.exit(0);
-```
-
-By connecting this to the **GitHub MCP server** instead of a mock tool, you get live access to real workflow run data without writing API integration code at all.
-
----
-
-### Use Case 4: Deployment Status Dashboard Agent
-
-**The problem**: Stakeholders constantly ask "Is feature X deployed to staging yet?" and engineers have to check multiple systems to answer.
-
-**The solution**: Build an agent with tools that query your deployment state and present it in plain English.
-
-```typescript
-import { CopilotClient, defineTool } from '@github/copilot-sdk';
-
-const getEnvironmentStatus = defineTool('get_environment_status', {
-  description:
-    'Get the current deployment status for a given environment',
-  parameters: {
-    type: 'object',
-    properties: {
-      environment: {
-        type: 'string',
-        description: 'Environment name (dev, staging, production)',
-      },
-    },
-    required: ['environment'],
-  },
-  handler: async (args: { environment: string }) => {
-    // In production, query your deployment API or Kubernetes API
-    return {
-      environment: args.environment,
-      services: [
-        {
-          name: 'api-gateway',
-          version: 'v3.12.0',
-          lastDeployed: '2026-02-15T16:00:00Z',
-          healthy: true,
-        },
-        {
-          name: 'payments-api',
-          version: 'v2.4.1',
-          lastDeployed: '2026-02-15T14:30:00Z',
-          healthy: false,
-        },
-        {
-          name: 'notifications',
-          version: 'v1.8.3',
-          lastDeployed: '2026-02-14T11:00:00Z',
-          healthy: true,
-        },
-      ],
-    };
-  },
-});
-
-const client = new CopilotClient();
-const session = await client.createSession({
-  model: 'gpt-4.1',
-  tools: [getEnvironmentStatus],
-  systemMessage: {
-    content:
-      'You are a deployment status assistant. Answer questions about what is deployed where, highlight any unhealthy services, and provide version comparisons across environments when asked.',
-  },
-});
-
-const response = await session.sendAndWait({
-  prompt:
-    'What is currently deployed to staging? Are there any unhealthy services?',
-});
-console.log(response?.data.content);
-
-await client.stop();
-process.exit(0);
-```
-
-Wrap this in a Slack slash command or a Teams bot and your entire organisation can self-serve deployment status queries without pinging the platform team.
+You could run this as a pre-commit hook, a CI step, or a standalone CLI that your platform team uses during module reviews. Combine it with the Ralph Loop pattern from Use Case 3 to validate and fix an entire library of modules autonomously.
 
 ---
 
@@ -583,9 +595,11 @@ For CI/CD integration, environment variables are the most practical. For interna
 
 The **GitHub Copilot SDK** brings agentic AI out of the IDE and into your operational tooling. For DevOps engineers, this means you can build custom agents that understand your infrastructure, your workflows, and your conventions, and embed them wherever they are most useful: CLI tools, chatbots, CI pipelines, or internal platforms.
 
-The SDK is currently in **Technical Preview** with support for **Python, TypeScript, Go, and .NET**, an MIT licence, and a growing ecosystem of MCP integrations. Whether you want to validate Terraform, triage incidents, debug pipelines, or surface deployment status, the building blocks are ready.
+The community is already proving the concept. Projects like [github-sre-agent](https://github.com/htekdev/github-sre-agent) (autonomous CI/CD failure triage), [repo-doctor](https://github.com/glaucia86/repo-doctor) (repository health analysis), and Microsoft's [copilot-sdk-samples](https://github.com/microsoft/copilot-sdk-samples) (PagerDuty and Datadog integrations) show that this is not theoretical. The official [cookbook](https://github.com/github/awesome-copilot/blob/main/cookbook/copilot-sdk) adds patterns like Ralph Loops for autonomous task iteration and PR visualisation using zero custom tools.
 
-Check out the [GitHub Copilot SDK repository](https://github.com/github/copilot-sdk) and the [getting started guide](https://github.com/github/copilot-sdk/blob/main/docs/getting-started.md) to begin experimenting. The [cookbook and recipes](https://github.com/github/awesome-copilot/blob/main/cookbook/copilot-sdk) are also a great resource for practical patterns across all four languages.
+The SDK is currently in **Technical Preview** with support for **Python, TypeScript, Go, and .NET**, an MIT licence, and a growing ecosystem of MCP integrations. Whether you want to automate SRE workflows, audit repositories, triage incidents, or visualise PR health, the building blocks are ready.
+
+Check out the [GitHub Copilot SDK repository](https://github.com/github/copilot-sdk) and the [getting started guide](https://github.com/github/copilot-sdk/blob/main/docs/getting-started.md) to begin experimenting.
 
 ### _Author_
 
