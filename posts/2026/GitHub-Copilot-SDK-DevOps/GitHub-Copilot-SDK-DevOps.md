@@ -1,11 +1,11 @@
 ---
-title: 'GitHub Copilot SDK - Build AI-Powered DevOps Agents for Your Own Apps'
+title: GitHub Copilot SDK - Build AI-Powered DevOps Agents for Your Own Apps
 published: false
 description: 'Explore the new GitHub Copilot SDK and learn how to embed agentic AI workflows into your DevOps tooling with practical use cases for infrastructure validation, incident response, and pipeline automation.'
 tags: 'github, devops, githubcopilot, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-SDK-DevOps/assets/main.png'
 canonical_url: null
-id: 3259556
+id: 3259554
 series: GitHub Copilot
 ---
 
