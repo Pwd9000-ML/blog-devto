@@ -5,9 +5,8 @@ description: 'Explore the new GitHub Copilot SDK and learn how to embed agentic 
 tags: 'github, devops, githubcopilot, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-SDK-DevOps/assets/main.png'
 canonical_url: null
-id: null
+id: 3259556
 series: GitHub Copilot
-date: '2026-02-16T00:00:00Z'
 ---
 
 ## GitHub Copilot SDK: Build AI-Powered DevOps Agents for Your Own Apps
