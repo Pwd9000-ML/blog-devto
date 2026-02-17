@@ -1,7 +1,7 @@
 ---
 title: Azure Verified Modules using Terraform
 published: true
-description: DevOps - Terraform - Azure Verified Modules - Learn how to use Azure Verified Modules in Terraform to deploy resources in Azure.
+description: Learn how to use Microsoft Azure Verified Modules in Terraform to deploy secure, well-architected resources with consistent, community-maintained IaC modules.
 tags: 'terraform, azure, iac, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-AVM/assets/main.png'
 canonical_url: null
