@@ -1,7 +1,7 @@
 ---
 title: Terraform - Mastering Idempotency Violations - Handling Resource Conflicts and Failures in Azure
 published: true
-description: DevOps - Terraform - Mastering Idempotency Violations by Handling Resource Conflicts and Failures in Azure
+description: Troubleshoot and resolve common Terraform idempotency violations such as duplicate key errors and 409 resource conflicts when deploying to Azure.
 tags: 'terraform, azure, tutorial, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency/assets/main-tf-error.png'
 canonical_url: null

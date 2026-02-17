@@ -1,7 +1,7 @@
 ---
 title: Terraform - Understanding Dynamic Blocks
 published: true
-description: DevOps - Terraform - Understanding Dynamic Blocks
+description: Learn how to use Terraform dynamic blocks to generate repeatable nested configurations, with practical Azure examples and real-world use cases.
 tags: 'terraform, azure, tutorial, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dynamic-Block/assets/main-tf-tips.png'
 canonical_url: null

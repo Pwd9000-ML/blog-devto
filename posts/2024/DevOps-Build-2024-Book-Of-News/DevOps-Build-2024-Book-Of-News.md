@@ -1,7 +1,7 @@
 ---
 title: Build 2024 - Book Of News - DevOps Edition
 published: true
-description: Build 2024 - Book Of News - DevOps Edition
+description: A curated summary of the top developer and DevOps announcements from Microsoft Build 2024, including GitHub Copilot extensions, Azure updates, and more.
 tags: 'ai, build2024, copilot, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Build-2024-Book-Of-News/assets/main1.png'
 canonical_url: null
