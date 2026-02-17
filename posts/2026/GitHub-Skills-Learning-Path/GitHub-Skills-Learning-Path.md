@@ -1,7 +1,7 @@
 ---
 title: 'GitHub Skills: Your Complete Learning Path to AI-Powered Development'
 published: true
-description: 'Discover how GitHub Skills can accelerate your journey from beginner to AI-powered developer. Learn about GitHub, GitHub Copilot, certification paths, and hands-on resources to skill up in modern development.'
+description: 'Explore GitHub Skills as your free, hands-on path from Git beginner to AI-powered developer with GitHub Copilot and certification guidance.'
 tags: 'github, githubcopilot, ai, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Skills-Learning-Path/assets/main.png'
 id: 3191980

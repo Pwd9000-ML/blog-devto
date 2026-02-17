@@ -1,7 +1,7 @@
 ---
 title: Terraform_Data - Avoiding Duplicate Resource Violations in Azure with checks
 published: true
-description: 'Use the terraform_data resource to check whether an Azure resource already exists before creating it, preventing duplicate resource violations in your deployments.'
+description: 'Use terraform_data to check if an Azure resource exists before creating it, avoiding duplicate resource violations in Terraform deployments.'
 tags: 'terraform, azure, tutorial, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-Terraform-Idempotency-2/assets/main-tf-error.png'
 canonical_url: null

@@ -1,7 +1,7 @@
 ---
 title: Terraform - Keep dependencies up to date with Dependabot (Azure DevOps version)
 published: true
-description: 'Automate Terraform module and provider version updates using Dependabot in Azure DevOps Pipelines, with step-by-step setup and automated pull requests.'
+description: 'Automate Terraform module and provider updates with Dependabot in Azure DevOps, including step-by-step setup and automated pull requests.'
 tags: 'terraform, dependabot, tutorial, azuredevops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Dependabot-Ado/assets/main-tf-tips.png'
 canonical_url: null

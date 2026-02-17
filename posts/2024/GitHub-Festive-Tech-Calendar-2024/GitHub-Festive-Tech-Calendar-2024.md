@@ -1,7 +1,7 @@
 ---
 title: Festive Tech Calendar 2024 - Transforming DevOps with AI
 published: true
-description: 'Explore how GitHub Copilot can deploy Azure architectures, analyse existing resources, and generate Mermaid diagrams to visualise your cloud infrastructure.'
+description: 'Explore how GitHub Copilot deploys Azure architectures, analyses resources, and generates Mermaid diagrams to visualise your infrastructure.'
 tags: 'githubcopilot, tutorial, github, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Festive-Tech-Calendar-2024/assets/main.jpg'
 id: 2143796

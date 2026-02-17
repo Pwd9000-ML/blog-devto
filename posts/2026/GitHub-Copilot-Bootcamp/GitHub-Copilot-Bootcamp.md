@@ -1,7 +1,7 @@
 ---
 title: 'GitHub Copilot Bootcamp: A Free Training Curriculum to Master AI-Powered Development'
 published: true
-description: 'Accelerate your GitHub Copilot skills with this free, hands-on bootcamp. From setup to advanced prompt engineering, DevOps automation, refactoring, and ethical AI practices, complete with labs and exercises.'
+description: 'A free, self-paced bootcamp to master GitHub Copilot, from basics to prompt engineering, DevOps automation, testing, and ethical AI practices.'
 tags: 'github, githubcopilot, tutorial, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/refs/heads/main/posts/2026/GitHub-Copilot-Bootcamp/assets/main.png'
 id: 3246239

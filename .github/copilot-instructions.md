@@ -14,6 +14,7 @@
 - Dont use emdashes instead use a full stop or a comma where appropriate instead of emdashes.
 - Use British English spelling and style throughout each article.
 - When referencing facts or external information, check that sources are correct and use verifiable online sources.
+- Limits to the DEV.to API, front matter description field is auto-truncated to ~150 characters with "..." appended. We can't get the full description from that field. Make sure that the description does not exceed 150 characters to avoid truncation and ensure the full description is visible on DEV.to.
 
 ## Code and assets conventions
 
@@ -39,3 +40,4 @@
 - When generating new cover art, include the MD2MMD logo or relevant branding and export to `main.png` at 1000×420 to keep DEV.to card previews sharp.
 - When changing any asset filenames, search-and-replace references within the corresponding `*.md` file in the same folder so links and the `cover_image` remain correct.
 - Review similar posts within the target year for voice, section ordering, and footer usage before drafting large changes.
+
