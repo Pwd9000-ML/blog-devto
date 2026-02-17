@@ -1,6 +1,6 @@
 ---
 title: GitHub Copilot SDK - Build AI-Powered DevOps Agents for Your Own Apps
-published: false
+published: true
 description: 'Explore the new GitHub Copilot SDK and learn how to embed agentic AI workflows into your DevOps tooling with practical use cases for infrastructure validation, incident response, and pipeline automation.'
 tags: 'github, devops, githubcopilot, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-SDK-DevOps/assets/main.png'
@@ -276,11 +276,11 @@ This is a strong example of how the SDK can replace manual on-call triage for CI
 
 ---
 
-### Use Case 2: Repository Health Analysis (Repo Doctor)
+### Use Case 2: Repository Health Analysis (RepoCheckAI)
 
-**Real project**: [glaucia86/repo-doctor](https://github.com/glaucia86/repo-doctor) (53+ stars)
+**Real project**: [glaucia86/repocheckai](https://github.com/glaucia86/repocheckai) (70+ stars)
 
-Repo Doctor is an agentic CLI tool built with the Copilot SDK that performs comprehensive health checks across six areas: **documentation**, **developer experience**, **CI/CD**, **testing**, **governance**, and **security**. It delivers a health score (0-100%), prioritised findings (P0/P1/P2), and actionable remediation steps with code snippets.
+RepoCheckAI (formerly Repo Doctor) is an agentic CLI tool built with the Copilot SDK that performs comprehensive health checks across six areas: **documentation**, **developer experience**, **CI/CD**, **testing**, **governance**, and **security**. It delivers a health score (0-100%), prioritised findings (P0/P1/P2), and actionable remediation steps with code snippets.
 
 It offers two analysis modes:
 
@@ -292,12 +292,12 @@ It offers two analysis modes:
 The killer feature for DevOps teams is the `--issue` flag. After analysis, it automatically creates structured GitHub Issues for each problem found, complete with priority labels, impact assessments, and fix instructions:
 
 ```bash
-repo-doctor analyze your-org/your-repo --issue
+repocheck analyze your-org/your-repo --issue
 
 # Creates:
-# 🔴 [Repo Doctor] docs: Missing README
-# 🟠 [Repo Doctor] ci: No CI/CD Pipeline
-# 🟡 [Repo Doctor] dx: Code Quality Issues
+# 🔴 [RepoCheckAI] docs: Missing README
+# 🟠 [RepoCheckAI] ci: No CI/CD Pipeline
+# 🟡 [RepoCheckAI] dx: Code Quality Issues
 ```
 
 This pattern, using the SDK to audit repositories and create actionable issues, is directly applicable to platform engineering teams managing dozens of microservice repos.
@@ -595,7 +595,7 @@ For CI/CD integration, environment variables are the most practical. For interna
 
 The **GitHub Copilot SDK** brings agentic AI out of the IDE and into your operational tooling. For DevOps engineers, this means you can build custom agents that understand your infrastructure, your workflows, and your conventions, and embed them wherever they are most useful: CLI tools, chatbots, CI pipelines, or internal platforms.
 
-The community is already proving the concept. Projects like [github-sre-agent](https://github.com/htekdev/github-sre-agent) (autonomous CI/CD failure triage), [repo-doctor](https://github.com/glaucia86/repo-doctor) (repository health analysis), and Microsoft's [copilot-sdk-samples](https://github.com/microsoft/copilot-sdk-samples) (PagerDuty and Datadog integrations) show that this is not theoretical. The official [cookbook](https://github.com/github/awesome-copilot/blob/main/cookbook/copilot-sdk) adds patterns like Ralph Loops for autonomous task iteration and PR visualisation using zero custom tools.
+The community is already proving the concept. Projects like [github-sre-agent](https://github.com/htekdev/github-sre-agent) (autonomous CI/CD failure triage), [RepoCheckAI](https://github.com/glaucia86/repocheckai) (repository health analysis), and Microsoft's [copilot-sdk-samples](https://github.com/microsoft/copilot-sdk-samples) (PagerDuty and Datadog integrations) show that this is not theoretical. The official [cookbook](https://github.com/github/awesome-copilot/blob/main/cookbook/copilot-sdk) adds patterns like Ralph Loops for autonomous task iteration and PR visualisation using zero custom tools.
 
 The SDK is currently in **Technical Preview** with support for **Python, TypeScript, Go, and .NET**, an MIT licence, and a growing ecosystem of MCP integrations. Whether you want to automate SRE workflows, audit repositories, triage incidents, or visualise PR health, the building blocks are ready.
 
