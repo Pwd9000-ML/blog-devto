@@ -1,7 +1,7 @@
 ---
 title: GitHub Repository Best Practices
 published: true
-description: Top 10 tips for managing GitHub repositories effectively, covering naming conventions, branch protection, code reviews, and streamlined collaboration.
+description: 'Top 10 tips for managing GitHub repositories effectively, covering naming conventions, branch protection, code reviews, and streamlined collaboration.'
 tags: 'github, tutorial, devops, repository'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Repo-Best-Practise/assets/main-gh-tips.png'
 canonical_url: null

@@ -1,7 +1,7 @@
 ---
 title: Instructions and Prompt Files to supercharge VS Code with GitHub Copilot
 published: true
-description: Customise GitHub Copilot for your team by creating instruction files and reusable prompt files in VS Code, with practical DevOps examples.
+description: 'Customise GitHub Copilot for your team by creating instruction files and reusable prompt files in VS Code, with practical DevOps examples.'
 tags: 'githubcopilot, github, tutorial, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-Inst-GitHub/assets/main3.png'
 id: 2620657

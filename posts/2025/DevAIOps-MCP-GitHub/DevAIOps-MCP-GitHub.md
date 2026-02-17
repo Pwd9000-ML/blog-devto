@@ -1,7 +1,7 @@
 ---
 title: Supercharge VSCode GitHub Copilot using Model Context Protocol (MCP) - Easy Setup Guide
 published: true
-description: Step-by-step guide to setting up the GitHub MCP server in VS Code so Copilot Agent Mode can create issues, search repos, and manage pull requests.
+description: 'Step-by-step guide to setting up the GitHub MCP server in VS Code so Copilot Agent Mode can create issues, search repos, and manage pull requests.'
 tags: 'githubcopilot, github, tutorial, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/main2.png'
 id: 2420334

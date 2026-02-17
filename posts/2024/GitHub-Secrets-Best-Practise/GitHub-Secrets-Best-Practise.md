@@ -1,7 +1,7 @@
 ---
 title: Best Practices for Using GitHub Secrets - Part 1
 published: true
-description: A guide to using native GitHub Secrets for securely storing API keys, credentials, and sensitive data in your GitHub Action workflows (Part 1 of 2).
+description: 'A guide to using native GitHub Secrets for securely storing API keys, credentials, and sensitive data in your GitHub Action workflows (Part 1 of 2).'
 tags: 'github, tutorial, devops, devsecops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/GitHub-Secrets-Best-Practise/assets/main-gh-tips.png'
 canonical_url: null

@@ -1,7 +1,7 @@
 ---
 title: GitHub MCP Server Deep Dive and Context Engineering
 published: true
-description: Deep dive into configuring the GitHub MCP server locally and remotely, plus context engineering with VS Code instruction files and prompt files.
+description: 'Deep dive into configuring the GitHub MCP server locally and remotely, plus context engineering with VS Code instruction files and prompt files.'
 tags: 'githubcopilot, github, tutorial, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-GitHub-MCP-Deep-Dive/assets/main.png'
 id: 2809718
