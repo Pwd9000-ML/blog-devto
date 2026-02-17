@@ -1,7 +1,7 @@
 ---
 title: Terraform - Understanding Count and For_Each Loops
 published: true
-description: A practical guide to creating multiple resources in Terraform using count and for_each loops, with clear examples showing when to choose each approach.
+description: 'A practical guide to creating multiple resources in Terraform using count and for_each loops, with clear examples showing when to choose each approach.'
 tags: 'terraform, tutorial, iac, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Loops/assets/main-tf-tips.png'
 canonical_url: null

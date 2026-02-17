@@ -1,7 +1,7 @@
 ---
 title: Terraform - Understanding Implicit and Explicit Dependencies
 published: true
-description: Understand how Terraform builds its dependency graph using implicit and explicit dependencies, and learn when to use depends_on for correct resource ordering.
+description: 'Understand how Terraform builds its dependency graph using implicit and explicit dependencies, and learn when to use depends_on for correct resource ordering.'
 tags: 'terraform, azure, tutorial, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/DevOps-Terraform-Implicit-Explicit-Dependency/assets/main-tf-tips.png'
 canonical_url: null
