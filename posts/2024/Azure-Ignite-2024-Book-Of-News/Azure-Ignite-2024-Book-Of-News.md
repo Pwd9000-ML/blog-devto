@@ -1,7 +1,7 @@
 ---
 title: Ignite 2024 - Book Of News - DevOps Edition
 published: true
-description: My top 10 favourite developer and DevOps announcements from Microsoft Ignite 2024, covering Azure AI Foundry, GitHub Copilot updates, and more.
+description: 'My top 10 favourite developer and DevOps announcements from Microsoft Ignite 2024, covering Azure AI Foundry, GitHub Copilot updates, and more.'
 tags: 'ai, msignite, azure, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2024/Azure-Ignite-2024-Book-Of-News/assets/main.png'
 canonical_url: null
