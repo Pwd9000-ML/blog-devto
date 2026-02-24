@@ -1,13 +1,11 @@
 ---
 title: 'GitHub Copilot Skills: Reusable AI Workflows for DevOps and SREs'
-published: false
+published: true
 description: 'Learn GitHub Copilot Skills in VS Code: what they are, how to set them up, and DevOps/SRE use cases from beginner to advanced.'
 tags: 'githubcopilot, github, devops, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-Skills-DevOps/assets/main.png'
-canonical_url: null
 id: 3281741
 series: GitHub Copilot
-date: '2026-02-24T00:00:00Z'
 ---
 
 ## GitHub Copilot Skills: Reusable AI Workflows for DevOps and SREs
@@ -16,7 +14,7 @@ If you're a DevOps engineer or SRE, you probably have a handful of repeatable ta
 
 Until recently, you could get part of the way there with **custom instructions** and **prompt files**. They are both great, but they do not fully solve the same problem: packaging a repeatable, multi-step workflow with its own supporting assets.
 
-This is where **GitHub Copilot Agent Skills** (usually shortened to Skills) comes in.
+This is where **Agent Skills** comes in. Agent Skills is an open standard (see [agentskills.io](https://agentskills.io/)) that works with GitHub Copilot in VS Code, Copilot CLI, and the Copilot coding agent.
 
 In this post we will cover what Skills are, how to set them up in VS Code, and how to use them from beginner scenarios to more advanced DevOps and SRE use cases.
 
@@ -50,12 +48,12 @@ Here is a practical DevOps-oriented way to think about them:
 
 | Primitive | Best for | DevOps example |
 | --- | --- | --- |
-| **Workspace instructions** | Always-on standards | "Always use British English", "Prefer private endpoints" |
-| **File instructions** | Standards for certain files | Terraform style rules for `**/*.tf` |
-| **Prompt files** | One-shot tasks | "Generate a README" or "Review this PR" |
-| **Skills** | Reusable workflows with assets | Incident triage runbook + templates |
-| **Custom agents** | Specialised role and tool limits | Read-only repo auditor agent |
-| **Hooks** | Deterministic enforcement | Block secrets from being written to disk |
+| **Workspace instructions** | Always-on standards | "Tag every Azure resource with `owner` and `env`" |
+| **File instructions** | Standards for certain files | Helm chart defaults for `**/values.yaml` |
+| **Prompt files** | One-shot tasks | "Summarise this sprint's deployment changelog" |
+| **Skills** | Reusable workflows with assets | Kubernetes rollback playbook + kubectl scripts |
+| **Custom agents** | Specialised role and tool limits | Cost-optimisation advisor (read-only) |
+| **Hooks** | Deterministic enforcement | Reject Terraform plans that drop deletion protection |
 
 If you're new to Copilot customisation, my rule of thumb is:
 
@@ -77,6 +75,8 @@ In VS Code chat, type `/skills` to open the **Configure Skills** menu and confir
 Skills can be stored in a few locations. For team usage, the simplest is the repository:
 
 - `.github/skills/<skill-name>/SKILL.md`
+
+VS Code also recognises `.claude/skills/` and `.agents/skills/` as project skill directories. For personal skills that follow you across workspaces, use `~/.copilot/skills/`.
 
 If you want to share Skills across multiple repos, VS Code also supports additional search locations via the `chat.agentSkillsLocations` setting.
 
