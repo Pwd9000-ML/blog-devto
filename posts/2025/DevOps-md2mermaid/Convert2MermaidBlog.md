@@ -3,7 +3,7 @@ title: 'From Markdown to Mermaid Magic: Beautify Documentation with the Convert 
 published: true
 description: 'Learn how the Convert 2 Mermaid API turns plain Markdown outlines into beautiful, multi-format Mermaid diagrams ready for docs, decks, and dashboards.'
 tags: 'devops, tutorial, automation, productivity'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/refs/heads/main/posts/2025/DevOps-md2mermaid/assets/main2.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevOps-md2mermaid/assets/main2.png'
 id: 2897960
 date: '2025-10-06T14:06:18Z'
 ---
@@ -26,7 +26,7 @@ The API focuses on developer ergonomics:
 
 - **14 diagram types**: flowchart, mindmap, sequence, state, ER, Gantt, Git graph, user journey, class, C4, pie, Sankey, timeline, and quadrant. No matter which storytelling format you prefer, it is a single POST away.
 - **Multiple output formats**: request JSON (default) for programmatic use, plain text (`txt`) when you want copy-paste-ready Mermaid code, or rendered `svg` for immediate embedding. Need persistent artifacts? Set `export: true` and the API replies with a downloadable file complete with timestamped filename.
-- **RapidAPI integration**: authentication runs through familiar headers—`X-RapidAPI-Key` and `X-RapidAPI-Host`. You can plug the service into any platform that already knows how to call RapidAPI endpoints.
+- **RapidAPI integration**: authentication runs through familiar headers, `X-RapidAPI-Key` and `X-RapidAPI-Host`. You can plug the service into any platform that already knows how to call RapidAPI endpoints.
 - **Improved SVG rendering**: Base64 encoding for crisper exports, which means diagrams look sharp across browsers and PDF generators.
 - **Deterministic output**: because the transformation is pure, you can hash responses, store them in S3 or Redis, and skip regeneration until the Markdown changes.
 

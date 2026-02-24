@@ -68,12 +68,12 @@ This event showcased how developers can move from manual coding to **AI-augmente
 **Thank you to everyone who joined the VS Code Dev Days workshops!**  
 If you missed them, catch up using the recordings above and experience how **GitHub Copilot** can power your next level of development.
 
-_“The future of development is augmented — not exhausted.”_
+_"The future of development is augmented, not exhausted."_
 
 ### _Author_
 
 {% user pwd9000 %}
 
-Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000//)
+Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
 
 Date: 23-10-2025

@@ -126,7 +126,7 @@ Pat yourself on the back! You've just made your first pull request. The maintain
 
 Venturing into the world of open source contributions can seem like an uphill task, particularly if you are just getting started. However, with a resource like GitHub at your disposal, and with these steps in mind, the process becomes significantly more manageable and less intimidating.
 
-Remember, contributing to open source projects extends far beyond bug fixes or feature additions. It involves learning and growing, enhancing your coding skills, understanding and participating in the dynamics of software development workflow, and above all, becoming a part of a community — all while contributing to the code that runs the world.
+Remember, contributing to open source projects extends far beyond bug fixes or feature additions. It involves learning and growing, enhancing your coding skills, understanding and participating in the dynamics of software development workflow, and above all, becoming a part of a community, all while contributing to the code that runs the world.
 
 So, find a project that resonates with your interest, understand its guidelines, and make your first pull request. Every contribution, no matter how small, matters. The world of open source is waiting for what you have to offer. Happy coding!
 
@@ -134,7 +134,7 @@ I hope you have enjoyed this post and have learned something new. :heart:
 
 ### _Author_
 
-Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
 
 {% user pwd9000 %}
 

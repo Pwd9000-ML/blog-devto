@@ -232,6 +232,6 @@ Embracing these tools and concepts will be key to staying competitive in the rap
 {% user pwd9000 %}
 
 Like, share, follow me on:  
-:octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000//)
+:octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
 
 Date: 19-11-2025
