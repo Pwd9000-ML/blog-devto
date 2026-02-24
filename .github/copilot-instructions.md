@@ -40,4 +40,3 @@
 - When generating new cover art, include the MD2MMD logo or relevant branding and export to `main.png` at 1000×420 to keep DEV.to card previews sharp.
 - When changing any asset filenames, search-and-replace references within the corresponding `*.md` file in the same folder so links and the `cover_image` remain correct.
 - Review similar posts within the target year for voice, section ordering, and footer usage before drafting large changes.
-

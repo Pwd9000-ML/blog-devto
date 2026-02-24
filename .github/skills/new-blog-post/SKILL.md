@@ -18,15 +18,15 @@ Create new DEV.to articles with correct structure, front matter, cover art, and 
 
 Ask the user for the following (infer sensible defaults where possible):
 
-| Input | Required | Default |
-|---|---|---|
-| **Title** | Yes | — |
-| **Slug** (folder name) | No | Derive from title, dash-cased |
-| **Description** | Yes | — (must be ≤150 characters) |
-| **Tags** | Yes | — (max 4, comma-separated) |
-| **Series** | No | `null` |
-| **Year** | No | Current year |
-| **Cover subtitle** | No | Empty |
+| Input                  | Required | Default                       |
+| ---------------------- | -------- | ----------------------------- |
+| **Title**              | Yes      | —                             |
+| **Slug** (folder name) | No       | Derive from title, dash-cased |
+| **Description**        | Yes      | — (must be ≤150 characters)   |
+| **Tags**               | Yes      | — (max 4, comma-separated)    |
+| **Series**             | No       | `null`                        |
+| **Year**               | No       | Current year                  |
+| **Cover subtitle**     | No       | Empty                         |
 
 If the user already provided these in their message, skip the interview and proceed.
 
@@ -74,6 +74,7 @@ date: '<ISO 8601 timestamp>'
 ```
 
 **Rules:**
+
 - `description` must be ≤150 characters. Count before writing. If it exceeds 150, shorten it.
 - `tags` max 4 tags, comma-separated, single-quoted.
 - `cover_image` must use the format `https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/...`. Never use `refs/heads/main` variant.
@@ -168,7 +169,7 @@ When asked to **validate** or **audit** an existing post (rather than create a n
 For bulk auditing across multiple posts, check each post and produce a summary table:
 
 | Post | Description Length | Cover OK | Footer OK | Style Issues |
-|---|---|---|---|---|
+| ---- | ------------------ | -------- | --------- | ------------ |
 
 ## Reference: Existing Series Names
 

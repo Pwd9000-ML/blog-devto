@@ -143,7 +143,7 @@ const session = await client.createSession({
   streaming: true,
 });
 
-session.on('assistant.message_delta', (event) => {
+session.on('assistant.message_delta', event => {
   process.stdout.write(event.data.deltaContent);
 });
 session.on('session.idle', () => {
@@ -435,7 +435,7 @@ const session = await client.createSession({
   },
 });
 
-session.on('assistant.message_delta', (event) => {
+session.on('assistant.message_delta', event => {
   process.stdout.write(event.data.deltaContent);
 });
 
@@ -514,14 +514,12 @@ const readTerraformFiles = defineTool('read_terraform_files', {
     required: ['directory'],
   },
   handler: async (args: { directory: string }) => {
-    const files = fs
-      .readdirSync(args.directory)
-      .filter((f) => f.endsWith('.tf'));
+    const files = fs.readdirSync(args.directory).filter(f => f.endsWith('.tf'));
     const contents: Record<string, string> = {};
     for (const file of files) {
       contents[file] = fs.readFileSync(
         path.join(args.directory, file),
-        'utf-8'
+        'utf-8',
       );
     }
     return contents;
@@ -544,7 +542,7 @@ Report findings as a structured checklist with pass/fail for each rule.`,
   },
 });
 
-session.on('assistant.message_delta', (event) => {
+session.on('assistant.message_delta', event => {
   process.stdout.write(event.data.deltaContent);
 });
 
