@@ -3,7 +3,7 @@ title: Using GitHub Copilot Coding Agent for DevOps Automation
 published: true
 description: 'Automate DevOps with GitHub Copilot Coding Agent: assign issues to AI, get ready-to-review PRs for CI/CD, IaC, testing, and documentation tasks.'
 tags: 'github, devops, githubcopilot, automation'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/refs/heads/main/posts/2026/DevAIOPs-GitHub-CodeAgent/assets/main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/DevAIOPs-GitHub-CodeAgent/assets/main.png'
 canonical_url: null
 id: 3254797
 series: GitHub Copilot

@@ -108,7 +108,7 @@ The most cutting-edge course! Let Copilot tackle issues directly on GitHub:
 - **Productivity Acceleration**: Discover workflows that can dramatically accelerate development. Companies like Grupo Boticário report **94% increased developer productivity** with Copilot!
 - **Best Practices**: Learn when to use Copilot and when to rely on your own expertise
 
-> **Want a structured, hands-on deep dive?** Check out the **[GitHub Copilot Bootcamp](https://github.com/Pwd9000-ML/GitHub-Copilot-Bootcamp)**, a free, open-source 4-week training curriculum I created that takes you from setup to advanced prompt engineering, DevOps automation, refactoring, and ethical AI practices — complete with labs and exercises. Read more about it in my blog post: **[GitHub Copilot Bootcamp: A Free Training Curriculum to Master AI-Powered Development](https://dev.to/pwd9000/github-copilot-bootcamp-a-free-4-week-training-curriculum-to-master-ai-powered-development-h5b)**.
+> **Want a structured, hands-on deep dive?** Check out the **[GitHub Copilot Bootcamp](https://github.com/Pwd9000-ML/GitHub-Copilot-Bootcamp)**, a free, open-source 4-week training curriculum I created that takes you from setup to advanced prompt engineering, DevOps automation, refactoring, and ethical AI practices, complete with labs and exercises. Read more about it in my blog post: **[GitHub Copilot Bootcamp: A Free Training Curriculum to Master AI-Powered Development](https://dev.to/pwd9000/github-copilot-bootcamp-a-free-4-week-training-curriculum-to-master-ai-powered-development-h5b)**.
 
 ## Certifications: Validate Your AI Development Expertise
 
@@ -224,7 +224,7 @@ Here are some battle-tested strategies to get the most out of GitHub Skills:
 - **Join Communities**: Connect with other learners on GitHub Discussions, Discord, or Reddit.
 - **Teach Others**: The best way to solidify your knowledge is to explain it to someone else.
 - **Don't Rush**: Take time to understand concepts deeply rather than racing through courses.
-- **Experiment Freely**: GitHub Skills courses are in isolated repositories—feel free to experiment without fear of breaking anything.
+- **Experiment Freely**: GitHub Skills courses are in isolated repositories. Feel free to experiment without fear of breaking anything.
 
 ## Microsoft Learn: 185+ GitHub Training Modules
 
@@ -265,7 +265,7 @@ Once you've completed the core GitHub Skills courses, continue your learning jou
 
 The future of development is AI-powered, collaborative, and more accessible than ever before. With **44+ courses** on GitHub Skills, **185+ modules** on Microsoft Learn, **five professional certifications**, and a **free tier** of GitHub Copilot available to everyone, there has never been a better time to start your learning journey.
 
-GitHub Skills provides you with a clear, structured path from complete beginner to certified expert in modern development practices. And remember—you're not alone on this journey. Join a community of:
+GitHub Skills provides you with a clear, structured path from complete beginner to certified expert in modern development practices. And remember, you're not alone on this journey. Join a community of:
 
 - **100+ million developers** on GitHub
 - **5+ million students** in GitHub Education

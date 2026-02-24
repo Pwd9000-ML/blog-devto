@@ -184,7 +184,7 @@ This dynamic block allows us to create a flexible number of `private_dns_zone_gr
 
 ## Scenario 4: Conditional Azure Virtual Network Subnets
 
-Suppose you are managing an Azure Virtual Network that needs to support multiple subnets. Each subnet has specific requirements and might only be necessary under certain conditions — driven by environment types, features toggling, or specific compliance needs.
+Suppose you are managing an Azure Virtual Network that needs to support multiple subnets. Each subnet has specific requirements and might only be necessary under certain conditions. This could be driven by environment types, features toggling, or specific compliance needs.
 
 Here's how you can use dynamic blocks with a condition to selectively create subnets:
 
@@ -241,7 +241,7 @@ Using this pattern, you can fine-tune your Terraform configurations to respond d
 
 ### _Author_
 
-Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-l-61b0a96b/)
+Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
 
 {% user pwd9000 %}
 
