@@ -6,6 +6,7 @@ tags: 'githubcopilot, github, devops, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-Skills-DevOps/assets/main.png'
 id: 3281741
 series: GitHub Copilot
+date: '2026-02-24T16:35:29Z'
 ---
 
 ## GitHub Copilot Skills: Reusable AI Workflows for DevOps and SREs
