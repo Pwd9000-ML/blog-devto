@@ -58,7 +58,7 @@ def pick_weighted_style(rnd: random.Random) -> str:
     return rnd.choices(styles, weights=weights, k=1)[0]
 
 
-def find_font(size: int) -> ImageFont.FreeTypeFont:
+def find_font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
     for candidate in FONT_CANDIDATES:
         path = Path(candidate)
         if path.exists():
@@ -70,10 +70,8 @@ def find_font(size: int) -> ImageFont.FreeTypeFont:
 
 
 def measure(draw: ImageDraw.ImageDraw, text: str, font) -> tuple[int, int]:
-    if hasattr(draw, 'textbbox'):
-        left, top, right, bottom = draw.textbbox((0, 0), text, font=font)
-        return right - left, bottom - top
-    return draw.textsize(text, font=font)
+    left, top, right, bottom = draw.textbbox((0, 0), text, font=font)
+    return int(right - left), int(bottom - top)
 
 
 def wrap_text(draw: ImageDraw.ImageDraw, text: str, font, max_width: int) -> list[str]:
