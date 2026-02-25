@@ -66,7 +66,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **24/02/2026** | [GitHub Copilot Skills: Reusable AI Workflows for DevOps and SREs](https://dev.to/pwd9000) | Content | GitHub, Copilot, DevOps | GitHub, GitHubCopilot, DevOps, AI |
+| **24/02/2026** | [GitHub Copilot Skills: Reusable AI Workflows for DevOps and SREs](https://dev.to/pwd9000/github-copilot-skills-reusable-ai-workflows-for-devops-and-sres-caf) | Content | GitHub, Copilot, DevOps | GitHub, GitHubCopilot, DevOps, AI |
 | **16/02/2026** | [GitHub Copilot SDK - Build AI-Powered DevOps Agents for Your Own Apps](https://dev.to/pwd9000/github-copilot-sdk-build-ai-powered-devops-agents-for-your-own-apps-3d05) | Content | GitHub, Copilot, DevOps | GitHub, GitHubCopilot, DevOps, AI |
 | **14/02/2026** | [Using GitHub Copilot Coding Agent for DevOps Automation](https://dev.to/pwd9000/using-github-copilot-coding-agent-for-devops-automation-3f43) | Content | GitHub, Copilot, DevOps | GitHub, GitHubCopilot, DevOps, automation |
 | **10/02/2026** | [GitHub Copilot Bootcamp: A Free Training Curriculum to Master AI-Powered Development](https://dev.to/pwd9000/github-copilot-bootcamp-a-free-4-week-training-curriculum-to-master-ai-powered-development-h5b) | Content | GitHub, Copilot, AI | GitHub, GitHubCopilot, Tutorial, AI |
