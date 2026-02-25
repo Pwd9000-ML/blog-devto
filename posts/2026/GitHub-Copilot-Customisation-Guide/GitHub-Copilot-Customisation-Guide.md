@@ -63,12 +63,12 @@ Use custom instructions when you want Copilot to behave consistently without rep
 - Instructions can also be shared at GitHub **organisation level**, so every repository in the org inherits a common baseline.
 - Priority order when conflicts occur: personal (user-level) > repository > organisation.
 
-### Use when
+### Suitale Usage Examples
 
-- You want all Terraform suggestions to follow your naming model.
-- You want British English and documentation style consistency.
-- You want secure defaults, such as private networking first in cloud IaC.
-- You work with multiple AI agents and want a single `AGENTS.md` recognised by all of them.
+- You want all IaC suggestions to follow your team's naming and tagging conventions, e.g. every resource must include `environment` and `cost-centre` tags.
+- You want consistent code style across the repo, e.g. British English in comments, four-space indentation, or a preferred import order.
+- You want secure defaults baked into every suggestion, e.g. private endpoints by default, no public IPs without justification, secrets always pulled from a vault.
+- You work with multiple AI agents and want a single `AGENTS.md` recognised by all of them, so rules are defined once and shared.
 
 ### Do not use when
 
@@ -87,7 +87,7 @@ Use custom instructions when you want Copilot to behave consistently without rep
 
 ### DevOps example
 
-"For Azure Terraform, always use least privilege, avoid hardcoded secrets, and follow approved resource naming conventions."
+"For all cloud IaC, always use least privilege, avoid hardcoded secrets, and follow approved resource naming conventions."
 
 For a deeper walkthrough, see my earlier post: [Instructions and Prompt Files to supercharge VS Code with GitHub Copilot](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2025/DevAIOps-Inst-GitHub/DevAIOps-Inst-GitHub.md)
 
@@ -107,12 +107,12 @@ Prompt files are reusable slash commands for recurring tasks.
 - Support built-in variables such as `${selection}`, `${file}`, and `${input:variableName}` for dynamic context.
 - Can reference a custom agent via the `agent` field, inheriting that agent's tool set.
 
-### Use when
+### Suitale Usage Examples
 
-- You want `/terraform-security-review`.
-- You want `/generate-module` with consistent output.
-- You want `/release-notes` that always follows a fixed format.
-- You want to override the default agent for a specific task by setting `agent: plan` in the frontmatter.
+- You want a quick `/security-review` command that scans the current file for common misconfigurations such as open ports or missing encryption.
+- You want `/generate-module` to scaffold a new IaC module with consistent structure, inputs, outputs, and documentation every time.
+- You want `/release-notes` that always follows a fixed changelog format, pulling context from recent commits.
+- You want to override the default agent for a specific task by setting `agent: plan` in the frontmatter, e.g. a `/design-review` prompt that runs inside a planning-only agent.
 
 ### Do not use when
 
@@ -141,12 +141,12 @@ Custom Agents were previously known as custom chat modes.
 - Can run as **subagents** and can also be reused in **background agents** and **cloud agents**.
 - Can be shared at **GitHub organisation level**, so every repo in the org gets the same agent definitions.
 
-### Use when
+### Suitale Usage Examples
 
-- You want a **Security Reviewer** agent with read-focused tools.
-- You want a **Planner** agent that outputs an implementation plan and then hands off to an **Implementation** agent.
-- You want strict tool boundaries, for example an agent that can read but never edit.
-- You need a guided multi-step workflow where each stage has a different persona and tool set.
+- You want a **Security Reviewer** agent that can only read code and run linters but never edit files, e.g. a pre-merge review step that flags risks without changing anything.
+- You want a **Planner** agent that outputs a structured implementation plan and then hands off to an **Implementation** agent, giving the team a review checkpoint before code is written.
+- You want strict tool boundaries, e.g. an **Auditor** agent with access to cloud cost APIs and read-only file tools, but no ability to execute commands or apply changes.
+- You need a guided multi-step workflow where each stage has a different persona and tool set, such as Design > Build > Test.
 
 ### Do not use when
 
@@ -174,12 +174,12 @@ Skills are where things get interesting for SRE and DevOps teams.
 - Loaded progressively: Copilot reads name and description first, loads full instructions only when relevant, and accesses bundled resources on demand.
 - **Portable**: Skills follow the open [Agent Skills standard](https://agentskills.io/). The same skill works across VS Code, GitHub Copilot CLI, and the GitHub Copilot coding agent.
 
-### Use when
+### Suitale Usage Examples
 
-- You want repeatable incident triage workflows.
-- You want a postmortem assistant with structured outputs.
-- You want a reusable CI/CD troubleshooting playbook for the team.
-- You want **cross-tool portability** so the same workflow works in VS Code, the CLI, and the coding agent.
+- You want a repeatable incident triage workflow that walks through impact assessment, timeline capture, and owner assignment using a bundled template.
+- You want a postmortem assistant that generates a structured report with root-cause analysis, action items, and SLA impact, pulling from scripts and examples in the skill folder.
+- You want a CI/CD troubleshooting playbook the whole team can invoke, e.g. a skill that runs diagnostic scripts against a failed pipeline and suggests fixes.
+- You want **cross-tool portability** so the same workflow works in VS Code, the CLI, and the coding agent without maintaining separate definitions.
 
 ### Do not use when
 
@@ -212,11 +212,11 @@ MCP is often the missing piece when people expect Copilot to access live externa
   - **MCP Apps**: Interactive UI components such as forms and visualisations rendered directly in chat.
 - Organisations can centrally manage MCP server access via GitHub policies.
 
-### Use when
+### Suitale Usage Examples
 
-- You need GitHub API actions from chat.
-- You need live cloud metadata.
-- You need external system context, not only local repository context.
+- You need live GitHub data inside chat, e.g. listing open issues, checking workflow run status, or creating a PR directly from a conversation.
+- You need live cloud metadata, e.g. pulling resource tags, SKU availability, or cost estimates from Azure, AWS, or GCP during an architecture review.
+- You need external system context such as querying a database, pulling monitoring dashboards, or fetching ticket details from a service management tool.
 
 ### Do not use when
 
@@ -226,7 +226,7 @@ MCP is often the missing piece when people expect Copilot to access live externa
 
 ### DevOps example
 
-Use GitHub MCP to create issues and inspect workflow runs, then use an Azure-compatible MCP server to pull environment metadata for triage context.
+Use GitHub MCP to create issues and inspect workflow runs, then use a cloud-compatible MCP server to pull environment metadata for triage context.
 
 My earlier MCP setup guide: [Supercharge VSCode GitHub Copilot using Model Context Protocol (MCP) - Easy Setup Guide](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2025/DevAIOps-MCP-GitHub/DevAIOps-MCP-GitHub.md)
 
@@ -247,12 +247,12 @@ If instructions are advice, hooks are enforcement.
 - Hooks receive detailed JSON input about the agent's actions, enabling context-aware automation.
 - Work with both the **Copilot coding agent** on GitHub and **GitHub Copilot CLI**.
 
-### Use when
+### Suitale Usage Examples
 
-- You need a hard control, not a recommendation.
-- You must block risky operations unless a condition passes (e.g. deny `bash` commands that touch production databases).
-- You need consistent compliance checks before agent actions proceed.
-- You want audit logging of every tool invocation for compliance.
+- You need a hard control, not a recommendation, e.g. blocking any file edit that adds a public IP to IaC without an approved exception.
+- You must block risky operations unless a condition passes, e.g. deny `bash` commands that target production databases or delete cloud resource groups.
+- You need consistent compliance checks before agent actions proceed, e.g. validating that every new service deployment includes a required cost tag.
+- You want immutable audit logging of every tool invocation for regulatory or internal compliance, e.g. recording who ran what command and when.
 
 ### Do not use when
 
@@ -295,10 +295,10 @@ The key insight is that each primitive has a different **lifetime** and **trigge
 
 Walk through these questions in order. Pick the **first** match:
 
-1. Do you need a rule applied to **every** chat request without anyone remembering to activate it? Use **Instructions**.
-2. Do you need a **named, repeatable** task that people invoke on demand? Use a **Prompt File**.
-3. Do you need a **specialist persona** with a limited set of tools, or a **multi-step handoff** workflow? Use a **Custom Agent**.
-4. Do you need a **reusable multi-step runbook** with scripts, templates, or reference files bundled together? Use a **Skill**.
+1. Do you need a rule applied to **every** chat request without anyone remembering to activate it? **Instructions**.
+2. Do you need a **named, repeatable** task that people invoke on demand? **Prompt File**.
+3. Do you need a **specialist persona** with a limited set of tools, or a **multi-step handoff** workflow? **Custom Agent**.
+4. Do you need a **reusable multi-step runbook** with scripts, templates, or reference files bundled together? **Skill**.
 5. Does the task require **live data from an external system** (GitHub API, cloud metadata, databases)? Add **MCP**.
 6. Must a policy be **enforced deterministically** with no chance the model ignores it? Add a **Hook**.
 
@@ -310,10 +310,10 @@ Notice that 1 to 4 are "pick one" decisions, while 5 and 6 are additive layers y
 
 A practical stack for a platform engineering team might be:
 
-- **Instructions**: Workspace-level `copilot-instructions.md` for coding and security defaults. Scoped `*.instructions.md` files for Terraform, Bicep, and pipeline YAML conventions.
+- **Instructions**: Workspace-level `copilot-instructions.md` for coding and security defaults. Scoped `*.instructions.md` files for IaC, pipeline YAML, and language-specific conventions.
 - **Prompt files**: 5 to 10 prompt files for common operational tasks such as `/security-review`, `/release-notes`, `/changelog`, and `/generate-module`.
 - **Custom agents**: 2 to 3 agents (planning, implementation, security review) connected via handoffs so the team flows from plan to code to review in one conversation.
-- **Skills**: 3 to 6 skills for triage, postmortems, runbook generation, and Terraform change risk analysis. These work the same in VS Code, the CLI, and the coding agent.
+- **Skills**: 3 to 6 skills for triage, postmortems, runbook generation, and IaC change risk analysis. These work the same in VS Code, the CLI, and the coding agent.
 - **MCP servers**: GitHub MCP for issue and PR management, plus cloud-context MCP servers for pulling live environment metadata during triage.
 - **Hooks**: `preToolUse` hooks to block dangerous commands and `postToolUse` hooks for audit logging in autonomous coding agent workflows.
 
