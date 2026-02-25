@@ -47,10 +47,13 @@ posts/<year>/<slug>/
 Run the cover image generator:
 
 ```bash
-python scripts/cover_matrix.py --title "<Title>" --subtitle "<Subtitle>" --output "posts/<year>/<slug>/assets/main.png"
+python scripts/cover_creative.py --title "<Title>" --subtitle "<Subtitle>" --output "posts/<year>/<slug>/assets/main.png"
 ```
 
 - Output must be `assets/main.png` at 1000×420 pixels.
+- Default behaviour is weighted random style selection to keep covers varied and creative.
+- Optional: set a specific style when requested with `--style mesh-gradient|blueprint|duotone-noise|sunset-waves|minimal-paper|neon-grid|aurora-mist|retro-terminal|geometric-collage`.
+- Optional: set `--seed <number>` for repeatable output during refinement.
 - If Python or Pillow is unavailable, create the `assets/` folder and note the cover must be added manually.
 
 ## Step 4: Populate the Markdown File
