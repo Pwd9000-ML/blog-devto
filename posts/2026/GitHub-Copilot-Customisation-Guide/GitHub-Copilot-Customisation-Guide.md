@@ -1,12 +1,12 @@
 ---
-title: 'GitHub Copilot Instructions vs Prompts vs Custom Agents vs Skills vs X vs WHY?'
+title: GitHub Copilot Instructions vs Prompts vs Custom Agents vs Skills vs X vs WHY?
 published: false
 description: 'Confused about GitHub Copilot customisation? Compare Instructions, Prompts, Custom Agents, Skills, MCP, and Hooks with practical use cases.'
 tags: 'githubcopilot, github, devops, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-Customisation-Guide/assets/main.png'
 canonical_url: null
-id: null
-series: 'GitHub Copilot'
+id: 3285059
+series: GitHub Copilot
 date: '2026-02-25T15:10:00Z'
 ---
 
