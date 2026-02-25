@@ -60,7 +60,7 @@ Use custom instructions when you want Copilot to behave consistently without rep
   - **Global**: `.github/copilot-instructions.md` applies to every chat request in the workspace.
   - **File/task-targeted**: `*.instructions.md` files with an `applyTo` glob pattern or task description match. Store them in `.github/instructions/`.
   - **Multi-agent compatible**: `AGENTS.md` in the workspace root is recognised by multiple AI agents (not only Copilot). Supports subfolder-level scoping for monorepos (experimental).
-- Instructions can also be shared at GitHub **organisation level**, so every repository in the org inherits a common baseline.
+- Instructions can also be shared at GitHub **organisation level**, so every repository in the org inherits a common baseline. (**Note:** Organisation-level instructions require a Copilot Business or Enterprise plan.)
 - Priority order when conflicts occur: personal (user-level) > repository > organisation.
 
 ### Suitale Usage Examples
@@ -138,8 +138,8 @@ Custom Agents were previously known as custom chat modes.
 - Define a specialist persona, instructions, allowed tools, and optional **handoffs**.
 - Designed for role-specific flows such as planning, review, or implementation.
 - **Handoffs** let you chain agents into guided workflows. After one agent finishes, a handoff button appears to transition to the next agent with pre-filled context. For example: Plan > Implement > Review.
-- Can run as **subagents** and can also be reused in **background agents** and **cloud agents**.
-- Can be shared at **GitHub organisation level**, so every repo in the org gets the same agent definitions.
+- Can run as **subagents** and can also be reused in **background agents** and **cloud agents**. (**Note:** The coding agent requires a Copilot Pro+, Business, or Enterprise plan.)
+- Can be shared at **GitHub organisation level**, so every repo in the org gets the same agent definitions. (**Note:** Organisation-level agent sharing requires a Copilot Business or Enterprise plan.)
 
 ### Suitale Usage Examples
 
@@ -210,7 +210,7 @@ MCP is often the missing piece when people expect Copilot to access live externa
   - **Resources**: Data the agent can pull into context (e.g. files, API responses, database rows).
   - **Prompts**: Pre-configured prompt templates contributed by the server.
   - **MCP Apps**: Interactive UI components such as forms and visualisations rendered directly in chat.
-- Organisations can centrally manage MCP server access via GitHub policies.
+- Organisations can centrally manage MCP server access via GitHub policies. (**Note:** Organisation-level MCP policy management requires a Copilot Business or Enterprise plan.)
 
 ### Suitale Usage Examples
 
@@ -245,7 +245,7 @@ If instructions are advice, hooks are enforcement.
 - Available hook types include: `sessionStart`, `sessionEnd`, `userPromptSubmitted`, `preToolUse`, `postToolUse`, `agentStop`, `subagentStop`, and `errorOccurred`.
 - The `preToolUse` hook is the most powerful because it can **approve or deny** tool executions before they happen.
 - Hooks receive detailed JSON input about the agent's actions, enabling context-aware automation.
-- Work with both the **Copilot coding agent** on GitHub and **GitHub Copilot CLI**.
+- Work with both the **Copilot coding agent** on GitHub and **GitHub Copilot CLI**. (**Note:** The coding agent and CLI require a Copilot Pro+, Business, or Enterprise plan.)
 
 ### Suitale Usage Examples
 
