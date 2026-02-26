@@ -1,13 +1,12 @@
 ---
 title: GitHub Copilot Instructions vs Prompts vs Custom Agents vs Skills vs X vs WHY?
-published: false
+published: true
 description: 'Confused about GitHub Copilot customisation? Compare Instructions, Prompts, Custom Agents, Skills, MCP, and Hooks with practical use cases.'
 tags: 'githubcopilot, github, devops, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-Customisation-Guide/assets/main.png'
 canonical_url: null
 id: 3285059
 series: GitHub Copilot
-date: '2026-02-25T15:10:00Z'
 ---
 
 ## GitHub Copilot Instructions vs Prompts vs Custom Agents vs Skills vs X vs WHY?
@@ -342,4 +341,4 @@ That is the difference between experimenting with Copilot and operationalising C
 
 Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
 
-Date: 25-02-2026
+Date: 26-02-2026
