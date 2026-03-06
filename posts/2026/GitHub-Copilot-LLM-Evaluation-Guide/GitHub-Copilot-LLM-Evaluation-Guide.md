@@ -137,13 +137,29 @@ Do not show model names to reviewers during scoring.
 
 ### Step 4: Add Cost-Performance Scoring
 
-A simple method:
+Quality alone is not enough to pick a model. A model that scores slightly higher but costs several times more per request may not be worth it for everyday tasks. Adding a cost dimension keeps your evaluation grounded.
+
+**Where to find cost data.** GitHub publishes premium request multipliers for each model in the Copilot docs. These multipliers tell you how many premium requests a single interaction with that model consumes relative to the baseline. Use this as your cost proxy.
+
+- Premium request costs: <https://docs.github.com/en/copilot/managing-copilot/monitoring-usage-and-entitlements/about-premium-requests>
+
+**Calculate a value score.** Divide your average quality score by the model's premium multiplier:
 
 $$
-\text{Value Score} = \frac{\text{Average Quality Score}}{\text{Effective Request Cost}}
+\text{Value Score} = \frac{\text{Average Quality Score}}{\text{Premium Multiplier}}
 $$
 
-Where effective request cost can use Copilot premium multipliers as a practical proxy. This stops teams selecting a high-cost model when a lower-cost model delivers near-equivalent quality for the task.
+**Worked example.** Suppose three models score as follows after your blind evaluation:
+
+| Model | Avg quality (1-5) | Premium multiplier | Value score |
+| --- | --- | --- | --- |
+| Model A | 4.4 | 1x | 4.4 / 1 = **4.4** |
+| Model B | 4.7 | 3x | 4.7 / 3 = **1.57** |
+| Model C | 4.1 | 0.33x | 4.1 / 0.33 = **12.42** |
+
+Model B scores highest on raw quality, but its value score is the lowest because each request costs three times the baseline. Model C delivers almost the same quality at a fraction of the cost, making it the best value pick for lightweight tasks.
+
+**When to ignore the value score.** Cost efficiency matters most for high-volume, routine tasks. For critical debugging or architecture decisions where correctness has outsized impact, pick the highest quality model regardless of cost. Use the value score as a guide, not a rule.
 
 ---
 
@@ -249,14 +265,52 @@ deepeval test run test_copilot_eval.py
 
 #### 4. Interpret results
 
-DeepEval scores each test case on a 0 to 1 scale against your criteria. You can:
+When you run the evaluation, DeepEval produces terminal output similar to the following:
 
-- Run the same test cases with responses from different Copilot models.
-- Compare pass rates and metric scores across models.
+```text
+Running 2 test(s)...
+
+  test_workflow_fix
+    ✅ Correctness (score: 0.82, threshold: 0.5, passed: True)
+
+  test_terraform_refactor
+    ✅ Maintainability (score: 0.71, threshold: 0.5, passed: True)
+
+======================= Results =======================
+Tests run: 2, Passed: 2, Failed: 0
+Overall pass rate: 100.0%
+
+Metric scores:
+  Correctness       avg: 0.82   min: 0.82   max: 0.82
+  Maintainability   avg: 0.71   min: 0.71   max: 0.71
+=======================================================
+```
+
+Each test case is scored on a 0 to 1 scale against your criteria. A score above the threshold you set counts as a pass. If a test fails, the output shows the reason so you can see where the model response fell short:
+
+```text
+  test_workflow_fix
+    ❌ Correctness (score: 0.34, threshold: 0.5, passed: False)
+       Reason: The response did not identify the OIDC audience
+       mismatch as the root cause and suggested unrelated
+       permission changes instead.
+```
+
+To compare models, run the same test file once per model (swapping in each model's responses for `actual_output`) and record the results side by side:
+
+| Test case | Metric | Model A | Model B | Model C |
+| --- | --- | --- | --- | --- |
+| test_workflow_fix | Correctness | 0.82 | 0.91 | 0.64 |
+| test_terraform_refactor | Maintainability | 0.71 | 0.78 | 0.69 |
+| **Overall pass rate** | | 100% | 100% | 50% |
+
+This gives you a quantitative basis for model comparison that you can track over time. You can also:
+
 - Add multiple metrics per test (correctness, security, maintainability).
-- Integrate tests into your CI/CD pipeline for regression checks.
+- Integrate tests into your CI/CD pipeline for regression checks when new models are released.
+- Export results to JSON for further analysis or dashboard reporting.
 
-You can define custom `GEval` metrics for each dimension in your scoring rubric, giving you automated scoring that aligns with your team's specific criteria.
+Define custom `GEval` metrics for each dimension in your scoring rubric to get automated scoring that aligns with your team's specific criteria.
 
 ### Other Free Tools Worth Knowing
 
