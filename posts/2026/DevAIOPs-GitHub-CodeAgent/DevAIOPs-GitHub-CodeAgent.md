@@ -12,6 +12,10 @@ date: '2026-02-14T14:27:20Z'
 
 ## Using GitHub Copilot Coding Agent for DevOps Automation
 
+[![As featured in Azure Spring Clean 2026](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/DevAIOPs-GitHub-CodeAgent/assets/SC_26.png)](https://www.azurespringclean.com/)
+
+> **As featured in [Azure Spring Clean 2026](https://www.azurespringclean.com/)**
+
 What if you could assign a GitHub Issue to an AI teammate and come back to a ready-to-review pull request? That is exactly what [GitHub Copilot Coding Agent](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent) does. It works autonomously inside an ephemeral GitHub Actions environment, analyses your codebase, makes changes, runs tests, and opens a PR for your approval.
 
 In this post we will look at how the coding agent works, how to set it up for a DevOps repository, and walk through six practical use cases you can try straight away.
