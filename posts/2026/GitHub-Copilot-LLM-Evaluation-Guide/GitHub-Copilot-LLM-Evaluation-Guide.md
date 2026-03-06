@@ -7,7 +7,6 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 3316494
 series: GitHub Copilot
-date: '2026-03-06T12:00:00Z'
 ---
 
 ## Evaluating LLM Models in GitHub Copilot. A Practical Scoring and Assessment Guide
