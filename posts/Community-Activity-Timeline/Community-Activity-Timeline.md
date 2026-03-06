@@ -67,7 +67,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **06/03/2026** | [Evaluating LLM Models in GitHub Copilot. A Practical Scoring and Assessment Guide](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2026/GitHub-Copilot-LLM-Evaluation-Guide/GitHub-Copilot-LLM-Evaluation-Guide.md) | Content | GitHub, Copilot, AI | GitHub, GitHubCopilot, AI, Tutorial |
+| **06/03/2026** | [Evaluating LLM Models in GitHub Copilot. A Practical Scoring and Assessment Guide](https://dev.to/pwd9000/evaluating-llm-models-in-github-copilot-a-practical-scoring-and-assessment-guide-1f23) | Content | GitHub, Copilot, AI | GitHub, GitHubCopilot, AI, Tutorial |
 | **26/02/2026** | [GitHub Copilot Instructions vs Prompts vs Custom Agents vs Skills vs X vs WHY?](https://dev.to/pwd9000/github-copilot-instructions-vs-prompts-vs-custom-agents-vs-skills-vs-x-vs-why-339l) | Content | GitHub, Copilot, DevOps | GitHub, GitHubCopilot, DevOps, AI |
 | **24/02/2026** | [GitHub Copilot Skills: Reusable AI Workflows for DevOps and SREs](https://dev.to/pwd9000/github-copilot-skills-reusable-ai-workflows-for-devops-and-sres-caf) | Content | GitHub, Copilot, DevOps | GitHub, GitHubCopilot, DevOps, AI |
 | **16/02/2026** | [GitHub Copilot SDK - Build AI-Powered DevOps Agents for Your Own Apps](https://dev.to/pwd9000/github-copilot-sdk-build-ai-powered-devops-agents-for-your-own-apps-3d05) | Content | GitHub, Copilot, DevOps | GitHub, GitHubCopilot, DevOps, AI |
