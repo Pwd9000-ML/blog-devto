@@ -1,11 +1,11 @@
 ---
 title: Evaluating LLM Models in GitHub Copilot. A Practical Scoring and Assessment Guide
 published: false
-description: 'A hands-on guide to evaluating and scoring the LLM models available in GitHub Copilot for your workflows.'
+description: A hands-on guide to evaluating and scoring the LLM models available in GitHub Copilot for your workflows.
 tags: 'github, githubcopilot, ai, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-LLM-Evaluation-Guide/assets/main.png'
 canonical_url: null
-id: null
+id: 3316494
 series: GitHub Copilot
 date: '2026-03-06T12:00:00Z'
 ---
