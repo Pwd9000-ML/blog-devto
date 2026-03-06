@@ -145,17 +145,15 @@ Quality alone is not enough to pick a model. A model that scores slightly higher
 
 **Calculate a value score.** Divide your average quality score by the model's premium multiplier:
 
-$$
-\text{Value Score} = \frac{\text{Average Quality Score}}{\text{Premium Multiplier}}
-$$
+**Value Score = Average Quality Score / Premium Multiplier**
 
 **Worked example.** Suppose three models score as follows after your blind evaluation:
 
-| Model | Avg quality (1-5) | Premium multiplier | Value score |
-| --- | --- | --- | --- |
-| Model A | 4.4 | 1x | 4.4 / 1 = **4.4** |
-| Model B | 4.7 | 3x | 4.7 / 3 = **1.57** |
-| Model C | 4.1 | 0.33x | 4.1 / 0.33 = **12.42** |
+| Model   | Avg quality (1-5) | Premium multiplier | Value score            |
+| ------- | ----------------- | ------------------ | ---------------------- |
+| Model A | 4.4               | 1x                 | 4.4 / 1 = **4.4**      |
+| Model B | 4.7               | 3x                 | 4.7 / 3 = **1.57**     |
+| Model C | 4.1               | 0.33x              | 4.1 / 0.33 = **12.42** |
 
 Model B scores highest on raw quality, but its value score is the lowest because each request costs three times the baseline. Model C delivers almost the same quality at a fraction of the cost, making it the best value pick for lightweight tasks.
 
@@ -298,11 +296,11 @@ Each test case is scored on a 0 to 1 scale against your criteria. A score above 
 
 To compare models, run the same test file once per model (swapping in each model's responses for `actual_output`) and record the results side by side:
 
-| Test case | Metric | Model A | Model B | Model C |
-| --- | --- | --- | --- | --- |
-| test_workflow_fix | Correctness | 0.82 | 0.91 | 0.64 |
-| test_terraform_refactor | Maintainability | 0.71 | 0.78 | 0.69 |
-| **Overall pass rate** | | 100% | 100% | 50% |
+| Test case               | Metric          | Model A | Model B | Model C |
+| ----------------------- | --------------- | ------- | ------- | ------- |
+| test_workflow_fix       | Correctness     | 0.82    | 0.91    | 0.64    |
+| test_terraform_refactor | Maintainability | 0.71    | 0.78    | 0.69    |
+| **Overall pass rate**   |                 | 100%    | 100%    | 50%     |
 
 This gives you a quantitative basis for model comparison that you can track over time. You can also:
 
