@@ -147,67 +147,123 @@ Where effective request cost can use Copilot premium multipliers as a practical 
 
 ---
 
-## Hands-On Example with promptfoo
+## Practical Ways to Run Your Own Evaluation
 
-If you want repeatable side-by-side model evaluation, promptfoo is a practical choice.
+There are several free approaches you can use depending on your team size and automation needs. Here are two that work well with GitHub Copilot.
 
-- Website: <https://www.promptfoo.dev/>
-- GitHub: <https://github.com/promptfoo/promptfoo>
+### Option A: Manual Side-by-Side Comparison in Copilot Chat
 
-### 1. Install
+The simplest method is to use GitHub Copilot Chat directly. No extra tooling required.
+
+1. Open Copilot Chat in VS Code and select your first model.
+2. Run a prompt from your evaluation set and capture the response.
+3. Switch to the next model using the model picker and run the same prompt.
+4. Score each response using your rubric and record the results.
+
+A simple markdown table works well for tracking:
+
+```markdown
+| Prompt | Model A | Model B | Model C | Notes |
+| --- | --- | --- | --- | --- |
+| Fix failing workflow | 4 | 5 | 3 | B caught root cause immediately |
+| Refactor Terraform | 3 | 4 | 4 | A missed a variable dependency |
+| Generate Pester tests | 5 | 4 | 3 | A covered more edge cases |
+```
+
+This approach works best for:
+
+- Individual contributors evaluating models for their own workflow.
+- Small teams running a quick monthly check.
+- Getting started before investing in automation.
+
+Tips for a fair manual comparison:
+
+- Use the exact same prompt text for each model.
+- Do not reveal the model name to the scorer if more than one person is reviewing.
+- Record latency (how long you waited) alongside quality scores.
+
+### Option B: Automated Evaluation with DeepEval
+
+If you want repeatable, scriptable evaluation that integrates with CI/CD, DeepEval is a practical open-source choice. It uses pytest-style test cases and supports custom scoring criteria via an LLM-as-a-judge approach.
+
+- Website: <https://deepeval.com/>
+- GitHub: <https://github.com/confident-ai/deepeval>
+
+#### 1. Install
 
 ```bash
-npm install -g promptfoo
+pip install -U deepeval
 ```
 
-### 2. Create `promptfooconfig.yaml`
+#### 2. Create a test file
 
-```yaml
-description: copilot-model-evaluation
+Create `test_copilot_eval.py` with test cases that match your evaluation scenarios:
 
-prompts:
-  - 'Given this GitHub Actions error log, identify root cause and provide a fix.'
-  - 'Refactor this Terraform snippet to reduce duplication while preserving behaviour.'
-  - 'Generate Pester tests for this PowerShell function with edge cases.'
+```python
+import pytest
+from deepeval import assert_test
+from deepeval.metrics import GEval
+from deepeval.test_case import LLMTestCase, LLMTestCaseParams
 
-providers:
-  - id: openai:gpt-5-mini
-  - id: anthropic:claude-sonnet-4-6
-  - id: google:gemini-3-pro
 
-tests:
-  - vars:
-      log_snippet: 'Error: OIDC token audience invalid'
-    assert:
-      - type: llm-rubric
-        value: 'Response must identify likely root cause and provide secure remediation steps.'
-      - type: contains
-        value: 'least privilege'
+correctness = GEval(
+    name="Correctness",
+    criteria="The response must correctly identify the root cause and provide a secure, working fix.",
+    evaluation_params=[
+        LLMTestCaseParams.ACTUAL_OUTPUT,
+        LLMTestCaseParams.EXPECTED_OUTPUT,
+    ],
+    threshold=0.5,
+)
 
-  - vars:
-      iac_snippet: 'resource duplication example'
-    assert:
-      - type: llm-rubric
-        value: 'Output should preserve intent and improve maintainability.'
+maintainability = GEval(
+    name="Maintainability",
+    criteria="The response must produce clear, readable, and well-structured code.",
+    evaluation_params=[LLMTestCaseParams.ACTUAL_OUTPUT],
+    threshold=0.5,
+)
+
+
+def test_workflow_fix():
+    test_case = LLMTestCase(
+        input="Given this GitHub Actions error: 'OIDC token audience invalid', identify root cause and fix.",
+        actual_output="<paste model response here>",
+        expected_output="The OIDC token audience must match the value configured in your identity provider. Update the audience field in your federated identity settings.",
+    )
+    assert_test(test_case, [correctness])
+
+
+def test_terraform_refactor():
+    test_case = LLMTestCase(
+        input="Refactor this Terraform snippet to reduce duplication while preserving behaviour.",
+        actual_output="<paste model response here>",
+    )
+    assert_test(test_case, [maintainability])
 ```
 
-### 3. Run Evaluation
+#### 3. Run the evaluation
 
 ```bash
-promptfoo eval
-promptfoo view
+deepeval test run test_copilot_eval.py
 ```
 
-### 4. Interpret Results
+#### 4. Interpret results
 
-Look at:
+DeepEval scores each test case on a 0 to 1 scale against your criteria. You can:
 
-- pass rates for assertions
-- rubric scores across prompts
-- failure patterns by task type
-- cost and latency trends per model
+- Run the same test cases with responses from different Copilot models.
+- Compare pass rates and metric scores across models.
+- Add multiple metrics per test (correctness, security, maintainability).
+- Integrate tests into your CI/CD pipeline for regression checks.
 
-Tip: if you want lower-cost local experiments, you can run additional evaluations against local models (for example via Ollama) for baseline comparisons.
+You can define custom `GEval` metrics for each dimension in your scoring rubric, giving you automated scoring that aligns with your team's specific criteria.
+
+### Other Free Tools Worth Knowing
+
+A few other open-source options are available if you want to explore further:
+
+- **OpenAI Evals** (<https://github.com/openai/evals>): a framework and registry of benchmarks for evaluating LLMs and LLM systems. Good for standardised benchmark testing.
+- **LM Evaluation Harness** (<https://github.com/EleutherAI/lm-evaluation-harness>): the backend behind the Hugging Face Open LLM Leaderboard. Supports 60+ academic benchmarks with API model support. Best suited for formal benchmark comparisons.
 
 ---
 
@@ -243,9 +299,9 @@ Start with a small prompt set, apply a consistent scoring rubric, and review qua
 - Supported AI models in Copilot: <https://docs.github.com/en/copilot/reference/ai-models/supported-models>
 - AI model comparison in Copilot: <https://docs.github.com/en/copilot/reference/ai-models/model-comparison>
 - Changing model in Copilot Chat: <https://docs.github.com/en/copilot/using-github-copilot/ai-models/changing-the-ai-model-for-copilot-chat>
-- Promptfoo docs: <https://www.promptfoo.dev/>
+- DeepEval docs: <https://deepeval.com/docs/getting-started>
+- DeepEval GitHub: <https://github.com/confident-ai/deepeval>
 - OpenAI Evals: <https://github.com/openai/evals>
-- DeepEval: <https://github.com/confident-ai/deepeval>
 - LM Evaluation Harness: <https://github.com/EleutherAI/lm-evaluation-harness>
 
 ### _Author_
