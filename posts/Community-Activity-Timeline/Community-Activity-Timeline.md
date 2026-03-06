@@ -27,13 +27,13 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 | Year  | Speaking | Content | Open Source | Events |
 | ----- | -------- | ------- | ----------- | ------ |
-| 2026  | 1        | 7       | 1           | 0      |
+| 2026  | 2        | 7       | 1           | 0      |
 | 2025  | 9        | 8       | 1           | 4      |
 | 2024  | 5        | 10      | 3           | 3      |
 | 2023  | 6        | 10      | 8           | 3      |
 | 2022  | 15       | 38      | 9           | 1      |
 | 2021  | 1        | 22      | 2           | 0      |
-| Total | 37       | 94      | 23          | 11     |
+| Total | 38       | 94      | 23          | 11     |
 
 - **Speaking**: Conference talks, user groups, Meetups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
 - **Content**: Blogs, articles, videos, podcasts (all published content pieces).
@@ -61,6 +61,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
 | **09/03/2026** | [Azure Spring Clean 2026 - Using GitHub Copilot Coding Agent for DevOps Automation](https://dev.to/pwd9000/using-github-copilot-coding-agent-for-devops-automation-3f43) | Speaking | Azure, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
+| **17/04/2026** | [Global Azure London 2026 - GitHub Copilot CLI](https://globalazure.net/) | Speaking | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
 
 ## 🚀 2026 Highlights 🚀
 
