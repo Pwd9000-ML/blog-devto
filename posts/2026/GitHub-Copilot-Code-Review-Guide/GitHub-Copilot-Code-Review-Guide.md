@@ -149,7 +149,12 @@ Copilot posts its findings as inline comments with suggested changes that you ca
 
 ### Configuring Review Instructions
 
-You can customise what Copilot looks for during VS Code reviews using two settings:
+You can customise what Copilot looks for during VS Code reviews using two settings. These live in your VS Code `settings.json` file. To open it:
+
+1. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on macOS) and run **Preferences: Open Settings (JSON)**.
+2. For workspace-level settings shared with your team, create `.vscode/settings.json` in your repository root.
+
+Add or update the following:
 
 ```jsonc
 {
