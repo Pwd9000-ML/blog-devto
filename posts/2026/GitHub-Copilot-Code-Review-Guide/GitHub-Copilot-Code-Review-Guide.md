@@ -121,7 +121,7 @@ At the **organisation level**, administrators can enable or enforce code review 
 - **Context window**: Very large PRs may exceed the context window. Copilot reviews what it can and notes when it could not review all files.
 - **Not a replacement for human review**: Copilot catches mechanical issues brilliantly but does not understand your business domain. It is a first pass, not the final word.
 
-> **Tip:** You can work around the language support limitation by pairing Copilot with an advanced reasoning model (such as `Claude Opus` or `Gemini 3.1 Pro` in extended thinking mode) or a custom agent that has access to online sources via MCP web tooling or Playwright. For example, create a `.agent.md` reviewer that uses a web search tool to look up the latest best practices, idioms, or security advisories for a less common language. The agent can research real time strategies, verify its findings against up to date documentation, and cite the references it used so you can check them yourself. This is especially useful for newer frameworks or niche languages where the model's training data may be limited. See [Section 5: Custom Agents](#5-custom-agents-for-code-reviews) and [Section 6: MCP-Powered PR Review](#6-mcp-powered-pr-reviews) later in this guide for setup details.
+> **Tip:** You can work around the language support limitation by pairing Copilot with an advanced reasoning model (such as `Claude Opus` or `Gemini 3 Pro` in extended thinking mode) or a custom agent that has access to online sources via MCP web tooling or Playwright. For example, create a `.agent.md` reviewer that uses a web search tool to look up the latest best practices, idioms, or security advisories for a less common language. The agent can research real time strategies, verify its findings against up to date documentation, and cite the references it used so you can check them yourself. This is especially useful for newer frameworks or niche languages where the model's training data may be limited. See [Section 5: Custom Agents](#5-custom-agents-for-code-reviews) and [Section 6: MCP-Powered PR Review](#6-mcp-powered-pr-reviews) later in this guide for setup details.
 
 > Official docs: [GitHub Copilot code review](https://docs.github.com/en/copilot/using-github-copilot/code-review/using-copilot-code-review)
 
@@ -598,7 +598,7 @@ Let us walk through a realistic review workflow that combines multiple surfaces.
 Before the PR even exists, the developer reviews their own changes locally:
 
 ```bash
-git diff --staged | gh copilot explain "Review these changes for security issues, particularly around user input handling and database access"
+copilot -p "Review my staged changes for security issues, particularly around user input handling and database access" --allow-tool='shell(git)'
 ```
 
 Copilot flags that the email field is not validated and the SQL query uses string interpolation. The developer fixes both before pushing.
