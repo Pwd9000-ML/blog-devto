@@ -51,6 +51,8 @@ This is the highest-leverage surface for teams. Copilot acts as an automated rev
 
 You can also configure Copilot to **automatically review every PR** when it is opened or updated, so you never have to remember to request it.
 
+![Selecting Copilot as a reviewer](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-Code-Review-Guide/assets/pr-review-select-copilot.png)
+
 ### What Feedback Looks Like
 
 Copilot's review comments appear inline on the PR diff. Each comment includes:
@@ -65,6 +67,8 @@ Comments cover categories such as:
 - **Security concerns** (injection risks, hardcoded secrets, missing input validation).
 - **Performance issues** (unnecessary allocations, N+1 queries, blocking calls in async code).
 - **Best practice violations** (deprecated APIs, missing error handling, inconsistent patterns).
+
+![Copilot inline review comment with suggested fix](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-Code-Review-Guide/assets/pr-review-comment.png)
 
 ### Custom Coding Guidelines
 
@@ -132,6 +136,14 @@ If GitHub.com native review is the "PR-level" surface, VS Code review selection 
 3. Alternatively, open the Command Palette (`Ctrl+Shift+P`) and run **GitHub Copilot: Review and Comment**.
 
 Copilot analyses the selected code and posts its findings directly as editor comments, inline in your code.
+
+You can also trigger a review of all uncommitted changes directly from the **Source Control** panel.
+
+![VS Code Source Control review button](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-Code-Review-Guide/assets/vscode-source-control-review.png)
+
+Copilot posts its findings as inline comments with suggested changes that you can apply or discard with a single click.
+
+![VS Code Copilot review comment with suggested change](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-Code-Review-Guide/assets/vscode-review-suggestion.png)
 
 ### Configuring Review Instructions
 
