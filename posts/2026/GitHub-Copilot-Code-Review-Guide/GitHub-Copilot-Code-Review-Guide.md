@@ -16,7 +16,7 @@ What if you could get an AI-powered first pass on every pull request before a hu
 
 GitHub Copilot offers not one but **eight distinct surfaces** for AI-assisted code review. This guide maps every one of them, shows you how to configure each for maximum value, and walks through a real end-to-end review workflow that combines several surfaces together.
 
-If you have been following the [GitHub Copilot series](https://dev.to/pwd9000/series/34048), you have already seen individual pieces of this puzzle across previous posts on [custom instructions](https://dev.to/pwd9000/instructions-and-prompt-files-to-supercharge-vs-code-with-github-copilot-h13), [MCP](https://dev.to/pwd9000/supercharge-vscode-github-copilot-using-model-context-protocol-mcp-easy-setup-guide-58cb), [the coding agent](https://dev.to/pwd9000/using-github-copilot-coding-agent-for-devops-automation-2g2p), and the [customisation guide](https://dev.to/pwd9000/github-copilot-instructions-vs-prompts-vs-custom-agents-vs-skills-vs-x-vs-why-4l7l). This post brings everything together through the lens of code review.
+If you have been following the [GitHub Copilot series](https://dev.to/pwd9000/series/34048), you have already seen individual pieces of this puzzle across previous posts on [custom instructions](https://dev.to/pwd9000/supercharge-vscode-github-copilot-using-instructions-and-prompt-files-2p5e), [MCP](https://dev.to/pwd9000/supercharge-vscode-github-copilot-using-model-context-protocol-mcp-easy-setup-guide-371e), [the coding agent](https://dev.to/pwd9000/using-github-copilot-coding-agent-for-devops-automation-3f43), and the [customisation guide](https://dev.to/pwd9000/github-copilot-instructions-vs-prompts-vs-custom-agents-vs-skills-vs-x-vs-why-339l). This post brings everything together through the lens of code review.
 
 ---
 
@@ -178,7 +178,7 @@ This keeps your review criteria version-controlled and consistent across the tea
 - **Learning**: Understand unfamiliar code by asking Copilot to review and explain it.
 - **Pre-PR polish**: Catch issues before they reach the formal review stage.
 
-> For a deeper dive into VS Code Copilot settings, see my earlier post: [Tune GitHub Copilot Settings in VS Code](https://dev.to/pwd9000/tune-github-copilot-settings-in-vs-code-bgd)
+> For a deeper dive into VS Code Copilot settings, see my earlier post: [Tune GitHub Copilot Settings in VS Code](https://dev.to/pwd9000/tune-github-copilot-settings-in-vs-code-32kp)
 
 ---
 
@@ -243,7 +243,7 @@ When you use Copilot to review code, either via VS Code review selection, chat, 
 
 This is the foundation layer. The other surfaces (prompt files, agents, MCP) build on top of it.
 
-> For a full walkthrough, see: [Instructions and Prompt Files to supercharge VS Code with GitHub Copilot](https://dev.to/pwd9000/instructions-and-prompt-files-to-supercharge-vs-code-with-github-copilot-h13)
+> For a full walkthrough, see: [Instructions and Prompt Files to supercharge VS Code with GitHub Copilot](https://dev.to/pwd9000/supercharge-vscode-github-copilot-using-instructions-and-prompt-files-2p5e)
 
 ---
 
@@ -301,7 +301,7 @@ Here are additional prompt files you might create:
 
 Each prompt file becomes a slash command in VS Code chat. Your team builds a library of review plays that anyone can run.
 
-> For more on prompt files, see: [GitHub Copilot Instructions vs Prompts vs Custom Agents vs Skills vs X vs WHY?](https://dev.to/pwd9000/github-copilot-instructions-vs-prompts-vs-custom-agents-vs-skills-vs-x-vs-why-4l7l)
+> For more on prompt files, see: [GitHub Copilot Instructions vs Prompts vs Custom Agents vs Skills vs X vs WHY?](https://dev.to/pwd9000/github-copilot-instructions-vs-prompts-vs-custom-agents-vs-skills-vs-x-vs-why-339l)
 
 ---
 
@@ -369,7 +369,7 @@ Switch to the `security-reviewer` agent in VS Code chat. Everything you ask is f
 
 You can create different review agents for different concerns: `architecture-reviewer.agent.md`, `performance-reviewer.agent.md`, `accessibility-reviewer.agent.md`, each with its own checklist and tool set.
 
-> For a deeper look at custom agents: [GitHub Copilot Instructions vs Prompts vs Custom Agents vs Skills vs X vs WHY?](https://dev.to/pwd9000/github-copilot-instructions-vs-prompts-vs-custom-agents-vs-skills-vs-x-vs-why-4l7l)
+> For a deeper look at custom agents: [GitHub Copilot Instructions vs Prompts vs Custom Agents vs Skills vs X vs WHY?](https://dev.to/pwd9000/github-copilot-instructions-vs-prompts-vs-custom-agents-vs-skills-vs-x-vs-why-339l)
 
 ---
 
@@ -379,7 +379,7 @@ The [Model Context Protocol (MCP)](https://docs.github.com/en/copilot/customizin
 
 ### Setting Up the GitHub MCP Server
 
-If you followed my earlier post on [MCP setup](https://dev.to/pwd9000/supercharge-vscode-github-copilot-using-model-context-protocol-mcp-easy-setup-guide-58cb), you already have this configured. The GitHub MCP server provides tools such as:
+If you followed my earlier post on [MCP setup](https://dev.to/pwd9000/supercharge-vscode-github-copilot-using-model-context-protocol-mcp-easy-setup-guide-371e), you already have this configured. The GitHub MCP server provides tools such as:
 
 - `get_pull_request` to fetch PR metadata and description.
 - `get_pull_request_diff` to retrieve the actual code changes.
@@ -427,7 +427,7 @@ Without MCP, Copilot in VS Code only sees the files open in your editor. With MC
 
 This turns VS Code chat into a full PR review workstation.
 
-> For MCP setup details, see: [Supercharge VSCode GitHub Copilot using MCP](https://dev.to/pwd9000/supercharge-vscode-github-copilot-using-model-context-protocol-mcp-easy-setup-guide-58cb)
+> For MCP setup details, see: [Supercharge VSCode GitHub Copilot using MCP](https://dev.to/pwd9000/supercharge-vscode-github-copilot-using-model-context-protocol-mcp-easy-setup-guide-371e)
 
 ---
 
@@ -484,7 +484,7 @@ The coding agent handles the mechanical work so that human reviewers can focus o
 - It runs in an isolated container, so it cannot affect your production environment.
 - One task, one PR. Complex reviews may need to be broken into separate issues.
 
-> For full setup and use cases, see: [Using GitHub Copilot Coding Agent for DevOps Automation](https://dev.to/pwd9000/using-github-copilot-coding-agent-for-devops-automation-2g2p)
+> For full setup and use cases, see: [Using GitHub Copilot Coding Agent for DevOps Automation](https://dev.to/pwd9000/using-github-copilot-coding-agent-for-devops-automation-3f43)
 
 ---
 
@@ -529,7 +529,7 @@ git diff main..feature/auth-refactor | gh copilot explain "Review these changes 
 
 The CLI review is lightweight and fast. It does not have the structured output of prompt files or agents, but it is the fastest path from "I changed something" to "is this okay?"
 
-> For CLI setup and more examples, see: [GitHub Copilot CLI: A DevOps Engineer's Practical Guide](https://dev.to/pwd9000/github-copilot-cli-a-devops-engineers-practical-guide-to-ai-powered-terminal-automation-3ob3)
+> For CLI setup and more examples, see: [GitHub Copilot CLI: A DevOps Engineer's Practical Guide](https://dev.to/pwd9000/github-copilot-cli-a-devops-engineers-practical-guide-to-ai-powered-terminal-automation-1jh0)
 
 ---
 
