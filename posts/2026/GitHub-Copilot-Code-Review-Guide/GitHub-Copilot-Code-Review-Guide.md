@@ -4,7 +4,7 @@ published: false
 description: 'Master AI-assisted code reviews with GitHub Copilot across 8 surfaces, from GitHub.com native review to custom agents and CLI.'
 tags: 'githubcopilot, ai, tutorial, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-Code-Review-Guide/assets/main.png'
-id: null
+id: 3346895
 series: GitHub Copilot
 ---
 
