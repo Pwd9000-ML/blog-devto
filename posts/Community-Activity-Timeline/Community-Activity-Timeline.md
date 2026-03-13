@@ -60,13 +60,14 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **09/03/2026** | [Azure Spring Clean 2026 - Using GitHub Copilot Coding Agent for DevOps Automation](https://dev.to/pwd9000/using-github-copilot-coding-agent-for-devops-automation-3f43) | Speaking | Azure, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
 | **17/04/2026** | [Global Azure London 2026 - GitHub Copilot CLI](https://globalazure.net/) | Speaking | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
+| **29/04/2026** | [GitHub Copilot Dev Days - Brighton](https://www.meetup.com/devops-github-conf-brighton/events/313681050/) | Event | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
 
 ## 🚀 2026 Highlights 🚀
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **10/03/2026** | [Azure Spring Clean 2026 - Using GitHub Copilot Coding Agent for DevOps Automation](https://www.azurespringclean.com/) | Speaking | Azure, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
 | **06/03/2026** | [Evaluating LLM Models in GitHub Copilot. A Practical Scoring and Assessment Guide](https://dev.to/pwd9000/evaluating-llm-models-in-github-copilot-a-practical-scoring-and-assessment-guide-1f23) | Content | GitHub, Copilot, AI | GitHub, GitHubCopilot, AI, Tutorial |
 | **26/02/2026** | [GitHub Copilot Instructions vs Prompts vs Custom Agents vs Skills vs X vs WHY?](https://dev.to/pwd9000/github-copilot-instructions-vs-prompts-vs-custom-agents-vs-skills-vs-x-vs-why-339l) | Content | GitHub, Copilot, DevOps | GitHub, GitHubCopilot, DevOps, AI |
 | **24/02/2026** | [GitHub Copilot Skills: Reusable AI Workflows for DevOps and SREs](https://dev.to/pwd9000/github-copilot-skills-reusable-ai-workflows-for-devops-and-sres-caf) | Content | GitHub, Copilot, DevOps | GitHub, GitHubCopilot, DevOps, AI |
