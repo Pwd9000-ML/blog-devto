@@ -33,7 +33,7 @@ Before we dive into each method, here is the landscape at a glance. Every surfac
 | 5 | **Custom Agents** | VS Code | Specialised review roles | `.agent.md` files | Medium |
 | 6 | **MCP-Powered PR Review** | VS Code | Deep PR analysis with live context | MCP server config | Medium |
 | 7 | **Coding Agent** | GitHub Actions | Fully automated review tasks | Coding agent enabled | High |
-| 8 | **Copilot CLI** | Terminal | Pre-commit local checks | GitHub CLI + Copilot ext | Low |
+| 8 | **Copilot CLI** | Terminal | Pre-commit local checks | Copilot CLI installed | Low |
 
 The rest of this guide walks through each surface in detail, then ties them together in a worked example.
 
@@ -509,20 +509,26 @@ The coding agent handles the mechanical work so that human reviewers can focus o
 
 ## 8. Copilot CLI for Local Reviews
 
-The GitHub CLI with Copilot extension brings code review to your terminal. This is perfect for reviewing changes before you commit or push.
+[GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli) is a standalone terminal agent that replaces the retired `gh copilot` extension. You invoke it with the `copilot` command. It can read files, run shell commands, and interact with GitHub, making it ideal for reviewing changes before you commit or push.
 
 ### Quick Local Review
 
-Review your staged changes before committing:
+Start an interactive session and ask Copilot to review your staged changes:
 
 ```bash
-git diff --staged | gh copilot explain "Review these changes for bugs, security issues, and style problems"
+copilot
 ```
 
-Or review all changes since the last commit:
+Then type your review prompt:
+
+```
+Review my staged changes for bugs, security issues, and style problems
+```
+
+Or use the programmatic interface for a one-shot review:
 
 ```bash
-git diff | gh copilot explain "Analyse these code changes and flag any concerns"
+copilot -p "Review my staged changes for bugs, security issues, and style problems" --allow-tool='shell(git)'
 ```
 
 ### Targeted Reviews
@@ -530,13 +536,19 @@ git diff | gh copilot explain "Analyse these code changes and flag any concerns"
 Review a specific file:
 
 ```bash
-gh copilot explain "Review this file for security vulnerabilities" < src/auth/login.ts
+copilot -p "Review src/auth/login.ts for security vulnerabilities" --allow-tool='shell(cat)'
 ```
 
 Review changes between branches:
 
 ```bash
-git diff main..feature/auth-refactor | gh copilot explain "Review these changes focusing on authentication security"
+copilot -p "Review the changes between main and feature/auth-refactor, focusing on authentication security" --allow-tool='shell(git)'
+```
+
+Check the changes in a pull request directly from the terminal:
+
+```bash
+copilot -p "Check the changes made in PR #42. Report any serious errors you find" --allow-tool='shell(gh)'
 ```
 
 ### When to Use CLI Reviews
@@ -546,7 +558,7 @@ git diff main..feature/auth-refactor | gh copilot explain "Review these changes 
 - **CI integration**: Add a review step to your pipeline that flags issues early.
 - **Remote work**: Review code on a server where you only have terminal access.
 
-The CLI review is lightweight and fast. It does not have the structured output of prompt files or agents, but it is the fastest path from "I changed something" to "is this okay?"
+The CLI is a full agentic experience. It can read your codebase, run shell commands, and even create pull requests. For review purposes, use `--allow-tool='shell(git)'` to give it read access to your Git history without granting broader permissions.
 
 > For CLI setup and more examples, see: [GitHub Copilot CLI: A DevOps Engineer's Practical Guide](https://dev.to/pwd9000/github-copilot-cli-a-devops-engineers-practical-guide-to-ai-powered-terminal-automation-1jh0)
 
@@ -565,7 +577,7 @@ Use this table to pick the right review surface for your situation:
 | **Custom Agents** | VS Code | Specialised roles | Medium (agent config) | On-demand | Medium (shared via repo) |
 | **MCP PR Review** | VS Code | Deep PR analysis | Medium (server setup) | On-demand | High (can post to PR) |
 | **Coding Agent** | GitHub | Automated fixes | Low (already enabled) | High (issue-driven) | High (creates PRs) |
-| **Copilot CLI** | Terminal | Pre-commit checks | Low (CLI install) | Manual/scriptable | Low (local only) |
+| **Copilot CLI** | Terminal | Pre-commit checks | Low (install `copilot`) | Manual/scriptable | Low (local only) |
 
 ### Choosing Your Starting Point
 
