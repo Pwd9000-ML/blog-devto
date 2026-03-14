@@ -28,12 +28,12 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 | Year  | Speaking | Content | Open Source | Events | Year Total |
 | ----- | -------- | ------- | ----------- | ------ | ----- |
 | 2026  | 2        | 9       | 1           | 1      | 13    |
-| 2025  | 9        | 8       | 1           | 4      | 22    |
+| 2025  | 9        | 9       | 1           | 4      | 23    |
 | 2024  | 5        | 10      | 3           | 3      | 21    |
 | 2023  | 6        | 10      | 8           | 3      | 27    |
 | 2022  | 15       | 38      | 9           | 1      | 63    |
 | 2021  | 1        | 22      | 2           | 0      | 25    |
-| Grand Totals | 38       | 97      | 24          | 12     | 171   |
+| Grand Totals | 38       | 98      | 24          | 12     | 172   |
 
 - **Speaking**: Conference talks, user groups, Meetups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
 - **Content**: Blogs, articles, videos, podcasts (all published content pieces).
@@ -83,6 +83,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **19/11/2025** | [Microsoft Ignite 2025 for Devs & DevOps: My Top Announcements](https://dev.to/pwd9000/microsoft-ignite-2025-for-devs-devops-my-top-announcements-4f6i) | Content | Azure, GitHub, DevOps | Azure, DevOps, GitHub, GitHubCopilot |
 | **12/11/2025** | [Managing GitHub Copilot & VS Code Settings Across Teams](https://dev.to/pwd9000/managing-github-copilot-vs-code-settings-across-teams-1phj) | Content | GitHub, Copilot | Copilot, GitHubCopilot, VSCode, DevOps |
 | **05/11/2025** | [Tune GitHub Copilot Settings in VS Code](https://dev.to/pwd9000/tune-github-copilot-settings-in-vs-code-32kp) | Content | GitHub, Copilot | Copilot, GitHubCopilot, GitHub, tutorial |
 | **29/10/2025** | [Custom AI Agents with GitHub Copilot in VS Code](https://www.youtube.com/watch?v=hY1v3yaaA1c) | Content | GitHub, Copilot | Video, Tutorial, GitHubCopilot, VSCode |
