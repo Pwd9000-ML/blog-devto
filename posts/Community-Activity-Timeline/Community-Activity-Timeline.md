@@ -27,13 +27,13 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 | Year  | Speaking | Content | Open Source | Events | Year Total |
 | ----- | -------- | ------- | ----------- | ------ | ----- |
-| 2026  | 2        | 9       | 1           | 1      | 13    |
+| 2026  | 2        | 9       | 1           | 2      | 14    |
 | 2025  | 9        | 9       | 1           | 4      | 23    |
 | 2024  | 5        | 10      | 3           | 3      | 21    |
 | 2023  | 6        | 10      | 8           | 3      | 27    |
 | 2022  | 15       | 38      | 9           | 1      | 63    |
 | 2021  | 1        | 22      | 2           | 0      | 25    |
-| Grand Totals | 38       | 98      | 24          | 12     | 172   |
+| Grand Totals | 38       | 98      | 24          | 13     | 173   |
 
 - **Speaking**: Conference talks, user groups, Meetups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
 - **Content**: Blogs, articles, videos, podcasts (all published content pieces).
@@ -62,6 +62,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 | --- | --- | --- | --- | --- |
 | **17/04/2026** | [Global Azure London 2026 - GitHub Copilot CLI](https://globalazure.net/) | Speaking | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
 | **29/04/2026** | [GitHub Copilot Dev Days - Brighton](https://www.meetup.com/devops-github-conf-brighton/events/313681050/) | Event | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
+| **06/05/2026** | [GitHub Copilot Modernise Legacy Code - Brighton](https://www.meetup.com/devops-github-conf-brighton/events/313783699/) | Event | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
 
 ## 🚀 2026 Highlights 🚀
 
