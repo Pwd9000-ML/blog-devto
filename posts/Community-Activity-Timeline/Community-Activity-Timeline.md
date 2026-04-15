@@ -27,13 +27,13 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 | Year         | Speaking | Content | Open Source | Events | Year Total |
 | ------------ | -------- | ------- | ----------- | ------ | ---------- |
-| 2026         | 2        | 9       | 1           | 2      | 14         |
+| 2026         | 2        | 10      | 1           | 2      | 15         |
 | 2025         | 9        | 9       | 1           | 4      | 23         |
 | 2024         | 5        | 10      | 3           | 3      | 21         |
 | 2023         | 6        | 10      | 8           | 3      | 27         |
 | 2022         | 15       | 38      | 9           | 1      | 63         |
 | 2021         | 1        | 22      | 2           | 0      | 25         |
-| Grand Totals | 38       | 98      | 24          | 13     | 173        |
+| Grand Totals | 38       | 99      | 24          | 13     | 174        |
 
 - **Speaking**: Conference talks, user groups, Meetups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
 - **Content**: Blogs, articles, videos, podcasts (all published content pieces).
@@ -60,7 +60,6 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **17/04/2026** | [Global Azure London 2026 - GitHub Copilot CLI](https://globalazure.net/) | Speaking | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
 | **29/04/2026** | [GitHub Copilot Dev Days - Brighton](https://www.meetup.com/devops-github-conf-brighton/events/313681050/) | Event | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
 | **06/05/2026** | [GitHub Copilot Modernise Legacy Code - Brighton](https://www.meetup.com/devops-github-conf-brighton/events/313783699/) | Event | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
 
@@ -68,6 +67,8 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **17/04/2026** | [Global Azure London 2026 - GitHub Copilot CLI](https://globalazure.net/) | Speaking | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
+| **15/04/2026** | Steer GitHub Copilot CLI Sessions Remotely from Any Device | Content | GitHub, Copilot, CLI | GitHubCopilot, AI, Tutorial, DevOps |
 | **13/03/2026** | [Mastering Code Reviews with GitHub Copilot: The Definitive Guide](https://dev.to/pwd9000/mastering-code-reviews-with-github-copilot-the-definitive-guide-3nfp) | Content | GitHub, Copilot, AI | GitHubCopilot, AI, Tutorial, DevOps |
 | **10/03/2026** | [Azure Spring Clean 2026 - Using GitHub Copilot Coding Agent for DevOps Automation](https://www.azurespringclean.com/) | Speaking | Azure, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
 | **06/03/2026** | [Evaluating LLM Models in GitHub Copilot. A Practical Scoring and Assessment Guide](https://dev.to/pwd9000/evaluating-llm-models-in-github-copilot-a-practical-scoring-and-assessment-guide-1f23) | Content | GitHub, Copilot, AI | GitHub, GitHubCopilot, AI, Tutorial |
