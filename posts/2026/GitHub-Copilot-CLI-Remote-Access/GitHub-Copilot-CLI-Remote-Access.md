@@ -5,9 +5,8 @@ description: 'Start a Copilot CLI session on your workstation, then monitor and 
 tags: 'githubcopilot, ai, tutorial, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-CLI-Remote-Access/assets/main.png'
 canonical_url: null
-id: 3505297
+id: null
 series: GitHub Copilot - CLI
-date: '2026-04-15T10:00:00Z'
 ---
 
 ## Steer GitHub Copilot CLI Sessions Remotely from Any Device
