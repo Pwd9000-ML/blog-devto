@@ -1,6 +1,6 @@
 ---
 title: Steer GitHub Copilot CLI Sessions Remotely from Any Device
-published: false
+published: true
 description: 'Start a Copilot CLI session on your workstation, then monitor and steer it from the browser or your phone.'
 tags: 'githubcopilot, ai, tutorial, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-CLI-Remote-Access/assets/main.png'
@@ -16,7 +16,7 @@ You kick off a complex refactoring task in Copilot CLI, then realise you need to
 
 That changed on 13 April 2026 when GitHub shipped **remote access for Copilot CLI sessions** in public preview. You can now start a session on your workstation and pick it up, monitor it, and steer it from **GitHub.com** or **GitHub Mobile**, all in real time.
 
-If you have been following the [GitHub Copilot series](https://dev.to/pwd9000/series/34048), you will know we have covered the CLI in depth in the [Copilot CLI Practical DevOps Guide](https://dev.to/pwd9000/github-copilot-cli-a-devops-engineers-practical-guide-to-ai-powered-terminal-automation-34kk). This post focuses entirely on the new remote access capability, how to enable it, what you can do with it, and how to make it work smoothly for everyday developer workflows.
+If you have been following the [GitHub Copilot series](https://dev.to/pwd9000/series/38622), you will know we have covered the CLI in depth in the [Copilot CLI Practical DevOps Guide](https://dev.to/pwd9000/github-copilot-cli-a-devops-engineers-practical-guide-to-ai-powered-terminal-automation-1jh0). This post focuses entirely on the new remote access capability, how to enable it, what you can do with it, and how to make it work smoothly for everyday developer workflows.
 
 ---
 
@@ -46,12 +46,6 @@ Make sure you are running the latest version of Copilot CLI. Inside an interacti
 
 ```bash
 /update
-```
-
-Alternatively, update via the GitHub CLI:
-
-```bash
-gh extension upgrade gh-copilot
 ```
 
 ### 2. A GitHub repository
