@@ -4,7 +4,7 @@ published: true
 description: 'A hands-on guide to using GitHub Copilot CLI for DevOps automation, covering infrastructure, CI/CD, troubleshooting, and GitHub operations.'
 tags: 'github, devops, githubcopilot, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/Copilot-CLI-Practical-DevOps-Guide/assets/main.png'
-id: 3202354
+id: 3505297
 series: GitHub Copilot - CLI
 ---
 
