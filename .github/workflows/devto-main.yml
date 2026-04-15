@@ -33,7 +33,7 @@ jobs:
           node-version: 20
 
       - name: Install Dependencies
-        uses: bahmutov/npm-install@v1.11.2
+        uses: bahmutov/npm-install@v1.12.1
 
       - name: Run Prettier Write
         run: yarn prettier:write
@@ -64,7 +64,7 @@ jobs:
           node-version: 20
 
       - name: Install Dependencies
-        uses: bahmutov/npm-install@v1.11.2
+        uses: bahmutov/npm-install@v1.12.1
 
       - name: Publish articles on dev.to
         uses: sinedied/publish-devto@v2
