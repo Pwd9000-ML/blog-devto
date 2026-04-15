@@ -6,7 +6,7 @@ tags: 'github, devops, githubcopilot, automation'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/DevAIOPs-GitHub-CodeAgent/assets/main.png'
 canonical_url: null
 id: 3254797
-series: GitHub Copilot
+series: GitHub Copilot - Automation
 date: '2026-02-14T14:27:20Z'
 ---
 

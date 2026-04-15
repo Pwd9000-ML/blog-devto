@@ -5,7 +5,7 @@ description: 'Learn GitHub Copilot Skills in VS Code: what they are, how to set 
 tags: 'githubcopilot, github, devops, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-Skills-DevOps/assets/main.png'
 id: 3281741
-series: GitHub Copilot
+series: GitHub Copilot - Customisation
 date: '2026-02-24T16:35:29Z'
 ---
 

@@ -5,7 +5,7 @@ description: 'A hands-on guide to using GitHub Copilot CLI for DevOps automation
 tags: 'github, devops, githubcopilot, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/Copilot-CLI-Practical-DevOps-Guide/assets/main.png'
 id: 3202354
-series: GitHub Copilot
+series: GitHub Copilot - CLI
 date: '2026-01-27T18:43:53Z'
 ---
 

@@ -5,7 +5,7 @@ description: 'Explore GitHub Skills as your free, hands-on path from Git beginne
 tags: 'github, githubcopilot, ai, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Skills-Learning-Path/assets/main.png'
 id: 3191980
-series: GitHub Copilot
+series: GitHub Copilot - Learning
 date: '2026-01-23T00:19:05Z'
 ---
 

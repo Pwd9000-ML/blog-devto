@@ -5,7 +5,7 @@ description: 'Master AI-assisted code reviews with GitHub Copilot across 8 surfa
 tags: 'githubcopilot, ai, tutorial, devops'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-Code-Review-Guide/assets/main.png'
 id: 3346895
-series: GitHub Copilot
+series: GitHub Copilot - Automation
 date: '2026-03-13T09:46:56Z'
 ---
 

@@ -5,7 +5,7 @@ description: 'A free, self-paced bootcamp to master GitHub Copilot, from basics 
 tags: 'github, githubcopilot, tutorial, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-Bootcamp/assets/main.png'
 id: 3246239
-series: GitHub Copilot
+series: GitHub Copilot - Learning
 date: '2026-02-10T11:33:29Z'
 ---
 

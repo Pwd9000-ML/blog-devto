@@ -6,7 +6,7 @@ tags: 'githubcopilot, github, devops, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-Customisation-Guide/assets/main.png'
 canonical_url: null
 id: 3285059
-series: GitHub Copilot
+series: GitHub Copilot - Customisation
 date: '2026-02-26T09:09:32Z'
 ---
 

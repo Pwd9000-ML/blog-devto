@@ -6,7 +6,7 @@ tags: 'github, githubcopilot, ai, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-LLM-Evaluation-Guide/assets/main.png'
 canonical_url: null
 id: 3316494
-series: GitHub Copilot
+series: GitHub Copilot - Learning
 date: '2026-03-06T18:12:20Z'
 ---
 

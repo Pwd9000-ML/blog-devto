@@ -5,7 +5,7 @@ description: 'Customise GitHub Copilot for your team by creating instruction fil
 tags: 'githubcopilot, github, tutorial, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-Inst-GitHub/assets/main3.png'
 id: 2620657
-series: GitHub Copilot
+series: GitHub Copilot - Customisation
 date: '2025-06-24T13:07:57Z'
 ---
 

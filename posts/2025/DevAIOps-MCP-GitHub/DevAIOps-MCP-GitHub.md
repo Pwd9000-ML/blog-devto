@@ -5,7 +5,7 @@ description: 'Step-by-step guide to setting up the GitHub MCP server in VS Code 
 tags: 'githubcopilot, github, tutorial, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2025/DevAIOps-MCP-GitHub/assets/main2.png'
 id: 2420334
-series: GitHub Copilot
+series: GitHub Copilot - Customisation
 date: '2025-04-21T11:33:26Z'
 ---
 
