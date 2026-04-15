@@ -68,7 +68,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
 | **17/04/2026** | [Global Azure London 2026 - GitHub Copilot CLI](https://globalazure.net/) | Speaking | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
-| **15/04/2026** | Steer GitHub Copilot CLI Sessions Remotely from Any Device | Content | GitHub, Copilot, CLI | GitHubCopilot, AI, Tutorial, DevOps |
+| **15/04/2026** | [Steer GitHub Copilot CLI Sessions Remotely from Any Device](https://dev.to/pwd9000/steer-github-copilot-cli-sessions-remotely-from-any-device-3mee) | Content | GitHub, Copilot, CLI | GitHubCopilot, AI, Tutorial, DevOps |
 | **13/03/2026** | [Mastering Code Reviews with GitHub Copilot: The Definitive Guide](https://dev.to/pwd9000/mastering-code-reviews-with-github-copilot-the-definitive-guide-3nfp) | Content | GitHub, Copilot, AI | GitHubCopilot, AI, Tutorial, DevOps |
 | **10/03/2026** | [Azure Spring Clean 2026 - Using GitHub Copilot Coding Agent for DevOps Automation](https://www.azurespringclean.com/) | Speaking | Azure, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
 | **06/03/2026** | [Evaluating LLM Models in GitHub Copilot. A Practical Scoring and Assessment Guide](https://dev.to/pwd9000/evaluating-llm-models-in-github-copilot-a-practical-scoring-and-assessment-guide-1f23) | Content | GitHub, Copilot, AI | GitHub, GitHubCopilot, AI, Tutorial |
