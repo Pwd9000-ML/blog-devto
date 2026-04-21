@@ -6,6 +6,7 @@ tags: 'githubcopilot, github, devops, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/Agent-Package-Manager-DevOps/assets/main.png'
 canonical_url: null
 series: GitHub Copilot - Customisation
+id: 3532370
 ---
 
 ## Agent Package Manager (APM): A DevOps Guide t Reproducible AI Agents
