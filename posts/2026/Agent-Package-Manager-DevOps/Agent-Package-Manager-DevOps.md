@@ -1,6 +1,6 @@
 ---
 title: 'Agent Package Manager (APM): A DevOps Guide to Reproducible AI Agents'
-published: false
+published: true
 description: 'A DevOps-focused guide to Microsoft APM: install the CLI, pin agent dependencies in apm.yml, and pull plugins from awesome-copilot.'
 tags: 'githubcopilot, github, devops, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/Agent-Package-Manager-DevOps/assets/main.png'
@@ -9,7 +9,7 @@ series: GitHub Copilot - Customisation
 id: 3532370
 ---
 
-## Agent Package Manager (APM): A DevOps Guide t Reproducible AI Agents
+## Agent Package Manager (APM): A DevOps Guide to Reproducible AI Agents
 
 If you have been customising GitHub Copilot, Claude Code, or Cursor for your team, you have probably hit the same wall I did. You spend a weekend crafting the perfect set of instructions, prompts, skills, and chat modes, you commit them to `.github/` and `.claude/`, and then a teammate joins the project and has a totally different agent experience because their config drifted weeks ago.
 
