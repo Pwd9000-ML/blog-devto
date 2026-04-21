@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 series: GitHub Copilot - Customisation
 id: 3532370
+date: '2026-04-21T14:21:12Z'
 ---
 
 ## Agent Package Manager (APM): A DevOps Guide to Reproducible AI Agents
