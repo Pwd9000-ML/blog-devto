@@ -27,13 +27,13 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 | Year         | Speaking | Content | Open Source | Events | Year Total |
 | ------------ | -------- | ------- | ----------- | ------ | ---------- |
-| 2026         | 2        | 10      | 1           | 2      | 15         |
+| 2026         | 2        | 11      | 1           | 2      | 16         |
 | 2025         | 9        | 9       | 1           | 4      | 23         |
 | 2024         | 5        | 10      | 3           | 3      | 21         |
 | 2023         | 6        | 10      | 8           | 3      | 27         |
 | 2022         | 15       | 38      | 9           | 1      | 63         |
 | 2021         | 1        | 22      | 2           | 0      | 25         |
-| Grand Totals | 38       | 99      | 24          | 13     | 174        |
+| Grand Totals | 38       | 100     | 24          | 13     | 175        |
 
 - **Speaking**: Conference talks, user groups, Meetups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
 - **Content**: Blogs, articles, videos, podcasts (all published content pieces).
@@ -67,6 +67,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **21/04/2026** | [Agent Package Manager (APM): A DevOps Guide to Reproducible AI Agents](https://dev.to/pwd9000/agent-package-manager-apm-a-devops-guide-to-reproducible-ai-agents-4c25) | Content | GitHub, Copilot, DevOps | GitHub, GitHubCopilot, DevOps, AI |
 | **17/04/2026** | [Global Azure London 2026 - GitHub Copilot CLI](https://globalazure.net/) | Speaking | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
 | **15/04/2026** | [Steer GitHub Copilot CLI Sessions Remotely from Any Device](https://dev.to/pwd9000/steer-github-copilot-cli-sessions-remotely-from-any-device-3mee) | Content | GitHub, Copilot, CLI | GitHubCopilot, AI, Tutorial, DevOps |
 | **13/03/2026** | [Mastering Code Reviews with GitHub Copilot: The Definitive Guide](https://dev.to/pwd9000/mastering-code-reviews-with-github-copilot-the-definitive-guide-3nfp) | Content | GitHub, Copilot, AI | GitHubCopilot, AI, Tutorial, DevOps |
