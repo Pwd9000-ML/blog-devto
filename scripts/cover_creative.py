@@ -36,6 +36,7 @@ STYLES = (
     'neon-grid',
     'aurora-mist',
     'retro-terminal',
+    'copilot-terminal',
     'geometric-collage',
 )
 
@@ -48,6 +49,7 @@ RANDOM_STYLE_WEIGHTS = {
     'neon-grid': 1.0,
     'aurora-mist': 1.0,
     'retro-terminal': 1.0,
+    'copilot-terminal': 1.0,
     'geometric-collage': 1.0,
 }
 
@@ -434,6 +436,111 @@ def style_retro_terminal(title: str, subtitle: str, output_path: Path, rnd: rand
     img.save(output_path, 'PNG')
 
 
+def style_copilot_terminal(title: str, subtitle: str, output_path: Path, rnd: random.Random) -> None:
+    img = Image.new('RGBA', (WIDTH, HEIGHT), (12, 18, 28, 255))
+    draw = ImageDraw.Draw(img, 'RGBA')
+
+    for y in range(HEIGHT):
+        t = y / max(HEIGHT - 1, 1)
+        r = int(12 + 18 * t)
+        g = int(20 + 44 * t)
+        b = int(28 + 34 * t)
+        draw.line([(0, y), (WIDTH, y)], fill=(r, g, b, 255), width=1)
+
+    for _ in range(3):
+        x1 = rnd.randint(-120, WIDTH - 120)
+        y1 = rnd.randint(-80, HEIGHT - 60)
+        x2 = x1 + rnd.randint(140, 320)
+        y2 = y1 + rnd.randint(90, 200)
+        colour = rnd.choice([(72, 195, 255, 10), (95, 255, 185, 8), (140, 150, 255, 7)])
+        draw.ellipse((x1, y1, x2, y2), fill=colour)
+
+    # Add a soft wash so background accents stay present but much more faded.
+    draw.rectangle((0, 0, WIDTH, HEIGHT), fill=(8, 14, 22, 70))
+
+    terminal_box = (56, 44, WIDTH - 56, HEIGHT - 40)
+    draw.rounded_rectangle(terminal_box, radius=20, fill=(14, 24, 34, 234), outline=(120, 225, 255, 78), width=2)
+
+    top_bar = (56, 44, WIDTH - 56, 82)
+    draw.rounded_rectangle(top_bar, radius=20, fill=(24, 36, 48, 255), outline=(120, 225, 255, 55), width=1)
+    draw.rectangle((56, 62, WIDTH - 56, 82), fill=(24, 36, 48, 255))
+
+    for index, colour in enumerate(((255, 92, 92), (255, 194, 70), (78, 228, 120))):
+        cx = 84 + index * 24
+        cy = 63
+        draw.ellipse((cx - 6, cy - 6, cx + 6, cy + 6), fill=(*colour, 235))
+
+    mono_font = find_font(18)
+    small_font = find_font(16)
+    title_font = find_font(40)
+    subtitle_font = find_font(20)
+
+    prompt_lines = [
+        '$ copilot plugin marketplace list',
+        '$ copilot plugin marketplace browse awesome-copilot',
+        '$ copilot plugin install microsoft-docs@awesome-copilot',
+        '$ copilot plugin list | grep copilot',
+    ]
+    prompt_y = 106
+    for index, line in enumerate(prompt_lines):
+        alpha = 52 if index == 0 else 36
+        draw.text((92, prompt_y), line, font=mono_font, fill=(128, 255, 176, alpha))
+        prompt_y += 22
+
+    ascii_lines = [
+        '+----------------------+ ',
+        '|  copilot-cli ready   |',
+        '|  plugins: enabled    |',
+        '+----------------------+ ',
+    ]
+    ascii_y = 196
+    for line in ascii_lines:
+        draw.text((94, ascii_y), line, font=small_font, fill=(186, 238, 255, 46))
+        ascii_y += 17
+
+    # Soft mask behind the main heading area to separate it from terminal text.
+    centre_mask = Image.new('RGBA', (WIDTH, HEIGHT), (0, 0, 0, 0))
+    mdraw = ImageDraw.Draw(centre_mask, 'RGBA')
+    mdraw.ellipse((170, 130, 830, 380), fill=(8, 18, 30, 122))
+    centre_mask = centre_mask.filter(ImageFilter.GaussianBlur(16))
+    img.alpha_composite(centre_mask)
+
+    title_lines = wrap_text(draw, title, title_font, 700)
+    title_height = sum(measure(draw, line, title_font)[1] for line in title_lines) + max(0, len(title_lines) - 1) * 6
+    subtitle_lines = wrap_text(draw, subtitle, subtitle_font, 760)
+    subtitle_height = sum(measure(draw, line, subtitle_font)[1] for line in subtitle_lines) + max(0, len(subtitle_lines) - 1) * 4
+    total_height = title_height + 16 + subtitle_height
+    y = 154 + max(0, (186 - total_height) // 2)
+
+    for line in title_lines:
+        width, line_height = measure(draw, line, title_font)
+        x = (WIDTH - width) // 2
+        glow = Image.new('RGBA', (WIDTH, HEIGHT), (0, 0, 0, 0))
+        gdraw = ImageDraw.Draw(glow, 'RGBA')
+        gdraw.text((x, y), line, font=title_font, fill=(158, 255, 210, 105))
+        glow = glow.filter(ImageFilter.GaussianBlur(10))
+        img.alpha_composite(glow)
+        draw.text((x + 2, y + 2), line, font=title_font, fill=(0, 0, 0, 150))
+        draw.text((x, y), line, font=title_font, fill=(212, 255, 228, 255))
+        y += line_height + 6
+
+    y += 8
+    for line in subtitle_lines:
+        width, line_height = measure(draw, line, subtitle_font)
+        x = (WIDTH - width) // 2
+        draw.text((x + 1, y + 1), line, font=subtitle_font, fill=(0, 0, 0, 110))
+        draw.text((x, y), line, font=subtitle_font, fill=(202, 242, 226, 245))
+        y += line_height + 4
+
+    footer = 'install  build  share'
+    fw, fh = measure(draw, footer, small_font)
+    draw.rounded_rectangle((WIDTH // 2 - fw // 2 - 14, HEIGHT - 84, WIDTH // 2 + fw // 2 + 14, HEIGHT - 50), radius=14, fill=(16, 26, 36, 215), outline=(120, 225, 255, 52), width=1)
+    draw.text((WIDTH // 2 - fw // 2, HEIGHT - 74), footer, font=small_font, fill=(128, 255, 176, 215))
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    img.save(output_path, 'PNG')
+
+
 def style_geometric_collage(title: str, subtitle: str, output_path: Path, rnd: random.Random) -> None:
     img = Image.new('RGBA', (WIDTH, HEIGHT), (22, 25, 34, 255))
     draw = ImageDraw.Draw(img, 'RGBA')
@@ -499,6 +606,7 @@ def generate_cover(title: str, subtitle: str, output_path: Path, style: str, see
         'neon-grid': style_neon_grid,
         'aurora-mist': style_aurora_mist,
         'retro-terminal': style_retro_terminal,
+        'copilot-terminal': style_copilot_terminal,
         'geometric-collage': style_geometric_collage,
     }
 
