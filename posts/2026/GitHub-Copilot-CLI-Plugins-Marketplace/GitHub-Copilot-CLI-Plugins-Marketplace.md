@@ -18,6 +18,30 @@ Instead of manually copying prompt files, wiring MCP servers, or sharing setup n
 
 > **Quick tip:** if you ever forget a flag, run `copilot plugin --help` or `copilot plugin <subcommand> --help`. The CLI ships its own up to date reference.
 
+### How a plugin reaches your machine
+
+Before diving in, it helps to see the bigger picture. Plugins are not installed at the repository level. They are installed per developer, into the local Copilot CLI folder on each machine. That means every developer chooses which plugins they want, and the Copilot CLI on their machine becomes aware of those agents, skills, hooks, and MCP servers.
+
+```mermaid
+flowchart LR
+    M["Plugin Marketplace<br/>(e.g. awesome-copilot)"]
+    P["Plugin Package<br/>agents · skills · hooks · MCP · LSP"]
+    C["copilot plugin install<br/>(per developer command)"]
+    L["Local Copilot folder<br/>~/.copilot/installed-plugins/"]
+    CLI["Copilot CLI on your machine<br/>loads agents, skills, MCP"]
+
+    M --> P --> C --> L --> CLI
+```
+
+Key things to notice:
+
+- The marketplace hosts the plugin definitions, but nothing is active until a developer installs it.
+- `copilot plugin install` runs locally on a developer's machine, so each engineer ends up with their own set of installed plugins.
+- Installed contents live under the user's home directory at `~/.copilot/installed-plugins/`, which is why two developers on the same repo can have completely different plugin sets.
+- The Copilot CLI on that machine then picks up those installed agents, skills, and MCP servers in future sessions.
+
+If your team wants everyone to use the same set, you do not check the plugin into the repo. Instead, you publish a curated marketplace and ask developers to install from it, or you use enterprise plugin standards (covered later) to enable plugins centrally.
+
 ### Are these the same as GitHub Copilot Extensions?
 
 This is a common point of confusion, so let us clear it up first. GitHub Copilot Extensions and Copilot CLI plugins are different systems.
