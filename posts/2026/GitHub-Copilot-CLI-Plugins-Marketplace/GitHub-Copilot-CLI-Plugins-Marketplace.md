@@ -42,6 +42,8 @@ Key things to notice:
 
 If your team wants everyone to use the same set, you do not check the plugin into the repo. Instead, you publish a curated marketplace and ask developers to install from it, or you use enterprise plugin standards (covered later) to enable plugins centrally.
 
+> **Want central, reproducible management?** If you would rather pin and roll out a consistent set of agents across a team or organisation, instead of relying on each developer to run `copilot plugin install`, take a look at my previous post on the Agent Package Manager (APM): [Agent Package Manager (APM): A DevOps Guide to Reproducible AI Agents](https://dev.to/pwd9000/agent-package-manager-apm-a-devops-guide-to-reproducible-ai-agents-4c25). It complements the per-developer plugin model shown above by adding versioning and reproducibility on top.
+
 ### Are these the same as GitHub Copilot Extensions?
 
 This is a common point of confusion, so let us clear it up first. GitHub Copilot Extensions and Copilot CLI plugins are different systems.
