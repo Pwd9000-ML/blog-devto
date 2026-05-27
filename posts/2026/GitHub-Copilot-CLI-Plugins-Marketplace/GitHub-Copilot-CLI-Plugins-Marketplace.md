@@ -1,13 +1,12 @@
 ---
 title: 'GitHub Copilot CLI Plugins and Marketplaces: Extend Your Terminal Agent'
-published: false
+published: true
 description: 'Learn how GitHub Copilot CLI plugins and marketplaces work, how to install them, and how to build your own.'
 tags: 'githubcopilot, cli, devops, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-CLI-Plugins-Marketplace/assets/main.png'
 canonical_url: null
 id: null
 series: GitHub Copilot - CLI
-date: '2026-05-27T12:55:05Z'
 ---
 
 ## GitHub Copilot CLI Plugins and Marketplaces: Extend Your Terminal Agent
