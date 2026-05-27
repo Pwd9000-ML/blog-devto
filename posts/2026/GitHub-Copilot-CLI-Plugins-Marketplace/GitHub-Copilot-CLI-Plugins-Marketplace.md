@@ -16,8 +16,6 @@ GitHub Copilot CLI already gives you an AI assistant in the terminal. Plugins ma
 
 Instead of manually copying prompt files, wiring MCP servers, or sharing setup notes in a wiki, you can package those capabilities once and install them from a marketplace. In this guide, we will look at how Copilot CLI plugins work, how to find and install them, how marketplaces are structured, and how to build a small plugin of your own.
 
-> This post is based on the GitHub documentation for [finding and installing Copilot CLI plugins](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-finding-installing), the [Copilot CLI plugin reference](https://docs.github.com/en/copilot/reference/cli-plugin-reference), and the docs for [creating plugins](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-creating) and [creating plugin marketplaces](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-marketplace).
-
 ---
 
 ## What Is a Copilot CLI Plugin?
