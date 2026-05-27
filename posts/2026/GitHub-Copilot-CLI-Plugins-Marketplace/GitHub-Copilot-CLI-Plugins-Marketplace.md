@@ -22,15 +22,30 @@ Instead of manually copying prompt files, wiring MCP servers, or sharing setup n
 
 Before diving in, it helps to see the bigger picture. Plugins are not installed at the repository level. They are installed per developer, into the local Copilot CLI folder on each machine. That means every developer chooses which plugins they want, and the Copilot CLI on their machine becomes aware of those agents, skills, hooks, and MCP servers.
 
-```mermaid
-flowchart LR
-    M["Plugin Marketplace<br/>(e.g. awesome-copilot)"]
-    P["Plugin Package<br/>agents · skills · hooks · MCP · LSP"]
-    C["copilot plugin install<br/>(per developer command)"]
-    L["Local Copilot folder<br/>~/.copilot/installed-plugins/"]
-    CLI["Copilot CLI on your machine<br/>loads agents, skills, MCP"]
+```text
+ +-----------------------------+        +--------------------------------+
+ |     Plugin Marketplace      |        |        Plugin Package          |
+ |    (e.g. awesome-copilot)   | -----> |  agents | skills | hooks       |
+ |                             |        |  MCP servers | LSP servers     |
+ +-----------------------------+        +----------------+---------------+
+                                                         |
+                                       copilot plugin install <plugin>
+                                       (run on each developer's machine)
+                                                         |
+                                                         v
+ +-------------------------------------------------------------------+
+ |                      Developer's local machine                    |
+ |                                                                   |
+ |   ~/.copilot/installed-plugins/<marketplace>/<plugin-name>        |
+ |   ~/.copilot/installed-plugins/_direct/<source-id>                |
+ |                              |                                    |
+ |                              v                                    |
+ |              Copilot CLI loads agents, skills, MCP                |
+ +-------------------------------------------------------------------+
 
-    M --> P --> C --> L --> CLI
+   Note: each developer installs independently. Nothing is stored
+   at the repository level, so two engineers on the same repo can
+   have completely different plugin sets active.
 ```
 
 Key things to notice:
