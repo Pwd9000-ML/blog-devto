@@ -16,6 +16,21 @@ GitHub Copilot CLI already gives you an AI assistant in the terminal. Plugins ma
 
 Instead of manually copying prompt files, wiring MCP servers, or sharing setup notes in a wiki, you can package those capabilities once and install them from a marketplace. In this guide, we will look at how Copilot CLI plugins work, how to find and install them, how marketplaces are structured, and how to build a small plugin of your own.
 
+> **Quick tip:** if you ever forget a flag, run `copilot plugin --help` or `copilot plugin <subcommand> --help`. The CLI ships its own up to date reference.
+
+### Are these the same as GitHub Copilot Extensions?
+
+This is a common point of confusion, so let us clear it up first. GitHub Copilot Extensions and Copilot CLI plugins are different systems.
+
+|  | GitHub Copilot Extensions | Copilot CLI plugins |
+| --- | --- | --- |
+| Where they run | VS Code, Visual Studio, JetBrains, github.com | Copilot CLI in your terminal |
+| Distribution | [GitHub Marketplace](https://github.com/marketplace?type=apps&copilot_app=true) (GitHub Apps) | Git-repository based plugin marketplaces |
+| Install command | Install on GitHub.com, enable in the IDE | `copilot plugin install` |
+| What they extend | The Copilot chat experience in IDEs | The Copilot CLI agent, its tools, agents, skills, and MCP servers |
+
+Both extend Copilot, but they are not interchangeable. This post is about the CLI flavour.
+
 ---
 
 ## What Is a Copilot CLI Plugin?
@@ -43,6 +58,21 @@ Direct installs are stored under:
 ```text
 ~/.copilot/installed-plugins/_direct/<source-id>
 ```
+
+> The plugin manifest itself (`plugin.json`) can live in any of these locations inside the plugin repo, checked in this order: `.plugin/plugin.json`, `plugin.json`, `.github/plugin/plugin.json`, or `.claude-plugin/plugin.json`. The last one exists for compatibility with Claude Code plugin layouts.
+
+### Plugins versus manual configuration
+
+You can add custom agents, MCP servers, and skills manually without using a plugin at all. Plugins are simply a better way to distribute those things. The official docs summarise it like this:
+
+| Feature    | Manual configuration in a repository | Plugin                   |
+| ---------- | ------------------------------------ | ------------------------ |
+| Scope      | Single repository                    | Any project              |
+| Sharing    | Manual copy and paste                | `copilot plugin install` |
+| Versioning | Git history                          | Marketplace versions     |
+| Discovery  | Searching repositories               | Marketplace browsing     |
+
+If you find yourself copying the same `agents/` folder into multiple repositories, that is a strong signal it should be a plugin.
 
 ---
 
@@ -182,6 +212,7 @@ Here are a few useful examples from the official and community marketplaces. Alw
 | `spark` | `copilot-plugins` | GitHub Spark integration | `copilot plugin install spark@copilot-plugins` |
 | `azure` | `awesome-copilot` | Azure skills and Azure MCP server integration | `copilot plugin install azure@awesome-copilot` |
 | `microsoft-docs` | `awesome-copilot` | Microsoft Learn documentation through MCP | `copilot plugin install microsoft-docs@awesome-copilot` |
+| `devops-oncall` | `awesome-copilot` | Incident triage chat mode, prompts, and instructions for DevOps on-call work | `copilot plugin install devops-oncall@awesome-copilot` |
 | `dotnet` | `awesome-copilot` | Everyday .NET and C# development skills | `copilot plugin install dotnet@awesome-copilot` |
 | `dotnet-test` | `awesome-copilot` | .NET testing, coverage, and framework-specific test guidance | `copilot plugin install dotnet-test@awesome-copilot` |
 | `chrome-devtools-plugin` | `awesome-copilot` | Chrome DevTools and browser debugging workflows | `copilot plugin install chrome-devtools-plugin@awesome-copilot` |
@@ -399,7 +430,7 @@ For Copilot Business and Enterprise, GitHub documents that MCP server use is con
 
 ### Be careful with tool approvals
 
-Copilot CLI has a tool approval model for actions such as shell commands and file changes. Approving a broad command for the rest of a session can be convenient, but it also increases risk. Keep approval narrow when you are testing a new plugin.
+Copilot CLI has a tool approval model for actions such as shell commands and file changes. Approving a broad command for the rest of a session can be convenient, but it also increases risk. Keep approval narrow when you are testing a new plugin, and avoid running the CLI with `--allow-all-tools` while you are evaluating an untrusted plugin. Use `--allow-tool` for the specific tools you actually need.
 
 ### Prefer reviewed marketplaces
 
