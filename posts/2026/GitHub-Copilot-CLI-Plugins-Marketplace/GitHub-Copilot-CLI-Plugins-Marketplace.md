@@ -5,7 +5,7 @@ description: 'Learn how GitHub Copilot CLI plugins and marketplaces work, how to
 tags: 'githubcopilot, cli, devops, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-CLI-Plugins-Marketplace/assets/main.png'
 canonical_url: null
-id: null
+id: 3764842
 series: GitHub Copilot - CLI
 ---
 
