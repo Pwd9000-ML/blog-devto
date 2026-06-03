@@ -1,6 +1,6 @@
 ---
 title: 'Microsoft Build 2026: Top announcements from a DevOps lens'
-published: false
+published: true
 description: 'A DevOps-focused roundup of the top Microsoft Build 2026 AI, GitHub, Azure, Windows and security announcements.'
 tags: 'azure, devops, ai, github'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/microsoft-build-2026-top-announcements-devops-lens/assets/main.png'
@@ -198,16 +198,6 @@ You do not need to adopt everything at once. I would start with four practical a
 4. Review your platform architecture for AI workloads, especially databases, memory, retrieval, observability, and sandboxed execution.
 
 The most exciting part of Build 2026 is not a single feature. It is that the pieces are starting to connect. For DevOps teams, that creates an opportunity to design AI into the software delivery lifecycle deliberately, rather than letting it arrive as another unmanaged tool.
-
-## Sources
-
-- [Microsoft Build 2026 event media](https://news.microsoft.com/build-2026/)
-- [What's new in Microsoft Foundry at Build 2026](https://devblogs.microsoft.com/foundry/whats-new-in-microsoft-foundry-build-2026/)
-- [GitHub Copilot app: The agent-native desktop experience](https://github.blog/news-insights/product-news/github-copilot-app-the-agent-native-desktop-experience/)
-- [Windows developer announcements at Build 2026](https://blogs.windows.com/windowsdeveloper/?p=57809)
-- [Work IQ APIs for Microsoft 365 agents](https://www.microsoft.com/en-us/microsoft-365/blog/2026/06/02/announcing-the-new-work-iq-apis/)
-- [Building agentic apps with Microsoft Fabric and Microsoft Databases](https://azure.microsoft.com/en-us/blog/microsoft-build-2026-building-agentic-apps-with-microsoft-fabric-and-microsoft-databases/)
-- [Everything Microsoft announced at Microsoft Build 2026 explained](https://www.theneuron.ai/explainer-articles/everything-microsoft-announced-at-microsoft-build-2026-explained/)
 
 ### _Author_
 
