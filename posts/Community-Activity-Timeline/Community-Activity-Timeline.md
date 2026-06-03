@@ -27,13 +27,13 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 | Year         | Speaking | Content | Open Source | Events | Year Total |
 | ------------ | -------- | ------- | ----------- | ------ | ---------- |
-| 2026         | 2        | 12      | 1           | 2      | 17         |
+| 2026         | 2        | 13      | 1           | 2      | 18         |
 | 2025         | 9        | 9       | 1           | 4      | 23         |
 | 2024         | 5        | 10      | 3           | 3      | 21         |
 | 2023         | 6        | 10      | 8           | 3      | 27         |
 | 2022         | 15       | 38      | 9           | 1      | 63         |
 | 2021         | 1        | 22      | 2           | 0      | 25         |
-| Grand Totals | 38       | 101     | 24          | 13     | 176        |
+| Grand Totals | 38       | 102     | 24          | 13     | 177        |
 
 - **Speaking**: Conference talks, user groups, Meetups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
 - **Content**: Blogs, articles, videos, podcasts (all published content pieces).
@@ -66,6 +66,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **03/06/2026** | [Microsoft Build 2026: Top announcements from a DevOps lens](https://dev.to/pwd9000) | Content | Azure, GitHub, DevOps, AI | Azure, DevOps, AI, GitHub |
 | **27/05/2026** | [GitHub Copilot CLI Plugins and Marketplaces: Extend Your Terminal Agent](https://dev.to/pwd9000/github-copilot-cli-plugins-and-marketplaces-extend-your-terminal-agent-16pc) | Content | GitHub, Copilot, CLI | GitHubCopilot, CLI, Tutorial, DevOps |
 | **29/04/2026** | [GitHub Copilot Dev Days - Brighton](https://www.meetup.com/devops-github-conf-brighton/events/313681050/) | Event | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
 | **21/04/2026** | [Agent Package Manager (APM): A DevOps Guide to Reproducible AI Agents](https://dev.to/pwd9000/agent-package-manager-apm-a-devops-guide-to-reproducible-ai-agents-4c25) | Content | GitHub, Copilot, DevOps | GitHub, GitHubCopilot, DevOps, AI |
