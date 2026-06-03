@@ -5,7 +5,7 @@ description: 'A DevOps-focused roundup of the top Microsoft Build 2026 AI, GitHu
 tags: 'azure, devops, ai, github'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/microsoft-build-2026-top-announcements-devops-lens/assets/main.png'
 canonical_url: null
-id: null
+id: 3812721
 series: null
 date: '2026-06-03T16:44:20Z'
 ---
