@@ -66,7 +66,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **03/06/2026** | [Microsoft Build 2026: Top announcements from a DevOps lens](https://dev.to/pwd9000) | Content | Azure, GitHub, DevOps, AI | Azure, DevOps, AI, GitHub |
+| **03/06/2026** | [Microsoft Build 2026: Top announcements from a DevOps lens](https://dev.to/pwd9000/microsoft-build-2026-top-announcements-from-a-devops-lens-419k) | Content | Azure, GitHub, DevOps, AI | Azure, DevOps, AI, GitHub |
 | **27/05/2026** | [GitHub Copilot CLI Plugins and Marketplaces: Extend Your Terminal Agent](https://dev.to/pwd9000/github-copilot-cli-plugins-and-marketplaces-extend-your-terminal-agent-16pc) | Content | GitHub, Copilot, CLI | GitHubCopilot, CLI, Tutorial, DevOps |
 | **29/04/2026** | [GitHub Copilot Dev Days - Brighton](https://www.meetup.com/devops-github-conf-brighton/events/313681050/) | Event | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
 | **21/04/2026** | [Agent Package Manager (APM): A DevOps Guide to Reproducible AI Agents](https://dev.to/pwd9000/agent-package-manager-apm-a-devops-guide-to-reproducible-ai-agents-4c25) | Content | GitHub, Copilot, DevOps | GitHub, GitHubCopilot, DevOps, AI |
