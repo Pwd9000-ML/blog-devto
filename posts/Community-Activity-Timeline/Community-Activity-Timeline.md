@@ -60,7 +60,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **04/06/2026** | [GitHub Copilot Modernise Legacy Code - Brighton](https://www.meetup.com/devops-github-conf-brighton/events/313783699/) | Event | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
+| **TBC** | [GitHub Copilot Modernise Legacy Code - Brighton](https://www.meetup.com/devops-github-conf-brighton/events/313783699/) | Event | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
 
 ## 🚀 2026 Highlights 🚀
 
