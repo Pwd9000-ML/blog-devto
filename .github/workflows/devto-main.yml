@@ -6,6 +6,7 @@ on:
     branches:
       - dev
       - main
+      - 'feature/**'
     paths:
       - 'posts/**/**.md'
       - 'posts/**/**/**.md'
@@ -19,7 +20,7 @@ on:
 
 jobs:
   format_check:
-    if: ${{ (github.event_name == 'push' && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main')) || github.event_name == 'pull_request' }}
+    if: ${{ (github.event_name == 'push' && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/feature/'))) || github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -78,7 +79,7 @@ jobs:
         run: ./scripts/audit_posts.ps1 -ChangedOnly -BaseRef "${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || 'HEAD^' }}" -FailOnIssues
 
       - name: Dry Run Publish to Dev.to
-        if: ${{ github.ref == 'refs/heads/dev' }}
+        if: ${{ github.event_name == 'pull_request' || github.ref == 'refs/heads/dev' || startsWith(github.ref, 'refs/heads/feature/') }}
         uses: sinedied/publish-devto@v2
         with:
           files: 'posts/**/*.md'
