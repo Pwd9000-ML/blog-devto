@@ -1,4 +1,6 @@
-<!-- Choose a more specific template in this folder when the post is a tutorial,
+---
+title: 'TODO: Primary Headline'
+published: false<!-- Choose a more specific template in this folder when the post is a tutorial,
 announcement, or deep dive. Keep this adaptable fallback for other formats. -->
 
 id: null series: null date: 'YYYY-MM-DDTHH:MM:SSZ'
