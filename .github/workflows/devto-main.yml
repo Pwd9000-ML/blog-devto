@@ -86,7 +86,7 @@ jobs:
           devto_key: ${{ secrets.DEVTO_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: true
-        continue-on-error: false
+        continue-on-error: true
 
   publish_devto:
     if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
