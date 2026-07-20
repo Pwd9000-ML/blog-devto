@@ -203,7 +203,14 @@ Write-Output "`n========================================="
 Write-Output "  BLOG POST AUDIT REPORT"
 Write-Output "  Total posts scanned: $($posts.Count)"
 Write-Output "  Posts with issues: $($results.Count)"
-Write-Output "  Total issues: $(($results | Measure-Object -Property Count -Sum).Sum)"
+$totalIssues = 0
+if ($results.Count -gt 0) {
+    $sumValue = ($results | Measure-Object -Property Count -Sum | Select-Object -ExpandProperty Sum)
+    if ($null -ne $sumValue) {
+        $totalIssues = [int]$sumValue
+    }
+}
+Write-Output "  Total issues: $totalIssues"
 Write-Output "=========================================`n"
 
 foreach ($r in $results) {
