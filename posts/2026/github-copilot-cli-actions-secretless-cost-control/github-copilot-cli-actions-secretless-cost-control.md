@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 4188927
 series: GitHub Copilot - CLI
+date: '2026-07-20T16:02:20Z'
 ---
 
 ## Run GitHub Copilot CLI in GitHub Actions Without PATs or Runaway AI Costs
