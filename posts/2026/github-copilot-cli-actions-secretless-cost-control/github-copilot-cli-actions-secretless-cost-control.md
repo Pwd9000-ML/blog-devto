@@ -1,11 +1,11 @@
 ---
-title: 'Run GitHub Copilot CLI in GitHub Actions Without PATs or Runaway AI Costs'
+title: Run GitHub Copilot CLI in GitHub Actions Without PATs or Runaway AI Costs
 published: false
 description: 'Run Copilot CLI in GitHub Actions with GITHUB_TOKEN, bounded AI credits, secure permissions, and no stored PAT.'
 tags: 'githubcopilot, githubactions, devops, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/github-copilot-cli-actions-secretless-cost-control/assets/main2.png'
 canonical_url: null
-id: null
+id: 4188927
 series: GitHub Copilot - CLI
 ---
 
