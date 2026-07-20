@@ -10,7 +10,7 @@ on:
       - 'posts/**/**.md'
       - 'posts/**/**/**.md'
   pull_request:
-    types: [closed]
+    types: [opened, synchronize, reopened]
     branches:
       - main
     paths:
@@ -19,7 +19,7 @@ on:
 
 jobs:
   format_check:
-    if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main') }}
+    if: ${{ (github.event_name == 'push' && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main')) || github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -35,8 +35,23 @@ jobs:
       - name: Install Dependencies
         uses: bahmutov/npm-install@v1.12.1
 
-      - name: Run Prettier Write
-        run: yarn prettier:write
+      - name: Check formatting
+        shell: pwsh
+        run: |
+          $base = "${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || 'HEAD^' }}"
+          $files = @(git diff --name-only --diff-filter=ACMR "$base...HEAD" -- '*.md' '*.json' '*.js' '*.ts' '*.html' '*.scss')
+          if ($files.Count -gt 0) { yarn prettier --check $files }
+
+      - name: Check embedded code
+        shell: pwsh
+        run: |
+          $base = "${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || 'HEAD^' }}"
+          $files = @(git diff --name-only --diff-filter=ACMR "$base...HEAD" -- 'posts/**/*.md')
+          if ($files.Count -gt 0) { npx embedme $files --verify }
+
+      - name: Audit changed posts
+        shell: pwsh
+        run: ./scripts/audit_posts.ps1 -ChangedOnly -BaseRef "${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || 'HEAD^' }}" -FailOnIssues
 
       - name: Dry Run Publish to Dev.to
         if: ${{ github.ref == 'refs/heads/dev' }}
@@ -49,7 +64,7 @@ jobs:
         continue-on-error: false
 
   publish_devto:
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.event.pull_request.merged == true) }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo

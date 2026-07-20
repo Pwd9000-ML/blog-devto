@@ -1,184 +1,97 @@
 ---
 name: new-blog-post
-description: 'Scaffold, draft, and validate a new DEV.to blog post. Use when: creating a new article, starting a new blog post, scaffolding a post, generating a cover image, checking post quality, validating front matter, fixing post formatting, or auditing an existing post.'
+description: 'Create, edit, audit, and prepare DEV.to posts using the repository templates, cover generator, and targeted quality checks.'
 ---
 
-# New Blog Post: Scaffold, Draft, and Validate
+# DEV.to Post Workflow
 
-Create new DEV.to articles with correct structure, front matter, cover art, and house style. Also validates existing posts for consistency issues.
+Use this skill for new articles, edits to existing articles, cover generation, post audits, and publication preparation.
 
-## When to Use
+## Choose a mode
 
-- Creating a brand-new blog post from scratch
-- Generating a cover image for any post
-- Validating an existing post for front matter, links, footer, or style issues
-- Fixing inconsistencies in an existing article
+- **Create**: start a new post from a topic-specific template.
+- **Edit**: change an existing post while preserving its DEV.to identity and publication metadata.
+- **Audit**: validate one post, selected posts, changed posts, or the archive informationally.
 
-## Step 1: Gather Inputs
+Ask only for missing information. Infer the year, slug, date, and template when the user's request makes them clear.
 
-Ask the user for the following (infer sensible defaults where possible):
+## Create mode
 
-| Input                  | Required | Default                       |
-| ---------------------- | -------- | ----------------------------- |
-| **Title**              | Yes      | —                             |
-| **Slug** (folder name) | No       | Derive from title, dash-cased |
-| **Description**        | Yes      | — (must be ≤150 characters)   |
-| **Tags**               | Yes      | — (max 4, comma-separated)    |
-| **Series**             | No       | `null`                        |
-| **Year**               | No       | Current year                  |
-| **Cover subtitle**     | No       | Empty                         |
+Gather or infer:
 
-If the user already provided these in their message, skip the interview and proceed.
+| Input | Required | Default |
+| --- | --- | --- |
+| Title | Yes | None |
+| Slug | No | Dash-cased title |
+| Description | Yes | A concise summary, 150 characters maximum |
+| Tags | Yes | Up to four relevant tags |
+| Format | No | `tutorial`, `announcement`, `deep-dive`, or `general` |
+| Series | No | `null` |
+| Cover subtitle | No | Empty |
 
-## Step 2: Create Folder Structure
+1. Choose `Blog-template/tutorial.md` for an executable guide, `announcement.md` for a release or news post, `deep-dive.md` for architecture and analysis, or `BlogTemplate.md` for another format.
+2. Create `posts/<year>/<slug>/`, copy the selected template to `<slug>.md`, and create `assets/` and `code/` only when needed.
+3. Replace every front-matter placeholder. Keep `published: false`, `id: null`, and `canonical_url: null` for a new post.
+4. Generate the cover:
 
-```
-posts/<year>/<slug>/
-├── <slug>.md
-└── assets/
-    └── main.png   (generated in Step 3)
-```
+   ```powershell
+   python scripts/cover_creative.py --title "<Title>" --subtitle "<Subtitle>" --output "posts/<year>/<slug>/assets/main.png"
+   ```
 
-- The Markdown filename **must match the folder slug** exactly (dash-cased).
-- Create the `assets/` subfolder even if cover generation is deferred.
+   Use `--style` or `--seed` when the user requests a controlled variation. The script's supported styles are authoritative.
 
-## Step 3: Generate Cover Image
+5. Draft in British English. Use authoritative sources for factual or time-sensitive claims. Include runnable samples, expected output, and validation steps where relevant.
+6. Run the targeted checks in the Validation section.
 
-Run the cover image generator:
+## Edit mode
 
-```bash
-python scripts/cover_creative.py --title "<Title>" --subtitle "<Subtitle>" --output "posts/<year>/<slug>/assets/main.png"
-```
+- Read the existing front matter before changing it.
+- Preserve `id`, `canonical_url`, `published`, `series`, and the existing publication date unless the user explicitly requests a metadata change.
+- Do not rename or remove assets until all references have been searched.
+- Keep the existing footer unless the user asks to update the author identity or social links.
+- Run the audit against the edited post, then run Prettier and embedded-code checks when applicable.
 
-- Output must be `assets/main.png` at 1000×420 pixels.
-- Default behaviour is weighted random style selection to keep covers varied and creative.
-- Optional: set a specific style when requested with `--style mesh-gradient|blueprint|duotone-noise|sunset-waves|minimal-paper|neon-grid|aurora-mist|retro-terminal|geometric-collage`.
-- Optional: set `--seed <number>` for repeatable output during refinement.
-- If Python or Pillow is unavailable, create the `assets/` folder and note the cover must be added manually.
+## Audit mode
 
-## Step 4: Populate the Markdown File
+For one post:
 
-Use [Blog-template/BlogTemplate.md](../../Blog-template/BlogTemplate.md) as the skeleton. Apply these **mandatory rules**:
-
-### Front Matter
-
-```yaml
----
-title: '<Title>'
-published: false
-description: '<Description, max 150 chars>'
-tags: '<tag1, tag2, tag3, tag4>'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/<year>/<slug>/assets/main.png'
-canonical_url: null
-id: null
-series: <Series or null>
-date: '<ISO 8601 timestamp>'
----
+```powershell
+pwsh ./scripts/audit_posts.ps1 -Path posts/<year>/<slug>/<slug>.md -FailOnIssues
 ```
 
-**Rules:**
+For changed posts in a branch:
 
-- `description` must be ≤150 characters. Count before writing. If it exceeds 150, shorten it.
-- `tags` max 4 tags, comma-separated, single-quoted.
-- `cover_image` must use the format `https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/...`. Never use `refs/heads/main` variant.
-- `published` must be `false` for new posts.
-- `id` must be `null` for new posts.
-- `date` must be ISO 8601 format: `'YYYY-MM-DDTHH:MM:SSZ'`.
-- All string values should be single-quoted.
-
-### Content Style
-
-- Use British English spelling throughout (e.g. colour, organisation, summarise, behaviour).
-- Do not use emdashes (—). Use a full stop or comma instead.
-- First `##` heading is the article title as rendered by DEV.to.
-- Use `##` for major sections, `###` for subsections.
-- Separate major sections with `---` horizontal rules only when it improves readability.
-- Reference images via raw GitHub CDN: `https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/<year>/<slug>/assets/<file>`.
-- Place runnable code samples in a `code/` subfolder when practical, and link with relative paths.
-- When referencing facts or external information, use verifiable online sources.
-
-### Footer (Mandatory, Exact Block)
-
-Every post must end with this exact footer:
-
-```markdown
-### _Author_
-
-{% user pwd9000 %}
-
-Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
-
-Date: DD-MM-YYYY
+```powershell
+pwsh ./scripts/audit_posts.ps1 -ChangedOnly -BaseRef origin/main -FailOnIssues
 ```
 
-- LinkedIn URL must be `https://www.linkedin.com/in/marcel-pwd9000/` (single trailing slash, no double slashes).
-- Date format is `DD-MM-YYYY` (day-month-year).
+For an informational archive report, omit `-FailOnIssues`. Legacy posts are not required to satisfy the current contract unless they are edited.
 
-## Step 5: Run Quality Checks
+Report findings by metadata, assets, links, structure, footer, style, and code. Include the file path and a practical correction for each finding.
 
-After creating or editing a post, validate:
+## Current post contract
 
-### 5a. Front Matter Validation
+- Front matter includes `title`, `published`, `description`, `tags`, `cover_image`, `canonical_url`, `id`, `series`, and `date`.
+- `description` is no longer than 150 characters, tags contain no more than four values, and `date` is ISO 8601 UTC.
+- New covers are `assets/main.png`, 1000x420 pixels, referenced by the repository's raw GitHub URL.
+- The post filename matches its folder slug. Local image links resolve to files in the post folder.
+- The post contains no template placeholders or emdashes and uses British English.
+- The exact author footer contains `{% user pwd9000 %}`, GitHub, X, LinkedIn, and a `Date: DD-MM-YYYY` line.
+- Include primary or authoritative sources for factual claims, especially current product behaviour, version details, pricing, and security guidance.
 
-- [ ] `description` is ≤150 characters
-- [ ] `tags` has at most 4 tags
-- [ ] `cover_image` uses `raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/...` (not `refs/heads/main`)
-- [ ] `cover_image` points to a file that exists in `assets/`
-- [ ] `date` is valid ISO 8601
-- [ ] All string values are single-quoted
-- [ ] `published: false` for drafts
+## Validation
 
-### 5b. Footer Validation
+Run locally:
 
-- [ ] Footer block matches the exact template above
-- [ ] LinkedIn URL is `/in/marcel-pwd9000/` (not `/in/marcel-l-61b0a96b/`, not double `//`)
-- [ ] Date line is present with `DD-MM-YYYY` format
-
-### 5c. Content Validation
-
-- [ ] No emdashes (—) in text
-- [ ] British English spelling used (check common words: colour, organisation, summarise, licence, behaviour, analyse, customise)
-- [ ] All image references use valid raw GitHub CDN URLs
-- [ ] No broken relative links
-- [ ] Markdown filename matches folder slug (dash-cased)
-
-### 5d. Formatting
-
-Run Prettier to ensure consistent formatting:
-
-```bash
-yarn prettier:write
+```powershell
+npx prettier --write <changed files>
+npx prettier --check <changed files>
+npx embedme <post.md> --verify
+pwsh ./scripts/audit_posts.ps1 -Path <post.md> -FailOnIssues
 ```
 
-If the post uses `<!-- embedme -->` directives, sync them:
+Use `yarn embedme:write` only when `<!-- embedme ... -->` directives need synchronising. Never use the missing `cover_fix.py`; cover dimensions are checked by `audit_posts.ps1`.
 
-```bash
-yarn embedme:write
-```
+## Summary
 
-## Step 6: Summary
-
-After completing all steps, provide:
-
-1. The full path to the new post
-2. Any validation issues found and fixed
-3. Reminder that the cover image is at `assets/main.png` (or note if generation was skipped)
-4. Reminder to set `published: true` and push to `main` when ready to publish
-
-## Audit Mode
-
-When asked to **validate** or **audit** an existing post (rather than create a new one), skip Steps 1-4 and run Step 5 against the specified post. Report all issues found, grouped by category, with specific line numbers and suggested fixes.
-
-For bulk auditing across multiple posts, check each post and produce a summary table:
-
-| Post | Description Length | Cover OK | Footer OK | Style Issues |
-| ---- | ------------------ | -------- | --------- | ------------ |
-
-## Reference: Existing Series Names
-
-Use these exact strings when assigning a series to maintain grouping on DEV.to:
-
-- `GitHub Copilot`
-- `Terraform ERRORS!`
-
-Check existing posts in the same topic area before creating a new series name.
+After completing work, report the post path, selected template, cover path, checks run, and any remaining issues. Remind the user that merging to `main` publishes the post through the repository workflow.

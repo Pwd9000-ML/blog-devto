@@ -1,13 +1,8 @@
----
-title: 'TODO: Blog Title'
-published: false
-description: 'TODO: One-sentence summary of the post.'
-tags: 'tag1, tag2, tag3'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/YYYY/Folder/assets/main.png'
-canonical_url: null
-id: null
-series: null
-date: 'YYYY-MM-DDTHH:MM:SSZ'
+<!-- Choose a more specific template in this folder when the post is a tutorial,
+announcement, or deep dive. Keep this adaptable fallback for other formats. -->
+
+id: null series: null date: 'YYYY-MM-DDTHH:MM:SSZ'
+
 ---
 
 <!--
@@ -18,7 +13,7 @@ Quick-start instructions:
 - Keep published: false until you're ready to publish.
 -->
 
-## TODO: Primary Headline (H1 in DEV.to UI)
+## TODO: Primary Headline
 
 <!-- Opening paragraph: introduce the topic, audience, and primary pain point. Aim for 2-3 engaging sentences. -->
 
@@ -26,25 +21,25 @@ Quick-start instructions:
 
 <!-- Provide context on why the topic is important for your target audience. Bullet key reasons or use a short narrative. -->
 
-## Key Concepts or Pillars
+## Main Ideas
 
 <!-- Outline the core ideas you'll cover. Use subheadings or bullet lists to preview the structure. -->
 
-## Deep Dive Section Title
+## Evidence, Examples, or Implementation
 
 <!-- Expand on the first major idea. Include examples, code snippets, diagrams, or anecdotes as needed. -->
 
-## Additional Insight or Use Case
+## Trade-offs or Use Cases
 
 <!-- Optional: cover a second perspective, real-world scenario, or comparison to alternatives. -->
 
-## Practical Steps or How-To
+## Practical Takeaways
 
 <!-- Provide actionable guidance, checklists, or step-by-step instructions. -->
 
-## Tips, Tricks, or Best Practices
+## Further Reading
 
-<!-- Summarise lessons learned, pitfalls to avoid, or advanced suggestions. -->
+<!-- Link authoritative sources, documentation, repositories, or related posts. -->
 
 ## Conclusion
 
