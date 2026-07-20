@@ -1,6 +1,6 @@
 ---
 title: Run GitHub Copilot CLI in GitHub Actions Without PATs or Runaway AI Costs
-published: false
+published: true
 description: 'Run Copilot CLI in GitHub Actions with GITHUB_TOKEN, bounded AI credits, secure permissions, and no stored PAT.'
 tags: 'githubcopilot, githubactions, devops, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/github-copilot-cli-actions-secretless-cost-control/assets/main2.png'
@@ -417,17 +417,6 @@ That is intentional. `if: ${{ always() }}` preserves partial output and writes a
 ### The clean-worktree check fails
 
 Inspect the `git status --short` output. The prompt may have caused Copilot to create or edit a file despite the read-only instruction. Tighten the task, remove unnecessary tools or credentials, and consider moving the use case to Agentic Workflows before enabling it again.
-
----
-
-## Further Reading
-
-- [Using Copilot CLI in GitHub Actions with GITHUB_TOKEN](https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli-in-actions)
-- [Setting an AI credit session limit in Copilot CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/set-session-limit)
-- [Copilot CLI no longer needs a PAT in GitHub Actions](https://github.blog/changelog/2026-07-02-copilot-cli-no-longer-needs-a-personal-access-token-in-github-actions)
-- [AI credit session limits in Copilot CLI and SDK](https://github.blog/changelog/2026-07-01-set-ai-credit-session-limits-in-copilot-cli-and-sdk)
-- [GitHub Agentic Workflows](https://github.github.com/gh-aw/)
-- [GitHub Actions workflow permissions](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#permissions)
 
 ---
 
