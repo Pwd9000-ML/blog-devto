@@ -1,0 +1,77 @@
+name: Copilot CLI repository review
+
+on:
+  workflow_dispatch:
+    inputs:
+      max_ai_credits:
+        description: Maximum AI credits for this Copilot session
+        required: true
+        default: '50'
+        type: choice
+        options:
+          - '31'
+          - '50'
+          - '100'
+
+permissions:
+  contents: read
+  copilot-requests: write
+
+concurrency:
+  group: copilot-ci-review-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    name: Run bounded Copilot review
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Install latest Copilot CLI
+        run: |
+          npm install --global @github/copilot@latest
+          copilot --version
+
+      - name: Review repository
+        id: copilot
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          MAX_AI_CREDITS: ${{ inputs.max_ai_credits }}
+          REPORT_PATH: ${{ runner.temp }}/copilot-review.md
+          PROMPT: >-
+            Perform a read-only review of this repository at the current commit. Do not modify files. Produce a concise Markdown report containing: likely build and test commands based on repository evidence; the top three reliability or security risks with repository-relative file references; missing or weak automated checks; and three prioritised actions. Do not print secrets, tokens, or environment-variable values.
+
+
+        run: |
+          set -o pipefail
+          copilot --yolo -p "$PROMPT" \
+            --max-ai-credits "$MAX_AI_CREDITS" \
+            | tee "$REPORT_PATH"
+
+      - name: Publish Copilot report
+        if: ${{ always() }}
+        shell: bash
+        env:
+          REPORT_PATH: ${{ runner.temp }}/copilot-review.md
+        run: |
+          if [[ -s "$REPORT_PATH" ]]; then
+            cat "$REPORT_PATH" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "## Copilot CLI review" >> "$GITHUB_STEP_SUMMARY"
+            echo "No report was produced. Check the workflow log." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Verify Copilot made no file changes
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "Copilot changed the checkout unexpectedly:"
+            git status --short
+            exit 1
+          fi
