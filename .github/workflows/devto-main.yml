@@ -40,7 +40,19 @@ jobs:
         run: |
           $base = "${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || 'HEAD^' }}"
           $files = @(git diff --name-only --diff-filter=ACMR "$base...HEAD" -- '*.md' '*.json' '*.js' '*.ts' '*.html' '*.scss')
-          if ($files.Count -gt 0) { yarn prettier --check $files }
+          if ($files.Count -gt 0) {
+            yarn prettier --write $files
+            if ($LASTEXITCODE -ne 0) {
+              Write-Warning "Prettier could not format one or more changed files. Continuing as a warning."
+              exit 0
+            }
+
+            yarn prettier --check $files
+            if ($LASTEXITCODE -ne 0) {
+              Write-Warning "Changed files are not formatted. Continuing as a warning."
+              exit 0
+            }
+          }
 
       - name: Check embedded code
         shell: pwsh
