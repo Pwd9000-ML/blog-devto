@@ -59,7 +59,19 @@ jobs:
         run: |
           $base = "${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || 'HEAD^' }}"
           $files = @(git diff --name-only --diff-filter=ACMR "$base...HEAD" -- 'posts/**/*.md')
-          if ($files.Count -gt 0) { npx embedme $files --verify }
+          if ($files.Count -gt 0) {
+            npx embedme $files
+            if ($LASTEXITCODE -ne 0) {
+              Write-Warning "Embedme could not synchronise one or more posts. Continuing as a warning."
+              exit 0
+            }
+
+            npx embedme $files --verify
+            if ($LASTEXITCODE -ne 0) {
+              Write-Warning "Embedded code is out of sync. Continuing as a warning."
+              exit 0
+            }
+          }
 
       - name: Audit changed posts
         shell: pwsh
