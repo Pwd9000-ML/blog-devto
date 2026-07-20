@@ -66,7 +66,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
-| **20/07/2026** | [Run GitHub Copilot CLI in GitHub Actions Without PATs or Runaway AI Costs](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2026/github-copilot-cli-actions-secretless-cost-control/github-copilot-cli-actions-secretless-cost-control.md) | Content | GitHub, Copilot, GitHub Actions, AI | GitHubCopilot, GitHubActions, DevOps, AI |
+| **20/07/2026** | [Run GitHub Copilot CLI in GitHub Actions Without PATs or Runaway AI Costs](https://dev.to/pwd9000/run-github-copilot-cli-in-github-actions-without-pats-or-runaway-ai-costs-3dpf) | Content | GitHub, Copilot, GitHub Actions, AI | GitHubCopilot, GitHubActions, DevOps, AI |
 | **03/06/2026** | [Microsoft Build 2026: Top announcements from a DevOps lens](https://dev.to/pwd9000/microsoft-build-2026-top-announcements-from-a-devops-lens-419k) | Content | Azure, GitHub, DevOps, AI | Azure, DevOps, AI, GitHub |
 | **27/05/2026** | [GitHub Copilot CLI Plugins and Marketplaces: Extend Your Terminal Agent](https://dev.to/pwd9000/github-copilot-cli-plugins-and-marketplaces-extend-your-terminal-agent-16pc) | Content | GitHub, Copilot, CLI | GitHubCopilot, CLI, Tutorial, DevOps |
 | **29/04/2026** | [GitHub Copilot Dev Days - Brighton](https://www.meetup.com/devops-github-conf-brighton/events/313681050/) | Event | DevOps, GitHubCopilot, GitHub, AI | DevOps, GitHub, GitHubCopilot, AI |
