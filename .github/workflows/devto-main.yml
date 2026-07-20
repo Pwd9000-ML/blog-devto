@@ -89,14 +89,14 @@ jobs:
         continue-on-error: true
 
   publish_devto:
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/feature/'))) }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 0
-          ref: main
+          ref: ${{ github.ref }}
 
       - name: Setup Node
         uses: actions/setup-node@v6.4.0
@@ -110,6 +110,7 @@ jobs:
         uses: sinedied/publish-devto@v2
         with:
           files: 'posts/**/*.md'
+          branch: ${{ github.ref_name }}
           devto_key: ${{ secrets.DEVTO_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: false
