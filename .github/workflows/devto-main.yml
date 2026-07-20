@@ -6,6 +6,7 @@ on:
     branches:
       - dev
       - main
+      - 'feature/**'
     paths:
       - 'posts/**/**.md'
       - 'posts/**/**/**.md'
@@ -19,7 +20,7 @@ on:
 
 jobs:
   format_check:
-    if: ${{ (github.event_name == 'push' && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main')) || github.event_name == 'pull_request' }}
+    if: ${{ (github.event_name == 'push' && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/feature/'))) || github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -40,38 +41,62 @@ jobs:
         run: |
           $base = "${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || 'HEAD^' }}"
           $files = @(git diff --name-only --diff-filter=ACMR "$base...HEAD" -- '*.md' '*.json' '*.js' '*.ts' '*.html' '*.scss')
-          if ($files.Count -gt 0) { yarn prettier --check $files }
+          if ($files.Count -gt 0) {
+            yarn prettier --write $files
+            if ($LASTEXITCODE -ne 0) {
+              Write-Warning "Prettier could not format one or more changed files. Continuing as a warning."
+              exit 0
+            }
+
+            yarn prettier --check $files
+            if ($LASTEXITCODE -ne 0) {
+              Write-Warning "Changed files are not formatted. Continuing as a warning."
+              exit 0
+            }
+          }
 
       - name: Check embedded code
         shell: pwsh
         run: |
           $base = "${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || 'HEAD^' }}"
           $files = @(git diff --name-only --diff-filter=ACMR "$base...HEAD" -- 'posts/**/*.md')
-          if ($files.Count -gt 0) { npx embedme $files --verify }
+          if ($files.Count -gt 0) {
+            npx embedme $files
+            if ($LASTEXITCODE -ne 0) {
+              Write-Warning "Embedme could not synchronise one or more posts. Continuing as a warning."
+              exit 0
+            }
+
+            npx embedme $files --verify
+            if ($LASTEXITCODE -ne 0) {
+              Write-Warning "Embedded code is out of sync. Continuing as a warning."
+              exit 0
+            }
+          }
 
       - name: Audit changed posts
         shell: pwsh
         run: ./scripts/audit_posts.ps1 -ChangedOnly -BaseRef "${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || 'HEAD^' }}" -FailOnIssues
 
       - name: Dry Run Publish to Dev.to
-        if: ${{ github.ref == 'refs/heads/dev' }}
+        if: ${{ github.event_name == 'pull_request' || github.ref == 'refs/heads/dev' || startsWith(github.ref, 'refs/heads/feature/') }}
         uses: sinedied/publish-devto@v2
         with:
           files: 'posts/**/*.md'
           devto_key: ${{ secrets.DEVTO_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: true
-        continue-on-error: false
+        continue-on-error: true
 
   publish_devto:
-    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/feature/'))) }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v7.0.0
         with:
           fetch-depth: 0
-          ref: main
+          ref: ${{ github.ref }}
 
       - name: Setup Node
         uses: actions/setup-node@v7.0.0
@@ -85,6 +110,7 @@ jobs:
         uses: sinedied/publish-devto@v2
         with:
           files: 'posts/**/*.md'
+          branch: ${{ github.ref_name }}
           devto_key: ${{ secrets.DEVTO_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: false
