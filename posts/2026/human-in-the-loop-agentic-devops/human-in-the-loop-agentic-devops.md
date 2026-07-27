@@ -32,7 +32,7 @@ In this post, we will explore how the controls work, where they fit into agentic
 
 Traditional DevOps automation is usually deterministic:
 
-```text
+```txt
 IF pull request has label "deploy-production"
 AND required checks pass
 THEN start the production deployment
@@ -42,7 +42,7 @@ The rule may be complicated, but the outcome is predictable. We can test the con
 
 Agentic automation is different:
 
-```text
+```txt
 Read this issue.
 Understand what the author needs.
 Choose the right service, severity and owner.
@@ -118,7 +118,7 @@ GitHub also exposes these capabilities through its REST and GraphQL APIs, which 
 
 A well-designed issue automation should separate observation, recommendation and authority:
 
-```text
+```txt
 New or updated issue
         |
         v
