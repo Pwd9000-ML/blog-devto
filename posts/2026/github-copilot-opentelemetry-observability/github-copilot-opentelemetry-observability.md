@@ -5,7 +5,7 @@ description: 'Trace GitHub Copilot agents with OpenTelemetry and Jaeger, then tu
 tags: 'githubcopilot, opentelemetry, devops, observability'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/github-copilot-opentelemetry-observability/assets/main.png'
 canonical_url: null
-id: null
+id: 4245702
 series: GitHub Copilot - Automation
 date: '2026-07-27T00:00:00Z'
 ---
