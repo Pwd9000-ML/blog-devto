@@ -3,7 +3,7 @@ title: 'Human-in-the-Loop Agentic DevOps: Govern AI Automation in GitHub Issues'
 published: true
 description: 'Learn how GitHub Issues combines agent confidence, rationales and approvals to keep agentic DevOps fast, visible and human-led.'
 tags: 'githubcopilot, github, devops, ai'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/human-in-the-loop-agentic-devops/assets/main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/human-in-the-loop-agentic-devops/assets/main2.png'
 canonical_url: null
 id: 4243316
 series: GitHub Copilot - Automation
