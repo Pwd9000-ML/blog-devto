@@ -7,7 +7,6 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 4243316
 series: GitHub Copilot - Automation
-date: '2026-07-27T09:21:29Z'
 ---
 
 ## Human-in-the-Loop Agentic DevOps: Govern AI Automation in GitHub Issues
