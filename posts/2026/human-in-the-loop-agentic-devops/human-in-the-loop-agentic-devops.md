@@ -5,7 +5,7 @@ description: 'Learn how GitHub Issues combines agent confidence, rationales and 
 tags: 'githubcopilot, github, devops, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/human-in-the-loop-agentic-devops/assets/main.png'
 canonical_url: null
-id: null
+id: 4243316
 series: GitHub Copilot - Automation
 date: '2026-07-27T09:21:29Z'
 ---
