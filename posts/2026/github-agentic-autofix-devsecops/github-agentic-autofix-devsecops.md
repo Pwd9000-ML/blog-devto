@@ -1,11 +1,11 @@
 ---
-title: 'Can Copilot Fix Its Own Security Findings? Testing GitHub Agentic Autofix'
+title: Can Copilot Fix Its Own Security Findings? Testing GitHub Agentic Autofix
 published: false
 description: 'Evaluate GitHub agentic autofix, from alert assignment and validation to cost, review, rollback, and adoption.'
 tags: 'github, security, devsecops, githubcopilot'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/github-agentic-autofix-devsecops/assets/main.png'
 canonical_url: null
-id: null
+id: 4245695
 series: GitHub Copilot - Automation
 date: '2026-07-27T00:00:00Z'
 ---
