@@ -1,0 +1,17 @@
+{
+  "telemetry": {
+    "enabled": true,
+    "endpoint": "https://otel-gateway.corp.example",
+    "protocol": "http/protobuf",
+    "captureContent": false,
+    "lockCaptureContent": true,
+    "serviceName": "github-copilot",
+    "resourceAttributes": {
+      "deployment.environment": "production",
+      "team.name": "developer-platform"
+    },
+    "headers": {
+      "X-Scope-OrgID": "developer-platform"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "github.copilot.chat.otel.enabled": true,
+  "github.copilot.chat.otel.exporterType": "otlp-http",
+  "github.copilot.chat.otel.otlpEndpoint": "http://localhost:4318",
+  "github.copilot.chat.otel.captureContent": false
+}
