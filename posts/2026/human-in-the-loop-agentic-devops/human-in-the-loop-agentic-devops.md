@@ -1,6 +1,6 @@
 ---
 title: 'Human-in-the-Loop Agentic DevOps: Govern AI Automation in GitHub Issues'
-published: false
+published: true
 description: 'Learn how GitHub Issues combines agent confidence, rationales and approvals to keep agentic DevOps fast, visible and human-led.'
 tags: 'githubcopilot, github, devops, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/human-in-the-loop-agentic-devops/assets/main.png'
@@ -24,7 +24,7 @@ For DevOps teams, this is more important than another clever prompt. It gives us
 
 In this post, we will explore how the controls work, where they fit into agentic DevOps, and how to build an adoption model that earns trust rather than assumes it.
 
-> **Current status:** Agent automation controls in GitHub Issues are in public preview. The behaviour described here was verified against GitHub's announcement and documentation on 27 July 2026.
+> **Current status:** Agent automation controls in GitHub Issues are in public preview and subject to change at the time of this writing - 27 July 2026.
 
 ---
 
@@ -302,29 +302,6 @@ An automation starts with triage, then gradually gains broader write permissions
 
 ---
 
-## A Rollout Checklist for DevOps Teams
-
-Before enabling automatic issue actions, work through this checklist:
-
-- [ ] Choose one repetitive, low-risk triage use case.
-- [ ] Define the supported actions and explicitly exclude everything else.
-- [ ] Decide which actions are reversible and which have operational impact.
-- [ ] Start in observe or suggest-only mode.
-- [ ] Require a rationale that points to evidence in the issue or repository.
-- [ ] Set confidence thresholds per risk category, not one threshold for everything.
-- [ ] Grant the automation minimum repository permissions.
-- [ ] Test with vague, contradictory and malicious issue content.
-- [ ] Decide who owns the `has:suggestions` review queue.
-- [ ] Measure acceptance, rejection, correction and reversal rates.
-- [ ] Review whether the automation saves time rather than moving work into approvals.
-- [ ] Keep consequential actions behind durable GitHub security controls.
-
-The metric I would watch first is not "issues processed". It is **the percentage of agent actions accepted without later correction**.
-
-Throughput tells you the agent is busy. Corrections tell you whether it is useful.
-
----
-
 ## The Bigger DevOps Lesson
 
 Agentic DevOps changes the shape of automation.
@@ -343,14 +320,6 @@ None of these replaces permissions, sandboxing, protected environments or indepe
 The best agentic DevOps system is not the one that removes humans from every loop. It is the one that removes people from repetitive work while bringing them back at exactly the points where context, accountability and judgement matter.
 
 Start with suggestions. Measure the corrections. Expand only when the automation earns your trust.
-
-## Sources and Further Reading
-
-- [Agent automation controls in GitHub Issues in public preview](https://github.blog/changelog/2026-07-23-agent-automation-controls-in-github-issues-in-public-preview/)
-- [Review and approve agent actions on issues](https://github.com/orgs/community/discussions/202616)
-- [About GitHub Agentic Workflows](https://docs.github.com/en/copilot/concepts/agents/about-github-agentic-workflows)
-- [About Copilot cloud agent](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent)
-- [About Copilot coding agent](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent)
 
 ### _Author_
 

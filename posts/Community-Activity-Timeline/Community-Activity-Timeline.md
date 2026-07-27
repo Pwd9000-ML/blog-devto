@@ -27,13 +27,13 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 | Year         | Speaking | Content | Open Source | Events | Year Total |
 | ------------ | -------- | ------- | ----------- | ------ | ---------- |
-| 2026         | 2        | 14      | 1           | 2      | 19         |
+| 2026         | 2        | 15      | 1           | 2      | 20         |
 | 2025         | 9        | 9       | 1           | 4      | 23         |
 | 2024         | 5        | 10      | 3           | 3      | 21         |
 | 2023         | 6        | 10      | 8           | 3      | 27         |
 | 2022         | 15       | 38      | 9           | 1      | 63         |
 | 2021         | 1        | 22      | 2           | 0      | 25         |
-| Grand Totals | 38       | 103     | 24          | 13     | 178        |
+| Grand Totals | 38       | 104     | 24          | 13     | 179        |
 
 - **Speaking**: Conference talks, user groups, Meetups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
 - **Content**: Blogs, articles, videos, podcasts (all published content pieces).
@@ -66,6 +66,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **27/07/2026** | [Human-in-the-Loop Agentic DevOps: Govern AI Automation in GitHub Issues](https://dev.to/pwd9000/human-in-the-loop-agentic-devops-govern-ai-automation-in-github-issues-4c0e) | Content | GitHub, Copilot, DevOps, AI | GitHubCopilot, GitHub, DevOps, AI |
 | **20/07/2026** | [Run GitHub Copilot CLI in GitHub Actions Without PATs or Runaway AI Costs](https://dev.to/pwd9000/run-github-copilot-cli-in-github-actions-without-pats-or-runaway-ai-costs-3dpf) | Content | GitHub, Copilot, GitHub Actions, AI | GitHubCopilot, GitHubActions, DevOps, AI |
 | **03/06/2026** | [Microsoft Build 2026: Top announcements from a DevOps lens](https://dev.to/pwd9000/microsoft-build-2026-top-announcements-from-a-devops-lens-419k) | Content | Azure, GitHub, DevOps, AI | Azure, DevOps, AI, GitHub |
 | **27/05/2026** | [GitHub Copilot CLI Plugins and Marketplaces: Extend Your Terminal Agent](https://dev.to/pwd9000/github-copilot-cli-plugins-and-marketplaces-extend-your-terminal-agent-16pc) | Content | GitHub, Copilot, CLI | GitHubCopilot, CLI, Tutorial, DevOps |
