@@ -126,7 +126,7 @@ The preview requires both sides of the product boundary:
 - Copilot Autofix available in the repository.
 - GitHub Actions available for the cloud agent environment and validation work.
 
-Administrators can disable Copilot Autofix at enterprise, organisation, or repository level. Because agentic autofix relies on that setting, disabling classic Autofix also blocks the agentic experience. Administrators can separately opt repositories out of Copilot cloud agent. An enterprise policy set to not allowed cannot be overridden lower in the hierarchy; allowing it merely lets organisation and repository administrators choose.
+Administrators can disable Copilot Autofix at enterprise, organisation, or repository level. Because agentic autofix relies on that setting, disabling classic Autofix also blocks the agentic experience. Administrators can separately opt repositories out of Copilot cloud agent; when the cloud agent is unavailable, assigning an alert falls back to classic Copilot Autofix instead of starting an agentic session. An enterprise policy set to not allowed cannot be overridden lower in the hierarchy; allowing it merely lets organisation and repository administrators choose.
 
 The billing model is materially different from classic Autofix:
 
@@ -209,7 +209,7 @@ GitHub states that data handled by Copilot Autofix is not used for LLM training,
 
 ## Troubleshooting the Preview
 
-**The Assign to Copilot control is missing:** check the Code Security or Advanced Security licence, Copilot licence, cloud agent policy, Copilot Autofix setting, repository opt-out, Actions availability, and your access to the alert. Remember that upstream enterprise policy wins.
+**Assignment does not start an agentic session:** check the Code Security or Advanced Security licence, Copilot licence, cloud agent policy, Copilot Autofix setting, repository opt-out, Actions availability, and your access to the alert. When cloud agent is unavailable, assignment can fall back to classic Copilot Autofix. Remember that upstream enterprise policy wins.
 
 **The REST helper returns an error:** `400` usually points to the request, `403` can indicate an archived repository or missing Code Security entitlement, `404` can indicate an inaccessible repository or alert, and `503` is a service availability response. Confirm API version `2026-03-10`, token scopes, alert number, and repository before retrying.
 
