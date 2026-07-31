@@ -6,8 +6,8 @@ tags: 'github, githubactions, devops, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/secure-github-agentic-workflows/assets/main.png'
 canonical_url: null
 id: null
-series: GitHub Agentic Workflows
-date: '2026-06-11T10:00:00Z'
+series: GitHub Copilot - Automation
+date: '2026-07-27T00:00:00Z'
 ---
 
 ## From Markdown to Guarded Automation: Build Your First GitHub Agentic Workflow
@@ -16,7 +16,7 @@ GitHub Agentic Workflows bring natural-language reasoning into GitHub Actions wi
 
 In this tutorial, we will build a small CI failure triage workflow, compile its Markdown source into a standard GitHub Actions workflow, and examine the guardrails that keep its access bounded. The finished workflow reads a failed run, analyses its jobs and logs, and proposes one diagnostic issue in staged mode for a maintainer to inspect.
 
-> **Current status:** [GitHub Agentic Workflows are in public preview](https://github.blog/changelog/2026-06-11-github-agentic-workflows-is-now-in-public-preview/) and subject to change at the time of writing, 11 June 2026.
+> **Current status:** [GitHub Agentic Workflows are in public preview](https://github.blog/changelog/2026-06-11-github-agentic-workflows-is-now-in-public-preview/) and subject to change at the time of writing, 27 July 2026.
 
 ---
 
@@ -68,16 +68,16 @@ Natural-language instructions improve flexibility, but they are not a permission
 
 This workflow uses several independent layers:
 
-| Layer | Boundary in this tutorial |
-| --- | --- |
-| Trigger | Only completed runs of `CI` on `main` |
-| Condition | Only runs with a `failure` conclusion |
+| Layer       | Boundary in this tutorial                                     |
+| ----------- | ------------------------------------------------------------- |
+| Trigger     | Only completed runs of `CI` on `main`                         |
+| Condition   | Only runs with a `failure` conclusion                         |
 | Permissions | Read-only `contents` and `actions`; inference permission only |
-| Tools | Only the `actions` and `repos` GitHub toolsets |
-| Network | The explicit `defaults` firewall policy |
-| Output | At most one structured `create-issue` request |
-| Rollout | All output remains staged until reviewed |
-| Budgets | Ten minutes, twenty turns and 100 AI Credits per run |
+| Tools       | Only the `actions` and `repos` GitHub toolsets                |
+| Network     | The explicit `defaults` firewall policy                       |
+| Output      | At most one structured `create-issue` request                 |
+| Rollout     | All output remains staged until reviewed                      |
+| Budgets     | Ten minutes, twenty turns and 100 AI Credits per run          |
 
 The [GitHub Agentic Workflows security architecture](https://github.github.com/gh-aw/introduction/architecture/) keeps the reasoning job separate from write-capable jobs. The agent requests an operation through a structured safe-output tool. The framework validates and sanitises that output, and a separate job applies the narrowly scoped operation. We never give the reasoning process `issues: write`.
 
@@ -108,6 +108,7 @@ Review the files created by `init` before committing them. The command configure
 
 Create `.github/workflows/ci-failure-triage.md` with the following content. Change `CI` and `main` if your monitored workflow or default branch uses different names.
 
+<!-- prettier-ignore-start -->
 <!-- embedme ./code/ci-failure-triage.md -->
 
 ```markdown
@@ -115,31 +116,31 @@ Create `.github/workflows/ci-failure-triage.md` with the following content. Chan
 description: Investigate failed CI runs and propose a bounded diagnostic issue for maintainer review.
 
 on:
-	workflow_run:
-		workflows: [CI]
-		types: [completed]
-		branches: [main]
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
 
 if: ${{ github.event.workflow_run.conclusion == 'failure' }}
 
 permissions:
-	contents: read
-	actions: read
-	copilot-requests: write
+  contents: read
+  actions: read
+  copilot-requests: write
 
 engine: copilot
 
 network: defaults
 
 tools:
-	github:
-		toolsets: [actions, repos]
+  github:
+    toolsets: [actions, repos]
 
 safe-outputs:
-	staged: true
-	create-issue:
-		title-prefix: '[ci-triage] '
-		max: 1
+  staged: true
+  create-issue:
+    title-prefix: '[ci-triage] '
+    max: 1
 
 timeout-minutes: 10
 max-turns: 20
@@ -183,7 +184,9 @@ If the evidence supports an actionable diagnosis, call `create_issue` once with:
 - any remaining unknowns
 
 If the run is not failed, the evidence is insufficient, or no maintainer action is needed, call `noop` with a brief explanation. Do not create an issue merely to report uncertainty.
+
 ```
+<!-- prettier-ignore-end -->
 
 The front matter is the control plane. `workflow_run` receives the completed run context, while the top-level condition prevents successful runs from reaching the agent. `actions: read` exposes run and log data; `contents: read` supports targeted repository inspection.
 
@@ -317,4 +320,4 @@ This CI triage example starts with the smallest useful loop: read one failed run
 
 Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
 
-Date: 11-06-2026
+Date: 27-07-2026
