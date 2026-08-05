@@ -289,16 +289,6 @@ For enterprise rollout, begin with a small device group and metadata-only captur
 
 Correlate telemetry with tests, review findings, incidents and deployment outcomes when evaluating an agentic workflow. Keep those evidence sources distinct. A fast, low-token trace can still produce an incorrect change, while a slow trace may reflect a genuinely difficult task.
 
-## Authoritative Sources
-
-- [GitHub Changelog: Enterprise-managed OpenTelemetry export for VS Code and CLI](https://github.blog/changelog/2026-07-08-enterprise-managed-opentelemetry-export-for-vs-code-and-cli)
-- [VS Code: Monitor agent usage with OpenTelemetry](https://code.visualstudio.com/docs/agents/guides/monitoring-agents)
-- [VS Code: Configure telemetry export with OpenTelemetry](https://code.visualstudio.com/docs/enterprise/ai-settings#_configure-telemetry-export-with-opentelemetry)
-- [GitHub Docs: Enterprise managed settings reference](https://docs.github.com/copilot/reference/enterprise-managed-settings-reference)
-- [GitHub Docs: Streaming the audit log for your enterprise](https://docs.github.com/enterprise-cloud@latest/admin/monitoring-activity-in-your-enterprise/reviewing-audit-logs-for-your-enterprise/streaming-the-audit-log-for-your-enterprise)
-- [Jaeger: Getting started](https://www.jaegertracing.io/docs/2.20/getting-started/)
-- [OpenTelemetry: OTLP exporter configuration](https://opentelemetry.io/docs/languages/sdk-configuration/otlp-exporter/)
-
 ## Conclusion
 
 Agentic DevOps needs the same operational discipline as any other distributed system. A connected `invoke_agent` trace makes model calls, tools, hooks and subagents inspectable without capturing conversation content by default. Start locally, establish reliable signals, govern the export path and keep correctness claims tied to engineering evidence rather than telemetry volume.
