@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 4245702
 series: GitHub Copilot - Automation
+date: '2026-08-05T07:16:58Z'
 ---
 
 ## Agentic DevOps Needs Observability: Trace GitHub Copilot with OpenTelemetry
