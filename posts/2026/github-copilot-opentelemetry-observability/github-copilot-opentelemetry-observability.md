@@ -1,13 +1,13 @@
 ---
 title: 'Agentic DevOps Needs Observability: Trace GitHub Copilot with OpenTelemetry'
-published: false
+published: true
 description: 'Trace GitHub Copilot agents with OpenTelemetry and Jaeger, then turn spans, metrics and events into practical DevOps signals.'
 tags: 'githubcopilot, opentelemetry, devops, observability'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/github-copilot-opentelemetry-observability/assets/main.png'
 canonical_url: null
 id: 4245702
 series: GitHub Copilot - Automation
-date: '2026-07-27T00:00:00Z'
+date: '2026-08-05T00:00:00Z'
 ---
 
 ## Agentic DevOps Needs Observability: Trace GitHub Copilot with OpenTelemetry
@@ -26,7 +26,7 @@ That enterprise control builds on the OpenTelemetry support already documented i
 
 It is important to set the boundary early. Telemetry can show latency, errors, token use and observed user actions. It does not prove that generated code is correct, that an engineer was productive, or that an agent made a good decision. Tests, reviews and delivery outcomes remain separate evidence.
 
-> **Current status:** Product behaviour and managed-setting values in this tutorial reflect the official documentation available on 27 July 2026. Pilot managed settings against your supported client versions before broad deployment.
+> **Current status:** Product behaviour and managed-setting values in this tutorial reflect the official documentation available on 5 August 2026. Pilot managed settings against your supported client versions before broad deployment.
 
 ---
 
@@ -230,7 +230,9 @@ On Windows, native settings use `HKEY_LOCAL_MACHINE\SOFTWARE\Policies\GitHubCopi
 
 File-based settings should be administrator-owned, not world-writable and not symlinked. Use **Developer: Policy Diagnostics** to confirm the active channel. Reload VS Code when telemetry policy changes because the agent host resolves its configuration at startup.
 
-There is one vocabulary caveat. The VS Code user setting uses exporter values such as `otlp-http` and `otlp-grpc`, while the current GitHub managed-settings reference lists `http/json` and `http/protobuf` for `telemetry.protocol`. The launch announcement also mentions gRPC. Treat the live managed-settings reference and your deployed client build as the contract during a pilot rather than copying a user-setting value blindly.
+Enterprise team specialisation became available on 3 August 2026, but it does not make every managed key team-overridable. Teams can specialise the model and bypass-permission keys that an enterprise marks as overridable, and can add plugins and marketplaces. Telemetry remains an enterprise-level decision in the current reference.
+
+There is one vocabulary caveat. The VS Code user setting and enterprise guide use exporter values such as `otlp-http` and `otlp-grpc`, while the current GitHub managed-settings reference lists `http/json` and `http/protobuf` as the accepted values for `telemetry.protocol`. Treat the live managed-settings reference and your deployed client build as the contract during a pilot rather than copying a user-setting value blindly.
 
 ## Copilot CLI Transport Caveats
 
@@ -244,7 +246,7 @@ Search both `copilot-chat` and `github-copilot` before concluding that telemetry
 
 ## OpenTelemetry Is Not Session Audit Streaming
 
-GitHub's [Copilot agent session streaming](https://github.blog/changelog/2026-07-02-copilot-agent-session-streaming-is-now-in-public-preview) is a separate enterprise capability. It sends Copilot usage records across supported clients to an audit stream or exposes the latest records through an enterprise REST API. It is designed for central auditability and can include session prompts, responses and tool calls when enabled.
+GitHub's [Copilot agent session streaming](https://github.blog/changelog/2026-07-02-copilot-agent-session-streaming-is-now-in-public-preview) is a separate enterprise capability in public preview for Enterprise Managed Users, including GitHub Enterprise Cloud with data residency. It sends Copilot usage records across supported clients to an audit stream or exposes the latest 48 hours through an enterprise REST API. It is designed for central auditability and can include session prompts, responses and tool calls when enabled.
 
 OpenTelemetry is client-side operational instrumentation sent to an OTLP collector selected by the user or administrator. It gives detailed timing, hierarchy, errors, model metadata and tool telemetry.
 
@@ -308,4 +310,4 @@ Agentic DevOps needs the same operational discipline as any other distributed sy
 
 Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
 
-Date: 27-07-2026
+Date: 05-08-2026
