@@ -1,11 +1,12 @@
 ---
 title: My Tech Community Activity Timeline
 published: true
-description: Showcase and timeline of my tech community activity and contributions
+description: 'Showcase and timeline of my tech community activity and contributions'
 tags: 'ai, tutorial, devops, github'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Community-Activity-Timeline/assets/main.png'
 canonical_url: null
 id: 953760
+series: null
 date: '2022-01-13T11:34:23Z'
 ---
 
@@ -27,13 +28,13 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 | Year         | Speaking | Content | Open Source | Events | Year Total |
 | ------------ | -------- | ------- | ----------- | ------ | ---------- |
-| 2026         | 2        | 16      | 1           | 2      | 21         |
+| 2026         | 2        | 17      | 1           | 2      | 22         |
 | 2025         | 9        | 9       | 1           | 4      | 23         |
 | 2024         | 5        | 10      | 3           | 3      | 21         |
 | 2023         | 6        | 10      | 8           | 3      | 27         |
 | 2022         | 15       | 38      | 9           | 1      | 63         |
 | 2021         | 1        | 22      | 2           | 0      | 25         |
-| Grand Totals | 38       | 105     | 24          | 13     | 180        |
+| Grand Totals | 38       | 106     | 24          | 13     | 181        |
 
 - **Speaking**: Conference talks, user groups, Meetups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
 - **Content**: Blogs, articles, videos, podcasts (all published content pieces).
@@ -66,6 +67,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **17/08/2026** | [Can Copilot Fix Its Own Security Findings? Testing GitHub Agentic Autofix](https://dev.to/pwd9000/can-copilot-fix-its-own-security-findings-testing-github-agentic-autofix-351b) | Content | GitHub, Copilot, Security, DevSecOps | GitHubCopilot, GitHub, DevSecOps, Security |
 | **05/08/2026** | [Agentic DevOps Needs Observability: Trace GitHub Copilot with OpenTelemetry](https://dev.to/pwd9000/agentic-devops-needs-observability-trace-github-copilot-with-opentelemetry-405c) | Content | GitHub, Copilot, DevOps, Observability | GitHubCopilot, OpenTelemetry, DevOps, Observability |
 | **27/07/2026** | [Human-in-the-Loop Agentic DevOps: Govern AI Automation in GitHub Issues](https://dev.to/pwd9000/human-in-the-loop-agentic-devops-govern-ai-automation-in-github-issues-472h) | Content | GitHub, Copilot, DevOps, AI | GitHubCopilot, GitHub, DevOps, AI |
 | **20/07/2026** | [Run GitHub Copilot CLI in GitHub Actions Without PATs or Runaway AI Costs](https://dev.to/pwd9000/run-github-copilot-cli-in-github-actions-without-pats-or-runaway-ai-costs-3dpf) | Content | GitHub, Copilot, GitHub Actions, AI | GitHubCopilot, GitHubActions, DevOps, AI |
@@ -282,3 +284,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 ### _Author_
 
 {% user pwd9000 %}
+
+Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
+
+Date: 13-01-2022
