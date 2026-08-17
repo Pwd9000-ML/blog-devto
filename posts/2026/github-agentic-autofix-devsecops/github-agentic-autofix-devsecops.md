@@ -1,13 +1,13 @@
 ---
 title: Can Copilot Fix Its Own Security Findings? Testing GitHub Agentic Autofix
-published: false
+published: true
 description: 'Evaluate GitHub agentic autofix, from alert assignment and validation to cost, review, rollback, and adoption.'
 tags: 'github, security, devsecops, githubcopilot'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/github-agentic-autofix-devsecops/assets/main.png'
 canonical_url: null
 id: 4245695
 series: GitHub Copilot - Automation
-date: '2026-07-27T00:00:00Z'
+date: '2026-08-17T14:22:50Z'
 ---
 
 ## Can Copilot Fix Its Own Security Findings? Testing GitHub Agentic Autofix
@@ -124,7 +124,6 @@ The preview requires both sides of the product boundary:
 - An active **GitHub Code Security or GitHub Advanced Security** licence.
 - A **GitHub Copilot licence** with Copilot cloud agent enabled.
 - Copilot Autofix available in the repository.
-- GitHub Actions available for the cloud agent environment and validation work.
 
 Administrators can disable Copilot Autofix at enterprise, organisation, or repository level. Because agentic autofix relies on that setting, disabling classic Autofix also blocks the agentic experience. Administrators can separately opt repositories out of Copilot cloud agent; when the cloud agent is unavailable, assigning an alert falls back to classic Copilot Autofix instead of starting an agentic session. An enterprise policy set to not allowed cannot be overridden lower in the hierarchy; allowing it merely lets organisation and repository administrators choose.
 
@@ -233,21 +232,10 @@ That is the right answer to “Can Copilot fix its own security findings?” Let
 
 ---
 
-## Sources and Further Reading
-
-- [Agentic autofix for code scanning alerts in public preview](https://github.blog/changelog/2026-07-10-agentic-autofix-for-code-scanning-alerts-in-public-preview), including the 16 July 2026 clarification
-- [About autofix for code scanning](https://docs.github.com/en/enterprise-cloud@latest/code-security/concepts/code-scanning/autofix-for-code-scanning)
-- [Resolving code scanning alerts](https://docs.github.com/en/enterprise-cloud@latest/code-security/how-tos/manage-security-alerts/manage-code-scanning-alerts/resolve-alerts)
-- [Disabling autofix for code scanning security alerts](https://docs.github.com/en/enterprise-cloud@latest/code-security/how-tos/manage-security-alerts/manage-code-scanning-alerts/disabling-autofix-for-code-scanning)
-- [REST API endpoints for code scanning](https://docs.github.com/en/enterprise-cloud@latest/rest/code-scanning/code-scanning?apiVersion=2026-03-10#update-a-code-scanning-alert)
-- [Usage-based billing for organisations and enterprises](https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/billing/usage-based-billing-for-organizations-and-enterprises)
-- [Application card: GitHub security and quality AI features](https://docs.github.com/en/enterprise-cloud@latest/code-security/responsible-use/security-and-quality-ai-features)
-- [Fixing alerts in a security campaign](https://docs.github.com/en/enterprise-cloud@latest/code-security/how-tos/manage-security-alerts/remediate-alerts-at-scale/fixing-alerts-in-security-campaign)
-
 ### _Author_
 
 {% user pwd9000 %}
 
 Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
 
-Date: 27-07-2026
+Date: 17-08-2026
