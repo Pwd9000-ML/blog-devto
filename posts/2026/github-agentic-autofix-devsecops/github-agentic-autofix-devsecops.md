@@ -125,7 +125,7 @@ The preview requires both sides of the product boundary:
 - A **GitHub Copilot licence** with Copilot cloud agent enabled.
 - Copilot Autofix available in the repository.
 
-Administrators can disable Copilot Autofix at enterprise, organisation, or repository level. Because agentic autofix relies on that setting, disabling classic Autofix also blocks the agentic experience. Administrators can separately opt repositories out of Copilot cloud agent; when the cloud agent is unavailable, assigning an alert falls back to classic Copilot Autofix instead of starting an agentic session. An enterprise policy set to not allowed cannot be overridden lower in the hierarchy; allowing it merely lets organisation and repository administrators choose.
+Administrators can disable Copilot Autofix at enterprise, organisation, or repository level. Because agentic autofix relies on that setting, disabling classic Autofix also blocks the agentic experience. Administrators can separately opt repositories out of Copilot cloud agent. When the cloud agent is unavailable, assigning an alert falls back to classic Copilot Autofix instead of starting an agentic session. An enterprise policy set to not allowed cannot be overridden lower in the hierarchy, allowing it merely lets organisation and repository administrators choose.
 
 The billing model is materially different from classic Autofix:
 
