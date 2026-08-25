@@ -1,13 +1,13 @@
 ---
 title: 'From Markdown to Guarded Automation: Build Your First GitHub Agentic Workflow'
-published: false
+published: true
 description: 'Build a guarded GitHub Agentic Workflow that investigates CI failures while keeping writes staged, scoped and reviewable.'
 tags: 'github, githubactions, devops, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/secure-github-agentic-workflows/assets/main.png'
 canonical_url: null
 id: 4282043
 series: GitHub Copilot - Automation
-date: '2026-07-27T00:00:00Z'
+date: '2026-08-25T00:00:00Z'
 ---
 
 ## From Markdown to Guarded Automation: Build Your First GitHub Agentic Workflow
@@ -16,7 +16,7 @@ GitHub Agentic Workflows bring natural-language reasoning into GitHub Actions wi
 
 In this tutorial, we will build a small CI failure triage workflow, compile its Markdown source into a standard GitHub Actions workflow, and examine the guardrails that keep its access bounded. The finished workflow reads a failed run, analyses its jobs and logs, and proposes one diagnostic issue in staged mode for a maintainer to inspect.
 
-> **Current status:** [GitHub Agentic Workflows are in public preview](https://github.blog/changelog/2026-06-11-github-agentic-workflows-is-now-in-public-preview/) and subject to change at the time of writing, 27 July 2026.
+> **Current status:** [GitHub Agentic Workflows are in public preview](https://github.blog/changelog/2026-06-11-github-agentic-workflows-is-now-in-public-preview/) and subject to change. This sample passed strict validation with `gh-aw` v0.86.2 on 25 August 2026.
 
 ---
 
@@ -77,9 +77,11 @@ This workflow uses several independent layers:
 | Network     | The explicit `defaults` firewall policy                       |
 | Output      | At most one structured `create-issue` request                 |
 | Rollout     | All output remains staged until reviewed                      |
-| Budgets     | Ten minutes, twenty turns and 100 AI Credits per run          |
+| Budgets     | Ten minutes, twenty turns, 100 agent AIC and 50 detection AIC |
 
 The [GitHub Agentic Workflows security architecture](https://github.github.com/gh-aw/introduction/architecture/) keeps the reasoning job separate from write-capable jobs. The agent requests an operation through a structured safe-output tool. The framework validates and sanitises that output, and a separate job applies the narrowly scoped operation. We never give the reasoning process `issues: write`.
+
+GitHub also warns that a [`workflow_run` workflow can access secrets and write tokens](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_run), even when the preceding workflow could not. Treat this event as a privilege boundary: do not check out or execute untrusted code, or feed untrusted artifacts into privileged steps. This example inspects evidence through the configured read tools and explicitly forbids executing repository content.
 
 The prompt still matters. It tells the agent to treat inspected content as data, never execute instructions found in logs, and prefer `noop` over an unsupported diagnosis. That guidance improves behaviour, while permissions, tools, networking and safe outputs enforce the hard limits.
 
@@ -94,7 +96,7 @@ gh aw version
 gh aw doctor
 ```
 
-If the extension is already installed, update it with `gh extension upgrade gh-aw`. Public-preview syntax can change, so record the version used to compile a workflow when investigating a difference.
+If the extension is already installed, update it with `gh extension upgrade github/gh-aw`. Public-preview syntax can change, so record the version used to compile a workflow when investigating a difference.
 
 Initialise the repository once:
 
@@ -138,6 +140,8 @@ tools:
 
 safe-outputs:
   staged: true
+  threat-detection:
+    max-ai-credits: 50
   create-issue:
     title-prefix: '[ci-triage] '
     max: 1
@@ -250,13 +254,14 @@ Staged mode is not a simulation of the reasoning process. The analysis and infer
 
 ## Observe Cost and Behaviour
 
-Actions compute and AI inference are billed and measured independently. The three limits in the workflow bound different failure modes:
+Actions compute and AI inference are billed and measured independently. The limits in the workflow bound different failure modes:
 
 - `timeout-minutes: 10` caps job duration
 - `max-turns: 20` limits iterative model and tool exchanges
-- `max-ai-credits: 100` caps the inference budget for one run
+- `max-ai-credits: 100` caps the main agent's inference budget
+- `safe-outputs.threat-detection.max-ai-credits: 50` separately caps the inference used to inspect proposed writes
 
-The [cost reference](https://github.github.com/gh-aw/reference/cost-management/) currently defines one AI Credit as $0.01 USD, so 100 AIC represents a $1 ceiling under that estimate. AIC is calculated on a best-effort basis and may differ from the provider's final bill. Verify actual charges in the relevant billing dashboard.
+Without the second setting, threat detection has its own default budget rather than sharing the agent's 100 AIC cap. The [cost reference](https://github.github.com/gh-aw/reference/cost-management/) currently estimates one AI Credit at $0.01 USD, so the two configured inference paths have a potential combined ceiling of 150 AIC, or $1.50 under that estimate. AIC is calculated on a best-effort basis and may differ from the provider's final bill. Verify actual charges in the relevant billing dashboard.
 
 Use the CLI to inspect deployed state and real run evidence:
 
@@ -320,4 +325,4 @@ This CI triage example starts with the smallest useful loop: read one failed run
 
 Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
 
-Date: 27-07-2026
+Date: 25-08-2026

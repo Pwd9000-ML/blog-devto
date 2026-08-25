@@ -24,6 +24,8 @@ tools:
 
 safe-outputs:
   staged: true
+  threat-detection:
+    max-ai-credits: 50
   create-issue:
     title-prefix: '[ci-triage] '
     max: 1
