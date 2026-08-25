@@ -1,13 +1,13 @@
 ---
 title: 'From Markdown to Guarded Automation: Build Your First GitHub Agentic Workflow'
 published: true
-description: 'Build a guarded GitHub Agentic Workflow that investigates CI failures while keeping writes staged, scoped and reviewable.'
+description: 'Build a guarded GitHub Agentic Workflow that investigates CI failures using staged, scoped and reviewable writes.'
 tags: 'github, githubactions, devops, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/secure-github-agentic-workflows/assets/main.png'
 canonical_url: null
 id: 4282043
 series: GitHub Copilot - Automation
-date: '2026-08-25T10:30:23Z'
+date: '2026-08-25T10:33:23Z'
 ---
 
 ## From Markdown to Guarded Automation: Build Your First GitHub Agentic Workflow
