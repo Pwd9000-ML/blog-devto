@@ -1,9 +1,9 @@
 ---
 title: My Tech Community Activity Timeline
 published: true
-description: Showcase and timeline of my tech community activity and contributions
+description: 'Showcase and timeline of my tech community activity and contributions'
 tags: 'ai, tutorial, devops, github'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/refs/heads/main/posts/Community-Activity-Timeline/assets/main2.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Community-Activity-Timeline/assets/main.png'
 canonical_url: null
 id: 953760
 series: null
@@ -28,13 +28,13 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 | Year         | Speaking | Content | Open Source | Events | Year Total |
 | ------------ | -------- | ------- | ----------- | ------ | ---------- |
-| 2026         | 2        | 17      | 1           | 2      | 22         |
+| 2026         | 2        | 18      | 1           | 2      | 23         |
 | 2025         | 9        | 9       | 1           | 4      | 23         |
 | 2024         | 5        | 10      | 3           | 3      | 21         |
 | 2023         | 6        | 10      | 8           | 3      | 27         |
 | 2022         | 15       | 38      | 9           | 1      | 63         |
 | 2021         | 1        | 22      | 2           | 0      | 25         |
-| Grand Totals | 38       | 106     | 24          | 13     | 181        |
+| Grand Totals | 38       | 107     | 24          | 13     | 182        |
 
 - **Speaking**: Conference talks, user groups, Meetups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
 - **Content**: Blogs, articles, videos, podcasts (all published content pieces).
@@ -67,6 +67,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **25/08/2026** | [From Markdown to Guarded Automation: Build Your First GitHub Agentic Workflow](https://dev.to/pwd9000/from-markdown-to-guarded-automation-build-your-first-github-agentic-workflow-3gbd) | Content | GitHub, Copilot, GitHub Actions, AI | GitHubCopilot, GitHubActions, DevOps, AI |
 | **17/08/2026** | [Can Copilot Fix Its Own Security Findings? Testing GitHub Agentic Autofix](https://dev.to/pwd9000/can-copilot-fix-its-own-security-findings-testing-github-agentic-autofix-351b) | Content | GitHub, Copilot, Security, DevSecOps | GitHubCopilot, GitHub, DevSecOps, Security |
 | **05/08/2026** | [Agentic DevOps Needs Observability: Trace GitHub Copilot with OpenTelemetry](https://dev.to/pwd9000/agentic-devops-needs-observability-trace-github-copilot-with-opentelemetry-405c) | Content | GitHub, Copilot, DevOps, Observability | GitHubCopilot, OpenTelemetry, DevOps, Observability |
 | **27/07/2026** | [Human-in-the-Loop Agentic DevOps: Govern AI Automation in GitHub Issues](https://dev.to/pwd9000/human-in-the-loop-agentic-devops-govern-ai-automation-in-github-issues-472h) | Content | GitHub, Copilot, DevOps, AI | GitHubCopilot, GitHub, DevOps, AI |
