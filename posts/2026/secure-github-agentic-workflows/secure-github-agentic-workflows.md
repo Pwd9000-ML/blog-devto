@@ -7,7 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 4282043
 series: GitHub Copilot - Automation
-date: '2026-08-25T09:56:25Z'
+date: '2026-08-25T10:30:23Z'
 ---
 
 ## From Markdown to Guarded Automation: Build Your First GitHub Agentic Workflow
