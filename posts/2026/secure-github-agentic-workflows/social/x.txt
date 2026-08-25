@@ -1,0 +1,7 @@
+New: Build a guarded agentic workflow for CI triage.
+
+Read-only tools, staged Safe Outputs, workflow_run security and separate AI Credit caps.
+
+https://dev.to/pwd9000/from-markdown-to-guarded-automation-build-your-first-github-agentic-workflow-3gbd
+
+#GitHubCopilot #DevOps

@@ -1,0 +1,17 @@
+New article: From Markdown to Guarded Automation: Build Your First GitHub Agentic Workflow
+
+GitHub Agentic Workflows bring natural-language reasoning into GitHub Actions while keeping automation controlled and reviewable.
+
+In this hands-on tutorial, I build a CI failure triage workflow with:
+
+- read-only tools and least-privilege permissions
+- explicit network access
+- staged Safe Outputs before any write
+- separate AI Credit budgets for the agent and threat detection
+- workflow_run security controls for untrusted CI output
+
+The sample compiles and passes strict validation with gh-aw v0.86.2.
+
+Read: https://dev.to/pwd9000/from-markdown-to-guarded-automation-build-your-first-github-agentic-workflow-3gbd
+
+#GitHubCopilot #GitHubActions #DevOps #AI
