@@ -125,7 +125,7 @@ foreach ($task in $tasks) {
                     # Check commands must be native executables so the exit code is meaningful.
                     $global:LASTEXITCODE = 0
                     $checkOutput = (Invoke-Expression $task.check 2>&1 | Out-String)
-                    $checkPassed = ($LASTEXITCODE -eq 0)
+                    $checkPassed = ($exitCode -eq 0 -and $LASTEXITCODE -eq 0)
                 } catch {
                     $checkOutput = $_.Exception.Message
                 } finally {
