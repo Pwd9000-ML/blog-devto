@@ -28,13 +28,13 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 | Year         | Speaking | Content | Open Source | Events | Year Total |
 | ------------ | -------- | ------- | ----------- | ------ | ---------- |
-| 2026         | 2        | 18      | 1           | 2      | 23         |
+| 2026         | 2        | 19      | 1           | 2      | 24         |
 | 2025         | 9        | 9       | 1           | 4      | 23         |
 | 2024         | 5        | 10      | 3           | 3      | 21         |
 | 2023         | 6        | 10      | 8           | 3      | 27         |
 | 2022         | 15       | 38      | 9           | 1      | 63         |
 | 2021         | 1        | 22      | 2           | 0      | 25         |
-| Grand Totals | 38       | 107     | 24          | 13     | 182        |
+| Grand Totals | 38       | 108     | 24          | 13     | 183        |
 
 - **Speaking**: Conference talks, user groups, Meetups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
 - **Content**: Blogs, articles, videos, podcasts (all published content pieces).
@@ -67,6 +67,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **13/09/2026** | [Copilot Can Now Approve Pull Requests. Should It Count Toward Your Branch Protection?](https://dev.to/pwd9000/copilot-can-now-approve-pull-requests-should-it-count-toward-your-branch-protection-2b78) | Content | GitHub, Copilot, Code Review, DevOps | GitHubCopilot, GitHub, CodeReview, DevOps |
 | **25/08/2026** | [From Markdown to Guarded Automation: Build Your First GitHub Agentic Workflow](https://dev.to/pwd9000/from-markdown-to-guarded-automation-build-your-first-github-agentic-workflow-3gbd) | Content | GitHub, Copilot, GitHub Actions, AI | GitHubCopilot, GitHubActions, DevOps, AI |
 | **17/08/2026** | [Can Copilot Fix Its Own Security Findings? Testing GitHub Agentic Autofix](https://dev.to/pwd9000/can-copilot-fix-its-own-security-findings-testing-github-agentic-autofix-351b) | Content | GitHub, Copilot, Security, DevSecOps | GitHubCopilot, GitHub, DevSecOps, Security |
 | **05/08/2026** | [Agentic DevOps Needs Observability: Trace GitHub Copilot with OpenTelemetry](https://dev.to/pwd9000/agentic-devops-needs-observability-trace-github-copilot-with-opentelemetry-405c) | Content | GitHub, Copilot, DevOps, Observability | GitHubCopilot, OpenTelemetry, DevOps, Observability |
