@@ -239,7 +239,7 @@ Expected shape of the output for PR A after the automatic review:
 
 ```json
 {
-  "author": "copilot-pull-request-reviewer",
+  "author": "copilot-pull-request-reviewer[bot]",
   "state": "APPROVED",
   "submittedAt": "2026-09-14T09:12:41Z"
 }
