@@ -141,7 +141,7 @@ None of this is a criticism of GitHub's transparency, which is better than most 
 
 ## Evaluating HydraFusion on Your Own Workload
 
-The right response to a benchmark you cannot reproduce is a small benchmark you can. The design below compares HydraFusion against two fixed models on a handful of representative tasks, records credits and wall time, and applies a pass/fail check per task. It is deliberately modest: five tasks, three model configurations, two repetitions each is 30 runs, which is enough to see a pattern and cheap enough to actually finish.
+The design below compares HydraFusion against two fixed models on a handful of representative tasks, records wall time and raw JSONL output, and applies a pass/fail check per task. It is deliberately modest: four tasks, three model configurations, two repetitions each is 24 runs, which is enough to see a pattern and cheap enough to actually finish.
 
 ### Prerequisites
 
