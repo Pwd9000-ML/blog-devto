@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 4644186
 series: GitHub Copilot - Automation
+date: '2026-09-13T16:07:51Z'
 ---
 
 ## Copilot Can Now Approve Pull Requests. Should It Count Toward Your Branch Protection?
