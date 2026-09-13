@@ -11,7 +11,7 @@
     {
       "name": "tech-blog-writer",
       "description": "AI DevOps research and technical blogging assistant. Researches current GitHub, GitHub Copilot, Azure and AI developments from primary sources, validates every claim and tutorial step, and writes technically credible blog posts and hands-on tutorials.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": "./tech-blog-writer"
     }
   ]

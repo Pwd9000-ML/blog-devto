@@ -4,6 +4,7 @@ published: true
 description: 'Learn GitHub Copilot Skills in VS Code: what they are, how to set them up, and DevOps/SRE use cases from beginner to advanced.'
 tags: 'githubcopilot, github, devops, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-Skills-DevOps/assets/main.png'
+canonical_url: 'https://dev.to/pwd9000/github-copilot-skills-reusable-ai-workflows-for-devops-and-sres-caf'
 id: 3281741
 series: GitHub Copilot - Customisation
 date: '2026-02-24T16:35:29Z'
@@ -231,9 +232,9 @@ For teams, I recommend:
 
 ## Real Examples You Can Explore
 
-This repo already contains a working Skill you can inspect:
+A practical example from my own workflow is:
 
-- `.github/skills/new-blog-post/SKILL.md` in this repository
+- the `new-blog-post` skill in the installed `tech-blog-writer` plugin
 
 If you want ready-made public examples to learn from (without relying on GitHub code search), start here:
 
