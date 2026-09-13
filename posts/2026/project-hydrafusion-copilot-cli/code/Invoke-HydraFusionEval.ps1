@@ -166,7 +166,14 @@ $results |
             ModelId        = $_.Name
             Runs           = $_.Count
             PassRate       = if ($_.Count) { [math]::Round(100 * $passed / $_.Count, 1) } else { 0 }
-            MedianSeconds  = ($_.Group.WallSeconds | Sort-Object)[[math]::Floor($_.Count / 2)]
+            MedianSeconds  = if ($_.Count % 2) {
+                $values = @($_.Group.WallSeconds | Sort-Object)
+                $values[[int]($_.Count / 2)]
+            } else {
+                $values = @($_.Group.WallSeconds | Sort-Object)
+                $middle = [int]($_.Count / 2)
+                [math]::Round(($values[$middle - 1] + $values[$middle]) / 2, 1)
+            }
         }
     } | Format-Table -AutoSize
 
