@@ -36,7 +36,7 @@ if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
     throw 'GitHub CLI (gh) is not installed or not on PATH.'
 }
 
-$copilotReviewer = 'copilot-pull-request-reviewer'
+$copilotReviewer = 'copilot-pull-request-reviewer[bot]'
 
 foreach ($number in $PullRequest) {
     $json = gh pr view $number --repo $Repository --json number,title,reviews,reviewDecision,mergeStateStatus,files
