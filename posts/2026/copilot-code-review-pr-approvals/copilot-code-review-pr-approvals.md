@@ -1,6 +1,6 @@
 ---
 title: Copilot Can Now Approve Pull Requests. Should It Count Toward Your Branch Protection?
-published: false
+published: true
 description: 'Copilot code review can now submit approvals that satisfy required reviews. How the controls compose, what is undocumented, and a safe rollout.'
 tags: 'githubcopilot, github, devops, codereview'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/copilot-code-review-pr-approvals/assets/main.png'
@@ -253,7 +253,7 @@ gh pr view 42 --json mergeStateStatus,reviewDecision --jq '{mergeStateStatus, re
 
 `reviewDecision` should remain `REVIEW_REQUIRED` for both PRs until `@acme/platform-reviewers` approves PR A; after that, PR A can become `APPROVED` if Copilot satisfies the required-approval and last-push rules, while PR B remains `REVIEW_REQUIRED`. Record the undocumented interactions rather than assuming them.
 
-A small PowerShell helper that runs these checks for a list of PR numbers is included in the [code folder](./code/check-copilot-approvals.ps1).
+A small PowerShell helper that runs these checks for a list of PR numbers is included in the [code folder](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2026/copilot-code-review-pr-approvals/code/check-copilot-approvals.ps1).
 
 ---
 
@@ -272,13 +272,10 @@ Being precise about the gaps is more useful than pretending they do not exist. A
 | Audit log | Settings changes surface as `copilot.code_review_repository_settings_updated` and `copilot.code_review_organization_settings_updated`. No approval-specific event is documented. |
 | GitHub Enterprise Server | The docs are versioned for GitHub.com and Enterprise Cloud only. No GHES availability is stated. |
 
-There is also a documentation contradiction worth knowing about. The page [Approving a pull request with required reviews](https://docs.github.com/en/pull-requests/how-tos/review-pull-requests/approving-a-pull-request-with-required-reviews) still says Copilot approvals "do not count toward those requirements". The concept and how-to pages for Copilot code review say the opposite when the feature is enabled. The newer pages are authoritative; the older page has not caught up.
-
 ---
 
 ## Limitations and Gotchas
 
-- **Every changed file must match.** A practitioner write-up from [Zetta360](https://www.zetta360.com/blog/copilot-code-review-approvals-glob-list) found that only 4 of their last 53 merged PRs would have passed a two-glob allow-list, mostly because generated files rode along in otherwise in-scope PRs. If your build commits generated artefacts, either add those paths to the globs or accept that the approval rarely counts.
 - **15 globs per repository.** Enough for a focused allow-list, not enough to enumerate a monorepo.
 - **Excluded content.** According to the concept page, Copilot code review does not review dependency management files such as `package.json` or `Gemfile.lock`, log files, or SVGs. Be cautious about letting an approval count on lockfile-only PRs when the reviewer did not read the lockfile.
 - **Re-review repetition.** GitHub's usage docs note that Copilot may repeat comments on re-review even if they were dismissed.
@@ -321,26 +318,6 @@ The 11 September changes are the more important technical shift. A reviewer that
 
 Copilot earning the right to approve is a reasonable direction. Whether it has earned it in your repository is a question only your evidence can answer.
 
----
-
-## Sources
-
-| Source | Type | Date checked | What it verifies |
-| --- | --- | --- | --- |
-| [Copilot code review can now approve pull requests](https://github.blog/changelog/2026-09-01-copilot-code-review-can-now-approve-pull-requests/) | GitHub Changelog | 13 Sep 2026 | Approval assessments, approvals, public preview, plans, three-level controls |
-| [Auto-resolution and analysis updates in Copilot code review](https://github.blog/changelog/2026-09-11-auto-resolution-and-analysis-updates-in-copilot-code-review/) | GitHub Changelog | 13 Sep 2026 | Auto-resolution, smart commit messages, shell tools, Lite ensemble figures |
-| [Copilot code review: resolution reasons and expanded capabilities](https://github.blog/changelog/2026-08-27-copilot-code-review-resolution-reasons-and-expanded-capabilities/) | GitHub Changelog | 13 Sep 2026 | Size limit removal, resolution reasons |
-| [Upcoming changes to GitHub Copilot policies and billing](https://github.blog/changelog/2026-08-28-upcoming-changes-to-github-copilot-policies-and-billing/) | GitHub Changelog | 13 Sep 2026 | Default effort becomes Balanced on 28 Sep 2026 |
-| [Configuring code review by GitHub Copilot](https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-code-review) | GitHub Docs | 13 Sep 2026 | Exact setting names and paths at repository, organisation, enterprise; 15-glob rule |
-| [About GitHub Copilot code review](https://docs.github.com/en/copilot/concepts/agents/code-review) | GitHub Docs | 13 Sep 2026 | Effort levels, cost estimates, excluded files, budget behaviour, Actions dependency |
-| [Using GitHub Copilot code review](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review) | GitHub Docs | 13 Sep 2026 | Default Comment review, reviewer bot login, re-review repetition |
-| [Available rules for rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets) | GitHub Docs | 13 Sep 2026 | Pull request rule options, unattributed Copilot PR rule |
-| [REST API: repository rules](https://docs.github.com/en/rest/repos/rules) | GitHub Docs | 13 Sep 2026 | `copilot_code_review` rule type and pull request rule parameters |
-| [Approving a pull request with required reviews](https://docs.github.com/en/pull-requests/how-tos/review-pull-requests/approving-a-pull-request-with-required-reviews) | GitHub Docs | 13 Sep 2026 | Stale statement that Copilot reviews do not count |
-| [Audit log events for your organization](https://docs.github.com/en/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/audit-log-events-for-your-organization) | GitHub Docs | 13 Sep 2026 | Code review settings audit events |
-| [Models and pricing](https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing) | GitHub Docs | 13 Sep 2026 | AI credit value, code review billing model |
-| [Copilot code review approvals and the glob list](https://www.zetta360.com/blog/copilot-code-review-approvals-glob-list) | Practitioner blog | 13 Sep 2026 | Community data point on allow-list effectiveness |
-| [GitHub puts Copilot in the approval seat](https://devops.com/github-puts-copilot-in-the-approval-seat-for-pull-requests/) | Trade press | 13 Sep 2026 | Analyst reaction and governance framing |
 
 ---
 
