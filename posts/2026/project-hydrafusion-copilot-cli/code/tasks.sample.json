@@ -1,0 +1,22 @@
+[
+  {
+    "id": "validate-input",
+    "prompt": "In src/orders.ts, add input validation to createOrder so that quantity must be a positive integer and customerId must be a non-empty string. Throw a ValidationError with a clear message. Add unit tests in tests/orders.test.ts covering both failure cases and one success case. Run the tests and make sure they pass.",
+    "check": "npm test -- --runTestsByPath tests/orders.test.ts"
+  },
+  {
+    "id": "fix-failing-test",
+    "prompt": "The test suite currently has one failing test in tests/pricing.test.ts. Find the root cause in the implementation (not the test), fix it, and run the full test suite until it passes. Do not modify or delete tests.",
+    "check": "npm test"
+  },
+  {
+    "id": "structured-logging",
+    "prompt": "Add structured JSON logging to the CLI entry point in src/cli.ts. Each log line must include timestamp, level, message, and a correlationId that is generated once per invocation. Keep existing behaviour and make sure the build and tests pass.",
+    "check": "npm run build && npm test"
+  },
+  {
+    "id": "ci-workflow",
+    "prompt": "Create .github/workflows/test.yml that runs npm ci and npm test on pull requests to main using ubuntu-latest and Node 20. Use a top-level permissions block with contents: read only, and pin actions/checkout and actions/setup-node to specific major versions.",
+    "check": "node -e \"process.exit(require('fs').existsSync('.github/workflows/test.yml') ? 0 : 1)\""
+  }
+]
