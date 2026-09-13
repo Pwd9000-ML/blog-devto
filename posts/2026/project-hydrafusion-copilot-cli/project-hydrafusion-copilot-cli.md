@@ -190,7 +190,8 @@ Run it like this:
   -ModelIds @('hydrafusion', 'claude-opus-5', 'gpt-5.6-sol') `
   -Repetitions 2 `
   -MaxCreditsPerRun 300 `
-  -OutputCsv './hydrafusion-eval.csv'
+  -OutputCsv './hydrafusion-eval.csv' `
+  -TrustTaskFile
 ```
 
 The task file is a simple JSON array. A [sample](./code/tasks.sample.json) is included:

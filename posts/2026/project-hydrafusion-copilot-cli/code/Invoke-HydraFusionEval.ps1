@@ -40,8 +40,12 @@
 .PARAMETER OutputDirectory
     Directory for raw JSONL output and worktrees. Default: ./hydrafusion-eval.
 
+.PARAMETER TrustTaskFile
+    Required when the task file contains check commands, because each check is
+    executed as PowerShell in the disposable worktree.
+
 .EXAMPLE
-    ./Invoke-HydraFusionEval.ps1 -RepositoryPath C:\src\eval-lab -TasksPath ./tasks.sample.json -ModelIds @('hydrafusion','claude-opus-5') -Repetitions 2 -OutputCsv ./results.csv
+    ./Invoke-HydraFusionEval.ps1 -RepositoryPath C:\src\eval-lab -TasksPath ./tasks.sample.json -ModelIds @('hydrafusion','claude-opus-5') -Repetitions 2 -OutputCsv ./results.csv -TrustTaskFile
 #>
 [CmdletBinding()]
 param(
@@ -63,7 +67,9 @@ param(
     [Parameter(Mandatory)]
     [string] $OutputCsv,
 
-    [string] $OutputDirectory = './hydrafusion-eval'
+    [string] $OutputDirectory = './hydrafusion-eval',
+
+    [switch] $TrustTaskFile
 )
 
 $ErrorActionPreference = 'Stop'
@@ -77,6 +83,14 @@ foreach ($tool in @('git', 'copilot')) {
 $RepositoryPath = (Resolve-Path $RepositoryPath).Path
 $tasks = Get-Content -Raw -Path $TasksPath | ConvertFrom-Json
 if (-not $tasks -or $tasks.Count -eq 0) { throw "No tasks found in $TasksPath." }
+$tasksWithChecks = @($tasks | Where-Object { $_.check })
+if ($tasksWithChecks.Count -gt 0) {
+    if (-not $TrustTaskFile) {
+        throw "Task checks from $TasksPath are executed as PowerShell in the disposable worktree. Re-run with -TrustTaskFile only for a trusted task file."
+    }
+
+    Write-Warning "Task checks from $TasksPath are executed as PowerShell in the disposable worktree. Use only a trusted task file."
+}
 
 New-Item -ItemType Directory -Force -Path $OutputDirectory | Out-Null
 $OutputDirectory = (Resolve-Path $OutputDirectory).Path
