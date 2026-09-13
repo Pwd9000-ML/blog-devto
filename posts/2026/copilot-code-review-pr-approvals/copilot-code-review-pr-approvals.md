@@ -20,7 +20,7 @@ This is the moment where AI code review stops being a suggestion layer and becom
 
 If you want the wider landscape of Copilot review surfaces, my earlier [definitive guide to code reviews with Copilot](https://dev.to/pwd9000/mastering-code-reviews-with-github-copilot-the-definitive-guide-3nfp) still applies. This post is narrowly about the approval capability and the governance around it.
 
-> **Evidence boundary:** Copilot approvals are a public preview and GitHub's docs say they are "subject to change". Everything below about product behaviour is grounded in the 1 and 11 September 2026 changelog entries and GitHub Docs as read on 13 September 2026. I have not fabricated a test result. Where I describe a validation experiment, it is a reproducible design for your own sandbox, not a claim that I ran it.
+> **Evidence boundary:** Copilot approvals are a public preview and GitHub's docs say they are "subject to change". Everything below about product behaviour is grounded in the 1 and 11 September 2026 changelog entries and GitHub Docs as of 13 September 2026.
 
 ---
 
@@ -28,14 +28,14 @@ If you want the wider landscape of Copilot review surfaces, my earlier [definiti
 
 Three changelog entries in two weeks matter here.
 
-**27 August 2026.** The 300 file / 20,000 line limit on Copilot code review no longer applies, and reviewers gained resolution reasons (**Addressed**, **Won't fix**, **Incorrect**) on Copilot comments. Source: [GitHub Changelog, 27 Aug 2026](https://github.blog/changelog/2026-08-27-copilot-code-review-resolution-reasons-and-expanded-capabilities/).
+**[27 August 2026.](https://github.blog/changelog/2026-08-27-copilot-code-review-resolution-reasons-and-expanded-capabilities/)** The 300 file / 20,000 line limit on Copilot code review no longer applies, and reviewers gained resolution reasons (**Addressed**, **Won't fix**, **Incorrect**) on Copilot comments. 
 
-**1 September 2026.** Two related things shipped in public preview for Copilot Pro, Pro+, Max, Business, and Enterprise ([GitHub Changelog, 1 Sep 2026](https://github.blog/changelog/2026-09-01-copilot-code-review-can-now-approve-pull-requests/)):
+**[1 September 2026.](https://github.blog/changelog/2026-09-01-copilot-code-review-can-now-approve-pull-requests/)** Two related things shipped in public preview for Copilot Pro, Pro+, Max, Business, and Enterprise:
 
 1. **Approval assessments.** Every Copilot review now states in its overview comment whether Copilot considers the pull request ready to approve. GitHub is explicit: "An approval assessment alone does not count toward merge requirements."
 2. **Copilot approvals.** When enabled, Copilot can submit an approval that counts toward the required-approvals rule "the same way a teammate's approval would". If new commits are pushed, the approval is dismissed like a human's, and you can re-request a review.
 
-**11 September 2026.** Copilot now resolves its own review comments during a re-review when a later commit addresses them, writes a generated commit message when you apply a Copilot suggestion, runs "the full set of shell tools from the Copilot SDK" behind the Copilot agent firewall to validate what it reviews, and uses an ensemble of agents at the Lite effort level. GitHub reports the ensemble increased addressed comments per review by 47% for high severity findings, 31% for medium, and 11% for low, while reducing review cost by about 8%. Source: [GitHub Changelog, 11 Sep 2026](https://github.blog/changelog/2026-09-11-auto-resolution-and-analysis-updates-in-copilot-code-review/).
+**[11 September 2026.](https://github.blog/changelog/2026-09-11-auto-resolution-and-analysis-updates-in-copilot-code-review/)** Copilot now resolves its own review comments during a re-review when a later commit addresses them, writes a generated commit message when you apply a Copilot suggestion, runs "the full set of shell tools from the Copilot SDK" behind the Copilot agent firewall to validate what it reviews, and uses an ensemble of agents at the Lite effort level. GitHub reports the ensemble increased addressed comments per review by 47% for high severity findings, 31% for medium, and 11% for low, while reducing review cost by about 8%.
 
 Read together, the story is clear. The reviewer got more capable (it can build and run tests), more efficient (ensemble at Lite), and, optionally, authoritative (it can approve). The first two are uncontroversial. The third changes what your branch protection means.
 
