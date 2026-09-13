@@ -138,7 +138,7 @@ The file paths control is the feature that turns "should an AI approve?" from a 
 
 ### 1. Ruleset for the default branch
 
-Import this via **Settings** > **Rules** > **Rulesets** > **Import a ruleset**, or with the REST API. A copy lives in the article's [code folder](./code/main-branch-ruleset.json).
+Import this via **Settings** > **Rules** > **Rulesets** > **Import a ruleset**, or with the REST API. A copy lives in the article's [code folder](https://github.com/Pwd9000-ML/blog-devto/blob/main/posts/2026/copilot-code-review-pr-approvals/code/main-branch-ruleset.json).
 
 ```json
 {
