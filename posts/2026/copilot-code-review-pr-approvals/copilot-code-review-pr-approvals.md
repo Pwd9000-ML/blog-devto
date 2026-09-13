@@ -251,7 +251,7 @@ Then confirm merge-readiness from the same data source your automation would use
 gh pr view 42 --json mergeStateStatus,reviewDecision --jq '{mergeStateStatus, reviewDecision}'
 ```
 
-`reviewDecision` should read `APPROVED` for PR A once the approval counts and `REVIEW_REQUIRED` for PR B. Record the results, the repository settings, and the ruleset export next to each other so the evidence survives the preview changing under you.
+`reviewDecision` should remain `REVIEW_REQUIRED` for both PRs until `@acme/platform-reviewers` approves PR A; after that, PR A can become `APPROVED` if Copilot satisfies the required-approval and last-push rules, while PR B remains `REVIEW_REQUIRED`. Record the undocumented interactions rather than assuming them.
 
 A small PowerShell helper that runs these checks for a list of PR numbers is included in the [code folder](./code/check-copilot-approvals.ps1).
 
