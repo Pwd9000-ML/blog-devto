@@ -5,7 +5,7 @@ description: 'HydraFusion builds Single, Cascade or Critique workflows across mo
 tags: 'githubcopilot, ai, devops, llm'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/project-hydrafusion-copilot-cli/assets/main.png'
 canonical_url: null
-id: null
+id: 4644278
 series: GitHub Copilot - CLI
 date: '2026-09-13T16:30:00Z'
 ---
