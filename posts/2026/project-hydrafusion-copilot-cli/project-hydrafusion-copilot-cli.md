@@ -49,7 +49,7 @@ If HydraFusion does not appear in the CLI picker, the documentation suggests swi
 
 | Date | What happened |
 | --- | --- |
-| 16 May 2026 | The [HyDRA](https://arxiv.org/abs/2605.17106) routing paper is published; its capability-scoring router is deployed in Auto for VS Code Chat |
+| 16 May 2026 | The [HyDRA](https://arxiv.org/abs/2605.17106) routing paper is published, its capability-scoring router is deployed in Auto for VS Code Chat |
 | 4 Sep 2026 | HydraFusion announced as a research preview in Copilot CLI, behind experimental mode |
 | Week of 14 Sep 2026 | Auto model selection starts rolling out Efficiency, Balance, and Intelligence tiers |
 | 22 to 29 Sep 2026 | Claude Opus 5.5, GPT-6 Sol, GPT-6 Luna, Claude Sonnet 5.5, and GPT-6.1 Sol arrive in Copilot |
@@ -66,7 +66,7 @@ GitHub describes HydraFusion as treating "workflow selection as an optimization 
 
 | Pattern | Mechanism (GitHub's description) | When it makes sense |
 | --- | --- | --- |
-| **Single** | One selected model solves the task directly. | The task is well within a single model's capability; adds no overhead. |
+| **Single** | One selected model solves the task directly. | The task is well within a single model's capability, adds no overhead. |
 | **Cascade** | An efficient model drafts a solution and a quality gate decides whether to accept it or escalate to a stronger model. | Most tasks are easy, some are not, and you would rather pay for the strong model only on the hard ones. |
 | **Critique** | One model drafts a result, an independent read-only critic from a different model family reviews it, and the drafting model revises once. | Tasks where a second opinion catches more than a second attempt would. |
 
@@ -107,15 +107,15 @@ The model pool is still not published, and that is now a stated policy. The same
 
 |  | Auto model selection | HydraFusion |
 | --- | --- | --- |
-| Status | GA in Copilot Chat (github.com and supported IDEs), CLI, Copilot app, and cloud agent | Research preview in CLI, VS Code 1.140 or later, and the Copilot app; no SLA |
+| Status | GA in Copilot Chat (github.com and supported IDEs), CLI, Copilot app, and cloud agent | Research preview in CLI, VS Code 1.140 or later, and the Copilot app, no SLA |
 | Unit of decision | One model per request, re-routed along natural cache boundaries and large shifts in complexity | One execution pattern per prompt, potentially several models within a turn |
-| Mechanism | Task complexity plus real-time model health; Efficiency, Balance, and Intelligence tiers in VS Code, CLI, and the app | Capability signals selecting Single, Cascade, or Critique |
-| Pricing | Selected model's rate, with a 10% discount on paid plans | Each model's standard rate, summed across legs; no discount |
-| Admin model policies | Honoured, documented | Honoured, documented; hidden from the picker if no allowed model qualifies |
+| Mechanism | Task complexity plus real-time model health, Efficiency, Balance, and Intelligence tiers in VS Code, CLI, and the app | Capability signals selecting Single, Cascade, or Critique |
+| Pricing | Selected model's rate, with a 10% discount on paid plans | Each model's standard rate, summed across legs, no discount |
+| Admin model policies | Honoured, documented | Honoured, documented, hidden from the picker if no allowed model qualifies |
 | Choose the models yourself | No | No |
-| See which model ran | Per response (hover, terminal, or end of response) | CLI progress display; hover in VS Code and the app |
+| See which model ran | Per response (hover, terminal, or end of response) | CLI progress display, hover in VS Code and the app |
 
-GitHub's own FAQ puts the difference in one line: "Auto picks the optimal model; HydraFusion picks the optimal workflow, possibly using multiple models." It also says "we expect them to come together into a single experience over time." Mario Rodriguez, GitHub's Chief Product Officer, told [VentureBeat](https://venturebeat.com/orchestration/githubs-hydrafusion-cuts-ai-coding-costs-in-every-benchmark-it-only-matches-quality-in-one) that GitHub is "evaluating the possibility of converging HydraFusion into Auto". If you write team guidance today, cover both and expect to rewrite it.
+GitHub's own FAQ puts the difference in one line: "Auto picks the optimal model, HydraFusion picks the optimal workflow, possibly using multiple models." It also says "we expect them to come together into a single experience over time." Mario Rodriguez, GitHub's Chief Product Officer, told [VentureBeat](https://venturebeat.com/orchestration/githubs-hydrafusion-cuts-ai-coding-costs-in-every-benchmark-it-only-matches-quality-in-one) that GitHub is "evaluating the possibility of converging HydraFusion into Auto". If you write team guidance today, cover both and expect to rewrite it.
 
 ---
 
@@ -139,7 +139,7 @@ The blog's embedded charts carry the absolute figures, which are more useful for
 
 A few observations that the headline does not tell you:
 
-1. **HydraFusion beat Opus 5 on one benchmark out of three.** On the other two it is slightly behind on quality and substantially cheaper. "Frontier quality at lower cost" is a fair summary; "better than Opus" is not.
+1. **HydraFusion beat Opus 5 on one benchmark out of three.** On the other two it is slightly behind on quality and substantially cheaper. "Frontier quality at lower cost" is a fair summary, "better than Opus" is not.
 2. **The interesting comparison is often GPT-5.6 Sol, not Opus.** On TerminalBench, HydraFusion costs the same as Sol and scores 11.4 points higher. On DeepSWE and CheckpointBench it costs 12.5% and 13.3% more than Sol for 2.2 and 1.4 points more quality. If your team already defaults to a mid-tier model, the cost saving versus your baseline is much smaller than 67%.
 3. **TerminalBench 2.1 is described by GitHub itself as relatively saturated**, which is why the harder repository-level DeepSWE matters more, and that is where the margin is thinnest.
 4. **CheckpointBench is internal.** GitHub describes it as a multi-turn benchmark curated from real Copilot sessions. Its chart breaks the 276 checkpoints down as 116 easy, 107 medium, and 53 hard, led by Python (92) and TypeScript (48), and dominated by bug fixes (90) and feature implementation (73). You cannot reproduce it.
@@ -154,13 +154,13 @@ None of this is a criticism of GitHub's transparency, which is better than most 
 
 **Cost variance becomes a workflow property.** With a fixed model, cost per task scales roughly with task size. With Cascade, the same prompt can cost a cheap draft or a cheap draft plus a strong-model escalation depending on whether the quality gate fires. With Critique it is always at least two model calls plus a revision. Budget controls need to move from "which model" to "what is the cap per task", which Copilot CLI supports with `--max-ai-credits`. Note the floor: CLI 1.0.89 rejects anything below 30 credits.
 
-**Latency becomes multi-modal.** The documentation says it plainly: "The Single execution pattern behaves much like a request to one model. Cascade and Critique take longer, because they include review passes." Choosing the pattern is cheap. One early hands-on report describes a Cascade run of three to four minutes for a single prompt. That is fine for a task you hand off in autopilot; it is not fine for an interactive loop. GitHub's guidance to start with substantial, well-scoped single-prompt tasks is a latency statement as much as a quality one.
+**Latency becomes multi-modal.** The documentation says it plainly: "The Single execution pattern behaves much like a request to one model. Cascade and Critique take longer, because they include review passes." Choosing the pattern is cheap. One early hands-on report describes a Cascade run of three to four minutes for a single prompt. That is fine for a task you hand off in autopilot, it is not fine for an interactive loop. GitHub's guidance to start with substantial, well-scoped single-prompt tasks is a latency statement as much as a quality one.
 
 **Visibility is better than at launch, but it is not yet operational telemetry.** At launch you mostly saw the final answer, and the feedback discussion filled with requests to see what was happening. The CLI now shows the chosen pattern, each planned pass with its status, what the current pass is doing, and the elapsed time, and keeps a summary in the conversation afterwards. VS Code and the app show which models were used when you hover over a response. For bug reports, `/collect-debug-logs` captures "the execution pattern and the models used for each step".
 
 Headless runs go further than the documentation does. With `--output-format json`, CLI 1.0.89 emitted `session.fusion_resolved`, `assistant.fusion_phase_started`, `assistant.fusion_phase_completed`, and `session.fusion_completed` events in my smoke test. Between them they carry the pattern, each phase's model and role, its duration, and its token and credit usage. None of that schema is documented, so build on it the way the harness below does: record what is present and tolerate its absence. If you use the [OpenTelemetry tracing approach](https://dev.to/pwd9000/agentic-devops-needs-observability-trace-github-copilot-with-opentelemetry-405c), nothing in GitHub's documentation says whether HydraFusion legs appear as separate spans, so check your own collector before you rely on it.
 
-**Enterprise policy behaviour is documented now; data handling less so.** HydraFusion "only uses models that are available in your plan and allowed by your organization's or enterprise's model policies", and it does not appear at all if none qualify. That answers the most common admin question from launch. It does not answer the follow-up a user posted in the feedback discussion on 23 September: whether usage across critic, fallback, and escalation legs is "covered by existing data processing agreements". I found no HydraFusion-specific statement or staff reply on that point. If it matters to you, ask your account team before you enable preview features.
+**Enterprise policy behaviour is documented now, data handling less so.** HydraFusion "only uses models that are available in your plan and allowed by your organization's or enterprise's model policies", and it does not appear at all if none qualify. That answers the most common admin question from launch. It does not answer the follow-up a user posted in the feedback discussion on 23 September: whether usage across critic, fallback, and escalation legs is "covered by existing data processing agreements". I found no HydraFusion-specific statement or staff reply on that point. If it matters to you, ask your account team before you enable preview features.
 
 ---
 
@@ -171,11 +171,11 @@ Headless runs go further than the documentation does. With `--output-format json
 | Choosing a model per task | Manual, or Auto per request | Runtime picks a workflow per prompt |
 | Getting a second opinion | Manual `/rubber-duck` | Built into the Critique pattern, one revision |
 | Paying for a strong model only when needed | Manual re-run, or Auto routing | Cascade quality gate escalates automatically |
-| Cost predictability | High | Lower; varies with route taken |
-| Latency predictability | High | Lower; Cascade and Critique add passes |
-| Visibility into intermediate work | Full | Pattern, passes, and models shown; drafts hidden |
+| Cost predictability | High | Lower, varies with route taken |
+| Latency predictability | High | Lower, Cascade and Critique add passes |
+| Visibility into intermediate work | Full | Pattern, passes, and models shown, drafts hidden |
 | Control over models | Full with a fixed model, none with Auto | None beyond your model policies |
-| Availability | GA everywhere | CLI, VS Code 1.140 or later, Copilot app; research preview |
+| Availability | GA everywhere | CLI, VS Code 1.140 or later, Copilot app, research preview |
 | Vendor exposure per request | One | Potentially several, by design in Critique |
 
 ---
@@ -186,8 +186,8 @@ The design below compares HydraFusion against two fixed models on a handful of r
 
 ### Prerequisites
 
-- Copilot CLI 1.0.89 or later (`copilot version`), authenticated with `copilot login`. I tested the invocation on 1.0.89; [1.0.92](https://github.com/github/copilot-cli/releases/tag/v1.0.92) is the current stable release.
-- A disposable git repository with a real build and test command. Do not use a production repository; `--yolo` approves every tool call without asking.
+- Copilot CLI 1.0.89 or later (`copilot version`), authenticated with `copilot login`. I tested the invocation on 1.0.89, [1.0.92](https://github.com/github/copilot-cli/releases/tag/v1.0.92) is the current stable release.
+- A disposable git repository with a real build and test command. Do not use a production repository, `--yolo` approves every tool call without asking.
 - HydraFusion visible to you: start `copilot --experimental` once interactively and confirm **HydraFusion (Research Preview)** appears in `/model`. The harness then passes `--experimental` itself for HydraFusion runs only, so the fixed-model baselines run without experimental features.
 - A spending cap you are comfortable with. The harness passes `--max-ai-credits` per run, and the CLI requires at least 30.
 
@@ -222,11 +222,11 @@ copilot --experimental `
 
 Fixed-model runs use the same options without `--experimental`. What the harness reads, and how far to trust it:
 
-- **The model identifier is documented.** `copilot --experimental --model hydrafusion -p` is GitHub's documented headless path. On CLI 1.0.89 it exited cleanly and emitted HydraFusion events in the JSONL stream. Other identifiers follow the names in `/model`; I confirmed `gpt-5.6-sol` and `gpt-5.6-luna` in the same test.
+- **The model identifier is documented.** `copilot --experimental --model hydrafusion -p` is GitHub's documented headless path. On CLI 1.0.89 it exited cleanly and emitted HydraFusion events in the JSONL stream. Other identifiers follow the names in `/model`, I confirmed `gpt-5.6-sol` and `gpt-5.6-luna` in the same test.
 - **Credits come from the usage file, and its schema is not documented.** `--usage-output-file` writes "final usage statistics as JSON". In CLI 1.0.89 that file contains a `totalNanoAiu` field and a per-model `modelMetrics` map. I checked the unit against GitHub's published GPT-5.6 Sol rates: 15,015 cache-write tokens at $5.00 per million, plus 3 input and 5 output tokens, comes to $0.0752, and the file reported 7,518,700,000. Credits are therefore `totalNanoAiu / 1e9`. Spot-check against `/usage` before you publish a cost comparison.
 - **The pattern comes from undocumented events.** The harness reads `pattern` and `outcome` from `session.fusion_completed`. If a future CLI renames them, those columns stay empty rather than wrong.
 
-> **Smoke test, not a benchmark.** On 7 October I sent the same one-word prompt ("Reply with the single word OK. Do not use any tools.") through CLI 1.0.89 twice. HydraFusion chose Single on `gpt-5.6-sol` and used 7.52 credits in 10.7 seconds. Running `gpt-5.6-luna` directly used 0.37 credits in 8.3 seconds. Both runs wrote about 15,000 tokens to the prompt cache; the difference is the per-token rate of the model HydraFusion chose. This says nothing about quality on real tasks. It does show why the documentation says "for quick or routine tasks, select **Auto** instead".
+> **Smoke test, not a benchmark.** On 7 October I sent the same one-word prompt ("Reply with the single word OK. Do not use any tools.") through CLI 1.0.89 twice. HydraFusion chose Single on `gpt-5.6-sol` and used 7.52 credits in 10.7 seconds. Running `gpt-5.6-luna` directly used 0.37 credits in 8.3 seconds. Both runs wrote about 15,000 tokens to the prompt cache, the difference is the per-token rate of the model HydraFusion chose. This says nothing about quality on real tasks. It does show why the documentation says "for quick or routine tasks, select **Auto** instead".
 
 Run it like this:
 
@@ -259,7 +259,7 @@ The task file is a simple JSON array. A [sample](./code/tasks.sample.json) is in
 
 Load the CSV and compare per model:
 
-- **Pass rate** per task, not just overall. HydraFusion may win on some task types and lose on others; GitHub's own results say as much.
+- **Pass rate** per task, not just overall. HydraFusion may win on some task types and lose on others, GitHub's own results say as much.
 - **Pattern mix per task.** The `FusionPatterns` column shows whether HydraFusion chose Single, Cascade, or Critique, so you no longer have to infer escalations from a bimodal wall-time distribution.
 - **Credits per passing task.** The summary calculates it when every run produced a usage file. Credits per attempt rewards cheap failures.
 - **Models that actually ran.** `ModelsUsed` lists every model in the usage file. If HydraFusion keeps choosing models older than your team's default, you want to know that before you adopt it.
@@ -276,7 +276,7 @@ The realistic threat model here is not new, but the routing changes some of the 
 - **Multiple vendors see your prompt.** The Critique pattern sends context to a critic from a different model family by design, although the documentation says assisting models "receive only the context they need". HydraFusion honours your model policies, so a model you have disabled is not used. If your data handling agreements distinguish between model providers, your allow-list is now the control that matters, because one request may touch more than one provider.
 - **The critic cannot act.** Isolated, tool-less review is the right design. A prompt injection that reaches the critic can only influence text that the solver then chooses to act on. The solver still runs under the normal permission-aware agent loop, so your existing permission model and, for Business and Enterprise, the [enterprise managed permissions](https://github.blog/changelog/2026-09-09-enterprise-managed-permissions-for-github-copilot-agent-operations/) that went GA on 9 September, remain the effective controls.
 - **Do not count on fail-safe application to clean up.** The documentation says edits made by a discarded draft "aren't undone automatically". Run HydraFusion on a branch or a disposable worktree and review the diff before you commit. That is the same discipline as any agent, but it is a less comfortable reading than the launch post suggests.
-- **Budget caps are your circuit breaker.** Cascade escalations are the case where cost grows without you choosing it. Use `--max-ai-credits` on every non-interactive run; it is not optional in CI-adjacent use. For teams, user-level budgets and the budget increase requests that went GA for Business and Enterprise in September give administrators an approval step when someone hits a limit.
+- **Budget caps are your circuit breaker.** Cascade escalations are the case where cost grows without you choosing it. Use `--max-ai-credits` on every non-interactive run, it is not optional in CI-adjacent use. For teams, user-level budgets and the budget increase requests that went GA for Business and Enterprise in September give administrators an approval step when someone hits a limit.
 - **Preview access is a clean gate.** For Business and Enterprise, an administrator must enable preview features, and the default enablement policy that starts on 22 October leaves previews opt-in. Pilot HydraFusion in one organisation rather than enabling it everywhere.
 - **Autopilot plus `--yolo` is a high-trust configuration.** Use it only in disposable environments. GitHub's statement that the preview "isn't intended for production workloads" points the same way.
 
@@ -285,7 +285,7 @@ The realistic threat model here is not new, but the routing changes some of the 
 ## Limitations and Gotchas
 
 - **Three surfaces only.** Copilot CLI, VS Code 1.140 or later, and the Copilot app. Not cloud agent, JetBrains IDEs, Visual Studio, or Copilot Chat on github.com.
-- **Research preview, no SLA.** Names, availability, and behaviour can change without notice. The CLI picker says "HydraFusion (Research Preview)"; VS Code and the app just say "HydraFusion".
+- **Research preview, no SLA.** Names, availability, and behaviour can change without notice. The CLI picker says "HydraFusion (Research Preview)", VS Code and the app just say "HydraFusion".
 - **No control over the pool.** You cannot choose or exclude models beyond your policy allow-list, and there is no fixed list. Community reports suggest new models are not picked up immediately.
 - **No latency figures from GitHub.** The preview is explicitly intended to learn "how orchestration affects latency and cost in practice".
 - **First-turn tasks are still the sweet spot.** Multi-turn is next on GitHub's list. Patterns are chosen per prompt, so a long session can mix them, but do not judge HydraFusion on a long iterative session yet.
