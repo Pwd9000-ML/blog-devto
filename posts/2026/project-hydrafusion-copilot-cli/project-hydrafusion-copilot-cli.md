@@ -20,17 +20,15 @@ That headline deserves the scrutiny this article gives it. But the more durable 
 
 If you want the CLI fundamentals first, my [Copilot CLI practical guide](https://dev.to/pwd9000/github-copilot-cli-a-devops-engineers-practical-guide-to-ai-powered-terminal-automation-1jh0) and [evaluating LLM models in Copilot](https://dev.to/pwd9000/evaluating-llm-models-in-github-copilot-a-practical-scoring-and-assessment-guide-1f23) cover the ground this post builds on.
 
-> **Evidence boundary:** this article reflects GitHub's documentation and changelog as of 7 October 2026. HydraFusion is a research preview with no SLA, and GitHub's documentation says it "isn't intended for production workloads". Every benchmark figure below is GitHub's own offline result, quoted with its caveats. I have not benchmarked HydraFusion. I did run a two-prompt smoke test on Copilot CLI 1.0.89 to confirm the headless invocation, the usage file, and the event stream that the evaluation harness relies on. Those results are labelled where they appear and say nothing about quality.
-
 ---
 
-## What Changed
+## HydraFusion's background and timeline
 
 **Status:** research preview. The [HydraFusion documentation](https://docs.github.com/en/early-access/copilot/hydrafusion) is explicit: "there's no service level agreement (SLA), and HydraFusion isn't intended for production workloads."
 
 **Surfaces:** Copilot CLI since 4 September, behind experimental mode. Since 30 September, also [VS Code 1.140](https://code.visualstudio.com/updates/v1_140) or later (or VS Code Insiders) and the GitHub Copilot app. The documentation lists only those three surfaces, so Copilot cloud agent, JetBrains IDEs, Visual Studio, and Copilot Chat on github.com are not included.
 
-**Plans:** this is where the sources disagree. The launch post and the original community announcement say HydraFusion is available "on all GitHub Copilot plans". The 30 September changelog says it "is available to Copilot Pro, Pro+, Business, and Enterprise users" and that "for Copilot Business and Enterprise, an administrator must enable preview features". The documentation adds that HydraFusion only uses models that your plan includes and your policies allow, and does not appear in the picker if none qualify. If your plan is not on the changelog's list, check the picker rather than assuming either way.
+**Availability:** The 30 September changelog says it "is available to Copilot Pro, Pro+, Business, and Enterprise users" and that "for Copilot Business and Enterprise, an administrator must enable preview features". The documentation adds that HydraFusion only uses models that your plan includes and your policies allow, and does not appear in the picker if none qualify. If your plan is not on the changelog's list, check the picker rather than assuming either way.
 
 **Billing:** from the documentation, "you're billed for each model it uses, at that model's standard rate. There's no separate charge for HydraFusion, and the discount for auto model selection doesn't apply." Since [1 June 2026](https://github.blog/changelog/2026-06-01-updates-to-github-copilot-billing-and-plans/), all Copilot plans bill in AI credits (1 credit = $0.01) based on tokens per model, so a HydraFusion request costs the sum of every leg it runs. Model multipliers survive only for legacy annual plans on request-based billing. The documentation also says HydraFusion "keeps your main conversation on the same model whenever possible" to keep the benefit of cached tokens, and that assisting models such as a reviewer "receive only the context they need".
 
@@ -334,40 +332,6 @@ I expect HydraFusion to stop being a separate picker entry, because GitHub has s
 - Evaluate it on your own tasks with a spending cap, a deterministic check, and a fixed-model baseline before you change any defaults.
 
 Choosing a model was never the interesting problem. Constructing the right amount of work for each task is, and HydraFusion is GitHub's first public attempt at solving it inside the product rather than leaving it to you.
-
----
-
-## Sources
-
-| Source | Type | Date checked | What it verifies |
-| --- | --- | --- | --- |
-| [Project HydraFusion: frontier quality via multi-model orchestration](https://github.blog/ai-and-ml/github-copilot/project-hydrafusion-frontier-quality-via-multi-model-orchestration/) | GitHub Blog (published 4 Sep 2026) | 7 Oct 2026 | Patterns, principles, benchmark table and embedded chart data, CheckpointBench breakdown, caveats, launch plans and billing statement |
-| [Using HydraFusion](https://docs.github.com/en/early-access/copilot/hydrafusion) | GitHub Docs | 7 Oct 2026 | No SLA, surfaces, enablement, `--model hydrafusion`, billing, policies, progress display, `/collect-debug-logs`, limitations |
-| [HydraFusion in VS Code and the GitHub Copilot app](https://github.blog/changelog/2026-09-30-hydrafusion-in-vs-code-and-the-github-copilot-app/) | GitHub Changelog (30 Sep 2026) | 7 Oct 2026 | VS Code and app availability, eligible plans, admin preview opt-in, progress improvements |
-| [GitHub Copilot weekly releases: September 7](https://github.blog/changelog/2026-09-10-github-copilot-weekly-releases-september-7/) | GitHub Changelog | 7 Oct 2026 | Original CLI `/experimental` rollout |
-| [HydraFusion feedback discussion](https://github.com/orgs/community/discussions/206492) | GitHub Community (maintainer post and replies) | 7 Oct 2026 | Auto to HyDRA to HydraFusion lineage, no fixed roster, convergence with Auto, user reports on cost and model choice |
-| [HyDRA: Hybrid Dynamic Routing Architecture for Heterogeneous LLM Pools](https://arxiv.org/abs/2605.17106) | Research paper (arXiv, May 2026) | 7 Oct 2026 | Capability signals, deployment in VS Code Chat Auto |
-| [VS Code 1.140 release notes](https://code.visualstudio.com/updates/v1_140) | Microsoft (30 Sep 2026) | 7 Oct 2026 | HydraFusion research preview in VS Code |
-| [GitHub Copilot in VS Code, September 2026 releases](https://github.blog/changelog/2026-10-01-github-copilot-in-vs-code-september-2026-releases/) | GitHub Changelog | 7 Oct 2026 | HydraFusion in the Agents window model picker |
-| [Auto model selection](https://docs.github.com/en/copilot/concepts/models/auto-model-selection) | GitHub Docs | 7 Oct 2026 | Per-request routing at cache boundaries, tiers, 10% discount, honours model policies |
-| [GitHub Copilot weekly releases: September 14](https://github.blog/changelog/2026-09-18-github-copilot-weekly-releases-september-14/) | GitHub Changelog | 7 Oct 2026 | Auto tiers, budget increase requests GA |
-| [GitHub Copilot weekly releases: September 21](https://github.blog/changelog/2026-09-25-github-copilot-weekly-releases-september-21/) | GitHub Changelog | 7 Oct 2026 | Claude Opus 5.5, GPT-6 Sol, GPT-6 Luna availability |
-| [Claude Sonnet 5.5 in GitHub Copilot](https://github.blog/changelog/2026-09-28-claude-sonnet-5-5-in-github-copilot/) and [GPT-6.1 Sol in GitHub Copilot](https://github.blog/changelog/2026-09-29-gpt-6-1-sol-in-github-copilot/) | GitHub Changelog | 7 Oct 2026 | Newer models released after the benchmarks |
-| [Dynamic workflows in Copilot CLI and the Copilot app](https://github.blog/changelog/2026-10-01-dynamic-workflows-in-copilot-cli-and-the-copilot-app/) | GitHub Changelog (1 Oct 2026) | 7 Oct 2026 | Code-defined orchestration, public preview |
-| [Default enablement of Copilot features](https://github.blog/changelog/2026-09-24-default-enablement-of-copilot-features-for-copilot-business-and-enterprise/) | GitHub Changelog | 7 Oct 2026 | 22 October policy date, previews remain opt-in |
-| [Enterprise managed permissions for Copilot agent operations](https://github.blog/changelog/2026-09-09-enterprise-managed-permissions-for-github-copilot-agent-operations/) | GitHub Changelog | 7 Oct 2026 | Managed permissions GA on 9 September |
-| [Rubber duck in Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/rubber-duck) | GitHub Docs | 7 Oct 2026 | Critic runs on a different model, read-only, cannot change the environment |
-| [Supported AI models in Copilot](https://docs.github.com/en/copilot/reference/ai-models/supported-models) | GitHub Docs | 7 Oct 2026 | Current model list and release status |
-| [Models and pricing](https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing) | GitHub Docs | 7 Oct 2026 | AI credit billing, GPT-5.6 Sol and Luna per-token rates, multipliers legacy only |
-| [Updates to GitHub Copilot billing and plans](https://github.blog/changelog/2026-06-01-updates-to-github-copilot-billing-and-plans/) | GitHub Changelog (1 Jun 2026) | 7 Oct 2026 | Usage-based billing for all plans |
-| [Copilot CLI programmatic reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-programmatic-reference) and [command reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference) | GitHub Docs | 7 Oct 2026 | `-p`, `--model`, `--yolo`, `--output-format json`, `copilot version`, `copilot login` |
-| [Set a session limit](https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/set-session-limit) | GitHub Docs | 7 Oct 2026 | `--max-ai-credits` |
-| [Copilot CLI releases](https://github.com/github/copilot-cli/releases) | GitHub repository | 7 Oct 2026 | 1.0.92 current stable (5 Oct 2026) |
-| Copilot CLI 1.0.89 `copilot --help` and smoke test | Local test (7 Oct 2026) | 7 Oct 2026 | `--usage-output-file`, `--log-level`, `--no-color`, 30-credit minimum, `fusion_*` JSONL events, usage file fields |
-| [VentureBeat: GitHub's HydraFusion](https://venturebeat.com/orchestration/githubs-hydrafusion-cuts-ai-coding-costs-in-every-benchmark-it-only-matches-quality-in-one) | Trade press (4 Sep 2026) | 7 Oct 2026 | Mario Rodriguez quote on converging with Auto |
-| [Hacker News discussion](https://news.ycombinator.com/item?id=49566788) | Community | 7 Oct 2026 | Developer sentiment, benchmark scepticism |
-| [InfoQ: GitHub HydraFusion](https://www.infoq.com/news/2026/09/github-hydrafusion/) | Trade press | 7 Oct 2026 | Independent summary of the launch |
-| [Hands-on: HydraFusion in Copilot CLI](https://www.stephenwthomas.com/artificial-intelligence/hydrafusion-github-copilot-cli/) | Practitioner blog | 7 Oct 2026 | Cascade run duration anecdote |
 
 ---
 
