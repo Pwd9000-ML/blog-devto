@@ -72,9 +72,7 @@ GitHub describes HydraFusion as treating "workflow selection as an optimization 
 
 The Critique pattern follows the same approach as [Rubber Duck](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/rubber-duck) in Copilot CLI, which GitHub documents as deliberately running "on a different AI model from the one driving your session", with "read-only access to your codebase" so that it "cannot edit files or run commands that change your environment". HydraFusion automates that invocation and bounds it to one revision.
 
-### What the documentation adds
-
-The HydraFusion documentation fills in several behaviours that the launch post left open:
+**Important things to note:**
 
 - **Per-prompt choice.** "HydraFusion chooses an execution pattern for each prompt, so different prompts in the same session can use different execution patterns." Choosing is "a lightweight step that adds little time". In my smoke test, the routing event reported 251 milliseconds.
 - **No fixed model list.** The mix of models changes over time, "so there isn't a fixed list of models", and "You can't choose which models HydraFusion uses."
@@ -83,7 +81,7 @@ The HydraFusion documentation fills in several behaviours that the launch post l
 
 ### The five operating principles
 
-These are the part of the announcement most worth reading twice, because they describe the runtime guarantees rather than the marketing. Quoted from GitHub:
+GitHub describes the runtime guarantees as follows:
 
 - **Complete accounting.** "Aggregate cost and usage across every workflow leg, including drafting, critique, revision, escalation, retry, and fallback."
 - **Bounded execution.** "Give each leg explicit timeout and cancellation behavior to keep execution and cost within defined limits."
@@ -95,11 +93,11 @@ Two of these matter more than the others for operations, and one needs a caveat.
 
 ### How the routing policy was built
 
-GitHub did not hand-tune thresholds. The blog describes using beam search to construct the decision policy, measuring each candidate "against a frozen baseline on quality, cost, and failure modes" across TerminalBench 2.1, DeepSWE, and an internal benchmark called CheckpointBench. The hill-climbing record they publish is refreshingly honest: two harness failures between 11 and 25 August produced invalid runs that were excluded, and the strongest configurations arrived on 25 August.
+GitHub did not hand-tune thresholds, instead using beam search to construct the decision policy, measuring each candidate "against a frozen baseline on quality, cost, and failure modes" across TerminalBench 2.1, DeepSWE, and an internal benchmark called CheckpointBench. The hill-climbing record they publish is refreshingly honest: two harness failures between 11 and 25 August produced invalid runs that were excluded, and the strongest configurations arrived on 25 August.
 
 ### Where it came from, and what is in the pool
 
-The lineage is now on the record. In the [GitHub Community announcement](https://github.com/orgs/community/discussions/206492), a GitHub maintainer sets out the progression: "Auto V1 (Jan 2026, capacity/SKU-aware per-request selection) → Auto V2 aka. HyDRA (May 2026, intent-scored routing) → HydraFusion (Aug 2026, per-turn orchestration and cache-aware workflows)." The [HyDRA paper](https://arxiv.org/abs/2605.17106) describes a ModernBERT encoder that scores each query on reasoning, code generation, debugging, and tool use, the same four capability signals GitHub cites for HydraFusion. It states that HyDRA "is deployed to all users in GitHub Copilot's VS Code Chat auto-mode", and its first author, Aashna Garg, is also credited on the HydraFusion post. Community write-ups that linked HydraFusion to a routing research paper were right: HydraFusion builds on the router behind Auto and adds multi-model workflows on top.
+As noted in the [GitHub Community announcement](https://github.com/orgs/community/discussions/206492): "Auto V1 (Jan 2026, capacity/SKU-aware per-request selection) → Auto V2 aka. HyDRA (May 2026, intent-scored routing) → HydraFusion (Aug 2026, per-turn orchestration and cache-aware workflows)." The [HyDRA paper](https://arxiv.org/abs/2605.17106) describes a ModernBERT encoder that scores each query on reasoning, code generation, debugging, and tool use, the same four capability signals GitHub cites for HydraFusion. It states that HyDRA "is deployed to all users in GitHub Copilot's VS Code Chat auto-mode", and its first author, Aashna Garg, is also credited on the HydraFusion post. Community write-ups that linked HydraFusion to a routing research paper were right: HydraFusion builds on the router behind Auto and adds multi-model workflows on top.
 
 The model pool is still not published, and that is now a stated policy. The same FAQ says "we don't publish a fixed roster" because "the lineup shifts as new models ship", and adds: "We know some teams need more control here and we're looking into it." The benchmark charts compare HydraFusion with Claude Opus 5, Claude Sonnet 5, and GPT-5.6 Sol, Terra, and Luna as solo models. Those are comparators, not a disclosed pool, and they are now a generation old: Claude Opus 5.5, GPT-6 Sol, GPT-6 Luna, Claude Sonnet 5.5, and GPT-6.1 Sol all arrived in Copilot between 22 and 29 September. GitHub says new models can be evaluated and incorporated "into its model pool", but not when. In the feedback discussion, users reported between 2 and 5 October that HydraFusion was routing to GPT-5.6 Terra and GPT-5.4 rather than the newer GPT-6 family, and one wrote: "This is the main reason I've stopped using HydraFusion for now." That is anecdote, but it is the right question to put to any router.
 
