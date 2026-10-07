@@ -150,7 +150,7 @@ None of this is a criticism of GitHub's transparency, which is better than most 
 
 ## Why DevOps Engineers Should Care
 
-**Cost variance becomes a workflow property.** With a fixed model, cost per task scales roughly with task size. With Cascade, the same prompt can cost a cheap draft or a cheap draft plus a strong-model escalation depending on whether the quality gate fires. With Critique it is always at least two model calls plus a revision. Budget controls need to move from "which model" to "what is the cap per task", which Copilot CLI supports with `--max-ai-credits`. Note the floor: CLI 1.0.89 rejects anything below 30 credits.
+**Cost variance becomes a workflow property.** With a fixed model, cost per task scales roughly with task size. With Cascade, the same prompt can cost a cheap draft or a cheap draft plus a strong-model escalation depending on whether the quality gate fires. With Critique it is always at least two model calls plus a revision. Budget controls need to move from "which model" to "what is the cap per task", which Copilot CLI supports with `--max-ai-credits`. Note: CLI 1.0.89 rejects anything below 30 credits.
 
 **Latency becomes multi-modal.** The documentation says it plainly: "The Single execution pattern behaves much like a request to one model. Cascade and Critique take longer, because they include review passes." Choosing the pattern is cheap. One early hands-on report describes a Cascade run of three to four minutes for a single prompt. That is fine for a task you hand off in autopilot, it is not fine for an interactive loop. GitHub's guidance to start with substantial, well-scoped single-prompt tasks is a latency statement as much as a quality one.
 
@@ -203,7 +203,7 @@ Each task needs a deterministic check: a test command that must pass, a file tha
 
 ### The harness
 
-The [evaluation harness](./code/Invoke-HydraFusionEval.ps1) in this article's code folder runs each task against each model configuration in a fresh git worktree. It calls Copilot CLI non-interactively with JSONL output and a usage file, captures wall time, runs your check command, and appends a row to a CSV with the credits used, the models that ran, and, for HydraFusion, the execution pattern. The core HydraFusion invocation looks like this:
+The [evaluation harness](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/project-hydrafusion-copilot-cli/code/Invoke-HydraFusionEval.ps1) in this article's code folder runs each task against each model configuration in a fresh git worktree. It calls Copilot CLI non-interactively with JSONL output and a usage file, captures wall time, runs your check command, and appends a row to a CSV with the credits used, the models that ran, and, for HydraFusion, the execution pattern. The core HydraFusion invocation looks like this:
 
 ```powershell
 copilot --experimental `
