@@ -203,7 +203,7 @@ Each task needs a deterministic check: a test command that must pass, a file tha
 
 ### The harness
 
-The [evaluation harness](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/project-hydrafusion-copilot-cli/code/Invoke-HydraFusionEval.ps1) in this article's code folder runs each task against each model configuration in a fresh git worktree. It calls Copilot CLI non-interactively with JSONL output and a usage file, captures wall time, runs your check command, and appends a row to a CSV with the credits used, the models that ran, and, for HydraFusion, the execution pattern. The core HydraFusion invocation looks like this:
+The [evaluation harness](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/project-hydrafusion-copilot-cli/code/Invoke-HydraFusionEval.ps1) in this article's code folder runs each task against each model configuration in a fresh git worktree. It calls Copilot CLI non-interactively with JSON output and a usage file, captures wall time, runs your check command, and appends a row to a CSV with the credits used, the models that ran, and, for HydraFusion, the execution pattern. The core HydraFusion invocation looks like this:
 
 ```powershell
 copilot --experimental `
@@ -221,10 +221,7 @@ copilot --experimental `
 Fixed-model runs use the same options without `--experimental`. What the harness reads, and how far to trust it:
 
 - **The model identifier is documented.** `copilot --experimental --model hydrafusion -p` is GitHub's documented headless path. On CLI 1.0.89 it exited cleanly and emitted HydraFusion events in the JSONL stream. Other identifiers follow the names in `/model`, I confirmed `gpt-5.6-sol` and `gpt-5.6-luna` in the same test.
-- **Credits come from the usage file, and its schema is not documented.** `--usage-output-file` writes "final usage statistics as JSON". In CLI 1.0.89 that file contains a `totalNanoAiu` field and a per-model `modelMetrics` map. I checked the unit against GitHub's published GPT-5.6 Sol rates: 15,015 cache-write tokens at $5.00 per million, plus 3 input and 5 output tokens, comes to $0.0752, and the file reported 7,518,700,000. Credits are therefore `totalNanoAiu / 1e9`. Spot-check against `/usage` before you publish a cost comparison.
-- **The pattern comes from undocumented events.** The harness reads `pattern` and `outcome` from `session.fusion_completed`. If a future CLI renames them, those columns stay empty rather than wrong.
-
-> **Smoke test, not a benchmark.** On 7 October I sent the same one-word prompt ("Reply with the single word OK. Do not use any tools.") through CLI 1.0.89 twice. HydraFusion chose Single on `gpt-5.6-sol` and used 7.52 credits in 10.7 seconds. Running `gpt-5.6-luna` directly used 0.37 credits in 8.3 seconds. Both runs wrote about 15,000 tokens to the prompt cache, the difference is the per-token rate of the model HydraFusion chose. This says nothing about quality on real tasks. It does show why the documentation says "for quick or routine tasks, select **Auto** instead".
+- **Credits come from the usage file, and its schema is not documented.** `--usage-output-file` writes "final usage statistics as JSON". In CLI 1.0.89 that file contains a `totalNanoAiu` field and a per-model `modelMetrics` map.
 
 Run it like this:
 
@@ -241,7 +238,7 @@ Run it like this:
 
 Swap the fixed models for your team's current default. GitHub's benchmarks used GPT-5.6 Sol and Claude Opus 5, which keeps your results comparable with theirs, but the newer GPT-6 and Claude 5.5 models are the more useful baseline for a decision today.
 
-The task file is a simple JSON array. A [sample](./code/tasks.sample.json) is included:
+The task file is a simple JSON array. A [sample](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/project-hydrafusion-copilot-cli/code/tasks.sample.json) is included:
 
 ```json
 [
