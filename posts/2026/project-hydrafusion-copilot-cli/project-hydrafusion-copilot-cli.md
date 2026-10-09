@@ -285,7 +285,7 @@ The realistic threat model here is not new, but the routing changes some of the 
 
 - **Multiple vendors see your prompt.** The Critique pattern sends context to a critic from a different model family by design, although the documentation says assisting models "receive only the context they need". HydraFusion honours your model policies, so a model you have disabled is not used. If your data handling agreements distinguish between model providers, your allow-list is now the control that matters, because one request may touch more than one provider.
 - **The critic cannot act.** Isolated, tool-less review is the right design. A prompt injection that reaches the critic can only influence text that the solver then chooses to act on. The solver still runs under the normal permission-aware agent loop, so your existing permission model and, for Business and Enterprise, the [enterprise managed permissions](https://github.blog/changelog/2026-09-09-enterprise-managed-permissions-for-github-copilot-agent-operations/) that went GA on 9 September, remain the effective controls.
-- **Do not count on fail-safe application to clean up.** The documentation says edits made by a discarded draft "aren't undone automatically". Run HydraFusion on a branch or a disposable worktree and review the diff before you commit. That is the same discipline as any agent, but it is a less comfortable reading than the launch post suggests.
+- **Do not count on fail-safe application to clean up.** The documentation says edits made by a discarded draft "aren't undone automatically". Run HydraFusion on a branch or a disposable worktree and review the diff before you commit. That is the same discipline as any agent.
 - **Budget caps are your circuit breaker.** Cascade escalations are the case where cost grows without you choosing it. Use `--max-ai-credits` on every non-interactive run, it is not optional in CI-adjacent use. For teams, user-level budgets and the budget increase requests that went GA for Business and Enterprise in September give administrators an approval step when someone hits a limit.
 - **Preview access is a clean gate.** For Business and Enterprise, an administrator must enable preview features, and the default enablement policy that starts on 22 October leaves previews opt-in. Pilot HydraFusion in one organisation rather than enabling it everywhere.
 - **Autopilot plus `--yolo` is a high-trust configuration.** Use it only in disposable environments. GitHub's statement that the preview "isn't intended for production workloads" points the same way.
@@ -302,8 +302,7 @@ The realistic threat model here is not new, but the routing changes some of the 
 - **No sub-agents.** "HydraFusion works separately from subagents and doesn't start them", so sub-agent work is not orchestrated by it. If your sessions are sub-agent heavy, a large share of the work sits outside HydraFusion's routing.
 - **Discarded drafts leave edits behind.** Covered above, and worth repeating because it is easy to miss.
 - **A conservative context window.** The window shown is the smallest among the models HydraFusion uses, so switching to it mid-session may force a compaction.
-- **Undocumented telemetry schema.** The progress display and debug logs are documented. The JSONL event fields and usage file fields that make automation possible are not.
-- **Community verification is still thin.** As of 7 October, the [Hacker News thread](https://news.ycombinator.com/item?id=49566788) has 35 comments, the GitHub feedback discussion has about two dozen, and I found no independent benchmark. The reports pull in both directions: one user found "the credits burn has been 10% of what I'm used to" compared with running every session on Opus 5, while another spent around 2,300 credits on an implementation they expected to cost 1,800. The scepticism on Hacker News remains reasonable: adding software between a model and a harness can lift single-benchmark scores, and the claim that matters is whether the margin survives messy real repositories.
+- **Undocumented telemetry schema.** The progress display and debug logs are documented. The JSON event fields and usage file fields that make automation possible are not.
 
 ---
 
@@ -319,13 +318,11 @@ The realistic threat model here is not new, but the routing changes some of the 
 
 ## My Take
 
-This is opinion, clearly labelled.
-
 The direction is right, and the month since launch has made it more credible, not less. In September I would have listed three blockers: no visibility of the route, undocumented behaviour under enterprise model policies, and CLI-only availability. GitHub has addressed all three to a useful degree. The CLI shows the pattern and each pass, model policies are documented and honoured, and VS Code and the app have it. That is a fast response to feedback for a research preview, and it suggests GitHub is treating runtime orchestration as product direction rather than a demo.
 
 The benchmark story is still more modest than the headline. Winning one of three, matching on the others, and doing it at a third of the cost of Opus 5 is a genuinely good result against the most expensive comparator. Against a sensible mid-tier default the saving is small, and the comparators are now a generation behind. The honest pitch remains "you no longer have to choose", not "67% cheaper".
 
-What still stops me recommending it as a team default: no control over the pool, reports that it lags new models, an undocumented telemetry schema, and the gap between "apply no patch" in the blog and "aren't undone automatically" in the documentation. That last one is not a bug, it is how solver legs in a shared workspace behave, but it deserves the same prominence as the principle.
+What still stops me recommending it as a team default: no control over the pool, reports that it lags new models, an undocumented telemetry schema.
 
 I expect HydraFusion to stop being a separate picker entry, because GitHub has said it expects Auto and HydraFusion to "come together into a single experience over time". When that happens, the habits in this article (a fixed baseline, a deterministic check, credits per passing task, and a record of which models actually ran) are what will tell you whether the merged Auto is good for your workload. Build them now, while you can still compare the two side by side.
 
