@@ -1,6 +1,6 @@
 ---
 title: 'Project HydraFusion: GitHub Copilot Stops Picking a Model and Starts Building a Workflow'
-published: false
+published: true
 description: 'HydraFusion runs Single, Cascade or Critique workflows across models in Copilot CLI, VS Code and the app. What the evidence says and how to test it.'
 tags: 'githubcopilot, ai, devops, llm'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/project-hydrafusion-copilot-cli/assets/main.png'
@@ -348,4 +348,4 @@ Choosing a model was never the interesting problem. Constructing the right amoun
 
 Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
 
-Date: 07-10-2026
+Date: 12-10-2026
