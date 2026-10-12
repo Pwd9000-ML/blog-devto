@@ -7,7 +7,6 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 4644278
 series: GitHub Copilot - CLI
-date: '2026-10-07T16:30:00Z'
 ---
 
 ## Project HydraFusion: GitHub Copilot Stops Picking a Model and Starts Building a Workflow
