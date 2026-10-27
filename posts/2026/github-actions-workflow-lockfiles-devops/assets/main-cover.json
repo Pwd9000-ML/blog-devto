@@ -1,12 +1,12 @@
 {
   "title": "Lock What Runs",
   "subtitle": "GitHub Actions workflow lockfiles",
-  "topic": "An immutable anchor securing a chain of CI dependencies while a loose version tag drifts away",
-  "seed": 1230833330272661335,
-  "art_direction": "editorial-collage",
-  "palette": "cobalt, burnt orange, and warm ivory",
-  "prompt": "Create original editorial artwork for this technical article: Lock What Runs. Public visual concept: An immutable anchor securing a chain of CI dependencies while a loose version tag drifts away. Interpret that concept with one concrete, topic-relevant visual metaphor. Art direction: An original layered editorial collage with cut-paper and material textures. Palette: cobalt, burnt orange, and warm ivory. Make an actual illustration, not a title slide or a generic AI brain or robot. Use a wide horizontal composition. Put the main subject on the right half; leave the left half dark, quiet, and uncluttered for a separately added headline. Keep all important objects in the middle 55 percent of the image height so the artwork can be centre-cropped to a 1000 by 420 pixel banner. No words, letters, code, logos, watermarks, or fabricated user-interface screenshots. Do not imitate another author or artist. Render original objects and composition.",
+  "topic": "A glowing isometric CI pipeline made of contribution-graph cubes linked by commit-graph lines; every cube in the chain is clamped shut by a small translucent glass padlock, while one loose unlocked cube drifts away off the edge into the dark",
+  "seed": 1389012793685807181,
+  "art_direction": "github-key-art",
+  "palette": "near-black #101411 and charcoal neutrals with GitHub green #0FBF3E and security blue #3094FF glowing accents",
+  "prompt": "A purely visual, wordless editorial illustration. Scene: A glowing isometric CI pipeline made of contribution-graph cubes linked by commit-graph lines; every cube in the chain is clamped shut by a small translucent glass padlock, while one loose unlocked cube drifts away off the edge into the dark. Interpret that concept with one concrete, topic-relevant visual metaphor. Art direction: A detailed 3D isometric landscape built from contribution-graph cubes floating in a dark night sky, some cubes solid, some transparent glass, some glowing, with subtle dithered pixel textures, soft rim lighting, and a few tiny stars. No animal mascots or characters. Palette: near-black #101411 and charcoal neutrals with GitHub green #0FBF3E and security blue #3094FF glowing accents. Make an actual illustration, not a poster, title slide, or generic AI brain or robot. Wide horizontal banner composition. Place the main subject on the right third; the left half is plain, dark, empty background with nothing in it. Keep all important objects in the middle 55 percent of the image height so the artwork can be centre-cropped to a 1000 by 420 pixel banner. Every surface is blank and unmarked: no typography, lettering, signage, labels, code, logos, watermarks, or user-interface screenshots. Do not imitate another author or artist. Render original objects and composition.",
   "output": "main.png",
-  "source": "brief-only",
-  "model": null
+  "source": "cloudflare-workers-ai",
+  "model": "@cf/leonardo/lucid-origin"
 }

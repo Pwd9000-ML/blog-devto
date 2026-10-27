@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Plan topic-specific cover art, then render it with generated or imported artwork."""
+"""Create topic-specific DEV.to covers using Cloudflare Workers AI."""
 
 from __future__ import annotations
 
@@ -17,23 +17,50 @@ from urllib.request import Request, urlopen
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
-from cover_creative import HEIGHT, WIDTH, find_font, measure, wrap_text
-
+WIDTH, HEIGHT = 1000, 420
+FONT_CANDIDATES = (
+    r'C:\Windows\Fonts\segoeuib.ttf',
+    r'C:\Windows\Fonts\seguisb.ttf',
+    r'C:\Windows\Fonts\arialbd.ttf',
+    r'C:\Windows\Fonts\consola.ttf',
+)
+ENV_FILE = Path(__file__).resolve().parent.parent / '.env'
+ENV_KEYS = ('CLOUDFLARE_ACCOUNT_ID', 'CLOUDFLARE_API_TOKEN')
+CLOUDFLARE_DEFAULT_MODEL = '@cf/leonardo/lucid-origin'
 ART_DIRECTIONS = {
-    'cinematic-diorama': 'A tactile miniature scene with dramatic studio lighting and depth.',
+    'cinematic-diorama': 'A tactile miniature diorama with dramatic studio lighting and shallow depth of field.',
     'editorial-collage': 'An original layered editorial collage with cut-paper and material textures.',
-    'isometric-world': 'A detailed isometric world with a few meaningful connected objects.',
+    'isometric-world': 'A detailed 3D isometric world with a few meaningful, connected objects.',
     'paper-sculpture': 'An intricate sculpted-paper scene with dimensional shadows and bold shapes.',
     'macro-materials': 'A striking close-up of physical objects in glass, ceramic, and brushed metal.',
+    'neon-night': 'A moody night scene with soft volumetric light, glowing edges, and reflective surfaces.',
     'technical-illustration': 'A sophisticated conceptual illustration with precise shapes and rich texture.',
 }
 PALETTES = (
     'deep navy, electric cyan, and restrained coral accents',
     'charcoal, warm amber, and violet highlights',
     'midnight indigo, mint, and soft rose',
-    'cobalt, burnt orange, and warm ivory',
+    'near-black, teal, and warm orange glow',
     'graphite, lime, and muted teal',
+    'dark slate, magenta, and sky blue',
 )
+# Opt-in GitHub-inspired key art (brand.github.com). Logos and mascots are trademarked: never request them.
+GITHUB_DIRECTION = (
+    'A detailed 3D isometric landscape built from contribution-graph cubes floating in a dark night sky, '
+    'some cubes solid, some transparent glass, some glowing, with subtle dithered pixel textures, '
+    'soft rim lighting, and a few tiny stars. No animal mascots or characters.'
+)
+GITHUB_THEMES = {
+    'core': 'near-black #101411 and charcoal neutrals with glowing GitHub green #0FBF3E accents',
+    'security': (
+        'near-black #101411 and charcoal neutrals with GitHub green #0FBF3E and '
+        'security blue #3094FF glowing accents'
+    ),
+    'copilot': (
+        'near-black #101411 and charcoal neutrals with GitHub green #0FBF3E and '
+        'Copilot purple #8534F3 glowing accents'
+    ),
+}
 
 
 @dataclass(frozen=True)
@@ -50,37 +77,50 @@ class ArtBrief:
     model: str | None = None
 
 
+def validate_output(output: str) -> None:
+    if (
+        Path(output).name != output or '\\' in output or '/' in output
+        or ':' in output or Path(output).suffix.lower() != '.png'
+    ):
+        raise ValueError('The output must be a PNG filename without directories.')
+
+
 def create_brief(
     title: str,
     topic: str,
     subtitle: str,
     output: str,
     seed: int | None = None,
-    previous_direction: str | None = None,
+    github_theme: str | None = None,
+    art_direction: str | None = None,
 ) -> ArtBrief:
     if not title.strip() or not topic.strip():
         raise ValueError('The title and public visual concept must not be empty.')
-    if Path(output).name != output or '\\' in output or Path(output).suffix.lower() != '.png':
-        raise ValueError('The output filename must be a PNG filename without directories.')
+    validate_output(output)
+    if github_theme is not None and github_theme not in GITHUB_THEMES:
+        raise ValueError(f'Unknown GitHub theme. Choose from: {", ".join(GITHUB_THEMES)}.')
+    if art_direction is not None and art_direction not in ART_DIRECTIONS:
+        raise ValueError(f'Unknown art direction. Choose from: {", ".join(ART_DIRECTIONS)}.')
     actual_seed = random.SystemRandom().randrange(2**63) if seed is None else seed
     rnd = random.Random(actual_seed)
-    choices = [
-        direction for direction in ART_DIRECTIONS
-        if seed is not None or direction != previous_direction
-    ]
-    direction = rnd.choice(choices)
+    direction = art_direction or rnd.choice(tuple(ART_DIRECTIONS))
+    description = ART_DIRECTIONS[direction]
     palette = rnd.choice(PALETTES)
+    if github_theme is not None:
+        direction, description, palette = 'github-key-art', GITHUB_DIRECTION, GITHUB_THEMES[github_theme]
+    # Omit the title: diffusion models tend to paint any quoted words into the artwork.
     prompt = (
-        f'Create original editorial artwork for this technical article: {title.strip()}. '
-        f'Public visual concept: {topic.strip()}. '
+        'A purely visual, wordless editorial illustration. '
+        f'Scene: {topic.strip()}. '
         'Interpret that concept with one concrete, topic-relevant visual metaphor. '
-        f'Art direction: {ART_DIRECTIONS[direction]} Palette: {palette}. '
-        'Make an actual illustration, not a title slide or a generic AI brain or robot. '
-        'Use a wide horizontal composition. Put the main subject on the right half; '
-        'leave the left half dark, quiet, and uncluttered for a separately added headline. '
+        f'Art direction: {description} Palette: {palette}. '
+        'Make an actual illustration, not a poster, title slide, or generic AI brain or robot. '
+        'Wide horizontal banner composition. Place the main subject on the right third; '
+        'the left half is plain, dark, empty background with nothing in it. '
         'Keep all important objects in the middle 55 percent of the image height so '
         'the artwork can be centre-cropped to a 1000 by 420 pixel banner. '
-        'No words, letters, code, logos, watermarks, or fabricated user-interface screenshots. '
+        'Every surface is blank and unmarked: no typography, lettering, signage, labels, code, '
+        'logos, watermarks, or user-interface screenshots. '
         'Do not imitate another author or artist. Render original objects and composition.'
     )
     return ArtBrief(
@@ -103,12 +143,7 @@ def load_brief(path: Path) -> ArtBrief:
     brief = ArtBrief(**data)
     if not brief.title.strip() or not brief.topic.strip() or not brief.prompt.strip():
         raise ValueError('The brief needs a non-empty title, topic, and image prompt.')
-    if (
-        Path(brief.output).name != brief.output
-        or '\\' in brief.output
-        or Path(brief.output).suffix.lower() != '.png'
-    ):
-        raise ValueError('The brief output must be a PNG filename without directories.')
+    validate_output(brief.output)
     return brief
 
 
@@ -117,13 +152,7 @@ def save_brief(path: Path, brief: ArtBrief) -> None:
     path.write_text(json.dumps(asdict(brief), indent=2) + '\n', encoding='utf-8')
 
 
-ENV_FILE = Path(__file__).resolve().parent.parent / '.env'
-ENV_KEYS = ('OPENAI_API_KEY', 'CLOUDFLARE_ACCOUNT_ID', 'CLOUDFLARE_API_TOKEN')
-CLOUDFLARE_DEFAULT_MODEL = '@cf/black-forest-labs/flux-1-schnell'
-
-
 def load_credentials_from_env_file(path: Path | None = None) -> None:
-    # Only allowlisted keys are read, and existing environment variables always win.
     path = ENV_FILE if path is None else path
     if not path.is_file():
         return
@@ -140,42 +169,24 @@ def load_credentials_from_env_file(path: Path | None = None) -> None:
 
 
 def api_error_reason(error: HTTPError) -> str:
-    # Report only short identifier-like error codes, never the raw response body.
+    # Never print provider messages, which could contain credentials or prompt content.
+    with error:
+        body = error.read()
     try:
-        body = json.loads(error.read() or b'{}')
-    except (OSError, ValueError, AttributeError, TypeError):
+        data = json.loads(body or b'{}')
+    except ValueError:
         return ''
-    if not isinstance(body, dict):
+    errors = data.get('errors') if isinstance(data, dict) else None
+    if not isinstance(errors, list):
         return ''
-    candidates: list[object] = []
-    if isinstance(body.get('error'), dict):
-        candidates += [body['error'].get('code'), body['error'].get('type')]
-    if isinstance(body.get('errors'), list):
-        candidates += [item.get('code') for item in body['errors'] if isinstance(item, dict)]
-    labels = [
-        str(value) for value in candidates
-        if (isinstance(value, int) and not isinstance(value, bool))
-        or (isinstance(value, str) and re.fullmatch(r'[A-Za-z0-9_.-]{1,64}', value))
+    codes = [
+        str(item['code']) for item in errors
+        if isinstance(item, dict) and type(item.get('code')) is int
     ]
-    return f": {', '.join(dict.fromkeys(labels))}" if labels else ''
+    return f": {', '.join(dict.fromkeys(codes))}" if codes else ''
 
 
-def decode_image(image_bytes: bytes) -> Image.Image:
-    with Image.open(io.BytesIO(image_bytes)) as image:
-        return ImageOps.exif_transpose(image).convert('RGBA')
-
-
-def cloudflare_payload(model: str, prompt: str) -> dict[str, object]:
-    if model.endswith('/flux-1-schnell'):
-        if len(prompt) > 2048:
-            raise ValueError('flux-1-schnell accepts prompts of up to 2048 characters.')
-        return {'prompt': prompt, 'steps': 8}
-    if model.endswith('/lucid-origin'):
-        return {'prompt': prompt, 'width': 1344, 'height': 576}
-    return {'prompt': prompt}
-
-
-def generate_artwork_cloudflare(prompt: str, model: str = CLOUDFLARE_DEFAULT_MODEL) -> Image.Image:
+def generate_artwork_cloudflare(prompt: str) -> Image.Image:
     account = os.environ.get('CLOUDFLARE_ACCOUNT_ID', '').strip()
     token = os.environ.get('CLOUDFLARE_API_TOKEN', '').strip()
     if not account or not token:
@@ -184,18 +195,17 @@ def generate_artwork_cloudflare(prompt: str, model: str = CLOUDFLARE_DEFAULT_MOD
         )
     if not re.fullmatch(r'[0-9a-fA-F]{32}', account):
         raise ValueError('CLOUDFLARE_ACCOUNT_ID must be the 32-character account ID. No request was made.')
-    if not re.fullmatch(r'@cf/[a-z0-9._-]+/[a-z0-9._-]+', model):
-        raise ValueError('Use a Workers AI model name such as @cf/black-forest-labs/flux-1-schnell.')
+    if not prompt.strip():
+        raise ValueError('The image prompt must not be empty. No image request was made.')
     request = Request(
-        f'https://api.cloudflare.com/client/v4/accounts/{account}/ai/run/{model}',
-        data=json.dumps(cloudflare_payload(model, prompt)).encode('utf-8'),
+        f'https://api.cloudflare.com/client/v4/accounts/{account}/ai/run/{CLOUDFLARE_DEFAULT_MODEL}',
+        data=json.dumps({'prompt': prompt, 'width': 1344, 'height': 576}).encode('utf-8'),
         headers={'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json'},
         method='POST',
     )
     try:
         with urlopen(request, timeout=180) as response:
-            headers = getattr(response, 'headers', None)
-            content_type = headers.get('Content-Type', '') if headers is not None else ''
+            content_type = response.headers.get('Content-Type', '')
             body = response.read()
     except HTTPError as error:
         raise RuntimeError(
@@ -216,56 +226,47 @@ def generate_artwork_cloudflare(prompt: str, model: str = CLOUDFLARE_DEFAULT_MOD
         ):
             raise ValueError('Workers AI response did not contain a base64 image.')
         image_bytes = base64.b64decode(result['image'], validate=True)
-    image = decode_image(image_bytes)
-    scale = max(WIDTH / image.width, HEIGHT / image.height)
-    if scale > 1:
-        image = image.resize(
-            (round(image.width * scale), round(image.height * scale)), Image.Resampling.LANCZOS,
-        )
-    return image
-
-
-def generate_artwork(prompt: str, model: str) -> Image.Image:
-    key = os.environ.get('OPENAI_API_KEY', '').strip()
-    if not key:
-        raise ValueError('OPENAI_API_KEY is not set. No image request was made.')
-    if not model.strip():
-        raise ValueError('Choose an image model available to your API account.')
-    request = Request(
-        'https://api.openai.com/v1/images/generations',
-        data=json.dumps({'model': model, 'prompt': prompt, 'n': 1}).encode('utf-8'),
-        headers={'Authorization': f'Bearer {key}', 'Content-Type': 'application/json'},
-        method='POST',
-    )
-    try:
-        with urlopen(request, timeout=180) as response:
-            data = json.load(response)
-    except HTTPError as error:
-        reason = api_error_reason(error)
-        raise RuntimeError(
-            f'Image generation failed (HTTP {error.code}{reason}). '
-            'Check model access, account verification, and API billing. No automatic retry.'
-        ) from error
-    except URLError as error:
-        raise RuntimeError('Image generation could not reach the API. No automatic retry.') from error
-    entries = data.get('data') if isinstance(data, dict) else None
-    if (
-        not isinstance(entries, list) or len(entries) != 1
-        or not isinstance(entries[0], dict)
-        or not isinstance(entries[0].get('b64_json'), str)
-    ):
-        raise ValueError('Image API response did not contain exactly one base64 image.')
-    image_bytes = base64.b64decode(entries[0]['b64_json'], validate=True)
     with Image.open(io.BytesIO(image_bytes)) as image:
-        return ImageOps.exif_transpose(image).convert('RGBA')
+        artwork = ImageOps.exif_transpose(image).convert('RGBA')
+    if artwork.width < WIDTH or artwork.height < HEIGHT:
+        raise ValueError(f'Workers AI artwork must be at least {WIDTH}x{HEIGHT} pixels.')
+    return artwork
+
+
+def find_font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
+    for candidate in FONT_CANDIDATES:
+        if Path(candidate).exists():
+            return ImageFont.truetype(candidate, size)
+    return ImageFont.load_default(size=size)
+
+
+def measure(
+    draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont | ImageFont.ImageFont,
+) -> tuple[int, int]:
+    left, top, right, bottom = draw.textbbox((0, 0), text, font=font)
+    return int(right - left), int(bottom - top)
+
+
+def wrap_text(
+    draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont | ImageFont.ImageFont,
+    max_width: int,
+) -> list[str]:
+    lines: list[str] = []
+    current: list[str] = []
+    for word in text.split():
+        candidate = ' '.join(current + [word])
+        if measure(draw, candidate, font)[0] <= max_width or not current:
+            current.append(word)
+        else:
+            lines.append(' '.join(current))
+            current = [word]
+    if current:
+        lines.append(' '.join(current))
+    return lines
 
 
 def fit_text(
-    draw: ImageDraw.ImageDraw,
-    text: str,
-    width: int,
-    height: int,
-    maximum_size: int,
+    draw: ImageDraw.ImageDraw, text: str, width: int, height: int, maximum_size: int,
 ) -> tuple[ImageFont.FreeTypeFont | ImageFont.ImageFont, list[str], int]:
     for size in range(maximum_size, 17, -2):
         font = find_font(size)
@@ -314,59 +315,40 @@ def compose_cover(artwork: Image.Image, title: str, subtitle: str = '') -> Image
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
-    plan = commands.add_parser('brief', help='Write a random art brief; do not generate an image.')
+    plan = commands.add_parser('brief', help='Write a randomised, topic-specific art brief; no image is generated.')
     plan.add_argument('--title', required=True)
     plan.add_argument('--topic', required=True, help='Public topic or visual metaphor, not private article text.')
     plan.add_argument('--subtitle', default='')
     plan.add_argument('--output', required=True, type=Path, help='Final PNG cover path.')
-    plan.add_argument('--seed', type=int, help='Repeat the art direction, not the model image pixels.')
-    render = commands.add_parser('render', help='Render one saved brief using AI or imported artwork.')
+    plan.add_argument('--seed', type=int, help='Repeat the art direction and palette, not the model image pixels.')
+    plan.add_argument('--art-direction', choices=tuple(ART_DIRECTIONS), help='Override the random art direction.')
+    plan.add_argument(
+        '--github-theme', choices=tuple(GITHUB_THEMES),
+        help='Optional GitHub-inspired isometric key art with this accent theme (no logos or mascots).',
+    )
+    render = commands.add_parser('render', help='Make one Cloudflare Workers AI request and compose a cover.')
     render.add_argument('--brief', required=True, type=Path)
-    source = render.add_mutually_exclusive_group(required=True)
-    source.add_argument(
-        '--provider', choices=('cloudflare', 'openai'),
-        help='Make exactly one image request: cloudflare (free daily allocation) or openai (billed).',
-    )
-    source.add_argument('--background', type=Path, help='Import artwork instead; no API call.')
-    render.add_argument(
-        '--model',
-        help=f'Image model. Cloudflare default: {CLOUDFLARE_DEFAULT_MODEL}. Required for openai.',
-    )
     args = parser.parse_args()
     try:
         if args.command == 'brief':
             path = args.output.with_name(f'{args.output.stem}-cover.json')
-            previous = load_brief(path).art_direction if path.exists() and args.seed is None else None
-            brief = create_brief(
-                args.title, args.topic, args.subtitle, args.output.name, args.seed, previous,
-            )
-            save_brief(path, brief)
+            save_brief(path, create_brief(
+                args.title, args.topic, args.subtitle, args.output.name, args.seed,
+                args.github_theme, args.art_direction,
+            ))
             print(f'Art brief saved: {path}. No image generated; existing cover unchanged.')
         else:
             brief = load_brief(args.brief)
-            if args.background is not None:
-                if args.model:
-                    raise ValueError('--model applies only to --provider, not --background.')
-                with Image.open(args.background) as imported:
-                    artwork = ImageOps.exif_transpose(imported).convert('RGBA')
-                brief = replace(brief, source='imported', model=None)
-            elif args.provider == 'cloudflare':
-                load_credentials_from_env_file()
-                model = args.model or CLOUDFLARE_DEFAULT_MODEL
-                artwork = generate_artwork_cloudflare(brief.prompt, model)
-                brief = replace(brief, source='cloudflare-workers-ai', model=model)
-            else:
-                if not args.model:
-                    raise ValueError('Choose an OpenAI image model with --model.')
-                load_credentials_from_env_file()
-                artwork = generate_artwork(brief.prompt, args.model)
-                brief = replace(brief, source='openai', model=args.model)
+            load_credentials_from_env_file()
+            artwork = generate_artwork_cloudflare(brief.prompt)
             cover = compose_cover(artwork, brief.title, brief.subtitle)
             output = args.brief.parent / brief.output
             artwork.save(output.with_name(f'{output.stem}-art.png'), 'PNG')
             cover.save(output, 'PNG')
-            save_brief(args.brief, brief)
-            print(f'Cover saved: {output} ({WIDTH}x{HEIGHT}); source={brief.source}. Review before publication.')
+            save_brief(args.brief, replace(
+                brief, source='cloudflare-workers-ai', model=CLOUDFLARE_DEFAULT_MODEL,
+            ))
+            print(f'Cover saved: {output} ({WIDTH}x{HEIGHT}); source=cloudflare-workers-ai. Review before publication.')
     except (OSError, ValueError, TypeError, RuntimeError) as error:
         parser.exit(1, f'Cover creation failed: {error}\n')
 

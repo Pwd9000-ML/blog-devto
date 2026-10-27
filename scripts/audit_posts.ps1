@@ -84,7 +84,7 @@ foreach ($post in $posts) {
         }
 
         # Cover filename
-        if ($fm -match 'cover_image:.*?/assets/([^''"\s]+)') {
+        if ($fm -match 'cover_image:.*?/assets/([^''"\s?#]+)') {
             $coverFile = $matches[1].TrimEnd("'", '"')
             if ($coverFile -ne "main.png") {
                 [void]$issues.Add("FM: cover filename is '$coverFile' (convention: main.png)")
@@ -108,7 +108,7 @@ foreach ($post in $posts) {
     # --- ASSETS AND LINKS ---
     if ($fm -match "cover_image:\s*'([^']+)'") {
         $coverUrl = $matches[1]
-        if ($coverUrl -match '/assets/([^/]+)$') {
+        if ($coverUrl -match '/assets/([^/?#]+)(?:[?#].*)?$') {
             $coverPath = Join-Path $post.DirectoryName "assets\$($matches[1])"
             if (-not (Test-Path $coverPath)) {
                 [void]$issues.Add("ASSET: cover file does not exist: $($matches[1])")

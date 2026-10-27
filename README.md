@@ -18,62 +18,59 @@ If anyone knows of an easier way please help by submitting a PR here. :smile:
 
 - `package.json` also contains some scripts that can then be run locally for `prettier` and `embedme`. Also used in the Github Action when a post is published
 
-### Topic-specific AI cover artwork
+### AI-generated cover artwork (Cloudflare Workers AI)
 
-Use `scripts/cover_ai.py` for illustrated, topic-driven covers rather than random background patterns. The existing `scripts/cover_creative.py` remains available, with its existing behaviour unchanged.
+All new post covers are AI-generated with `scripts/cover_ai.py` using **Cloudflare Workers AI**, model **`@cf/leonardo/lucid-origin`**. The old procedural generator and the alternative-provider/import paths have been removed.
 
-The workflow separates an art brief, image creation, and deterministic typography:
+Each cover is original, topic-specific artwork: the AI paints a concrete visual metaphor for the article on the right, with a quiet dark left side where the title and subtitle are added locally with Pillow. Every `brief` randomly picks an art direction (`cinematic-diorama`, `editorial-collage`, `isometric-world`, `paper-sculpture`, `macro-materials`, `neon-night`, `technical-illustration`) and a palette, so covers vary from post to post. Use `--art-direction` to choose one explicitly.
 
-1. An agent or author chooses a **public** visual concept from the article's topic. Do not send private drafts, repository content, credentials, or personal data.
-2. `brief` randomly chooses from six art directions and five palettes. Re-running it avoids the previous direction for that output. `--seed` repeats the art direction and prompt, not the image model's pixels.
-3. Inspect the saved prompt, then render it with Cloudflare Workers AI (default, free daily allocation) or OpenAI, or paste it into your preferred image generator and import the resulting art.
-4. The compositor crops to exactly **1000x420**, preserves the source art separately, and draws legible text locally. It never asks an image model to spell the title.
-5. Review the image at full size and as a thumbnail. Check topic relevance, cropping, misleading imagery, and legibility before publication. This review is a human or agent step, not an automatic semantic quality guarantee.
+For GitHub-centric posts you can optionally add `--github-theme core|security|copilot` to get GitHub-inspired isometric key art (contribution-graph cubes, glass objects, GitHub Green with blue or purple accents), based on the public [GitHub illustration](https://brand.github.com/graphic-elements/illustration) and [colour](https://brand.github.com/foundations/color) guidelines. Never ask the model for logos, mascots, copied artwork, or fabricated UI. Titles are omitted from image prompts to avoid unwanted AI lettering.
 
-Create a brief without making an API call or changing an existing cover:
+#### Set up credentials
 
-```powershell
-python scripts\cover_ai.py brief --title "Lock What Runs" --topic "An immutable anchor securing a chain of CI dependencies while a loose version tag drifts away" --subtitle "GitHub Actions workflow lockfiles" --output posts\2026\github-actions-workflow-lockfiles-devops\assets\main.png
-```
+1. Sign in to [Cloudflare](https://dash.cloudflare.com/).
+2. Open **Workers AI → Use REST API → Create a Workers AI API Token** and copy your token and Account ID ([official setup](https://developers.cloudflare.com/workers-ai/get-started/rest-api/)).
+3. If you do not already have `.env`, copy `.env.example` to `.env` in the repository root. Add `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN`. Never overwrite an existing credentials file or commit it.
 
-The brief is saved beside the cover as `main-cover.json`. For each new variation, run `brief` again; edit its `prompt` if the metaphor needs refinement.
+The script loads only those two keys when rendering. Environment variables take precedence. `.env` and `.env.*` are git-ignored except `.env.example`. Git ignore does not prevent OneDrive syncing the file or other local tools reading it. Never paste credentials into chat or log them.
 
-Image generation reads credentials from environment variables or from a local, git-ignored `.env` file. Copy `.env.example` to `.env` in the repository root and fill in only the provider you use. `.gitignore` excludes `.env` and `.env.*` (except `.env.example`). The script reads only `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN`, and `OPENAI_API_KEY` from this file, only when `render --provider` runs, and an existing environment variable takes precedence. Note that `.env` still syncs if the repository sits in a cloud-synced folder such as OneDrive.
-
-#### Default: Cloudflare Workers AI (free daily allocation)
-
-1. Create or sign in to a free [Cloudflare account](https://dash.cloudflare.com/sign-up/workers-and-pages).
-2. In the dashboard, open **Workers AI**, select **Use REST API**, and choose **Create a Workers AI API Token**. Copy the token and the **Account ID** into `.env` as `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` ([REST API guide](https://developers.cloudflare.com/workers-ai/get-started/rest-api/)).
-3. Render the saved brief:
+#### Create and review a brief
 
 ```powershell
-python scripts\cover_ai.py render --brief posts\2026\github-actions-workflow-lockfiles-devops\assets\main-cover.json --provider cloudflare
+python scripts\cover_ai.py brief --title "<Short headline>" --subtitle "<Subtitle>" --topic "<Public visual metaphor for the article>" --output posts\<year>\<slug>\assets\main.png
 ```
 
-This uses `@cf/black-forest-labs/flux-1-schnell` with 8 steps (the model's maximum). For a wider, potentially more detailed image, add `--model @cf/leonardo/lucid-origin`, which requests 1344x576. According to [Workers AI pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/) (checked 27 October 2026), every account gets 10,000 Neurons per day at no charge, resetting at 00:00 UTC. FLUX schnell costs 4.8 Neurons per 512x512 tile plus 9.6 per step, and Lucid Origin costs 636 Neurons per tile plus 12 per step. On the Workers Free plan, requests beyond the allocation fail rather than being billed. Review the [FLUX schnell terms](https://bfl.ai/legal/terms-of-service) and the Lucid Origin model terms before publishing.
-
-#### Optional: OpenAI (billed)
+Example (the published lockfiles cover, using the optional GitHub theme):
 
 ```powershell
-python scripts\cover_ai.py render --brief posts\2026\github-actions-workflow-lockfiles-devops\assets\main-cover.json --provider openai --model gpt-image-2.5-flare
+python scripts\cover_ai.py brief --title "Lock What Runs" --subtitle "GitHub Actions workflow lockfiles" --topic "A glowing isometric pipeline of glass cubes secured by translucent padlocks" --github-theme security --output posts\2026\github-actions-workflow-lockfiles-devops\assets\main.png
 ```
 
-The model name above is listed in the [current OpenAI image-generation guide](https://developers.openai.com/api/docs/guides/image-generation) (checked 27 October 2026). OpenAI API usage needs API billing credit; it is not included in a ChatGPT subscription, and organisation verification may be required.
+This writes `main-cover.json` beside the cover without making an API call or modifying an existing image. Supply a **public** visual metaphor, never private article text, repository code, personal data, or credentials. `--seed` repeats the art direction and palette, not the model's pixels.
 
-Each `render --provider` invocation makes **exactly one request**, with no automatic retries or regeneration loop. An agent must obtain approval for any additional generation. Only the reviewed prompt goes to the provider; the script never loads the article body or repository files. Errors report the HTTP status and provider error codes only, never response bodies or credentials.
-
-Alternatively, import artwork generated in another application:
+#### Generate once
 
 ```powershell
-python scripts\cover_ai.py render --brief posts\2026\github-actions-workflow-lockfiles-devops\assets\main-cover.json --background C:\Images\lockfiles-art.png
+python scripts\cover_ai.py render --brief posts\<year>\<slug>\assets\main-cover.json
 ```
 
-Input art must be at least 1000x420. Rendering writes `main.png`, `main-art.png`, and updates the brief with the source and model. Keep these assets together for review and future recomposition. Missing credentials, invalid images, and API failures stop with an error; they never silently produce a procedural substitute. Creating a brief alone is **not** image generation.
+The script makes exactly **one** Cloudflare request for a 1344x576 image, then crops and composes a **1000x420 RGB PNG**. It saves the source as `main-art.png`, the cover as `main.png`, and updates `main-cover.json` with the source and model. Keep all three together.
 
-Visual inspiration, not copied assets: the [VS Code/Copilot cover](https://dev.to/hamidrazadev/vs-code-1143-copilot-harness-default-compare-models-and-other-updates-worth-knowing-2l3j) demonstrates headline/illustration separation; the [security incident cover](https://dev.to/varshithvhegde/the-most-embarrassing-private-key-in-web-pki-history-f9b) demonstrates a story-led technical collage. Neither example's production method is assumed to be AI-generated.
+There are no automatic retries, alternative providers, or procedural fallbacks. Missing credentials, invalid images, and API failures stop with explicit errors; HTTP errors disclose status and numeric provider codes, not response messages or tokens. Ask the user before making an additional generation request.
 
-Validate the new workflow without contacting an image provider:
+Cloudflare provides a daily free allocation; generation is not unlimited, and paid accounts can incur charges above their allowance. Check the current [pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/) and [Lucid Origin model terms](https://developers.cloudflare.com/workers-ai/models/lucid-origin/) before use. Do not promise a fixed number of free images.
+
+#### Review, validate, and publish
+
+Inspect the cover at full size and as a thumbnail. Check topic relevance, cropping, title legibility, and unwanted text or misleading imagery. No automatic semantic-quality guarantee is provided.
 
 ```powershell
 python -m unittest discover -s scripts -p test_cover_ai.py
+pwsh scripts\audit_posts.ps1 -Path posts\<year>\<slug>\<slug>.md -FailOnIssues
 ```
+
+Pass the **Markdown file**, not its folder, to the audit and confirm that it scans the intended post. Tests use synthetic images and mocked API calls; they do not consume quota.
+
+Use the raw GitHub URL for `assets/main.png` in front matter. When replacing a published cover, change the URL's version query (for example `?v=cloudflare-20261027`) so DEV.to requests the new artwork. Preserve the article ID, publication date, and other metadata. An asset-only push does not trigger the current publishing workflow: include the cover URL change in the Markdown, publish only after approval, then verify the public DEV.to article and image.
+
+Repository agents must follow the project [new-blog-post skill](./.github/skills/new-blog-post/SKILL.md) for all future posts.

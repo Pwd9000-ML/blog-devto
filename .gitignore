@@ -1,7 +1,7 @@
 node_modules/
 *.log
 
-# Local secrets (for example OPENAI_API_KEY for scripts/cover_ai.py)
+# Local Cloudflare credentials for scripts/cover_ai.py
 .env
 .env.*
 !.env.example
