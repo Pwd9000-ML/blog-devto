@@ -1,13 +1,13 @@
 ---
 title: 'GitHub Actions Workflow Lockfiles: Pin What Actually Runs'
-published: false
+published: true
 description: 'Use GitHub Actions workflow lockfiles to pin action dependencies, review updates, and reduce supply-chain risk in CI.'
 tags: 'githubactions, security, devops, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/github-actions-workflow-lockfiles-devops/assets/main.png'
 canonical_url: null
 id: 4927956
 series: null
-date: '2026-10-27T10:43:16Z'
+date: '2026-10-27T11:59:53Z'
 ---
 
 ## GitHub Actions Workflow Lockfiles: Pin What Actually Runs
