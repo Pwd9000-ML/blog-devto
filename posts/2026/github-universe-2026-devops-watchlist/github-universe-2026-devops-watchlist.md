@@ -1,11 +1,11 @@
 ---
-title: "GitHub Universe 2026: A DevOps Engineer's Watchlist"
+title: 'GitHub Universe 2026: A DevOps Engineer''s Watchlist'
 published: false
 description: 'A practical preview of the GitHub Universe 2026 sessions and questions that matter for DevOps, AI agents, and software supply chains.'
 tags: 'github, devops, ai, githubcopilot'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/github-universe-2026-devops-watchlist/assets/main.png'
 canonical_url: null
-id: null
+id: 4927957
 series: null
 date: '2026-10-27T10:43:16Z'
 ---

@@ -5,7 +5,7 @@ description: 'Use GitHub Actions workflow lockfiles to pin action dependencies, 
 tags: 'githubactions, security, devops, tutorial'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/github-actions-workflow-lockfiles-devops/assets/main.png'
 canonical_url: null
-id: null
+id: 4927956
 series: null
 date: '2026-10-27T10:43:16Z'
 ---

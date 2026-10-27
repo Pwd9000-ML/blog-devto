@@ -5,7 +5,7 @@ description: 'Understand how Copilot permissions, local sandboxing, and computer
 tags: 'githubcopilot, security, devops, ai'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/copilot-agent-safety-permissions-sandboxing/assets/main.png'
 canonical_url: null
-id: null
+id: 4927958
 series: null
 date: '2026-10-27T10:43:16Z'
 ---
