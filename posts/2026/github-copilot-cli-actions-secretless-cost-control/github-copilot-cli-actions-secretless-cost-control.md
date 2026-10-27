@@ -3,7 +3,7 @@ title: Run GitHub Copilot CLI in GitHub Actions Without PATs or Runaway AI Costs
 published: true
 description: 'Run Copilot CLI in GitHub Actions with GITHUB_TOKEN, bounded AI credits, secure permissions, and no stored PAT.'
 tags: 'githubcopilot, githubactions, devops, tutorial'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/github-copilot-cli-actions-secretless-cost-control/assets/main2.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/github-copilot-cli-actions-secretless-cost-control/assets/main.png?v=cloudflare-20261027'
 canonical_url: null
 id: 4188927
 series: GitHub Copilot - CLI
@@ -161,7 +161,6 @@ jobs:
           REPORT_PATH: ${{ runner.temp }}/copilot-review.md
           PROMPT: >-
             Perform a read-only review of this repository at the current commit. Do not modify files. Produce a concise Markdown report containing: likely build and test commands based on repository evidence; the top three reliability or security risks with repository-relative file references; missing or weak automated checks; and three prioritised actions. Do not print secrets, tokens, or environment-variable values.
-
 
         run: |
           set -o pipefail

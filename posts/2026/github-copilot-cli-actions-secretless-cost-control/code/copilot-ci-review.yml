@@ -46,7 +46,6 @@ jobs:
           PROMPT: >-
             Perform a read-only review of this repository at the current commit. Do not modify files. Produce a concise Markdown report containing: likely build and test commands based on repository evidence; the top three reliability or security risks with repository-relative file references; missing or weak automated checks; and three prioritised actions. Do not print secrets, tokens, or environment-variable values.
 
-
         run: |
           set -o pipefail
           copilot --yolo -p "$PROMPT" \
