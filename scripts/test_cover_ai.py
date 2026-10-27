@@ -3,6 +3,7 @@ from __future__ import annotations
 import base64
 import io
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -16,6 +17,7 @@ from cover_ai import (
     compose_cover,
     create_brief,
     generate_artwork,
+    load_api_key_from_env_file,
     load_brief,
     main,
     save_brief,
@@ -23,6 +25,23 @@ from cover_ai import (
 
 
 class CoverAITests(unittest.TestCase):
+    def test_env_file_loads_only_api_key_and_existing_environment_wins(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            env_file = Path(directory) / '.env'
+            env_file.write_text(
+                '# comment\nOTHER_SECRET=ignored\nOPENAI_API_KEY="file-placeholder"\n', encoding='utf-8',
+            )
+            with patch.dict('os.environ', {}, clear=True):
+                load_api_key_from_env_file(env_file)
+                self.assertEqual(os.environ.get('OPENAI_API_KEY'), 'file-placeholder')
+                self.assertNotIn('OTHER_SECRET', os.environ)
+            with patch.dict('os.environ', {'OPENAI_API_KEY': 'process-placeholder'}, clear=True):
+                load_api_key_from_env_file(env_file)
+                self.assertEqual(os.environ['OPENAI_API_KEY'], 'process-placeholder')
+            with patch.dict('os.environ', {}, clear=True):
+                load_api_key_from_env_file(Path(directory) / 'missing.env')
+                self.assertNotIn('OPENAI_API_KEY', os.environ)
+
     def test_seed_repeats_prompt_and_public_topic_is_present(self) -> None:
         first = create_brief('Lock What Runs', 'An immutable CI dependency chain', '', 'main.png', 42)
         second = create_brief('Lock What Runs', 'An immutable CI dependency chain', '', 'main.png', 42)

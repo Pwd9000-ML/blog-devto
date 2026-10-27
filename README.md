@@ -38,7 +38,12 @@ python scripts\cover_ai.py brief --title "Lock What Runs" --topic "An immutable 
 
 The brief is saved beside the cover as `main-cover.json`. For each new variation, run `brief` again; edit its `prompt` if the metaphor needs refinement.
 
-For a real OpenAI image request, set `OPENAI_API_KEY` **outside this repository** using your shell or secret manager, then run:
+For a real OpenAI image request, provide `OPENAI_API_KEY` in one of two ways:
+
+- **Local `.env` file (git-ignored):** copy `.env.example` to `.env` in the repository root and set `OPENAI_API_KEY=...`. `.gitignore` excludes `.env` and `.env.*` (except `.env.example`). The script reads only `OPENAI_API_KEY` from this file, and only for `render --model`. An existing environment variable takes precedence. Note that `.env` still syncs if the repository sits in a cloud-synced folder such as OneDrive.
+- **Environment variable:** set it in your shell or secret manager.
+
+Then run:
 
 ```powershell
 python scripts\cover_ai.py render --brief posts\2026\github-actions-workflow-lockfiles-devops\assets\main-cover.json --model gpt-image-2.5-flare

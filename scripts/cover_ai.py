@@ -116,6 +116,24 @@ def save_brief(path: Path, brief: ArtBrief) -> None:
     path.write_text(json.dumps(asdict(brief), indent=2) + '\n', encoding='utf-8')
 
 
+ENV_FILE = Path(__file__).resolve().parent.parent / '.env'
+
+
+def load_api_key_from_env_file(path: Path = ENV_FILE) -> None:
+    # Only OPENAI_API_KEY is read, and an existing environment variable always wins.
+    if os.environ.get('OPENAI_API_KEY', '').strip() or not path.is_file():
+        return
+    for line in path.read_text(encoding='utf-8-sig').splitlines():
+        name, separator, value = line.strip().partition('=')
+        if separator and name.strip() == 'OPENAI_API_KEY':
+            value = value.strip()
+            if len(value) >= 2 and value[0] == value[-1] and value[0] in '"\'':
+                value = value[1:-1].strip()
+            if value:
+                os.environ['OPENAI_API_KEY'] = value
+            return
+
+
 def generate_artwork(prompt: str, model: str) -> Image.Image:
     key = os.environ.get('OPENAI_API_KEY', '').strip()
     if not key:
@@ -232,6 +250,7 @@ def main() -> None:
                     artwork = ImageOps.exif_transpose(imported).convert('RGBA')
                 brief = replace(brief, source='imported', model=None)
             else:
+                load_api_key_from_env_file()
                 artwork = generate_artwork(brief.prompt, args.model)
                 brief = replace(brief, source='openai', model=args.model)
             cover = compose_cover(artwork, brief.title, brief.subtitle)
