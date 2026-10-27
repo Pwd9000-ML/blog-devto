@@ -13,20 +13,39 @@ Each `posts/<year>/<slug>/` folder is the source of truth. This project skill de
 2. Create `posts/<year>/<slug>/<slug>.md` and `assets/`; add `code/` for executable samples when appropriate.
 3. Replace all template placeholders. New posts start with `published: false`, `id: null`, and `canonical_url: null` unless publication is explicitly approved.
 4. Research current claims using authoritative sources before drafting. Write in British English, distinguish preview from GA, and never invent testing results.
-5. Generate a Cloudflare cover using the procedure below.
+5. Before creating the cover brief, ask the user to choose one art direction or GitHub theme unless they already specified either in the current request. Show all options from **Cover style choices** with their meanings, wait for their answer, then generate a Cloudflare cover using the procedure below.
 6. Validate the post, assets, formatting, and relevant runnable samples.
 
 ## Covers: AI-generated with Cloudflare only
 
-Use `scripts/cover_ai.py` with the fixed model `@cf/leonardo/lucid-origin`. Every cover is original AI artwork that visualises the article's topic with one concrete metaphor, with a dark, quiet left side where the title is composed locally for readability. Covers should vary between posts: each brief randomly picks an art direction (`cinematic-diorama`, `editorial-collage`, `isometric-world`, `paper-sculpture`, `macro-materials`, `neon-night`, `technical-illustration`) and a palette. Do not copy a previous cover's look.
+Use `scripts/cover_ai.py` with the fixed model `@cf/leonardo/lucid-origin`. Every cover is original AI artwork that visualises the article's topic with one concrete metaphor, with a dark, quiet left side where the title is composed locally for readability. Covers should vary between posts. Do not copy a previous cover's look.
+
+### Cover style choices
+
+For every new post, ask the user to pick one art direction or GitHub theme before creating the brief unless they already specified one in the current request. Do not choose randomly, infer silently, or reuse a previous choice without asking. Present all seven art directions and all three GitHub themes:
+
+| Style | Option | Meaning |
+| --- | --- | --- |
+| Cinematic diorama | `--art-direction cinematic-diorama` | Miniature model-like scene with dramatic studio lighting and shallow depth of field. |
+| Editorial collage | `--art-direction editorial-collage` | Layered cut-paper collage with magazine-style material textures. |
+| Isometric world | `--art-direction isometric-world` | Detailed 3D isometric scene with a few meaningful, connected objects. |
+| Paper sculpture | `--art-direction paper-sculpture` | Sculpted-paper scene with bold shapes and dimensional shadows. |
+| Macro materials | `--art-direction macro-materials` | Close-up physical objects in glass, ceramic, and brushed metal. |
+| Neon night | `--art-direction neon-night` | Moody night scene with volumetric light, glowing edges, and reflections. |
+| Technical illustration | `--art-direction technical-illustration` | Polished conceptual illustration with precise shapes and rich texture. |
+| GitHub core | `--github-theme core` | GitHub-inspired isometric contribution-graph cubes with green accents. |
+| GitHub security | `--github-theme security` | GitHub-inspired isometric cubes with green and security-blue accents. |
+| GitHub Copilot | `--github-theme copilot` | GitHub-inspired isometric cubes with green and Copilot-purple accents. |
+
+Use exactly one selected option. GitHub themes override art directions and exclude characters or mascots.
 
 Create a brief from a public visual metaphor that fits the article:
 
 ```powershell
-python scripts\cover_ai.py brief --title "<Short headline>" --subtitle "<Subtitle>" --topic "<Public visual concept>" --output posts\<year>\<slug>\assets\main.png
+python scripts\cover_ai.py brief --title "<Short headline>" --subtitle "<Subtitle>" --topic "<Public visual concept>" <selected-style-option> --output posts\<year>\<slug>\assets\main.png
 ```
 
-Optional: `--art-direction <name>` to choose a style, or `--github-theme core|security|copilot` for GitHub-inspired isometric key art (green, green/blue, green/purple) when the post is strongly GitHub-focused. The headline is composed locally, not sent to the model. Never request third-party logos, mascots, copied artwork, fake UI, or generated lettering.
+The headline is composed locally, not sent to the model. Never request third-party logos, mascots, copied artwork, fake UI, or generated lettering.
 
 Review `assets/main-cover.json`, then generate once:
 
