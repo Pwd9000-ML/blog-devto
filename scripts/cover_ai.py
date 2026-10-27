@@ -9,6 +9,7 @@ import io
 import json
 import os
 import random
+import re
 from dataclasses import asdict, dataclass, replace
 from pathlib import Path
 from urllib.error import HTTPError, URLError
@@ -117,21 +118,111 @@ def save_brief(path: Path, brief: ArtBrief) -> None:
 
 
 ENV_FILE = Path(__file__).resolve().parent.parent / '.env'
+ENV_KEYS = ('OPENAI_API_KEY', 'CLOUDFLARE_ACCOUNT_ID', 'CLOUDFLARE_API_TOKEN')
+CLOUDFLARE_DEFAULT_MODEL = '@cf/black-forest-labs/flux-1-schnell'
 
 
-def load_api_key_from_env_file(path: Path = ENV_FILE) -> None:
-    # Only OPENAI_API_KEY is read, and an existing environment variable always wins.
-    if os.environ.get('OPENAI_API_KEY', '').strip() or not path.is_file():
+def load_credentials_from_env_file(path: Path | None = None) -> None:
+    # Only allowlisted keys are read, and existing environment variables always win.
+    path = ENV_FILE if path is None else path
+    if not path.is_file():
         return
     for line in path.read_text(encoding='utf-8-sig').splitlines():
         name, separator, value = line.strip().partition('=')
-        if separator and name.strip() == 'OPENAI_API_KEY':
-            value = value.strip()
-            if len(value) >= 2 and value[0] == value[-1] and value[0] in '"\'':
-                value = value[1:-1].strip()
-            if value:
-                os.environ['OPENAI_API_KEY'] = value
-            return
+        name = name.strip()
+        if not separator or name not in ENV_KEYS or os.environ.get(name, '').strip():
+            continue
+        value = value.strip()
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in '"\'':
+            value = value[1:-1].strip()
+        if value:
+            os.environ[name] = value
+
+
+def api_error_reason(error: HTTPError) -> str:
+    # Report only short identifier-like error codes, never the raw response body.
+    try:
+        body = json.loads(error.read() or b'{}')
+    except (OSError, ValueError, AttributeError, TypeError):
+        return ''
+    if not isinstance(body, dict):
+        return ''
+    candidates: list[object] = []
+    if isinstance(body.get('error'), dict):
+        candidates += [body['error'].get('code'), body['error'].get('type')]
+    if isinstance(body.get('errors'), list):
+        candidates += [item.get('code') for item in body['errors'] if isinstance(item, dict)]
+    labels = [
+        str(value) for value in candidates
+        if (isinstance(value, int) and not isinstance(value, bool))
+        or (isinstance(value, str) and re.fullmatch(r'[A-Za-z0-9_.-]{1,64}', value))
+    ]
+    return f": {', '.join(dict.fromkeys(labels))}" if labels else ''
+
+
+def decode_image(image_bytes: bytes) -> Image.Image:
+    with Image.open(io.BytesIO(image_bytes)) as image:
+        return ImageOps.exif_transpose(image).convert('RGBA')
+
+
+def cloudflare_payload(model: str, prompt: str) -> dict[str, object]:
+    if model.endswith('/flux-1-schnell'):
+        if len(prompt) > 2048:
+            raise ValueError('flux-1-schnell accepts prompts of up to 2048 characters.')
+        return {'prompt': prompt, 'steps': 8}
+    if model.endswith('/lucid-origin'):
+        return {'prompt': prompt, 'width': 1344, 'height': 576}
+    return {'prompt': prompt}
+
+
+def generate_artwork_cloudflare(prompt: str, model: str = CLOUDFLARE_DEFAULT_MODEL) -> Image.Image:
+    account = os.environ.get('CLOUDFLARE_ACCOUNT_ID', '').strip()
+    token = os.environ.get('CLOUDFLARE_API_TOKEN', '').strip()
+    if not account or not token:
+        raise ValueError(
+            'CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN must be set. No image request was made.'
+        )
+    if not re.fullmatch(r'[0-9a-fA-F]{32}', account):
+        raise ValueError('CLOUDFLARE_ACCOUNT_ID must be the 32-character account ID. No request was made.')
+    if not re.fullmatch(r'@cf/[a-z0-9._-]+/[a-z0-9._-]+', model):
+        raise ValueError('Use a Workers AI model name such as @cf/black-forest-labs/flux-1-schnell.')
+    request = Request(
+        f'https://api.cloudflare.com/client/v4/accounts/{account}/ai/run/{model}',
+        data=json.dumps(cloudflare_payload(model, prompt)).encode('utf-8'),
+        headers={'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json'},
+        method='POST',
+    )
+    try:
+        with urlopen(request, timeout=180) as response:
+            headers = getattr(response, 'headers', None)
+            content_type = headers.get('Content-Type', '') if headers is not None else ''
+            body = response.read()
+    except HTTPError as error:
+        raise RuntimeError(
+            f'Image generation failed (HTTP {error.code}{api_error_reason(error)}). '
+            'Check the account ID, Workers AI token permissions, and the daily free allocation. '
+            'No automatic retry.'
+        ) from error
+    except URLError as error:
+        raise RuntimeError('Image generation could not reach Cloudflare. No automatic retry.') from error
+    if content_type.startswith('image/'):
+        image_bytes = body
+    else:
+        data = json.loads(body)
+        result = data.get('result') if isinstance(data, dict) else None
+        if (
+            not isinstance(data, dict) or data.get('success') is False
+            or not isinstance(result, dict) or not isinstance(result.get('image'), str)
+        ):
+            raise ValueError('Workers AI response did not contain a base64 image.')
+        image_bytes = base64.b64decode(result['image'], validate=True)
+    image = decode_image(image_bytes)
+    scale = max(WIDTH / image.width, HEIGHT / image.height)
+    if scale > 1:
+        image = image.resize(
+            (round(image.width * scale), round(image.height * scale)), Image.Resampling.LANCZOS,
+        )
+    return image
 
 
 def generate_artwork(prompt: str, model: str) -> Image.Image:
@@ -150,8 +241,9 @@ def generate_artwork(prompt: str, model: str) -> Image.Image:
         with urlopen(request, timeout=180) as response:
             data = json.load(response)
     except HTTPError as error:
+        reason = api_error_reason(error)
         raise RuntimeError(
-            f'Image generation failed (HTTP {error.code}). '
+            f'Image generation failed (HTTP {error.code}{reason}). '
             'Check model access, account verification, and API billing. No automatic retry.'
         ) from error
     except URLError as error:
@@ -231,8 +323,15 @@ def main() -> None:
     render = commands.add_parser('render', help='Render one saved brief using AI or imported artwork.')
     render.add_argument('--brief', required=True, type=Path)
     source = render.add_mutually_exclusive_group(required=True)
-    source.add_argument('--model', help='Explicitly make one paid OpenAI Images API request.')
+    source.add_argument(
+        '--provider', choices=('cloudflare', 'openai'),
+        help='Make exactly one image request: cloudflare (free daily allocation) or openai (billed).',
+    )
     source.add_argument('--background', type=Path, help='Import artwork instead; no API call.')
+    render.add_argument(
+        '--model',
+        help=f'Image model. Cloudflare default: {CLOUDFLARE_DEFAULT_MODEL}. Required for openai.',
+    )
     args = parser.parse_args()
     try:
         if args.command == 'brief':
@@ -246,11 +345,20 @@ def main() -> None:
         else:
             brief = load_brief(args.brief)
             if args.background is not None:
+                if args.model:
+                    raise ValueError('--model applies only to --provider, not --background.')
                 with Image.open(args.background) as imported:
                     artwork = ImageOps.exif_transpose(imported).convert('RGBA')
                 brief = replace(brief, source='imported', model=None)
+            elif args.provider == 'cloudflare':
+                load_credentials_from_env_file()
+                model = args.model or CLOUDFLARE_DEFAULT_MODEL
+                artwork = generate_artwork_cloudflare(brief.prompt, model)
+                brief = replace(brief, source='cloudflare-workers-ai', model=model)
             else:
-                load_api_key_from_env_file()
+                if not args.model:
+                    raise ValueError('Choose an OpenAI image model with --model.')
+                load_credentials_from_env_file()
                 artwork = generate_artwork(brief.prompt, args.model)
                 brief = replace(brief, source='openai', model=args.model)
             cover = compose_cover(artwork, brief.title, brief.subtitle)
