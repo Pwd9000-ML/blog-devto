@@ -1,0 +1,12 @@
+{
+  "title": "Should AI Hold the Key?",
+  "subtitle": "Copilot approvals & branch protection",
+  "topic": "A translucent violet review token bearing a simple luminous checkmark floats just before a fortified glass merge gate, a branching pair of luminous pipeline rails converges behind the gate, and a separate warm amber mechanical key rests nearby as the symbol of human authority. Three large sculptural objects only, strong visual contrast, sophisticated physical materials, no robots or characters",
+  "seed": 2787263618942532890,
+  "art_direction": "cinematic-diorama",
+  "palette": "charcoal, warm amber, and violet highlights",
+  "prompt": "A purely visual, wordless editorial illustration. Scene: A translucent violet review token bearing a simple luminous checkmark floats just before a fortified glass merge gate, a branching pair of luminous pipeline rails converges behind the gate, and a separate warm amber mechanical key rests nearby as the symbol of human authority. Three large sculptural objects only, strong visual contrast, sophisticated physical materials, no robots or characters. Interpret that concept with one concrete, topic-relevant visual metaphor. Art direction: A tactile miniature diorama with dramatic studio lighting and shallow depth of field. Palette: charcoal, warm amber, and violet highlights. Make an actual illustration, not a poster, title slide, or generic AI brain or robot. Wide horizontal banner composition. Place the main subject on the right third; the left half is plain, dark, empty background with nothing in it. Keep all important objects in the middle 55 percent of the image height so the artwork can be centre-cropped to a 1000 by 420 pixel banner. Every surface is blank and unmarked: no typography, lettering, signage, labels, code, logos, watermarks, or user-interface screenshots. Do not imitate another author or artist. Render original objects and composition.",
+  "output": "main.png",
+  "source": "cloudflare-workers-ai",
+  "model": "@cf/leonardo/lucid-origin"
+}

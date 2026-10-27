@@ -306,6 +306,32 @@ class CoverAITests(unittest.TestCase):
                 self.assertNotEqual(result.returncode, 0)
                 self.assertIn('cover file does not exist', result.stdout)
 
+    @unittest.skipUnless(shutil.which('pwsh'), 'PowerShell is required for post audit regression tests')
+    def test_audit_accepts_crlf_front_matter(self) -> None:
+        audit = Path(__file__).resolve().parent / 'audit_posts.ps1'
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory) / 'test-post'
+            assets = folder / 'assets'
+            assets.mkdir(parents=True)
+            post = folder / 'test-post.md'
+            content = (
+                "---\ntitle: 'Test'\npublished: true\ndescription: 'CRLF regression test'\n"
+                "tags: 'devops'\n"
+                "cover_image: 'https://raw.githubusercontent.com/example/repo/main/posts/test/assets/main.png'\n"
+                "canonical_url: null\nid: 1\nseries: null\ndate: '2026-10-27T00:00:00Z'\n---\n"
+                "Source: https://developers.cloudflare.com/\n"
+                "{% user pwd9000 %}\n"
+                ":octopus: [GitHub](https://github.com/) | :penguin: [X](https://x.com/) | "
+                ":space_invader: [LinkedIn](https://linkedin.com/)\nDate: 27-10-2026\n"
+            )
+            post.write_bytes(content.replace('\n', '\r\n').encode('utf-8'))
+            (assets / 'main.png').write_bytes(png_bytes((1000, 420)))
+            result = subprocess.run(
+                ['pwsh', '-NoProfile', '-File', str(audit), '-Path', str(post), '-FailOnIssues'],
+                capture_output=True, text=True, check=False,
+            )
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
 
 if __name__ == '__main__':
     unittest.main()

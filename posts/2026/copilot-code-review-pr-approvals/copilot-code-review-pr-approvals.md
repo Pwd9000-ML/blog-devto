@@ -3,7 +3,7 @@ title: Copilot Can Now Approve Pull Requests. Should It Count Toward Your Branch
 published: true
 description: 'Copilot code review can now submit approvals that satisfy required reviews. How the controls compose, what is undocumented, and a safe rollout.'
 tags: 'githubcopilot, github, devops, codereview'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/copilot-code-review-pr-approvals/assets/main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/copilot-code-review-pr-approvals/assets/main.png?v=cloudflare-20261027'
 canonical_url: null
 id: 4644186
 series: GitHub Copilot - Automation

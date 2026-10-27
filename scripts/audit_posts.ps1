@@ -68,9 +68,9 @@ foreach ($post in $posts) {
         elseif ($fm -match 'description:\s*"([^"]*)"') { $descLen = $matches[1].Length }
         elseif ($fm -match 'description:\s+([^\r\n]+)') { $descLen = $matches[1].Trim().Trim("'`"").Length }
         if ($descLen -gt 150) { [void]$issues.Add("FM: description too long ($descLen chars, max 150)") }
-        if ($fm -notmatch "(?m)^description:\s*'[^']*'$" ) { [void]$issues.Add("FM: description not single-quoted") }
+        if ($fm -notmatch "(?m)^description:\s*'[^']*'\r?$" ) { [void]$issues.Add("FM: description not single-quoted") }
 
-        if ($fm -notmatch "(?m)^published:\s*(true|false)$") { [void]$issues.Add("FM: published must be true or false") }
+        if ($fm -notmatch "(?m)^published:\s*(true|false)\r?$") { [void]$issues.Add("FM: published must be true or false") }
         if ($fm -match "(?m)^date:\s*'([^']+)'" -and $matches[1] -notmatch '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$') {
             [void]$issues.Add("FM: date is not ISO 8601 UTC")
         }
