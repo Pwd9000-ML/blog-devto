@@ -1,0 +1,12 @@
+{
+  "title": "Copilot CLI Remote Access",
+  "subtitle": "Steer your session from any device",
+  "topic": "a cinematic macro still life of a compact dark ceramic terminal console connected by a luminous flowing glass fibre to a brushed-metal smartphone standing upright; a calm pulse of green and violet light travels between the local workstation and phone, symbolising a live Copilot CLI session being monitored and steered remotely; dark quiet negative space on the left for a title, objects weighted to the right, no visible text, no letters, no logos, no readable interface or screen content",
+  "seed": 4785017845301375225,
+  "art_direction": "macro-materials",
+  "palette": "dark slate, magenta, and sky blue",
+  "prompt": "A purely visual, wordless editorial illustration. Scene: a cinematic macro still life of a compact dark ceramic terminal console connected by a luminous flowing glass fibre to a brushed-metal smartphone standing upright; a calm pulse of green and violet light travels between the local workstation and phone, symbolising a live Copilot CLI session being monitored and steered remotely; dark quiet negative space on the left for a title, objects weighted to the right, no visible text, no letters, no logos, no readable interface or screen content. Interpret that concept with one concrete, topic-relevant visual metaphor. Art direction: A striking close-up of physical objects in glass, ceramic, and brushed metal. Palette: dark slate, magenta, and sky blue. Make an actual illustration, not a poster, title slide, or generic AI brain or robot. Wide horizontal banner composition. Place the main subject on the right third; the left half is plain, dark, empty background with nothing in it. Keep all important objects in the middle 55 percent of the image height so the artwork can be centre-cropped to a 1000 by 420 pixel banner. Every surface is blank and unmarked: no typography, lettering, signage, labels, code, logos, watermarks, or user-interface screenshots. Do not imitate another author or artist. Render original objects and composition.",
+  "output": "main.png",
+  "source": "cloudflare-workers-ai",
+  "model": "@cf/leonardo/lucid-origin"
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Your GitHub Skills Learning Path",
+  "subtitle": "From Git basics to AI-powered development",
+  "topic": "a moody neon-night scene of a glowing ascending pathway across a dark landscape, beginning with simple branching stone shapes and connected repository-like blocks, advancing through collaborative workflow nodes, and ending at a bright abstract AI-assisted development beacon; clear progression from beginner foundations to advanced skills, soft volumetric light, reflective surfaces, GitHub-green and Copilot-purple accents, main elements on the right and quiet dark negative space on the left. Pure abstract objects only: no text, letters, numbers, labels, logos, mascots, screens, UI, signs, or marked surfaces",
+  "seed": 3461351213618898000,
+  "art_direction": "neon-night",
+  "palette": "charcoal, warm amber, and violet highlights",
+  "prompt": "A purely visual, wordless editorial illustration. Scene: a moody neon-night scene of a glowing ascending pathway across a dark landscape, beginning with simple branching stone shapes and connected repository-like blocks, advancing through collaborative workflow nodes, and ending at a bright abstract AI-assisted development beacon; clear progression from beginner foundations to advanced skills, soft volumetric light, reflective surfaces, GitHub-green and Copilot-purple accents, main elements on the right and quiet dark negative space on the left. Pure abstract objects only: no text, letters, numbers, labels, logos, mascots, screens, UI, signs, or marked surfaces. Interpret that concept with one concrete, topic-relevant visual metaphor. Art direction: A moody night scene with soft volumetric light, glowing edges, and reflective surfaces. Palette: charcoal, warm amber, and violet highlights. Make an actual illustration, not a poster, title slide, or generic AI brain or robot. Wide horizontal banner composition. Place the main subject on the right third; the left half is plain, dark, empty background with nothing in it. Keep all important objects in the middle 55 percent of the image height so the artwork can be centre-cropped to a 1000 by 420 pixel banner. Every surface is blank and unmarked: no typography, lettering, signage, labels, code, logos, watermarks, or user-interface screenshots. Do not imitate another author or artist. Render original objects and composition.",
+  "output": "main.png",
+  "source": "brief-only",
+  "model": null
+}

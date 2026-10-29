@@ -1,0 +1,12 @@
+{
+  "title": "Evaluate Copilot Models",
+  "subtitle": "A practical scoring guide",
+  "topic": "an original layered editorial cut-paper collage about comparing several AI models fairly: a row of distinct abstract paper-cut geometric tokens, each travelling through the same set of neutral challenge gates and test shapes, then converging on a balanced weighing scale with simple unmarked score tiles; precise, thoughtful, approachable, with dark navy negative space on the left for title, visual focus on the right, restrained GitHub green and Copilot purple accents. No text, letters, numbers, labels, logos, charts with axes, screens, or signage; every tile and surface completely blank",
+  "seed": 1598008044641655293,
+  "art_direction": "editorial-collage",
+  "palette": "dark slate, magenta, and sky blue",
+  "prompt": "A purely visual, wordless editorial illustration. Scene: an original layered editorial cut-paper collage about comparing several AI models fairly: a row of distinct abstract paper-cut geometric tokens, each travelling through the same set of neutral challenge gates and test shapes, then converging on a balanced weighing scale with simple unmarked score tiles; precise, thoughtful, approachable, with dark navy negative space on the left for title, visual focus on the right, restrained GitHub green and Copilot purple accents. No text, letters, numbers, labels, logos, charts with axes, screens, or signage; every tile and surface completely blank. Interpret that concept with one concrete, topic-relevant visual metaphor. Art direction: An original layered editorial collage with cut-paper and material textures. Palette: dark slate, magenta, and sky blue. Make an actual illustration, not a poster, title slide, or generic AI brain or robot. Wide horizontal banner composition. Place the main subject on the right third; the left half is plain, dark, empty background with nothing in it. Keep all important objects in the middle 55 percent of the image height so the artwork can be centre-cropped to a 1000 by 420 pixel banner. Every surface is blank and unmarked: no typography, lettering, signage, labels, code, logos, watermarks, or user-interface screenshots. Do not imitate another author or artist. Render original objects and composition.",
+  "output": "main.png",
+  "source": "cloudflare-workers-ai",
+  "model": "@cf/leonardo/lucid-origin"
+}

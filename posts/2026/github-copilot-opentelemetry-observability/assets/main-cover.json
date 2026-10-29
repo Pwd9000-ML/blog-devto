@@ -1,0 +1,12 @@
+{
+  "title": "Trace Copilot with OpenTelemetry",
+  "subtitle": "Turn agent activity into DevOps signals",
+  "topic": "a sophisticated technical concept illustration of one luminous execution trace entering from a compact workstation and branching through connected geometric nodes representing model calls, tool execution, and a delegated agent, then converging into a clear observability collector; fine flowing paths and subtle pulse rings show timing and relationships, restrained GitHub green and Copilot purple accents on deep navy, with dark empty title space at left and the connected trace composition on the right. Purely abstract shapes only: no text, letters, numbers, labels, logos, charts, screens, UI, signage, or marked surfaces",
+  "seed": 5141242200261636941,
+  "art_direction": "technical-illustration",
+  "palette": "deep navy, electric cyan, and restrained coral accents",
+  "prompt": "A purely visual, wordless editorial illustration. Scene: a sophisticated technical concept illustration of one luminous execution trace entering from a compact workstation and branching through connected geometric nodes representing model calls, tool execution, and a delegated agent, then converging into a clear observability collector; fine flowing paths and subtle pulse rings show timing and relationships, restrained GitHub green and Copilot purple accents on deep navy, with dark empty title space at left and the connected trace composition on the right. Purely abstract shapes only: no text, letters, numbers, labels, logos, charts, screens, UI, signage, or marked surfaces. Interpret that concept with one concrete, topic-relevant visual metaphor. Art direction: A sophisticated conceptual illustration with precise shapes and rich texture. Palette: deep navy, electric cyan, and restrained coral accents. Make an actual illustration, not a poster, title slide, or generic AI brain or robot. Wide horizontal banner composition. Place the main subject on the right third; the left half is plain, dark, empty background with nothing in it. Keep all important objects in the middle 55 percent of the image height so the artwork can be centre-cropped to a 1000 by 420 pixel banner. Every surface is blank and unmarked: no typography, lettering, signage, labels, code, logos, watermarks, or user-interface screenshots. Do not imitate another author or artist. Render original objects and composition.",
+  "output": "main.png",
+  "source": "cloudflare-workers-ai",
+  "model": "@cf/leonardo/lucid-origin"
+}

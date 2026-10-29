@@ -3,7 +3,7 @@ title: 'Agentic DevOps Needs Observability: Trace GitHub Copilot with OpenTeleme
 published: true
 description: 'Trace GitHub Copilot agents with OpenTelemetry and Jaeger, then turn spans, metrics and events into practical DevOps signals.'
 tags: 'githubcopilot, opentelemetry, devops, observability'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/github-copilot-opentelemetry-observability/assets/main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/github-copilot-opentelemetry-observability/assets/main.png?v=cloudflare-20261029'
 canonical_url: null
 id: 4245702
 series: GitHub Copilot - Automation

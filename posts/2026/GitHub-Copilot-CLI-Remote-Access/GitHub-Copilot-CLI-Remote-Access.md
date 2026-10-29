@@ -3,7 +3,7 @@ title: Steer GitHub Copilot CLI Sessions Remotely from Any Device
 published: true
 description: 'Start a Copilot CLI session on your workstation, then monitor and steer it from the browser or your phone.'
 tags: 'githubcopilot, ai, tutorial, devops'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-CLI-Remote-Access/assets/main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/GitHub-Copilot-CLI-Remote-Access/assets/main.png?v=cloudflare-20261029'
 canonical_url: null
 id: 3505628
 series: GitHub Copilot - CLI
