@@ -10,7 +10,9 @@ series: GitHub Copilot - CLI
 date: '2026-10-12T08:18:03Z'
 ---
 
-> **Note :** Following GitHub Universe 2026, GitHub announced on **28 October 2026** that Project HydraFusion is now part of **GitHub Copilot Fusion**, a generally available experience that routes and orchestrates models for each task. Copilot Fusion combines HydraFusion's multi-model orchestration with Copilot Auto model selection. [Further reading: GitHub Copilot Fusion announcement](https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/).
+> **Note :** Following GitHub Universe 2026, GitHub announced on **28 October 2026** that Project HydraFusion is now part of **GitHub Copilot Fusion**, a generally available experience that routes and orchestrates models for each task. Copilot Fusion combines HydraFusion's multi-model orchestration with Copilot Auto model selection. [Further reading: GitHub Copilot Fusion announcement](https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/).  
+
+![diagram](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/project-hydrafusion-copilot-cli/assets/fusion.png)  
 
 ## Project HydraFusion: GitHub Copilot Stops Picking a Model and Starts Building a Workflow
 
