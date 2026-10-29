@@ -336,14 +336,6 @@ The convergence that GitHub had previously described as a future possibility has
 
 Choosing the right amount of model work for each task is still the important problem. Copilot Fusion is GitHub's GA product for that approach; the engineering discipline remains to validate its results against your own delivery, cost, and security requirements.
 
-## Sources
-
-| Source | Date | What it verifies |
-| --- | --- | --- |
-| [GitHub Changelog: Route and orchestrate models with GitHub Copilot Fusion](https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/) | 28 October 2026 | GA status, supported plans and clients, effort levels, billing and discount, and the Fusion Max benchmark result |
-| [GitHub Docs: About GitHub Copilot Fusion](https://docs.github.com/copilot/concepts/models/copilot-fusion) | Checked 29 October 2026 | Current routing behaviour, execution patterns, effort levels, progress, and model visibility |
-| [GitHub Docs: Managing model availability for Copilot Fusion](https://docs.github.com/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-availability-of-default-models#configuring-models-available-for-copilot-fusion) | Checked 29 October 2026 | Enterprise control over which models Fusion can use |
-| [GitHub Docs: Enterprise managed settings](https://docs.github.com/copilot/reference/enterprise-administrators/enterprise-managed-settings#fusiontier) | Checked 29 October 2026 | The `fusionTier` setting for a default Fusion effort level |
 
 ---
 
