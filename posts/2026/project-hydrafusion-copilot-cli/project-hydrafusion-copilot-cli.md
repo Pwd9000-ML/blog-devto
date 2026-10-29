@@ -10,9 +10,9 @@ series: GitHub Copilot - CLI
 date: '2026-10-12T08:18:03Z'
 ---
 
-## Project HydraFusion: GitHub Copilot Stops Picking a Model and Starts Building a Workflow
+> **Note :** Following GitHub Universe 2026, GitHub announced on **28 October 2026** that Project HydraFusion is now part of **GitHub Copilot Fusion**, a generally available experience that routes and orchestrates models for each task. Copilot Fusion combines HydraFusion's multi-model orchestration with Copilot Auto model selection. [Further reading: GitHub Copilot Fusion announcement](https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/).
 
-> **Note (29 October 2026):** Following GitHub Universe 2026, GitHub announced on **28 October 2026** that Project HydraFusion is now part of **GitHub Copilot Fusion**, a generally available experience that routes and orchestrates models for each task. Copilot Fusion combines HydraFusion's multi-model orchestration with Copilot Auto model selection. [Further reading: GitHub Copilot Fusion announcement](https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/).
+## Project HydraFusion: GitHub Copilot Stops Picking a Model and Starts Building a Workflow
 
 For the last year, the most consequential decision in a Copilot session has been the model picker. Opus for the hard refactor, a cheaper GPT for the boilerplate, Auto when you could not be bothered. Auto model selection makes that decision for you, one model per request, and gives you a 10% discount for trusting it.
 
