@@ -259,24 +259,10 @@ The controls deserve as much attention as the new capabilities: read-only defaul
 
 The immediate Day 2 action is to update static webhook allowlists or verify that they follow GitHub's Meta API. For the broader workflow, pilot issue artifacts and stacked pull requests in repositories with clear ownership and review rules. Measure whether they improve hand-offs, review time, and operational outcomes rather than adopting them because they appeared in a keynote recap.
 
-## Sources
-
-| Source | Type | Date | What it verifies |
-| --- | --- | --- | --- |
-| [GitHub Universe 2026: Evolving every layer of the stack](https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/) | GitHub Blog | 28 October 2026 | Day 1 framing and platform announcements |
-| [GitHub Universe 2026 recap](https://github.com/events/universe/recap) | Official event recap | Checked 30 October 2026 | Product areas and featured platform capabilities |
-| [Webhook IP ranges added to the Meta API](https://github.blog/changelog/2026-10-29-webhook-ip-ranges-added-to-the-meta-api) | GitHub Changelog | 29 October 2026 | New webhook delivery CIDR ranges, scope, and Meta API guidance |
-| [GitHub Actions workflow lockfiles are generally available](https://github.blog/changelog/2026-10-28-github-actions-workflow-lockfiles-are-generally-available) | GitHub Changelog | 28 October 2026 | Lockfile GA status and policy controls |
-| [GitHub Agentic Workflows generally available](https://github.blog/changelog/2026-10-28-github-agentic-workflows-generally-available) | GitHub Changelog | 28 October 2026 | Agentic Workflows GA status and capabilities |
-| [Stacked pull requests generally available](https://github.blog/changelog/2026-10-06-stacked-pull-requests-generally-available) | GitHub Changelog | 6 October 2026 | Stacked PR GA features and availability |
-| [Issue artifacts are now in public preview](https://github.blog/changelog/2026-10-28-issue-artifacts-are-now-in-public-preview) | GitHub Changelog | 28 October 2026 | Issue artifact types, CLI, GitHub App support, and preview status |
-| [`gh issue create` manual](https://cli.github.com/manual/gh_issue_create) | GitHub CLI documentation | Checked 30 October 2026 | `--attach` syntax, attachment limits, and partial-upload behaviour |
-| [Refreshed repository pull requests page generally available](https://github.blog/changelog/2026-09-21-refreshed-repository-pull-requests-page-generally-available) | GitHub Changelog | 21 September 2026 | Repository pull-request overview GA status |
-
 ### _Author_
 
 {% user pwd9000 %}
 
 Like, share, follow me on: :octopus: [GitHub](https://github.com/Pwd9000-ML) | :penguin: [X](https://x.com/pwd9000) | :space_invader: [LinkedIn](https://www.linkedin.com/in/marcel-pwd9000/)
 
-Date: 29-10-2026
+Date: 30-10-2026
