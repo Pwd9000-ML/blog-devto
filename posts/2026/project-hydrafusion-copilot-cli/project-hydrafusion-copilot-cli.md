@@ -10,8 +10,6 @@ series: GitHub Copilot - CLI
 date: '2026-10-12T08:18:03Z'
 ---
 
-![diagram](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/project-hydrafusion-copilot-cli/assets/fusion.png)
-
 ## From Project HydraFusion to GitHub Copilot Fusion: Model Orchestration in Copilot
 
 Project HydraFusion began as a research preview in Copilot CLI on 4 September 2026, expanded to VS Code and the Copilot app on [30 September](https://github.blog/changelog/2026-09-30-hydrafusion-in-vs-code-and-the-github-copilot-app/), and became generally available as Copilot Fusion on 28 October. Fusion combines multi-model orchestration with Copilot Auto model selection. This post looks at how it works, what the historical benchmarks do and do not tell us, and how to evaluate it against real tasks.
@@ -56,6 +54,8 @@ GitHub describes Fusion as a runtime model router and orchestrator. For each tas
 | **Single** | One selected model solves the task directly. | The task is well within a single model's capability, adds no overhead. |
 | **Cascade** | An efficient model drafts a solution and a quality gate decides whether to accept it or escalate to a stronger model. | Most tasks are easy, some are not, and you would rather pay for the strong model only on the hard ones. |
 | **Critique** | One model drafts a response while multiple models independently critique it in parallel, their feedback is aggregated, and the original model revises its response. | Tasks where independent reviews may improve the result enough to justify the extra model calls. |
+
+![diagram](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/project-hydrafusion-copilot-cli/assets/fusion.png)
 
 This differs from the original preview description, which focused on a single read-only critic and one revision. The current [Fusion documentation](https://docs.github.com/copilot/concepts/models/copilot-fusion) describes multiple critics working in parallel, with their feedback aggregated before the drafting model revises. Do not assume the preview's exact critic implementation or limits still apply.
 
