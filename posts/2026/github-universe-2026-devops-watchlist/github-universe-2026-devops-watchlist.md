@@ -3,7 +3,7 @@ title: 'GitHub Universe 2026: What DevOps Engineers Need to Know'
 published: true
 description: 'A two-day GitHub Universe 2026 roundup for DevOps: agent workflows, Actions, AI security, Copilot and Day 2 operational changes.'
 tags: 'github, devops, ai, githubcopilot'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/github-universe-2026-devops-watchlist/assets/main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/github-universe-2026-devops-watchlist/assets/main.png?v=cloudflare-20261030'
 canonical_url: null
 id: 4927957
 series: null

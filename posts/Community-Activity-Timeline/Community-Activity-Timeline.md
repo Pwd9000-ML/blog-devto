@@ -28,13 +28,13 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 | Year         | Speaking | Content | Open Source | Events | Year Total |
 | ------------ | -------- | ------- | ----------- | ------ | ---------- |
-| 2026         | 2        | 21      | 1           | 2      | 26         |
+| 2026         | 2        | 22      | 1           | 2      | 27         |
 | 2025         | 9        | 9       | 1           | 4      | 23         |
 | 2024         | 5        | 10      | 3           | 3      | 21         |
 | 2023         | 6        | 10      | 8           | 3      | 27         |
 | 2022         | 15       | 38      | 9           | 1      | 63         |
 | 2021         | 1        | 22      | 2           | 0      | 25         |
-| Grand Totals | 38       | 110     | 24          | 13     | 185        |
+| Grand Totals | 38       | 111     | 24          | 13     | 186        |
 
 - **Speaking**: Conference talks, user groups, Meetups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
 - **Content**: Blogs, articles, videos, podcasts (all published content pieces).
@@ -67,8 +67,9 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **30/10/2026** | [GitHub Universe 2026: What DevOps Engineers Need to Know](https://dev.to/pwd9000/github-universe-2026-what-devops-engineers-need-to-know-1ap9) | Content | GitHub, Copilot, GitHub Actions, DevOps | GitHub, GitHubCopilot, DevOps, AI |
 | **27/10/2026** | [GitHub Actions Workflow Lockfiles: Pin What Actually Runs](https://dev.to/pwd9000/github-actions-workflow-lockfiles-pin-what-actually-runs-5341) | Content | GitHub, GitHub Actions, Security, DevOps | GitHubActions, Security, DevOps, Tutorial |
-| **12/10/2026** | [Project HydraFusion: GitHub Copilot Stops Picking a Model and Starts Building a Workflow](https://dev.to/pwd9000/project-hydrafusion-github-copilot-stops-picking-a-model-and-starts-building-a-workflow-4lh5) | Content | GitHub, Copilot, AI, DevOps | GitHubCopilot, AI, DevOps, LLM |
+| **12/10/2026** | [From Project HydraFusion to GitHub Copilot Fusion: Model Orchestration in Copilot](https://dev.to/pwd9000/project-hydrafusion-github-copilot-stops-picking-a-model-and-starts-building-a-workflow-4lh5) | Content | GitHub, Copilot, AI, DevOps | GitHubCopilot, AI, DevOps, LLM |
 | **13/09/2026** | [Copilot Can Now Approve Pull Requests. Should It Count Toward Your Branch Protection?](https://dev.to/pwd9000/copilot-can-now-approve-pull-requests-should-it-count-toward-your-branch-protection-2b78) | Content | GitHub, Copilot, Code Review, DevOps | GitHubCopilot, GitHub, CodeReview, DevOps |
 | **25/08/2026** | [From Markdown to Guarded Automation: Build Your First GitHub Agentic Workflow](https://dev.to/pwd9000/from-markdown-to-guarded-automation-build-your-first-github-agentic-workflow-3gbd) | Content | GitHub, Copilot, GitHub Actions, AI | GitHubCopilot, GitHubActions, DevOps, AI |
 | **17/08/2026** | [Can Copilot Fix Its Own Security Findings? Testing GitHub Agentic Autofix](https://dev.to/pwd9000/can-copilot-fix-its-own-security-findings-testing-github-agentic-autofix-351b) | Content | GitHub, Copilot, Security, DevSecOps | GitHubCopilot, GitHub, DevSecOps, Security |

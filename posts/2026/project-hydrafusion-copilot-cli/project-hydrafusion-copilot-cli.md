@@ -3,14 +3,14 @@ title: 'From Project HydraFusion to GitHub Copilot Fusion: Model Orchestration i
 published: true
 description: 'A dated look at Project HydraFusion, now GitHub Copilot Fusion GA: how model orchestration works, what changed, and how to evaluate it.'
 tags: 'githubcopilot, ai, devops, llm'
-cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/project-hydrafusion-copilot-cli/assets/main.png'
+cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/project-hydrafusion-copilot-cli/assets/main.png?v=cloudflare-20261030'
 canonical_url: null
 id: 4644278
 series: GitHub Copilot - CLI
 date: '2026-10-12T08:18:03Z'
 ---
 
-![diagram](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/project-hydrafusion-copilot-cli/assets/fusion.png)  
+![diagram](https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/project-hydrafusion-copilot-cli/assets/fusion.png)
 
 ## From Project HydraFusion to GitHub Copilot Fusion: Model Orchestration in Copilot
 
@@ -194,7 +194,6 @@ I would pilot Fusion rather than switch organisation-wide defaults on the streng
 - Evaluate Fusion on representative tasks using deterministic checks, a fixed-model baseline, cost and latency measurements, and review of the full diff.
 
 Choosing the right amount of model work for each task is still the important problem. Copilot Fusion is GitHub's GA product for that approach, the engineering discipline remains to validate its results against your own delivery, cost, and security requirements.
-
 
 ---
 

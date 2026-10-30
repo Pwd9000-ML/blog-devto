@@ -1,0 +1,12 @@
+{
+  "title": "GitHub Copilot Fusion",
+  "subtitle": "From HydraFusion to model orchestration",
+  "topic": "several distinct glass, ceramic and brushed-metal lenses each catching a different coloured light beam, all converging through one central crystal prism into a single unified beam, representing multiple AI models orchestrated into one answer",
+  "seed": 4232361661486897472,
+  "art_direction": "macro-materials",
+  "palette": "deep navy, electric cyan, and restrained coral accents",
+  "prompt": "A purely visual, wordless editorial illustration. Scene: several distinct glass, ceramic and brushed-metal lenses each catching a different coloured light beam, all converging through one central crystal prism into a single unified beam, representing multiple AI models orchestrated into one answer. Interpret that concept with one concrete, topic-relevant visual metaphor. Art direction: A striking close-up of physical objects in glass, ceramic, and brushed metal. Palette: deep navy, electric cyan, and restrained coral accents. Make an actual illustration, not a poster, title slide, or generic AI brain or robot. Wide horizontal banner composition. Place the main subject on the right third; the left half is plain, dark, empty background with nothing in it. Keep all important objects in the middle 55 percent of the image height so the artwork can be centre-cropped to a 1000 by 420 pixel banner. Every surface is blank and unmarked: no typography, lettering, signage, labels, code, logos, watermarks, or user-interface screenshots. Do not imitate another author or artist. Render original objects and composition.",
+  "output": "main.png",
+  "source": "cloudflare-workers-ai",
+  "model": "@cf/leonardo/lucid-origin"
+}
