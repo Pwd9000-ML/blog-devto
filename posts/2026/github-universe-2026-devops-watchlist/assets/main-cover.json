@@ -7,6 +7,6 @@
   "palette": "near-black #101411 and charcoal neutrals with GitHub green #0FBF3E and Copilot purple #8534F3 glowing accents",
   "prompt": "A purely visual, wordless editorial illustration. Scene: An interconnected software-delivery landscape made from contribution-graph cubes: focused streams of code changes, issue artifacts, a shared review point, and a secure delivery gate converging into one stable release path. Keep the forms abstract and unmarked, with the connected workflow concentrated on the right.. Interpret that concept with one concrete, topic-relevant visual metaphor. Art direction: A detailed 3D isometric landscape built from contribution-graph cubes floating in a dark night sky, some cubes solid, some transparent glass, some glowing, with subtle dithered pixel textures, soft rim lighting, and a few tiny stars. No animal mascots or characters. Palette: near-black #101411 and charcoal neutrals with GitHub green #0FBF3E and Copilot purple #8534F3 glowing accents. Make an actual illustration, not a poster, title slide, or generic AI brain or robot. Wide horizontal banner composition. Place the main subject on the right third; the left half is plain, dark, empty background with nothing in it. Keep all important objects in the middle 55 percent of the image height so the artwork can be centre-cropped to a 1000 by 420 pixel banner. Every surface is blank and unmarked: no typography, lettering, signage, labels, code, logos, watermarks, or user-interface screenshots. Do not imitate another author or artist. Render original objects and composition.",
   "output": "main.png",
-  "source": "brief-only",
-  "model": null
+  "source": "cloudflare-workers-ai",
+  "model": "@cf/leonardo/lucid-origin"
 }
