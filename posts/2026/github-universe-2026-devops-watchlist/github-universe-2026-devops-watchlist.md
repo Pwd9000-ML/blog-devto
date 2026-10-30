@@ -7,6 +7,7 @@ cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts
 canonical_url: null
 id: 4927957
 series: null
+date: '2026-10-30T12:42:19Z'
 ---
 
 ## GitHub Universe 2026: What DevOps Engineers Need to Know
