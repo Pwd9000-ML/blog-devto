@@ -16,18 +16,18 @@ That distinction runs through the [Microsoft Ignite 2026 Book of News][book]. Fo
 
 ## My Ignite shortlist
 
-| What changes | Status on 20 November 2026 | Where I'd start |
+| What changes | Status on 20 November 2026 |
 | --- | --- | --- |
-| 1. Copilot reviews pull requests in Azure Repos | Generally available (GA) | One team's PR review queue |
-| 2. The Copilot app can open those PRs | Public preview | One change, with a human doing the merge |
-| 3. Azure SQL Database runs in a local container | Public preview | An isolated schema migration test per PR |
-| 4. Azure Monitor health models track a whole workload | GA | One user journey the on-call team owns |
-| 5. Azure SRE Agent can investigate from Teams | Public preview | A read-only incident rehearsal |
-| 6. Chaos Studio Workspaces organise resilience tests | Workspaces GA; AKS extension in public preview | A recovery check in pre-production |
+| 1. Copilot reviews pull requests in Azure Repos | Generally available (GA) |
+| 2. The Copilot app can open those PRs | Public preview |
+| 3. Azure SQL Database runs in a local container | Public preview |
+| 4. Azure Monitor health models track a whole workload | GA |
+| 5. Azure SRE Agent can investigate from Teams | Public preview |
+| 6. Chaos Studio Workspaces organise resilience tests | Workspaces GA, AKS extension in public preview |
 
 ### 1. Azure Repos: request a code review without moving your Git repository
 
-If you own an Azure Repos Git repository, you can now [ask Copilot to review a pull request][review] as a generally available feature. An administrator enables reviews; the team can then request one manually or use a branch policy to request one automatically. Findings appear against the relevant lines of the diff. Usage is billed in GitHub AI credits to the Azure subscription linked to the Azure DevOps organisation.
+If you own an Azure Repos Git repository, you can now [ask Copilot to review a pull request][review] as a generally available feature. An administrator enables reviews, the team can then request one manually or use a branch policy to request one automatically. Findings appear against the relevant lines of the diff. Usage is billed in GitHub AI credits to the Azure subscription linked to the Azure DevOps organisation.
 
 One detail is easy to miss in the GitHub announcement: Azure Repos offers **Lite** and **Balanced** review effort. The **Adaptive** option announced for GitHub pull requests is a separate public preview. Don't design an Azure Repos rollout around a setting your reviewers won't see.
 
@@ -39,7 +39,7 @@ The [Azure DevOps integration in the GitHub Copilot app][app] is a different rel
 
 The important bit for platform teams is **whose permissions and name show up on the work**. According to [GitHub's integration guide][app-controls], Azure DevOps permissions still apply, there is no separate per-repository allowlist in the app, and actions appear in Azure DevOps under the signed-in user's name. If someone enables Agent Merge for a PR, the agent can complete it once the repository's checks and policies pass, without another confirmation.
 
-For a first pilot, I'd pick a developer account that already has suitably narrow access and a task with an obvious acceptance test, such as adding a missing regression test. Let the app open the PR; leave Agent Merge off. Then have a second engineer check the diff **and** the activity history. Can they tell what was delegated before they approve it?
+For a first pilot, I'd pick a developer account that already has suitably narrow access and a task with an obvious acceptance test, such as adding a missing regression test. Let the app open the PR, leave Agent Merge off. Then have a second engineer check the diff **and** the activity history. Can they tell what was delegated before they approve it?
 
 ### 3. Azure SQL Database in a container: give each PR its own database
 
@@ -57,15 +57,15 @@ I'd start with checkout success rate and latency, with the API and database unde
 
 ### 5. Azure SRE Agent in Teams: bring evidence to the incident chat
 
-Once the checkout alert fires, someone usually leaves the incident chat to look up what changed, then pastes a summary back. In [the new Teams integration][sre], Azure SRE Agent can join the conversation, investigate connected systems and post its findings in the thread. Teams support and Microsoft Entra Agent ID are in **public preview**; the Slack integration is in **private preview**. Adding the agent to a chat doesn't grant it new Azure permissions.
+Once the checkout alert fires, someone usually leaves the incident chat to look up what changed, then pastes a summary back. In [the new Teams integration][sre], Azure SRE Agent can join the conversation, investigate connected systems and post its findings in the thread. Teams support and Microsoft Entra Agent ID are in **public preview**, the Slack integration is in **private preview**. Adding the agent to a chat doesn't grant it new Azure permissions.
 
-My first exercise would be a read-only replay of a resolved incident. Ask for the deployment nearest the first error and the telemetry that links the two. Compare the reply with the incident timeline. A useful answer points the responder to evidence; “a deployment happened five minutes earlier” is a lead, not a root cause. I'd evaluate that before considering any permission to change a running service.
+My first exercise would be a read-only replay of a resolved incident. Ask for the deployment nearest the first error and the telemetry that links the two. Compare the reply with the incident timeline. A useful answer points the responder to evidence, “a deployment happened five minutes earlier” is a lead, not a root cause. I'd evaluate that before considering any permission to change a running service.
 
 ### 6. Chaos Studio Workspaces: a successful experiment isn't proof of recovery
 
 [Azure Chaos Studio Workspaces][chaos] let a platform team scope a resilience exercise to resources it owns, discover applicable scenarios and get a report showing which actions ran or were skipped. That's a useful change from building up each experiment resource by resource. **Workspaces are GA.** Despite the broader wording in the Book of News, [the AKS extension documentation][aks] explicitly says **public preview**, with no SLA and no intended production use.
 
-Here's where the health model earns its keep. Before a pre-production exercise, write down what the customer should experience, who should be paged, and how long recovery should take. Afterwards, compare the scenario report with the checkout health timeline. The report tells you whether the experiment ran; the timeline and your application checks tell you whether checkout recovered. Those are different results.
+Here's where the health model earns its keep. Before a pre-production exercise, write down what the customer should experience, who should be paged, and how long recovery should take. Afterwards, compare the scenario report with the checkout health timeline. The report tells you whether the experiment ran, the timeline and your application checks tell you whether checkout recovered. Those are different results.
 
 ## My take: what I'd put in the next sprint
 
@@ -74,32 +74,6 @@ For an **application team**, I'd start with the SQL migration test. It addresses
 For a **platform or SRE team**, I'd start with one GA health model and one question the on-call engineer struggles to answer today. A model that distinguishes “database busy” from “checkout broken” is already useful, whether or not you try SRE Agent.
 
 For an **Azure Repos team**, I'd make two separate decisions: _do we want another reviewer?_ and _do we want software to act under a developer's identity?_ Ignite gave us options for both. It didn't make them the same decision.
-
-## Sources and further reading
-
-| Source | Type | What it verifies |
-| --- | --- | --- |
-| [Microsoft Ignite 2026 Book of News][book] | Event guide, 17–20 November | Conference announcements and event dates |
-| [GitHub Copilot code review release][review] | GitHub Changelog, 17 November | Azure Repos GA, review effort levels and billing |
-| [Copilot app preview][app] and [integration guide][app-controls] | Azure DevOps product blog and GitHub Docs | Local sessions, identity, repository access and Agent Merge |
-| [Azure SQL Database container announcement][sql] and [FAQ][sql-faq] | Azure SQL product blog and documentation | Public preview, supported platforms and managed-service differences |
-| [Azure Monitor GA announcement][health-ga] and [health models overview][health] | Azure Observability team and Microsoft Learn | Workload health, alerting and signal billing |
-| [Azure SRE Agent at Ignite][sre] | Azure product team, 17 November | Preview status by integration, permissions and approvals |
-| [Chaos Studio Workspaces][chaos] and [AKS extension overview][aks] | Microsoft Learn | Workspace scope, scenario reports and the extension's preview restrictions |
-
-Availability and documentation checked on **20 November 2026**.
-
-[book]: https://news.microsoft.com/events/ignite/2026/book-of-news/
-[review]: https://github.blog/changelog/2026-11-17-copilot-code-review-adaptive-effort-secret-detection-and-more/
-[app]: https://devblogs.microsoft.com/devops/azure-devops-integration-with-the-github-copilot-app-public-preview/
-[app-controls]: https://docs.github.com/en/copilot/how-tos/github-copilot-app/manage-azure-devops-work
-[sql]: https://devblogs.microsoft.com/azure-sql/build-locally-with-azure-sql-database-container-now-in-public-preview/
-[sql-faq]: https://microsoft.github.io/azure-sql-dev-hub/container/faq.html
-[health-ga]: https://techcommunity.microsoft.com/blog/AzureObservabilityBlog/azure-monitor-health-models-is-generally-available/4560478
-[health]: https://learn.microsoft.com/en-us/azure/azure-monitor/health-models/overview
-[sre]: https://techcommunity.microsoft.com/blog/appsonazureblog/what%E2%80%99s-new-in-azure-sre-agent-at-microsoft-ignite-2026/4573607
-[chaos]: https://learn.microsoft.com/en-us/azure/chaos-studio/chaos-studio-workspaces-overview
-[aks]: https://learn.microsoft.com/en-us/azure/chaos-studio/chaos-studio-aks-extension-overview
 
 ### _Author_
 
