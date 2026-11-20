@@ -1,0 +1,12 @@
+{
+  "title": "Microsoft Ignite 2026",
+  "subtitle": "Book of News: DevOps edition",
+  "topic": "An open paper book unfolds into a single pop-up bridge; the deck is a ribbon of paper carrying one small folded parcel from a workshop arch to a signal beacon",
+  "seed": 5159790120185417000,
+  "art_direction": "paper-sculpture",
+  "palette": "dark slate, magenta, and sky blue",
+  "prompt": "A purely visual, wordless editorial illustration. Scene: An open paper book unfolds into a single pop-up bridge; the deck is a ribbon of paper carrying one small folded parcel from a workshop arch to a signal beacon. Interpret that concept with one concrete, topic-relevant visual metaphor. Art direction: An intricate sculpted-paper scene with dimensional shadows and bold shapes. Palette: dark slate, magenta, and sky blue. Make an actual illustration, not a poster, title slide, or generic AI brain or robot. Wide horizontal banner composition. Place the main subject on the right third; the left half is plain, dark, empty background with nothing in it. Keep all important objects in the middle 55 percent of the image height so the artwork can be centre-cropped to a 1000 by 420 pixel banner. Every surface is blank and unmarked: no typography, lettering, signage, labels, code, logos, watermarks, or user-interface screenshots. Do not imitate another author or artist. Render original objects and composition.",
+  "output": "main.png",
+  "source": "cloudflare-workers-ai",
+  "model": "@cf/leonardo/lucid-origin"
+}
