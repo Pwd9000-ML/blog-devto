@@ -5,7 +5,7 @@ description: 'Six Ignite 2026 updates for teams shipping on Azure: what changes 
 tags: 'msignite, devops, azure, github'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/2026/microsoft-ignite-2026-book-of-news-devops/assets/main.png'
 canonical_url: null
-id: null
+id: 5081239
 series: null
 date: '2026-11-20T11:21:13Z'
 ---
