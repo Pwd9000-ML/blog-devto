@@ -1,7 +1,7 @@
 ---
 title: My Tech Community Activity Timeline
 published: true
-description: Showcase and timeline of my tech community activity and contributions
+description: 'Showcase and timeline of my tech community activity and contributions'
 tags: 'ai, tutorial, devops, github'
 cover_image: 'https://raw.githubusercontent.com/Pwd9000-ML/blog-devto/main/posts/Community-Activity-Timeline/assets/main.png'
 canonical_url: null
@@ -28,13 +28,13 @@ Below, you'll find a timeline of my community activities, speaking events, and c
 
 | Year         | Speaking | Content | Open Source | Events | Year Total |
 | ------------ | -------- | ------- | ----------- | ------ | ---------- |
-| 2026         | 2        | 22      | 1           | 2      | 27         |
+| 2026         | 2        | 22      | 1           | 3      | 28         |
 | 2025         | 9        | 9       | 1           | 4      | 23         |
 | 2024         | 5        | 10      | 3           | 3      | 21         |
 | 2023         | 6        | 10      | 8           | 3      | 27         |
 | 2022         | 15       | 38      | 9           | 1      | 63         |
 | 2021         | 1        | 22      | 2           | 0      | 25         |
-| Grand Totals | 38       | 111     | 24          | 13     | 186        |
+| Grand Totals | 38       | 111     | 24          | 14     | 187        |
 
 - **Speaking**: Conference talks, user groups, Meetups, bootcamps, summits (includes MVP Summit attendance & Sessionize recognition).
 - **Content**: Blogs, articles, videos, podcasts (all published content pieces).
@@ -67,6 +67,7 @@ If you like my content, feel free to bookmark this page as it gets updated frequ
 
 | Date | Activity | Type | Topic Area | Tags |
 | --- | --- | --- | --- | --- |
+| **01/12/2026** | [Festive Tech Calendar 2026](https://festivetechcalendar.com/) - scheduled feature: [From Project HydraFusion to GitHub Copilot Fusion](https://dev.to/pwd9000/project-hydrafusion-github-copilot-stops-picking-a-model-and-starts-building-a-workflow-4lh5) | Event | GitHub, Copilot, Model Orchestration | GitHubCopilot, AI, DevOps, LLM |
 | **30/10/2026** | [GitHub Universe 2026: What DevOps Engineers Need to Know](https://dev.to/pwd9000/github-universe-2026-what-devops-engineers-need-to-know-1ap9) | Content | GitHub, Copilot, GitHub Actions, DevOps | GitHub, GitHubCopilot, DevOps, AI |
 | **27/10/2026** | [GitHub Actions Workflow Lockfiles: Pin What Actually Runs](https://dev.to/pwd9000/github-actions-workflow-lockfiles-pin-what-actually-runs-5341) | Content | GitHub, GitHub Actions, Security, DevOps | GitHubActions, Security, DevOps, Tutorial |
 | **12/10/2026** | [From Project HydraFusion to GitHub Copilot Fusion: Model Orchestration in Copilot](https://dev.to/pwd9000/project-hydrafusion-github-copilot-stops-picking-a-model-and-starts-building-a-workflow-4lh5) | Content | GitHub, Copilot, AI, DevOps | GitHubCopilot, AI, DevOps, LLM |
